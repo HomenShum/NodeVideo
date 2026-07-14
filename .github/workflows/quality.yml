@@ -22,10 +22,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js 20
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install locked dependencies
@@ -39,6 +39,11 @@ jobs:
 
       - name: Unit tests
         run: npm run test
+
+      - name: Verify worker receipt and capability schemas
+        run: |
+          npm run capability:validate
+          npm run worker:verify
 
       - name: Primitive-first UI policy and budgets
         run: |
@@ -59,10 +64,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js 20
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install locked dependencies

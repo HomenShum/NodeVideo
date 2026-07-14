@@ -1,10 +1,9 @@
 import { TraceWaterfall } from '@/components/TraceWaterfall';
+import { Tool, ToolContent, ToolHeader } from '@/components/ai-elements/tool';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import type { NodeVideoCheckpoint, RecipeProposalArtifact } from '@/lib/contracts';
-import { Check } from 'lucide-react';
+import { Check, TriangleAlert } from 'lucide-react';
 import { ArtifactList, VersionList } from './evidence-lists';
 import { ProposalReview } from './proposal-review';
 import { SectionLabel } from './section-label';
@@ -24,10 +23,10 @@ export function InspectorPanel({
   onDecline: () => void;
   onRestore: (recipeId: string, version: number) => void;
 }) {
-  const alignment = checkpoint.artifacts.find((item) => item.kind === 'alignment-report');
-  const differences = checkpoint.artifacts.find((item) => item.kind === 'difference-report');
+  const receipt = checkpoint.artifacts.find((item) => item.kind === 'worker-receipt');
   const completed = checkpoint.stages.filter((stage) => stage.status === 'completed').length;
   const awaiting = checkpoint.stages.filter((stage) => stage.status === 'awaiting-review').length;
+  const failed = checkpoint.stages.filter((stage) => stage.status === 'failed');
 
   return (
     <ScrollArea className="min-h-0 min-w-0 w-full flex-1">
@@ -38,20 +37,29 @@ export function InspectorPanel({
           aria-label="Recorded pipeline stages"
         >
           <SectionLabel label="Pipeline receipt" meta={`${checkpoint.stages.length} stages`} />
-          <Alert>
-            <Check aria-hidden="true" />
+          <Alert variant={failed.length ? 'destructive' : 'default'}>
+            {failed.length ? <TriangleAlert aria-hidden="true" /> : <Check aria-hidden="true" />}
             <AlertDescription>
-              {completed} complete · {awaiting} review
+              {completed} complete · {awaiting} review · {failed.length} failed
             </AlertDescription>
           </Alert>
         </section>
 
-        <div className="flex items-center justify-between gap-2">
-          <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-            Review gate
-          </span>
-          <Badge variant="outline">{decision}</Badge>
-        </div>
+        {receipt?.kind === 'worker-receipt' ? (
+          <Tool defaultOpen data-testid="worker-tool-card" className="mb-0">
+            <ToolHeader
+              type="dynamic-tool"
+              toolName="nodevideo.tutorial-compare"
+              title={`Worker receipt · ${receipt.validationCount} checks`}
+              state={receipt.validationVerdict === 'pass' ? 'output-available' : 'output-error'}
+              className="min-w-0 gap-2 px-3 py-2"
+            />
+            <ToolContent className="px-3 pb-3 text-xs text-muted-foreground">
+              Deterministic public worker · {receipt.eventCount} events · media hash verified
+            </ToolContent>
+          </Tool>
+        ) : null}
+
         {proposal ? (
           <ProposalReview
             proposal={proposal}
@@ -61,27 +69,12 @@ export function InspectorPanel({
           />
         ) : null}
 
-        <div className="grid grid-cols-2 gap-2">
-          <Fact
-            label="Alignment"
-            value={alignment?.kind === 'alignment-report' ? `${alignment.offsetMs} ms` : '—'}
-          />
-          <Fact
-            label="Difference score"
-            value={
-              differences?.kind === 'difference-report'
-                ? `${Math.round(differences.overallScore * 100)}%`
-                : '—'
-            }
-          />
-        </div>
-
         <ArtifactList artifacts={checkpoint.artifacts} />
         <section className="space-y-2" data-testid="trace-panel" aria-labelledby="trace-heading">
           <SectionLabel
             id="trace-heading"
             label="Complete trace"
-            meta={`${checkpoint.spans.length} spans · ok`}
+            meta={`${checkpoint.spans.length} spans · ${failed.length ? 'partial' : 'ok'}`}
           />
           <TraceWaterfall spans={checkpoint.spans} />
         </section>
@@ -92,16 +85,5 @@ export function InspectorPanel({
         />
       </div>
     </ScrollArea>
-  );
-}
-
-function Fact({ label, value }: { label: string; value: string }) {
-  return (
-    <Card>
-      <CardContent className="space-y-1 p-3">
-        <span className="block text-xs text-muted-foreground">{label}</span>
-        <strong className="font-mono text-lg">{value}</strong>
-      </CardContent>
-    </Card>
   );
 }

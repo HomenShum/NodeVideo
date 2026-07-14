@@ -3,22 +3,16 @@ import type {
   NodeVideoStageKind,
   RecipeProposalArtifact,
 } from '@/lib/contracts';
+import { PUBLIC_WORKER_URLS } from '@/lib/public-worker';
 
-export const SYNTHETIC_VIDEO_URL = new URL(
-  '../../../fixtures/media/nodevideo-proof-v1.mp4',
-  import.meta.url,
-).href;
-
-export const SYNTHETIC_PROOF_URL = new URL(
-  '../../../fixtures/media/nodevideo-proof-v1.proof.json',
-  import.meta.url,
-).href;
+export const SYNTHETIC_VIDEO_URL = PUBLIC_WORKER_URLS.comparison;
+export const SYNTHETIC_PROOF_URL = PUBLIC_WORKER_URLS.receipt;
 
 export const LAST_RUNTIME_KEY = 'nodevideo:last-runtime-id';
 
 export type ProjectMode = 'empty' | 'synthetic' | 'local';
 export type MobileView = 'project' | 'canvas' | 'inspect';
-export type CompareView = 'reference' | 'reconstruction' | 'difference';
+export type CompareView = 'reference' | 'comparison' | 'difference';
 
 export interface LocalMedia {
   id: string;
@@ -48,14 +42,14 @@ export const LOCAL_PREVIEW_STAGES = [
 ] satisfies readonly DisplayStage[];
 
 export const DEMO_STAGE_LABELS: Array<{ kind: NodeVideoStageKind; label: string }> = [
-  { kind: 'ingest', label: 'Inspect fixture metadata' },
-  { kind: 'normalize', label: 'Describe normalized timeline' },
-  { kind: 'audio', label: 'Generate onset evidence' },
-  { kind: 'pose', label: 'Generate pose evidence' },
-  { kind: 'alignment', label: 'Align fixture timelines' },
-  { kind: 'diffs', label: 'Score fixture differences' },
-  { kind: 'render', label: 'Describe comparison preview' },
-  { kind: 'summary', label: 'Summarize fixture evidence' },
+  { kind: 'ingest', label: 'Verify input hashes' },
+  { kind: 'normalize', label: 'Normalize both videos' },
+  { kind: 'audio', label: 'Decode beat onsets' },
+  { kind: 'pose', label: 'Extract known-marker pose' },
+  { kind: 'alignment', label: 'Align decoded timelines' },
+  { kind: 'diffs', label: 'Measure critical moments' },
+  { kind: 'render', label: 'Render comparisons and bursts' },
+  { kind: 'summary', label: 'Validate evidence and coaching' },
   { kind: 'review', label: 'Review recipe change' },
 ];
 
@@ -80,6 +74,15 @@ export function statusLabel(status: DisplayStage['status']): string {
   if (status === 'failed') return 'Failed';
   if (status === 'cancelled') return 'Cancelled';
   return 'Queued';
+}
+
+export function toolState(status: DisplayStage['status']) {
+  if (status === 'completed') return 'output-available' as const;
+  if (status === 'failed') return 'output-error' as const;
+  if (status === 'awaiting-review') return 'approval-requested' as const;
+  if (status === 'cancelled') return 'output-denied' as const;
+  if (status === 'running') return 'input-available' as const;
+  return 'input-streaming' as const;
 }
 
 export function proposalDecision(

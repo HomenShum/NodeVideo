@@ -1,0 +1,54 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.tutorial-compare",
+  "version": "0.1.0",
+  "implementationStatus": "public-worker-validated",
+  "title": "Tutorial Comparison",
+  "description": "Run a deterministic tutorial-comparison graph and emit evidence-linked artifacts; current validation covers synthetic PCM and known-marker media only.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": ["video/reference", "video/attempt"],
+  "optionalInputs": ["audio/music"],
+  "outputs": ["tutorial_comparison", "beat_map", "critical_moment_burst", "coaching_summary"],
+  "tools": [
+    "media.normalize",
+    "audio.beat_map",
+    "pose.extract",
+    "tutorial.align",
+    "tutorial.diff",
+    "render.comparison",
+    "result.validate"
+  ],
+  "permissions": ["read_uploaded_media", "write_derived_artifacts"],
+  "uiRenderers": [
+    "TutorialComparisonView",
+    "BeatMapTimeline",
+    "CriticalMomentBurst",
+    "CoachingSummary"
+  ],
+  "evalSuite": "evals/public-worker-v1.json",
+  "validation": {
+    "profile": "public-synthetic-known-markers",
+    "receipt": "../../fixtures/media/tutorial-compare-v1/receipt.json",
+    "result": "../../fixtures/media/tutorial-compare-v1/result.json",
+    "excludes": [
+      "generic-human-pose-accuracy",
+      "production-music-beat-accuracy",
+      "private-human-tutorial-comparison",
+      "hosted-worker-execution",
+      "production-convex-control-plane"
+    ]
+  },
+  "execution": {
+    "kind": "deterministic-worker-graph",
+    "modelRequired": false,
+    "supportedBoundaries": ["public-worker", "private-worker"],
+    "validatedBoundaries": ["public-worker"],
+    "publicWorkerSourceClass": "public-fixture",
+    "privateMediaRequiresBoundary": "private-worker"
+  }
+}

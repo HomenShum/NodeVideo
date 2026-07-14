@@ -129,7 +129,7 @@ export interface NodeVideoStage {
   id: string;
   kind: NodeVideoStageKind;
   label: string;
-  mode: 'synthetic' | 'browser-local';
+  mode: 'synthetic' | 'browser-local' | 'deterministic-worker';
   status: NodeVideoStageStatus;
   recipeId: string;
   recipeVersion: number;
@@ -164,9 +164,21 @@ export interface BrowserLocalArtifactProvenance {
   inputIds: string[];
 }
 
+export interface DeterministicWorkerArtifactProvenance {
+  kind: 'deterministic-worker';
+  workerId: 'nodevideo.tutorial-compare';
+  workerVersion: string;
+  executionBoundary: 'public-worker' | 'private-worker';
+  inputIds: string[];
+  inputHashes: string[];
+  receiptUrl?: string;
+  disclosure: string;
+}
+
 export type NodeVideoArtifactProvenance =
   | SyntheticArtifactProvenance
-  | BrowserLocalArtifactProvenance;
+  | BrowserLocalArtifactProvenance
+  | DeterministicWorkerArtifactProvenance;
 
 interface NodeVideoArtifactBase {
   id: string;
@@ -230,6 +242,65 @@ export interface PreviewArtifact extends NodeVideoArtifactBase {
   mediaUrl?: string;
 }
 
+export interface BeatMapArtifact extends NodeVideoArtifactBase {
+  kind: 'beat-map';
+  bpm: number;
+  beatsMs: number[];
+  confidence: number;
+}
+
+export interface PoseDiffArtifact extends NodeVideoArtifactBase {
+  kind: 'pose-diff';
+  method: 'known-marker-pose';
+  sampleCount: number;
+  confidence: number;
+  meanNormalizedError: number;
+}
+
+export interface CriticalMomentEvidence {
+  id: string;
+  beat: number;
+  referenceFrame: number;
+  attemptFrame: number;
+  meanJointAngleErrorDeg: number;
+  maximumDeviationNormalized: number;
+  primaryRegion: string;
+  correction: string;
+}
+
+export interface CriticalMomentsArtifact extends NodeVideoArtifactBase {
+  kind: 'critical-moments';
+  moments: CriticalMomentEvidence[];
+}
+
+export interface TutorialComparisonArtifact extends NodeVideoArtifactBase {
+  kind: 'tutorial-comparison';
+  referenceMediaUrl: string;
+  attemptMediaUrl: string;
+  comparisonMediaUrl: string;
+  differenceMediaUrl: string;
+  durationMs: number;
+  validated: boolean;
+}
+
+export interface CriticalMomentBurstArtifact extends NodeVideoArtifactBase {
+  kind: 'critical-moment-burst';
+  imageUrl: string;
+  momentIds: string[];
+  framesBefore: number;
+  framesAfter: number;
+}
+
+export interface WorkerReceiptArtifact extends NodeVideoArtifactBase {
+  kind: 'worker-receipt';
+  receiptUrl: string;
+  resultSha256: string;
+  eventCount: number;
+  spanCount: number;
+  validationCount: number;
+  validationVerdict: 'pass' | 'fail';
+}
+
 export interface SummaryArtifact extends NodeVideoArtifactBase {
   kind: 'summary';
   headline: string;
@@ -250,6 +321,12 @@ export type NodeVideoArtifact =
   | AlignmentArtifact
   | DifferenceArtifact
   | PreviewArtifact
+  | BeatMapArtifact
+  | PoseDiffArtifact
+  | CriticalMomentsArtifact
+  | TutorialComparisonArtifact
+  | CriticalMomentBurstArtifact
+  | WorkerReceiptArtifact
   | SummaryArtifact
   | RecipeProposalArtifact;
 

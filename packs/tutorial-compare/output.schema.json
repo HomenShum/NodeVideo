@@ -1,0 +1,936 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/tutorial-compare/output.v1.json",
+  "title": "Tutorial Compare Output",
+  "description": "Evidence-linked result envelope for a deterministic tutorial comparison worker graph.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "projectId",
+    "runId",
+    "traceId",
+    "status",
+    "artifacts",
+    "failures",
+    "validation",
+    "provenance"
+  ],
+  "properties": {
+    "schema": {
+      "const": "nodevideo.tutorial-compare.output.v1"
+    },
+    "projectId": {
+      "$ref": "#/$defs/id"
+    },
+    "runId": {
+      "$ref": "#/$defs/id"
+    },
+    "traceId": {
+      "$ref": "#/$defs/id"
+    },
+    "status": {
+      "enum": ["completed", "partial", "failed", "cancelled"]
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["criticalMomentBursts"],
+      "properties": {
+        "tutorialComparison": {
+          "$ref": "#/$defs/tutorialComparisonArtifact"
+        },
+        "criticalMomentBursts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/criticalMomentBurstArtifact"
+          }
+        }
+      }
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/failure"
+      }
+    },
+    "validation": {
+      "$ref": "#/$defs/validation"
+    },
+    "provenance": {
+      "$ref": "#/$defs/resultProvenance"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "completed"
+          }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "required": ["tutorialComparison"],
+            "properties": {
+              "tutorialComparison": {
+                "properties": {
+                  "status": {
+                    "const": "completed"
+                  }
+                }
+              },
+              "criticalMomentBursts": {
+                "minItems": 3
+              }
+            }
+          },
+          "failures": {
+            "maxItems": 0
+          },
+          "validation": {
+            "properties": {
+              "verdict": {
+                "const": "pass"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "partial"
+          }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "anyOf": [
+              {
+                "required": ["tutorialComparison"]
+              },
+              {
+                "properties": {
+                  "criticalMomentBursts": {
+                    "minItems": 1
+                  }
+                }
+              }
+            ]
+          },
+          "failures": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "failed"
+          }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "failures": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "provenance": {
+            "properties": {
+              "executionBoundary": {
+                "const": "public-worker"
+              }
+            },
+            "required": ["executionBoundary"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "provenance": {
+            "properties": {
+              "sourceAssets": {
+                "items": {
+                  "properties": {
+                    "sourceClass": {
+                      "const": "public-fixture"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "artifactEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tool", "inputAssets", "createdAt", "provenance"],
+      "properties": {
+        "tool": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "version"],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/id"
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
+          }
+        },
+        "inputAssets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["assetId", "sha256"],
+            "properties": {
+              "assetId": {
+                "$ref": "#/$defs/id"
+              },
+              "sha256": {
+                "$ref": "#/$defs/sha256"
+              }
+            }
+          }
+        },
+        "frameRange": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["start", "end"],
+          "properties": {
+            "start": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "end": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "beatRange": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["start", "end"],
+          "properties": {
+            "start": {
+              "type": "number",
+              "minimum": 0
+            },
+            "end": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "provenance": {
+          "const": "deterministic-worker"
+        }
+      }
+    },
+    "beatMapArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "artifactId", "bpm", "beats", "phrases", "evidence"],
+      "properties": {
+        "type": {
+          "const": "beat_map"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/id"
+        },
+        "bpm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "beats": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "phrases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "startBeat", "endBeat"],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "startBeat": {
+                "type": "number",
+                "minimum": 0
+              },
+              "endBeat": {
+                "type": "number",
+                "minimum": 0
+              },
+              "label": {
+                "type": "string",
+                "maxLength": 160
+              }
+            }
+          }
+        },
+        "evidence": {
+          "$ref": "#/$defs/artifactEvidence"
+        }
+      }
+    },
+    "coachingSummaryArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "artifactId",
+        "strengths",
+        "primaryCorrection",
+        "secondaryCorrections",
+        "suggestedPracticeRanges",
+        "evidenceArtifactIds",
+        "evidence"
+      ],
+      "properties": {
+        "type": {
+          "const": "coaching_summary"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/id"
+        },
+        "strengths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "primaryCorrection": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "secondaryCorrections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        },
+        "suggestedPracticeRanges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["startBeat", "endBeat"],
+            "properties": {
+              "startBeat": {
+                "type": "number",
+                "minimum": 0
+              },
+              "endBeat": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "evidenceArtifactIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "evidence": {
+          "$ref": "#/$defs/artifactEvidence"
+        }
+      }
+    },
+    "criticalMoment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "beat",
+        "referenceFrame",
+        "attemptFrame",
+        "range",
+        "timing",
+        "form",
+        "path",
+        "dynamics",
+        "renders",
+        "coaching"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "beat": {
+          "type": "number",
+          "minimum": 0
+        },
+        "referenceFrame": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "attemptFrame": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "range": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "referenceStartFrame",
+            "referenceEndFrame",
+            "attemptStartFrame",
+            "attemptEndFrame"
+          ],
+          "properties": {
+            "referenceStartFrame": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "referenceEndFrame": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "attemptStartFrame": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "attemptEndFrame": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "timing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["errorMs", "errorFrames", "classification"],
+          "properties": {
+            "errorMs": {
+              "type": "number"
+            },
+            "errorFrames": {
+              "type": "number"
+            },
+            "classification": {
+              "enum": ["early", "matched", "late"]
+            }
+          }
+        },
+        "form": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["meanJointAngleErrorDeg", "confidence"],
+          "properties": {
+            "meanJointAngleErrorDeg": {
+              "type": "number",
+              "minimum": 0
+            },
+            "primaryRegion": {
+              "type": "string",
+              "maxLength": 160
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "path": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["directionSimilarity", "maximumDeviationNormalized"],
+          "properties": {
+            "directionSimilarity": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "maximumDeviationNormalized": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "dynamics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["peakVelocityRatio", "stopDurationErrorMs", "holdDurationErrorMs"],
+          "properties": {
+            "peakVelocityRatio": {
+              "type": "number",
+              "minimum": 0
+            },
+            "stopDurationErrorMs": {
+              "type": "number"
+            },
+            "holdDurationErrorMs": {
+              "type": "number"
+            }
+          }
+        },
+        "renders": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sideBySideArtifactId", "burstArtifactId"],
+          "properties": {
+            "sideBySideArtifactId": {
+              "$ref": "#/$defs/id"
+            },
+            "ghostArtifactId": {
+              "$ref": "#/$defs/id"
+            },
+            "burstArtifactId": {
+              "$ref": "#/$defs/id"
+            }
+          }
+        },
+        "coaching": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["observation", "correction", "priority"],
+          "properties": {
+            "observation": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "correction": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "priority": {
+              "enum": ["primary", "secondary", "minor"]
+            }
+          }
+        }
+      }
+    },
+    "tutorialComparisonArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "type",
+        "id",
+        "projectId",
+        "runId",
+        "traceId",
+        "status",
+        "assets",
+        "alignment",
+        "beatMap",
+        "criticalMoments",
+        "summary",
+        "evidence"
+      ],
+      "properties": {
+        "schema": {
+          "const": "nodevideo.tutorial-comparison.v1"
+        },
+        "type": {
+          "const": "tutorial_comparison"
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "projectId": {
+          "$ref": "#/$defs/id"
+        },
+        "runId": {
+          "$ref": "#/$defs/id"
+        },
+        "traceId": {
+          "$ref": "#/$defs/id"
+        },
+        "status": {
+          "enum": ["completed", "partial"]
+        },
+        "assets": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["referenceVideoId", "attemptVideoId"],
+          "properties": {
+            "referenceVideoId": {
+              "$ref": "#/$defs/id"
+            },
+            "attemptVideoId": {
+              "$ref": "#/$defs/id"
+            },
+            "musicAssetId": {
+              "$ref": "#/$defs/id"
+            }
+          }
+        },
+        "alignment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["referenceOffsetMs", "attemptOffsetMs", "mirrorApplied", "confidence"],
+          "properties": {
+            "referenceOffsetMs": {
+              "type": "number"
+            },
+            "attemptOffsetMs": {
+              "type": "number"
+            },
+            "mirrorApplied": {
+              "type": "boolean"
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "beatMap": {
+          "$ref": "#/$defs/beatMapArtifact"
+        },
+        "criticalMoments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/criticalMoment"
+          }
+        },
+        "summary": {
+          "$ref": "#/$defs/coachingSummaryArtifact"
+        },
+        "evidence": {
+          "$ref": "#/$defs/artifactEvidence"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "completed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "criticalMoments": {
+                "minItems": 3
+              }
+            }
+          }
+        }
+      ]
+    },
+    "frameArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifactId", "assetId", "frameNumber", "timestampMs", "sha256"],
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/id"
+        },
+        "assetId": {
+          "$ref": "#/$defs/id"
+        },
+        "frameNumber": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timestampMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "criticalMomentBurstArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "artifactId",
+        "momentId",
+        "referenceFrames",
+        "attemptFrames",
+        "overlays",
+        "playback",
+        "evidence"
+      ],
+      "properties": {
+        "type": {
+          "const": "critical_moment_burst"
+        },
+        "artifactId": {
+          "$ref": "#/$defs/id"
+        },
+        "momentId": {
+          "$ref": "#/$defs/id"
+        },
+        "referenceFrames": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 11,
+          "items": {
+            "$ref": "#/$defs/frameArtifact"
+          }
+        },
+        "attemptFrames": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 11,
+          "items": {
+            "$ref": "#/$defs/frameArtifact"
+          }
+        },
+        "overlays": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["frameOffset", "kind", "dataArtifactId"],
+            "properties": {
+              "frameOffset": {
+                "type": "integer",
+                "minimum": -5,
+                "maximum": 5
+              },
+              "kind": {
+                "enum": ["skeleton", "joint_vector", "movement_path", "timing_marker"]
+              },
+              "dataArtifactId": {
+                "$ref": "#/$defs/id"
+              }
+            }
+          }
+        },
+        "playback": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["speed", "loop"],
+          "properties": {
+            "speed": {
+              "enum": [0.25, 0.5, 1]
+            },
+            "loop": {
+              "const": true
+            }
+          }
+        },
+        "evidence": {
+          "$ref": "#/$defs/artifactEvidence"
+        }
+      }
+    },
+    "failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "toolId",
+        "classification",
+        "recoverable",
+        "message",
+        "limitations",
+        "fallbacks"
+      ],
+      "properties": {
+        "stage": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "toolId": {
+          "$ref": "#/$defs/id"
+        },
+        "classification": {
+          "enum": [
+            "worker-error",
+            "invalid-input",
+            "insufficient-evidence",
+            "cancelled",
+            "policy-block"
+          ]
+        },
+        "recoverable": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "fallbacks": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": ["retry-slower", "manual-offset", "manual-point", "skip-range"]
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verdict", "checks"],
+      "properties": {
+        "verdict": {
+          "enum": ["pass", "fail", "not-run"]
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "verdict", "evidenceArtifactIds"],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/id"
+              },
+              "verdict": {
+                "enum": ["pass", "fail", "not-run"]
+              },
+              "evidenceArtifactIds": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "$ref": "#/$defs/id"
+                }
+              },
+              "message": {
+                "type": "string",
+                "maxLength": 1000
+              }
+            }
+          }
+        }
+      }
+    },
+    "resultProvenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "executionBoundary",
+        "mediaHandling",
+        "sourceAssets",
+        "toolVersions",
+        "createdAt"
+      ],
+      "properties": {
+        "kind": {
+          "const": "deterministic-worker"
+        },
+        "executionBoundary": {
+          "enum": ["public-worker", "private-worker"]
+        },
+        "mediaHandling": {
+          "const": "media-plane-references-only"
+        },
+        "sourceAssets": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["assetId", "sha256", "sourceClass"],
+            "properties": {
+              "assetId": {
+                "$ref": "#/$defs/id"
+              },
+              "sha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "sourceClass": {
+                "enum": ["public-fixture", "private-user-media"]
+              }
+            }
+          }
+        },
+        "toolVersions": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

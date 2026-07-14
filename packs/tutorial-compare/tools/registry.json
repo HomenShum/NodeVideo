@@ -1,0 +1,179 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.tutorial-compare@0.1.0",
+  "implementationStatus": "public-worker-validated",
+  "validationProfiles": {
+    "publicSyntheticKnownMarkers": {
+      "status": "passed",
+      "boundary": "public-worker",
+      "sourceClass": "public-fixture",
+      "receipt": "../../../fixtures/media/tutorial-compare-v1/receipt.json",
+      "scope": "FFmpeg-generated PCM onsets and six color-coded landmarks with known differences."
+    },
+    "privateHumanVideo": {
+      "status": "not-validated",
+      "boundary": "private-worker",
+      "sourceClass": "private-user-media",
+      "evidenceLocation": ".qa/evidence/private",
+      "scope": "Private media inspection and reconstruction evidence is laptop-local and is not human-pose or tutorial-comparison proof."
+    }
+  },
+  "defaults": {
+    "execution": "deterministic-worker",
+    "lifecycle": {
+      "fullRunRestartable": true,
+      "stageRetry": false,
+      "semanticCancellation": false,
+      "checkpointResume": false,
+      "durableLease": false
+    },
+    "tracePolicy": {
+      "allow": [
+        "asset IDs",
+        "input and output hashes",
+        "tool ID and version",
+        "non-secret parameters",
+        "frame and beat ranges",
+        "artifact IDs",
+        "latency",
+        "status",
+        "confidence",
+        "validation verdict"
+      ],
+      "deny": [
+        "raw media",
+        "signed media references",
+        "worker-local tokens",
+        "local paths and object URLs",
+        "private filenames",
+        "credentials",
+        "hidden reasoning"
+      ]
+    }
+  },
+  "tools": [
+    {
+      "id": "media.normalize",
+      "stage": "normalizing",
+      "implementation": {
+        "version": "ffmpeg-normalize@1.0.0",
+        "status": "public-worker-validated",
+        "scope": "Two generated inputs normalized to decodable 360x640, 30 fps MP4 outputs."
+      },
+      "dependsOn": [],
+      "accepts": ["video/reference", "video/attempt"],
+      "produces": ["normalized_video"],
+      "validatedChecks": [
+        "normalized-width-and-height",
+        "normalized-frame-rate",
+        "ffprobe-decodable",
+        "output-hash-match"
+      ]
+    },
+    {
+      "id": "audio.beat_map",
+      "stage": "mapping_audio",
+      "implementation": {
+        "version": "pcm-onset@1.0.0",
+        "status": "public-worker-executed",
+        "scope": "Known synthetic PCM pulses only; production music beat accuracy is not validated."
+      },
+      "dependsOn": ["media.normalize"],
+      "accepts": ["normalized_video", "audio/music"],
+      "produces": ["beat_map"],
+      "observedPublicResult": {
+        "bpm": 120,
+        "beatCount": 12,
+        "attemptOffsetMs": 240
+      }
+    },
+    {
+      "id": "pose.extract",
+      "stage": "extracting_pose",
+      "implementation": {
+        "version": "known-marker-pose@1.0.0",
+        "status": "public-worker-executed",
+        "scope": "Six generated color landmarks only; this is not a generic human pose model."
+      },
+      "dependsOn": ["media.normalize"],
+      "accepts": ["normalized_video"],
+      "produces": ["pose_track"],
+      "validatedChecks": [
+        "three-separated-critical-moments-produced",
+        "marker-confidence-recorded",
+        "extractor-version-recorded"
+      ]
+    },
+    {
+      "id": "tutorial.align",
+      "stage": "aligning",
+      "implementation": {
+        "version": "onset-offset@1.0.0",
+        "status": "public-worker-validated-plausibility",
+        "scope": "Alignment of the generated onset and known-marker fixture pair."
+      },
+      "dependsOn": ["audio.beat_map", "pose.extract"],
+      "accepts": ["beat_map", "pose_track"],
+      "produces": ["tutorial_alignment"],
+      "observedPublicResult": {
+        "offsetMs": 240,
+        "confidence": 0.98,
+        "receiptCheck": "offset within -1000..1000 ms"
+      }
+    },
+    {
+      "id": "tutorial.diff",
+      "stage": "computing_diffs",
+      "implementation": {
+        "version": "landmark-diff@1.0.0",
+        "status": "public-worker-validated-shape",
+        "scope": "Normalized differences between generated color landmarks; coaching is deterministic fixture feedback."
+      },
+      "dependsOn": ["tutorial.align"],
+      "accepts": ["tutorial_alignment", "pose_track", "beat_map"],
+      "produces": ["critical_moment_evidence", "coaching_summary"],
+      "validatedChecks": [
+        "three-separated-critical-moments",
+        "three-evidence-linked-coaching-ranges",
+        "deterministic-worker-provenance"
+      ]
+    },
+    {
+      "id": "render.comparison",
+      "stage": "rendering",
+      "implementation": {
+        "version": "ffmpeg-comparison@1.0.0",
+        "status": "public-worker-validated",
+        "scope": "Playable side-by-side and difference MP4s plus a critical-moment contact sheet for the public fixture."
+      },
+      "dependsOn": ["media.normalize", "tutorial.diff"],
+      "accepts": ["normalized_video", "tutorial_alignment", "critical_moment_evidence"],
+      "produces": ["tutorial_comparison", "critical_moment_burst"],
+      "validatedChecks": [
+        "side-by-side-ffprobe-decodable",
+        "difference-ffprobe-decodable",
+        "three-seven-frame-burst-artifacts",
+        "rendered-file-hash-match"
+      ]
+    },
+    {
+      "id": "result.validate",
+      "stage": "validating",
+      "implementation": {
+        "version": "nodevideo-worker-validator@1.0.0",
+        "status": "public-worker-validated",
+        "scope": "Thirteen in-run assertions plus twelve independent receipt checks for the checked-in public fixture."
+      },
+      "dependsOn": ["render.comparison"],
+      "accepts": ["tutorial_comparison", "critical_moment_burst"],
+      "produces": ["worker_receipt", "validation_verdict"],
+      "validatedChecks": [
+        "result-output-schema-valid",
+        "receipt-validation-pass",
+        "media-hashes-match",
+        "media-remains-decodable",
+        "events-monotonic"
+      ]
+    }
+  ]
+}

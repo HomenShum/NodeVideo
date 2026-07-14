@@ -8,15 +8,20 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '@/components/ui/empty';
-import { Activity, FolderOpen, History, ShieldCheck, Sparkles, WandSparkles } from 'lucide-react';
+import { Spinner } from '@/components/ui/spinner';
+import { FolderOpen, Sparkles, WandSparkles } from 'lucide-react';
 import type { ChangeEvent } from 'react';
 
 export function EntryHero({
   onLoadDemo,
   onFiles,
+  isLoadingProof,
+  loadError,
 }: {
-  onLoadDemo: () => void;
+  onLoadDemo: () => void | Promise<void>;
   onFiles: (files: FileList | File[]) => void;
+  isLoadingProof: boolean;
+  loadError?: string;
 }) {
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files?.length) onFiles(event.target.files);
@@ -38,9 +43,9 @@ export function EntryHero({
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent className="max-w-lg gap-3 sm:flex-row sm:justify-center">
-        <Button size="lg" data-testid="demo-load" onClick={onLoadDemo}>
-          <Sparkles aria-hidden="true" />
-          Load verified synthetic demo
+        <Button size="lg" data-testid="demo-load" onClick={onLoadDemo} disabled={isLoadingProof}>
+          {isLoadingProof ? <Spinner aria-hidden="true" /> : <Sparkles aria-hidden="true" />}
+          {isLoadingProof ? 'Verifying worker proof…' : 'Load verified synthetic worker demo'}
         </Button>
         <Button asChild size="lg" variant="outline">
           <label data-testid="local-upload">
@@ -56,20 +61,11 @@ export function EntryHero({
           </label>
         </Button>
       </EmptyContent>
-      <div
-        className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-muted-foreground"
-        aria-label="Privacy and proof properties"
-      >
-        <span className="flex items-center gap-1.5">
-          <ShieldCheck className="size-3.5" aria-hidden="true" /> No cloud upload
-        </span>
-        <span className="flex items-center gap-1.5">
-          <Activity className="size-3.5" aria-hidden="true" /> Append-only trace
-        </span>
-        <span className="flex items-center gap-1.5">
-          <History className="size-3.5" aria-hidden="true" /> Restorable recipes
-        </span>
-      </div>
+      {loadError ? (
+        <p role="alert" className="max-w-lg text-sm text-destructive">
+          {loadError} Retry when the deployment is reachable.
+        </p>
+      ) : null}
     </Empty>
   );
 }

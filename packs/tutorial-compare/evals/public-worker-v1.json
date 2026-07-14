@@ -1,0 +1,126 @@
+{
+  "schema": "nodevideo.capability-eval.v1",
+  "id": "tutorial-compare-public-worker-v1",
+  "pack": "nodevideo.tutorial-compare@0.1.0",
+  "status": "public-worker-validated",
+  "executionBoundary": "public-worker",
+  "purpose": "Verify a real deterministic FFmpeg worker run over a publication-safe synthetic pair with PCM onsets and known color landmarks.",
+  "fixturePolicy": {
+    "allowedSourceClasses": ["public-fixture"],
+    "forbiddenSourceClasses": ["private-user-media"],
+    "containsPersonalMedia": false,
+    "publicationSafe": true
+  },
+  "proof": {
+    "receiptPath": "fixtures/media/tutorial-compare-v1/receipt.json",
+    "receiptSha256": "13bb40a4a160858c1c7aa77d49ef64aca5ececd83cad7eac528b40f7bda8e24f",
+    "resultPath": "fixtures/media/tutorial-compare-v1/result.json",
+    "resultSha256": "42adabbe23c69de04be3b60523d4f05a05ee92af818850c00d441b0951081bc4",
+    "verifierCommand": "node scripts/workers/tutorial-compare.mjs --verify-public",
+    "verifierResult": {
+      "passed": true,
+      "independentChecks": 12
+    },
+    "workerResult": {
+      "status": "completed",
+      "inRunChecks": 13,
+      "jobEvents": 22,
+      "workerSpans": 10
+    }
+  },
+  "cases": [
+    {
+      "id": "public-synthetic-known-markers-completed",
+      "input": {
+        "schema": "nodevideo.tutorial-compare.input.v1",
+        "projectId": "project.public-worker-v1",
+        "runId": "run.70b0053a86545a73",
+        "traceId": "trace.62776deb64e3b0dc",
+        "execution": {
+          "boundary": "public-worker",
+          "retention": "ephemeral",
+          "allowModelEgress": false
+        },
+        "assets": {
+          "reference": {
+            "assetId": "asset.reference",
+            "kind": "video",
+            "role": "reference",
+            "mimeType": "video/mp4",
+            "sha256": "f688ed399936e3ca531d2261ed82eb6b57844fa2d0ca012134efba48acee1f06",
+            "sourceClass": "public-fixture",
+            "locator": {
+              "kind": "fixture-id",
+              "value": "fixtures/media/tutorial-compare-v1/source-reference.mp4"
+            }
+          },
+          "attempt": {
+            "assetId": "asset.attempt",
+            "kind": "video",
+            "role": "attempt",
+            "mimeType": "video/mp4",
+            "sha256": "43d98a58c97ee9171adba5cf9a91280c7f32574b289712504726235ede975c76",
+            "sourceClass": "public-fixture",
+            "locator": {
+              "kind": "fixture-id",
+              "value": "fixtures/media/tutorial-compare-v1/source-attempt.mp4"
+            }
+          }
+        },
+        "options": {
+          "mirrorMode": "auto",
+          "criticalMomentLimit": 3,
+          "burstFramesBefore": 3,
+          "burstFramesAfter": 3,
+          "renderLayout": "side_by_side",
+          "coachingMode": "deterministic_rules"
+        }
+      },
+      "observed": {
+        "outputStatus": "completed",
+        "outputSchemaValid": true,
+        "bpm": 120,
+        "beatCount": 12,
+        "alignmentOffsetMs": 240,
+        "alignmentConfidence": 0.98,
+        "criticalMomentCount": 3,
+        "burstArtifactCount": 3,
+        "framesPerBurstPerAsset": 7,
+        "sideBySideWidth": 720,
+        "differenceWidth": 360,
+        "normalizedFrameRate": 30,
+        "validationVerdict": "pass"
+      },
+      "assertions": [
+        "input-schema-valid",
+        "output-schema-valid",
+        "source-class-public-fixture-only",
+        "source-and-output-hashes-match",
+        "no-model-call",
+        "no-private-identifier-in-events-or-artifacts",
+        "events-strictly-monotonic",
+        "normalized-media-ffprobe-decodable",
+        "side-by-side-and-difference-ffprobe-decodable",
+        "three-separated-critical-moments",
+        "three-seven-frame-burst-artifacts",
+        "deterministic-worker-provenance",
+        "validation-verdict-pass"
+      ],
+      "doesNotProve": [
+        "generic human pose extraction or coaching accuracy",
+        "beat detection accuracy on production music",
+        "arbitrary uploaded-media comparison",
+        "private human-video tutorial comparison",
+        "stage retry, semantic cancellation, lease, or checkpoint resume",
+        "worker execution inside Vercel",
+        "durable Convex control-plane activation"
+      ]
+    }
+  ],
+  "releaseGate": {
+    "publicSyntheticKnownMarkerWorker": "passed",
+    "genericHumanPose": "blocked-until-held-out-human-evaluation",
+    "privateHumanTutorialComparison": "blocked-until-laptop-local-worker-proof",
+    "productionConvex": "blocked-until-deployment-and-durable-integration-proof"
+  }
+}

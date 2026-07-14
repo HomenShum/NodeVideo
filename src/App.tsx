@@ -1,4 +1,3 @@
-import { Badge } from '@/components/ui/badge';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { AppHeader } from '@/features/nodevideo/app-header';
 import { EntryHero } from '@/features/nodevideo/entry-hero';
@@ -8,17 +7,10 @@ import { ProjectPanel } from '@/features/nodevideo/project-panel';
 import { useNodeVideoWorkspace } from '@/features/nodevideo/use-nodevideo-workspace';
 import { Workbench } from '@/features/nodevideo/workbench';
 import { cn } from '@/lib/utils';
-import { Activity, CircleDot, Eye, Film, Layers } from 'lucide-react';
+import { Activity, Film, Layers } from 'lucide-react';
 
 export function App() {
   const { state, actions } = useNodeVideoWorkspace();
-  const status = state.isRunning
-    ? 'running'
-    : state.runComplete
-      ? 'recorded'
-      : state.mode !== 'empty'
-        ? 'ready'
-        : 'empty';
   const paneClass = 'min-h-0 min-w-0 flex-col overflow-hidden border-border bg-background xl:flex';
   const activePane = (pane: MobileView) => (state.mobileView === pane ? 'flex' : 'hidden');
 
@@ -30,6 +22,7 @@ export function App() {
       <AppHeader
         mode={state.mode}
         checkpoint={state.checkpoint}
+        controlPlaneStatus={state.controlPlaneStatus}
         onDownloadReceipt={actions.downloadReceipt}
       />
       <main
@@ -45,19 +38,7 @@ export function App() {
             className={cn(paneClass, 'border-r xl:col-span-3', activePane('project'))}
             aria-label="Project sources and pipeline"
           >
-            <PaneHeader title="Project">
-              <Badge variant="outline">
-                <span
-                  className={cn(
-                    'size-1.5 rounded-full bg-muted-foreground',
-                    state.isRunning && 'animate-pulse bg-amber-400',
-                    state.runComplete && 'bg-primary',
-                    status === 'ready' && 'bg-cyan-400',
-                  )}
-                />
-                {status}
-              </Badge>
-            </PaneHeader>
+            <PaneHeader title="Project" />
             <ProjectPanel
               mode={state.mode}
               checkpoint={state.checkpoint}
@@ -80,7 +61,12 @@ export function App() {
           aria-label="Video workbench"
         >
           {state.mode === 'empty' ? (
-            <EntryHero onLoadDemo={actions.loadDemo} onFiles={actions.selectFiles} />
+            <EntryHero
+              onLoadDemo={actions.loadDemo}
+              onFiles={actions.selectFiles}
+              isLoadingProof={state.isLoadingProof}
+              loadError={state.loadError}
+            />
           ) : (
             <Workbench
               mode={state.mode}
@@ -99,11 +85,7 @@ export function App() {
             className={cn(paneClass, 'border-l xl:col-span-3', activePane('inspect'))}
             aria-label="Evidence inspector"
           >
-            <PaneHeader title="Evidence">
-              <Badge variant="outline">
-                <Eye aria-hidden="true" /> inspectable
-              </Badge>
-            </PaneHeader>
+            <PaneHeader title="Evidence" />
             {state.checkpoint?.stages.length ? (
               <InspectorPanel
                 checkpoint={state.checkpoint}
@@ -114,8 +96,7 @@ export function App() {
                 onRestore={actions.restore}
               />
             ) : (
-              <div className="flex flex-1 items-center justify-center gap-2 p-6 text-center text-sm text-muted-foreground">
-                <CircleDot className="size-4 shrink-0" aria-hidden="true" />
+              <div className="flex flex-1 items-center justify-center p-6 text-center text-sm text-muted-foreground">
                 <span>
                   {state.mode === 'local'
                     ? 'Local previews do not claim analysis evidence.'
@@ -153,11 +134,10 @@ export function App() {
   );
 }
 
-function PaneHeader({ title, children }: { title: string; children: React.ReactNode }) {
+function PaneHeader({ title }: { title: string }) {
   return (
-    <div className="flex h-11 shrink-0 items-center justify-between gap-2 border-b px-3">
+    <div className="flex h-11 shrink-0 items-center border-b px-3">
       <h2 className="font-heading text-sm font-semibold">{title}</h2>
-      {children}
     </div>
   );
 }

@@ -1,57 +1,58 @@
+import * as AiArtifact from '@/components/ai-elements/artifact';
+import { Checkpoint, CheckpointIcon } from '@/components/ai-elements/checkpoint';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-  Item,
-  ItemActions,
-  ItemContent,
-  ItemDescription,
-  ItemGroup,
-  ItemMedia,
-  ItemTitle,
-} from '@/components/ui/item';
+import * as UiItem from '@/components/ui/item';
 import type { NodeVideoArtifact, NodeVideoRecipeVersion } from '@/lib/contracts';
-import { Download, FileJson, RotateCcw } from 'lucide-react';
+import { Download, RotateCcw } from 'lucide-react';
 import { downloadJson } from './model';
 import { SectionLabel } from './section-label';
 
 export function ArtifactList({ artifacts }: { artifacts: readonly NodeVideoArtifact[] }) {
+  const workerBacked = artifacts.filter(
+    (artifact) => artifact.provenance.kind === 'deterministic-worker',
+  ).length;
   return (
     <section className="space-y-2" data-testid="artifact-panel" aria-labelledby="artifact-heading">
       <SectionLabel
         id="artifact-heading"
-        label="Synthetic artifacts"
-        meta={`${artifacts.length}`}
+        label="Typed artifacts"
+        meta={`${workerBacked}/${artifacts.length} worker-backed`}
       />
-      <ItemGroup className="gap-2" role="presentation">
+      <div className="space-y-2">
         {artifacts.map((artifact) => (
-          <Item variant="outline" size="sm" key={artifact.id}>
-            <ItemMedia className="text-muted-foreground">
-              <FileJson aria-hidden="true" />
-            </ItemMedia>
-            <ItemContent className="min-w-0">
-              <ItemTitle className="max-w-full truncate" title={artifact.title}>
-                {artifact.title}
-              </ItemTitle>
-              <ItemDescription className="line-clamp-1 text-xs">
-                {artifact.kind} · synthetic
-              </ItemDescription>
-            </ItemContent>
-            <ItemActions>
-              <Button
-                variant="ghost"
-                size="icon-sm"
-                aria-label={`Download ${artifact.title}`}
-                title="Download artifact JSON"
-                onClick={() => downloadJson(`${artifact.kind}.json`, artifact)}
-              >
-                <Download aria-hidden="true" />
-              </Button>
-            </ItemActions>
-          </Item>
+          <AiArtifact.Artifact key={artifact.id} className="rounded-md shadow-none">
+            <AiArtifact.ArtifactHeader className="gap-2 px-3 py-2">
+              <div className="min-w-0">
+                <AiArtifact.ArtifactTitle className="truncate" title={artifact.title}>
+                  {artifact.title}
+                </AiArtifact.ArtifactTitle>
+                <AiArtifact.ArtifactDescription className="truncate text-xs">
+                  {artifact.kind} · {provenanceLabel(artifact)}
+                </AiArtifact.ArtifactDescription>
+              </div>
+              <AiArtifact.ArtifactActions>
+                <AiArtifact.ArtifactAction
+                  icon={Download}
+                  label={`Download ${artifact.title}`}
+                  tooltip="Download artifact JSON"
+                  onClick={() => downloadJson(`${artifact.kind}.json`, artifact)}
+                />
+              </AiArtifact.ArtifactActions>
+            </AiArtifact.ArtifactHeader>
+          </AiArtifact.Artifact>
         ))}
-      </ItemGroup>
+      </div>
     </section>
   );
+}
+
+function provenanceLabel(artifact: NodeVideoArtifact): string {
+  if (artifact.provenance.kind === 'deterministic-worker') {
+    return `${artifact.provenance.workerVersion} · ${artifact.provenance.executionBoundary}`;
+  }
+  if (artifact.provenance.kind === 'browser-local') return 'browser-local';
+  return 'synthetic fixture';
 }
 
 export function VersionList({
@@ -66,22 +67,26 @@ export function VersionList({
   return (
     <section className="space-y-2" data-testid="version-history" aria-labelledby="version-heading">
       <SectionLabel id="version-heading" label="Version history" meta="append-only" />
-      <ItemGroup className="gap-2" role="presentation">
+      <Checkpoint className="text-xs">
+        <CheckpointIcon className="size-3.5" />
+        <span className="shrink-0">Every accept and restore appends a checkpoint</span>
+      </Checkpoint>
+      <UiItem.ItemGroup className="gap-2" role="presentation">
         {[...versions].reverse().map((version) => {
           const active = version.version === activeVersion;
           return (
-            <Item variant={active ? 'muted' : 'outline'} size="sm" key={version.id}>
-              <ItemMedia>
+            <UiItem.Item variant={active ? 'muted' : 'outline'} size="sm" key={version.id}>
+              <UiItem.ItemMedia>
                 <Badge variant={active ? 'default' : 'outline'}>v{version.version}</Badge>
-              </ItemMedia>
-              <ItemContent className="min-w-0">
-                <ItemTitle>Version {version.version}</ItemTitle>
-                <ItemDescription className="line-clamp-1 text-xs">
+              </UiItem.ItemMedia>
+              <UiItem.ItemContent className="min-w-0">
+                <UiItem.ItemTitle>Version {version.version}</UiItem.ItemTitle>
+                <UiItem.ItemDescription className="line-clamp-1 text-xs">
                   {version.reason} · {version.settings.render.layout}
-                </ItemDescription>
-              </ItemContent>
+                </UiItem.ItemDescription>
+              </UiItem.ItemContent>
               {!active ? (
-                <ItemActions>
+                <UiItem.ItemActions>
                   <Button
                     variant="ghost"
                     size="icon-sm"
@@ -91,12 +96,12 @@ export function VersionList({
                   >
                     <RotateCcw aria-hidden="true" />
                   </Button>
-                </ItemActions>
+                </UiItem.ItemActions>
               ) : null}
-            </Item>
+            </UiItem.Item>
           );
         })}
-      </ItemGroup>
+      </UiItem.ItemGroup>
     </section>
   );
 }

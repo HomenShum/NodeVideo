@@ -6,9 +6,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Spinner } from '@/components/ui/spinner';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { PUBLIC_WORKER_RESULT, PUBLIC_WORKER_URLS } from '@/lib/public-worker';
 import { Check, Info, Play } from 'lucide-react';
 import type { CompareView, LocalMedia, ProjectMode } from './model';
-import { SYNTHETIC_VIDEO_URL } from './model';
 
 export function Workbench({
   mode,
@@ -28,14 +28,26 @@ export function Workbench({
   onRun: () => void;
 }) {
   const local = localMedia[0];
-  const source = mode === 'synthetic' ? SYNTHETIC_VIDEO_URL : local?.objectUrl;
+  const source =
+    mode === 'synthetic'
+      ? {
+          reference: PUBLIC_WORKER_URLS.reference,
+          comparison: PUBLIC_WORKER_URLS.comparison,
+          difference: PUBLIC_WORKER_URLS.difference,
+        }[compareView]
+      : local?.objectUrl;
+  const comparison = PUBLIC_WORKER_RESULT.artifacts.tutorialComparison;
+  const criticalBeats = new Set(comparison.criticalMoments.map((moment) => moment.beat));
+  const sideBySide = mode === 'synthetic' && compareView === 'comparison';
 
   return (
     <ScrollArea className="min-h-0 flex-1">
       <div className="space-y-4 p-3 sm:p-4">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="outline">
-            {mode === 'synthetic' ? 'Public format proof · 6 seconds' : 'Session-only preview'}
+            {mode === 'synthetic'
+              ? 'Public worker proof · 10 tools · 13 checks'
+              : 'Session-only preview'}
           </Badge>
           {mode === 'synthetic' ? (
             <>
@@ -47,7 +59,7 @@ export function Workbench({
                 aria-label="Comparison view"
                 className="order-3 grid w-full grid-cols-3 sm:order-none sm:ml-auto sm:flex sm:w-auto"
               >
-                {(['reference', 'reconstruction', 'difference'] as const).map((view) => (
+                {(['reference', 'comparison', 'difference'] as const).map((view) => (
                   <ToggleGroupItem
                     key={view}
                     value={view}
@@ -65,18 +77,22 @@ export function Workbench({
                 disabled={isRunning || runComplete}
               >
                 {isRunning ? <Spinner /> : runComplete ? <Check /> : <Play />}
-                {isRunning ? 'Running…' : runComplete ? 'Proof recorded' : 'Run proof'}
+                {isRunning
+                  ? 'Replaying events…'
+                  : runComplete
+                    ? 'Receipt verified'
+                    : 'Replay worker run'}
               </Button>
             </>
           ) : null}
         </div>
 
-        <div className="mx-auto w-full max-w-sm">
+        <div className={sideBySide ? 'mx-auto w-full max-w-3xl' : 'mx-auto w-full max-w-sm'}>
           <Card className="overflow-hidden border-border/80 bg-black shadow-xl">
             <CardContent className="p-0">
-              <AspectRatio ratio={9 / 16} className="relative bg-black">
+              <AspectRatio ratio={sideBySide ? 9 / 8 : 9 / 16} className="relative bg-black">
                 {source ? (
-                  // biome-ignore lint/a11y/useMediaCaption: The public fixture has no speech; local captions cannot be invented for user-selected media.
+                  // biome-ignore lint/a11y/useMediaCaption: Public media is instrumental; local captions cannot be invented.
                   <video
                     key={source}
                     src={source}
@@ -86,7 +102,7 @@ export function Workbench({
                     className="size-full object-contain"
                     aria-label={
                       mode === 'synthetic'
-                        ? 'Public synthetic video format proof'
+                        ? `Worker-produced public ${compareView} video`
                         : `Local preview for ${local?.file.name ?? 'selected video'}`
                     }
                   />
@@ -95,37 +111,35 @@ export function Workbench({
                     Choose a local video to preview it here.
                   </div>
                 )}
-                <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-                  <div className="absolute inset-6 rounded-lg border border-dashed border-white/30" />
-                  <Badge
-                    className="absolute left-3 top-3 bg-black/70 text-white"
-                    variant="secondary"
-                  >
-                    {mode === 'synthetic' ? compareView : 'local preview'}
-                  </Badge>
-                  {mode === 'synthetic' && compareView === 'difference' ? (
-                    <div className="difference-overlay absolute inset-0" />
-                  ) : null}
-                </div>
               </AspectRatio>
             </CardContent>
           </Card>
         </div>
 
         {mode === 'synthetic' ? (
-          <Card aria-label="Synthetic format proof timeline">
+          <Card aria-label="Worker-derived beat and critical-moment timeline">
             <CardContent className="space-y-2 p-3">
               <div className="flex justify-between gap-2 text-xs text-muted-foreground">
-                <span>00:00 · fit</span>
-                <span className="hidden sm:inline">01:15 · fill</span>
-                <span className="hidden sm:inline">03:00 · fit</span>
-                <span>06:00</span>
+                <span>0:00 · {comparison.beatMap.bpm.toFixed(0)} BPM</span>
+                <span>{comparison.beatMap.beats.length} decoded beats</span>
+                <span>5.76 s</span>
               </div>
-              <div className="flex h-2 overflow-hidden rounded-full bg-muted">
-                <span className="flex-1 bg-primary" />
-                <span className="flex-1 bg-cyan-400" />
-                <span className="flex-1 bg-primary" />
-                <span className="flex-1 bg-muted-foreground/40" />
+              <div className="grid h-2 grid-cols-12 gap-1" aria-label="Beat markers">
+                {comparison.beatMap.beats.map((beat, index) => (
+                  <span
+                    key={beat}
+                    className={
+                      criticalBeats.has(index)
+                        ? 'rounded-full bg-amber-400'
+                        : 'rounded-full bg-primary'
+                    }
+                    title={
+                      criticalBeats.has(index)
+                        ? `Critical moment at beat ${index}`
+                        : `Beat ${index}`
+                    }
+                  />
+                ))}
               </div>
             </CardContent>
           </Card>
@@ -135,12 +149,12 @@ export function Workbench({
           <Info aria-hidden="true" />
           <AlertTitle>
             {mode === 'synthetic'
-              ? 'Synthetic media and analysis are disclosed.'
+              ? 'Real worker run, synthetic source media.'
               : 'No upload occurred.'}
           </AlertTitle>
           <AlertDescription>
             {mode === 'synthetic'
-              ? 'The playable clip proves fit, fill, cuts, BT.709 export, CFR30, and a silent tail. Analysis records are deterministic fixtures—not claims about a person.'
+              ? 'FFmpeg decoded two generated videos, extracted PCM onsets and known color landmarks, aligned them by 240 ms, measured three critical moments, rendered playable comparisons, and passed the checked-in receipt. This proves the pipeline—not general human-pose accuracy.'
               : (local?.error ??
                 'The object URL exists only in this tab. Reloading requires you to choose the file again.')}
           </AlertDescription>

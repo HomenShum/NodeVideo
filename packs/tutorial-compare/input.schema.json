@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/tutorial-compare/input.v1.json",
+  "title": "Tutorial Compare Input",
+  "description": "Serializable control-plane input for a deterministic tutorial comparison worker graph.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "projectId", "runId", "traceId", "execution", "assets", "options"],
+  "properties": {
+    "schema": {
+      "const": "nodevideo.tutorial-compare.input.v1"
+    },
+    "projectId": {
+      "$ref": "#/$defs/id"
+    },
+    "runId": {
+      "$ref": "#/$defs/id"
+    },
+    "traceId": {
+      "$ref": "#/$defs/id"
+    },
+    "execution": {
+      "$ref": "#/$defs/execution"
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference", "attempt"],
+      "properties": {
+        "reference": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/mediaAsset"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "video"
+                },
+                "role": {
+                  "const": "reference"
+                }
+              }
+            }
+          ]
+        },
+        "attempt": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/mediaAsset"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "video"
+                },
+                "role": {
+                  "const": "attempt"
+                }
+              }
+            }
+          ]
+        },
+        "music": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/mediaAsset"
+            },
+            {
+              "properties": {
+                "kind": {
+                  "const": "audio"
+                },
+                "role": {
+                  "const": "music"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mirrorMode",
+        "criticalMomentLimit",
+        "burstFramesBefore",
+        "burstFramesAfter",
+        "renderLayout",
+        "coachingMode"
+      ],
+      "properties": {
+        "mirrorMode": {
+          "enum": ["auto", "never", "force"]
+        },
+        "criticalMomentLimit": {
+          "type": "integer",
+          "minimum": 3,
+          "maximum": 6,
+          "default": 3
+        },
+        "burstFramesBefore": {
+          "type": "integer",
+          "minimum": 3,
+          "maximum": 5,
+          "default": 3
+        },
+        "burstFramesAfter": {
+          "type": "integer",
+          "minimum": 3,
+          "maximum": 5,
+          "default": 3
+        },
+        "renderLayout": {
+          "const": "side_by_side"
+        },
+        "coachingMode": {
+          "const": "deterministic_rules"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "boundary": {
+                "const": "public-worker"
+              }
+            },
+            "required": ["boundary"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "retention": {
+                "const": "ephemeral"
+              }
+            }
+          },
+          "assets": {
+            "properties": {
+              "reference": {
+                "properties": {
+                  "sourceClass": {
+                    "const": "public-fixture"
+                  }
+                }
+              },
+              "attempt": {
+                "properties": {
+                  "sourceClass": {
+                    "const": "public-fixture"
+                  }
+                }
+              },
+              "music": {
+                "properties": {
+                  "sourceClass": {
+                    "const": "public-fixture"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["boundary", "retention", "allowModelEgress"],
+      "properties": {
+        "boundary": {
+          "enum": ["public-worker", "private-worker"]
+        },
+        "retention": {
+          "enum": ["ephemeral", "configured-private-retention"]
+        },
+        "allowModelEgress": {
+          "const": false
+        }
+      }
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {
+          "enum": ["fixture-id", "signed-media-reference", "worker-local-token"]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "description": "Opaque media-plane reference. It must not be copied into events, traces, logs, or artifacts."
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "mediaAsset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assetId", "kind", "role", "mimeType", "sha256", "sourceClass", "locator"],
+      "properties": {
+        "assetId": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": ["video", "audio"]
+        },
+        "role": {
+          "enum": ["reference", "attempt", "music"]
+        },
+        "mimeType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "sourceClass": {
+          "enum": ["public-fixture", "private-user-media"]
+        },
+        "locator": {
+          "$ref": "#/$defs/locator"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "sourceClass": {
+                "const": "public-fixture"
+              }
+            },
+            "required": ["sourceClass"]
+          },
+          "then": {
+            "properties": {
+              "locator": {
+                "properties": {
+                  "kind": {
+                    "const": "fixture-id"
+                  }
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "locator": {
+                "properties": {
+                  "kind": {
+                    "enum": ["signed-media-reference", "worker-local-token"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -89,7 +89,7 @@ element, and `color-scheme: dark` belongs to that theme rather than `:root`. sha
 semantic `--accent` token. Product branding uses `--brand-accent` (and clearly named derivatives),
 so a palette change cannot silently restyle generated hover and selection states.
 
-## Budget and migration ratchet
+## Final maintenance budget
 
 Generated primitive code, tests, runtime contracts, and non-UI libraries do not count. Authored
 `.tsx`/`.jsx` files under `src` and the configured global stylesheet do count.
@@ -107,15 +107,10 @@ The final limits are:
 | Arbitrary Tailwind values | 0 |
 | Authored media queries | 0 |
 
-The current app predates this policy. `.ui/ui-policy.json` therefore runs in `ratchet` mode:
-existing debt is an explicit per-file allowance and total ceiling, while new files start at the
-final limits. A change may reduce a legacy allowance but may not increase it. When a check says a
-legacy count fell, lower the matching number in the policy file in the same change. The default
-configuration treats a stale, higher ratchet as an error so removed debt cannot be quietly
-reintroduced. Once all final limits pass, change `mode` to `final` and remove the legacy allowances.
-
-The scripts use nonblank, non-comment logical lines. They intentionally report final-budget debt as
-a warning during migration, but exceeding the frozen ratchet is an error.
+`.ui/ui-policy.json` now runs in `final` mode with no legacy allowances. The scripts count
+nonblank, non-comment logical lines and reject any change that exceeds a final limit. New
+functionality must therefore replace, reuse, or simplify authored presentation instead of raising
+the ceiling.
 
 ## Exceptions
 

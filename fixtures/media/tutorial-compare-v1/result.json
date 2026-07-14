@@ -1,0 +1,861 @@
+{
+  "schema": "nodevideo.tutorial-compare.output.v1",
+  "projectId": "project.public-worker-v1",
+  "runId": "run.70b0053a86545a73",
+  "traceId": "trace.62776deb64e3b0dc",
+  "status": "completed",
+  "artifacts": {
+    "tutorialComparison": {
+      "schema": "nodevideo.tutorial-comparison.v1",
+      "type": "tutorial_comparison",
+      "id": "artifact.tutorial-comparison",
+      "projectId": "project.public-worker-v1",
+      "runId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "status": "completed",
+      "assets": {
+        "referenceVideoId": "asset.reference",
+        "attemptVideoId": "asset.attempt"
+      },
+      "alignment": {
+        "referenceOffsetMs": 0,
+        "attemptOffsetMs": 240,
+        "mirrorApplied": false,
+        "confidence": 0.98
+      },
+      "beatMap": {
+        "type": "beat_map",
+        "artifactId": "artifact.beat-map",
+        "bpm": 120,
+        "beats": [
+          0,
+          500,
+          1000,
+          1500,
+          2000,
+          2500,
+          3000,
+          3500,
+          4000,
+          4500,
+          5000,
+          5500
+        ],
+        "phrases": [
+          {
+            "id": "phrase.1",
+            "startBeat": 0,
+            "endBeat": 3,
+            "label": "Phrase 1"
+          },
+          {
+            "id": "phrase.2",
+            "startBeat": 4,
+            "endBeat": 7,
+            "label": "Phrase 2"
+          },
+          {
+            "id": "phrase.3",
+            "startBeat": 8,
+            "endBeat": 11,
+            "label": "Phrase 3"
+          }
+        ],
+        "evidence": {
+          "tool": {
+            "id": "audio.beat_map",
+            "version": "pcm-onset@1.0.0"
+          },
+          "inputAssets": [
+            {
+              "assetId": "asset.reference",
+              "sha256": "f688ed399936e3ca531d2261ed82eb6b57844fa2d0ca012134efba48acee1f06"
+            },
+            {
+              "assetId": "asset.attempt",
+              "sha256": "43d98a58c97ee9171adba5cf9a91280c7f32574b289712504726235ede975c76"
+            }
+          ],
+          "confidence": 0.98,
+          "createdAt": "2026-07-14T22:16:14.894Z",
+          "provenance": "deterministic-worker"
+        }
+      },
+      "criticalMoments": [
+        {
+          "id": "moment.1",
+          "label": "Critical moment 1",
+          "beat": 2,
+          "referenceFrame": 33,
+          "attemptFrame": 40,
+          "range": {
+            "referenceStartFrame": 30,
+            "referenceEndFrame": 36,
+            "attemptStartFrame": 37,
+            "attemptEndFrame": 43
+          },
+          "timing": {
+            "errorMs": 240,
+            "errorFrames": 7.2,
+            "classification": "late"
+          },
+          "form": {
+            "meanJointAngleErrorDeg": 5.06,
+            "primaryRegion": "Right foot placement",
+            "confidence": 1
+          },
+          "path": {
+            "directionSimilarity": 0.887,
+            "maximumDeviationNormalized": 0.0282
+          },
+          "dynamics": {
+            "peakVelocityRatio": 1.045,
+            "stopDurationErrorMs": 12,
+            "holdDurationErrorMs": 7
+          },
+          "renders": {
+            "sideBySideArtifactId": "artifact.side-by-side",
+            "ghostArtifactId": "artifact.difference",
+            "burstArtifactId": "artifact.burst.1"
+          },
+          "coaching": {
+            "observation": "Right foot placement deviates by 2.8% of the normalized frame.",
+            "correction": "Rehearse the right foot placement through this two-beat window at half speed. Start the phrase 240 ms earlier to meet the reference beat.",
+            "priority": "primary"
+          }
+        },
+        {
+          "id": "moment.2",
+          "label": "Critical moment 2",
+          "beat": 5,
+          "referenceFrame": 81,
+          "attemptFrame": 88,
+          "range": {
+            "referenceStartFrame": 78,
+            "referenceEndFrame": 84,
+            "attemptStartFrame": 85,
+            "attemptEndFrame": 91
+          },
+          "timing": {
+            "errorMs": 240,
+            "errorFrames": 7.2,
+            "classification": "late"
+          },
+          "form": {
+            "meanJointAngleErrorDeg": 2.12,
+            "primaryRegion": "Right wrist path",
+            "confidence": 1
+          },
+          "path": {
+            "directionSimilarity": 0.821,
+            "maximumDeviationNormalized": 0.0447
+          },
+          "dynamics": {
+            "peakVelocityRatio": 1.072,
+            "stopDurationErrorMs": 19,
+            "holdDurationErrorMs": 12
+          },
+          "renders": {
+            "sideBySideArtifactId": "artifact.side-by-side",
+            "ghostArtifactId": "artifact.difference",
+            "burstArtifactId": "artifact.burst.2"
+          },
+          "coaching": {
+            "observation": "Right wrist path deviates by 4.5% of the normalized frame.",
+            "correction": "Rehearse the right wrist path through this two-beat window at half speed. Start the phrase 240 ms earlier to meet the reference beat.",
+            "priority": "secondary"
+          }
+        },
+        {
+          "id": "moment.3",
+          "label": "Critical moment 3",
+          "beat": 8,
+          "referenceFrame": 117,
+          "attemptFrame": 124,
+          "range": {
+            "referenceStartFrame": 114,
+            "referenceEndFrame": 120,
+            "attemptStartFrame": 121,
+            "attemptEndFrame": 127
+          },
+          "timing": {
+            "errorMs": 240,
+            "errorFrames": 7.2,
+            "classification": "late"
+          },
+          "form": {
+            "meanJointAngleErrorDeg": 6.7,
+            "primaryRegion": "Left wrist path",
+            "confidence": 1
+          },
+          "path": {
+            "directionSimilarity": 0.878,
+            "maximumDeviationNormalized": 0.0304
+          },
+          "dynamics": {
+            "peakVelocityRatio": 1.049,
+            "stopDurationErrorMs": 13,
+            "holdDurationErrorMs": 8
+          },
+          "renders": {
+            "sideBySideArtifactId": "artifact.side-by-side",
+            "ghostArtifactId": "artifact.difference",
+            "burstArtifactId": "artifact.burst.3"
+          },
+          "coaching": {
+            "observation": "Left wrist path deviates by 3.0% of the normalized frame.",
+            "correction": "Rehearse the left wrist path through this two-beat window at half speed. Start the phrase 240 ms earlier to meet the reference beat.",
+            "priority": "minor"
+          }
+        }
+      ],
+      "summary": {
+        "type": "coaching_summary",
+        "artifactId": "artifact.coaching-summary",
+        "strengths": [
+          "Shared beat map remained stable at 120.0 BPM.",
+          "57 aligned pose samples were compared deterministically."
+        ],
+        "primaryCorrection": "Rehearse the right foot placement through this two-beat window at half speed. Start the phrase 240 ms earlier to meet the reference beat.",
+        "secondaryCorrections": [
+          "Rehearse the right wrist path through this two-beat window at half speed. Start the phrase 240 ms earlier to meet the reference beat.",
+          "Rehearse the left wrist path through this two-beat window at half speed. Start the phrase 240 ms earlier to meet the reference beat."
+        ],
+        "suggestedPracticeRanges": [
+          {
+            "startBeat": 1,
+            "endBeat": 3
+          },
+          {
+            "startBeat": 4,
+            "endBeat": 6
+          },
+          {
+            "startBeat": 7,
+            "endBeat": 9
+          }
+        ],
+        "evidenceArtifactIds": [
+          "artifact.beat-map",
+          "artifact.pose-track",
+          "artifact.difference"
+        ],
+        "evidence": {
+          "tool": {
+            "id": "tutorial.diff",
+            "version": "landmark-diff@1.0.0"
+          },
+          "inputAssets": [
+            {
+              "assetId": "asset.reference",
+              "sha256": "f688ed399936e3ca531d2261ed82eb6b57844fa2d0ca012134efba48acee1f06"
+            },
+            {
+              "assetId": "asset.attempt",
+              "sha256": "43d98a58c97ee9171adba5cf9a91280c7f32574b289712504726235ede975c76"
+            }
+          ],
+          "confidence": 0.98,
+          "createdAt": "2026-07-14T22:16:14.894Z",
+          "provenance": "deterministic-worker"
+        }
+      },
+      "evidence": {
+        "tool": {
+          "id": "tutorial.diff",
+          "version": "landmark-diff@1.0.0"
+        },
+        "inputAssets": [
+          {
+            "assetId": "asset.reference",
+            "sha256": "f688ed399936e3ca531d2261ed82eb6b57844fa2d0ca012134efba48acee1f06"
+          },
+          {
+            "assetId": "asset.attempt",
+            "sha256": "43d98a58c97ee9171adba5cf9a91280c7f32574b289712504726235ede975c76"
+          }
+        ],
+        "confidence": 0.98,
+        "createdAt": "2026-07-14T22:16:14.894Z",
+        "provenance": "deterministic-worker"
+      }
+    },
+    "criticalMomentBursts": [
+      {
+        "type": "critical_moment_burst",
+        "artifactId": "artifact.burst.1",
+        "momentId": "moment.1",
+        "referenceFrames": [
+          {
+            "artifactId": "frame.reference.1.1",
+            "assetId": "asset.reference",
+            "frameNumber": 30,
+            "timestampMs": 1000,
+            "sha256": "944fbd70b7e10ed5585e9056393c08319c0c62841d2397f45a55431e1880ac5d"
+          },
+          {
+            "artifactId": "frame.reference.1.2",
+            "assetId": "asset.reference",
+            "frameNumber": 31,
+            "timestampMs": 1033.333,
+            "sha256": "e2b0cdbfa04129ad0b6822379ccd0c73124fb901e4f9105b4de1fcd764b6c09d"
+          },
+          {
+            "artifactId": "frame.reference.1.3",
+            "assetId": "asset.reference",
+            "frameNumber": 32,
+            "timestampMs": 1066.667,
+            "sha256": "1fe57811ce1efc986fdad877c1f0286dc6a0a67695d2671c4f375f4a78a10ada"
+          },
+          {
+            "artifactId": "frame.reference.1.4",
+            "assetId": "asset.reference",
+            "frameNumber": 33,
+            "timestampMs": 1100,
+            "sha256": "67a346f41259b39ceadc5e98b1a55c6037b0d44e4065537d80af55dccb9e098c"
+          },
+          {
+            "artifactId": "frame.reference.1.5",
+            "assetId": "asset.reference",
+            "frameNumber": 34,
+            "timestampMs": 1133.333,
+            "sha256": "e2a616f805209c8b7ff283e0efdc04667730b739254fe5641122437f3e83e5b0"
+          },
+          {
+            "artifactId": "frame.reference.1.6",
+            "assetId": "asset.reference",
+            "frameNumber": 35,
+            "timestampMs": 1166.667,
+            "sha256": "af24b096d20dea322c606f6f09188790567a39cc5aa585000170f476a79826a1"
+          },
+          {
+            "artifactId": "frame.reference.1.7",
+            "assetId": "asset.reference",
+            "frameNumber": 36,
+            "timestampMs": 1200,
+            "sha256": "c40339130e57bd1c939e5fee21217054b243bf71332f8583a6a7f55c2ac60b8e"
+          }
+        ],
+        "attemptFrames": [
+          {
+            "artifactId": "frame.attempt.1.1",
+            "assetId": "asset.attempt",
+            "frameNumber": 37,
+            "timestampMs": 1233.333,
+            "sha256": "1c327da019d4c09a4b6f2080e5ff1a959c7e611e9fd73a806e2d7a7d74ddeb2d"
+          },
+          {
+            "artifactId": "frame.attempt.1.2",
+            "assetId": "asset.attempt",
+            "frameNumber": 38,
+            "timestampMs": 1266.667,
+            "sha256": "5b7e6be85ce629eb7231d3bef6f462b3afdcf7dbd9bc45e8b00998606a127d9d"
+          },
+          {
+            "artifactId": "frame.attempt.1.3",
+            "assetId": "asset.attempt",
+            "frameNumber": 39,
+            "timestampMs": 1300,
+            "sha256": "94139ce2444398ea1bdbddb8f86bd8282c332b3e9cc6e2ea2de1f53ee8d4c766"
+          },
+          {
+            "artifactId": "frame.attempt.1.4",
+            "assetId": "asset.attempt",
+            "frameNumber": 40,
+            "timestampMs": 1333.333,
+            "sha256": "77de865e34ee775c86f87d3625e7dd732ff40e4fca8360275489aad40eebb020"
+          },
+          {
+            "artifactId": "frame.attempt.1.5",
+            "assetId": "asset.attempt",
+            "frameNumber": 41,
+            "timestampMs": 1366.667,
+            "sha256": "20706be3b0286ebc19a3924ecf0a4ed7f797764e09663c5c017a1b6af692fd6d"
+          },
+          {
+            "artifactId": "frame.attempt.1.6",
+            "assetId": "asset.attempt",
+            "frameNumber": 42,
+            "timestampMs": 1400,
+            "sha256": "27cf86224500ef8c43356712e2868f88f87cd9e59e8bfa1dc8b3d1118a8633cd"
+          },
+          {
+            "artifactId": "frame.attempt.1.7",
+            "assetId": "asset.attempt",
+            "frameNumber": 43,
+            "timestampMs": 1433.333,
+            "sha256": "ba50ceb5a70651b1d608876ad3281efceed1fcebe9eb7436f9905cd78fb82441"
+          }
+        ],
+        "overlays": [
+          {
+            "frameOffset": 0,
+            "kind": "skeleton",
+            "dataArtifactId": "artifact.pose-track"
+          },
+          {
+            "frameOffset": 0,
+            "kind": "timing_marker",
+            "dataArtifactId": "artifact.beat-map"
+          }
+        ],
+        "playback": {
+          "speed": 0.5,
+          "loop": true
+        },
+        "evidence": {
+          "tool": {
+            "id": "render.comparison",
+            "version": "ffmpeg-comparison@1.0.0"
+          },
+          "inputAssets": [
+            {
+              "assetId": "asset.reference",
+              "sha256": "f688ed399936e3ca531d2261ed82eb6b57844fa2d0ca012134efba48acee1f06"
+            },
+            {
+              "assetId": "asset.attempt",
+              "sha256": "43d98a58c97ee9171adba5cf9a91280c7f32574b289712504726235ede975c76"
+            }
+          ],
+          "frameRange": {
+            "start": 30,
+            "end": 36
+          },
+          "confidence": 1,
+          "createdAt": "2026-07-14T22:16:14.894Z",
+          "provenance": "deterministic-worker"
+        }
+      },
+      {
+        "type": "critical_moment_burst",
+        "artifactId": "artifact.burst.2",
+        "momentId": "moment.2",
+        "referenceFrames": [
+          {
+            "artifactId": "frame.reference.2.1",
+            "assetId": "asset.reference",
+            "frameNumber": 78,
+            "timestampMs": 2600,
+            "sha256": "6cb7e9011e0add13366be045bde54e5c0aebc6e3f2b68ecb9fcbb8d1dfe63797"
+          },
+          {
+            "artifactId": "frame.reference.2.2",
+            "assetId": "asset.reference",
+            "frameNumber": 79,
+            "timestampMs": 2633.333,
+            "sha256": "56bca79f55b1722abf5fd535cc287b4d924d49a38eb2bcbc78dd153ab83ac643"
+          },
+          {
+            "artifactId": "frame.reference.2.3",
+            "assetId": "asset.reference",
+            "frameNumber": 80,
+            "timestampMs": 2666.667,
+            "sha256": "e705201fc31dfc7b7f007e51425683f49e3a25b4446b2ddf96f784a44b87a5d5"
+          },
+          {
+            "artifactId": "frame.reference.2.4",
+            "assetId": "asset.reference",
+            "frameNumber": 81,
+            "timestampMs": 2700,
+            "sha256": "3e6c8a1781d2f91433f4e17a71806566b6fc021c62ee3cc8dcf83126cf4b27bf"
+          },
+          {
+            "artifactId": "frame.reference.2.5",
+            "assetId": "asset.reference",
+            "frameNumber": 82,
+            "timestampMs": 2733.333,
+            "sha256": "e898009f73e158e5b0e50105511cb63bd2823954364f38a39e9331cb76c503fb"
+          },
+          {
+            "artifactId": "frame.reference.2.6",
+            "assetId": "asset.reference",
+            "frameNumber": 83,
+            "timestampMs": 2766.667,
+            "sha256": "0a1a1c1b5af7a52112e8b5e1424016ed31a276ee02e75108d48d921c5d8e5f0e"
+          },
+          {
+            "artifactId": "frame.reference.2.7",
+            "assetId": "asset.reference",
+            "frameNumber": 84,
+            "timestampMs": 2800,
+            "sha256": "44675617729237f39bf17592549d14500d0d99b403cb484f2247493dba0704b6"
+          }
+        ],
+        "attemptFrames": [
+          {
+            "artifactId": "frame.attempt.2.1",
+            "assetId": "asset.attempt",
+            "frameNumber": 85,
+            "timestampMs": 2833.333,
+            "sha256": "c63eef3856fb619d0c072f195415f28653ec5f1d6b30a41e5e639563c864c536"
+          },
+          {
+            "artifactId": "frame.attempt.2.2",
+            "assetId": "asset.attempt",
+            "frameNumber": 86,
+            "timestampMs": 2866.667,
+            "sha256": "bb4ae6f6e47f3f3f7d6a4a7ee8899e444d29886d2fc88acc127f89a40e7d2ed4"
+          },
+          {
+            "artifactId": "frame.attempt.2.3",
+            "assetId": "asset.attempt",
+            "frameNumber": 87,
+            "timestampMs": 2900,
+            "sha256": "d2865cfea71ace63590254799b7f9aeb342b205632e556e1036fd864238aed46"
+          },
+          {
+            "artifactId": "frame.attempt.2.4",
+            "assetId": "asset.attempt",
+            "frameNumber": 88,
+            "timestampMs": 2933.333,
+            "sha256": "bbce08403e066f151237ca016e527c09af130f4429f09b75f3de7500e4451fb1"
+          },
+          {
+            "artifactId": "frame.attempt.2.5",
+            "assetId": "asset.attempt",
+            "frameNumber": 89,
+            "timestampMs": 2966.667,
+            "sha256": "6e40bc0d7834f3a0036108048617fa6bf169c0a707b37ea416e9b8ca50d3362e"
+          },
+          {
+            "artifactId": "frame.attempt.2.6",
+            "assetId": "asset.attempt",
+            "frameNumber": 90,
+            "timestampMs": 3000,
+            "sha256": "148ae2e377c6e397fe23de7009315aad3a351932e465dbe4ee2beb755b35e04b"
+          },
+          {
+            "artifactId": "frame.attempt.2.7",
+            "assetId": "asset.attempt",
+            "frameNumber": 91,
+            "timestampMs": 3033.333,
+            "sha256": "98f2060e531d26a017fe55f877a73c1b824ea5d4ef8d61717150bd62040f3350"
+          }
+        ],
+        "overlays": [
+          {
+            "frameOffset": 0,
+            "kind": "skeleton",
+            "dataArtifactId": "artifact.pose-track"
+          },
+          {
+            "frameOffset": 0,
+            "kind": "timing_marker",
+            "dataArtifactId": "artifact.beat-map"
+          }
+        ],
+        "playback": {
+          "speed": 0.5,
+          "loop": true
+        },
+        "evidence": {
+          "tool": {
+            "id": "render.comparison",
+            "version": "ffmpeg-comparison@1.0.0"
+          },
+          "inputAssets": [
+            {
+              "assetId": "asset.reference",
+              "sha256": "f688ed399936e3ca531d2261ed82eb6b57844fa2d0ca012134efba48acee1f06"
+            },
+            {
+              "assetId": "asset.attempt",
+              "sha256": "43d98a58c97ee9171adba5cf9a91280c7f32574b289712504726235ede975c76"
+            }
+          ],
+          "frameRange": {
+            "start": 78,
+            "end": 84
+          },
+          "confidence": 1,
+          "createdAt": "2026-07-14T22:16:14.894Z",
+          "provenance": "deterministic-worker"
+        }
+      },
+      {
+        "type": "critical_moment_burst",
+        "artifactId": "artifact.burst.3",
+        "momentId": "moment.3",
+        "referenceFrames": [
+          {
+            "artifactId": "frame.reference.3.1",
+            "assetId": "asset.reference",
+            "frameNumber": 114,
+            "timestampMs": 3800,
+            "sha256": "686fe106e7bc1f87f07498da287a24ec81834c0bb9193a648bd9c07cdf9640e7"
+          },
+          {
+            "artifactId": "frame.reference.3.2",
+            "assetId": "asset.reference",
+            "frameNumber": 115,
+            "timestampMs": 3833.333,
+            "sha256": "0b83919bd7e9033292f0172bfd8b961e2f0d98922e94b5f6aeafda8d382fe587"
+          },
+          {
+            "artifactId": "frame.reference.3.3",
+            "assetId": "asset.reference",
+            "frameNumber": 116,
+            "timestampMs": 3866.667,
+            "sha256": "4c3c71a2f0dd41d35663712da861bbd8c0605a3d7486079a398519bd48e65911"
+          },
+          {
+            "artifactId": "frame.reference.3.4",
+            "assetId": "asset.reference",
+            "frameNumber": 117,
+            "timestampMs": 3900,
+            "sha256": "c036054a40ed8351145ce220691f68fc7b4d4da87e3db134f197f9927aad3b17"
+          },
+          {
+            "artifactId": "frame.reference.3.5",
+            "assetId": "asset.reference",
+            "frameNumber": 118,
+            "timestampMs": 3933.333,
+            "sha256": "87c4e16ba6fa94faeb4444bf87b3799cffd9860c5b8d38272a9eed2f2390e52a"
+          },
+          {
+            "artifactId": "frame.reference.3.6",
+            "assetId": "asset.reference",
+            "frameNumber": 119,
+            "timestampMs": 3966.667,
+            "sha256": "cf229ca82e1f02f85bacb69a46404cd6017f42839001f501d104aee9f11bde52"
+          },
+          {
+            "artifactId": "frame.reference.3.7",
+            "assetId": "asset.reference",
+            "frameNumber": 120,
+            "timestampMs": 4000,
+            "sha256": "2d9ce22fd0b9bb84396877583a6eded9549c4deeb4d771a878d77c1449cd24ca"
+          }
+        ],
+        "attemptFrames": [
+          {
+            "artifactId": "frame.attempt.3.1",
+            "assetId": "asset.attempt",
+            "frameNumber": 121,
+            "timestampMs": 4033.333,
+            "sha256": "3fa748c1a4e88923aa8368d30dc6acbcdad9188cce84ed5ff4868805820e7f83"
+          },
+          {
+            "artifactId": "frame.attempt.3.2",
+            "assetId": "asset.attempt",
+            "frameNumber": 122,
+            "timestampMs": 4066.667,
+            "sha256": "b661f0c6677bea05cc7e77d9088cda6acecdd78a9ccc249f707ed6a9367a61bc"
+          },
+          {
+            "artifactId": "frame.attempt.3.3",
+            "assetId": "asset.attempt",
+            "frameNumber": 123,
+            "timestampMs": 4100,
+            "sha256": "565f81dfa5543522884105d29be206399a4e20b084046709889068367ec42099"
+          },
+          {
+            "artifactId": "frame.attempt.3.4",
+            "assetId": "asset.attempt",
+            "frameNumber": 124,
+            "timestampMs": 4133.333,
+            "sha256": "61e3b13d65fd360cf2a5f67752309d558da9810e20d5062d5b1e22b237b3c816"
+          },
+          {
+            "artifactId": "frame.attempt.3.5",
+            "assetId": "asset.attempt",
+            "frameNumber": 125,
+            "timestampMs": 4166.667,
+            "sha256": "3da5328a4d8788280e80025052c4deef31ffdf48002a504ee1faa81c2f920935"
+          },
+          {
+            "artifactId": "frame.attempt.3.6",
+            "assetId": "asset.attempt",
+            "frameNumber": 126,
+            "timestampMs": 4200,
+            "sha256": "eabbd46a62227cf294274d732ce57092735f7fa92ed505c443fe413e4f422a98"
+          },
+          {
+            "artifactId": "frame.attempt.3.7",
+            "assetId": "asset.attempt",
+            "frameNumber": 127,
+            "timestampMs": 4233.333,
+            "sha256": "c1e52285651228176c2d22c131f373c6aa94827c4034f1ec541789f8740f0920"
+          }
+        ],
+        "overlays": [
+          {
+            "frameOffset": 0,
+            "kind": "skeleton",
+            "dataArtifactId": "artifact.pose-track"
+          },
+          {
+            "frameOffset": 0,
+            "kind": "timing_marker",
+            "dataArtifactId": "artifact.beat-map"
+          }
+        ],
+        "playback": {
+          "speed": 0.5,
+          "loop": true
+        },
+        "evidence": {
+          "tool": {
+            "id": "render.comparison",
+            "version": "ffmpeg-comparison@1.0.0"
+          },
+          "inputAssets": [
+            {
+              "assetId": "asset.reference",
+              "sha256": "f688ed399936e3ca531d2261ed82eb6b57844fa2d0ca012134efba48acee1f06"
+            },
+            {
+              "assetId": "asset.attempt",
+              "sha256": "43d98a58c97ee9171adba5cf9a91280c7f32574b289712504726235ede975c76"
+            }
+          ],
+          "frameRange": {
+            "start": 114,
+            "end": 120
+          },
+          "confidence": 1,
+          "createdAt": "2026-07-14T22:16:14.894Z",
+          "provenance": "deterministic-worker"
+        }
+      }
+    ]
+  },
+  "failures": [],
+  "validation": {
+    "verdict": "pass",
+    "checks": [
+      {
+        "id": "check.1",
+        "verdict": "pass",
+        "evidenceArtifactIds": [
+          "artifact.tutorial-comparison"
+        ],
+        "message": "reference normalized width: expected 360, observed 360"
+      },
+      {
+        "id": "check.2",
+        "verdict": "pass",
+        "evidenceArtifactIds": [
+          "artifact.tutorial-comparison"
+        ],
+        "message": "reference normalized height: expected 640, observed 640"
+      },
+      {
+        "id": "check.3",
+        "verdict": "pass",
+        "evidenceArtifactIds": [
+          "artifact.tutorial-comparison"
+        ],
+        "message": "attempt normalized width: expected 360, observed 360"
+      },
+      {
+        "id": "check.4",
+        "verdict": "pass",
+        "evidenceArtifactIds": [
+          "artifact.tutorial-comparison"
+        ],
+        "message": "attempt normalized height: expected 640, observed 640"
+      },
+      {
+        "id": "check.5",
+        "verdict": "pass",
+        "evidenceArtifactIds": [
+          "artifact.tutorial-comparison"
+        ],
+        "message": "reference normalized fps: expected 30, observed 30"
+      },
+      {
+        "id": "check.6",
+        "verdict": "pass",
+        "evidenceArtifactIds": [
+          "artifact.tutorial-comparison"
+        ],
+        "message": "attempt normalized fps: expected 30, observed 30"
+      },
+      {
+        "id": "check.7",
+        "verdict": "pass",
+        "evidenceArtifactIds": [
+          "artifact.tutorial-comparison"
+        ],
+        "message": "side-by-side is decodable: expected 720, observed 720"
+      },
+      {
+        "id": "check.8",
+        "verdict": "pass",
+        "evidenceArtifactIds": [
+          "artifact.tutorial-comparison"
+        ],
+        "message": "difference is decodable: expected 360, observed 360"
+      },
+      {
+        "id": "check.9",
+        "verdict": "pass",
+        "evidenceArtifactIds": [
+          "artifact.tutorial-comparison"
+        ],
+        "message": "critical burst sheet exists: expected \"> 0\", observed 88837"
+      },
+      {
+        "id": "check.10",
+        "verdict": "pass",
+        "evidenceArtifactIds": [
+          "artifact.tutorial-comparison"
+        ],
+        "message": "three critical moments: expected 3, observed 3"
+      },
+      {
+        "id": "check.11",
+        "verdict": "pass",
+        "evidenceArtifactIds": [
+          "artifact.tutorial-comparison"
+        ],
+        "message": "three burst artifacts: expected 3, observed 3"
+      },
+      {
+        "id": "check.12",
+        "verdict": "pass",
+        "evidenceArtifactIds": [
+          "artifact.tutorial-comparison"
+        ],
+        "message": "alignment offset is plausible: expected \"-1000..1000\", observed 240"
+      },
+      {
+        "id": "check.13",
+        "verdict": "pass",
+        "evidenceArtifactIds": [
+          "artifact.tutorial-comparison"
+        ],
+        "message": "worker provenance is deterministic: expected \"deterministic-worker\", observed \"deterministic-worker\""
+      }
+    ]
+  },
+  "provenance": {
+    "kind": "deterministic-worker",
+    "executionBoundary": "public-worker",
+    "mediaHandling": "media-plane-references-only",
+    "sourceAssets": [
+      {
+        "assetId": "asset.reference",
+        "sha256": "f688ed399936e3ca531d2261ed82eb6b57844fa2d0ca012134efba48acee1f06",
+        "sourceClass": "public-fixture"
+      },
+      {
+        "assetId": "asset.attempt",
+        "sha256": "43d98a58c97ee9171adba5cf9a91280c7f32574b289712504726235ede975c76",
+        "sourceClass": "public-fixture"
+      }
+    ],
+    "toolVersions": {
+      "media.normalize": "ffmpeg-normalize@1.0.0",
+      "audio.beat_map": "pcm-onset@1.0.0",
+      "pose.extract": "known-marker-pose@1.0.0",
+      "tutorial.align": "onset-offset@1.0.0",
+      "tutorial.diff": "landmark-diff@1.0.0",
+      "render.comparison": "ffmpeg-comparison@1.0.0",
+      "result.validate": "nodevideo-worker-validator@1.0.0"
+    },
+    "createdAt": "2026-07-14T22:16:14.894Z"
+  }
+}

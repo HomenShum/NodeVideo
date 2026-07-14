@@ -1,21 +1,24 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import type { NodeVideoCheckpoint } from '@/lib/contracts';
+import type { ControlPlaneStatus } from '@/lib/convex-runtime';
 import { Download, Film, Lock } from 'lucide-react';
 import type { ProjectMode } from './model';
 
 export function AppHeader({
   mode,
   checkpoint,
+  controlPlaneStatus,
   onDownloadReceipt,
 }: {
   mode: ProjectMode;
   checkpoint: NodeVideoCheckpoint | null;
+  controlPlaneStatus: ControlPlaneStatus;
   onDownloadReceipt: () => void;
 }) {
   const projectName =
     mode === 'synthetic'
-      ? 'Verified synthetic comparison'
+      ? 'Worker-verified public comparison'
       : mode === 'local'
         ? 'Browser-local preview'
         : 'New local project';
@@ -30,7 +33,7 @@ export function AppHeader({
           NodeVideo
         </span>
         <Badge variant="outline" className="hidden sm:inline-flex">
-          P0 proof
+          {controlPlaneStatus === 'online' ? 'Convex online' : 'worker P0'}
         </Badge>
       </div>
       <div className="hidden min-w-0 flex-1 truncate border-l pl-3 text-sm text-muted-foreground md:block">
@@ -44,13 +47,13 @@ export function AppHeader({
           className="min-w-0 max-w-36 truncate sm:max-w-52"
           title={
             mode === 'synthetic'
-              ? 'Public synthetic demo; no personal video is bundled.'
+              ? 'Public synthetic worker proof; no personal video is bundled.'
               : 'Selected files remain in this browser session.'
           }
         >
           <Lock aria-hidden="true" />
           <span className="truncate">
-            {mode === 'synthetic' ? 'Public synthetic demo' : 'Local to this browser'}
+            {mode === 'synthetic' ? 'Public synthetic worker' : 'Local to this browser'}
           </span>
         </Badge>
         {checkpoint?.stages.length ? (

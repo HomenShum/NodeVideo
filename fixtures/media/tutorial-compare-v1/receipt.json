@@ -1,0 +1,1020 @@
+{
+  "schema": "nodevideo.worker-receipt.v1",
+  "worker": {
+    "id": "nodevideo.tutorial-compare",
+    "version": "tutorial-compare-worker@0.1.0",
+    "pack": "nodevideo.tutorial-compare@0.1.0"
+  },
+  "boundary": "public-worker",
+  "disclosure": "Worker-produced from public synthetic media. No personal media or model call was used.",
+  "ids": {
+    "projectId": "project.public-worker-v1",
+    "runId": "run.70b0053a86545a73",
+    "traceId": "trace.62776deb64e3b0dc",
+    "referenceAssetId": "asset.reference",
+    "attemptAssetId": "asset.attempt"
+  },
+  "sourceAssets": [
+    {
+      "assetId": "asset.reference",
+      "sha256": "f688ed399936e3ca531d2261ed82eb6b57844fa2d0ca012134efba48acee1f06",
+      "sourceClass": "public-fixture"
+    },
+    {
+      "assetId": "asset.attempt",
+      "sha256": "43d98a58c97ee9171adba5cf9a91280c7f32574b289712504726235ede975c76",
+      "sourceClass": "public-fixture"
+    }
+  ],
+  "tools": {
+    "media.normalize": "ffmpeg-normalize@1.0.0",
+    "audio.beat_map": "pcm-onset@1.0.0",
+    "pose.extract": "known-marker-pose@1.0.0",
+    "tutorial.align": "onset-offset@1.0.0",
+    "tutorial.diff": "landmark-diff@1.0.0",
+    "render.comparison": "ffmpeg-comparison@1.0.0",
+    "result.validate": "nodevideo-worker-validator@1.0.0",
+    "ffmpeg": "ffmpeg version 6.0-full_build-www.gyan.dev Copyright (c) 2000-2023 the FFmpeg developers",
+    "ffprobe": "ffprobe version 6.0-full_build-www.gyan.dev Copyright (c) 2007-2023 the FFmpeg developers"
+  },
+  "result": {
+    "path": "result.json",
+    "sha256": "42adabbe23c69de04be3b60523d4f05a05ee92af818850c00d441b0951081bc4",
+    "status": "completed"
+  },
+  "media": {
+    "reference": {
+      "path": "reference-normalized.mp4",
+      "sha256": "55d63410004603b7882e64ee3975c99960215f15ad10c0111c2709dd02820bec",
+      "metadata": {
+        "format": {
+          "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+          "durationSeconds": 6.016,
+          "sizeBytes": 70778,
+          "bitRate": 94119
+        },
+        "video": {
+          "codec": "h264",
+          "profile": "High",
+          "codedWidth": 360,
+          "codedHeight": 640,
+          "pixelFormat": "yuv420p",
+          "colorRange": "tv",
+          "colorSpace": "bt709",
+          "colorTransfer": "bt709",
+          "colorPrimaries": "bt709",
+          "nominalFrameRate": "30/1",
+          "averageFrameRate": "30/1",
+          "timeBase": "1/15360",
+          "durationSeconds": 6,
+          "frameCount": 180,
+          "rotationDegrees": null
+        },
+        "audio": {
+          "codec": "aac",
+          "sampleRate": 48000,
+          "channels": 1,
+          "channelLayout": "mono",
+          "durationSeconds": 6.016,
+          "bitRate": 26462
+        }
+      }
+    },
+    "attempt": {
+      "path": "attempt-normalized.mp4",
+      "sha256": "6b92ffc541fb3aa84d5d28f56213fd332586bd6be22c27362838d6db9dc65c64",
+      "metadata": {
+        "format": {
+          "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+          "durationSeconds": 6.016,
+          "sizeBytes": 71717,
+          "bitRate": 95368
+        },
+        "video": {
+          "codec": "h264",
+          "profile": "High",
+          "codedWidth": 360,
+          "codedHeight": 640,
+          "pixelFormat": "yuv420p",
+          "colorRange": "tv",
+          "colorSpace": "bt709",
+          "colorTransfer": "bt709",
+          "colorPrimaries": "bt709",
+          "nominalFrameRate": "30/1",
+          "averageFrameRate": "30/1",
+          "timeBase": "1/15360",
+          "durationSeconds": 6,
+          "frameCount": 180,
+          "rotationDegrees": null
+        },
+        "audio": {
+          "codec": "aac",
+          "sampleRate": 48000,
+          "channels": 1,
+          "channelLayout": "mono",
+          "durationSeconds": 6.016,
+          "bitRate": 27384
+        }
+      }
+    },
+    "sideBySide": {
+      "path": "comparison-side-by-side.mp4",
+      "sha256": "981b75cd23b370e1e7990429ecbb76ebf59c29c0840505689b98342787d95052",
+      "metadata": {
+        "format": {
+          "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+          "durationSeconds": 6,
+          "sizeBytes": 115683,
+          "bitRate": 154244
+        },
+        "video": {
+          "codec": "h264",
+          "profile": "High",
+          "codedWidth": 720,
+          "codedHeight": 640,
+          "pixelFormat": "yuv420p",
+          "colorRange": null,
+          "colorSpace": null,
+          "colorTransfer": null,
+          "colorPrimaries": null,
+          "nominalFrameRate": "30/1",
+          "averageFrameRate": "30/1",
+          "timeBase": "1/15360",
+          "durationSeconds": 6,
+          "frameCount": 180,
+          "rotationDegrees": null
+        },
+        "audio": {
+          "codec": "aac",
+          "sampleRate": 48000,
+          "channels": 1,
+          "channelLayout": "mono",
+          "durationSeconds": 5.994,
+          "bitRate": 26481
+        }
+      }
+    },
+    "difference": {
+      "path": "comparison-difference.mp4",
+      "sha256": "a8e160d9c321f10884a83131c9d446520ebe593ff413a77e718dc27479f9641a",
+      "metadata": {
+        "format": {
+          "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+          "durationSeconds": 6,
+          "sizeBytes": 134883,
+          "bitRate": 179844
+        },
+        "video": {
+          "codec": "h264",
+          "profile": "High",
+          "codedWidth": 360,
+          "codedHeight": 640,
+          "pixelFormat": "yuv420p",
+          "colorRange": "tv",
+          "colorSpace": "bt709",
+          "colorTransfer": "bt709",
+          "colorPrimaries": "bt709",
+          "nominalFrameRate": "30/1",
+          "averageFrameRate": "30/1",
+          "timeBase": "1/15360",
+          "durationSeconds": 6,
+          "frameCount": 180,
+          "rotationDegrees": null
+        },
+        "audio": {
+          "codec": "aac",
+          "sampleRate": 48000,
+          "channels": 1,
+          "channelLayout": "mono",
+          "durationSeconds": 5.994,
+          "bitRate": 26481
+        }
+      }
+    },
+    "bursts": {
+      "path": "critical-moments.jpg",
+      "sha256": "7ef58fcbba7fe34536bfbf49408860b8fa9e27a62f3d1586be0509c32739046d",
+      "sizeBytes": 88837
+    }
+  },
+  "events": [
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.1",
+      "sequence": 1,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "job.queued",
+      "stage": "queued",
+      "status": "queued",
+      "progress": {
+        "completed": 0,
+        "total": 11
+      },
+      "message": "tutorial_compare queued",
+      "createdAt": "2026-07-14T22:16:14.908Z"
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.2",
+      "sequence": 2,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.started",
+      "stage": "normalizing",
+      "status": "normalizing",
+      "progress": {
+        "completed": 0,
+        "total": 11
+      },
+      "message": "normalize_reference started",
+      "createdAt": "2026-07-14T22:16:15.622Z",
+      "spanId": "span.normalize.reference"
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.3",
+      "sequence": 3,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.completed",
+      "stage": "normalizing",
+      "status": "normalizing",
+      "progress": {
+        "completed": 1,
+        "total": 11
+      },
+      "message": "normalize_reference completed",
+      "createdAt": "2026-07-14T22:16:17.501Z",
+      "spanId": "span.normalize.reference",
+      "durationMs": 1878.645
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.4",
+      "sequence": 4,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.started",
+      "stage": "normalizing",
+      "status": "normalizing",
+      "progress": {
+        "completed": 1,
+        "total": 11
+      },
+      "message": "normalize_attempt started",
+      "createdAt": "2026-07-14T22:16:17.501Z",
+      "spanId": "span.normalize.attempt"
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.5",
+      "sequence": 5,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.completed",
+      "stage": "normalizing",
+      "status": "normalizing",
+      "progress": {
+        "completed": 2,
+        "total": 11
+      },
+      "message": "normalize_attempt completed",
+      "createdAt": "2026-07-14T22:16:19.731Z",
+      "spanId": "span.normalize.attempt",
+      "durationMs": 2229.175
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.6",
+      "sequence": 6,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.started",
+      "stage": "mapping_audio",
+      "status": "mapping_audio",
+      "progress": {
+        "completed": 2,
+        "total": 11
+      },
+      "message": "map_audio started",
+      "createdAt": "2026-07-14T22:16:20.432Z",
+      "spanId": "span.audio.beat-map"
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.7",
+      "sequence": 7,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.completed",
+      "stage": "mapping_audio",
+      "status": "mapping_audio",
+      "progress": {
+        "completed": 3,
+        "total": 11
+      },
+      "message": "map_audio completed",
+      "createdAt": "2026-07-14T22:16:22.422Z",
+      "spanId": "span.audio.beat-map",
+      "durationMs": 1989.681
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.8",
+      "sequence": 8,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.started",
+      "stage": "extracting_pose",
+      "status": "extracting_pose",
+      "progress": {
+        "completed": 3,
+        "total": 11
+      },
+      "message": "extract_pose started",
+      "createdAt": "2026-07-14T22:16:22.422Z",
+      "spanId": "span.pose.extract"
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.9",
+      "sequence": 9,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.completed",
+      "stage": "extracting_pose",
+      "status": "extracting_pose",
+      "progress": {
+        "completed": 4,
+        "total": 11
+      },
+      "message": "extract_pose completed",
+      "createdAt": "2026-07-14T22:16:31.266Z",
+      "spanId": "span.pose.extract",
+      "durationMs": 8844.405
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.10",
+      "sequence": 10,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.started",
+      "stage": "aligning",
+      "status": "aligning",
+      "progress": {
+        "completed": 4,
+        "total": 11
+      },
+      "message": "align_tutorial started",
+      "createdAt": "2026-07-14T22:16:31.272Z",
+      "spanId": "span.tutorial.align"
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.11",
+      "sequence": 11,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.completed",
+      "stage": "aligning",
+      "status": "aligning",
+      "progress": {
+        "completed": 5,
+        "total": 11
+      },
+      "message": "align_tutorial completed",
+      "createdAt": "2026-07-14T22:16:31.292Z",
+      "spanId": "span.tutorial.align",
+      "durationMs": 20.336
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.12",
+      "sequence": 12,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.started",
+      "stage": "computing_diffs",
+      "status": "computing_diffs",
+      "progress": {
+        "completed": 5,
+        "total": 11
+      },
+      "message": "compute_diffs started",
+      "createdAt": "2026-07-14T22:16:31.292Z",
+      "spanId": "span.tutorial.diff"
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.13",
+      "sequence": 13,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.completed",
+      "stage": "computing_diffs",
+      "status": "computing_diffs",
+      "progress": {
+        "completed": 6,
+        "total": 11
+      },
+      "message": "compute_diffs completed",
+      "createdAt": "2026-07-14T22:16:31.295Z",
+      "spanId": "span.tutorial.diff",
+      "durationMs": 3.255
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.14",
+      "sequence": 14,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.started",
+      "stage": "rendering",
+      "status": "rendering",
+      "progress": {
+        "completed": 6,
+        "total": 11
+      },
+      "message": "render_side_by_side started",
+      "createdAt": "2026-07-14T22:16:31.296Z",
+      "spanId": "span.render.side-by-side"
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.15",
+      "sequence": 15,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.completed",
+      "stage": "rendering",
+      "status": "rendering",
+      "progress": {
+        "completed": 7,
+        "total": 11
+      },
+      "message": "render_side_by_side completed",
+      "createdAt": "2026-07-14T22:16:35.609Z",
+      "spanId": "span.render.side-by-side",
+      "durationMs": 4313.76
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.16",
+      "sequence": 16,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.started",
+      "stage": "rendering",
+      "status": "rendering",
+      "progress": {
+        "completed": 7,
+        "total": 11
+      },
+      "message": "render_difference started",
+      "createdAt": "2026-07-14T22:16:35.609Z",
+      "spanId": "span.render.difference"
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.17",
+      "sequence": 17,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.completed",
+      "stage": "rendering",
+      "status": "rendering",
+      "progress": {
+        "completed": 8,
+        "total": 11
+      },
+      "message": "render_difference completed",
+      "createdAt": "2026-07-14T22:16:36.979Z",
+      "spanId": "span.render.difference",
+      "durationMs": 1369.414
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.18",
+      "sequence": 18,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.started",
+      "stage": "rendering",
+      "status": "rendering",
+      "progress": {
+        "completed": 8,
+        "total": 11
+      },
+      "message": "render_critical_bursts started",
+      "createdAt": "2026-07-14T22:16:36.979Z",
+      "spanId": "span.render.bursts"
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.19",
+      "sequence": 19,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.completed",
+      "stage": "rendering",
+      "status": "rendering",
+      "progress": {
+        "completed": 9,
+        "total": 11
+      },
+      "message": "render_critical_bursts completed",
+      "createdAt": "2026-07-14T22:16:40.205Z",
+      "spanId": "span.render.bursts",
+      "durationMs": 3226.037
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.20",
+      "sequence": 20,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.started",
+      "stage": "validating",
+      "status": "validating",
+      "progress": {
+        "completed": 9,
+        "total": 11
+      },
+      "message": "validate_result started",
+      "createdAt": "2026-07-14T22:16:41.800Z",
+      "spanId": "span.result.validate"
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.21",
+      "sequence": 21,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "step.completed",
+      "stage": "validating",
+      "status": "validating",
+      "progress": {
+        "completed": 10,
+        "total": 11
+      },
+      "message": "validate_result completed",
+      "createdAt": "2026-07-14T22:16:41.801Z",
+      "spanId": "span.result.validate",
+      "durationMs": 0.879
+    },
+    {
+      "schema": "nodevideo.job-event.v1",
+      "eventId": "event.22",
+      "sequence": 22,
+      "jobId": "run.70b0053a86545a73",
+      "traceId": "trace.62776deb64e3b0dc",
+      "type": "job.completed",
+      "stage": "completed",
+      "status": "completed",
+      "progress": {
+        "completed": 11,
+        "total": 11
+      },
+      "message": "Validated worker result ready",
+      "createdAt": "2026-07-14T22:16:41.805Z"
+    }
+  ],
+  "trace": {
+    "root": {
+      "id": "span.tutorial-compare",
+      "traceId": "trace.62776deb64e3b0dc",
+      "name": "tutorial_compare",
+      "status": "ok",
+      "startedAt": "2026-07-14T22:16:14.894Z",
+      "attributes": {
+        "worker": "tutorial-compare-worker@0.1.0"
+      },
+      "artifactIds": [],
+      "endedAt": "2026-07-14T22:16:41.805Z",
+      "durationMs": 23875.587
+    },
+    "spans": [
+      {
+        "id": "span.normalize.reference",
+        "traceId": "trace.62776deb64e3b0dc",
+        "parentSpanId": "span.tutorial-compare",
+        "name": "normalize_reference",
+        "stage": "normalizing",
+        "status": "ok",
+        "startedAt": "2026-07-14T22:16:15.622Z",
+        "attributes": {
+          "toolId": "media.normalize",
+          "toolVersion": "ffmpeg-normalize@1.0.0",
+          "inputHashes": [
+            "f688ed399936e3ca531d2261ed82eb6b57844fa2d0ca012134efba48acee1f06"
+          ],
+          "cacheHit": false,
+          "retryCount": 0
+        },
+        "artifactIds": [],
+        "endedAt": "2026-07-14T22:16:17.501Z",
+        "durationMs": 1878.645
+      },
+      {
+        "id": "span.normalize.attempt",
+        "traceId": "trace.62776deb64e3b0dc",
+        "parentSpanId": "span.tutorial-compare",
+        "name": "normalize_attempt",
+        "stage": "normalizing",
+        "status": "ok",
+        "startedAt": "2026-07-14T22:16:17.501Z",
+        "attributes": {
+          "toolId": "media.normalize",
+          "toolVersion": "ffmpeg-normalize@1.0.0",
+          "inputHashes": [
+            "43d98a58c97ee9171adba5cf9a91280c7f32574b289712504726235ede975c76"
+          ],
+          "cacheHit": false,
+          "retryCount": 0
+        },
+        "artifactIds": [],
+        "endedAt": "2026-07-14T22:16:19.731Z",
+        "durationMs": 2229.175
+      },
+      {
+        "id": "span.audio.beat-map",
+        "traceId": "trace.62776deb64e3b0dc",
+        "parentSpanId": "span.tutorial-compare",
+        "name": "map_audio",
+        "stage": "mapping_audio",
+        "status": "ok",
+        "startedAt": "2026-07-14T22:16:20.432Z",
+        "attributes": {
+          "toolId": "audio.beat_map",
+          "toolVersion": "pcm-onset@1.0.0",
+          "inputHashes": [
+            "55d63410004603b7882e64ee3975c99960215f15ad10c0111c2709dd02820bec",
+            "6b92ffc541fb3aa84d5d28f56213fd332586bd6be22c27362838d6db9dc65c64"
+          ],
+          "cacheHit": false,
+          "retryCount": 0
+        },
+        "artifactIds": [],
+        "endedAt": "2026-07-14T22:16:22.422Z",
+        "durationMs": 1989.681
+      },
+      {
+        "id": "span.pose.extract",
+        "traceId": "trace.62776deb64e3b0dc",
+        "parentSpanId": "span.tutorial-compare",
+        "name": "extract_pose",
+        "stage": "extracting_pose",
+        "status": "ok",
+        "startedAt": "2026-07-14T22:16:22.422Z",
+        "attributes": {
+          "toolId": "pose.extract",
+          "toolVersion": "known-marker-pose@1.0.0",
+          "inputHashes": [
+            "55d63410004603b7882e64ee3975c99960215f15ad10c0111c2709dd02820bec",
+            "6b92ffc541fb3aa84d5d28f56213fd332586bd6be22c27362838d6db9dc65c64"
+          ],
+          "cacheHit": false,
+          "retryCount": 0
+        },
+        "artifactIds": [],
+        "endedAt": "2026-07-14T22:16:31.266Z",
+        "durationMs": 8844.405
+      },
+      {
+        "id": "span.tutorial.align",
+        "traceId": "trace.62776deb64e3b0dc",
+        "parentSpanId": "span.tutorial-compare",
+        "name": "align_tutorial",
+        "stage": "aligning",
+        "status": "ok",
+        "startedAt": "2026-07-14T22:16:31.272Z",
+        "attributes": {
+          "toolId": "tutorial.align",
+          "toolVersion": "onset-offset@1.0.0",
+          "inputHashes": [
+            "55d63410004603b7882e64ee3975c99960215f15ad10c0111c2709dd02820bec",
+            "6b92ffc541fb3aa84d5d28f56213fd332586bd6be22c27362838d6db9dc65c64"
+          ],
+          "cacheHit": false,
+          "retryCount": 0
+        },
+        "artifactIds": [],
+        "endedAt": "2026-07-14T22:16:31.292Z",
+        "durationMs": 20.336
+      },
+      {
+        "id": "span.tutorial.diff",
+        "traceId": "trace.62776deb64e3b0dc",
+        "parentSpanId": "span.tutorial-compare",
+        "name": "compute_diffs",
+        "stage": "computing_diffs",
+        "status": "ok",
+        "startedAt": "2026-07-14T22:16:31.292Z",
+        "attributes": {
+          "toolId": "tutorial.diff",
+          "toolVersion": "landmark-diff@1.0.0",
+          "inputHashes": [
+            "55d63410004603b7882e64ee3975c99960215f15ad10c0111c2709dd02820bec",
+            "6b92ffc541fb3aa84d5d28f56213fd332586bd6be22c27362838d6db9dc65c64"
+          ],
+          "cacheHit": false,
+          "retryCount": 0
+        },
+        "artifactIds": [],
+        "endedAt": "2026-07-14T22:16:31.295Z",
+        "durationMs": 3.255
+      },
+      {
+        "id": "span.render.side-by-side",
+        "traceId": "trace.62776deb64e3b0dc",
+        "parentSpanId": "span.tutorial-compare",
+        "name": "render_side_by_side",
+        "stage": "rendering",
+        "status": "ok",
+        "startedAt": "2026-07-14T22:16:31.296Z",
+        "attributes": {
+          "toolId": "render.comparison",
+          "toolVersion": "ffmpeg-comparison@1.0.0",
+          "inputHashes": [
+            "55d63410004603b7882e64ee3975c99960215f15ad10c0111c2709dd02820bec",
+            "6b92ffc541fb3aa84d5d28f56213fd332586bd6be22c27362838d6db9dc65c64"
+          ],
+          "cacheHit": false,
+          "retryCount": 0
+        },
+        "artifactIds": [],
+        "endedAt": "2026-07-14T22:16:35.609Z",
+        "durationMs": 4313.76
+      },
+      {
+        "id": "span.render.difference",
+        "traceId": "trace.62776deb64e3b0dc",
+        "parentSpanId": "span.tutorial-compare",
+        "name": "render_difference",
+        "stage": "rendering",
+        "status": "ok",
+        "startedAt": "2026-07-14T22:16:35.609Z",
+        "attributes": {
+          "toolId": "render.comparison",
+          "toolVersion": "ffmpeg-comparison@1.0.0",
+          "inputHashes": [
+            "55d63410004603b7882e64ee3975c99960215f15ad10c0111c2709dd02820bec",
+            "6b92ffc541fb3aa84d5d28f56213fd332586bd6be22c27362838d6db9dc65c64"
+          ],
+          "cacheHit": false,
+          "retryCount": 0
+        },
+        "artifactIds": [],
+        "endedAt": "2026-07-14T22:16:36.979Z",
+        "durationMs": 1369.414
+      },
+      {
+        "id": "span.render.bursts",
+        "traceId": "trace.62776deb64e3b0dc",
+        "parentSpanId": "span.tutorial-compare",
+        "name": "render_critical_bursts",
+        "stage": "rendering",
+        "status": "ok",
+        "startedAt": "2026-07-14T22:16:36.979Z",
+        "attributes": {
+          "toolId": "render.comparison",
+          "toolVersion": "ffmpeg-comparison@1.0.0",
+          "inputHashes": [
+            "55d63410004603b7882e64ee3975c99960215f15ad10c0111c2709dd02820bec",
+            "6b92ffc541fb3aa84d5d28f56213fd332586bd6be22c27362838d6db9dc65c64"
+          ],
+          "cacheHit": false,
+          "retryCount": 0
+        },
+        "artifactIds": [],
+        "endedAt": "2026-07-14T22:16:40.205Z",
+        "durationMs": 3226.037
+      },
+      {
+        "id": "span.result.validate",
+        "traceId": "trace.62776deb64e3b0dc",
+        "parentSpanId": "span.tutorial-compare",
+        "name": "validate_result",
+        "stage": "validating",
+        "status": "ok",
+        "startedAt": "2026-07-14T22:16:41.800Z",
+        "attributes": {
+          "toolId": "result.validate",
+          "toolVersion": "nodevideo-worker-validator@1.0.0",
+          "inputHashes": [
+            "981b75cd23b370e1e7990429ecbb76ebf59c29c0840505689b98342787d95052",
+            "a8e160d9c321f10884a83131c9d446520ebe593ff413a77e718dc27479f9641a",
+            "7ef58fcbba7fe34536bfbf49408860b8fa9e27a62f3d1586be0509c32739046d"
+          ],
+          "cacheHit": false,
+          "retryCount": 0
+        },
+        "artifactIds": [],
+        "endedAt": "2026-07-14T22:16:41.801Z",
+        "durationMs": 0.879
+      }
+    ]
+  },
+  "validation": {
+    "passed": true,
+    "assertions": [
+      {
+        "name": "reference normalized width",
+        "pass": true,
+        "actual": 360,
+        "expected": 360
+      },
+      {
+        "name": "reference normalized height",
+        "pass": true,
+        "actual": 640,
+        "expected": 640
+      },
+      {
+        "name": "attempt normalized width",
+        "pass": true,
+        "actual": 360,
+        "expected": 360
+      },
+      {
+        "name": "attempt normalized height",
+        "pass": true,
+        "actual": 640,
+        "expected": 640
+      },
+      {
+        "name": "reference normalized fps",
+        "pass": true,
+        "actual": 30,
+        "expected": 30
+      },
+      {
+        "name": "attempt normalized fps",
+        "pass": true,
+        "actual": 30,
+        "expected": 30
+      },
+      {
+        "name": "side-by-side is decodable",
+        "pass": true,
+        "actual": 720,
+        "expected": 720
+      },
+      {
+        "name": "difference is decodable",
+        "pass": true,
+        "actual": 360,
+        "expected": 360
+      },
+      {
+        "name": "critical burst sheet exists",
+        "pass": true,
+        "actual": 88837,
+        "expected": "> 0"
+      },
+      {
+        "name": "three critical moments",
+        "pass": true,
+        "actual": 3,
+        "expected": 3
+      },
+      {
+        "name": "three burst artifacts",
+        "pass": true,
+        "actual": 3,
+        "expected": 3
+      },
+      {
+        "name": "alignment offset is plausible",
+        "pass": true,
+        "actual": 240,
+        "expected": "-1000..1000"
+      },
+      {
+        "name": "worker provenance is deterministic",
+        "pass": true,
+        "actual": "deterministic-worker",
+        "expected": "deterministic-worker"
+      }
+    ],
+    "metrics": {
+      "alignmentOffsetMs": 240,
+      "criticalMomentCount": 3,
+      "burstCount": 3
+    },
+    "resultValidation": {
+      "verdict": "pass",
+      "checks": [
+        {
+          "id": "check.1",
+          "verdict": "pass",
+          "evidenceArtifactIds": [
+            "artifact.tutorial-comparison"
+          ],
+          "message": "reference normalized width: expected 360, observed 360"
+        },
+        {
+          "id": "check.2",
+          "verdict": "pass",
+          "evidenceArtifactIds": [
+            "artifact.tutorial-comparison"
+          ],
+          "message": "reference normalized height: expected 640, observed 640"
+        },
+        {
+          "id": "check.3",
+          "verdict": "pass",
+          "evidenceArtifactIds": [
+            "artifact.tutorial-comparison"
+          ],
+          "message": "attempt normalized width: expected 360, observed 360"
+        },
+        {
+          "id": "check.4",
+          "verdict": "pass",
+          "evidenceArtifactIds": [
+            "artifact.tutorial-comparison"
+          ],
+          "message": "attempt normalized height: expected 640, observed 640"
+        },
+        {
+          "id": "check.5",
+          "verdict": "pass",
+          "evidenceArtifactIds": [
+            "artifact.tutorial-comparison"
+          ],
+          "message": "reference normalized fps: expected 30, observed 30"
+        },
+        {
+          "id": "check.6",
+          "verdict": "pass",
+          "evidenceArtifactIds": [
+            "artifact.tutorial-comparison"
+          ],
+          "message": "attempt normalized fps: expected 30, observed 30"
+        },
+        {
+          "id": "check.7",
+          "verdict": "pass",
+          "evidenceArtifactIds": [
+            "artifact.tutorial-comparison"
+          ],
+          "message": "side-by-side is decodable: expected 720, observed 720"
+        },
+        {
+          "id": "check.8",
+          "verdict": "pass",
+          "evidenceArtifactIds": [
+            "artifact.tutorial-comparison"
+          ],
+          "message": "difference is decodable: expected 360, observed 360"
+        },
+        {
+          "id": "check.9",
+          "verdict": "pass",
+          "evidenceArtifactIds": [
+            "artifact.tutorial-comparison"
+          ],
+          "message": "critical burst sheet exists: expected \"> 0\", observed 88837"
+        },
+        {
+          "id": "check.10",
+          "verdict": "pass",
+          "evidenceArtifactIds": [
+            "artifact.tutorial-comparison"
+          ],
+          "message": "three critical moments: expected 3, observed 3"
+        },
+        {
+          "id": "check.11",
+          "verdict": "pass",
+          "evidenceArtifactIds": [
+            "artifact.tutorial-comparison"
+          ],
+          "message": "three burst artifacts: expected 3, observed 3"
+        },
+        {
+          "id": "check.12",
+          "verdict": "pass",
+          "evidenceArtifactIds": [
+            "artifact.tutorial-comparison"
+          ],
+          "message": "alignment offset is plausible: expected \"-1000..1000\", observed 240"
+        },
+        {
+          "id": "check.13",
+          "verdict": "pass",
+          "evidenceArtifactIds": [
+            "artifact.tutorial-comparison"
+          ],
+          "message": "worker provenance is deterministic: expected \"deterministic-worker\", observed \"deterministic-worker\""
+        }
+      ]
+    }
+  },
+  "startedAt": "2026-07-14T22:16:14.894Z",
+  "endedAt": "2026-07-14T22:16:41.805Z",
+  "durationMs": 23875.587
+}

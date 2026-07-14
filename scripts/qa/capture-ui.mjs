@@ -40,12 +40,17 @@ try {
     const consoleErrors = [];
     const pageErrors = [];
     const externalRequests = [];
+    const controlPlaneRequests = [];
     page.on('console', (message) => {
       if (message.type() === 'error') consoleErrors.push(message.text());
     });
     page.on('pageerror', (error) => pageErrors.push(error.message));
     page.on('request', (request) => {
       const url = new URL(request.url());
+      if (url.hostname.endsWith('.convex.cloud')) {
+        controlPlaneRequests.push(`${request.method()} ${url.origin}${url.pathname}`);
+        return;
+      }
       if (url.origin !== targetOrigin && !['127.0.0.1', 'localhost'].includes(url.hostname)) {
         externalRequests.push(`${request.method()} ${url.origin}${url.pathname}`);
       }
@@ -90,6 +95,7 @@ try {
       consoleErrors,
       pageErrors,
       externalRequests,
+      controlPlaneRequests,
       passed:
         consoleErrors.length === 0 && pageErrors.length === 0 && externalRequests.length === 0,
     });

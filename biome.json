@@ -8,8 +8,11 @@
       "test-results",
       ".qa/evidence",
       ".vercel",
+      "fixtures/media/tutorial-compare-v1",
+      "convex/_generated",
       "src/styles.css",
-      "src/components/ui"
+      "src/components/ui",
+      "src/components/ai-elements"
     ]
   },
   "formatter": {

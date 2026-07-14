@@ -44,8 +44,8 @@ describe('LocalNodeVideoRuntime decisions', () => {
       proposalArtifactId: proposal.id,
     });
     expect(accepted.settings).toMatchObject({
-      alignment: { offsetMs: 280 },
-      difference: { scoreThreshold: 0.55 },
+      alignment: { offsetMs: 240 },
+      difference: { scoreThreshold: 0.025 },
       render: { layout: 'overlay' },
     });
     expect(after.recipeVersions[0]).toEqual(before.recipeVersions[0]);
