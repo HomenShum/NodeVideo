@@ -1,0 +1,258 @@
+{
+  "schema": "nodevideo.synthetic-media-proof.v1",
+  "privacy": {
+    "classification": "public-synthetic",
+    "containsPersonalMedia": false,
+    "source": "FFmpeg lavfi testsrc2 and sine only"
+  },
+  "recipe": {
+    "canvas": {
+      "width": 720,
+      "height": 1280,
+      "frameRate": 30
+    },
+    "durationSeconds": 6,
+    "audioDurationSeconds": 5,
+    "silentTailSeconds": 1,
+    "cutFrames": {
+      "fitToFill": 45,
+      "fillToFit": 90,
+      "fitToEndCard": 135
+    },
+    "segments": [
+      {
+        "startFrame": 0,
+        "endFrameExclusive": 45,
+        "layout": "fit"
+      },
+      {
+        "startFrame": 45,
+        "endFrameExclusive": 90,
+        "layout": "fill"
+      },
+      {
+        "startFrame": 90,
+        "endFrameExclusive": 135,
+        "layout": "fit"
+      },
+      {
+        "startFrame": 135,
+        "endFrameExclusive": 180,
+        "layout": "end-card"
+      }
+    ],
+    "fit": {
+      "source": {
+        "width": 1916,
+        "height": 1078
+      },
+      "scaled": {
+        "width": 720,
+        "height": 406
+      },
+      "placement": {
+        "x": 0,
+        "y": 437
+      }
+    },
+    "fill": {
+      "source": {
+        "width": 1916,
+        "height": 1078
+      },
+      "scaledHeight": 1280,
+      "crop": {
+        "width": 720,
+        "height": 1280,
+        "anchor": "center"
+      }
+    }
+  },
+  "tools": {
+    "ffmpeg": "ffmpeg version 6.0-full_build-www.gyan.dev Copyright (c) 2000-2023 the FFmpeg developers",
+    "ffprobe": "ffprobe version 6.0-full_build-www.gyan.dev Copyright (c) 2007-2023 the FFmpeg developers"
+  },
+  "media": {
+    "path": "fixtures/media/nodevideo-proof-v1.mp4",
+    "sha256": "157b6a8d9257043e4fba50914fa4521058129439ef67acb6b91640982fb20e5a",
+    "metadata": {
+      "format": {
+        "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+        "durationSeconds": 6,
+        "sizeBytes": 485755,
+        "bitRate": 647673
+      },
+      "video": {
+        "codec": "h264",
+        "profile": "High",
+        "codedWidth": 720,
+        "codedHeight": 1280,
+        "pixelFormat": "yuv420p",
+        "colorRange": "tv",
+        "colorSpace": "bt709",
+        "colorTransfer": "bt709",
+        "colorPrimaries": "bt709",
+        "nominalFrameRate": "30/1",
+        "averageFrameRate": "30/1",
+        "timeBase": "1/600",
+        "durationSeconds": 6,
+        "frameCount": 180,
+        "rotationDegrees": null
+      },
+      "audio": {
+        "codec": "aac",
+        "sampleRate": 48000,
+        "channels": 1,
+        "channelLayout": "mono",
+        "durationSeconds": 5,
+        "bitRate": 95448
+      }
+    }
+  },
+  "verification": {
+    "passed": true,
+    "assertions": [
+      {
+        "name": "fixture width",
+        "pass": true,
+        "actual": 720,
+        "expected": 720
+      },
+      {
+        "name": "fixture height",
+        "pass": true,
+        "actual": 1280,
+        "expected": 1280
+      },
+      {
+        "name": "fixture frame rate",
+        "pass": true,
+        "actual": 30,
+        "expected": 30
+      },
+      {
+        "name": "fixture frame count",
+        "pass": true,
+        "actual": 180,
+        "expected": 180
+      },
+      {
+        "name": "fixture duration",
+        "pass": true,
+        "actual": 6,
+        "expected": 6
+      },
+      {
+        "name": "fixture has no rotation tag",
+        "pass": true,
+        "actual": null,
+        "expected": null
+      },
+      {
+        "name": "fixture is 8-bit 4:2:0",
+        "pass": true,
+        "actual": "yuv420p",
+        "expected": "yuv420p"
+      },
+      {
+        "name": "fixture colorspace",
+        "pass": true,
+        "actual": "bt709",
+        "expected": "bt709"
+      },
+      {
+        "name": "fixture transfer",
+        "pass": true,
+        "actual": "bt709",
+        "expected": "bt709"
+      },
+      {
+        "name": "fixture primaries",
+        "pass": true,
+        "actual": "bt709",
+        "expected": "bt709"
+      },
+      {
+        "name": "fixture audio duration",
+        "pass": true,
+        "actual": 5,
+        "expected": 5
+      },
+      {
+        "name": "fixture silent video tail",
+        "pass": true,
+        "actual": 1,
+        "expected": 1
+      },
+      {
+        "name": "frame 22 uses fit geometry",
+        "pass": true,
+        "actual": {
+          "state": "fit",
+          "topLuma": 0,
+          "middleLuma": 128.27,
+          "bottomLuma": 0
+        },
+        "expected": "fit"
+      },
+      {
+        "name": "frame 67 uses fill geometry",
+        "pass": true,
+        "actual": {
+          "state": "fill",
+          "topLuma": 126.81,
+          "middleLuma": 127.34,
+          "bottomLuma": 126.83
+        },
+        "expected": "fill"
+      },
+      {
+        "name": "frame 112 returns to fit geometry",
+        "pass": true,
+        "actual": {
+          "state": "fit",
+          "topLuma": 0,
+          "middleLuma": 126.64,
+          "bottomLuma": 0
+        },
+        "expected": "fit"
+      },
+      {
+        "name": "fit band starts near y=437",
+        "pass": true,
+        "actual": 436,
+        "expected": "437 +/- 8"
+      },
+      {
+        "name": "fit band ends near y=842",
+        "pass": true,
+        "actual": 836,
+        "expected": "842 +/- 8"
+      },
+      {
+        "name": "cut at frame 45 is visible",
+        "pass": true,
+        "actual": 113.94223379629629,
+        "expected": "> 10"
+      },
+      {
+        "name": "cut at frame 90 is visible",
+        "pass": true,
+        "actual": 117.86611111111111,
+        "expected": "> 10"
+      },
+      {
+        "name": "end-card cut at frame 135 is visible",
+        "pass": true,
+        "actual": 38.212667824074074,
+        "expected": "> 5"
+      },
+      {
+        "name": "end-card mark is visible",
+        "pass": true,
+        "actual": 130.51,
+        "expected": "> 35"
+      }
+    ]
+  }
+}

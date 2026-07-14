@@ -1,0 +1,10 @@
+.qa/**
+.git/**
+.github/**
+docs/**
+scripts/**
+tests/**
+test-results/**
+playwright-report/**
+node_modules/**
+*.log
