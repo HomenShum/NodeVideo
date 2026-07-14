@@ -14,7 +14,10 @@ await mkdir(outputRoot, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const scenarios = [
   { name: 'desktop', viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 },
+  { name: 'xl-boundary', viewport: { width: 1280, height: 800 }, deviceScaleFactor: 1 },
+  { name: 'tablet', viewport: { width: 834, height: 1112 }, deviceScaleFactor: 1 },
   { name: 'phone', viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 },
+  { name: 'compact-phone', viewport: { width: 320, height: 568 }, deviceScaleFactor: 2 },
 ];
 const report = {
   schema: 'nodevideo.ui-capture.v1',

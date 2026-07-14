@@ -31,6 +31,7 @@ The public demo can be loaded without private media. Local upload controls accep
 npm run lint
 npm run typecheck
 npm run test
+npm run check:ui
 npm run build
 npx playwright install chromium
 npm run test:e2e
@@ -43,6 +44,9 @@ $env:NODEVIDEO_URL='https://nodevideo-pi.vercel.app'; npm run test:e2e
 ```
 
 `npm run check` runs the static, unit, and build gates. Pull requests run the full sequence, including the synthetic-demo Playwright journey, in [`.github/workflows/quality.yml`](.github/workflows/quality.yml).
+
+The browser suite runs every journey at 1440, the 1280 desktop breakpoint, 834, 390, and 320 CSS pixels. Its accessibility
+gate also rejects document-level horizontal overflow.
 
 The stable automation contract is documented in [`.qa/profile.md`](.qa/profile.md). In particular, `data-testid` values are a versioned public interface for agents and tests; they must not be renamed casually or used to bypass product code.
 
@@ -70,6 +74,26 @@ NodeVideo reuses proven primitives from our own repositories by responsibility, 
 - **FeatureClipStudio:** Playwright-to-video proof workflow and FFmpeg-based render verification for release evidence.
 
 The current browser-local runtime is a bounded first slice. The target architecture keeps the same serializable event/artifact contracts while moving durable semantic state into Convex and deterministic media work into versioned workers. See [`docs/architecture.md`](docs/architecture.md).
+
+### Primitive-first UI
+
+NodeVideo uses Tailwind CSS 4 and generated shadcn/ui primitives for generic presentation and
+interaction. Feature code composes those primitives around video-domain behavior; it does not
+rebuild buttons, cards, tabs, progress, scroll areas, or responsive navigation.
+
+Generated files in `src/components/ui/**` are an immutable vendor zone. Their exact upstream
+snapshots are recorded in `.ui/ui-policy.json`; refresh them through the pinned shadcn CLI, never
+by hand. Only primitives reachable from the app are retained.
+
+`npm run check:ui` rejects raw generic controls, direct Radix imports, inline layout styles,
+arbitrary Tailwind dimensions, extra authored stylesheets, and custom media queries. It also
+ratchets authored UI and CSS totals downward so maintenance cost cannot silently grow. See
+[`docs/ui-primitives.md`](docs/ui-primitives.md) for the selection order and exception process.
+
+AI Elements is reserved for a real agent/model path with streamed tasks, tools, plans, or
+artifacts. Its documented setup is Next.js-oriented, so a copied component must first prove it
+builds in this Vite application without Next-specific imports. NodeVideo does not add an AI
+component catalog merely for visual styling.
 
 ## Privacy and truthfulness rules
 

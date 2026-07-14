@@ -1,6 +1,6 @@
 import { resolve } from 'node:path';
 import AxeBuilder from '@axe-core/playwright';
-import { type Page, expect, test } from 'playwright/test';
+import { type Locator, type Page, expect, test } from 'playwright/test';
 
 const syntheticVideoPath = resolve('fixtures/media/nodevideo-proof-v1.mp4');
 const targetOrigin = new URL(process.env.NODEVIDEO_URL ?? 'http://127.0.0.1:4317').origin;
@@ -72,6 +72,56 @@ function expectCleanLedger(ledger: BrowserLedger) {
   ).toEqual([]);
   expect(ledger.pageErrors, 'the browser must not throw an unhandled error').toEqual([]);
   expect(ledger.consoleErrors, 'the browser console must stay free of errors').toEqual([]);
+}
+
+async function expectWithinViewport(page: Page, locator: Locator, label: string) {
+  const box = await locator.boundingBox();
+  const viewport = page.viewportSize();
+  expect(box, `${label} must have a rendered box`).not.toBeNull();
+  expect(viewport, 'the browser project must define a viewport').not.toBeNull();
+  expect(box?.x ?? -2, `${label} must not be clipped on the left`).toBeGreaterThanOrEqual(-1);
+  expect(
+    (box?.x ?? 0) + (box?.width ?? 0),
+    `${label} must not be clipped on the right`,
+  ).toBeLessThanOrEqual((viewport?.width ?? 0) + 1);
+}
+
+async function expectNoHorizontalClipping(locator: Locator, label: string) {
+  const result = await locator.evaluate((root) => {
+    const rootBox = root.getBoundingClientRect();
+    const clipped = Array.from(root.querySelectorAll<HTMLElement>('*')).flatMap((element) => {
+      const style = getComputedStyle(element);
+      const box = element.getBoundingClientRect();
+      if (
+        style.display === 'none' ||
+        style.visibility === 'hidden' ||
+        box.width === 0 ||
+        box.height === 0 ||
+        (box.left >= rootBox.left - 1 && box.right <= rootBox.right + 1)
+      ) {
+        return [];
+      }
+      return [
+        {
+          element: element.tagName.toLowerCase(),
+          className: typeof element.className === 'string' ? element.className : null,
+          slot: element.dataset.slot ?? null,
+          testId: element.dataset.testid ?? null,
+          left: Math.round(box.left * 10) / 10,
+          right: Math.round(box.right * 10) / 10,
+          rootLeft: Math.round(rootBox.left * 10) / 10,
+          rootRight: Math.round(rootBox.right * 10) / 10,
+        },
+      ];
+    });
+    return {
+      overflow: root.scrollWidth - root.clientWidth,
+      clipped: clipped.slice(0, 10),
+    };
+  });
+
+  expect(result.overflow, `${label} must not hide horizontal overflow`).toBeLessThanOrEqual(1);
+  expect(result.clipped, `${label} descendants must remain horizontally reachable`).toEqual([]);
 }
 
 test.describe('NodeVideo public synthetic release gate', () => {
@@ -156,6 +206,26 @@ test.describe('NodeVideo public synthetic release gate', () => {
     const ledger = observeBrowser(page);
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await runSyntheticComparison(page);
+
+    await expectWithinViewport(
+      page,
+      page.getByRole('button', { name: 'Download run receipt' }),
+      'receipt action',
+    );
+    const workspaceNavigation = page.getByRole('radiogroup', { name: 'Workspace views' });
+    const usesPaneNavigation = (page.viewportSize()?.width ?? Number.POSITIVE_INFINITY) < 1280;
+    if (usesPaneNavigation) await expect(workspaceNavigation).toBeVisible();
+    const panes = [
+      ['Project', page.locator('aside[aria-label="Project sources and pipeline"]')],
+      ['Canvas', page.locator('section[aria-label="Video workbench"]')],
+      ['Inspect', page.locator('aside[aria-label="Evidence inspector"]')],
+    ] as const;
+    for (const [label, pane] of panes) {
+      if (usesPaneNavigation) await workspaceNavigation.getByRole('radio', { name: label }).click();
+      await expect(pane).toBeVisible();
+      await expectWithinViewport(page, pane, `${label} pane`);
+      await expectNoHorizontalClipping(pane, `${label} pane`);
+    }
 
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])

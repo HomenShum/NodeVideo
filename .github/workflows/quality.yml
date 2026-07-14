@@ -40,6 +40,11 @@ jobs:
       - name: Unit tests
         run: npm run test
 
+      - name: Primitive-first UI policy and budgets
+        run: |
+          node scripts/quality/check-ui-policy.mjs
+          node scripts/quality/check-ui-budget.mjs
+
       - name: Production build
         run: npm run build
 

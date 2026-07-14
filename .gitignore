@@ -12,5 +12,6 @@ test-results/
 
 # QA evidence is current-session output. Never commit user media or derivatives.
 .qa/evidence/
+.qa/*.log
 
 .vercel

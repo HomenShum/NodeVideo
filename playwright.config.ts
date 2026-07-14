@@ -41,6 +41,13 @@ export default defineConfig({
       },
     },
     {
+      name: 'xl-boundary-chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1280, height: 800 },
+      },
+    },
+    {
       name: 'tablet-chromium',
       use: {
         ...devices['Desktop Chrome'],
@@ -52,6 +59,15 @@ export default defineConfig({
       use: {
         ...devices['Pixel 7'],
         viewport: { width: 390, height: 844 },
+      },
+    },
+    {
+      name: 'compact-mobile-chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        hasTouch: true,
+        isMobile: true,
+        viewport: { width: 320, height: 568 },
       },
     },
   ],

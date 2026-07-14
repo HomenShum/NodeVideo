@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "mode": "ratchet",
+  "requireRatchetRefreshOnReduction": true,
+  "authoredRoots": ["src"],
+  "generatedRoots": ["src/components/ui", "src/components/ai-elements"],
+  "generatedSource": {
+    "provider": "shadcn/ui",
+    "cliPackage": "shadcn",
+    "cliVersion": "4.13.0",
+    "componentsConfig": "components.json"
+  },
+  "generatedFiles": {
+    "src/components/ui/alert.tsx": "126a26b401ab2cd3f3855551d012b5dca7a96b7d6984a921add3ce2d441af4b6",
+    "src/components/ui/aspect-ratio.tsx": "3ce0684d13f8572abbd3c46fc0beb613ad2d0821ab978480f8576c9a394f03d5",
+    "src/components/ui/badge.tsx": "1b292cd64608eef62eab1e43621071b32f794988a8c4e40fd1086cfbf8d9ef5d",
+    "src/components/ui/button-group.tsx": "de73ccc6e10f29821e7c10c477b3e1a2b9f6a079d5c2a875f1d768f39ca362e3",
+    "src/components/ui/button.tsx": "9ce417985b97956fbb3a73c84b0eb60230fd0a9844c5111df92e061731440a3f",
+    "src/components/ui/card.tsx": "d8113cbf964f8d1aadf2649d2944d8bbc6e3cfd49d36746f76868cbc4dde3cfe",
+    "src/components/ui/empty.tsx": "e65ee3ba54a21ed61e3c50041bb12a6a3fcb215c56611cda6795c23a7bd89f61",
+    "src/components/ui/item.tsx": "a197e0c6bf030f49bf95c7803dd0605d47aed570347975c3e814e2df3b7bd30d",
+    "src/components/ui/progress.tsx": "842f2ae9cd7b800589443a7c225996b93746e69fc72404e19f942effef5a6d8c",
+    "src/components/ui/scroll-area.tsx": "c3e7e2201d33bc24e439b18f3d3eb2568578eb017ca995c899ed0924a569b15d",
+    "src/components/ui/separator.tsx": "28e6fd5832396247a84bd8a27e57e1c9aa967efca0ec27055b08b1cb3de744bf",
+    "src/components/ui/spinner.tsx": "900f722c961fa6e1c28104809d56831c9056dc69599e49d364cc13a6f33966a3",
+    "src/components/ui/toggle-group.tsx": "321fa3bc9f3071584a0ee4c97882d4e51ff7ce0f4ec87a3645a2683d989f3c7e",
+    "src/components/ui/toggle.tsx": "ae2eec8802536743ca2dea7070a027ac3a311f2789b71af075fba23b1ee65e47"
+  },
+  "domainComponentRoots": ["src/components"],
+  "excludedRoots": ["src/test"],
+  "allowedStyleFiles": ["src/styles.css"],
+  "genericControlTags": [
+    "button",
+    "input",
+    "select",
+    "textarea",
+    "label",
+    "dialog",
+    "details",
+    "summary",
+    "progress",
+    "meter"
+  ],
+  "allowedMediaElements": ["audio", "video", "source", "track", "canvas"],
+  "hiddenFileInput": {
+    "classTokens": ["hidden", "sr-only"],
+    "requireLabelAncestor": true
+  },
+  "blockedDirectImportPrefixes": ["@radix-ui/", "radix-ui"],
+  "blockedStyleImportPrefixes": [
+    "@emotion/",
+    "@stitches/",
+    "goober",
+    "linaria",
+    "styled-components"
+  ],
+  "allowInlineCssVariables": false,
+  "themeContract": {
+    "strategy": "class",
+    "className": "dark",
+    "globalStyleFile": "src/styles.css",
+    "tailwindSourceBase": ".",
+    "brandAccentToken": "--brand-accent",
+    "reservedSemanticAccentToken": "--accent"
+  },
+  "legacyCeilings": {
+    "rawGenericControls": {},
+    "inlineStyles": {},
+    "authoredMediaQueries": {},
+    "authoredUiFiles": {}
+  },
+  "ratchetBudgets": {
+    "authoredUiLoc": 1039,
+    "authoredCssLoc": 113
+  },
+  "finalBudgets": {
+    "authoredUiLoc": 900,
+    "authoredCssLoc": 120,
+    "maxAuthoredUiFileLoc": 200,
+    "maxDomainVisualComponents": 4,
+    "rawGenericControls": 0,
+    "inlineStyles": 0,
+    "arbitraryTailwindValues": 0,
+    "authoredMediaQueries": 0
+  },
+  "exceptions": []
+}

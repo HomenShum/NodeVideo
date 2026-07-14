@@ -7,7 +7,9 @@
       "playwright-report",
       "test-results",
       ".qa/evidence",
-      ".vercel"
+      ".vercel",
+      "src/styles.css",
+      "src/components/ui"
     ]
   },
   "formatter": {
