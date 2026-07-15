@@ -1,0 +1,196 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.reference-reconstruct@0.1.0",
+  "implementationStatus": "authorized-real-case-validated",
+  "validationProfiles": {
+    "authorizedRealCaseV1": {
+      "status": "passed",
+      "boundary": "local-worker",
+      "sourceClass": "owner-authorized-public-real-media",
+      "receipt": "../../../fixtures/media/authorized-real-v1/receipt.json",
+      "scope": "One owner-authorized, target-guided reconstruction from two MOV render sources and independently recreated graphics.",
+      "claimTier": "perceptually-close-video"
+    },
+    "arbitraryReferenceReconstruction": {
+      "status": "not-validated",
+      "scope": "Unseen edits, automatic edit-map inference, generic edit autopilot, and target soundtrack reconstruction are outside this proof."
+    }
+  },
+  "defaults": {
+    "execution": "deterministic-local-or-ci-worker",
+    "hostedBehavior": "verified-replay",
+    "modelRequired": false,
+    "lifecycle": {
+      "fullRunRestartable": true,
+      "stageRetry": false,
+      "semanticCancellation": false,
+      "checkpointResume": false,
+      "durableLease": false
+    },
+    "tracePolicy": {
+      "allow": [
+        "asset IDs and public aliases",
+        "input and output hashes",
+        "tool ID and version",
+        "non-secret render parameters",
+        "frame ranges and cut frames",
+        "artifact IDs",
+        "latency and status",
+        "SSIM, PSNR, and VMAF",
+        "validation verdict and claim tier"
+      ],
+      "deny": [
+        "raw media or extracted frames",
+        "worker-local tokens and local paths",
+        "original filenames",
+        "location, device, software, or source-container metadata",
+        "credentials",
+        "hidden reasoning"
+      ]
+    }
+  },
+  "tools": [
+    {
+      "id": "media.probe",
+      "stage": "probe-inputs",
+      "implementation": {
+        "version": "ffprobe-bind@1.0.0",
+        "status": "authorized-real-case-validated",
+        "scope": "Hash and probe two HEVC Main 10 HLG MOV sources and one HEVC BT.709 evaluation target without publishing their locators."
+      },
+      "dependsOn": [],
+      "accepts": ["video/source-a", "video/source-b", "video/evaluation-target"],
+      "produces": ["bound_media_evidence"],
+      "validatedChecks": [
+        "owner-authorization-explicit",
+        "input-hashes-bound",
+        "target-role-evaluation-only"
+      ]
+    },
+    {
+      "id": "media.sanitize",
+      "stage": "sanitize-release-media",
+      "implementation": {
+        "version": "ffmpeg-metadata-strip@1.0.0",
+        "status": "authorized-real-case-validated",
+        "scope": "Create metadata-stripped authorized release derivatives and scan for forbidden container metadata."
+      },
+      "dependsOn": ["media.probe"],
+      "accepts": ["bound_media_evidence"],
+      "produces": ["sanitized_release_media"],
+      "validatedChecks": [
+        "source-container-metadata-not-published",
+        "sanitized-output-hashes-recorded",
+        "sanitized-media-decodable"
+      ]
+    },
+    {
+      "id": "reference.map",
+      "stage": "map-reference",
+      "implementation": {
+        "version": "normalized-frame-search@1.0.0",
+        "status": "case-specific-target-guided",
+        "scope": "Known-case timing and layout map inferred against the target: five footage segments, four cuts, one black frame, and a four-second branded end card."
+      },
+      "dependsOn": ["media.probe"],
+      "accepts": ["bound_media_evidence"],
+      "produces": ["reference_timeline"],
+      "observedAuthorizedResult": {
+        "outputFrames": 1335,
+        "framesPerSecond": 30,
+        "cutFrames": [201, 482, 589, 753],
+        "footageSegments": 5
+      }
+    },
+    {
+      "id": "render.reconstruction",
+      "stage": "render-reconstruction",
+      "implementation": {
+        "version": "ffmpeg-reference-reconstruct@0.1.0",
+        "status": "authorized-real-case-validated",
+        "scope": "Render 720x1280 video from the two MOV sources plus independently recreated graphics, with cut source audio and a silent branded tail."
+      },
+      "dependsOn": ["media.probe", "reference.map"],
+      "accepts": [
+        "video/source-a",
+        "video/source-b",
+        "graphic/recreated-overlay",
+        "reference_timeline"
+      ],
+      "produces": ["reference_reconstruction"],
+      "validatedChecks": [
+        "target-excluded-from-render-source-asset-ids",
+        "both-mov-sources-represented",
+        "target-audio-not-copied",
+        "720x1280-at-30-fps",
+        "1335-frames-and-44.5-seconds"
+      ]
+    },
+    {
+      "id": "render.comparison",
+      "stage": "render-comparisons",
+      "implementation": {
+        "version": "ffmpeg-comparison@1.0.0",
+        "status": "authorized-real-case-validated",
+        "scope": "Create browser-safe source and target proxies, side-by-side video, amplified difference video, and a poster."
+      },
+      "dependsOn": ["render.reconstruction"],
+      "accepts": ["reference_reconstruction", "video/evaluation-target"],
+      "produces": [
+        "side_by_side_comparison",
+        "difference_video",
+        "comparison_poster",
+        "web_media_proxies"
+      ],
+      "validatedChecks": [
+        "published-artifact-hashes-recorded",
+        "published-artifacts-decodable",
+        "published-derivatives-metadata-stripped"
+      ]
+    },
+    {
+      "id": "evaluate.video",
+      "stage": "evaluate-reconstruction",
+      "implementation": {
+        "version": "ffmpeg-vmaf-ssim-psnr@1.0.0",
+        "status": "authorized-real-case-validated",
+        "scope": "Measure decoded 720x1280 reconstruction video against the target; target audio is excluded."
+      },
+      "dependsOn": ["render.reconstruction"],
+      "accepts": ["reference_reconstruction", "video/evaluation-target"],
+      "produces": ["quality_metrics"],
+      "observedAuthorizedResult": {
+        "ssim": 0.946873,
+        "psnrDb": 26.311718,
+        "vmaf": 29.819468,
+        "targetAudioMatched": false,
+        "claimTier": "perceptually-close-video"
+      }
+    },
+    {
+      "id": "result.validate",
+      "stage": "validate-result",
+      "implementation": {
+        "version": "nodevideo-authorized-case-validator@1.0.0",
+        "status": "authorized-real-case-validated",
+        "scope": "Twelve passing structural assertions plus hash and decode verification for the checked-in case bundle."
+      },
+      "dependsOn": ["media.sanitize", "render.comparison", "evaluate.video"],
+      "accepts": [
+        "sanitized_release_media",
+        "reference_reconstruction",
+        "quality_metrics",
+        "web_media_proxies"
+      ],
+      "produces": ["validation_receipt", "validation_verdict"],
+      "validatedChecks": [
+        "result-output-schema-valid",
+        "structural-assertions-pass",
+        "source-and-output-hashes-match",
+        "target-lineage-evaluation-only",
+        "target-audio-unmatched-disclosed",
+        "hosted-replay-boundary-disclosed"
+      ]
+    }
+  ]
+}

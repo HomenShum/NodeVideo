@@ -1,0 +1,154 @@
+{
+  "schema": "nodevideo.published-case.v1",
+  "id": "authorized-real-v1",
+  "title": "Two MOVs reconstructed against the final edit",
+  "sourceClass": "owner-authorized-public-real-media",
+  "authorization": {
+    "status": "owner-authorized-publication",
+    "grantedAt": "2026-07-14",
+    "scope": "NodeVideo public demo, repository derivatives, and evaluation evidence",
+    "sourceContainerMetadataPublished": false
+  },
+  "worker": {
+    "id": "nodevideo.reference-reconstruct",
+    "version": "reference-reconstruct-worker@0.1.0",
+    "pack": "nodevideo.reference-reconstruct@0.1.0",
+    "validationProfile": "authorized-real-case-v1"
+  },
+  "targetUsage": "analysis-and-evaluation-only",
+  "claimTier": "perceptually-close-video",
+  "metrics": {
+    "ssim": 0.946873,
+    "psnrDb": 26.311718,
+    "vmaf": 29.819468,
+    "perSegment": [
+      {
+        "id": "a-fit-1",
+        "startSeconds": 0,
+        "durationSeconds": 6.7,
+        "ssim": 0.935963,
+        "psnrDb": 26.347816
+      },
+      {
+        "id": "b-fill-1",
+        "startSeconds": 6.7,
+        "durationSeconds": 9.367,
+        "ssim": 0.967404,
+        "psnrDb": 31.371434
+      },
+      {
+        "id": "a-fit-2",
+        "startSeconds": 16.067,
+        "durationSeconds": 3.567,
+        "ssim": 0.923961,
+        "psnrDb": 25.710503
+      },
+      {
+        "id": "b-fill-2",
+        "startSeconds": 19.633,
+        "durationSeconds": 5.467,
+        "ssim": 0.968937,
+        "psnrDb": 32.151065
+      },
+      {
+        "id": "a-fit-3",
+        "startSeconds": 25.1,
+        "durationSeconds": 15.367,
+        "ssim": 0.929439,
+        "psnrDb": 23.838327
+      },
+      {
+        "id": "black-transition",
+        "startSeconds": 40.467,
+        "durationSeconds": 0.033,
+        "ssim": 0.916065,
+        "psnrDb": 25.145809
+      },
+      {
+        "id": "branded-end-card",
+        "startSeconds": 40.5,
+        "durationSeconds": 4,
+        "ssim": 0.970954,
+        "psnrDb": 27.605974
+      }
+    ],
+    "metricScope": "decoded 720x1280 video; target audio excluded",
+    "targetAudioMatched": false,
+    "sourceAudioMode": "cut source audio with silent branded tail"
+  },
+  "sources": [
+    {
+      "id": "asset.source-a-original",
+      "label": "MOV source A",
+      "proxyPath": "source-a-web.mp4",
+      "originalSha256": "041f52059ba5ef2e934730f759d139ffc17c029b8b683d027c40c5f2fbdb7614",
+      "releaseAssetName": "source-a-sanitized.mov"
+    },
+    {
+      "id": "asset.source-b-original",
+      "label": "MOV source B",
+      "proxyPath": "source-b-web.mp4",
+      "originalSha256": "30dedbd0f9ed084838a86e0728049774e7895609c1fea554e7739e9cc20b46d0",
+      "releaseAssetName": "source-b-sanitized.mov"
+    },
+    {
+      "id": "asset.target-edit",
+      "label": "Final MP4 target",
+      "proxyPath": "target-web.mp4",
+      "originalSha256": "83e93e1ded63cfc17247e2709f32efa810f55695b5b3063cecd6db9284982841",
+      "releaseAssetName": "target-sanitized.mp4"
+    }
+  ],
+  "views": [
+    {
+      "id": "target",
+      "label": "Final target",
+      "path": "target-web.mp4",
+      "sha256": "9431a1d9cfce0216bf6f3e93d36e2fd5b7cbbc8c81a202eaf1686b009999a35d",
+      "mimeType": "video/mp4"
+    },
+    {
+      "id": "reconstruction",
+      "label": "MOV-only reconstruction",
+      "path": "reconstruction.mp4",
+      "sha256": "45e39d1970782a2c2eeefebeb4c7c222770201a0b91732f655b748f215f63b28",
+      "mimeType": "video/mp4"
+    },
+    {
+      "id": "side-by-side",
+      "label": "Target | reconstruction",
+      "path": "comparison-side-by-side.mp4",
+      "sha256": "2669b5a7fc8155c181c951935bf711ee8974fbddce046b09092f17e1a1bebe21",
+      "mimeType": "video/mp4"
+    },
+    {
+      "id": "difference",
+      "label": "Amplified pixel difference",
+      "path": "comparison-difference.mp4",
+      "sha256": "bcf651be748cb47cb98fa4acd42955a0df2e57dcc0adf3466e8ba2de3573d561",
+      "mimeType": "video/mp4"
+    },
+    {
+      "id": "source-a",
+      "label": "MOV source A proxy",
+      "path": "source-a-web.mp4",
+      "sha256": "634bfb9b539c85ef105e93c047267612817a6c4da4a0f830b38be21e3f31b428",
+      "mimeType": "video/mp4"
+    },
+    {
+      "id": "source-b",
+      "label": "MOV source B proxy",
+      "path": "source-b-web.mp4",
+      "sha256": "11ec849d6e99d6aee1f7b3ba8de7a4d248a808062b237889c0baa67498d5bc6a",
+      "mimeType": "video/mp4"
+    }
+  ],
+  "posterPath": "comparison-poster.jpg",
+  "receiptPath": "receipt.json",
+  "resultPath": "result.json",
+  "limitations": [
+    "Visual reconstruction only; target soundtrack is unmatched.",
+    "Published video files are metadata-stripped derivatives.",
+    "Single authorized target-guided case; no generic edit-autopilot claim."
+  ]
+}

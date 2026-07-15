@@ -1,143 +1,47 @@
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-import { AppHeader } from '@/features/nodevideo/app-header';
-import { EntryHero } from '@/features/nodevideo/entry-hero';
-import { InspectorPanel } from '@/features/nodevideo/inspector-panel';
-import type { MobileView } from '@/features/nodevideo/model';
-import { ProjectPanel } from '@/features/nodevideo/project-panel';
-import { useNodeVideoWorkspace } from '@/features/nodevideo/use-nodevideo-workspace';
-import { Workbench } from '@/features/nodevideo/workbench';
-import { cn } from '@/lib/utils';
-import { Activity, Film, Layers } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { RealCasePanel } from '@/features/nodevideo/real-case-panel';
+import { Film, GitBranch, ShieldCheck } from 'lucide-react';
 
 export function App() {
-  const { state, actions } = useNodeVideoWorkspace();
-  const paneClass = 'min-h-0 min-w-0 flex-col overflow-hidden border-border bg-background xl:flex';
-  const activePane = (pane: MobileView) => (state.mobileView === pane ? 'flex' : 'hidden');
-
   return (
-    <div
-      className="flex h-svh flex-col overflow-hidden bg-background text-foreground"
-      data-testid="app-shell"
-    >
-      <AppHeader
-        mode={state.mode}
-        checkpoint={state.checkpoint}
-        controlPlaneStatus={state.controlPlaneStatus}
-        onDownloadReceipt={actions.downloadReceipt}
-      />
-      <main
-        className={cn(
-          'min-h-0 flex-1 overflow-x-hidden',
-          state.mode === 'empty'
-            ? 'flex overflow-y-auto'
-            : 'grid grid-cols-1 overflow-hidden xl:grid-cols-12',
-        )}
-      >
-        {state.mode !== 'empty' ? (
-          <aside
-            className={cn(paneClass, 'border-r xl:col-span-3', activePane('project'))}
-            aria-label="Project sources and pipeline"
-          >
-            <PaneHeader title="Project" />
-            <ProjectPanel
-              mode={state.mode}
-              checkpoint={state.checkpoint}
-              localMedia={state.localMedia}
-              displayStages={state.displayStages}
-              runComplete={state.runComplete}
-              onFiles={actions.selectFiles}
-              onLoadDemo={actions.loadDemo}
-              onDownloadManifest={actions.downloadManifest}
-            />
-          </aside>
-        ) : null}
+    <div className="min-h-svh bg-background text-foreground" data-testid="app-shell">
+      <header className="border-b bg-background/95">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-3 py-3 sm:px-6">
+          <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+            <Film className="size-4" aria-hidden="true" />
+          </span>
+          <span className="font-heading font-semibold tracking-tight">NodeVideo</span>
+          <Badge variant="secondary" data-testid="privacy-badge">
+            <ShieldCheck aria-hidden="true" /> Authorized derivatives only
+          </Badge>
+          <Button asChild className="ml-auto" size="sm" variant="outline">
+            <a href="https://github.com/HomenShum/NodeVideo" rel="noreferrer" target="_blank">
+              <GitBranch aria-hidden="true" /> Public repo
+            </a>
+          </Button>
+        </div>
+      </header>
 
-        <section
-          className={cn(
-            'min-h-0 min-w-0 flex-1 flex-col overflow-hidden bg-muted/10',
-            state.mode === 'empty' ? 'flex' : activePane('canvas'),
-            state.mode !== 'empty' && 'xl:col-span-6 xl:flex',
-          )}
-          aria-label="Video workbench"
-        >
-          {state.mode === 'empty' ? (
-            <EntryHero
-              onLoadDemo={actions.loadDemo}
-              onFiles={actions.selectFiles}
-              isLoadingProof={state.isLoadingProof}
-              loadError={state.loadError}
-            />
-          ) : (
-            <Workbench
-              mode={state.mode}
-              localMedia={state.localMedia}
-              compareView={state.compareView}
-              onCompareView={actions.setCompareView}
-              runComplete={state.runComplete}
-              isRunning={state.isRunning}
-              onRun={actions.run}
-            />
-          )}
+      <main className="mx-auto max-w-6xl space-y-6 px-3 py-6 sm:px-6 sm:py-10">
+        <section className="space-y-3" aria-labelledby="page-title">
+          <Badge variant="outline">Deterministic media-worker proof</Badge>
+          <h1 id="page-title" className="max-w-3xl font-heading text-3xl font-semibold sm:text-5xl">
+            Can two MOVs reproduce the final edit?
+          </h1>
+          <p className="max-w-3xl text-pretty text-muted-foreground sm:text-lg">
+            NodeVideo recovered the cut map, normalized HDR footage, recreated the graphic layer,
+            rendered from both source videos, and measured the result against the authorized final
+            MP4. Verify every deployed artifact before playback.
+          </p>
         </section>
 
-        {state.mode !== 'empty' ? (
-          <aside
-            className={cn(paneClass, 'border-l xl:col-span-3', activePane('inspect'))}
-            aria-label="Evidence inspector"
-          >
-            <PaneHeader title="Evidence" />
-            {state.checkpoint?.stages.length ? (
-              <InspectorPanel
-                checkpoint={state.checkpoint}
-                proposal={state.proposal}
-                decision={state.decision}
-                onAccept={actions.accept}
-                onDecline={actions.decline}
-                onRestore={actions.restore}
-              />
-            ) : (
-              <div className="flex flex-1 items-center justify-center p-6 text-center text-sm text-muted-foreground">
-                <span>
-                  {state.mode === 'local'
-                    ? 'Local previews do not claim analysis evidence.'
-                    : 'Run the proof to record artifacts and traces.'}
-                </span>
-              </div>
-            )}
-          </aside>
-        ) : null}
+        <RealCasePanel />
       </main>
 
-      {state.mode !== 'empty' ? (
-        <ToggleGroup
-          type="single"
-          value={state.mobileView}
-          onValueChange={(value) => value && actions.setMobileView(value as MobileView)}
-          className="grid h-16 w-full shrink-0 grid-cols-3 gap-1 rounded-none border-t bg-background p-1 xl:hidden"
-          aria-label="Workspace views"
-        >
-          <ToggleGroupItem value="project" className="h-full flex-col gap-1">
-            <Layers aria-hidden="true" /> Project
-          </ToggleGroupItem>
-          <ToggleGroupItem value="canvas" className="h-full flex-col gap-1">
-            <Film aria-hidden="true" /> Canvas
-          </ToggleGroupItem>
-          <ToggleGroupItem value="inspect" className="h-full flex-col gap-1">
-            <Activity aria-hidden="true" /> Inspect
-          </ToggleGroupItem>
-        </ToggleGroup>
-      ) : null}
-      <div className="sr-only" aria-live="polite" aria-atomic="true">
-        {state.announcement}
-      </div>
-    </div>
-  );
-}
-
-function PaneHeader({ title }: { title: string }) {
-  return (
-    <div className="flex h-11 shrink-0 items-center border-b px-3">
-      <h2 className="font-heading text-sm font-semibold">{title}</h2>
+      <footer className="border-t px-3 py-5 text-center text-xs text-muted-foreground sm:px-6">
+        Vercel serves a hash-verified replay. The FFmpeg worker runs locally or in CI.
+      </footer>
     </div>
   );
 }

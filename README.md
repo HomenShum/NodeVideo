@@ -1,20 +1,60 @@
 # NodeVideo
 
-NodeVideo is a privacy-first workspace for comparing a reference video with a practice take. The public release combines a checked-in deterministic worker proof over synthetic known-marker media with browser-local handling for user-selected files: analysis is inspectable, proposed recipe changes require review, and accepted changes create restorable versions.
+NodeVideo is a deterministic video-reconstruction proof. The live release foregrounds one
+owner-authorized real-media case: a local FFmpeg worker reconstructed a final edit from two MOV
+sources, then measured the decoded result against the supplied final MP4.
 
-The public inputs are generated, but the worker result is not simulated. FFmpeg decoded and normalized two videos, PCM analysis detected known onsets, a purpose-built color-marker extractor produced tracks, deterministic tools aligned and compared them, and FFmpeg rendered playable outputs. This proves the bounded worker/orchestration contract; it does not prove generic human pose or production-music accuracy.
+The claim is deliberately narrow. This is a target-guided reconstruction of one authorized case,
+not a generic edit autopilot. A separate generated known-marker fixture remains the default generic
+worker and CI smoke proof.
 
 ## Live release
 
-[Open NodeVideo on Vercel](https://nodevideo-pi.vercel.app). The release is anonymous and responsive across laptop, tablet, and phone layouts.
+[Open NodeVideo on Vercel](https://nodevideo-pi.vercel.app). The release is anonymous and responsive
+across laptop, tablet, and phone layouts.
 
-What is live: a public synthetic-source worker bundle with a completed receipt and result, playable side-by-side and difference renders, three critical moments, immutable worker events, trace spans, review-before-mutation, append-only recipe versions, restore, and local checkpoint recovery. The browser verifies the deployed comparison hash and receipt/result verdict before enabling replay. It also performs a read-only health query against the production Convex control plane. User-selected media stays in the current browser session and is not uploaded.
+Choose **Load and verify real case** to inspect six metadata-stripped derivative videos: the two
+source proxies, final-target proxy, MOV-only reconstruction, side-by-side comparison, and amplified
+pixel difference. Before showing them, the browser hashes the case manifest, worker result, receipt,
+and all six videos, then checks their authorization, lineage, metric, and artifact relationships.
+Any mismatch fails closed instead of presenting an unverified render.
 
-The Vercel app serves and replays a completed proof bundle; it does not run FFmpeg for visitors. The Convex schema/functions are deployed, but this public UI intentionally has no unauthenticated mutation bridge, so worker jobs and recipe changes still use the checked-in receipt and browser-local checkpoints. Not yet claimed: arbitrary uploaded-media analysis, generic human pose, production-music beat accuracy, private human tutorial comparison, live AI/model analysis, shared multi-user persistence, or collaboration.
+Vercel serves a verified replay of a completed worker run. It does not execute FFmpeg for a visitor;
+the media worker runs locally or in CI. The checked-in receipt and trace record what produced the
+published artifacts.
+
+## Proven result and boundary
+
+The reconstruction matches the target's exact structure:
+
+- 720x1280 video at 30 fps;
+- 1,335 frames and 44.5 seconds;
+- footage cuts at frames `201`, `482`, `589`, and `753`; and
+- both source MOVs represented in the render.
+
+Measured over decoded 720x1280 video, with target audio excluded:
+
+| Metric | Result |
+| --- | ---: |
+| SSIM | `0.946873` |
+| PSNR | `26.311718 dB` |
+| VMAF | `29.819468` |
+| Claim tier | `perceptually-close-video` |
+
+These measurements do not claim pixel identity. Timing, framing, and grade parameters were inferred
+against the final MP4, but the reconstruction's render inputs are only the two MOV sources plus
+independently recreated graphics. The final MP4 is analysis-and-evaluation-only: its frames and
+soundtrack are not copied into the reconstruction.
+
+The output uses cut source audio followed by a silent branded tail. The target soundtrack was not
+present in either MOV, remains unmatched, and was not copied. The result therefore proves a close
+visual reconstruction of this edit, not exact audiovisual reproduction or automatic discovery on
+arbitrary footage.
 
 ## Run locally
 
-Requirements: Node.js 22+, npm 10+, Chromium for the end-to-end suite, and FFmpeg/FFprobe to regenerate or independently verify media-worker proof.
+Requirements: Node.js 22+, npm 10+, Chromium for browser tests, and FFmpeg/FFprobe for worker
+regeneration or independent media verification.
 
 ```bash
 npm ci
@@ -23,15 +63,27 @@ npm run dev
 
 Open `http://localhost:4173`.
 
-The public demo can be loaded without private media. Local upload controls accept user-selected files for the current browser session only; they must not upload bytes or place object URLs/file paths in traces, checkpoints, logs, or test artifacts.
-
-Verify the checked-in public worker receipt without regenerating it:
+Verify both checked-in worker proofs without rewriting their artifacts:
 
 ```powershell
-node scripts/workers/tutorial-compare.mjs --verify-public
+npm run worker:authorized:verify
+npm run worker:verify
 ```
 
-The verifier is part of `npm run check`; it validates checked-in media hashes, FFprobe decodability, receipt status, critical-moment count, event ordering, and the capability pack's input/output schemas.
+`worker:authorized:verify` validates the authorized case's hashes, decodability, sanitized lineage,
+target exclusion from render inputs, exact timeline, metrics, and passing receipt. Regenerating that
+case is an explicit owner-authorized developer action; see
+[`packs/reference-reconstruct/README.md`](packs/reference-reconstruct/README.md).
+
+The synthetic worker remains independently reproducible:
+
+```powershell
+npm run worker:public
+npm run worker:verify
+```
+
+It exercises the generic deterministic-worker contract with generated inputs. It is not evidence of
+human-pose, production-music, or generic reconstruction accuracy.
 
 ## Quality gates
 
@@ -40,91 +92,92 @@ npm run lint
 npm run typecheck
 npm run test
 npm run check:ui
+npm run capability:validate
+npm run worker:verify
+npm run worker:authorized:verify
 npm run build
 npx playwright install chromium
 npm run test:e2e
 ```
 
-To run the same journeys against production:
+To run the same browser journeys against production:
 
 ```powershell
 $env:NODEVIDEO_URL='https://nodevideo-pi.vercel.app'; npm run test:e2e
 ```
 
-`npm run check` runs the static, unit, and build gates. Pull requests run the full sequence, including the synthetic-demo Playwright journey, in [`.github/workflows/quality.yml`](.github/workflows/quality.yml).
+`npm run check` runs the static, unit, schema, receipt, UI-policy, and build gates. Pull requests run
+the complete sequence in [`.github/workflows/quality.yml`](.github/workflows/quality.yml). Browser QA
+covers 1440, 1280, 834, 390, and 320 CSS-pixel viewports, accessibility, keyboard operation, media
+decodability, and document-level horizontal overflow.
 
-The browser suite runs every journey at 1440, the 1280 desktop breakpoint, 834, 390, and 320 CSS pixels. Its accessibility
-gate also rejects document-level horizontal overflow.
+The stable automation and consent contract is documented in [`.qa/profile.md`](.qa/profile.md).
+`data-testid` values are a versioned public interface for agents and tests; they must not be renamed
+casually or used to bypass product code.
 
-The stable automation contract is documented in [`.qa/profile.md`](.qa/profile.md). In particular, `data-testid` values are a versioned public interface for agents and tests; they must not be renamed casually or used to bypass product code.
+## Primitive-first UI
 
-## Release slice
+NodeVideo uses Tailwind CSS 4 and generated shadcn/ui primitives for generic presentation and
+interaction. Selected AI Elements primitives present the real worker artifact, tool, and checkpoint
+records, while the `@assistant-ui/react-o11y` adapter presents the recorded trace. Feature code owns
+only video-domain composition.
 
-The first honest vertical slice is:
+The real-case refactor removed the bespoke feature shell and reduced authored UI from 889 to 253
+logical lines. Generated files in `src/components/ui/**` and `src/components/ai-elements/**` remain an
+immutable vendor zone whose upstream snapshots are pinned in `.ui/ui-policy.json`.
 
-1. Load and verify the public synthetic-source worker bundle, or select local videos for session-only preview.
-2. Review the explicit deterministic worker plan and disclosure.
-3. Replay the receipt's immutable job events and inspect worker-backed artifacts and trace spans.
-4. Play the actual FFmpeg side-by-side or difference render and inspect its three known-marker moments.
-5. Review a recipe proposal before it can change state.
-6. Accept the exact proposal to create a new restorable version, or decline it without mutation.
-7. Reload and recover the latest local checkpoint without implying that session-only video bytes were persisted.
-
-The public worker path is deterministic and publication-safe because both inputs are generated. Private human-video inspection and reconstruction proof remains only under ignored `.qa/evidence/private/` on the laptop. That private evidence proves codec, rotation, color, cut, and render handling—not this pack's human pose or coaching accuracy.
+`npm run check:ui` rejects raw generic controls, direct Radix imports, inline layout styles,
+arbitrary Tailwind dimensions, extra authored stylesheets, and custom media queries. The release is
+at 253 of the 900 authored-UI-line ceiling and 95 of the 120 authored-CSS-line ceiling. See
+[`docs/ui-primitives.md`](docs/ui-primitives.md) for the selection order and exception process.
 
 ## Reuse strategy
 
-NodeVideo reuses proven primitives from our own repositories by responsibility, not by copying an entire application:
+NodeVideo reuses existing primitives by responsibility:
 
-- **Parity Studio / AI Elements:** React shell, composer, activity-card, inspector, proposal, and version-history interaction patterns.
-- **NodeAgent:** typed tool registry, durable execution, idempotency, receipts, and independent validation patterns.
-- **NodeRoom:** append-only event streams, checkpoint/retry/cancel semantics, trace contracts, and artifact-to-span navigation.
+- **shadcn/ui and AI Elements:** generated accessible controls, cards, media artifacts, worker tools,
+  and checkpoints.
 - **react-o11y:** headless trace hierarchy and timing presentation.
-- **FeatureClipStudio:** Playwright-to-video proof workflow and FFmpeg-based render verification for release evidence.
+- **NodeAgent:** typed tool registry, deterministic execution, receipts, and independent validation
+  patterns.
+- **NodeRoom:** append-only events, trace contracts, and artifact lineage patterns.
+- **FeatureClipStudio:** Playwright-to-video proof and FFmpeg render-verification practices.
 
-The production Convex control-plane contract is deployed with durable jobs, monotonic events, lease fencing, artifacts, digest-bound proposals, and runtime-source records. Sensitive writes are internal-only until an authenticated worker/client wrapper exists. The public media-plane proof still comes from a versioned deterministic worker and checked-in receipt; hosted FFmpeg execution is not active. See [`docs/architecture.md`](docs/architecture.md).
+The deployed Vercel application is a replay boundary, not the media execution plane. See
+[`docs/architecture.md`](docs/architecture.md) for the dependency flow and claim boundaries.
 
-### Primitive-first UI
+## Publication and privacy rules
 
-NodeVideo uses Tailwind CSS 4 and generated shadcn/ui primitives for generic presentation and
-interaction. Feature code composes those primitives around video-domain behavior; it does not
-rebuild buttons, cards, tabs, progress, scroll areas, or responsive navigation.
-
-Generated files in `src/components/ui/**` and `src/components/ai-elements/**` are an immutable vendor zone. Their exact upstream
-snapshots are recorded in `.ui/ui-policy.json`; refresh them through the pinned shadcn CLI, never
-by hand. Only primitives reachable from the app are retained.
-
-`npm run check:ui` rejects raw generic controls, direct Radix imports, inline layout styles,
-arbitrary Tailwind dimensions, extra authored stylesheets, and custom media queries. The final
-budget is enforced at 900 authored UI lines and 120 CSS lines; the current release is below both. See
-[`docs/ui-primitives.md`](docs/ui-primitives.md) for the selection order and exception process.
-
-Selected source-distributed AI Elements surfaces are ported only as Vite-safe presentation for
-real worker tool, checkpoint, and artifact records. Their presence is not evidence of an AI/model
-call, and domain state remains independent of `useChat`, Next.js, and Vercel AI Gateway. NodeVideo
-does not add the component catalog merely for visual styling.
-
-## Privacy and truthfulness rules
-
-- User media stays local unless a future, separately consented action explicitly names an external destination and scope.
-- The hosted/public path uses generated assets only and replays a completed public-worker receipt.
-- Synthetic-source artifacts carry explicit disclosure and deterministic-worker provenance. A playable render is shown only when the worker produced and hashed that media.
-- Browser object URLs are session-only capabilities; never persist or log them.
-- Trace and checkpoint records contain IDs, hashes, ranges, versions, timings, status, and artifact references—not raw media or credentials.
-- Deterministic analysis is not labeled as a live AI/model run. Any future model egress must be private by default and produce a server-authored receipt matching its preflight.
-- Agent output is a reviewable proposal. Mutation occurs only after digest-bound acceptance and creates a restorable version.
+- Real media is public only for this explicitly owner-authorized case and only as metadata-stripped
+  derivatives. Original source-container metadata is not published.
+- The final MP4 is an evaluation input, never a reconstruction render input.
+- Receipts, manifests, and results use public asset IDs, sanitized names, hashes, timings, tool
+  versions, and artifact roles; they do not publish private local locators.
+- A playable render appears only after browser-side integrity and lineage verification succeeds.
+- The synthetic fixture remains the default generic and CI smoke proof.
+- Any new real-media publication requires its own explicit authorization, metadata sanitization,
+  hash verification, and case-scoped evaluation.
+- Deterministic analysis is not labeled as a live AI/model run, and a single target-guided result is
+  not generalized into an automatic editing claim.
 
 ## Repository guide
 
-- `src/lib/contracts.ts` — serializable runtime, artifact, stage, event, and provenance contracts.
-- `convex/` — deployed durable jobs, events, artifacts, proposals, and runtime-source proof.
-- `.qa/profile.md` — canonical agentic UI journey and selector contract.
-- `.qa/memory/` — append-only QA history and baseline notes.
-- `tests/e2e/` — public synthetic-demo and privacy-boundary journeys.
-- `docs/architecture.md` — layer boundaries, dependency flow, and release gates.
-
-The public worker contract and excluded claims live in [`packs/tutorial-compare/`](packs/tutorial-compare/); its generated source pair, playable renders, typed result, and receipt live in [`fixtures/media/tutorial-compare-v1/`](fixtures/media/tutorial-compare-v1/).
+- [`packs/reference-reconstruct/`](packs/reference-reconstruct/) — authorized real-case schemas,
+  tools, evaluation, claim rules, and worker instructions.
+- [`fixtures/media/authorized-real-v1/`](fixtures/media/authorized-real-v1/) — metadata-stripped web
+  derivatives, case manifest, result, and receipt.
+- [`packs/tutorial-compare/`](packs/tutorial-compare/) and
+  [`fixtures/media/tutorial-compare-v1/`](fixtures/media/tutorial-compare-v1/) — generated
+  known-marker smoke proof.
+- [`scripts/workers/`](scripts/workers/) — deterministic FFmpeg workers and verifiers.
+- [`src/lib/published-cases.ts`](src/lib/published-cases.ts) — browser integrity and lineage checks.
+- [`docs/architecture.md`](docs/architecture.md) — execution, replay, and evidence boundaries.
+- [`.qa/profile.md`](.qa/profile.md) — canonical UI journey, consent rules, and selector contract.
 
 ## Status
 
-The public P0 known-marker slice has real worker evidence: 22 monotonic job events, 10 worker spans, 13 passing in-run checks, 12 independent receipt checks, schema-valid output, two playable FFmpeg comparison renders, and three seven-frame-per-input burst artifacts. Convex dev and production schemas are deployed and browser connectivity is checked, while 5 durability-kernel tests cover idempotency, leases/fencing, event ordering, and digest-bound approval. The live frontend replays the checked-in worker result; it is not a hosted on-demand worker and does not expose public mutations. Generic human pose, production music, private human tutorial comparison, and end-to-end remote retry/resume remain blocked until their own held-out and integration proof exists.
+The live app provides a verified, playable real-case reconstruction with six inspectable views and
+an evidence-backed `perceptually-close-video` claim. Exact structure, source lineage, target
+exclusion, metadata sanitization, artifact hashes, and quality metrics are independently checked.
+Still unclaimed: pixel-exact reproduction, target soundtrack recovery, generic edit discovery,
+hosted FFmpeg execution, and model-driven editing quality.

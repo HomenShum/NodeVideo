@@ -5,6 +5,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  publicDir: 'fixtures',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

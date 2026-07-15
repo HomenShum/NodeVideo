@@ -1,0 +1,615 @@
+{
+  "schema": "nodevideo.reference-reconstruct-result.v1",
+  "caseId": "authorized-real-v1",
+  "status": "completed",
+  "automationLevel": "case-specific-target-guided",
+  "disclosure": "Owner-authorized real-media case. Timing, layout, and grade parameters were inferred against the target; reconstruction pixels and audio are rendered from the two MOV sources plus recreated graphics.",
+  "targetUsage": "analysis-and-evaluation-only",
+  "inputs": {
+    "sourceA": {
+      "assetId": "asset.source-a-original",
+      "publicName": "source-a.mov",
+      "sha256": "041f52059ba5ef2e934730f759d139ffc17c029b8b683d027c40c5f2fbdb7614",
+      "usage": "render-source",
+      "metadata": {
+        "format": {
+          "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+          "durationSeconds": 57.58,
+          "sizeBytes": 102865134,
+          "bitRate": 14291786
+        },
+        "video": {
+          "codec": "hevc",
+          "profile": "Main 10",
+          "codedWidth": 1078,
+          "codedHeight": 1916,
+          "pixelFormat": "yuv420p10le",
+          "colorRange": "tv",
+          "colorSpace": "bt2020nc",
+          "colorTransfer": "arib-std-b67",
+          "colorPrimaries": "bt2020",
+          "nominalFrameRate": "30/1",
+          "averageFrameRate": "86350/2879",
+          "timeBase": "1/600",
+          "durationSeconds": 57.58,
+          "frameCount": 1727,
+          "rotationDegrees": -90
+        },
+        "audio": {
+          "codec": "aac",
+          "sampleRate": 48000,
+          "channels": 2,
+          "channelLayout": "stereo",
+          "durationSeconds": 57.578333,
+          "bitRate": 191039
+        }
+      }
+    },
+    "sourceB": {
+      "assetId": "asset.source-b-original",
+      "publicName": "source-b.mov",
+      "sha256": "30dedbd0f9ed084838a86e0728049774e7895609c1fea554e7739e9cc20b46d0",
+      "usage": "render-source",
+      "metadata": {
+        "format": {
+          "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+          "durationSeconds": 68.216667,
+          "sizeBytes": 121749189,
+          "bitRate": 14277940
+        },
+        "video": {
+          "codec": "hevc",
+          "profile": "Main 10",
+          "codedWidth": 1078,
+          "codedHeight": 1916,
+          "pixelFormat": "yuv420p10le",
+          "colorRange": "tv",
+          "colorSpace": "bt2020nc",
+          "colorTransfer": "arib-std-b67",
+          "colorPrimaries": "bt2020",
+          "nominalFrameRate": "30/1",
+          "averageFrameRate": "122760/4093",
+          "timeBase": "1/600",
+          "durationSeconds": 68.216667,
+          "frameCount": 2046,
+          "rotationDegrees": -90
+        },
+        "audio": {
+          "codec": "aac",
+          "sampleRate": 48000,
+          "channels": 2,
+          "channelLayout": "stereo",
+          "durationSeconds": 68.213333,
+          "bitRate": 191724
+        }
+      }
+    },
+    "target": {
+      "assetId": "asset.target-edit",
+      "publicName": "target-edit.mp4",
+      "sha256": "83e93e1ded63cfc17247e2709f32efa810f55695b5b3063cecd6db9284982841",
+      "usage": "analysis-and-evaluation-only",
+      "metadata": {
+        "format": {
+          "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+          "durationSeconds": 44.5,
+          "sizeBytes": 63323064,
+          "bitRate": 11383921
+        },
+        "video": {
+          "codec": "hevc",
+          "profile": "Main",
+          "codedWidth": 720,
+          "codedHeight": 1280,
+          "pixelFormat": "yuv420p",
+          "colorRange": "tv",
+          "colorSpace": "bt709",
+          "colorTransfer": "bt709",
+          "colorPrimaries": "bt709",
+          "nominalFrameRate": "30/1",
+          "averageFrameRate": "30/1",
+          "timeBase": "1/600",
+          "durationSeconds": 44.5,
+          "frameCount": 1335,
+          "rotationDegrees": null
+        },
+        "audio": {
+          "codec": "aac",
+          "sampleRate": 44100,
+          "channels": 2,
+          "channelLayout": "stereo",
+          "durationSeconds": 42.660998,
+          "bitRate": 123750
+        }
+      }
+    }
+  },
+  "renderSourceAssetIds": [
+    "asset.source-a-original",
+    "asset.source-b-original"
+  ],
+  "evaluationSourceAssetIds": [
+    "asset.target-edit",
+    "artifact.reconstruction"
+  ],
+  "timeline": [
+    {
+      "id": "a-fit-1",
+      "outputStartFrame": 0,
+      "outputEndFrame": 200,
+      "outputFrames": 201,
+      "outputStartSeconds": 0,
+      "outputEndSeconds": 6.7,
+      "sourceAssetId": "asset.source-a-original",
+      "sourceStartFrame": 464,
+      "sourceEndFrame": 664,
+      "sourceStartSeconds": 15.466667,
+      "layout": "fit"
+    },
+    {
+      "id": "b-fill-1",
+      "outputStartFrame": 201,
+      "outputEndFrame": 481,
+      "outputFrames": 281,
+      "outputStartSeconds": 6.7,
+      "outputEndSeconds": 16.067,
+      "sourceAssetId": "asset.source-b-original",
+      "sourceStartFrame": 963,
+      "sourceEndFrame": 1243,
+      "sourceStartSeconds": 32.1,
+      "layout": "fill"
+    },
+    {
+      "id": "a-fit-2",
+      "outputStartFrame": 482,
+      "outputEndFrame": 588,
+      "outputFrames": 107,
+      "outputStartSeconds": 16.067,
+      "outputEndSeconds": 19.633,
+      "sourceAssetId": "asset.source-a-original",
+      "sourceStartFrame": 866,
+      "sourceEndFrame": 972,
+      "sourceStartSeconds": 28.866667,
+      "layout": "fit"
+    },
+    {
+      "id": "b-fill-2",
+      "outputStartFrame": 589,
+      "outputEndFrame": 752,
+      "outputFrames": 164,
+      "outputStartSeconds": 19.633,
+      "outputEndSeconds": 25.1,
+      "sourceAssetId": "asset.source-b-original",
+      "sourceStartFrame": 1355,
+      "sourceEndFrame": 1518,
+      "sourceStartSeconds": 45.166667,
+      "layout": "fill"
+    },
+    {
+      "id": "a-fit-3",
+      "outputStartFrame": 753,
+      "outputEndFrame": 1213,
+      "outputFrames": 461,
+      "outputStartSeconds": 25.1,
+      "outputEndSeconds": 40.467,
+      "sourceAssetId": "asset.source-a-original",
+      "sourceStartFrame": 1212,
+      "sourceEndFrame": 1672,
+      "sourceStartSeconds": 40.4,
+      "layout": "fit"
+    },
+    {
+      "id": "black-transition",
+      "outputStartFrame": 1214,
+      "outputEndFrame": 1214,
+      "outputFrames": 1,
+      "outputStartSeconds": 40.467,
+      "outputEndSeconds": 40.5,
+      "sourceAssetId": null,
+      "sourceStartFrame": null,
+      "sourceEndFrame": null,
+      "layout": "black"
+    },
+    {
+      "id": "branded-end-card",
+      "outputStartFrame": 1215,
+      "outputEndFrame": 1334,
+      "outputFrames": 120,
+      "outputStartSeconds": 40.5,
+      "outputEndSeconds": 44.5,
+      "sourceAssetId": "asset.source-a-original",
+      "sourceStartFrame": 1672,
+      "sourceEndFrame": 1672,
+      "layout": "dimmed-freeze-graphic"
+    }
+  ],
+  "cutFrames": [
+    201,
+    482,
+    589,
+    753
+  ],
+  "media": {
+    "sourceAWeb": {
+      "path": "source-a-web.mp4",
+      "sha256": "634bfb9b539c85ef105e93c047267612817a6c4da4a0f830b38be21e3f31b428",
+      "mimeType": "video/mp4",
+      "role": "source-web-proxy",
+      "metadata": {
+        "format": {
+          "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+          "durationSeconds": 57.598005,
+          "sizeBytes": 2848396,
+          "bitRate": 395624
+        },
+        "video": {
+          "codec": "h264",
+          "profile": "High",
+          "codedWidth": 640,
+          "codedHeight": 360,
+          "pixelFormat": "yuv420p",
+          "colorRange": "tv",
+          "colorSpace": "bt709",
+          "colorTransfer": "bt709",
+          "colorPrimaries": "bt709",
+          "nominalFrameRate": "30/1",
+          "averageFrameRate": "30/1",
+          "timeBase": "1/15360",
+          "durationSeconds": 57.566667,
+          "frameCount": 1727,
+          "rotationDegrees": null
+        },
+        "audio": {
+          "codec": "aac",
+          "sampleRate": 44100,
+          "channels": 2,
+          "channelLayout": "stereo",
+          "durationSeconds": 57.598005,
+          "bitRate": 96650
+        }
+      }
+    },
+    "sourceBWeb": {
+      "path": "source-b-web.mp4",
+      "sha256": "11ec849d6e99d6aee1f7b3ba8de7a4d248a808062b237889c0baa67498d5bc6a",
+      "mimeType": "video/mp4",
+      "role": "source-web-proxy",
+      "metadata": {
+        "format": {
+          "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+          "durationSeconds": 68.233333,
+          "sizeBytes": 3806933,
+          "bitRate": 446342
+        },
+        "video": {
+          "codec": "h264",
+          "profile": "High",
+          "codedWidth": 640,
+          "codedHeight": 360,
+          "pixelFormat": "yuv420p",
+          "colorRange": "tv",
+          "colorSpace": "bt709",
+          "colorTransfer": "bt709",
+          "colorPrimaries": "bt709",
+          "nominalFrameRate": "30/1",
+          "averageFrameRate": "30/1",
+          "timeBase": "1/15360",
+          "durationSeconds": 68.233333,
+          "frameCount": 2047,
+          "rotationDegrees": null
+        },
+        "audio": {
+          "codec": "aac",
+          "sampleRate": 44100,
+          "channels": 2,
+          "channelLayout": "stereo",
+          "durationSeconds": 68.221995,
+          "bitRate": 96281
+        }
+      }
+    },
+    "targetWeb": {
+      "path": "target-web.mp4",
+      "sha256": "9431a1d9cfce0216bf6f3e93d36e2fd5b7cbbc8c81a202eaf1686b009999a35d",
+      "mimeType": "video/mp4",
+      "role": "target-web-proxy",
+      "metadata": {
+        "format": {
+          "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+          "durationSeconds": 44.5,
+          "sizeBytes": 2055560,
+          "bitRate": 369538
+        },
+        "video": {
+          "codec": "h264",
+          "profile": "High",
+          "codedWidth": 360,
+          "codedHeight": 640,
+          "pixelFormat": "yuv420p",
+          "colorRange": "tv",
+          "colorSpace": "bt709",
+          "colorTransfer": "bt709",
+          "colorPrimaries": "bt709",
+          "nominalFrameRate": "30/1",
+          "averageFrameRate": "30/1",
+          "timeBase": "1/15360",
+          "durationSeconds": 44.5,
+          "frameCount": 1335,
+          "rotationDegrees": null
+        },
+        "audio": {
+          "codec": "aac",
+          "sampleRate": 44100,
+          "channels": 2,
+          "channelLayout": "stereo",
+          "durationSeconds": 42.677007,
+          "bitRate": 97269
+        }
+      }
+    },
+    "reconstruction": {
+      "path": "reconstruction.mp4",
+      "sha256": "45e39d1970782a2c2eeefebeb4c7c222770201a0b91732f655b748f215f63b28",
+      "mimeType": "video/mp4",
+      "role": "source-only-reconstruction",
+      "metadata": {
+        "format": {
+          "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+          "durationSeconds": 44.5,
+          "sizeBytes": 11188268,
+          "bitRate": 2011374
+        },
+        "video": {
+          "codec": "h264",
+          "profile": "High",
+          "codedWidth": 720,
+          "codedHeight": 1280,
+          "pixelFormat": "yuv420p",
+          "colorRange": "tv",
+          "colorSpace": "bt709",
+          "colorTransfer": "bt709",
+          "colorPrimaries": "bt709",
+          "nominalFrameRate": "30/1",
+          "averageFrameRate": "30/1",
+          "timeBase": "1/15360",
+          "durationSeconds": 44.5,
+          "frameCount": 1335,
+          "rotationDegrees": null
+        },
+        "audio": {
+          "codec": "aac",
+          "sampleRate": 44100,
+          "channels": 2,
+          "channelLayout": "stereo",
+          "durationSeconds": 44.5,
+          "bitRate": 117175
+        }
+      }
+    },
+    "sideBySide": {
+      "path": "comparison-side-by-side.mp4",
+      "sha256": "2669b5a7fc8155c181c951935bf711ee8974fbddce046b09092f17e1a1bebe21",
+      "mimeType": "video/mp4",
+      "role": "comparison-side-by-side",
+      "metadata": {
+        "format": {
+          "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+          "durationSeconds": 44.5,
+          "sizeBytes": 2782853,
+          "bitRate": 500288
+        },
+        "video": {
+          "codec": "h264",
+          "profile": "High",
+          "codedWidth": 720,
+          "codedHeight": 640,
+          "pixelFormat": "yuv420p",
+          "colorRange": null,
+          "colorSpace": null,
+          "colorTransfer": null,
+          "colorPrimaries": null,
+          "nominalFrameRate": "30/1",
+          "averageFrameRate": "30/1",
+          "timeBase": "1/15360",
+          "durationSeconds": 44.5,
+          "frameCount": 1335,
+          "rotationDegrees": null
+        },
+        "audio": null
+      }
+    },
+    "difference": {
+      "path": "comparison-difference.mp4",
+      "sha256": "bcf651be748cb47cb98fa4acd42955a0df2e57dcc0adf3466e8ba2de3573d561",
+      "mimeType": "video/mp4",
+      "role": "comparison-difference",
+      "metadata": {
+        "format": {
+          "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+          "durationSeconds": 44.5,
+          "sizeBytes": 398525,
+          "bitRate": 71644
+        },
+        "video": {
+          "codec": "h264",
+          "profile": "High",
+          "codedWidth": 360,
+          "codedHeight": 640,
+          "pixelFormat": "yuv420p",
+          "colorRange": "tv",
+          "colorSpace": null,
+          "colorTransfer": "bt709",
+          "colorPrimaries": "bt709",
+          "nominalFrameRate": "30/1",
+          "averageFrameRate": "30/1",
+          "timeBase": "1/15360",
+          "durationSeconds": 44.5,
+          "frameCount": 1335,
+          "rotationDegrees": null
+        },
+        "audio": null
+      }
+    },
+    "poster": {
+      "path": "comparison-poster.jpg",
+      "sha256": "65d00ce9ec2a3328a1acce7980730c63588523a25005ed3fa33e16ccd9d1d810",
+      "mimeType": "image/jpeg",
+      "role": "comparison-poster",
+      "metadata": null
+    }
+  },
+  "evaluation": {
+    "ssim": 0.946873,
+    "psnrDb": 26.311718,
+    "vmaf": 29.819468,
+    "perSegment": [
+      {
+        "id": "a-fit-1",
+        "startSeconds": 0,
+        "durationSeconds": 6.7,
+        "ssim": 0.935963,
+        "psnrDb": 26.347816
+      },
+      {
+        "id": "b-fill-1",
+        "startSeconds": 6.7,
+        "durationSeconds": 9.367,
+        "ssim": 0.967404,
+        "psnrDb": 31.371434
+      },
+      {
+        "id": "a-fit-2",
+        "startSeconds": 16.067,
+        "durationSeconds": 3.567,
+        "ssim": 0.923961,
+        "psnrDb": 25.710503
+      },
+      {
+        "id": "b-fill-2",
+        "startSeconds": 19.633,
+        "durationSeconds": 5.467,
+        "ssim": 0.968937,
+        "psnrDb": 32.151065
+      },
+      {
+        "id": "a-fit-3",
+        "startSeconds": 25.1,
+        "durationSeconds": 15.367,
+        "ssim": 0.929439,
+        "psnrDb": 23.838327
+      },
+      {
+        "id": "black-transition",
+        "startSeconds": 40.467,
+        "durationSeconds": 0.033,
+        "ssim": 0.916065,
+        "psnrDb": 25.145809
+      },
+      {
+        "id": "branded-end-card",
+        "startSeconds": 40.5,
+        "durationSeconds": 4,
+        "ssim": 0.970954,
+        "psnrDb": 27.605974
+      }
+    ],
+    "metricScope": "decoded 720x1280 video; target audio excluded",
+    "targetAudioMatched": false,
+    "sourceAudioMode": "cut source audio with silent branded tail"
+  },
+  "validation": {
+    "passed": true,
+    "structuralAssertions": [
+      {
+        "name": "output width",
+        "pass": true,
+        "actual": 720,
+        "expected": 720
+      },
+      {
+        "name": "output height",
+        "pass": true,
+        "actual": 1280,
+        "expected": 1280
+      },
+      {
+        "name": "output frame count",
+        "pass": true,
+        "actual": 1335,
+        "expected": 1335
+      },
+      {
+        "name": "output fps",
+        "pass": true,
+        "actual": 30,
+        "expected": 30
+      },
+      {
+        "name": "output duration",
+        "pass": true,
+        "actual": 44.5,
+        "expected": 44.5
+      },
+      {
+        "name": "timeline contiguous",
+        "pass": true,
+        "actual": true,
+        "expected": true
+      },
+      {
+        "name": "four footage cuts",
+        "pass": true,
+        "actual": [
+          201,
+          482,
+          589,
+          753
+        ],
+        "expected": [
+          201,
+          482,
+          589,
+          753
+        ]
+      },
+      {
+        "name": "both sources represented",
+        "pass": true,
+        "actual": 2,
+        "expected": 2
+      },
+      {
+        "name": "SSIM measured",
+        "pass": true,
+        "actual": 0.946873,
+        "expected": "finite"
+      },
+      {
+        "name": "PSNR measured",
+        "pass": true,
+        "actual": 26.311718,
+        "expected": "finite"
+      },
+      {
+        "name": "VMAF measured",
+        "pass": true,
+        "actual": 29.819468,
+        "expected": "finite"
+      },
+      {
+        "name": "target audio is not claimed matched",
+        "pass": true,
+        "actual": false,
+        "expected": false
+      }
+    ],
+    "claimTier": "perceptually-close-video"
+  },
+  "limitations": [
+    "The target soundtrack is not present in either MOV and is not reproduced.",
+    "Brand graphics are independently recreated approximations, not copied target pixels.",
+    "This validates one authorized case and does not claim generic automatic edit discovery.",
+    "Exact bit identity requires the original editor, fonts, effects, audio source, and encoder settings."
+  ],
+  "createdAt": "2026-07-15T05:04:46.672Z"
+}

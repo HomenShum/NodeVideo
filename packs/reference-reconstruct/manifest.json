@@ -1,0 +1,72 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.reference-reconstruct",
+  "version": "0.1.0",
+  "implementationStatus": "authorized-real-case-validated",
+  "title": "Reference Reconstruction",
+  "description": "Reconstruct one owner-authorized final edit from two MOV render sources and independently recreated graphics, then evaluate the video against an analysis-only target.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": [
+    "video/source-a",
+    "video/source-b",
+    "video/evaluation-target",
+    "graphic/recreated-overlay"
+  ],
+  "outputs": [
+    "reference_reconstruction",
+    "side_by_side_comparison",
+    "difference_video",
+    "quality_metrics",
+    "validation_receipt"
+  ],
+  "tools": [
+    "media.probe",
+    "media.sanitize",
+    "reference.map",
+    "render.reconstruction",
+    "render.comparison",
+    "evaluate.video",
+    "result.validate"
+  ],
+  "permissions": [
+    "read_owner_authorized_media",
+    "write_derived_artifacts",
+    "publish_metadata_stripped_derivatives"
+  ],
+  "uiRenderers": [
+    "ReferenceReconstructionView",
+    "ComparisonVideoView",
+    "DifferenceVideoView",
+    "QualitySummary",
+    "ValidationReceipt"
+  ],
+  "evalSuite": "evals/authorized-real-v1.json",
+  "validation": {
+    "profile": "authorized-real-case-v1",
+    "caseManifest": "../../fixtures/media/authorized-real-v1/case-manifest.json",
+    "receipt": "../../fixtures/media/authorized-real-v1/receipt.json",
+    "result": "../../fixtures/media/authorized-real-v1/result.json",
+    "claimTier": "perceptually-close-video",
+    "excludes": [
+      "generic-edit-autopilot",
+      "arbitrary-reference-reconstruction",
+      "target-soundtrack-reproduction",
+      "worker-execution-inside-vercel",
+      "production-convex-control-plane"
+    ]
+  },
+  "execution": {
+    "kind": "deterministic-target-guided-worker-graph",
+    "modelRequired": false,
+    "workerBoundaries": ["local-worker", "ci-worker"],
+    "validatedBoundary": "local-worker",
+    "hostedBehavior": "verified-replay",
+    "targetUsage": "analysis-and-evaluation-only",
+    "renderInputs": "two-owner-authorized-movs-plus-independently-recreated-graphics"
+  }
+}

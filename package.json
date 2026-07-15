@@ -18,6 +18,8 @@
     "worker:public": "node scripts/workers/tutorial-compare.mjs --public",
     "worker:verify": "node scripts/workers/tutorial-compare.mjs --verify-public",
     "worker:private": "node scripts/workers/tutorial-compare.mjs",
+    "worker:authorized": "node scripts/workers/reference-reconstruct.mjs --authorized-public",
+    "worker:authorized:verify": "node scripts/workers/reference-reconstruct.mjs --verify-public",
     "proof:synthetic": "node scripts/media/generate-synthetic-fixture.mjs",
     "proof:private": "node scripts/media/inspect-private-media.mjs",
     "proof:private:render": "node scripts/media/render-private-reconstruction.mjs",
@@ -25,7 +27,7 @@
     "ui:policy": "node scripts/quality/check-ui-policy.mjs",
     "ui:budget": "node scripts/quality/check-ui-budget.mjs",
     "check:ui": "npm run ui:policy && npm run ui:budget",
-    "check": "npm run lint && npm run typecheck && npm run test && npm run check:ui && npm run capability:validate && npm run worker:verify && npm run build",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run check:ui && npm run capability:validate && npm run worker:verify && npm run worker:authorized:verify && npm run build",
     "qa": "npm run check && npm run proof:synthetic && npm run test:e2e"
   },
   "dependencies": {
