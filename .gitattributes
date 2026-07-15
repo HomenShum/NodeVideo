@@ -1,0 +1,11 @@
+# Deterministic receipts bind text artifacts byte-for-byte. Keep every checkout and deploy on LF.
+* text=auto eol=lf
+
+# Published media and bundled fonts are opaque binary assets.
+*.jpg binary
+*.jpeg binary
+*.mov binary
+*.mp4 binary
+*.png binary
+*.webm binary
+*.woff2 binary
