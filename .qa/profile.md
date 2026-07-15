@@ -98,4 +98,4 @@ Stable outcome selectors:
 
 Score only from current artifacts and rendered evidence. B1 consent, B2 provenance, B4 scope, B5 fail-closed degrade, B8 keyboard operability, B9 responsive craft, B10 claim honesty, and B11 first-run clarity are hard gates. Mutable-project dimensions remain N/A until a real durable editing service is connected.
 
-Last complete V2 score: pending current production run. Next target is whichever hard gate first fails; never preserve a historical score after the manifest/render changes.
+Last complete V2 score: `18/22` on production on 2026-07-15, with journeys A0–A7 passing. B7 remains zero and B3/B6 remain partial because the deployed application is a verified immutable replay, not yet a durable mutable editing service. Next target is whichever hard gate first fails; never preserve a historical score after manifest or render changes.
