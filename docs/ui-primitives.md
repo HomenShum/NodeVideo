@@ -116,9 +116,10 @@ the ceiling.
 
 The owner-authorized real-case release replaced the earlier bespoke feature shell with generated
 shadcn controls, AI Elements artifact/tool/checkpoint primitives, and the headless
-`@assistant-ui/react-o11y` trace adapter. Authored UI fell from 889 to 253 logical lines, with one
-domain visual component and no increase to the 900-line ceiling. The current authored CSS count is
-95 of 120 lines.
+`@assistant-ui/react-o11y` trace adapter. The source-only pilot and Instagram handoff then composed
+the same installed cards, alerts, buttons, aspect ratio, badges, and typography utilities. The
+current application remains below the 900-line authored-UI ceiling and at 95 of 120 authored CSS
+lines; the new workflow added no custom stylesheet or component dependency.
 
 That reduction is part of the maintenance proof: the live workflow still exposes consent, six
 verified media views, quality metrics, artifact integrity, and a recorded worker trace across the

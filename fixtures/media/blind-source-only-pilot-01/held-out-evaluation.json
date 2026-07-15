@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "nodevideo.held-out-evaluation.v1",
+  "caseId": "blind-source-only-pilot-01",
+  "runOrder": {
+    "generationFreezeSha256": "cb393601e02293e2e3ba4950031a691d2e8d1b53d59f6b303cdaaf38d02b8303",
+    "freezeVerifiedAt": "2026-07-15T18:12:39.094Z",
+    "targetGroundTruthSha256": "0b93f911e23f9443d799f6580766a49b539c9d2556b35a7a79c70bcbbf744b91",
+    "targetUnsealedAt": "2026-07-15T18:12:39.097Z",
+    "targetWasReadAfterFreezeVerification": true
+  },
+  "isolationAudit": {
+    "passed": true,
+    "filesystemBoundary": "audited fresh-context isolation; not an OS-enforced sandbox",
+    "generationInputRoles": [
+      "sanitized-source-video",
+      "public-music-catalog"
+    ],
+    "privateReadLogSha256": "1cefe06ad7a73a4c1e386a4e07458564e49bab53d8856792c645c859d37b5e61"
+  },
+  "technicalComparison": {
+    "agentDurationSeconds": 17.8,
+    "targetDurationSeconds": 44.5,
+    "durationRatio": 0.4,
+    "cutBoundaries": {
+      "agentSeconds": [
+        1.133333,
+        2.266667,
+        4.5,
+        6.733333,
+        8.966667,
+        11.2,
+        13.433333,
+        15.666667
+      ],
+      "heldOutTargetSecondsWithinAgentHorizon": [
+        6.7,
+        16.066667
+      ],
+      "toleranceSeconds": 0.5,
+      "matches": [
+        {
+          "agentSeconds": 6.733333,
+          "deltaSeconds": 0.033333,
+          "targetSeconds": 6.7
+        },
+        {
+          "agentSeconds": 15.666667,
+          "deltaSeconds": 0.4,
+          "targetSeconds": 16.066667
+        }
+      ],
+      "precision": 0.25,
+      "recall": 1,
+      "f1": 0.4
+    },
+    "sourceIdentityCoverageWithinAgentHorizon": {
+      "matchedSeconds": 5.966666,
+      "totalSeconds": 17.8,
+      "ratio": 0.335206
+    },
+    "text": {
+      "agentCueCount": 3,
+      "heldOutTargetCueCountTotal": 31,
+      "heldOutTargetCueCountWithinAgentHorizon": 16,
+      "scoredAsTaste": false
+    },
+    "summary": "The blind edit independently found 2 of 2 held-out picture changes inside its shorter 17.8-second horizon within 0.5 seconds, while choosing its own pacing, source moments, text, and duration."
+  },
+  "musicComparison": {
+    "agentRecommendation": "Woman — Doja Cat; catalog-preview-relative cue at approximately 108.1 BPM",
+    "heldOutTarget": "Sign — 82MAJOR",
+    "exactTrackMatched": false,
+    "interpretation": "A different concrete track can still be a valid creative recommendation. No taste score is inferred from title identity, catalog preview analysis, or target soundtrack similarity."
+  },
+  "taste": {
+    "status": "awaiting-blinded-human-evaluation",
+    "score": null,
+    "requiredEvidence": "Randomized A/B preference against a preregistered baseline across at least 20 held-out cases."
+  }
+}

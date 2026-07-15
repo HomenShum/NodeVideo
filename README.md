@@ -1,23 +1,24 @@
 # NodeVideo
 
-NodeVideo is building an artifact-driven video-editing service. The current release proves a
-target-guided reconstruction slice; autonomous source-only editing is the target architecture, not
-a demonstrated capability. In that architecture, an agent plans and critiques, established media
-primitives perform the measurable work, and a typed edit plan controls fixed render templates. The
-product goal is the creator's outcome: picture selection, music, rhythm, text, reframing, grade, and
-delivery, not a pile of generated editing code.
+NodeVideo is an artifact-driven video-editing service. The current release contains one audited
+source-only creative pilot plus the earlier target-guided reconstruction calibration. A fresh
+planner chose the pilot's moments, pacing, crop, sparse text, music archetype, and concrete track
+candidate before the held-out target was opened. Established media primitives perform the
+measurable work and typed plans control fixed render templates. The product goal is the creator's
+outcome: picture selection, music, rhythm, text, reframing, grade, and delivery, not a pile of
+generated editing code.
 
 The owner-authorized V1 real-media run is retained as failure evidence. It is not a successful
 reconstruction and must not be cited as proof of autonomous editing or audiovisual fidelity.
 
 ## Live release
 
-[Open NodeVideo on Vercel](https://nodevideo-pi.vercel.app). The release requires no sign-in and is responsive
-across laptop, tablet, and phone layouts. The V2 proof verifies automatically and opens on the
-corrected reconstruction. Its selector exposes the final target, target/corrected side-by-side, and
-both metadata-stripped source proxies. The browser first hashes a deployment-trusted manifest and
-all 15 declared media/evidence assets; any missing or changed byte fails closed instead of presenting
-an unverified pass.
+[Open NodeVideo on Vercel](https://nodevideo-pi.vercel.app). The release requires no sign-in and is
+responsive across laptop, tablet, and phone layouts. The source-only pilot appears first. Its clean
+preview, music handoff, freeze receipt, read log, silent held-out comparison, and evaluation are
+bound by a deployment-trusted manifest; a missing or changed byte fails closed. The V2 calibration
+below it independently verifies all 15 target-guided media/evidence assets and exposes the final
+target, corrected reconstruction, side-by-side, and two sanitized sources.
 
 The foreground demo includes the authorized target-derived soundtrack program, measured at
 `0.999504` rendered/reference correlation and `0 ms` lag, all 31 timed cue intervals, the corrected
@@ -28,6 +29,29 @@ failure evidence** so the failure is inspectable rather than erased.
 Vercel serves a hash-verified replay of a completed worker run. Hash integrity proves which bytes
 ran; the separate event/window/audio gates support the bounded reconstruction verdict. Vercel is
 not presented as a live transcoding worker.
+
+## Blind source-only pilot and music handoff
+
+The isolated planner received only the two sanitized source proxies and, after forming a
+source-derived music brief, public Apple/iTunes catalog context. It froze a 17.8-second 1080x1920
+edit with nine source trims, three restrained text cards, muted camera audio, and a synthetic 108 BPM
+guide click. No target, prior plan, target-derived asset, or commercial audio entered generation.
+
+The planner recommended **Woman by Doja Cat** as a concrete Instagram search candidate. The app
+shows the catalog-preview-relative 0:00.180-0:17.980 selection, six critical video-to-track anchors,
+copyable search/step instructions, a clean download, and an Instagram handoff. These are desired
+video-to-preview-reference alignments, not measured Instagram beat timestamps. The commercial audio
+is not hosted or embedded. The exact full-track/Instagram waveform offset and regional/account
+availability remain unverified, so the creator must locate the matching groove phrase and confirm
+the recording inside Instagram.
+
+After the freeze was hash-verified, the evaluator unsealed the target. Inside the blind edit's
+shorter horizon it found both held-out picture changes within 0.5 seconds (recall `1.0`, precision
+`0.25`, F1 `0.4`), while only `0.335206` of source identity by duration matched. That is an honest
+technical comparison, not a taste score. One audited fresh-context run proves the protocol and
+produces something worth judging; generalized taste still requires blinded preference votes across
+the preregistered multi-case benchmark in
+[`docs/blind-taste-and-music-handoff.md`](docs/blind-taste-and-music-handoff.md).
 
 ## V1 invalidation and recovered ground truth
 
@@ -105,6 +129,19 @@ See [`scripts/analysis/README.md`](scripts/analysis/README.md) for the pinned Py
 MediaPipe, OpenCV, librosa, EasyOCR, and OpenTimelineIO workflow. Private source paths stay in the
 bindings file and never enter public artifacts.
 
+The blind pilot has a two-job boundary: generation freezes without the target, then the evaluator
+may read held-out ground truth. The checked-in release publisher verifies the freeze again, removes
+private locators from the public audit log, copies no catalog-preview audio, and emits a new trusted
+manifest:
+
+```powershell
+npm run pilot:blind:evaluate
+npm run pilot:blind:publish
+```
+
+Do not run the evaluator until `freeze.json` already exists. These scripts reproduce evidence from
+an existing private pilot; they do not create a fresh blind LLM context by themselves.
+
 The synthetic worker remains independently reproducible:
 
 ```powershell
@@ -152,13 +189,13 @@ interaction. Selected AI Elements primitives present the real worker artifact, t
 records, while the `@assistant-ui/react-o11y` adapter presents the recorded trace. Feature code owns
 only video-domain composition.
 
-The real-case refactor removed the bespoke feature shell and reduced authored UI from 889 to 651
-logical lines. Generated files in `src/components/ui/**` and `src/components/ai-elements/**` remain an
-immutable vendor zone whose upstream snapshots are pinned in `.ui/ui-policy.json`.
+The real-case refactor removed the bespoke feature shell. The blind/music release remains within the
+same enforced 900-line authored UI ceiling by composing generated primitives; generated files in
+`src/components/ui/**` and `src/components/ai-elements/**` remain an immutable vendor zone whose
+upstream snapshots are pinned in `.ui/ui-policy.json`.
 
 `npm run check:ui` rejects raw generic controls, direct Radix imports, inline layout styles,
-arbitrary Tailwind dimensions, extra authored stylesheets, and custom media queries. The release is
-at 651 of the 900 authored-UI-line ceiling and 95 of the 120 authored-CSS-line ceiling. See
+arbitrary Tailwind dimensions, extra authored stylesheets, and custom media queries. See
 [`docs/ui-primitives.md`](docs/ui-primitives.md) for the selection order and exception process.
 
 ## Reuse strategy
@@ -186,6 +223,9 @@ The deployed Vercel application is a replay boundary, not the media execution pl
 - Receipts, manifests, and results use public asset IDs, sanitized names, hashes, timings, tool
   versions, and artifact roles; they do not publish private local locators.
 - A playable render appears only after browser-side integrity and lineage verification succeeds.
+- Commercial catalog previews may be analyzed transiently for source-only music selection, but they
+  are deleted before release and never embedded or hosted. The creator confirms availability and
+  adds the selected recording inside Instagram under the terms that apply to their account.
 - The synthetic fixture remains the default generic and CI smoke proof.
 - Any new real-media publication requires its own explicit authorization, metadata sanitization,
   hash verification, and case-scoped evaluation.
@@ -200,15 +240,26 @@ The deployed Vercel application is a replay boundary, not the media execution pl
   derivatives, case manifest, result, and receipt.
 - [`fixtures/media/authorized-real-v2/`](fixtures/media/authorized-real-v2/) — corrected render,
   target/corrected comparison, typed edit artifacts, metrics, critic report, and release receipt.
+- [`fixtures/media/blind-source-only-pilot-01/`](fixtures/media/blind-source-only-pilot-01/) — clean
+  source-only edit, music handoff, generation freeze, sanitized read log, silent held-out comparison,
+  and post-freeze evaluation.
 - [`packs/tutorial-compare/`](packs/tutorial-compare/) and
   [`fixtures/media/tutorial-compare-v1/`](fixtures/media/tutorial-compare-v1/) — generated
   known-marker smoke proof.
 - [`scripts/workers/`](scripts/workers/) — deterministic FFmpeg workers and verifiers.
+- [`scripts/quality/evaluate-blind-pilot.mjs`](scripts/quality/evaluate-blind-pilot.mjs) and
+  [`scripts/release/publish-blind-pilot.mjs`](scripts/release/publish-blind-pilot.mjs) — target-unseal
+  evaluator and privacy-safe release builder.
 - [`src/lib/published-cases.ts`](src/lib/published-cases.ts) — browser integrity and lineage checks.
 - [`docs/architecture.md`](docs/architecture.md) — execution, replay, and evidence boundaries.
 - [`.qa/profile.md`](.qa/profile.md) — canonical UI journey, consent rules, and selector contract.
 
 ## Status
+
+The blind pilot's generation protocol and all nine public assets pass their hash/lineage gates. Its
+taste status is still `awaiting-blinded-human-evaluation`: the source-only edit is a real creative
+artifact, but one case and a model-authored rationale cannot prove generalized taste. Its music
+candidate is actionable but catalog-preview-relative, not an exact Instagram library offset.
 
 The V2 authorized case passes all 56 measured plan/render gates. Its corrected permanent window has
 foreground-only SSIM `0.919714`; rendered/target soundtrack correlation is `0.999504` at `0 ms`
@@ -216,5 +267,5 @@ lag; mapped source-audio leakage is `0.039134`; and the 31 typed plan cues pass 
 tolerance. Delivery audio measures `-14.1 LUFS` and `-1.9 dBFS` true peak. Global VMAF remains only
 `25.949820`, so this release does **not** claim pixel identity or exact perceptual equivalence. Text
 gates do not independently OCR the decoded render, and social transitions/gradient styling remain
-approximate. The soundtrack and grade assets are explicitly target-derived for this replay, which
-also means the case does not prove blind music selection, catalog rights, or source-only taste.
+approximate. The soundtrack and grade assets are explicitly target-derived for this replay and
+remain separate from the blind pilot claim.

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "submission": "blind-source-only-pilot-01",
+  "created_date": "2026-07-15",
+  "timezone": "America/Los_Angeles",
+  "hash_algorithm": "SHA-256",
+  "isolation_attested": true,
+  "files": [
+    {
+      "path": "inputs/source-a.mp4",
+      "role": "input",
+      "bytes": 2848396,
+      "sha256": "634bfb9b539c85ef105e93c047267612817a6c4da4a0f830b38be21e3f31b428"
+    },
+    {
+      "path": "inputs/source-b.mp4",
+      "role": "input",
+      "bytes": 3806933,
+      "sha256": "11ec849d6e99d6aee1f7b3ba8de7a4d248a808062b237889c0baa67498d5bc6a"
+    },
+    {
+      "path": "edit-plan.json",
+      "role": "deliverable",
+      "bytes": 7585,
+      "sha256": "c85cd4da1984084bbfc69ac9feaebb8ab30e21f1e4866b51c923b0659ffec547"
+    },
+    {
+      "path": "music-handoff.json",
+      "role": "deliverable",
+      "bytes": 5534,
+      "sha256": "9f016a249fe30b7072ffc6e6661cf15905e34b52357be3179955df704c0271f0"
+    },
+    {
+      "path": "rationale.md",
+      "role": "deliverable",
+      "bytes": 2568,
+      "sha256": "344c45ee61dc66b97012b0bbdaf4f70b172b5b79747c87a9d4f1e56f5227cbb9"
+    },
+    {
+      "path": "read-log.json",
+      "role": "deliverable",
+      "bytes": 20316,
+      "sha256": "1cefe06ad7a73a4c1e386a4e07458564e49bab53d8856792c645c859d37b5e61"
+    },
+    {
+      "path": "source-only-preview.mp4",
+      "role": "deliverable",
+      "bytes": 6486343,
+      "sha256": "0e0916567a38340002806e172b30a14e5dd4fb23f945b7ae5bcb3a94479f0ff2"
+    }
+  ],
+  "preview_audio": "Synthetic 108 BPM metronome only; no source rehearsal playback and no commercial catalog preview audio embedded.",
+  "receipt_note": "freeze.json was written after all other filesystem writes. It intentionally omits its own hash because a file cannot contain a stable cryptographic hash of itself."
+}

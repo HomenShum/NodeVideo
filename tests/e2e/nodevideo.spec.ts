@@ -35,6 +35,8 @@ const views = [
 
 const v2CaseBase = '/media/authorized-real-v2';
 const v2ManifestSha256 = '04f02098045273f5acf587bbbe177cd25664d474c68e32691b4ab8de45060cd2';
+const blindCaseBase = '/media/blind-source-only-pilot-01';
+const blindManifestSha256 = 'bad6578386c2e9dff1cf6eacbbb3973d67c462c6b8422f0d810168912c192953';
 const v2Views = [
   {
     option: 'Corrected reconstruction',
@@ -88,7 +90,11 @@ function observeBrowser(page: Page): BrowserLedger {
   });
   page.on('response', (response) => {
     const url = new URL(response.url());
-    if (url.origin === targetOrigin && url.pathname.startsWith('/media/authorized-real-v')) {
+    if (
+      url.origin === targetOrigin &&
+      (url.pathname.startsWith('/media/authorized-real-v') ||
+        url.pathname.startsWith(blindCaseBase))
+    ) {
       ledger.caseResponses.push({
         contentType: response.headers()['content-type'] ?? '',
         path: url.pathname,
@@ -103,7 +109,7 @@ async function openCleanCase(page: Page) {
   await page.goto('/');
   expect(new URL(page.url()).search).toBe('');
   expect(await page.evaluate(() => document.characterSet)).toBe('UTF-8');
-  await expect(page.getByTestId('v2-proof-panel')).toBeVisible();
+  await expect(page.getByTestId('v2-calibration-trigger')).toBeVisible();
   const history = page.getByTestId('v1-history-trigger');
   await expect(history).toHaveAttribute('aria-expanded', 'false');
   await history.click();
@@ -172,6 +178,8 @@ async function chooseView(page: Page, option: (typeof views)[number]['option']) 
 }
 
 async function waitForVerifiedV2(page: Page) {
+  const trigger = page.getByTestId('v2-calibration-trigger');
+  if ((await trigger.getAttribute('aria-expanded')) === 'false') await trigger.click();
   await expect(page.getByTestId('v2-integrity')).toContainText(
     /15 proof assets.*sha-256 verified/i,
     {
@@ -180,6 +188,16 @@ async function waitForVerifiedV2(page: Page) {
   );
   await expect(page.getByTestId('v2-verdict')).toContainText(
     /measured reconstruction gates passed/i,
+  );
+}
+
+async function waitForVerifiedBlindPilot(page: Page) {
+  await expect(page.getByTestId('blind-pilot-integrity')).toContainText(
+    /9 public proof assets.*sha-256 verified/i,
+    { timeout: 90_000 },
+  );
+  await expect(page.getByTestId('blind-taste-boundary')).toContainText(
+    /blind protocol proven.*generalized taste is not/i,
   );
 }
 
@@ -225,6 +243,66 @@ async function expectCurrentV2Video(
   expect(media.duration).toBeGreaterThan(40);
   expect(new URL(media.src).origin).toBe(targetOrigin);
   return media.src;
+}
+
+async function verifyBlindBundleIndependently(page: Page) {
+  return page.evaluate(
+    async ({ expectedManifestSha256, manifestPath }) => {
+      const fetchAsset = async (path: string, init?: RequestInit) => {
+        const url = new URL(path, location.href);
+        if (url.origin !== location.origin) throw new Error(`${path} is not same-origin.`);
+        const response = await fetch(url, { credentials: 'same-origin', ...init });
+        if (!response.ok) throw new Error(`${path} returned ${response.status}.`);
+        return {
+          bytes: await response.arrayBuffer(),
+          contentRange: response.headers.get('content-range') ?? '',
+          contentType: response.headers.get('content-type') ?? '',
+          status: response.status,
+        };
+      };
+      const digest = async (value: ArrayBuffer) => {
+        const hash = await crypto.subtle.digest('SHA-256', value);
+        return [...new Uint8Array(hash)].map((byte) => byte.toString(16).padStart(2, '0')).join('');
+      };
+      const manifestResponse = await fetchAsset(manifestPath);
+      const manifestBytes = manifestResponse.bytes;
+      if ((await digest(manifestBytes)) !== expectedManifestSha256) {
+        throw new Error('Untrusted blind manifest.');
+      }
+      const manifest = JSON.parse(new TextDecoder().decode(manifestBytes));
+      const declared = [manifest.preview, ...manifest.artifacts];
+      let heldOutEvaluation: Record<string, unknown> | undefined;
+      for (const asset of declared) {
+        const response = await fetchAsset(asset.url);
+        if (!response.contentType.includes(asset.mimeType.split(';')[0])) {
+          throw new Error(`${asset.id ?? 'preview'} was served as ${response.contentType}.`);
+        }
+        if ((await digest(response.bytes)) !== asset.sha256) {
+          throw new Error(`${asset.id} failed hashing.`);
+        }
+        if (asset.id === 'held-out-evaluation') {
+          heldOutEvaluation = JSON.parse(new TextDecoder().decode(response.bytes));
+        }
+      }
+      const range = await fetchAsset(manifest.preview.url, {
+        headers: { Range: 'bytes=0-1023' },
+      });
+      return {
+        anchorCount: manifest.musicHandoff.anchors.length,
+        assetCount: declared.length,
+        commercialAudioPublished: manifest.musicHandoff.commercialAudioPublished,
+        evaluation: heldOutEvaluation,
+        manifestHash: await digest(manifestBytes),
+        protocol: manifest.protocol,
+        range: { contentRange: range.contentRange, status: range.status },
+        tasteStatus: manifest.verdict.tasteStatus,
+      };
+    },
+    {
+      expectedManifestSha256: blindManifestSha256,
+      manifestPath: `${blindCaseBase}/manifest.json`,
+    },
+  );
 }
 
 async function verifyV2BundleIndependently(page: Page) {
@@ -418,6 +496,117 @@ async function expectNoHorizontalClipping(page: Page) {
   ).toEqual([]);
 }
 
+test.describe('NodeVideo blind source-only pilot gate', () => {
+  test('verifies the frozen run and exposes a usable Instagram music handoff', async ({ page }) => {
+    test.skip(test.info().project.name !== 'desktop-chromium', 'desktop blind bundle gate');
+    const ledger = observeBrowser(page);
+    await page.context().grantPermissions(['clipboard-read', 'clipboard-write'], {
+      origin: targetOrigin,
+    });
+    await page.goto('/');
+    await waitForVerifiedBlindPilot(page);
+
+    const independent = await verifyBlindBundleIndependently(page);
+    expect(independent).toMatchObject({
+      anchorCount: 6,
+      assetCount: 9,
+      commercialAudioPublished: false,
+      manifestHash: blindManifestSha256,
+      protocol: {
+        freshPlannerContext: true,
+        targetAccessDuringGeneration: false,
+        targetMountedDuringGeneration: false,
+      },
+      range: { status: 206 },
+      tasteStatus: 'awaiting-blinded-human-evaluation',
+    });
+    expect(independent.range.contentRange).toMatch(/^bytes 0-1023\//i);
+    expect(ledger.caseResponses.some(({ path }) => path.startsWith(v2CaseBase))).toBe(false);
+    expect(independent.evaluation).toMatchObject({
+      isolationAudit: { passed: true },
+      taste: { score: null, status: 'awaiting-blinded-human-evaluation' },
+      technicalComparison: { cutBoundaries: { f1: 0.4, recall: 1 } },
+    });
+
+    const preview = page.getByLabel('Blind source-only preview', { exact: true });
+    await expect(preview).toBeVisible();
+    await expect
+      .poll(() => preview.evaluate((node) => (node as HTMLVideoElement).videoWidth))
+      .toBe(1080);
+    await expect
+      .poll(() => preview.evaluate((node) => (node as HTMLVideoElement).videoHeight))
+      .toBe(1920);
+    await expect
+      .poll(() => preview.evaluate((node) => (node as HTMLVideoElement).duration))
+      .toBe(17.8);
+
+    const handoff = page.getByTestId('instagram-music-handoff');
+    await expect(handoff).toContainText(/woman.*doja cat/i);
+    await expect(handoff).toContainText(/catalog-preview-relative/i);
+    await expect(page.getByTestId('music-cue-anchors').locator('li')).toHaveCount(6);
+    await expect(page.getByTestId('blind-pilot-artifacts').getByRole('link')).toHaveCount(8);
+    await handoff.getByRole('button', { name: 'Copy search' }).click();
+    await expect(handoff.getByRole('button', { name: 'Search copied' })).toBeVisible();
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('Woman Doja Cat');
+    expectCleanLedger(ledger);
+  });
+
+  test('fails closed when the blind manifest is tampered', async ({ page }) => {
+    test.skip(test.info().project.name !== 'desktop-chromium', 'desktop blind tamper gate');
+    const ledger = observeBrowser(page);
+    await page.route(`**${blindCaseBase}/manifest.json`, (route) =>
+      route.fulfill({ body: '{"tampered":true}', contentType: 'application/json' }),
+    );
+    await page.goto('/');
+    await expect(page.getByTestId('blind-pilot-panel')).toContainText(/no blind claim is shown/i);
+    await expect(page.getByTestId('blind-pilot-integrity')).toContainText(
+      /failed trusted sha-256/i,
+    );
+    await expect(page.getByTestId('blind-taste-boundary')).toHaveCount(0);
+    await expect(page.getByLabel('Blind source-only preview')).toHaveCount(0);
+    expectCleanLedger(ledger);
+  });
+
+  for (const tamper of [
+    { label: 'JSON evidence', path: 'edit-plan.json', type: 'application/json' },
+    { label: 'preview media', path: 'source-only-preview.mp4', type: 'video/mp4' },
+  ]) {
+    test(`fails closed when ${tamper.label} bytes are tampered`, async ({ page }) => {
+      test.skip(test.info().project.name !== 'desktop-chromium', 'desktop blind asset gate');
+      const ledger = observeBrowser(page);
+      await page.route(`**${blindCaseBase}/${tamper.path}`, (route) =>
+        route.fulfill({ body: 'tampered', contentType: tamper.type }),
+      );
+      await page.goto('/');
+      await expect(page.getByTestId('blind-pilot-panel')).toContainText(/no blind claim is shown/i);
+      await expect(page.getByTestId('blind-pilot-integrity')).toContainText(
+        /sha-256 verification/i,
+      );
+      await expect(page.getByTestId('blind-taste-boundary')).toHaveCount(0);
+      await expect(page.getByLabel('Blind source-only preview')).toHaveCount(0);
+      expectCleanLedger(ledger);
+    });
+  }
+
+  test('copies an honest cue sheet on a phone viewport', async ({ page }) => {
+    test.skip(test.info().project.name !== 'mobile-chromium', 'mobile handoff gate');
+    const ledger = observeBrowser(page);
+    await page.context().grantPermissions(['clipboard-read', 'clipboard-write'], {
+      origin: targetOrigin,
+    });
+    await page.goto('/');
+    await waitForVerifiedBlindPilot(page);
+    const handoff = page.getByTestId('instagram-music-handoff');
+    await handoff.getByRole('button', { name: 'Copy exact steps' }).click();
+    await expect(handoff.getByRole('button', { name: 'Steps copied' })).toBeVisible();
+    const copied = await page.evaluate(() => navigator.clipboard.readText());
+    expect(copied).toMatch(/locate by ear.*catalog-preview reference/i);
+    expect(copied).toContain('0:17.767');
+    await expectNoHorizontalClipping(page);
+    expectCleanLedger(ledger);
+  });
+});
+
 test.describe('NodeVideo authorized-real-v2 release gate', () => {
   test('independently verifies the full audiovisual proof and all five views', async ({ page }) => {
     test.skip(test.info().project.name !== 'desktop-chromium', 'desktop V2 bundle gate');
@@ -464,12 +653,13 @@ test.describe('NodeVideo authorized-real-v2 release gate', () => {
       });
     });
     await page.goto('/');
+    await page.getByTestId('v2-calibration-trigger').click();
     await expect(page.getByTestId('v2-verification-error')).toContainText(
       /failed trusted sha-256 verification/i,
     );
     await expect(page.getByTestId('v2-proof-badge')).toContainText(/release blocked/i);
     await expect(page.getByTestId('v2-verdict')).toHaveCount(0);
-    await expect(page.locator('video')).toHaveCount(0);
+    await expect(page.getByTestId('v2-proof-panel').locator('video')).toHaveCount(0);
     expectCleanLedger(ledger);
   });
 
@@ -504,12 +694,13 @@ test.describe('NodeVideo authorized-real-v1 release gate', () => {
   }) => {
     const ledger = observeBrowser(page);
     await page.goto('/');
-    await expect(page.getByTestId('v2-proof-panel')).toBeVisible();
-    await expect(page.getByText('Reference understanding', { exact: true })).toBeVisible();
+    await expect(page.getByTestId('v2-calibration-trigger')).toBeVisible();
+    await expect(page.getByText('Audited source-only generation', { exact: true })).toBeVisible();
+    await expect(page.getByText('Instagram-ready music cues', { exact: true })).toBeVisible();
     await expect(
-      page.getByText('Authorized target-guided reconstruction', { exact: true }),
+      page.getByText('Generalized taste awaits multi-case votes', { exact: true }),
     ).toBeVisible();
-    await expect(page.getByText('Blind creative taste not claimed', { exact: true })).toBeVisible();
+    await waitForVerifiedBlindPilot(page);
 
     const history = page.getByTestId('v1-history-trigger');
     await expect(history).toHaveAttribute('aria-expanded', 'false');

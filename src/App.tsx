@@ -1,12 +1,14 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { BlindPilotPanel } from '@/features/nodevideo/blind-pilot-panel';
 import { RealCasePanel } from '@/features/nodevideo/real-case-panel';
 import { V2ProofPanel } from '@/features/nodevideo/v2-proof-panel';
 import { ChevronDown, Film, GitBranch, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
 
 export function App() {
+  const [calibrationOpen, setCalibrationOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
 
   return (
@@ -30,24 +32,55 @@ export function App() {
 
       <main className="mx-auto max-w-6xl space-y-6 px-3 py-6 sm:px-6 sm:py-10">
         <section className="space-y-3" aria-labelledby="page-title">
-          <Badge variant="outline">Audiovisual edit understanding</Badge>
+          <Badge variant="outline">Source-only creative editing</Badge>
           <h1 id="page-title" className="max-w-3xl font-heading text-3xl font-semibold sm:text-5xl">
-            Understand the finished edit, render a typed reconstruction, and show the gaps.
+            Choose the edit before seeing the answer, then make the music handoff usable.
           </h1>
           <p className="max-w-3xl text-pretty text-muted-foreground sm:text-lg">
-            For this owner-authorized case, NodeVideo turns the target into a reviewable plan for
-            cuts, music, overlays, framing, and grade. It renders from the two source videos plus
-            disclosed target-derived soundtrack and LUT assets; target picture pixels never enter
-            the renderer. It then reports measured passes and unproven details.
+            A fresh planner receives only the two source videos and public music-catalog context.
+            Its clean edit, text, track candidate, preview-relative segment reference, and desired
+            beat-alignment cues are frozen before the held-out target is opened. The older
+            target-guided reconstruction remains below as calibration evidence, never as blind-taste
+            evidence.
           </p>
           <div className="flex flex-wrap gap-2" aria-label="Claim boundary">
-            <Badge variant="secondary">Reference understanding</Badge>
-            <Badge variant="secondary">Authorized target-guided reconstruction</Badge>
-            <Badge variant="outline">Blind creative taste not claimed</Badge>
+            <Badge variant="secondary">Audited source-only generation</Badge>
+            <Badge variant="secondary">Instagram-ready music cues</Badge>
+            <Badge variant="outline">Generalized taste awaits multi-case votes</Badge>
           </div>
         </section>
 
-        <V2ProofPanel />
+        <BlindPilotPanel />
+
+        <section className="space-y-2" aria-labelledby="calibration-title">
+          <Badge variant="outline">Target-guided calibration</Badge>
+          <h2 className="font-heading text-2xl font-semibold" id="calibration-title">
+            Reference understanding and reconstruction
+          </h2>
+          <p className="max-w-3xl text-sm text-muted-foreground">
+            This separate case can score exact target fidelity, including the soundtrack and the
+            16–19 second correction. It does not contribute to the blind claim above.
+          </p>
+        </section>
+
+        <Collapsible onOpenChange={setCalibrationOpen} open={calibrationOpen}>
+          <CollapsibleTrigger asChild>
+            <Button className="w-full justify-between" data-testid="v2-calibration-trigger">
+              {calibrationOpen
+                ? 'Hide target-guided calibration'
+                : 'Load calibration proof · 17 MB'}
+              <ChevronDown
+                aria-hidden="true"
+                className={`transition-transform ${calibrationOpen ? 'rotate-180' : ''}`}
+              />
+            </Button>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <div className="mt-3">
+              <V2ProofPanel />
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
 
         <Collapsible onOpenChange={setHistoryOpen} open={historyOpen}>
           <CollapsibleTrigger asChild>
