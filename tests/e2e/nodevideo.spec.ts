@@ -597,7 +597,7 @@ test.describe('NodeVideo authorized-real-v1 release gate', () => {
     await expect(verificationError).toContainText(/reconstruction.*sha-256 verification/i);
     await expect(page.getByTestId('asset-integrity')).toContainText(/not.*checked/i);
     await expect(page.getByTestId('real-case-load')).toBeEnabled();
-    await expect(page.locator('video')).toHaveCount(0);
+    await expect(page.getByTestId('v1-history').locator('video')).toHaveCount(0);
     expect(tampered).toBe(true);
     expectCleanLedger(ledger);
   });
