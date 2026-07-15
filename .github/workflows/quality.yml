@@ -49,6 +49,7 @@ jobs:
         run: |
           npm run capability:validate
           npm run worker:verify
+          npm run worker:authorized:verify
 
       - name: Primitive-first UI policy and budgets
         run: |
@@ -59,7 +60,7 @@ jobs:
         run: npm run build
 
   ui-ux-qa:
-    name: Agentic UI Bar — public synthetic path
+    name: Agentic UI Bar — authorized real-media path
     needs: code-quality
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -84,7 +85,7 @@ jobs:
       - name: Build the release shell
         run: npm run build
 
-      - name: Run synthetic-only browser gates
+      - name: Run authorized real-media browser gates
         run: npm run test:e2e
 
       - name: Upload Playwright evidence

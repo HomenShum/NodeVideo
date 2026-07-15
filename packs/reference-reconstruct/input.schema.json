@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/reference-reconstruct/input.v1.json",
+  "title": "Reference Reconstruction Input",
+  "description": "Serializable control-plane input for one explicitly authorized, case-specific, target-guided reconstruction run.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "caseId",
+    "runId",
+    "traceId",
+    "authorization",
+    "execution",
+    "assets",
+    "options"
+  ],
+  "properties": {
+    "schema": {
+      "const": "nodevideo.reference-reconstruct.input.v1"
+    },
+    "caseId": {
+      "$ref": "#/$defs/id"
+    },
+    "runId": {
+      "$ref": "#/$defs/id"
+    },
+    "traceId": {
+      "$ref": "#/$defs/id"
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ownerAuthorized", "scope", "sourceContainerMetadataPublished"],
+      "properties": {
+        "ownerAuthorized": {
+          "const": true
+        },
+        "scope": {
+          "const": "public-demo-repository-derivatives-and-evaluation"
+        },
+        "sourceContainerMetadataPublished": {
+          "const": false
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["boundary", "retention", "allowModelEgress", "hostedBehavior"],
+      "properties": {
+        "boundary": {
+          "enum": ["local-worker", "ci-worker"]
+        },
+        "retention": {
+          "enum": ["ephemeral", "owner-authorized-public-evidence"]
+        },
+        "allowModelEgress": {
+          "const": false
+        },
+        "hostedBehavior": {
+          "const": "verified-replay"
+        }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceA", "sourceB", "target", "graphics"],
+      "properties": {
+        "sourceA": {
+          "$ref": "#/$defs/renderVideo"
+        },
+        "sourceB": {
+          "$ref": "#/$defs/renderVideo"
+        },
+        "target": {
+          "$ref": "#/$defs/evaluationVideo"
+        },
+        "graphics": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/graphicAsset"
+          }
+        }
+      }
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "width",
+        "height",
+        "framesPerSecond",
+        "targetGuided",
+        "audioMode",
+        "copyTargetAudio",
+        "publishSourceContainerMetadata"
+      ],
+      "properties": {
+        "width": {
+          "const": 720
+        },
+        "height": {
+          "const": 1280
+        },
+        "framesPerSecond": {
+          "const": 30
+        },
+        "targetGuided": {
+          "const": true
+        },
+        "audioMode": {
+          "const": "cut-source-audio-with-silent-branded-tail"
+        },
+        "copyTargetAudio": {
+          "const": false
+        },
+        "publishSourceContainerMetadata": {
+          "const": false
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {
+          "enum": ["worker-local-token", "authorized-asset-id", "pack-asset-id"]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "description": "Opaque media-plane reference; never copy it into public events, traces, or receipts."
+        }
+      }
+    },
+    "mediaAsset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assetId", "kind", "mimeType", "sha256", "sourceClass", "usage", "locator"],
+      "properties": {
+        "assetId": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": ["video", "graphic"]
+        },
+        "mimeType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "sourceClass": {
+          "enum": ["owner-authorized-real-media", "pack-owned-original-graphic"]
+        },
+        "usage": {
+          "enum": ["render-source", "analysis-and-evaluation-only"]
+        },
+        "locator": {
+          "$ref": "#/$defs/locator"
+        }
+      }
+    },
+    "renderVideo": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/mediaAsset"
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "video"
+            },
+            "sourceClass": {
+              "const": "owner-authorized-real-media"
+            },
+            "usage": {
+              "const": "render-source"
+            }
+          }
+        }
+      ]
+    },
+    "evaluationVideo": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/mediaAsset"
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "video"
+            },
+            "sourceClass": {
+              "const": "owner-authorized-real-media"
+            },
+            "usage": {
+              "const": "analysis-and-evaluation-only"
+            }
+          }
+        }
+      ]
+    },
+    "graphicAsset": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/mediaAsset"
+        },
+        {
+          "properties": {
+            "kind": {
+              "const": "graphic"
+            },
+            "sourceClass": {
+              "const": "pack-owned-original-graphic"
+            },
+            "usage": {
+              "const": "render-source"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

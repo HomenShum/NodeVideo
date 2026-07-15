@@ -1,0 +1,196 @@
+{
+  "schema": "nodevideo.capability-eval.v1",
+  "id": "reference-reconstruct-authorized-real-v1",
+  "pack": "nodevideo.reference-reconstruct@0.1.0",
+  "status": "authorized-real-case-validated",
+  "executionBoundary": "local-worker",
+  "purpose": "Verify one owner-authorized, target-guided reconstruction from two real MOV sources with independently recreated graphics and video-only evaluation against the final MP4.",
+  "fixturePolicy": {
+    "allowedSourceClasses": ["owner-authorized-real-media", "pack-owned-original-graphic"],
+    "containsPersonalMedia": true,
+    "ownerAuthorizedPublication": true,
+    "sourceContainerMetadataPublished": false,
+    "publishedMediaClass": "metadata-stripped-derivative"
+  },
+  "proof": {
+    "caseManifestPath": "fixtures/media/authorized-real-v1/case-manifest.json",
+    "caseManifestSha256": "deca5ac8f08ba9502bbeae379f1db1ba1b895f1a1b96513ddcc3e528ed7c170b",
+    "receiptPath": "fixtures/media/authorized-real-v1/receipt.json",
+    "receiptSha256": "a75edd1f68c43be36413e6b059f43ac054aef9cfbdef8ec9434a6431c90f9af4",
+    "resultPath": "fixtures/media/authorized-real-v1/result.json",
+    "resultSha256": "c79729aa5cac1e1239792ac3be76731685fe3c6c077d4dd510024340d2510442",
+    "verifierCommand": "npm run worker:authorized:verify",
+    "verifierResult": {
+      "passed": true,
+      "checks": [
+        "artifact hashes match",
+        "media artifacts decode",
+        "target is evaluation-only",
+        "both MOV sources are in render lineage",
+        "timeline is contiguous",
+        "target soundtrack is disclosed as unmatched"
+      ]
+    },
+    "workerResult": {
+      "status": "completed",
+      "structuralAssertions": 12,
+      "jobEvents": 15,
+      "workerSpans": 7,
+      "claimTier": "perceptually-close-video"
+    }
+  },
+  "cases": [
+    {
+      "id": "authorized-two-mov-reference-reconstruction",
+      "input": {
+        "schema": "nodevideo.reference-reconstruct.input.v1",
+        "caseId": "authorized-real-v1",
+        "runId": "run.authorized-real-v1",
+        "traceId": "trace.authorized-real-v1",
+        "authorization": {
+          "ownerAuthorized": true,
+          "scope": "public-demo-repository-derivatives-and-evaluation",
+          "sourceContainerMetadataPublished": false
+        },
+        "execution": {
+          "boundary": "local-worker",
+          "retention": "owner-authorized-public-evidence",
+          "allowModelEgress": false,
+          "hostedBehavior": "verified-replay"
+        },
+        "assets": {
+          "sourceA": {
+            "assetId": "asset.source-a-original",
+            "kind": "video",
+            "mimeType": "video/quicktime",
+            "sha256": "041f52059ba5ef2e934730f759d139ffc17c029b8b683d027c40c5f2fbdb7614",
+            "sourceClass": "owner-authorized-real-media",
+            "usage": "render-source",
+            "locator": {
+              "kind": "worker-local-token",
+              "value": "authorized.source-a"
+            }
+          },
+          "sourceB": {
+            "assetId": "asset.source-b-original",
+            "kind": "video",
+            "mimeType": "video/quicktime",
+            "sha256": "30dedbd0f9ed084838a86e0728049774e7895609c1fea554e7739e9cc20b46d0",
+            "sourceClass": "owner-authorized-real-media",
+            "usage": "render-source",
+            "locator": {
+              "kind": "worker-local-token",
+              "value": "authorized.source-b"
+            }
+          },
+          "target": {
+            "assetId": "asset.target-edit",
+            "kind": "video",
+            "mimeType": "video/mp4",
+            "sha256": "83e93e1ded63cfc17247e2709f32efa810f55695b5b3063cecd6db9284982841",
+            "sourceClass": "owner-authorized-real-media",
+            "usage": "analysis-and-evaluation-only",
+            "locator": {
+              "kind": "worker-local-token",
+              "value": "authorized.target-edit"
+            }
+          },
+          "graphics": [
+            {
+              "assetId": "graphic.social-watermark",
+              "kind": "graphic",
+              "mimeType": "image/png",
+              "sha256": "06f02a4a4789514e538ba63432286157926ac77e8b01d3bfc9dcc92121aa56d3",
+              "sourceClass": "pack-owned-original-graphic",
+              "usage": "render-source",
+              "locator": {
+                "kind": "pack-asset-id",
+                "value": "reference-reconstruct/social-watermark.png"
+              }
+            },
+            {
+              "assetId": "graphic.outro-caption",
+              "kind": "graphic",
+              "mimeType": "image/png",
+              "sha256": "84dcfa4d3824a782efab26640b2d45009bc5973d99d8a2ceafb6b7c10f1804bf",
+              "sourceClass": "pack-owned-original-graphic",
+              "usage": "render-source",
+              "locator": {
+                "kind": "pack-asset-id",
+                "value": "reference-reconstruct/outro-caption.png"
+              }
+            },
+            {
+              "assetId": "graphic.end-card-overlay",
+              "kind": "graphic",
+              "mimeType": "image/png",
+              "sha256": "b6d2fa0131531009fdc2f852add13af2d0ead4c9f2b0ed2d27518844f897f56d",
+              "sourceClass": "pack-owned-original-graphic",
+              "usage": "render-source",
+              "locator": {
+                "kind": "pack-asset-id",
+                "value": "reference-reconstruct/end-card-overlay.png"
+              }
+            }
+          ]
+        },
+        "options": {
+          "width": 720,
+          "height": 1280,
+          "framesPerSecond": 30,
+          "targetGuided": true,
+          "audioMode": "cut-source-audio-with-silent-branded-tail",
+          "copyTargetAudio": false,
+          "publishSourceContainerMetadata": false
+        }
+      },
+      "observed": {
+        "outputStatus": "completed",
+        "outputSchemaValid": true,
+        "width": 720,
+        "height": 1280,
+        "framesPerSecond": 30,
+        "frameCount": 1335,
+        "durationSeconds": 44.5,
+        "cutFrames": [201, 482, 589, 753],
+        "renderSourceCount": 2,
+        "targetUsage": "analysis-and-evaluation-only",
+        "targetAudioMatched": false,
+        "ssim": 0.946873,
+        "psnrDb": 26.311718,
+        "vmaf": 29.819468,
+        "claimTier": "perceptually-close-video",
+        "validationPassed": true
+      },
+      "assertions": [
+        "owner-authorization-explicit",
+        "source-container-metadata-not-published",
+        "input-and-output-hashes-match",
+        "target-is-analysis-and-evaluation-only",
+        "target-excluded-from-render-source-asset-ids",
+        "both-mov-sources-represented",
+        "independently-recreated-graphics-used",
+        "target-audio-not-copied-or-claimed-matched",
+        "timeline-contiguous-and-four-cuts-matched",
+        "1335-frames-at-30-fps-and-44.5-seconds",
+        "published-media-decodable",
+        "validation-verdict-pass"
+      ],
+      "doesNotProve": [
+        "generic edit autopilot or reconstruction of an unseen target",
+        "automatic edit-map inference for arbitrary footage",
+        "target soundtrack recovery, copying, or matching",
+        "pixel-identical output",
+        "worker execution inside Vercel",
+        "durable Convex control-plane activation",
+        "authorization to publish any other real-media case"
+      ]
+    }
+  ],
+  "releaseGate": {
+    "authorizedRealCaseV1": "passed",
+    "genericEditAutopilot": "blocked-until-consent-cleared-held-out-evaluation",
+    "targetSoundtrackMatching": "not-claimed",
+    "vercelWorkerExecution": "not-implemented-hosted-app-is-verified-replay"
+  }
+}

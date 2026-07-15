@@ -1,0 +1,417 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/reference-reconstruct/output.v1.json",
+  "title": "Reference Reconstruction Output",
+  "description": "Evidence-linked result for one owner-authorized, case-specific reconstruction and video-only evaluation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "caseId",
+    "status",
+    "automationLevel",
+    "disclosure",
+    "targetUsage",
+    "inputs",
+    "renderSourceAssetIds",
+    "evaluationSourceAssetIds",
+    "timeline",
+    "cutFrames",
+    "media",
+    "evaluation",
+    "validation",
+    "limitations",
+    "createdAt"
+  ],
+  "properties": {
+    "schema": {
+      "const": "nodevideo.reference-reconstruct-result.v1"
+    },
+    "caseId": {
+      "$ref": "#/$defs/id"
+    },
+    "status": {
+      "enum": ["completed", "failed"]
+    },
+    "automationLevel": {
+      "const": "case-specific-target-guided"
+    },
+    "disclosure": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "targetUsage": {
+      "const": "analysis-and-evaluation-only"
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceA", "sourceB", "target"],
+      "properties": {
+        "sourceA": {
+          "$ref": "#/$defs/inputEvidence"
+        },
+        "sourceB": {
+          "$ref": "#/$defs/inputEvidence"
+        },
+        "target": {
+          "$ref": "#/$defs/inputEvidence"
+        }
+      }
+    },
+    "renderSourceAssetIds": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      }
+    },
+    "evaluationSourceAssetIds": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/timelineSegment"
+      }
+    },
+    "cutFrames": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceAWeb",
+        "sourceBWeb",
+        "targetWeb",
+        "reconstruction",
+        "sideBySide",
+        "difference",
+        "poster"
+      ],
+      "properties": {
+        "sourceAWeb": {
+          "$ref": "#/$defs/mediaArtifact"
+        },
+        "sourceBWeb": {
+          "$ref": "#/$defs/mediaArtifact"
+        },
+        "targetWeb": {
+          "$ref": "#/$defs/mediaArtifact"
+        },
+        "reconstruction": {
+          "$ref": "#/$defs/mediaArtifact"
+        },
+        "sideBySide": {
+          "$ref": "#/$defs/mediaArtifact"
+        },
+        "difference": {
+          "$ref": "#/$defs/mediaArtifact"
+        },
+        "poster": {
+          "$ref": "#/$defs/mediaArtifact"
+        }
+      }
+    },
+    "evaluation": {
+      "$ref": "#/$defs/evaluation"
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passed", "structuralAssertions", "claimTier"],
+      "properties": {
+        "passed": {
+          "type": "boolean"
+        },
+        "structuralAssertions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/assertion"
+          }
+        },
+        "claimTier": {
+          "enum": ["near-exact-video", "perceptually-close-video", "structure-matched"]
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "completed"
+          }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "validation": {
+            "properties": {
+              "passed": {
+                "const": true
+              }
+            }
+          },
+          "evaluation": {
+            "properties": {
+              "targetAudioMatched": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "inputEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assetId", "publicName", "sha256", "usage", "metadata"],
+      "properties": {
+        "assetId": {
+          "$ref": "#/$defs/id"
+        },
+        "publicName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "usage": {
+          "enum": ["render-source", "analysis-and-evaluation-only"]
+        },
+        "metadata": {
+          "type": "object"
+        }
+      }
+    },
+    "timelineSegment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "outputStartFrame",
+        "outputEndFrame",
+        "outputFrames",
+        "outputStartSeconds",
+        "outputEndSeconds",
+        "sourceAssetId",
+        "sourceStartFrame",
+        "sourceEndFrame",
+        "layout"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "outputStartFrame": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "outputEndFrame": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "outputFrames": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "outputStartSeconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "outputEndSeconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "sourceAssetId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sourceStartFrame": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "sourceEndFrame": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "sourceStartSeconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "layout": {
+          "enum": ["fit", "fill", "black", "dimmed-freeze-graphic"]
+        }
+      }
+    },
+    "mediaArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "mimeType", "role", "metadata"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "mimeType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "metadata": {
+          "type": ["object", "null"]
+        }
+      }
+    },
+    "segmentMetric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "startSeconds", "durationSeconds", "ssim", "psnrDb"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "startSeconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "durationSeconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "ssim": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "psnrDb": {
+          "type": "number"
+        }
+      }
+    },
+    "evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ssim",
+        "psnrDb",
+        "vmaf",
+        "perSegment",
+        "metricScope",
+        "targetAudioMatched",
+        "sourceAudioMode"
+      ],
+      "properties": {
+        "ssim": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "psnrDb": {
+          "type": "number"
+        },
+        "vmaf": {
+          "type": "number"
+        },
+        "perSegment": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/segmentMetric"
+          }
+        },
+        "metricScope": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "targetAudioMatched": {
+          "type": "boolean"
+        },
+        "sourceAudioMode": {
+          "const": "cut source audio with silent branded tail"
+        }
+      }
+    },
+    "assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "pass", "actual", "expected"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "pass": {
+          "type": "boolean"
+        },
+        "actual": {},
+        "expected": {}
+      }
+    }
+  }
+}

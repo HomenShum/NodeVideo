@@ -112,6 +112,19 @@ nonblank, non-comment logical lines and reject any change that exceeds a final l
 functionality must therefore replace, reuse, or simplify authored presentation instead of raising
 the ceiling.
 
+### Authorized-case refactor result
+
+The owner-authorized real-case release replaced the earlier bespoke feature shell with generated
+shadcn controls, AI Elements artifact/tool/checkpoint primitives, and the headless
+`@assistant-ui/react-o11y` trace adapter. Authored UI fell from 889 to 253 logical lines, with one
+domain visual component and no increase to the 900-line ceiling. The current authored CSS count is
+95 of 120 lines.
+
+That reduction is part of the maintenance proof: the live workflow still exposes consent, six
+verified media views, quality metrics, artifact integrity, and a recorded worker trace across the
+five release viewports. New UI work should preserve this composition model instead of restoring
+page-specific controls or layout frameworks.
+
 ## Exceptions
 
 Exceptions live in the `exceptions` array in `.ui/ui-policy.json`. They require:

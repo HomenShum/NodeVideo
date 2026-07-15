@@ -2,165 +2,188 @@
 
 ## Architectural decision
 
-NodeVideo has one semantic control plane and one deterministic media data plane. The control plane decides and records *what* should run; versioned workers perform frame/audio math and return typed artifacts. React renders those records. No UI component, hidden model prompt, or synthetic fixture is allowed to manufacture successful provenance.
-
-The browser-local release path implements event, artifact, proposal, trace, and version boundaries in memory/local storage. A separate deterministic CLI produced the checked-in public media proof. A production Convex control-plane schema is deployed and the browser performs a read-only health query, but worker/job mutations are internal-only until an authenticated bridge exists. FFmpeg is not hosted in Vercel.
-
-The following diagram and ownership table describe the target deployment boundaries; the current activation boundary is documented separately below.
+NodeVideo separates deterministic media execution from public presentation. A versioned FFmpeg
+worker performs frame, audio, color, and comparison work locally or in CI and writes typed,
+hash-bound artifacts. The Vercel application fetches and verifies those records and media before it
+replays them. React never manufactures worker success or implies that FFmpeg ran in the browser.
 
 ```mermaid
 flowchart LR
-  U["User or QA agent"] --> UI["React + AI Elements presentation shell"]
-  UI --> ORCH["NodeAgent-style orchestrator"]
-  ORCH --> CP["Semantic control plane\nprojects · jobs · events · approvals · versions"]
-  ORCH --> W["Deterministic media workers\nFFmpeg · audio · pose · alignment · diffs · render"]
-  W --> OS["Object/media storage\nraw bytes and rendered media"]
-  W --> CP
-  CP --> A["Typed artifact registry"]
-  CP --> T["react-o11y trace adapter"]
-  A --> UI
-  T --> UI
-  UI --> P["Reviewable proposal"]
-  P -->|"accept exact candidate"| V["New restorable version"]
+  OA["Owner-authorized source media"] --> W["Deterministic local/CI worker\nFFmpeg + FFprobe"]
+  T["Final MP4\nanalysis + evaluation only"] --> W
+  W --> P["Manifest + result + receipt"]
+  W --> M["Metadata-stripped derivative media"]
+  P --> V["Vercel static replay"]
+  M --> V
+  V --> B["Browser SHA-256 + contract verification"]
+  B -->|"all checks pass"| UI["shadcn + AI Elements UI\nreact-o11y trace"]
+  B -->|"mismatch"| F["Fail closed"]
 ```
+
+The target MP4 informs case-specific timing, framing, grade, and evaluation. It is never a
+reconstruction render input. Reconstruction pixels come from the two source MOVs and independently
+recreated graphics; output audio comes from cut source audio with a silent branded tail.
 
 ## Layer ownership
 
 | Layer | Owns | Does not own | Reuse source |
-|---|---|---|---|
-| Presentation shell | first-run, local upload affordance, plan/progress cards, artifact/trace panels, proposal review, versions | orchestration policy, frame math, invented receipts | Parity Studio and selected AI Elements patterns |
-| Orchestrator | intent, plan, tool selection, dependencies, job lifecycle, cancellation/retry, artifact emission, validation requests | React layout, pixel/frame reasoning, silent mutation | NodeAgent typed tools and durable-runtime patterns |
-| Semantic control plane | projects/assets metadata, jobs/stages/events, artifacts, approvals, versions, comments, traces, presence | heavy video/audio bytes | NodeRoom/Convex schemas and append-only event patterns |
-| Trace adapter | span hierarchy, status, timing, filters, artifact/timeline focus | domain decisions or synthetic timing | NodeRoom trace contract plus `@assistant-ui/react-o11y` |
-| Media workers | probe/normalize, thumbnails/waveforms, beat/onset, pose, alignment, trajectory/form/dynamics diffs, previews/bursts, export | conversational planning or approval | versioned FFmpeg and purpose-built deterministic workers |
-| Release proof | UI journeys, screenshots/video, FFprobe checks, held-out fixtures | substituting a demo for analytical correctness | FeatureClipStudio proof workflow |
+| --- | --- | --- | --- |
+| Presentation | consent disclosure, verification state, six media views, measured quality, trace replay | frame math, invented receipts, live-worker claims | generated shadcn/ui and AI Elements |
+| Published-case loader | fetching, SHA-256, schema relationships, lineage and metric agreement, fail-closed behavior | media transformation | Web Crypto plus typed case contracts |
+| Media worker | probe, sanitization, source selection, trim, fit/fill, color transform, recreated overlays, audio, comparison renders, metrics | browser presentation | FFmpeg/FFprobe and deterministic worker utilities |
+| Capability pack | input/output schemas, tool graph, consent and claim rules, evaluation fixture | blanket authorization for another case | versioned pack contract |
+| Trace adapter | recorded span hierarchy, status, and timing | orchestration policy or hidden reasoning | `@assistant-ui/react-o11y` |
+| Release proof | hashes, decodability, structural assertions, browser journeys, accessibility, responsive layout | turning one case into a generic capability claim | Vitest, Playwright, Axe, FFprobe |
 
-## Current P0 boundary
+## Current evidence modes
 
-The current slice has three deliberately separate evidence modes:
+### Owner-authorized real case
 
-- `public-worker`: a completed deterministic worker run over two generated videos with PCM pulses and six known color landmarks. The checked-in receipt, result, normalized videos, side-by-side render, difference render, and critical-moment sheet are safe for public deployment.
-- `local-file`: metadata and a session-only browser object URL for user-selected media. Bytes remain in the browser session; no comparison worker is invoked from the browser.
-- `private-local-proof`: real human-video media inspection and reconstruction evidence under ignored `.qa/evidence/private/`. It is laptop-local and proves codec/render handling, not generic human pose or tutorial comparison.
+The live UI foregrounds `authorized-real-v1`. Publication is limited to metadata-stripped
+derivatives covered by explicit owner authorization. The browser hashes the manifest, result,
+receipt, and six derivative videos before showing the media, then verifies:
 
-The browser verifies the deployed side-by-side hash and receipt/result verdict before replaying checked-in worker events. That is evidence of a real prior worker run, not FFmpeg executing inside Vercel. Synthetic-source artifacts may claim playable media only when the receipt identifies and hashes an actual render.
+- the target is `analysis-and-evaluation-only` and absent from render inputs;
+- both MOV source asset IDs are present in render lineage;
+- target audio is neither matched nor copied;
+- manifest, result, receipt, media roles, metrics, and hashes agree; and
+- the worker receipt and result both report a passing validation.
 
-### Validated public profile
+The reconstruction has exact target structure: 720x1280 at 30 fps, 1,335 frames, 44.5 seconds, and
+hard cuts at frames `201`, `482`, `589`, and `753`. Its measured decoded-video result is SSIM
+`0.946873`, PSNR `26.311718 dB`, and VMAF `29.819468`. The permitted tier is
+`perceptually-close-video`, not pixel-exact reproduction.
 
-The `tutorial-compare` pack is `public-worker-validated` for `public-synthetic-known-markers`. Its receipt records 22 monotonic `nodevideo.job-event.v1` events, 10 worker spans, 13 passing in-run checks, and versioned tools. The independent verifier performs 12 checks across media hashes, FFprobe decodability, receipt status, critical moments, and event ordering. The output validates against the pack's Draft 2020-12 schema.
+This is a case-specific target-guided result. The target soundtrack is not present in the MOV
+sources, so the output uses cut source audio and a silent branded tail. The target soundtrack
+remains unmatched and was not copied.
 
-This profile does not validate generic human pose, beat detection on production music, arbitrary uploads, private human tutorial comparison, stage retry/cancel/resume, hosted worker execution, or an end-to-end worker run journaled through production Convex.
+### Generated generic smoke proof
 
-### Deployed durable control plane
+The `tutorial-compare` worker uses generated videos with known PCM pulses and color markers. It
+remains the default generic fixture and CI smoke proof because it is reproducible without authorized
+human media. It validates deterministic worker orchestration and known-marker measurement, not
+generic human pose, production music, or arbitrary edit reconstruction.
 
-`convex/` is deployed to the `cafecorner/nodevideo` development and production deployments. It defines idempotent jobs, strictly ordered events, retry attempts, bounded leases with fencing tokens, hashed artifacts, digest-bound proposals, and runtime-source proof. All state-changing functions are internal; the only public functions are read-only runtime-source queries. The Vercel client confirms that query path is reachable but does not imply that the checked-in worker run was executed through Convex.
+## Execution and replay boundary
 
-## Control-plane contracts
+The authorized worker runs locally or in CI. It requires explicit case authorization, probes the
+three inputs, writes sanitized release media, reconstructs from both source MOVs, generates web
+proxies and comparison views, evaluates decoded video, validates structural assertions, and writes
+the result and receipt atomically.
 
-`src/lib/contracts.ts` is the initial serialization boundary. Records are evidence, not implications that a worker ran.
+Vercel stores and serves the checked-in derivatives and proof records. It performs no transcoding,
+frame matching, tone mapping, or metric calculation. “Verified replay” means the browser checked the
+deployed bytes and their recorded relationships; it does not mean the site reran the worker.
 
-### Event rules
+The six published video roles are:
 
-- Events are immutable and strictly ordered by `sequence` within a runtime.
-- A checkpoint has a schema version and is replaced atomically after an event is accepted.
-- Stage completion refers to artifact IDs already present in the checkpoint.
-- Proposal acceptance is bound to the proposal artifact and creates a new recipe version.
-- Restore creates another version; it never rewrites history.
-- Unknown or stale state renders as unknown/stalled. The UI cannot infer completion from elapsed time.
+1. source A web proxy;
+2. source B web proxy;
+3. final-target web proxy;
+4. source-only reconstruction;
+5. target/reconstruction side-by-side; and
+6. amplified pixel difference.
 
-The public receipt now uses `nodevideo.job-event.v1` for event ID, sequence, job/trace identity, stage, status, progress, timestamps, and span links. Server identity, idempotency keys, attempts, leases, checkpoint cursors, signed artifact references, and durable acknowledgements remain target fields; the checked-in receipt must not be described as a distributed queue journal.
+The target proxy is present for inspection and evaluation only. Its existence in the UI does not
+make it a reconstruction source.
 
-### Stage lifecycle
-
-The MVP domain stages are `ingest`, `normalize`, `audio`, `pose`, `alignment`, `diffs`, `render`, `summary`, and `review`. The distributed runtime expands job status to:
-
-`queued → ingesting → normalizing → mapping_audio → extracting_pose → aligning → detecting_moments → computing_diffs → rendering → summarizing → awaiting_review → completed`
-
-Every stage must also accept `failed` and `cancelled`. Distributed stages are idempotent, retryable, cancellable, checkpointed, observable, and tool-versioned. A retry can reuse a validated artifact by hash; it cannot duplicate a render or proposal acceptance.
-
-The current CLI executes `queued`, normalization, audio mapping, known-marker extraction, alignment, differences, three render steps, validation, and completion. It can restart a full run, but it does not implement stage retry, semantic cancellation, leases, or checkpoint resume. The frontend replays completed receipt events; it does not stream an on-demand hosted job.
-
-### Artifact rules
-
-The browser-local registry starts with asset manifests, audio/pose feature reports, alignment reports, difference reports, comparison previews, summaries, and recipe proposals. The worker-backed target adds:
-
-- `tutorial_comparison`
-- `beat_map`
-- `pose_diff`
-- `critical_moment_burst`
-- `coaching_summary`
-- `practice_clip`
-
-Each artifact carries `project/run/trace` identity, input asset IDs/hashes, recipe version, tool and version, relevant frame/beat ranges, confidence, status, creation time, and provenance. Large media stays in the media plane and is referenced through short-lived signed URLs.
-
-The validated public result currently emits `tutorial_comparison`, embedded `beat_map` and `coaching_summary` records, and three `critical_moment_burst` artifacts. It does not implement a generic `pose_diff` renderer or `practice_clip`. Its “pose” evidence is generated color-marker geometry only.
-
-### Proposal and version invariant
-
-Analysis may recommend a recipe patch, but it cannot apply it. The UI renders before/after values and rationale. Accepting the exact pending candidate creates a version linked to the proposal; declining creates no version. Restore is append-only. Tests must prove double-accept is idempotent and reload cannot apply an unaccepted proposal.
-
-## Happy-path dependency graph
+## Authorized reconstruction graph
 
 ```mermaid
 flowchart TD
-  I["Register reference + practice"] --> N1["Normalize reference"]
-  I --> N2["Normalize practice"]
-  N1 --> AUD["Shared audio + beat map"]
-  N2 --> AUD
-  N1 --> P1["Reference pose"]
-  N2 --> P2["Practice pose"]
-  AUD --> AL["Phrase/beat alignment"]
-  P1 --> AL
-  P2 --> AL
-  AL --> M["Critical moments"]
-  M --> D["Timing · form · path · dynamics diffs"]
-  D --> R["Side-by-side · ghost · frame bursts"]
-  D --> S["Coaching summary + proposal"]
-  R --> VAL["Independent validation"]
-  S --> VAL
-  VAL --> REVIEW["Awaiting review"]
+  A["Source MOV A"] --> PR["Probe + sanitize"]
+  B["Source MOV B"] --> PR
+  T["Final MP4 target"] --> AN["Infer timing, layout, and grade"]
+  PR --> R["Trim + fit/fill + tone map"]
+  G["Independently recreated graphics"] --> R
+  AN --> R
+  A --> AU["Cut source audio"]
+  B --> AU
+  R --> RC["720x1280 / 30 fps / 1335-frame reconstruction"]
+  AU --> RC
+  T --> EV["Decoded-video SSIM / PSNR / VMAF"]
+  RC --> EV
+  RC --> CMP["Side-by-side + difference"]
+  T --> CMP
+  EV --> VAL["Structural + lineage + metric validation"]
+  CMP --> VAL
+  VAL --> REC["Manifest + result + receipt"]
 ```
 
-Independent normalize and pose work may run in parallel. These are worker jobs, not LLM subagents. Progressive artifacts appear as soon as their dependencies are satisfied: normalized media enables side-by-side; beat maps enable timeline markers; pose enables ghost/path views; moment detection enables colored markers; summary enables the top corrections. The UI never waits for the full graph to show valid partial results.
+The graph is deterministic and case-specific. It does not discover an arbitrary edit without a
+target, reproduce unavailable music, copy target frames, or execute a model-driven creative agent.
 
-That graph is the production target. The checked-in P0 worker executes sequentially and validates a completed public result; it does not yet prove parallel scheduling, progressive remote artifact delivery, partial-result recovery, or a human pose model.
+## Contracts and invariants
 
-## Trace contract
+`packs/reference-reconstruct` defines the real-case boundary through its manifest, skill
+instructions, input/output schemas, typed tool registry, and bound evaluation. The following
+invariants are release-blocking:
 
-The canonical trace hierarchy mirrors the dependency graph: root `tutorial_compare`, upload children, normalize children, audio/extract/beats/phrases, pose children, alignment, moments, diff children, render children, summary, and validate.
+- owner authorization is explicit and scoped to this publication;
+- original source-container metadata is not published;
+- private local locators do not appear in public records;
+- the target is analysis/evaluation-only and excluded from reconstruction render lineage;
+- both MOV sources contribute to the output timeline;
+- graphics are independently recreated rather than copied target pixels;
+- output audio is sourced from the MOVs, target audio is excluded, and the limitation is disclosed;
+- output structure and cut frames equal the validated contract;
+- metrics are computed from decoded target/reconstruction video with target audio excluded; and
+- a failed hash, decode, schema, lineage, or structural check cannot produce a passing receipt.
 
-A span can record tool/version, asset IDs/hashes, frame or beat range, cache/retry status, confidence, measured latency, optional provider/model/token/cost receipt fields, artifact IDs, and validation verdict. It never stores raw media, object URLs, local paths, prompts containing media bytes, credentials, or hidden chain-of-thought.
+The `tutorial-compare` capability pack retains its narrower generated-known-marker profile. Passing
+that profile does not upgrade or generalize the authorized case, and the authorized case does not
+establish blanket publication consent for future media.
 
-The public receipt implements a root plus 10 measured worker spans with tool versions, hashes, stage status, and durations. Cache, retry, provider/model/token/cost, durable export, and full bidirectional artifact focus remain unproven.
+## Trace and presentation contract
 
-User mode shows plan, status, evidence, outputs, retries, and safe rationale. Developer mode adds tool versions, hashes, timings, attempts, and validation detail. Selecting a span focuses its artifact/timeline range; selecting an artifact focuses its producing span.
+The real-case receipt records seven measured worker spans: input probing, release sanitization,
+reconstruction render, source proxies, target proxy, comparisons, and evaluation. The frontend maps
+those records into a headless `react-o11y` trace and presents them with generated AI Elements tool and
+checkpoint primitives.
 
-## Failure and privacy behavior
+A trace may contain public IDs, hashes, stages, timings, versions, status, artifact roles, and
+validation verdicts. It must not contain local source locators, raw container metadata, credentials,
+media bytes, or hidden chain-of-thought.
 
-- Preserve usable artifacts after a partial failure.
-- Offer retry, slower method, manual point/offset, or skip only when the resulting limitations are explicit.
-- A failed tool renders an error, not an approval denial or successful fallback.
-- Stale progress stops animating and exposes the last server checkpoint.
-- Local object URLs are revoked when no longer needed and excluded from persistence, console output, traces, and screenshots.
-- CI and hosted previews use generated media only. Human-video inputs and derivatives remain outside Git, public artifacts, hosted previews, and cloud test runs under ignored laptop-local evidence.
-- Future external model calls require a per-action preflight naming provider, model, source IDs, memory access, read/write scope, and expected egress; the server-authored receipt must match or the action fails closed.
+The UI is intentionally a small verification surface. The refactor replaced the earlier bespoke
+feature shell with generated shadcn controls, AI Elements artifact/tool/checkpoint primitives, and
+the react-o11y trace adapter. Authored UI fell from 889 to 253 logical lines while retaining laptop,
+tablet, and phone coverage.
 
-## Capability packs
+## Failure, consent, and publication behavior
 
-Domain behavior is packaged behind a manifest, skill instructions, input/output JSON schemas, typed tools, prompts (only where needed), UI renderers, evaluation fixtures, examples, and README. `tutorial-compare` is first; `beat-sync`, `pose-coach`, `reference-reconstruct`, `kinetic-text`, and `practice-clip` follow only after their worker and eval contracts exist.
-
-Initial tool IDs are `media.normalize`, `audio.beat_map`, `pose.extract`, `tutorial.align`, `tutorial.diff`, and `render.comparison`.
-
-`packs/tutorial-compare` is now validated only for the public synthetic known-marker profile. Its registry also records `result.validate` and names the narrower validation strength of each tool. The private-worker contract remains available as a boundary, but no private human pose/tutorial-comparison result has passed this pack's evaluation.
+- A hash or contract mismatch blocks media presentation and reports an error.
+- Missing or undecodable artifacts fail verification; the UI cannot infer success from a receipt
+  label alone.
+- Real-media publication requires case-specific authorization; one approved case is not blanket
+  consent.
+- Published derivatives are metadata-stripped and independently hash-verified.
+- The original source-container metadata remains outside the hosted artifact set.
+- The target's evaluation role must remain visible anywhere reconstruction quality is claimed.
+- Quality language must remain at `perceptually-close-video`; the metrics do not support pixel-exact
+  or generic-autopilot language.
 
 ## Verification ladder
 
-1. Contract/unit: schema parsing, event ordering, status mapping, renderer exhaustiveness, provenance disclosure, object-URL redaction, proposal/version invariants.
-2. Worker goldens: FFprobe normalization, BPM/timestamp tolerance, pose confidence, mirror/offset alignment, critical-moment selection, difference math, burst frame count, hashes and tool versions.
-3. Durable integration: enqueue/lease/checkpoint/journal/receipt, retry without duplicate render, stale lease, cancel, resume, partial failure, malformed inputs, and policy blocks.
-4. Agentic UI: public synthetic demo, local privacy badge, progressive stages, artifact/trace navigation, proposal review, accept/decline, restore, reload, keyboard access, and truthful degraded states.
-5. Release proof: Playwright evidence, FFprobe validation of actual exports, trace export inspection, and a FeatureClipStudio walkthrough. Visual proof supplements deterministic checks; it never upgrades a synthetic demo into a real-analysis claim.
+1. **Contract/unit:** authorization, target exclusion, source lineage, target-audio exclusion, exact
+   timeline, view roles, metric agreement, and fail-closed malformed-data paths.
+2. **Worker verification:** SHA-256, FFprobe decodability, metadata sanitization, output structure,
+   cut frames, decoded-video metrics, and receipt/result schema validation.
+3. **Browser integrity:** hash the manifest, result, receipt, and six deployed videos before media
+   presentation.
+4. **Agentic UI:** owner-consent disclosure, target-role disclosure, quality tier, media switching,
+   recorded trace, failure states, keyboard access, Axe, and zero horizontal overflow.
+5. **Responsive release proof:** Playwright journeys at 1440, 1280, 834, 390, and 320 CSS pixels,
+   followed by the same checks against the public Vercel URL.
 
-The public known-marker profile currently passes the output schema, 13 in-run assertions, and 12 independent receipt checks, including all checked-in media hashes and FFprobe decodability. Run `node scripts/workers/tutorial-compare.mjs --verify-public` to repeat the non-mutating receipt verification.
+Run the non-mutating proof verifiers with:
 
-The CI workflow enforces lint, typecheck, unit tests, capability-schema validation, worker-receipt verification, final UI budgets, build, and public browser E2E on Node.js 22. Durable remote integration and held-out human/music evaluations remain required before those capabilities are claimed.
+```powershell
+npm run worker:authorized:verify
+npm run worker:verify
+```
+
+CI also enforces lint, typecheck, unit tests, capability schemas, final UI budgets, production build,
+and browser E2E. Broader claims require consent-cleared held-out cases whose evaluations are defined
+before their targets are inspected.

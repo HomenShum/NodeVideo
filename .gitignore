@@ -10,7 +10,7 @@ test-results/
 .env.*
 !.env.example
 
-# QA evidence is current-session output. Never commit user media or derivatives.
+# QA evidence stays local unless an explicitly authorized case publishes selected sanitized derivatives.
 .qa/evidence/
 .qa/*.log
 

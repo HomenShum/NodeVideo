@@ -101,23 +101,3 @@
     cursor: pointer;
   }
 }
-
-.difference-overlay {
-  background-image: repeating-linear-gradient(
-    135deg,
-    oklch(0.91 0.2 120 / 18%) 0,
-    oklch(0.91 0.2 120 / 18%) 0.25rem,
-    transparent 0.25rem,
-    transparent 1rem
-  );
-  mix-blend-mode: screen;
-}
-
-.trace-track {
-  background-image: repeating-linear-gradient(
-    90deg,
-    transparent 0,
-    transparent 1.1875rem,
-    var(--border) 1.25rem
-  );
-}
