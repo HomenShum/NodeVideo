@@ -126,4 +126,4 @@ Stable outcome selectors:
 
 Score only from current artifacts and rendered evidence. B1 consent, B2 provenance, B4 scope, B5 fail-closed degrade, B8 keyboard operability, B9 responsive craft, B10 claim honesty, and B11 first-run clarity are hard gates. Mutable-project dimensions remain N/A until a real durable editing service is connected.
 
-Last complete V2-only score: `18/22` on production on 2026-07-15. It is historical until the new blind/music journeys A0–A10 pass on the current deployment. B7 remains zero and B3/B6 remain partial because the application is a verified immutable replay, not yet a durable mutable editing service. Never preserve a historical score after manifest or render changes.
+Current blind-first score: `18/22` on production on 2026-07-15. Journeys A0–A10 pass for manifest `bad6578`; B7 remains zero and B3/B6 remain partial because the application is a verified immutable replay, not yet a durable mutable editing service. Never preserve this score after manifest or render changes without a new production pass.
