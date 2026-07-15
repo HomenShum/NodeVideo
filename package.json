@@ -23,6 +23,8 @@
     "worker:authorized": "node scripts/workers/reference-reconstruct.mjs --authorized-public",
     "worker:authorized:verify": "node scripts/workers/reference-reconstruct.mjs --verify-public",
     "worker:edit-plan": "node scripts/workers/edit-plan-renderer.mjs",
+    "pilot:blind:evaluate": "node scripts/quality/evaluate-blind-pilot.mjs",
+    "pilot:blind:publish": "node scripts/release/publish-blind-pilot.mjs",
     "proof:synthetic": "node scripts/media/generate-synthetic-fixture.mjs",
     "proof": "npm run worker:verify",
     "proof:private": "node scripts/media/inspect-private-media.mjs",

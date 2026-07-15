@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0",
+  "project": "blind-source-only-pilot-01",
+  "creative_concept": "Two takes, one pocket: cold-open on two impact moves, rewind to the groove, then climb through arm sweeps and grounded isolations to a clean high-knee finish.",
+  "output": {
+    "file": "source-only-preview.mp4",
+    "width": 1080,
+    "height": 1920,
+    "aspect_ratio": "9:16",
+    "frame_rate_fps": 30,
+    "duration_frames": 534,
+    "duration_seconds": 17.8,
+    "video_codec": "H.264",
+    "pixel_format": "yuv420p",
+    "audio": {
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "content": "synthetic two-tone metronome only",
+      "tempo_bpm": 108,
+      "source_audio_present": false
+    }
+  },
+  "global_framing": {
+    "background": "Duplicate source frame, scale to cover 1080x1920, center-crop, heavy blur, darken and slightly desaturate.",
+    "foreground_stage": "Crop 288x360 at x=176,y=0; scale to 1080x1350; center at y=285. This 4:5-ish sharp window preserves the full-body choreography better than a hard 9:16 crop.",
+    "foreground_impact": "Crop 216x360 at x=212,y=0; scale to 1080x1800; place at y=60 for the two opening punches.",
+    "foreground_grade": "Contrast 1.04, saturation 1.04; subtle final vignette.",
+    "safe_area": "Text remains at x=90,y=120 in a 900x160 banner, clear of the dancer and typical bottom/right Instagram controls."
+  },
+  "timeline": [
+    {
+      "id": "S01-impact-a",
+      "output": {"start_frame": 0, "end_frame_exclusive": 34, "start_seconds": 0.0, "end_seconds": 1.133333, "duration_frames": 34},
+      "source": {"file": "inputs/source-a.mp4", "start_frame": 786, "end_frame_exclusive": 820, "in_seconds": 26.2, "out_seconds": 27.333333},
+      "framing": "foreground_impact",
+      "content": "Fast leg lift and chest/arm accent; immediate motion hook.",
+      "transition_in": "hard start",
+      "transition_out": "hard cut on impact"
+    },
+    {
+      "id": "S02-impact-b",
+      "output": {"start_frame": 34, "end_frame_exclusive": 68, "start_seconds": 1.133333, "end_seconds": 2.266667, "duration_frames": 34},
+      "source": {"file": "inputs/source-b.mp4", "start_frame": 1754, "end_frame_exclusive": 1788, "in_seconds": 58.466667, "out_seconds": 59.6},
+      "framing": "foreground_impact",
+      "content": "Alternate-take torso fold and knee accent; confirms the two-take premise.",
+      "transition_in": "hard cut",
+      "transition_out": "hard cut to wider stage"
+    },
+    {
+      "id": "S03-pocket-b",
+      "output": {"start_frame": 68, "end_frame_exclusive": 135, "start_seconds": 2.266667, "end_seconds": 4.5, "duration_frames": 67},
+      "source": {"file": "inputs/source-b.mp4", "start_frame": 660, "end_frame_exclusive": 727, "in_seconds": 22.0, "out_seconds": 24.233333},
+      "framing": "foreground_stage",
+      "content": "Controlled opening groove and small isolations; visual reset after the hook.",
+      "transition_in": "hard cut",
+      "transition_out": "hard cut"
+    },
+    {
+      "id": "S04-build-a",
+      "output": {"start_frame": 135, "end_frame_exclusive": 202, "start_seconds": 4.5, "end_seconds": 6.733333, "duration_frames": 67},
+      "source": {"file": "inputs/source-a.mp4", "start_frame": 540, "end_frame_exclusive": 607, "in_seconds": 18.0, "out_seconds": 20.233333},
+      "framing": "foreground_stage",
+      "content": "Hand-led phrase grows upward into a larger arm path.",
+      "transition_in": "hard cut",
+      "transition_out": "hard cut"
+    },
+    {
+      "id": "S05-lift-a",
+      "output": {"start_frame": 202, "end_frame_exclusive": 269, "start_seconds": 6.733333, "end_seconds": 8.966667, "duration_frames": 67},
+      "source": {"file": "inputs/source-a.mp4", "start_frame": 900, "end_frame_exclusive": 967, "in_seconds": 30.0, "out_seconds": 32.233333},
+      "framing": "foreground_stage",
+      "content": "Sweeping arm travel and an overhead reach begin the lift.",
+      "transition_in": "hard cut",
+      "transition_out": "hard cut"
+    },
+    {
+      "id": "S06-lift-b",
+      "output": {"start_frame": 269, "end_frame_exclusive": 336, "start_seconds": 8.966667, "end_seconds": 11.2, "duration_frames": 67},
+      "source": {"file": "inputs/source-b.mp4", "start_frame": 1020, "end_frame_exclusive": 1087, "in_seconds": 34.0, "out_seconds": 36.233333},
+      "framing": "foreground_stage",
+      "content": "Broader reach from the alternate take, ending before the background passerby enters.",
+      "transition_in": "hard cut",
+      "transition_out": "hard cut into peak"
+    },
+    {
+      "id": "S07-peak-a",
+      "output": {"start_frame": 336, "end_frame_exclusive": 403, "start_seconds": 11.2, "end_seconds": 13.433333, "duration_frames": 67},
+      "source": {"file": "inputs/source-a.mp4", "start_frame": 1080, "end_frame_exclusive": 1147, "in_seconds": 36.0, "out_seconds": 38.233333},
+      "framing": "foreground_stage",
+      "content": "Deep wide stance with overhead arm arc; the clearest power peak.",
+      "transition_in": "hard cut",
+      "transition_out": "hard cut"
+    },
+    {
+      "id": "S08-release-a",
+      "output": {"start_frame": 403, "end_frame_exclusive": 470, "start_seconds": 13.433333, "end_seconds": 15.666667, "duration_frames": 67},
+      "source": {"file": "inputs/source-a.mp4", "start_frame": 1200, "end_frame_exclusive": 1267, "in_seconds": 40.0, "out_seconds": 42.233333},
+      "framing": "foreground_stage",
+      "content": "Side-to-side release and head/shoulder accents keep momentum without repeating the peak.",
+      "transition_in": "hard cut",
+      "transition_out": "hard cut to final take"
+    },
+    {
+      "id": "S09-land-b",
+      "output": {"start_frame": 470, "end_frame_exclusive": 534, "start_seconds": 15.666667, "end_seconds": 17.8, "duration_frames": 64},
+      "source": {"file": "inputs/source-b.mp4", "start_frame": 1853, "end_frame_exclusive": 1917, "in_seconds": 61.766667, "out_seconds": 63.9},
+      "framing": "foreground_stage",
+      "content": "High-knee rise and open-arm finish; end before the walk to camera.",
+      "transition_in": "hard cut",
+      "transition_out": "clean end on the last rendered frame"
+    }
+  ],
+  "text_cues": [
+    {"text": "TWO TAKES", "start_frame": 0, "end_frame_exclusive": 34, "start_seconds": 0.0, "end_seconds": 1.133333, "placement": "x=90,y=120", "style": "white custom pixel lettering, charcoal translucent banner, lime left rule"},
+    {"text": "ONE POCKET", "start_frame": 34, "end_frame_exclusive": 67, "start_seconds": 1.133333, "end_seconds": 2.233333, "placement": "x=90,y=120", "style": "same banner; disappears one frame before the second shot ends"},
+    {"text": "LET IT LAND", "start_frame": 467, "end_frame_exclusive": 534, "start_seconds": 15.566667, "end_seconds": 17.8, "placement": "x=90,y=120", "style": "same banner; three-frame text lead into the final take"}
+  ],
+  "source_audio_policy": {
+    "source_a": "mute",
+    "source_b": "mute",
+    "reason": "Both takes contain continuous, unidentified rehearsal playback with no rights clearance; the edit does not rely on speech.",
+    "preview_replacement": "A generated 108 BPM two-tone metronome, faded at head and tail. No downloaded or commercial catalog audio is embedded.",
+    "instagram_finish": "Replace the metronome with a user-confirmed Instagram library track using music-handoff.json; do not restore camera audio unless rights are confirmed."
+  },
+  "render_reconstruction_note": "Output and source frame ranges above are the exact 30 fps decoded-frame ranges represented in the rendered 534-frame preview. End frames are exclusive."
+}

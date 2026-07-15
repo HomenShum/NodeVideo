@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "source_derivation": {
+    "visual_evidence": "A grounded solo dance built from torso isolations, leg accents, sweeping arms and a wide-stance peak calls for a beat with pocket rather than maximal density.",
+    "audible_evidence": "Both camera takes contain continuous rhythmic playback. A source-only onset-envelope pass was noisy because of room capture, but source-b produced a leading estimate near 108 BPM; movement accents also read naturally in a 106-110 BPM pocket.",
+    "target_or_reference_audio_used": false
+  },
+  "music_archetype": {
+    "name": "bass-forward pop/R&B groove with Afro-pop or funk percussion",
+    "tempo_range_bpm": {"minimum": 106, "target": 108, "maximum": 110},
+    "feel": ["syncopated", "confident", "springy", "clean low end", "room for body isolations"],
+    "avoid": ["wall-to-wall maximal drums", "long ambient intro", "tempo changes", "lyrics that fight the three short text cards"]
+  },
+  "energy_arc": [
+    {"output_start_seconds": 0.0, "output_end_seconds": 2.266667, "energy": "immediate high hook", "music_need": "recognizable downbeat plus two compact impact pairs"},
+    {"output_start_seconds": 2.266667, "output_end_seconds": 6.733333, "energy": "drop into pocket, then build", "music_need": "steady groove with room around the snare"},
+    {"output_start_seconds": 6.733333, "output_end_seconds": 11.2, "energy": "lift", "music_need": "new layer, bass answer, or vocal pickup"},
+    {"output_start_seconds": 11.2, "output_end_seconds": 15.566667, "energy": "peak", "music_need": "fullest drum/bass statement"},
+    {"output_start_seconds": 15.566667, "output_end_seconds": 17.8, "energy": "final phrase and land", "music_need": "clear accent under the knee rise and a clean last beat"}
+  ],
+  "output_time_anchors": [
+    {"seconds": 0.06, "priority": "critical", "land_on": "first strong downbeat", "picture": "opening leg-lift impact"},
+    {"seconds": 1.133333, "priority": "high", "land_on": "beat or snare", "picture": "take-A to take-B match cut"},
+    {"seconds": 2.266667, "priority": "critical", "land_on": "bar downbeat", "picture": "impact crop opens into the groove"},
+    {"seconds": 4.5, "priority": "medium", "land_on": "beat", "picture": "hand-led phrase change"},
+    {"seconds": 6.733333, "priority": "critical", "land_on": "lift or new musical layer", "picture": "first broad arm sweep"},
+    {"seconds": 8.966667, "priority": "high", "land_on": "bar downbeat", "picture": "alternate-take lift"},
+    {"seconds": 11.2, "priority": "critical", "land_on": "drop or strongest bass hit", "picture": "wide-stance power peak"},
+    {"seconds": 13.433333, "priority": "medium", "land_on": "beat", "picture": "release phrase"},
+    {"seconds": 15.566667, "priority": "high", "land_on": "pickup", "picture": "LET IT LAND text lead"},
+    {"seconds": 15.666667, "priority": "critical", "land_on": "beat", "picture": "final take cut"},
+    {"seconds": 17.766667, "priority": "critical", "land_on": "last strong accent", "picture": "high-knee/open-arm landing"}
+  ],
+  "instagram_search_phrases": [
+    "Woman Doja Cat",
+    "108 bpm afro pop groove",
+    "bass forward R&B dance groove",
+    "syncopated funk pop 108 bpm"
+  ],
+  "selected_candidates": [
+    {
+      "rank": 1,
+      "artist": "Doja Cat",
+      "track": "Woman",
+      "collection": "Planet Her",
+      "catalog_track_id": 1573475829,
+      "catalog_duration_seconds": 172.627,
+      "catalog_genre": "Pop",
+      "catalog_query_url": "https://itunes.apple.com/search?term=Doja%20Cat%20Woman&entity=song&limit=3&country=US",
+      "apple_music_url": "https://music.apple.com/us/album/woman/1573475827?i=1573475829&uo=4",
+      "lawful_catalog_preview_url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/f8/39/61/f839618e-f56a-0c18-db43-200166f0a333/mzaf_2535473982320077367.plus.aac.p.m4a",
+      "analysis_estimated_bpm": 108.1,
+      "candidate_segment": {
+        "offset_basis": "Apple catalog preview-relative; not a verified full-track or Instagram-library offset",
+        "preview_start_seconds": 0.18,
+        "preview_end_seconds": 17.98,
+        "duration_seconds": 17.8,
+        "alignment": "Place the first strong preview downbeat at output 00:00.060. This balances sub-frame drift across the 17.8-second edit."
+      },
+      "why_it_fits": "The analyzed preview has a very stable approximately 108 BPM onset grid and the uncluttered, syncopated groove leaves room for the dancer's isolations.",
+      "instagram_availability": "UNVERIFIED — user must confirm this exact recording in their regional Instagram music library and manually locate the matching phrase.",
+      "rights_note": "Use only through Instagram's licensed music tool or another properly licensed workflow. The catalog preview is not embedded in source-only-preview.mp4."
+    }
+  ],
+  "handoff_steps": [
+    "In Instagram, search exactly for 'Woman' by Doja Cat and verify the artist/recording.",
+    "Scrub to a steady groove phrase matching the catalog-preview segment; because Apple does not expose the preview's full-track offset, locate it by ear.",
+    "Align the first strong downbeat to output 00:00.060, then check the critical anchors at 00:02.267, 00:06.733, 00:11.200, 00:15.667 and 00:17.767.",
+    "Mute or remove the synthetic metronome before publishing.",
+    "If the exact recording is unavailable, use the archetype/search phrases and prioritize tempo plus the critical anchors over title similarity."
+  ],
+  "commercial_audio_in_preview": false
+}

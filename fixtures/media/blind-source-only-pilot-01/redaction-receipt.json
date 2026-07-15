@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "nodevideo.public-redaction-receipt.v1",
+  "sourcePrivateReadLogSha256": "1cefe06ad7a73a4c1e386a4e07458564e49bab53d8856792c645c859d37b5e61",
+  "publicReadLogSha256": "626e8613d3b3d358d60097eaf150eecde71c4d55cf4c67f67c1e1cf8db8100b0",
+  "redactions": [
+    "Replaced the local pilot directory with <isolated-pilot>.",
+    "Replaced the product repository name with a generic label.",
+    "Described catalog preview URLs neutrally without making a legal characterization.",
+    "Clarified one catalog-ranking sentence from target fit to candidate fit."
+  ],
+  "contentRemoved": [
+    "local filesystem path"
+  ],
+  "generationDecisionsChanged": false
+}

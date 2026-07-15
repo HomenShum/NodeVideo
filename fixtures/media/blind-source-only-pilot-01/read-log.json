@@ -1,0 +1,632 @@
+{
+  "schema_version": "1.0",
+  "pilot_directory": "<isolated-pilot>",
+  "isolation_attestation": {
+    "filesystem_reads": "Only paths inside the pilot directory were listed, opened, probed, decoded, hashed or viewed.",
+    "filesystem_writes": "Only paths inside the pilot directory were created, modified or removed.",
+    "forbidden_material_accessed": false,
+    "parent_directories_listed_or_searched": false,
+    "target_or_reference_material_accessed": false,
+    "network_exception": "Public Apple/iTunes catalog metadata and public catalog preview URLs were used after explicit authorization. No product repository, target, reference, prior plan, or target-derived URL was accessed.",
+    "commercial_preview_retention": "All downloaded catalog preview audio and decoded derivatives were removed before submission."
+  },
+  "tool_invocations": [
+    {
+      "id": 1,
+      "tool": "shell_command",
+      "command_or_action": "Get-Content -Raw -LiteralPath '<pilot>/brief.md'",
+      "inputs": [
+        "brief.md"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Read the complete 1,617-byte pilot brief first."
+    },
+    {
+      "id": 2,
+      "tool": "shell_command",
+      "command_or_action": "Get-ChildItem -Force -LiteralPath '<pilot>'; Get-ChildItem -Force -LiteralPath '<pilot>/inputs'",
+      "inputs": [
+        "pilot directory metadata",
+        "inputs directory metadata"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Found brief.md, inputs/source-a.mp4 (2,848,396 bytes), and inputs/source-b.mp4 (3,806,933 bytes)."
+    },
+    {
+      "id": 3,
+      "tool": "shell_command",
+      "command_or_action": "ffprobe -v error -show_format -show_streams -of json inputs/source-a.mp4; repeat for source-b.mp4",
+      "inputs": [
+        "inputs/source-a.mp4",
+        "inputs/source-b.mp4"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Both sources are 640x360 H.264, 30 fps, stereo AAC 44.1 kHz; durations 57.598005 and 68.233333 seconds."
+    },
+    {
+      "id": 4,
+      "tool": "shell_command",
+      "command_or_action": "New-Item analysis; ffmpeg fps=1/2,scale,tile contact sheets for both inputs",
+      "inputs": [
+        "inputs/source-a.mp4",
+        "inputs/source-b.mp4"
+      ],
+      "outputs": [
+        "analysis/contact-a.jpg",
+        "analysis/contact-b.jpg"
+      ],
+      "status": "success",
+      "result_summary": "Created two 2-second-interval visual contact sheets."
+    },
+    {
+      "id": 5,
+      "tool": "view_image",
+      "command_or_action": "View both original-detail contact sheets",
+      "inputs": [
+        "analysis/contact-a.jpg",
+        "analysis/contact-b.jpg"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Established that both files are takes of the same solo dance and identified setup, active phrase and camera-return regions."
+    },
+    {
+      "id": 6,
+      "tool": "shell_command",
+      "command_or_action": "ffmpeg fps=2,scale=256:144,tile=10x6 over source A 0-30/30-58 and source B 0-30/30-60/60-68",
+      "inputs": [
+        "inputs/source-a.mp4",
+        "inputs/source-b.mp4"
+      ],
+      "outputs": [
+        "analysis/a-000-030.jpg",
+        "analysis/a-030-058.jpg",
+        "analysis/b-000-030.jpg",
+        "analysis/b-030-060.jpg",
+        "analysis/b-060-068.jpg"
+      ],
+      "status": "success",
+      "result_summary": "Created half-second visual surveys for exact phrase localization."
+    },
+    {
+      "id": 7,
+      "tool": "view_image",
+      "command_or_action": "View all five half-second survey sheets at original detail",
+      "inputs": [
+        "analysis/a-000-030.jpg",
+        "analysis/a-030-058.jpg",
+        "analysis/b-000-030.jpg",
+        "analysis/b-030-060.jpg",
+        "analysis/b-060-068.jpg"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Located the strongest leg, arm, wide-stance and finishing phrases; noted the background passerby in source B's middle section."
+    },
+    {
+      "id": 8,
+      "tool": "shell_command",
+      "command_or_action": "ffmpeg decode each source audio to mono 8 kHz WAV; run silencedetect and ebur128 on each source",
+      "inputs": [
+        "inputs/source-a.mp4",
+        "inputs/source-b.mp4"
+      ],
+      "outputs": [
+        "analysis/a-mono-8k.wav",
+        "analysis/b-mono-8k.wav"
+      ],
+      "status": "success_with_truncated_console_output",
+      "result_summary": "Created analysis WAVs; continuous audio was present. The verbose ebur128 console output exceeded display limits but processing completed."
+    },
+    {
+      "id": 9,
+      "tool": "shell_command",
+      "command_or_action": "ffmpeg loudnorm=print_format=json and silencedetect=-40dB:d=0.25 for each source",
+      "inputs": [
+        "inputs/source-a.mp4",
+        "inputs/source-b.mp4"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Measured source A at -21.07 LUFS, source B at -20.46 LUFS; no qualifying silence intervals were emitted."
+    },
+    {
+      "id": 10,
+      "tool": "apply_patch",
+      "command_or_action": "Create pure-standard-library onset/tempo analysis script",
+      "inputs": [],
+      "outputs": [
+        "analysis/analyze_audio.py"
+      ],
+      "status": "success"
+    },
+    {
+      "id": 11,
+      "tool": "shell_command",
+      "command_or_action": "python analysis/analyze_audio.py",
+      "inputs": [
+        "analysis/analyze_audio.py",
+        "analysis/a-mono-8k.wav",
+        "analysis/b-mono-8k.wav"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Source-B leading tempo estimate was 108.1 BPM; source-A room capture produced weak/ambiguous candidates."
+    },
+    {
+      "id": 12,
+      "tool": "shell_command",
+      "command_or_action": "ffmpeg fps=4 contact sheets for source A 14-30/30-46/46-54 and source B 20-36/36-52/52-68",
+      "inputs": [
+        "inputs/source-a.mp4",
+        "inputs/source-b.mp4"
+      ],
+      "outputs": [
+        "analysis/a-014-030-4fps.jpg",
+        "analysis/a-030-046-4fps.jpg",
+        "analysis/a-046-054-4fps.jpg",
+        "analysis/b-020-036-4fps.jpg",
+        "analysis/b-036-052-4fps.jpg",
+        "analysis/b-052-068-4fps.jpg"
+      ],
+      "status": "success"
+    },
+    {
+      "id": 13,
+      "tool": "view_image",
+      "command_or_action": "View all six 4 fps contact sheets at original detail",
+      "inputs": [
+        "analysis/a-014-030-4fps.jpg",
+        "analysis/a-030-046-4fps.jpg",
+        "analysis/a-046-054-4fps.jpg",
+        "analysis/b-020-036-4fps.jpg",
+        "analysis/b-036-052-4fps.jpg",
+        "analysis/b-052-068-4fps.jpg"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Made final shot selections and isolated clean source-B ranges before/after the passerby."
+    },
+    {
+      "id": 14,
+      "tool": "apply_patch",
+      "command_or_action": "Create custom 5x7 pixel-font PNG generator using Python standard library",
+      "inputs": [],
+      "outputs": [
+        "analysis/make_text_assets.py"
+      ],
+      "status": "success"
+    },
+    {
+      "id": 15,
+      "tool": "shell_command",
+      "command_or_action": "python analysis/make_text_assets.py",
+      "inputs": [
+        "analysis/make_text_assets.py"
+      ],
+      "outputs": [
+        "analysis/text-two-takes.png"
+      ],
+      "status": "failed_partial",
+      "result_summary": "Stopped on missing glyph C after writing the first text asset; KeyError was retained in this audit."
+    },
+    {
+      "id": 16,
+      "tool": "apply_patch",
+      "command_or_action": "Add the missing C glyph",
+      "inputs": [
+        "analysis/make_text_assets.py"
+      ],
+      "outputs": [
+        "analysis/make_text_assets.py"
+      ],
+      "status": "success"
+    },
+    {
+      "id": 17,
+      "tool": "shell_command",
+      "command_or_action": "python analysis/make_text_assets.py",
+      "inputs": [
+        "analysis/make_text_assets.py"
+      ],
+      "outputs": [
+        "analysis/text-two-takes.png",
+        "analysis/text-one-pocket.png",
+        "analysis/text-let-it-land.png"
+      ],
+      "status": "success"
+    },
+    {
+      "id": 18,
+      "tool": "view_image",
+      "command_or_action": "View all three text PNGs",
+      "inputs": [
+        "analysis/text-two-takes.png",
+        "analysis/text-one-pocket.png",
+        "analysis/text-let-it-land.png"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Detected right-edge truncation on LET IT LAND."
+    },
+    {
+      "id": 19,
+      "tool": "apply_patch",
+      "command_or_action": "Make pixel scale dynamic so long text fits the 900px banner",
+      "inputs": [
+        "analysis/make_text_assets.py"
+      ],
+      "outputs": [
+        "analysis/make_text_assets.py"
+      ],
+      "status": "success"
+    },
+    {
+      "id": 20,
+      "tool": "shell_command",
+      "command_or_action": "python analysis/make_text_assets.py",
+      "inputs": [
+        "analysis/make_text_assets.py"
+      ],
+      "outputs": [
+        "analysis/text-two-takes.png",
+        "analysis/text-one-pocket.png",
+        "analysis/text-let-it-land.png"
+      ],
+      "status": "success"
+    },
+    {
+      "id": 21,
+      "tool": "view_image",
+      "command_or_action": "Re-view corrected LET IT LAND asset",
+      "inputs": [
+        "analysis/text-let-it-land.png"
+      ],
+      "outputs": [],
+      "status": "success"
+    },
+    {
+      "id": 22,
+      "tool": "apply_patch",
+      "command_or_action": "Create ffmpeg preview filter graph with nine exact trims, blurred 9:16 bed, sharp foreground crops, text overlays and metronome output labels",
+      "inputs": [],
+      "outputs": [
+        "analysis/preview-filter.txt"
+      ],
+      "status": "success"
+    },
+    {
+      "id": 23,
+      "tool": "shell_command",
+      "command_or_action": "ffmpeg -i source-a -i source-b -loop text PNG inputs -f lavfi aevalsrc 108-BPM metronome -filter_complex_script analysis/preview-filter.txt -map video/audio -t 17.777778 -c:v libx264 -c:a aac source-only-preview.mp4",
+      "inputs": [
+        "inputs/source-a.mp4",
+        "inputs/source-b.mp4",
+        "analysis/text-two-takes.png",
+        "analysis/text-one-pocket.png",
+        "analysis/text-let-it-land.png",
+        "analysis/preview-filter.txt"
+      ],
+      "outputs": [
+        "source-only-preview.mp4"
+      ],
+      "status": "running_yielded",
+      "result_summary": "Renderer exceeded the initial 10-second yield window and continued under cell id 23."
+    },
+    {
+      "id": 24,
+      "tool": "wait",
+      "command_or_action": "Wait 10 seconds on render cell 23",
+      "inputs": [
+        "render cell 23"
+      ],
+      "outputs": [],
+      "status": "still_running"
+    },
+    {
+      "id": 25,
+      "tool": "wait",
+      "command_or_action": "Wait 10 seconds on render cell 23",
+      "inputs": [
+        "render cell 23"
+      ],
+      "outputs": [],
+      "status": "still_running"
+    },
+    {
+      "id": 26,
+      "tool": "wait",
+      "command_or_action": "Wait 10 seconds on render cell 23",
+      "inputs": [
+        "render cell 23"
+      ],
+      "outputs": [],
+      "status": "still_running"
+    },
+    {
+      "id": 27,
+      "tool": "wait",
+      "command_or_action": "Wait 10 seconds on render cell 23",
+      "inputs": [
+        "render cell 23"
+      ],
+      "outputs": [
+        "source-only-preview.mp4"
+      ],
+      "status": "success",
+      "result_summary": "Render completed in 54 seconds: 1080x1920 H.264, 534 frames, synthetic mono AAC; no source or catalog audio mapped."
+    },
+    {
+      "id": 28,
+      "tool": "shell_command",
+      "command_or_action": "ffprobe source-only-preview.mp4; ffmpeg fps=2 vertical contact sheet",
+      "inputs": [
+        "source-only-preview.mp4"
+      ],
+      "outputs": [
+        "analysis/preview-contact.jpg"
+      ],
+      "status": "success",
+      "result_summary": "Verified 17.8 seconds, 1080x1920, 30 fps, 534 video frames, mono 48 kHz AAC."
+    },
+    {
+      "id": 29,
+      "tool": "view_image",
+      "command_or_action": "View preview contact sheet at original detail",
+      "inputs": [
+        "analysis/preview-contact.jpg"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Visual QA passed: subject remains legible, text fits, background is clean, and the energy arc reads."
+    },
+    {
+      "id": 30,
+      "tool": "shell_command",
+      "command_or_action": "Invoke-RestMethod on three iTunes Search API URLs: Channel Tres Topdown; Doja Cat Woman; Calvin Harris Slide",
+      "inputs": [
+        "https://itunes.apple.com/search?term=Channel%20Tres%20Topdown&entity=song&limit=3&country=US",
+        "https://itunes.apple.com/search?term=Doja%20Cat%20Woman&entity=song&limit=3&country=US",
+        "https://itunes.apple.com/search?term=Calvin%20Harris%20Slide&entity=song&limit=3&country=US"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Read public catalog metadata; Woman returned track id 1573475829 and a lawful preview URL."
+    },
+    {
+      "id": 31,
+      "tool": "shell_command",
+      "command_or_action": "Invoke-RestMethod on iTunes Search API URLs for Dua Lipa Levitating, Tinashe 2 On, and Channel Tres",
+      "inputs": [
+        "https://itunes.apple.com/search?term=Dua%20Lipa%20Levitating&entity=song&limit=3&country=US",
+        "https://itunes.apple.com/search?term=Tinashe%202%20On&entity=song&limit=3&country=US",
+        "https://itunes.apple.com/search?term=Channel%20Tres&entity=song&limit=10&country=US"
+      ],
+      "outputs": [],
+      "status": "success"
+    },
+    {
+      "id": 32,
+      "tool": "apply_patch",
+      "command_or_action": "Add arbitrary WAV CLI support to analysis/analyze_audio.py",
+      "inputs": [
+        "analysis/analyze_audio.py"
+      ],
+      "outputs": [
+        "analysis/analyze_audio.py"
+      ],
+      "status": "success"
+    },
+    {
+      "id": 33,
+      "tool": "shell_command",
+      "command_or_action": "Invoke-WebRequest three lawful Apple preview URLs to local analysis files",
+      "inputs": [
+        "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/f8/39/61/f839618e-f56a-0c18-db43-200166f0a333/mzaf_2535473982320077367.plus.aac.p.m4a",
+        "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/59/dc/4d/59dc4dda-93ff-8f1c-c536-f005f6ea6af5/mzaf_3066686759813252385.plus.aac.p.m4a",
+        "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/7e/9b/ef/7e9bef7b-6388-2614-e13b-c028d97c5f79/mzaf_1778631616607324538.plus.aac.p.m4a"
+      ],
+      "outputs": [
+        "analysis/catalog-woman.m4a",
+        "analysis/catalog-levitating.m4a",
+        "analysis/catalog-take-your-time.m4a"
+      ],
+      "status": "success"
+    },
+    {
+      "id": 34,
+      "tool": "shell_command",
+      "command_or_action": "ffprobe the three catalog previews; ffmpeg decode each to mono 8 kHz WAV",
+      "inputs": [
+        "analysis/catalog-woman.m4a",
+        "analysis/catalog-levitating.m4a",
+        "analysis/catalog-take-your-time.m4a"
+      ],
+      "outputs": [
+        "analysis/catalog-woman-8k.wav",
+        "analysis/catalog-levitating-8k.wav",
+        "analysis/catalog-take-your-time-8k.wav"
+      ],
+      "status": "success",
+      "result_summary": "Each preview was approximately 30 seconds."
+    },
+    {
+      "id": 35,
+      "tool": "shell_command",
+      "command_or_action": "python analysis/analyze_audio.py catalog-woman-8k.wav catalog-levitating-8k.wav catalog-take-your-time-8k.wav",
+      "inputs": [
+        "analysis/analyze_audio.py",
+        "analysis/catalog-woman-8k.wav",
+        "analysis/catalog-levitating-8k.wav",
+        "analysis/catalog-take-your-time-8k.wav"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Leading estimates: Woman 108.1 BPM, Levitating 104.3 BPM, take your time about 112 BPM. Woman was the closest stable fit."
+    },
+    {
+      "id": 36,
+      "tool": "shell_command",
+      "command_or_action": "Invoke-RestMethod iTunes Search API for Doja Cat Kiss Me More",
+      "inputs": [
+        "https://itunes.apple.com/search?term=Doja%20Cat%20Kiss%20Me%20More&entity=song&limit=3&country=US"
+      ],
+      "outputs": [],
+      "status": "success"
+    },
+    {
+      "id": 37,
+      "tool": "shell_command",
+      "command_or_action": "Download lawful Kiss Me More Apple preview; ffprobe; decode to mono 8 kHz WAV; analyze tempo",
+      "inputs": [
+        "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/8f/f9/cd/8ff9cdda-0037-3a34-0f3e-f0b9d2c2f290/mzaf_5290116035450316980.plus.aac.p.m4a",
+        "analysis/analyze_audio.py"
+      ],
+      "outputs": [
+        "analysis/catalog-kiss-me-more.m4a",
+        "analysis/catalog-kiss-me-more-8k.wav"
+      ],
+      "status": "success",
+      "result_summary": "Estimated approximately 110-112 BPM; Woman remained the better candidate fit."
+    },
+    {
+      "id": 38,
+      "tool": "shell_command",
+      "command_or_action": "ffmpeg select=gt(scene,0.08),showinfo on source-only-preview.mp4",
+      "inputs": [
+        "source-only-preview.mp4"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Confirmed major visible cut frames at 1.133333, 2.266667, 4.5, 8.966667, 11.2 and 15.666667 seconds; same-source cuts below threshold were reconstructed from the 30 fps filter timeline."
+    },
+    {
+      "id": 39,
+      "tool": "apply_patch",
+      "command_or_action": "Write the three core creative deliverables",
+      "inputs": [
+        "source-derived analysis already logged"
+      ],
+      "outputs": [
+        "edit-plan.json",
+        "music-handoff.json",
+        "rationale.md"
+      ],
+      "status": "success"
+    },
+    {
+      "id": 40,
+      "tool": "shell_command",
+      "command_or_action": "Parse edit-plan.json and music-handoff.json with ConvertFrom-Json; ffprobe final preview; verify resolved analysis path is exactly <pilot>/analysis; inventory and recursively remove analysis directory",
+      "inputs": [
+        "edit-plan.json",
+        "music-handoff.json",
+        "source-only-preview.mp4",
+        "analysis directory"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Both JSON files parsed; preview reconfirmed as 17.8 seconds/534 frames; all temporary visual, audio, script, filter and catalog-preview artifacts were deleted after an absolute-path containment check."
+    },
+    {
+      "id": 41,
+      "tool": "shell_command",
+      "command_or_action": "First PowerShell SHA-256 collection attempt",
+      "inputs": [
+        "inputs/source-a.mp4",
+        "inputs/source-b.mp4",
+        "edit-plan.json",
+        "music-handoff.json",
+        "rationale.md",
+        "source-only-preview.mp4"
+      ],
+      "outputs": [],
+      "status": "failed",
+      "result_summary": "PowerShell parser rejected an empty pipe element; no files changed."
+    },
+    {
+      "id": 42,
+      "tool": "shell_command",
+      "command_or_action": "Get-Item and Get-FileHash -Algorithm SHA256 for both inputs and all completed deliverables except read-log/freeze",
+      "inputs": [
+        "inputs/source-a.mp4",
+        "inputs/source-b.mp4",
+        "edit-plan.json",
+        "music-handoff.json",
+        "rationale.md",
+        "source-only-preview.mp4"
+      ],
+      "outputs": [],
+      "status": "success",
+      "result_summary": "Captured byte sizes and SHA-256 values used by freeze.json."
+    },
+    {
+      "id": 43,
+      "tool": "apply_patch",
+      "command_or_action": "Write this audit log",
+      "inputs": [
+        "all preceding command/tool results"
+      ],
+      "outputs": [
+        "read-log.json"
+      ],
+      "status": "success"
+    }
+  ],
+  "temporary_outputs_written_then_removed": [
+    "analysis/contact-a.jpg",
+    "analysis/contact-b.jpg",
+    "analysis/a-000-030.jpg",
+    "analysis/a-030-058.jpg",
+    "analysis/b-000-030.jpg",
+    "analysis/b-030-060.jpg",
+    "analysis/b-060-068.jpg",
+    "analysis/a-mono-8k.wav",
+    "analysis/b-mono-8k.wav",
+    "analysis/analyze_audio.py",
+    "analysis/a-014-030-4fps.jpg",
+    "analysis/a-030-046-4fps.jpg",
+    "analysis/a-046-054-4fps.jpg",
+    "analysis/b-020-036-4fps.jpg",
+    "analysis/b-036-052-4fps.jpg",
+    "analysis/b-052-068-4fps.jpg",
+    "analysis/make_text_assets.py",
+    "analysis/text-two-takes.png",
+    "analysis/text-one-pocket.png",
+    "analysis/text-let-it-land.png",
+    "analysis/preview-filter.txt",
+    "analysis/preview-contact.jpg",
+    "analysis/catalog-woman.m4a",
+    "analysis/catalog-woman-8k.wav",
+    "analysis/catalog-levitating.m4a",
+    "analysis/catalog-levitating-8k.wav",
+    "analysis/catalog-take-your-time.m4a",
+    "analysis/catalog-take-your-time-8k.wav",
+    "analysis/catalog-kiss-me-more.m4a",
+    "analysis/catalog-kiss-me-more-8k.wav"
+  ],
+  "final_outputs_written": [
+    "edit-plan.json",
+    "music-handoff.json",
+    "rationale.md",
+    "read-log.json",
+    "source-only-preview.mp4",
+    "freeze.json (written last by the finalization protocol below)"
+  ],
+  "finalization_protocol": [
+    {
+      "order": 1,
+      "tool": "shell_command",
+      "action": "Parse read-log.json and compute its SHA-256/byte size; also re-check the already captured hashes without modifying any file."
+    },
+    {
+      "order": 2,
+      "tool": "apply_patch",
+      "action": "Write freeze.json with hashes for both inputs and every non-receipt deliverable. This is the last filesystem write."
+    }
+  ],
+  "receipt_self_hash_policy": "freeze.json does not hash itself because a file cannot contain its own stable cryptographic hash. It hashes every other deliverable plus both inputs."
+}
