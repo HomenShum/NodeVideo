@@ -1,0 +1,51 @@
+{
+  "schema": "nodevideo.case-adjudication.v2",
+  "caseId": "authorized-real-v1",
+  "status": "invalidated",
+  "adjudicatedAt": "2026-07-15",
+  "historicalClaimTier": "perceptually-close-video",
+  "currentVerdict": "failed-audiovisual-reconstruction",
+  "summary": "The historical receipt is byte-valid, but its quality verdict is invalid. It omitted the target soundtrack and most timed overlays, and one full picture passage used the wrong source motion.",
+  "findings": [
+    {
+      "id": "wrong-source-window",
+      "severity": "release-blocking",
+      "timelineRange": { "startFrame": 482, "endFrameExclusive": 589 },
+      "observedSourceRange": { "startFrame": 866, "endFrameExclusive": 973 },
+      "expectedSourceRange": { "startFrame": 942, "endFrameExclusive": 1049 },
+      "offsetErrorFrames": -76,
+      "contentOnlySsim": 0.809175
+    },
+    {
+      "id": "soundtrack-omitted",
+      "severity": "release-blocking",
+      "targetSourceAudioMuted": true,
+      "musicRequired": true,
+      "musicIdentity": {
+        "title": "Sign",
+        "artist": "82MAJOR",
+        "isrc": "KRA382601866"
+      }
+    },
+    {
+      "id": "timed-overlays-omitted",
+      "severity": "release-blocking",
+      "expectedCueIntervals": 31,
+      "socialLayerIsGlobalAndAnimated": true
+    },
+    {
+      "id": "metric-masking",
+      "severity": "release-blocking",
+      "fitFrameBlackAreaRatio": 0.6828,
+      "historicalVmaf": 29.819468,
+      "explanation": "Global padded-frame SSIM and audio-excluded evaluation concealed the visible failure."
+    }
+  ],
+  "releasePolicy": {
+    "mayClaimPass": false,
+    "permanentRegressionRange": { "startFrame": 482, "endFrameExclusive": 589 },
+    "requireAudioEvaluation": true,
+    "requireTimedOverlayEvaluation": true,
+    "requireWorstWindowGate": true
+  }
+}

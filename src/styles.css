@@ -93,7 +93,7 @@
   }
 
   body {
-    @apply min-w-80 bg-background font-sans text-foreground antialiased;
+    @apply bg-background font-sans text-foreground antialiased;
   }
 
   button:not(:disabled),

@@ -1,189 +1,200 @@
 # NodeVideo architecture
 
-## Architectural decision
+## Product outcome
 
-NodeVideo separates deterministic media execution from public presentation. A versioned FFmpeg
-worker performs frame, audio, color, and comparison work locally or in CI and writes typed,
-hash-bound artifacts. The Vercel application fetches and verifies those records and media before it
-replays them. React never manufactures worker success or implies that FFmpeg ran in the browser.
+NodeVideo is building an artifact-driven video-editing service. The current release demonstrates
+owner-authorized target understanding and plan-driven reconstruction; autonomous source-only
+editing remains the target architecture. The product is not paid for because it can emit FFmpeg
+syntax or React code. It is paid for when it can understand and deliver a creator's intended
+outcome: source selection, pacing, music, text, framing, grade, mix, and a usable export.
+
+The architectural rule is:
+
+> The agent handles intent, orchestration, choices, and explanation. Versioned tools produce
+> evidence. A typed edit plan controls fixed render templates. Critics may propose typed plan
+> patches, never arbitrary code.
+
+## Three claims that must stay separate
+
+| Mode | Target access | Allowed render assets | What a pass proves |
+| --- | --- | --- | --- |
+| Reference understanding | Analyzer sees the final target | None | The system recovered its cuts, sources, music, text, framing, grade, and effects |
+| Render fidelity | Renderer receives no final-target container or picture pixels | Generated plan, source footage, licensed assets, and explicitly disclosed target-derived assets | The generated plan and declared assets can reproduce the understood edit |
+| Target autonomous editing | Planner and critic never see the target | Raw footage, user brief, owned/licensed catalog | A held-out pass would show preferred-edit creation without answer leakage |
+
+A target-derived soundtrack or grade LUT can be used in an owner-authorized fidelity replay when
+its lineage is explicit. Those assets do not permit the target container or target picture pixels
+to enter the renderer, and they disqualify that run from blind music-selection or grade evidence.
+
+## Control plane and media plane
 
 ```mermaid
 flowchart LR
-  OA["Owner-authorized source media"] --> W["Deterministic local/CI worker\nFFmpeg + FFprobe"]
-  T["Final MP4\nanalysis + evaluation only"] --> W
-  W --> P["Manifest + result + receipt"]
-  W --> M["Metadata-stripped derivative media"]
-  P --> V["Vercel static replay"]
-  M --> V
-  V --> B["Browser SHA-256 + contract verification"]
-  B -->|"all checks pass"| UI["shadcn + AI Elements UI\nreact-o11y trace"]
-  B -->|"mismatch"| F["Fail closed"]
+  U["Creator brief and uploads"] --> UI["AI Elements interaction shell"]
+  UI --> A["NodeAgent orchestrator"]
+  A --> W["Convex durable workflow"]
+  W --> T["Versioned deterministic tools"]
+  T --> EU["EditUnderstanding artifact"]
+  EU --> EP["OpenTimelineIO EditPlan"]
+  EP --> R["Fixed Remotion and FFmpeg templates"]
+  R --> CR["Deterministic critic"]
+  CR -->|"typed patch"| EP
+  R --> MM["Bounded taste critic"]
+  MM -->|"typed patch"| EP
+  R --> O["Preview, approval, export"]
+  W --> TR["react-o11y trace"]
+  EU --> UI
+  EP --> UI
+  CR --> UI
+  TR --> UI
 ```
 
-The target MP4 informs case-specific timing, framing, grade, and evaluation. It is never a
-reconstruction render input. Reconstruction pixels come from the two source MOVs and independently
-recreated graphics; output audio comes from cut source audio with a silent branded tail.
+The web application is the control plane. Large media and CPU/GPU work stay in a worker/object
+storage plane. Vercel presents projects, progress, artifacts, approvals, and replayable evidence; it
+does not pretend a browser request performed heavy transcoding.
 
-## Layer ownership
+## Responsibility by layer
 
-| Layer | Owns | Does not own | Reuse source |
-| --- | --- | --- | --- |
-| Presentation | consent disclosure, verification state, six media views, measured quality, trace replay | frame math, invented receipts, live-worker claims | generated shadcn/ui and AI Elements |
-| Published-case loader | fetching, SHA-256, schema relationships, lineage and metric agreement, fail-closed behavior | media transformation | Web Crypto plus typed case contracts |
-| Media worker | probe, sanitization, source selection, trim, fit/fill, color transform, recreated overlays, audio, comparison renders, metrics | browser presentation | FFmpeg/FFprobe and deterministic worker utilities |
-| Capability pack | input/output schemas, tool graph, consent and claim rules, evaluation fixture | blanket authorization for another case | versioned pack contract |
-| Trace adapter | recorded span hierarchy, status, and timing | orchestration policy or hidden reasoning | `@assistant-ui/react-o11y` |
-| Release proof | hashes, decodability, structural assertions, browser journeys, accessibility, responsive layout | turning one case into a generic capability claim | Vitest, Playwright, Axe, FFprobe |
+| Layer | Owns | Must not own |
+| --- | --- | --- |
+| AI Elements | conversation, uploads, tool cards, checkpoints, artifact cards, approvals | domain state, frame math, bespoke page layout generated by a model |
+| NodeAgent | intent, plan selection, tool calls, retry/cancel policy, artifact explanations | pixel transforms, beat calculations, pose math, arbitrary renderer code |
+| react-o11y | trace tree, waterfall, statuses, tool/model metadata | orchestration policy or hidden chain of thought |
+| Convex Workflow | durable jobs, retries, leases, events, versions, approvals, lineage | media bytes and heavy media processing |
+| Media workers | decoding, analysis, rendering, muxing, objective evaluation | product policy or untyped agent decisions |
+| Fixed UI registry | predictable rendering for each artifact type | interpreting free-form model layout instructions |
 
-## Current evidence modes
+The current Vite/React application selectively reuses source-distributed shadcn and AI Elements
+components. It does not switch frameworks or couple domain state to a chat hook.
 
-### Owner-authorized real case
+## Primitive-first media stack
 
-The live UI foregrounds `authorized-real-v1`. Publication is limited to metadata-stripped
-derivatives covered by explicit owner authorization. The browser hashes the manifest, result,
-receipt, and six derivative videos before showing the media, then verifies:
+NodeVideo integrates established primitives behind narrow adapters instead of recreating their core
+algorithms.
 
-- the target is `analysis-and-evaluation-only` and absent from render inputs;
-- both MOV source asset IDs are present in render lineage;
-- target audio is neither matched nor copied;
-- manifest, result, receipt, media roles, metrics, and hashes agree; and
-- the worker receipt and result both report a passing validation.
+| Need | Primitive | Adapter output |
+| --- | --- | --- |
+| Editorial interchange | OpenTimelineIO | `.otio` plus NodeVideo metadata |
+| Cut discovery | PySceneDetect | target shot boundaries and confidence |
+| Coarse visual retrieval | DINOv2 and Faiss | ranked source-frame candidates |
+| Geometric verification | OpenCV | inliers, reprojection error, refined frame offset |
+| Body-aware matching/reframe | MediaPipe Pose/Face | landmark tracks, subject boxes, confidence |
+| Beat/onset/audio alignment | librosa | beat, onset, tempo, phrase and subsequence evidence |
+| Speech timing | Whisper | timestamped transcript with confidence |
+| Text extraction | PaddleOCR or EasyOCR adapter | text, boxes, timing, confidence |
+| Color management | OpenColorIO and FFmpeg `zscale` | declared transform/LUT artifact |
+| Composition | fixed Remotion components | plan-prop composition |
+| Encode, loudness, mux | FFmpeg | final media and technical receipt |
+| Durable execution | Convex Workflow | resumable job and step events |
 
-The reconstruction has exact target structure: 720x1280 at 30 fps, 1,335 frames, 44.5 seconds, and
-hard cuts at frames `201`, `482`, `589`, and `753`. Its measured decoded-video result is SSIM
-`0.946873`, PSNR `26.311718 dB`, and VMAF `29.819468`. The permitted tier is
-`perceptually-close-video`, not pixel-exact reproduction.
+Every adapter records its version, parameters, input/output hashes, frame or sample range,
+confidence, latency, and artifact IDs.
 
-This is a case-specific target-guided result. The target soundtrack is not present in the MOV
-sources, so the output uses cut source audio and a silent branded tail. The target soundtrack
-remains unmatched and was not copied.
+## Canonical artifacts
 
-### Generated generic smoke proof
+### EditUnderstanding
 
-The `tutorial-compare` worker uses generated videos with known PCM pulses and color markers. It
-remains the default generic fixture and CI smoke proof because it is reproducible without authorized
-human media. It validates deterministic worker orchestration and known-marker measurement, not
-generic human pose, production music, or arbitrary edit reconstruction.
+The analyzer emits evidence, not renderer instructions:
 
-## Execution and replay boundary
+- source and target shots;
+- ranked source candidates and verification confidence;
+- beat, onset, phrase, energy, and audio-event maps;
+- explicit source-audio routing;
+- music identity, excerpt offset, gain, and license/provenance status;
+- transcript and text/graphic intervals with normalized boxes;
+- crop and subject tracks;
+- grade analysis; and
+- warnings where evidence is incomplete.
 
-The authorized worker runs locally or in CI. It requires explicit case authorization, probes the
-three inputs, writes sanitized release media, reconstructs from both source MOVs, generates web
-proxies and comparison views, evaluates decoded video, validates structural assertions, and writes
-the result and receipt atomically.
+### EditPlan
 
-Vercel stores and serves the checked-in derivatives and proof records. It performs no transcoding,
-frame matching, tone mapping, or metric calculation. “Verified replay” means the browser checked the
-deployed bytes and their recorded relationships; it does not mean the site reran the worker.
+The planner compiles accepted evidence into a standard timeline:
 
-The six published video roles are:
+- one contiguous primary video track with source, freeze, and black clips;
+- program, music, voiceover, and effects audio tracks;
+- text and graphic overlay tracks;
+- frame-accurate video timing and sample-aware audio intent;
+- fixed template IDs and normalized boxes;
+- beat grid; and
+- explicit render, evaluation-only, and target-derived lineage.
 
-1. source A web proxy;
-2. source B web proxy;
-3. final-target web proxy;
-4. source-only reconstruction;
-5. target/reconstruction side-by-side; and
-6. amplified pixel difference.
+The plan cannot carry CSS, JSX, shell commands, or an arbitrary FFmpeg filter graph.
 
-The target proxy is present for inspection and evaluation only. Its existence in the UI does not
-make it a reconstruction source.
+### CriticReport
 
-## Authorized reconstruction graph
+The critic emits scores, evidence-linked findings, worst windows, and a bounded list of typed
+patches such as:
+
+- `replace-clip`;
+- `nudge-cut`;
+- `set-crop-keyframes`;
+- `set-overlay`;
+- `set-audio-mix`; and
+- `set-grade`.
+
+Objective scores must improve before a patch is accepted. The loop is capped and falls back to
+creator review instead of iterating indefinitely.
+
+## Reference-understanding workflow
 
 ```mermaid
 flowchart TD
-  A["Source MOV A"] --> PR["Probe + sanitize"]
-  B["Source MOV B"] --> PR
-  T["Final MP4 target"] --> AN["Infer timing, layout, and grade"]
-  PR --> R["Trim + fit/fill + tone map"]
-  G["Independently recreated graphics"] --> R
-  AN --> R
-  A --> AU["Cut source audio"]
-  B --> AU
-  R --> RC["720x1280 / 30 fps / 1335-frame reconstruction"]
-  AU --> RC
-  T --> EV["Decoded-video SSIM / PSNR / VMAF"]
-  RC --> EV
-  RC --> CMP["Side-by-side + difference"]
-  T --> CMP
-  EV --> VAL["Structural + lineage + metric validation"]
-  CMP --> VAL
-  VAL --> REC["Manifest + result + receipt"]
+  T["Final target"] --> S["PySceneDetect shots"]
+  A["Source A"] --> I["Frame and pose index"]
+  B["Source B"] --> I
+  T --> M["Music, beat, onset, silence, SFX"]
+  T --> X["OCR and graphic tracks"]
+  S --> C["Candidate retrieval"]
+  I --> C
+  C --> G["OpenCV geometric/motion verification"]
+  M --> E["EditUnderstanding"]
+  X --> E
+  G --> E
+  E --> P["Typed EditPlan and OTIO"]
+  P --> R["Plan-only renderer"]
+  R --> Q["Event-level evaluator"]
 ```
 
-The graph is deterministic and case-specific. It does not discover an arbitrary edit without a
-target, reproduce unavailable music, copy target frames, or execute a model-driven creative agent.
+Evaluator-only ground truth is physically and logically separated. Analyzer, planner, renderer, and
+critic code must never import it.
 
-## Contracts and invariants
+## Target autonomous-editing workflow
 
-`packs/reference-reconstruct` defines the real-case boundary through its manifest, skill
-instructions, input/output schemas, typed tool registry, and bound evaluation. The following
-invariants are release-blocking:
+For an unseen-edit evaluation, the target architecture mounts the target only inside the evaluator
+after the edit is frozen. NodeAgent would receive raw footage, a creator brief, constraints, and a
+rights-cleared catalog; ask deterministic tools for evidence; generate multiple typed plans; render
+previews; and rank them by technical quality, rhythm, narrative coherence, subject framing, text
+legibility, mix, and creator preference. Human A/B ratings would be the primary taste signal, with a
+model judge secondary and calibrated to those ratings. The current V2 replay does not demonstrate
+this blind workflow.
 
-- owner authorization is explicit and scoped to this publication;
-- original source-container metadata is not published;
-- private local locators do not appear in public records;
-- the target is analysis/evaluation-only and excluded from reconstruction render lineage;
-- both MOV sources contribute to the output timeline;
-- graphics are independently recreated rather than copied target pixels;
-- output audio is sourced from the MOVs, target audio is excluded, and the limitation is disclosed;
-- output structure and cut frames equal the validated contract;
-- metrics are computed from decoded target/reconstruction video with target audio excluded; and
-- a failed hash, decode, schema, lineage, or structural check cannot produce a passing receipt.
+## Release gates
 
-The `tutorial-compare` capability pack retains its narrower generated-known-marker profile. Passing
-that profile does not upgrade or generalize the authorized case, and the authorized case does not
-establish blanket publication consent for future media.
+A release must pass all relevant layers:
 
-## Trace and presentation contract
+1. technical decode, dimensions, frame count, duration, loudness, clipping, and lineage;
+2. cut precision/recall and source identity/in-out frame error;
+3. crop trajectory and subject safe-area;
+4. text content, timing IoU, box IoU, and template match;
+5. music identity/license, excerpt offset, beat phase, gain, SFX, source leakage, and A/V sync;
+6. overlay-masked per-shot and worst-one-second picture metrics;
+7. grade error on aligned non-overlay pixels; and
+8. blinded creator preference for autonomous-editing claims.
 
-The real-case receipt records seven measured worker spans: input probing, release sanitization,
-reconstruction render, source proxies, target proxy, comparisons, and evaluation. The frontend maps
-those records into a headless `react-o11y` trace and presents them with generated AI Elements tool and
-checkpoint primitives.
+No global average may hide a release-blocking worst window.
 
-A trace may contain public IDs, hashes, stages, timings, versions, status, artifact roles, and
-validation verdicts. It must not contain local source locators, raw container metadata, credentials,
-media bytes, or hidden chain-of-thought.
+## V1 historical adjudication
 
-The UI is intentionally a small verification surface. The refactor replaced the earlier bespoke
-feature shell with generated shadcn controls, AI Elements artifact/tool/checkpoint primitives, and
-the react-o11y trace adapter. Authored UI fell from 889 to 253 logical lines while retaining laptop,
-tablet, and phone coverage.
+The owner-authorized V1 receipt remains immutable evidence of what ran, but its quality verdict is
+invalidated:
 
-## Failure, consent, and publication behavior
+- output frames 482-588 used Source A frames 866-972; the target uses 942-1048, a 76-frame error;
+- 68.28% of each fit frame is black, inflating full-frame SSIM;
+- VMAF was only 29.819468;
+- the target soundtrack, silence transition, and end sting were excluded;
+- most timed text and the cut-spanning animated social layer were absent; and
+- the worker consumed hardcoded case constants rather than a generated plan.
 
-- A hash or contract mismatch blocks media presentation and reports an error.
-- Missing or undecodable artifacts fail verification; the UI cannot infer success from a receipt
-  label alone.
-- Real-media publication requires case-specific authorization; one approved case is not blanket
-  consent.
-- Published derivatives are metadata-stripped and independently hash-verified.
-- The original source-container metadata remains outside the hosted artifact set.
-- The target's evaluation role must remain visible anywhere reconstruction quality is claimed.
-- Quality language must remain at `perceptually-close-video`; the metrics do not support pixel-exact
-  or generic-autopilot language.
-
-## Verification ladder
-
-1. **Contract/unit:** authorization, target exclusion, source lineage, target-audio exclusion, exact
-   timeline, view roles, metric agreement, and fail-closed malformed-data paths.
-2. **Worker verification:** SHA-256, FFprobe decodability, metadata sanitization, output structure,
-   cut frames, decoded-video metrics, and receipt/result schema validation.
-3. **Browser integrity:** hash the manifest, result, receipt, and six deployed videos before media
-   presentation.
-4. **Agentic UI:** owner-consent disclosure, target-role disclosure, quality tier, media switching,
-   recorded trace, failure states, keyboard access, Axe, and zero horizontal overflow.
-5. **Responsive release proof:** Playwright journeys at 1440, 1280, 834, 390, and 320 CSS pixels,
-   followed by the same checks against the public Vercel URL.
-
-Run the non-mutating proof verifiers with:
-
-```powershell
-npm run worker:authorized:verify
-npm run worker:verify
-```
-
-CI also enforces lint, typecheck, unit tests, capability schemas, final UI budgets, production build,
-and browser E2E. Broader claims require consent-cleared held-out cases whose evaluations are defined
-before their targets are inspected.
+The permanent regression range is frames 482-588 (16.067-19.633 seconds). It must fail regardless
+of aggregate scores. V1 is now shown only as hash-verified failure evidence; the foreground V2
+release is driven by typed plan artifacts and a separate render/audio adjudication.

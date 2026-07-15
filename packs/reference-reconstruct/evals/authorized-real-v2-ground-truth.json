@@ -1,0 +1,150 @@
+{
+  "schema": "nodevideo.reference-ground-truth.v2",
+  "id": "authorized-real-v2",
+  "visibility": "evaluator-only",
+  "prohibitedConsumers": ["analyzer", "planner", "renderer", "critic"],
+  "video": {
+    "frameRate": 30,
+    "width": 720,
+    "height": 1280,
+    "durationFrames": 1335,
+    "cutFrames": [201, 482, 589, 753, 1214, 1215],
+    "clips": [
+      {
+        "id": "a-fit-1",
+        "kind": "source",
+        "assetId": "asset.source-a-original",
+        "timelineRange": { "startFrame": 0, "endFrameExclusive": 201 },
+        "sourceRange": { "startFrame": 464, "endFrameExclusive": 665 },
+        "layout": "fit",
+        "playbackRate": 1
+      },
+      {
+        "id": "b-fill-1",
+        "kind": "source",
+        "assetId": "asset.source-b-original",
+        "timelineRange": { "startFrame": 201, "endFrameExclusive": 482 },
+        "sourceRange": { "startFrame": 963, "endFrameExclusive": 1244 },
+        "layout": "fill",
+        "playbackRate": 1
+      },
+      {
+        "id": "a-fit-2",
+        "kind": "source",
+        "assetId": "asset.source-a-original",
+        "timelineRange": { "startFrame": 482, "endFrameExclusive": 589 },
+        "sourceRange": { "startFrame": 942, "endFrameExclusive": 1049 },
+        "layout": "fit",
+        "playbackRate": 1,
+        "permanentRegression": true
+      },
+      {
+        "id": "b-fill-2",
+        "kind": "source",
+        "assetId": "asset.source-b-original",
+        "timelineRange": { "startFrame": 589, "endFrameExclusive": 753 },
+        "sourceRange": { "startFrame": 1355, "endFrameExclusive": 1519 },
+        "layout": "fill",
+        "playbackRate": 1
+      },
+      {
+        "id": "a-fit-3",
+        "kind": "source",
+        "assetId": "asset.source-a-original",
+        "timelineRange": { "startFrame": 753, "endFrameExclusive": 1214 },
+        "sourceRange": { "startFrame": 1212, "endFrameExclusive": 1673 },
+        "layout": "fit",
+        "playbackRate": 1
+      },
+      {
+        "id": "black-transition",
+        "kind": "black",
+        "timelineRange": { "startFrame": 1214, "endFrameExclusive": 1215 }
+      },
+      {
+        "id": "end-card-freeze",
+        "kind": "freeze",
+        "assetId": "asset.source-a-original",
+        "sourceFrame": 1672,
+        "timelineRange": { "startFrame": 1215, "endFrameExclusive": 1335 },
+        "layout": "fit"
+      }
+    ]
+  },
+  "audio": {
+    "sourceAudioMode": "muted",
+    "music": {
+      "title": "Sign",
+      "artist": "82MAJOR",
+      "isrc": "KRA382601866",
+      "targetRangeMs": { "start": 0, "end": 40338.6 },
+      "releasedMasterOffsetMs": 29146,
+      "gainDb": -6.12,
+      "playbackRate": 1,
+      "rightsBoundary": "target-derived authorized fidelity only; not autonomous catalog proof"
+    },
+    "events": [
+      { "kind": "silence", "startMs": 40338.6, "endMs": 40837.3 },
+      { "kind": "end-sting", "startMs": 40837.3, "endMs": 42153.5 },
+      { "kind": "silence", "startMs": 42153.5, "endMs": 44500 }
+    ],
+    "minimumReferenceCorrelation": 0.97,
+    "maximumAbsoluteSourceLeakageCorrelation": 0.05
+  },
+  "textCues": [
+    { "startFrame": 0, "endFrameExclusive": 58, "text": "Sign - solo practice" },
+    { "startFrame": 65, "endFrameExclusive": 98, "text": "Left | Right" },
+    { "startFrame": 99, "endFrameExclusive": 127, "text": "Alright" },
+    { "startFrame": 134, "endFrameExclusive": 157, "text": "Flip flip" },
+    { "startFrame": 170, "endFrameExclusive": 201, "text": "Jojo mode" },
+    { "startFrame": 203, "endFrameExclusive": 228, "text": "Head + chest" },
+    { "startFrame": 228, "endFrameExclusive": 239, "text": "Clack" },
+    { "startFrame": 286, "endFrameExclusive": 291, "text": "Chin" },
+    { "startFrame": 295, "endFrameExclusive": 299, "text": "Head" },
+    { "startFrame": 301, "endFrameExclusive": 333, "text": "Wheel" },
+    { "startFrame": 341, "endFrameExclusive": 367, "text": "Right now" },
+    { "startFrame": 368, "endFrameExclusive": 383, "text": "Sharp + clean" },
+    { "startFrame": 438, "endFrameExclusive": 444, "text": "Clack" },
+    { "startFrame": 460, "endFrameExclusive": 482, "text": "Relax again" },
+    { "startFrame": 508, "endFrameExclusive": 512, "text": "Doo" },
+    { "startFrame": 526, "endFrameExclusive": 530, "text": "Doo" },
+    { "startFrame": 542, "endFrameExclusive": 547, "text": "Doo" },
+    { "startFrame": 583, "endFrameExclusive": 589, "text": "Jojo" },
+    { "startFrame": 589, "endFrameExclusive": 608, "text": "Transition" },
+    { "startFrame": 622, "endFrameExclusive": 628, "text": "Tick" },
+    { "startFrame": 638, "endFrameExclusive": 646, "text": "Tick" },
+    { "startFrame": 656, "endFrameExclusive": 663, "text": "Tock" },
+    { "startFrame": 674, "endFrameExclusive": 681, "text": "Tick" },
+    { "startFrame": 690, "endFrameExclusive": 698, "text": "Tick" },
+    { "startFrame": 707, "endFrameExclusive": 716, "text": "Tick" },
+    { "startFrame": 724, "endFrameExclusive": 735, "text": "Tock" },
+    { "startFrame": 753, "endFrameExclusive": 802, "text": "Make up .. up your mind" },
+    { "startFrame": 812, "endFrameExclusive": 859, "text": "Something something..." },
+    { "startFrame": 873, "endFrameExclusive": 885, "text": "Clap" },
+    { "startFrame": 892, "endFrameExclusive": 1214, "text": "Thanks for watching!" },
+    { "startFrame": 1215, "endFrameExclusive": 1335, "text": "Thanks for watching!" }
+  ],
+  "socialLayer": [
+    { "startFrame": 0, "endFrameExclusive": 6, "state": "absent" },
+    { "startFrame": 6, "endFrameExclusive": 267, "state": "top-right" },
+    { "startFrame": 267, "endFrameExclusive": 275, "state": "transition" },
+    { "startFrame": 275, "endFrameExclusive": 537, "state": "lower-left" },
+    { "startFrame": 537, "endFrameExclusive": 543, "state": "transition" },
+    { "startFrame": 543, "endFrameExclusive": 809, "state": "top-right" },
+    { "startFrame": 809, "endFrameExclusive": 813, "state": "transition" },
+    { "startFrame": 813, "endFrameExclusive": 1077, "state": "lower-left" },
+    { "startFrame": 1077, "endFrameExclusive": 1083, "state": "transition" },
+    { "startFrame": 1083, "endFrameExclusive": 1214, "state": "top-right" },
+    { "startFrame": 1214, "endFrameExclusive": 1215, "state": "absent" },
+    { "startFrame": 1215, "endFrameExclusive": 1335, "state": "end-card-animated" }
+  ],
+  "releaseGates": {
+    "cutFrameTolerance": 0,
+    "sourceIdentityExact": true,
+    "sourceInOutToleranceFrames": 1,
+    "permanentRegressionRange": { "startFrame": 482, "endFrameExclusive": 589 },
+    "textTimingToleranceFrames": 2,
+    "audioRequired": true,
+    "worstWindowMayNotBeMaskedByGlobalAverage": true
+  }
+}

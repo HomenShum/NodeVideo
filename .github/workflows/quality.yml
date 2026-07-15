@@ -9,6 +9,9 @@ on:
 permissions:
   contents: read
 
+env:
+  VITE_NODEVIDEO_V2_MANIFEST_SHA256: 04f02098045273f5acf587bbbe177cd25664d474c68e32691b4ab8de45060cd2
+
 concurrency:
   group: quality-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true

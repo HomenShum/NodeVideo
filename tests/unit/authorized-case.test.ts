@@ -30,8 +30,34 @@ function collectKeys(value: unknown, keys: string[] = []): string[] {
 const manifest = readJson('case-manifest.json');
 const result = readJson('result.json');
 const receipt = readJson('receipt.json');
+const adjudication = readJson('adjudication-v2.json');
 
 describe('owner-authorized published case', () => {
+  it('retains the V1 receipt but invalidates its audiovisual quality verdict', () => {
+    expect(adjudication).toMatchObject({
+      schema: 'nodevideo.case-adjudication.v2',
+      caseId: manifest.id,
+      status: 'invalidated',
+      historicalClaimTier: manifest.claimTier,
+      currentVerdict: 'failed-audiovisual-reconstruction',
+      releasePolicy: {
+        mayClaimPass: false,
+        permanentRegressionRange: { startFrame: 482, endFrameExclusive: 589 },
+        requireAudioEvaluation: true,
+        requireTimedOverlayEvaluation: true,
+        requireWorstWindowGate: true,
+      },
+    });
+    expect(adjudication.findings.map((finding: any) => finding.id)).toEqual(
+      expect.arrayContaining([
+        'wrong-source-window',
+        'soundtrack-omitted',
+        'timed-overlays-omitted',
+        'metric-masking',
+      ]),
+    );
+  });
+
   it('binds publication to explicit owner consent without publishing source metadata', () => {
     expect(manifest.sourceClass).toBe('owner-authorized-public-real-media');
     expect(manifest.authorization).toMatchObject({

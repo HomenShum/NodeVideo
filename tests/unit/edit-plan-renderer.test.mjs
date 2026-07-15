@@ -1,0 +1,390 @@
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { describe, expect, it } from 'vitest';
+import {
+  EDIT_PLAN_RENDERER_VERSION,
+  RENDERER_FONT,
+  compileEditPlan,
+  validateEditPlan,
+} from '../../scripts/workers/edit-plan-renderer-lib.mjs';
+
+const paths = {
+  'asset.source-1': resolve('fixtures/test-assets/source-1.mp4'),
+  'asset.music-1': resolve('fixtures/test-assets/music-1.wav'),
+  'asset.sting-1': resolve('fixtures/test-assets/sting-1.wav'),
+  'asset.watermark-1': resolve('fixtures/test-assets/watermark-1.png'),
+  'asset.grade-1': resolve('fixtures/test-assets/grade-1.cube'),
+};
+
+function range(startFrame, endFrameExclusive) {
+  return { startFrame, endFrameExclusive };
+}
+
+function basePlan() {
+  return {
+    schemaVersion: 'nodevideo.edit-plan.v1',
+    id: 'plan.renderer-unit',
+    understandingId: 'understanding.renderer-unit',
+    version: 1,
+    createdAt: '2026-07-15T00:00:00.000Z',
+    frameRate: 30,
+    canvas: { width: 720, height: 1280 },
+    durationFrames: 90,
+    lineage: {
+      renderAssetIds: ['asset.source-1', 'asset.music-1', 'asset.sting-1', 'asset.watermark-1'],
+      evaluationOnlyAssetIds: ['asset.reference-target'],
+      targetDerivedRenderAssetIds: ['asset.music-1'],
+    },
+    beatGrid: {
+      bpm: 120,
+      offsetMs: 0,
+      beatsMs: [0, 500, 1000, 1500, 2000, 2500],
+      downbeatsMs: [0, 2000],
+      confidence: 0.95,
+    },
+    audio: {
+      routing: [
+        {
+          id: 'route.source-muted',
+          sourceKind: 'asset-audio',
+          sourceId: 'asset.source-1',
+          bus: 'program',
+          muted: true,
+          gainDb: 0,
+        },
+        {
+          id: 'route.music',
+          sourceKind: 'track',
+          sourceId: 'track.music',
+          bus: 'music',
+          muted: false,
+          gainDb: 0,
+        },
+        {
+          id: 'route.effects',
+          sourceKind: 'track',
+          sourceId: 'track.effects',
+          bus: 'effects',
+          muted: false,
+          gainDb: 1,
+        },
+      ],
+      events: [
+        {
+          id: 'event.music',
+          kind: 'music',
+          clipId: 'audio.music',
+          sourceOffsetMs: 0,
+          releasedMasterOffsetMs: 29_146,
+          releasedMasterGainDb: -6.12,
+          targetStartMs: 0,
+          targetEndMs: 2000,
+          gainDb: 0,
+          identity: { title: 'Licensed track', artist: 'Example artist' },
+        },
+        {
+          id: 'event.silence-before-sting',
+          kind: 'silence',
+          targetStartMs: 2000,
+          targetEndMs: 2166.666667,
+        },
+        {
+          id: 'event.sting',
+          kind: 'sting',
+          clipId: 'audio.sting',
+          sourceOffsetMs: 0,
+          targetStartMs: 2166.666667,
+          targetEndMs: 2666.666667,
+          gainDb: -3,
+          label: 'end sting',
+        },
+        {
+          id: 'event.trailing-silence',
+          kind: 'silence',
+          targetStartMs: 2666.666667,
+          targetEndMs: 2833.333333,
+        },
+      ],
+    },
+    tracks: [
+      {
+        id: 'track.primary',
+        kind: 'video',
+        role: 'primary',
+        clips: [
+          {
+            kind: 'source',
+            id: 'video.source',
+            assetId: 'asset.source-1',
+            timelineRange: range(0, 30),
+            sourceRange: range(100, 130),
+            playbackRate: 1,
+            fit: 'fit',
+            cropKeyframes: [],
+            grade: { kind: 'none' },
+          },
+          {
+            kind: 'freeze',
+            id: 'video.freeze',
+            assetId: 'asset.source-1',
+            timelineRange: range(30, 60),
+            sourceFrame: 129,
+            fit: 'fill',
+            cropKeyframes: [],
+            grade: { kind: 'none' },
+          },
+          {
+            kind: 'black',
+            id: 'video.black',
+            timelineRange: range(60, 90),
+          },
+        ],
+      },
+      {
+        id: 'track.music',
+        kind: 'audio',
+        role: 'music',
+        clips: [
+          {
+            id: 'audio.music',
+            assetId: 'asset.music-1',
+            timelineRange: range(0, 60),
+            sourceRange: range(0, 60),
+            playbackRate: 1,
+            role: 'music',
+            gainDb: 0,
+            fadeInFrames: 0,
+            fadeOutFrames: 0,
+            license: {
+              status: 'target-derived-authorized',
+              proofRef: 'authorization.owner-demo',
+            },
+          },
+        ],
+      },
+      {
+        id: 'track.effects',
+        kind: 'audio',
+        role: 'effects',
+        clips: [
+          {
+            id: 'audio.sting',
+            assetId: 'asset.sting-1',
+            timelineRange: range(65, 80),
+            sourceRange: range(0, 15),
+            playbackRate: 1,
+            role: 'sting',
+            gainDb: -3,
+            fadeInFrames: 1,
+            fadeOutFrames: 2,
+          },
+        ],
+      },
+      {
+        id: 'track.overlays',
+        kind: 'overlay',
+        clips: [
+          {
+            id: 'overlay.cue',
+            kind: 'text',
+            timelineRange: range(5, 20),
+            text: "Cue %{metadata}; movie='untrusted'",
+            templateId: 'text.cue',
+            box: { x: 0.2, y: 0.35, width: 0.6, height: 0.1 },
+            animation: 'fade',
+          },
+          {
+            id: 'overlay.watermark',
+            kind: 'graphic',
+            assetId: 'asset.watermark-1',
+            timelineRange: range(0, 90),
+            templateId: 'graphic.watermark',
+            box: { x: 0.7, y: 0.03, width: 0.25, height: 0.08 },
+            animation: 'slide-up',
+          },
+          {
+            id: 'overlay.end-card-text',
+            kind: 'text',
+            timelineRange: range(60, 90),
+            text: 'Thanks for watching',
+            templateId: 'text.end-card',
+            box: { x: 0.15, y: 0.45, width: 0.7, height: 0.1 },
+            animation: 'fade',
+          },
+        ],
+      },
+    ],
+  };
+}
+
+describe('plan-driven deterministic renderer', () => {
+  it('compiles canonical video, overlay, routing, silence, music, and sting primitives', () => {
+    const plan = basePlan();
+    const compiled = compileEditPlan(plan, paths, {
+      outputPath: resolve('tmp/rendered-plan.mp4'),
+      auxiliaryDirectory: resolve('tmp/rendered-plan-assets'),
+    });
+
+    expect(compiled.rendererVersion).toBe(EDIT_PLAN_RENDERER_VERSION);
+    expect(compiled.manifest).toMatchObject({
+      hasAudio: true,
+      videoClipCount: 3,
+      overlayClipCount: 3,
+      audioClipCount: 2,
+      renderedAudioClipCount: 2,
+      silenceEventCount: 2,
+      targetDerivedRenderAssetIds: ['asset.music-1'],
+    });
+    expect(compiled.manifest.rendererAssets).toEqual([
+      {
+        id: RENDERER_FONT.id,
+        license: 'OFL-1.1',
+        source: '@fontsource-variable/geist@5.2.9',
+        sha256: RENDERER_FONT.sha256,
+      },
+    ]);
+    expect(createHash('sha256').update(readFileSync(RENDERER_FONT.path)).digest('hex')).toBe(
+      RENDERER_FONT.sha256,
+    );
+
+    expect(compiled.filterComplex).toContain('trim=start_frame=100:end_frame=130');
+    expect(compiled.filterComplex).toContain('tpad=stop_mode=clone');
+    expect(compiled.filterComplex).toContain('color=c=black:s=720x1280:r=30');
+    expect(compiled.filterComplex).toContain('drawtext=textfile=');
+    expect(compiled.filterComplex).toContain('fontfile=');
+    expect(compiled.filterComplex).toContain("enable='between(n,5,19)'");
+    expect(compiled.filterComplex).toContain('overlay=x=');
+    expect(compiled.filterComplex).toContain("enable='between(t,");
+    expect(compiled.filterComplex).toContain('tpad=stop_mode=clone:stop_duration=3');
+    expect(compiled.filterComplex).toContain('fontcolor=0x383838');
+    expect(compiled.filterComplex).toContain('atrim=start=0:end=2');
+    expect(compiled.filterComplex).not.toContain('atrim=start=29.146');
+    expect(compiled.filterComplex).toContain('volume=0dB');
+    expect(compiled.filterComplex).not.toContain('volume=-6.12dB');
+    expect(compiled.filterComplex).toContain('volume=-2dB');
+    expect(compiled.filterComplex).toContain('anullsrc=r=48000:cl=stereo');
+    expect(compiled.filterComplex).toContain(
+      'alimiter=limit=0.794328:attack=5:release=50:level=0:latency=1',
+    );
+    expect(compiled.filterComplex).toContain('volume=volume=0');
+
+    expect(compiled.filterComplex).not.toContain('untrusted');
+    expect(compiled.filterComplex).not.toContain('%{metadata}');
+    expect(compiled.auxiliaryFiles).toHaveLength(2);
+    expect(compiled.auxiliaryFiles[0].content).toBe(plan.tracks[3].clips[0].text);
+    expect(compiled.args.filter((value) => value === paths['asset.source-1'])).toHaveLength(2);
+    expect(
+      compiled.inputRecords.some((record) => record.purpose.startsWith('audio:source-video')),
+    ).toBe(false);
+  });
+
+  it('accepts the legacy missing source kind only by normalizing it to the canonical union', () => {
+    const plan = basePlan();
+    plan.tracks[0].clips[0].kind = undefined;
+    const validated = validateEditPlan(plan, paths);
+
+    expect(validated.plan.tracks[0].clips[0].kind).toBe('source');
+  });
+
+  it('routes mapped camera audio only when its explicit asset route is unmuted', () => {
+    const plan = basePlan();
+    plan.audio.routing[0].muted = false;
+    plan.audio.routing[0].gainDb = -12;
+    plan.audio.routing[1].muted = true;
+    plan.audio.routing[2].muted = true;
+
+    const compiled = compileEditPlan(plan, paths);
+    expect(
+      compiled.inputRecords.some((record) => record.purpose === 'audio:source-video:video.source'),
+    ).toBe(true);
+    expect(compiled.filterComplex).toContain('atrim=start=3.333333333:end=4.333333333');
+    expect(compiled.filterComplex).toContain('volume=-12dB');
+    expect(
+      compiled.inputRecords.some((record) => record.purpose === 'audio:music:audio.music'),
+    ).toBe(false);
+    expect(
+      compiled.inputRecords.some((record) => record.purpose === 'audio:sting:audio.sting'),
+    ).toBe(false);
+  });
+
+  it('applies local gain and asset-local offset when the bound asset is a licensed master', () => {
+    const plan = basePlan();
+    plan.lineage.targetDerivedRenderAssetIds = [];
+    plan.audio.routing[1].gainDb = -2;
+    plan.audio.events[0].sourceOffsetMs = 29_146;
+    plan.audio.events[0].gainDb = -6.12;
+    plan.tracks[1].clips[0].sourceRange = range(874, 934);
+    plan.tracks[1].clips[0].gainDb = -6.12;
+    plan.tracks[1].clips[0].license = {
+      status: 'licensed',
+      proofRef: 'catalog-license.example',
+    };
+
+    const compiled = compileEditPlan(plan, paths);
+    expect(compiled.filterComplex).toContain('atrim=start=29.146:end=31.146');
+    expect(compiled.filterComplex).toContain('volume=-8.12dB');
+  });
+
+  it('uses the fixed HLG BT.2020 to SDR BT.709 color-management chain before layout', () => {
+    const plan = basePlan();
+    plan.tracks[0].clips[0].grade = { kind: 'hlg-bt2020-to-sdr-bt709-hable' };
+
+    const compiled = compileEditPlan(plan, paths);
+    const colorStart = compiled.filterComplex.indexOf('zscale=transfer=linear:npl=100');
+    const toneMap = compiled.filterComplex.indexOf('tonemap=tonemap=hable:desat=0');
+    const layout = compiled.filterComplex.indexOf(
+      'scale=w=720:h=1280:force_original_aspect_ratio=decrease',
+    );
+    expect(colorStart).toBeGreaterThan(-1);
+    expect(toneMap).toBeGreaterThan(colorStart);
+    expect(layout).toBeGreaterThan(toneMap);
+    expect(compiled.filterComplex).toContain(
+      'zscale=primaries=bt709:transfer=bt709:matrix=bt709:range=limited',
+    );
+  });
+
+  it('can compose the fixed HLG transform with a bound target-guided cube artifact', () => {
+    const plan = basePlan();
+    plan.lineage.renderAssetIds.push('asset.grade-1');
+    plan.tracks[0].clips[0].grade = {
+      kind: 'hlg-bt2020-to-sdr-bt709-hable-cube-lut',
+      artifactId: 'asset.grade-1',
+    };
+
+    const compiled = compileEditPlan(plan, paths);
+    const toneMap = compiled.filterComplex.indexOf('tonemap=tonemap=hable:desat=0');
+    const cube = compiled.filterComplex.indexOf('lut3d=file=');
+    expect(toneMap).toBeGreaterThan(-1);
+    expect(cube).toBeGreaterThan(toneMap);
+  });
+
+  it('fails closed on a primary video gap', () => {
+    const plan = basePlan();
+    plan.tracks[0].clips[1].timelineRange.startFrame = 31;
+
+    expect(() => validateEditPlan(plan, paths)).toThrow(/contiguous|start at frame 30/u);
+  });
+
+  it('rejects plan-authored FFmpeg fragments and unknown overlay templates', () => {
+    const plan = basePlan();
+    plan.tracks[3].clips[0].templateId = 'custom.drawtext';
+    plan.tracks[3].clips[0].filterComplex = 'movie=private.mp4';
+
+    expect(() => validateEditPlan(plan, paths)).toThrow(/forbidden|fixed text template/u);
+  });
+
+  it('requires explicit rights provenance for music', () => {
+    const plan = basePlan();
+    plan.tracks[1].clips[0].license = undefined;
+
+    expect(() => validateEditPlan(plan, paths)).toThrow(/license is required|rights status/u);
+  });
+
+  it('keeps evaluation-only assets out of render bindings', () => {
+    const plan = basePlan();
+    plan.tracks[0].clips[0].assetId = 'asset.reference-target';
+
+    expect(() => validateEditPlan(plan, paths)).toThrow(/evaluation-only|not a render asset/u);
+  });
+});

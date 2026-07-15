@@ -1,8 +1,30 @@
 # NodeVideo media workers
 
-The repository has two isolated deterministic media-plane workers. Both reuse the same FFmpeg,
-FFprobe, hashing, probing, atomic proof-writing, and privacy-containment utilities, but their claims
-and publication rules are intentionally separate.
+The repository has isolated deterministic media-plane workers. They reuse the same FFmpeg, FFprobe,
+hashing, probing, atomic proof-writing, and privacy-containment utilities, but their claims and
+publication rules are intentionally separate.
+
+## Plan-driven renderer
+
+`edit-plan-renderer.mjs` consumes the canonical `nodevideo.edit-plan.v1` JSON contract plus a second
+JSON object that binds neutral asset IDs to local paths. It does not accept an FFmpeg filter, command,
+argument list, or arbitrary React/template code from a planner. The compiler supports only fixed
+source/freeze/black video primitives, fit/fill/static-crop layouts, fixed text and graphic overlay
+templates, a fixed BT.2020 HLG to BT.709 SDR Hable color-management primitive, explicit
+music/SFX/sting/voice/source-audio routes, and first-class silence windows.
+
+Text is rendered with the repository-bundled OFL Geist font and `drawtext` text files with expansion
+disabled. Host font discovery and plan-authored filter expressions are not used. Music clips fail
+closed without rights provenance, evaluation-only assets cannot enter the render graph, every source
+camera-audio route must explicitly mix or mute, and the primary picture track must cover every frame.
+
+Validate a plan without opening any media:
+
+```powershell
+npm run worker:edit-plan -- --plan edit-plan.json --bindings bindings.private.json --output render.mp4 --dry-run
+```
+
+Remove `--dry-run` to render. Binding files are local runtime configuration and must not be committed.
 
 ## Authorized real-case reconstruction
 

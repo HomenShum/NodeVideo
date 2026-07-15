@@ -1,9 +1,14 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { RealCasePanel } from '@/features/nodevideo/real-case-panel';
-import { Film, GitBranch, ShieldCheck } from 'lucide-react';
+import { V2ProofPanel } from '@/features/nodevideo/v2-proof-panel';
+import { ChevronDown, Film, GitBranch, ShieldCheck } from 'lucide-react';
+import { useState } from 'react';
 
 export function App() {
+  const [historyOpen, setHistoryOpen] = useState(false);
+
   return (
     <div className="min-h-svh bg-background text-foreground" data-testid="app-shell">
       <header className="border-b bg-background/95">
@@ -25,22 +30,49 @@ export function App() {
 
       <main className="mx-auto max-w-6xl space-y-6 px-3 py-6 sm:px-6 sm:py-10">
         <section className="space-y-3" aria-labelledby="page-title">
-          <Badge variant="outline">Deterministic media-worker proof</Badge>
+          <Badge variant="outline">Audiovisual edit understanding</Badge>
           <h1 id="page-title" className="max-w-3xl font-heading text-3xl font-semibold sm:text-5xl">
-            Can two MOVs reproduce the final edit?
+            Understand the finished edit, render a typed reconstruction, and show the gaps.
           </h1>
           <p className="max-w-3xl text-pretty text-muted-foreground sm:text-lg">
-            NodeVideo recovered the cut map, normalized HDR footage, recreated the graphic layer,
-            rendered from both source videos, and measured the result against the authorized final
-            MP4. Verify every deployed artifact before playback.
+            For this owner-authorized case, NodeVideo turns the target into a reviewable plan for
+            cuts, music, overlays, framing, and grade. It renders from the two source videos plus
+            disclosed target-derived soundtrack and LUT assets; target picture pixels never enter
+            the renderer. It then reports measured passes and unproven details.
           </p>
+          <div className="flex flex-wrap gap-2" aria-label="Claim boundary">
+            <Badge variant="secondary">Reference understanding</Badge>
+            <Badge variant="secondary">Authorized target-guided reconstruction</Badge>
+            <Badge variant="outline">Blind creative taste not claimed</Badge>
+          </div>
         </section>
 
-        <RealCasePanel />
+        <V2ProofPanel />
+
+        <Collapsible onOpenChange={setHistoryOpen} open={historyOpen}>
+          <CollapsibleTrigger asChild>
+            <Button
+              className="h-auto w-full justify-between whitespace-normal py-3 text-left"
+              data-testid="v1-history-trigger"
+              variant="outline"
+            >
+              V1 failure evidence · historical and invalidated
+              <ChevronDown
+                aria-hidden="true"
+                className={`transition-transform ${historyOpen ? 'rotate-180' : ''}`}
+              />
+            </Button>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <div className="mt-3" data-testid="v1-history">
+              <RealCasePanel />
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
       </main>
 
       <footer className="border-t px-3 py-5 text-center text-xs text-muted-foreground sm:px-6">
-        Vercel serves a hash-verified replay. The FFmpeg worker runs locally or in CI.
+        Vercel serves verified proof artifacts. Deterministic media workers run locally or in CI.
       </footer>
     </div>
   );

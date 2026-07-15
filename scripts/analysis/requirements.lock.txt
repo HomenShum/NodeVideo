@@ -1,0 +1,15 @@
+# Install in an isolated Python 3.11 virtual environment.
+# NumPy/OpenCV are pinned together: unconstrained OpenCV can pull NumPy 2.x,
+# which is incompatible with the pinned SciPy/librosa stack.
+numpy==1.26.4
+scipy==1.12.0
+opencv-contrib-python==4.10.0.84
+opencv-python-headless==4.10.0.84
+scenedetect==0.7
+librosa==0.10.2.post1
+mediapipe==0.10.35
+protobuf==4.25.9
+torch==2.3.1
+torchvision==0.18.1
+easyocr==1.7.1
+OpenTimelineIO==0.18.1

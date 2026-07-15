@@ -1,0 +1,431 @@
+{
+  "schemaVersion": "nodevideo.render-metrics.v1",
+  "toolVersion": "nodevideo.render-metrics-v2@1.1.0",
+  "artifactId": "artifact.render.sha256-e8c7155ffd5f11d9",
+  "inputs": {
+    "renderSha256": "e8c7155ffd5f11d9ae6a96d28c073241e55a5509c3ac7a6fcdee66ba6e726eb8",
+    "referenceSha256": "83e93e1ded63cfc17247e2709f32efa810f55695b5b3063cecd6db9284982841"
+  },
+  "frameRate": 30,
+  "canvas": {
+    "width": 720,
+    "height": 1280
+  },
+  "durationFrames": 1335,
+  "global": {
+    "score": 0.967787,
+    "metric": "ssim",
+    "ssim": 0.967787,
+    "psnrDb": 27.747768,
+    "psnrInfinite": false,
+    "vmaf": 25.94982,
+    "contentWeightedSsim": 0.940722,
+    "warning": "Full-frame values are diagnostic only; release gates use exact local windows, and fit windows exclude black padding."
+  },
+  "windows": [
+    {
+      "id": "render.clip.shot.001",
+      "timelineRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 201
+      },
+      "score": 0.920125,
+      "metric": "content-ssim",
+      "roi": {
+        "x": 0,
+        "y": 437,
+        "width": 720,
+        "height": 406,
+        "strategy": "source-aspect-contain"
+      },
+      "ssim": 0.920125,
+      "psnrDb": 29.632296,
+      "psnrInfinite": false
+    },
+    {
+      "id": "render.clip.shot.002",
+      "timelineRange": {
+        "startFrame": 201,
+        "endFrameExclusive": 482
+      },
+      "score": 0.977283,
+      "metric": "ssim",
+      "roi": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 1280,
+        "strategy": "full-canvas-layout"
+      },
+      "ssim": 0.977283,
+      "psnrDb": 31.589056,
+      "psnrInfinite": false
+    },
+    {
+      "id": "render.clip.shot.003",
+      "timelineRange": {
+        "startFrame": 482,
+        "endFrameExclusive": 589
+      },
+      "score": 0.919714,
+      "metric": "content-ssim",
+      "roi": {
+        "x": 0,
+        "y": 437,
+        "width": 720,
+        "height": 406,
+        "strategy": "source-aspect-contain"
+      },
+      "ssim": 0.919714,
+      "psnrDb": 28.605737,
+      "psnrInfinite": false
+    },
+    {
+      "id": "render.clip.shot.004",
+      "timelineRange": {
+        "startFrame": 589,
+        "endFrameExclusive": 753
+      },
+      "score": 0.980227,
+      "metric": "ssim",
+      "roi": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 1280,
+        "strategy": "full-canvas-layout"
+      },
+      "ssim": 0.980227,
+      "psnrDb": 33.70848,
+      "psnrInfinite": false
+    },
+    {
+      "id": "render.clip.shot.005",
+      "timelineRange": {
+        "startFrame": 753,
+        "endFrameExclusive": 1214
+      },
+      "score": 0.917207,
+      "metric": "content-ssim",
+      "roi": {
+        "x": 0,
+        "y": 437,
+        "width": 720,
+        "height": 406,
+        "strategy": "source-aspect-contain"
+      },
+      "ssim": 0.917207,
+      "psnrDb": 28.08554,
+      "psnrInfinite": false
+    },
+    {
+      "id": "render.clip.shot.006",
+      "timelineRange": {
+        "startFrame": 1214,
+        "endFrameExclusive": 1215
+      },
+      "score": 0.999998,
+      "metric": "ssim",
+      "roi": {
+        "x": 0,
+        "y": 0,
+        "width": 720,
+        "height": 1280,
+        "strategy": "full-canvas-layout"
+      },
+      "ssim": 0.999998,
+      "psnrDb": 87.032941,
+      "psnrInfinite": false
+    },
+    {
+      "id": "render.clip.shot.007",
+      "timelineRange": {
+        "startFrame": 1215,
+        "endFrameExclusive": 1335
+      },
+      "score": 0.944191,
+      "metric": "content-ssim",
+      "roi": {
+        "x": 0,
+        "y": 437,
+        "width": 720,
+        "height": 406,
+        "strategy": "source-aspect-contain"
+      },
+      "ssim": 0.944191,
+      "psnrDb": 24.93293,
+      "psnrInfinite": false
+    }
+  ],
+  "audio": {
+    "referenceCorrelation": 0.999504,
+    "sourceLeakageCorrelation": 0.039134,
+    "reference": {
+      "status": "measured",
+      "rangeMs": {
+        "start": 0,
+        "end": 40338.6
+      },
+      "sampleRate": 8000,
+      "maximumLagMs": 50,
+      "lagMs": 0,
+      "comparedSamples": 322709,
+      "method": "zero-mean-normalized-waveform-correlation",
+      "comparison": "rendered output versus reference target soundtrack"
+    },
+    "sourceLeakage": {
+      "status": "measured",
+      "correlation": 0.039134,
+      "method": "maximum-absolute-mapped-source-window-correlation",
+      "coverage": {
+        "measuredFrames": 1214,
+        "expectedFrames": 1214,
+        "ratio": 1
+      },
+      "windows": [
+        {
+          "id": "render.clip.shot.001",
+          "timelineRange": {
+            "startFrame": 0,
+            "endFrameExclusive": 201
+          },
+          "sourceAssetId": "asset.source-a-original",
+          "sourceRange": {
+            "startFrame": 464,
+            "endFrameExclusive": 665
+          },
+          "correlation": 0.028229,
+          "lagMs": -31.375,
+          "comparedSamples": 53362,
+          "status": "measured"
+        },
+        {
+          "id": "render.clip.shot.002",
+          "timelineRange": {
+            "startFrame": 201,
+            "endFrameExclusive": 482
+          },
+          "sourceAssetId": "asset.source-b-original",
+          "sourceRange": {
+            "startFrame": 963,
+            "endFrameExclusive": 1244
+          },
+          "correlation": 0.022087,
+          "lagMs": -16.75,
+          "comparedSamples": 74818,
+          "status": "measured"
+        },
+        {
+          "id": "render.clip.shot.003",
+          "timelineRange": {
+            "startFrame": 482,
+            "endFrameExclusive": 589
+          },
+          "sourceAssetId": "asset.source-a-original",
+          "sourceRange": {
+            "startFrame": 942,
+            "endFrameExclusive": 1049
+          },
+          "correlation": 0.039134,
+          "lagMs": 23.875,
+          "comparedSamples": 28343,
+          "status": "measured"
+        },
+        {
+          "id": "render.clip.shot.004",
+          "timelineRange": {
+            "startFrame": 589,
+            "endFrameExclusive": 753
+          },
+          "sourceAssetId": "asset.source-b-original",
+          "sourceRange": {
+            "startFrame": 1355,
+            "endFrameExclusive": 1519
+          },
+          "correlation": 0.024801,
+          "lagMs": -48,
+          "comparedSamples": 43360,
+          "status": "measured"
+        },
+        {
+          "id": "render.clip.shot.005",
+          "timelineRange": {
+            "startFrame": 753,
+            "endFrameExclusive": 1214
+          },
+          "sourceAssetId": "asset.source-a-original",
+          "sourceRange": {
+            "startFrame": 1212,
+            "endFrameExclusive": 1673
+          },
+          "correlation": 0.023421,
+          "lagMs": 9.625,
+          "comparedSamples": 122857,
+          "status": "measured"
+        }
+      ]
+    }
+  },
+  "technical": {
+    "passed": true,
+    "checks": [
+      {
+        "id": "render-video-decodes",
+        "pass": true,
+        "observed": null,
+        "expected": null
+      },
+      {
+        "id": "reference-video-decodes",
+        "pass": true,
+        "observed": null,
+        "expected": null
+      },
+      {
+        "id": "render-has-video",
+        "pass": true,
+        "observed": true,
+        "expected": true
+      },
+      {
+        "id": "reference-has-video",
+        "pass": true,
+        "observed": true,
+        "expected": true
+      },
+      {
+        "id": "render-frame-count",
+        "pass": true,
+        "observed": 1335,
+        "expected": 1335
+      },
+      {
+        "id": "reference-frame-count",
+        "pass": true,
+        "observed": 1335,
+        "expected": 1335
+      },
+      {
+        "id": "render-frame-rate",
+        "pass": true,
+        "observed": 30,
+        "expected": 30
+      },
+      {
+        "id": "reference-frame-rate",
+        "pass": true,
+        "observed": 30,
+        "expected": 30
+      },
+      {
+        "id": "render-has-audio",
+        "pass": true,
+        "observed": true,
+        "expected": true
+      },
+      {
+        "id": "reference-has-audio",
+        "pass": true,
+        "observed": true,
+        "expected": true
+      },
+      {
+        "id": "render-audio-covers-reference-range",
+        "pass": true,
+        "observed": 44.5,
+        "expected": 40.3386
+      },
+      {
+        "id": "render-integrated-loudness-measured",
+        "pass": true,
+        "observed": -14.1,
+        "expected": "finite LUFS measurement"
+      },
+      {
+        "id": "render-true-peak-ceiling",
+        "pass": true,
+        "observed": -1.9,
+        "expected": {
+          "maximumDbfs": -1
+        }
+      }
+    ],
+    "render": {
+      "format": {
+        "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+        "durationSeconds": 44.5,
+        "sizeBytes": 11680892,
+        "bitRate": 2099935
+      },
+      "video": {
+        "codec": "h264",
+        "profile": "High",
+        "codedWidth": 720,
+        "codedHeight": 1280,
+        "pixelFormat": "yuv420p",
+        "colorRange": "tv",
+        "colorSpace": "bt709",
+        "colorTransfer": "bt709",
+        "colorPrimaries": "bt709",
+        "nominalFrameRate": "30/1",
+        "averageFrameRate": "30/1",
+        "timeBase": "1/15360",
+        "durationSeconds": 44.5,
+        "frameCount": 1335,
+        "rotationDegrees": null
+      },
+      "audio": {
+        "codec": "aac",
+        "sampleRate": 48000,
+        "channels": 2,
+        "channelLayout": "stereo",
+        "durationSeconds": 44.5,
+        "bitRate": 182350
+      }
+    },
+    "reference": {
+      "format": {
+        "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+        "durationSeconds": 44.5,
+        "sizeBytes": 63323064,
+        "bitRate": 11383921
+      },
+      "video": {
+        "codec": "hevc",
+        "profile": "Main",
+        "codedWidth": 720,
+        "codedHeight": 1280,
+        "pixelFormat": "yuv420p",
+        "colorRange": "tv",
+        "colorSpace": "bt709",
+        "colorTransfer": "bt709",
+        "colorPrimaries": "bt709",
+        "nominalFrameRate": "30/1",
+        "averageFrameRate": "30/1",
+        "timeBase": "1/600",
+        "durationSeconds": 44.5,
+        "frameCount": 1335,
+        "rotationDegrees": null
+      },
+      "audio": {
+        "codec": "aac",
+        "sampleRate": 44100,
+        "channels": 2,
+        "channelLayout": "stereo",
+        "durationSeconds": 42.660998,
+        "bitRate": 123750
+      }
+    },
+    "audioDelivery": {
+      "integratedLufs": -14.1,
+      "truePeakDbfs": -1.9,
+      "method": "FFmpeg ebur128=peak=true"
+    }
+  },
+  "provenance": {
+    "ffmpeg": "ffmpeg version 6.0-full_build-www.gyan.dev Copyright (c) 2000-2023 the FFmpeg developers",
+    "ffprobe": "ffprobe version 6.0-full_build-www.gyan.dev Copyright (c) 2007-2023 the FFmpeg developers",
+    "videoMetric": "FFmpeg ssim/psnr on normalized decoded frames",
+    "audioMetric": "lag-bounded zero-mean normalized waveform correlation"
+  }
+}

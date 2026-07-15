@@ -26,7 +26,7 @@ export function RealCasePanel() {
   const integrityMessage = error
     ? `Not fully checked. ${error}`
     : loadedCase
-      ? `${loadedCase.integrity.verifiedAssetCount}/6 deployed videos and poster match the SHA-256 receipt`
+      ? `${loadedCase.integrity.verifiedAssetCount}/6 deployed videos, poster, and V2 invalidation adjudication are SHA-256-verified`
       : 'Deployed asset hashes have not been checked yet';
 
   async function handleLoad() {
@@ -48,10 +48,17 @@ export function RealCasePanel() {
   return (
     <Card aria-label="Owner-authorized real-media reconstruction">
       <CardHeader>
-        <Badge variant="secondary">Owner-authorized · target-guided single case</Badge>
+        <Badge variant="destructive">V1 invalidated · retained as failure evidence</Badge>
         <CardTitle>{Case.PUBLISHED_REAL_CASE.title}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
+        <Alert variant="destructive" data-testid="case-invalidated">
+          <TriangleAlert aria-hidden="true" />
+          <AlertTitle>Do not treat this run as a reconstruction pass</AlertTitle>
+          <AlertDescription>
+            {loadedCase?.adjudication.summary ?? Case.REAL_CASE_COPY.invalidated}
+          </AlertDescription>
+        </Alert>
         <Alert>
           <ShieldCheck aria-hidden="true" />
           <AlertTitle data-testid="case-consent">Owner-authorized publication</AlertTitle>
@@ -128,7 +135,7 @@ export function RealCasePanel() {
         ) : null}
         <Card data-testid="quality-summary" size="sm">
           <CardHeader>
-            <CardTitle>Measured visual reconstruction</CardTitle>
+            <CardTitle>Historical aggregate metrics · diagnostic only</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-2 sm:grid-cols-3">
             <p data-testid="metric-ssim">SSIM · {metrics?.ssim.toFixed(6) ?? '—'}</p>
@@ -137,8 +144,8 @@ export function RealCasePanel() {
             </p>
             <p>VMAF · {metrics?.vmaf.toFixed(6) ?? '—'}</p>
             <p className="text-xs text-muted-foreground sm:col-span-3">
-              Perceptually-close video for this target-guided single case · 720×1280 · 1,335 frames
-              · four exact cuts · target audio excluded.
+              Not a pass: VMAF 29.819468, soundtrack excluded, timed overlays incomplete, and the
+              permanent 16.067–19.633 second regression window uses the wrong source motion.
             </p>
           </CardContent>
         </Card>
