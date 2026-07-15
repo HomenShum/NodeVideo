@@ -1,0 +1,1435 @@
+{
+  "schemaVersion": "nodevideo.event-score-report.v2",
+  "evaluatorVersion": "nodevideo.plan-adjudicator@1.2.0",
+  "groundTruthId": "authorized-real-v2",
+  "planId": "plan.authorized-real-v2.reviewed",
+  "planVersion": 2,
+  "renderArtifactId": "artifact.render.sha256-e8c7155ffd5f11d9",
+  "renderMetricsProvided": true,
+  "scope": "plan-and-render",
+  "passed": true,
+  "releaseReady": true,
+  "releaseReadyScope": "technical-reconstruction-of-authorized-reference-case",
+  "summary": {
+    "total": 56,
+    "passed": 56,
+    "failed": 0,
+    "score": 0.9963713392857143,
+    "permanentFailure": false
+  },
+  "releaseBlockers": [],
+  "events": [
+    {
+      "id": "plan-schema",
+      "category": "technical",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Plan schema, canvas, rate, duration, and primary track must match the reference.",
+      "expected": {
+        "schemaVersion": "nodevideo.edit-plan.v1",
+        "frameRate": 30,
+        "canvas": {
+          "width": 720,
+          "height": 1280
+        },
+        "durationFrames": 1335,
+        "primaryTrack": true
+      },
+      "observed": {
+        "schemaVersion": "nodevideo.edit-plan.v1",
+        "frameRate": 30,
+        "canvas": {
+          "width": 720,
+          "height": 1280
+        },
+        "durationFrames": 1335,
+        "primaryTrack": true
+      }
+    },
+    {
+      "id": "video-cuts",
+      "category": "mapping",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Every cut must land on the exact withheld reference frame.",
+      "expected": [
+        201,
+        482,
+        589,
+        753,
+        1214,
+        1215
+      ],
+      "observed": [
+        201,
+        482,
+        589,
+        753,
+        1214,
+        1215
+      ]
+    },
+    {
+      "id": "video-clip:a-fit-1",
+      "category": "mapping",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Video decision a-fit-1 must match kind, source identity, mapping, and layout.",
+      "timelineRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 201
+      },
+      "expected": {
+        "id": "a-fit-1",
+        "kind": "source",
+        "assetId": "asset.source-a-original",
+        "timelineRange": {
+          "startFrame": 0,
+          "endFrameExclusive": 201
+        },
+        "sourceRange": {
+          "startFrame": 464,
+          "endFrameExclusive": 665
+        },
+        "layout": "fit",
+        "playbackRate": 1
+      },
+      "observed": {
+        "id": "clip.shot.001",
+        "kind": "source",
+        "assetId": "asset.source-a-original",
+        "timelineRange": {
+          "startFrame": 0,
+          "endFrameExclusive": 201
+        },
+        "sourceRange": {
+          "startFrame": 464,
+          "endFrameExclusive": 665
+        },
+        "layout": "fit",
+        "playbackRate": 1
+      }
+    },
+    {
+      "id": "video-clip:b-fill-1",
+      "category": "mapping",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Video decision b-fill-1 must match kind, source identity, mapping, and layout.",
+      "timelineRange": {
+        "startFrame": 201,
+        "endFrameExclusive": 482
+      },
+      "expected": {
+        "id": "b-fill-1",
+        "kind": "source",
+        "assetId": "asset.source-b-original",
+        "timelineRange": {
+          "startFrame": 201,
+          "endFrameExclusive": 482
+        },
+        "sourceRange": {
+          "startFrame": 963,
+          "endFrameExclusive": 1244
+        },
+        "layout": "fill",
+        "playbackRate": 1
+      },
+      "observed": {
+        "id": "clip.shot.002",
+        "kind": "source",
+        "assetId": "asset.source-b-original",
+        "timelineRange": {
+          "startFrame": 201,
+          "endFrameExclusive": 482
+        },
+        "sourceRange": {
+          "startFrame": 963,
+          "endFrameExclusive": 1244
+        },
+        "layout": "fill",
+        "playbackRate": 1
+      }
+    },
+    {
+      "id": "video-clip:a-fit-2",
+      "category": "mapping",
+      "pass": true,
+      "score": 1,
+      "permanent": true,
+      "message": "The permanent 482–589 regression window must use the corrected Source A phrase.",
+      "timelineRange": {
+        "startFrame": 482,
+        "endFrameExclusive": 589
+      },
+      "expected": {
+        "id": "a-fit-2",
+        "kind": "source",
+        "assetId": "asset.source-a-original",
+        "timelineRange": {
+          "startFrame": 482,
+          "endFrameExclusive": 589
+        },
+        "sourceRange": {
+          "startFrame": 942,
+          "endFrameExclusive": 1049
+        },
+        "layout": "fit",
+        "playbackRate": 1
+      },
+      "observed": {
+        "id": "clip.shot.003",
+        "kind": "source",
+        "assetId": "asset.source-a-original",
+        "timelineRange": {
+          "startFrame": 482,
+          "endFrameExclusive": 589
+        },
+        "sourceRange": {
+          "startFrame": 942,
+          "endFrameExclusive": 1049
+        },
+        "layout": "fit",
+        "playbackRate": 1
+      }
+    },
+    {
+      "id": "video-clip:b-fill-2",
+      "category": "mapping",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Video decision b-fill-2 must match kind, source identity, mapping, and layout.",
+      "timelineRange": {
+        "startFrame": 589,
+        "endFrameExclusive": 753
+      },
+      "expected": {
+        "id": "b-fill-2",
+        "kind": "source",
+        "assetId": "asset.source-b-original",
+        "timelineRange": {
+          "startFrame": 589,
+          "endFrameExclusive": 753
+        },
+        "sourceRange": {
+          "startFrame": 1355,
+          "endFrameExclusive": 1519
+        },
+        "layout": "fill",
+        "playbackRate": 1
+      },
+      "observed": {
+        "id": "clip.shot.004",
+        "kind": "source",
+        "assetId": "asset.source-b-original",
+        "timelineRange": {
+          "startFrame": 589,
+          "endFrameExclusive": 753
+        },
+        "sourceRange": {
+          "startFrame": 1355,
+          "endFrameExclusive": 1519
+        },
+        "layout": "fill",
+        "playbackRate": 1
+      }
+    },
+    {
+      "id": "video-clip:a-fit-3",
+      "category": "mapping",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Video decision a-fit-3 must match kind, source identity, mapping, and layout.",
+      "timelineRange": {
+        "startFrame": 753,
+        "endFrameExclusive": 1214
+      },
+      "expected": {
+        "id": "a-fit-3",
+        "kind": "source",
+        "assetId": "asset.source-a-original",
+        "timelineRange": {
+          "startFrame": 753,
+          "endFrameExclusive": 1214
+        },
+        "sourceRange": {
+          "startFrame": 1212,
+          "endFrameExclusive": 1673
+        },
+        "layout": "fit",
+        "playbackRate": 1
+      },
+      "observed": {
+        "id": "clip.shot.005",
+        "kind": "source",
+        "assetId": "asset.source-a-original",
+        "timelineRange": {
+          "startFrame": 753,
+          "endFrameExclusive": 1214
+        },
+        "sourceRange": {
+          "startFrame": 1212,
+          "endFrameExclusive": 1673
+        },
+        "layout": "fit",
+        "playbackRate": 1
+      }
+    },
+    {
+      "id": "video-clip:black-transition",
+      "category": "mapping",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Video decision black-transition must match kind, source identity, mapping, and layout.",
+      "timelineRange": {
+        "startFrame": 1214,
+        "endFrameExclusive": 1215
+      },
+      "expected": {
+        "id": "black-transition",
+        "kind": "black",
+        "timelineRange": {
+          "startFrame": 1214,
+          "endFrameExclusive": 1215
+        }
+      },
+      "observed": {
+        "id": "clip.shot.006",
+        "kind": "black",
+        "timelineRange": {
+          "startFrame": 1214,
+          "endFrameExclusive": 1215
+        }
+      }
+    },
+    {
+      "id": "video-clip:end-card-freeze",
+      "category": "mapping",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Video decision end-card-freeze must match kind, source identity, mapping, and layout.",
+      "timelineRange": {
+        "startFrame": 1215,
+        "endFrameExclusive": 1335
+      },
+      "expected": {
+        "id": "end-card-freeze",
+        "kind": "freeze",
+        "assetId": "asset.source-a-original",
+        "timelineRange": {
+          "startFrame": 1215,
+          "endFrameExclusive": 1335
+        },
+        "sourceFrame": 1672,
+        "layout": "fit"
+      },
+      "observed": {
+        "id": "clip.shot.007",
+        "kind": "freeze",
+        "assetId": "asset.source-a-original",
+        "timelineRange": {
+          "startFrame": 1215,
+          "endFrameExclusive": 1335
+        },
+        "sourceFrame": 1672,
+        "layout": "fit"
+      }
+    },
+    {
+      "id": "video-clip-count",
+      "category": "mapping",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "The primary picture decision list must not omit or add clips.",
+      "expected": 7,
+      "observed": 7
+    },
+    {
+      "id": "audio-source-routing",
+      "category": "audio",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Embedded audio from every source video must be explicitly muted.",
+      "expected": {
+        "mode": "muted",
+        "assetIds": [
+          "asset.source-a-original",
+          "asset.source-b-original"
+        ]
+      },
+      "observed": [
+        {
+          "assetId": "asset.source-a-original",
+          "muted": true
+        },
+        {
+          "assetId": "asset.source-b-original",
+          "muted": true
+        }
+      ]
+    },
+    {
+      "id": "audio-music-identity",
+      "category": "audio",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "The selected soundtrack must identify the correct released master.",
+      "timelineRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 1211
+      },
+      "expected": {
+        "title": "Sign",
+        "artist": "82MAJOR",
+        "isrc": "KRA382601866"
+      },
+      "observed": {
+        "title": "Sign",
+        "artist": "82MAJOR",
+        "isrc": "KRA382601866"
+      }
+    },
+    {
+      "id": "audio-music-excerpt",
+      "category": "audio",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Asset-local trim, released-master provenance, and sample-time target window must remain distinct and match the reference.",
+      "timelineRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 1211
+      },
+      "expected": {
+        "sourceOffsetMs": 0,
+        "releasedMasterOffsetMs": 29146,
+        "targetStartMs": 0,
+        "targetEndMs": 40338.6,
+        "playbackRate": 1
+      },
+      "observed": {
+        "sourceOffsetMs": 0,
+        "releasedMasterOffsetMs": 29146,
+        "targetStartMs": 0,
+        "targetEndMs": 40338.6,
+        "playbackRate": 1
+      }
+    },
+    {
+      "id": "audio-music-gain",
+      "category": "audio",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Render-local gain must not re-attenuate an extracted target mix; released-master gain remains provenance.",
+      "timelineRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 1211
+      },
+      "expected": {
+        "renderGainDb": 0,
+        "releasedMasterGainDb": -6.12
+      },
+      "observed": {
+        "eventGainDb": 0,
+        "clipGainDb": 0,
+        "releasedMasterGainDb": -6.12
+      }
+    },
+    {
+      "id": "audio-target-derivation-authorization",
+      "category": "lineage",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Reference soundtrack fidelity requires explicit target-derived authorization.",
+      "expected": {
+        "status": "target-derived-authorized",
+        "proofRef": "non-empty"
+      },
+      "observed": {
+        "status": "target-derived-authorized",
+        "proofRef": "authorization.owner-provided-target-audio-fidelity"
+      }
+    },
+    {
+      "id": "audio-silence-events",
+      "category": "audio",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Both intentional silence windows must be represented at sample-time precision.",
+      "timelineRange": {
+        "startFrame": 1210,
+        "endFrameExclusive": 1335
+      },
+      "expected": [
+        {
+          "kind": "silence",
+          "startMs": 40338.6,
+          "endMs": 40837.3
+        },
+        {
+          "kind": "silence",
+          "startMs": 42153.5,
+          "endMs": 44500
+        }
+      ],
+      "observed": [
+        {
+          "startMs": 40338.6,
+          "endMs": 40837.3
+        },
+        {
+          "startMs": 42153.5,
+          "endMs": 44500
+        }
+      ]
+    },
+    {
+      "id": "audio-end-sting",
+      "category": "audio",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "The end sting must remain distinct from music, SFX, and silence.",
+      "timelineRange": {
+        "startFrame": 1225,
+        "endFrameExclusive": 1265
+      },
+      "expected": {
+        "kind": "end-sting",
+        "startMs": 40837.3,
+        "endMs": 42153.5
+      },
+      "observed": {
+        "kind": "sting",
+        "startMs": 40837.3,
+        "endMs": 42153.5,
+        "clipRole": "sting"
+      }
+    },
+    {
+      "id": "audio-event-count",
+      "category": "audio",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "The audio program must contain one music event and exactly the reference tail events.",
+      "expected": 4,
+      "observed": 4
+    },
+    {
+      "id": "text-cue-count",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "All 31 timed text cues are release-blocking.",
+      "expected": 31,
+      "observed": 31
+    },
+    {
+      "id": "text-cue:01",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 1 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 58
+      },
+      "expected": {
+        "startFrame": 0,
+        "endFrameExclusive": 58,
+        "text": "Sign - solo practice"
+      },
+      "observed": {
+        "startFrame": 0,
+        "endFrameExclusive": 58,
+        "text": "Sign - solo practice"
+      }
+    },
+    {
+      "id": "text-cue:02",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 2 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 65,
+        "endFrameExclusive": 98
+      },
+      "expected": {
+        "startFrame": 65,
+        "endFrameExclusive": 98,
+        "text": "Left | Right"
+      },
+      "observed": {
+        "startFrame": 65,
+        "endFrameExclusive": 98,
+        "text": "Left | Right"
+      }
+    },
+    {
+      "id": "text-cue:03",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 3 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 99,
+        "endFrameExclusive": 127
+      },
+      "expected": {
+        "startFrame": 99,
+        "endFrameExclusive": 127,
+        "text": "Alright"
+      },
+      "observed": {
+        "startFrame": 99,
+        "endFrameExclusive": 127,
+        "text": "Alright"
+      }
+    },
+    {
+      "id": "text-cue:04",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 4 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 134,
+        "endFrameExclusive": 157
+      },
+      "expected": {
+        "startFrame": 134,
+        "endFrameExclusive": 157,
+        "text": "Flip flip"
+      },
+      "observed": {
+        "startFrame": 134,
+        "endFrameExclusive": 157,
+        "text": "Flip flip"
+      }
+    },
+    {
+      "id": "text-cue:05",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 5 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 170,
+        "endFrameExclusive": 201
+      },
+      "expected": {
+        "startFrame": 170,
+        "endFrameExclusive": 201,
+        "text": "Jojo mode"
+      },
+      "observed": {
+        "startFrame": 170,
+        "endFrameExclusive": 201,
+        "text": "Jojo mode"
+      }
+    },
+    {
+      "id": "text-cue:06",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 6 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 203,
+        "endFrameExclusive": 228
+      },
+      "expected": {
+        "startFrame": 203,
+        "endFrameExclusive": 228,
+        "text": "Head + chest"
+      },
+      "observed": {
+        "startFrame": 203,
+        "endFrameExclusive": 228,
+        "text": "Head + chest"
+      }
+    },
+    {
+      "id": "text-cue:07",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 7 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 228,
+        "endFrameExclusive": 239
+      },
+      "expected": {
+        "startFrame": 228,
+        "endFrameExclusive": 239,
+        "text": "Clack"
+      },
+      "observed": {
+        "startFrame": 228,
+        "endFrameExclusive": 239,
+        "text": "Clack"
+      }
+    },
+    {
+      "id": "text-cue:08",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 8 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 286,
+        "endFrameExclusive": 291
+      },
+      "expected": {
+        "startFrame": 286,
+        "endFrameExclusive": 291,
+        "text": "Chin"
+      },
+      "observed": {
+        "startFrame": 286,
+        "endFrameExclusive": 291,
+        "text": "Chin"
+      }
+    },
+    {
+      "id": "text-cue:09",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 9 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 295,
+        "endFrameExclusive": 299
+      },
+      "expected": {
+        "startFrame": 295,
+        "endFrameExclusive": 299,
+        "text": "Head"
+      },
+      "observed": {
+        "startFrame": 295,
+        "endFrameExclusive": 299,
+        "text": "Head"
+      }
+    },
+    {
+      "id": "text-cue:10",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 10 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 301,
+        "endFrameExclusive": 333
+      },
+      "expected": {
+        "startFrame": 301,
+        "endFrameExclusive": 333,
+        "text": "Wheel"
+      },
+      "observed": {
+        "startFrame": 301,
+        "endFrameExclusive": 333,
+        "text": "Wheel"
+      }
+    },
+    {
+      "id": "text-cue:11",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 11 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 341,
+        "endFrameExclusive": 367
+      },
+      "expected": {
+        "startFrame": 341,
+        "endFrameExclusive": 367,
+        "text": "Right now"
+      },
+      "observed": {
+        "startFrame": 341,
+        "endFrameExclusive": 367,
+        "text": "Right now"
+      }
+    },
+    {
+      "id": "text-cue:12",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 12 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 368,
+        "endFrameExclusive": 383
+      },
+      "expected": {
+        "startFrame": 368,
+        "endFrameExclusive": 383,
+        "text": "Sharp + clean"
+      },
+      "observed": {
+        "startFrame": 368,
+        "endFrameExclusive": 383,
+        "text": "Sharp + clean"
+      }
+    },
+    {
+      "id": "text-cue:13",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 13 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 438,
+        "endFrameExclusive": 444
+      },
+      "expected": {
+        "startFrame": 438,
+        "endFrameExclusive": 444,
+        "text": "Clack"
+      },
+      "observed": {
+        "startFrame": 438,
+        "endFrameExclusive": 444,
+        "text": "Clack"
+      }
+    },
+    {
+      "id": "text-cue:14",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 14 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 460,
+        "endFrameExclusive": 482
+      },
+      "expected": {
+        "startFrame": 460,
+        "endFrameExclusive": 482,
+        "text": "Relax again"
+      },
+      "observed": {
+        "startFrame": 460,
+        "endFrameExclusive": 482,
+        "text": "Relax again"
+      }
+    },
+    {
+      "id": "text-cue:15",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 15 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 508,
+        "endFrameExclusive": 512
+      },
+      "expected": {
+        "startFrame": 508,
+        "endFrameExclusive": 512,
+        "text": "Doo"
+      },
+      "observed": {
+        "startFrame": 508,
+        "endFrameExclusive": 512,
+        "text": "Doo"
+      }
+    },
+    {
+      "id": "text-cue:16",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 16 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 526,
+        "endFrameExclusive": 530
+      },
+      "expected": {
+        "startFrame": 526,
+        "endFrameExclusive": 530,
+        "text": "Doo"
+      },
+      "observed": {
+        "startFrame": 526,
+        "endFrameExclusive": 530,
+        "text": "Doo"
+      }
+    },
+    {
+      "id": "text-cue:17",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 17 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 542,
+        "endFrameExclusive": 547
+      },
+      "expected": {
+        "startFrame": 542,
+        "endFrameExclusive": 547,
+        "text": "Doo"
+      },
+      "observed": {
+        "startFrame": 542,
+        "endFrameExclusive": 547,
+        "text": "Doo"
+      }
+    },
+    {
+      "id": "text-cue:18",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 18 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 583,
+        "endFrameExclusive": 589
+      },
+      "expected": {
+        "startFrame": 583,
+        "endFrameExclusive": 589,
+        "text": "Jojo"
+      },
+      "observed": {
+        "startFrame": 583,
+        "endFrameExclusive": 589,
+        "text": "Jojo"
+      }
+    },
+    {
+      "id": "text-cue:19",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 19 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 589,
+        "endFrameExclusive": 608
+      },
+      "expected": {
+        "startFrame": 589,
+        "endFrameExclusive": 608,
+        "text": "Transition"
+      },
+      "observed": {
+        "startFrame": 589,
+        "endFrameExclusive": 608,
+        "text": "Transition"
+      }
+    },
+    {
+      "id": "text-cue:20",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 20 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 622,
+        "endFrameExclusive": 628
+      },
+      "expected": {
+        "startFrame": 622,
+        "endFrameExclusive": 628,
+        "text": "Tick"
+      },
+      "observed": {
+        "startFrame": 622,
+        "endFrameExclusive": 628,
+        "text": "Tick"
+      }
+    },
+    {
+      "id": "text-cue:21",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 21 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 638,
+        "endFrameExclusive": 646
+      },
+      "expected": {
+        "startFrame": 638,
+        "endFrameExclusive": 646,
+        "text": "Tick"
+      },
+      "observed": {
+        "startFrame": 638,
+        "endFrameExclusive": 646,
+        "text": "Tick"
+      }
+    },
+    {
+      "id": "text-cue:22",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 22 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 656,
+        "endFrameExclusive": 663
+      },
+      "expected": {
+        "startFrame": 656,
+        "endFrameExclusive": 663,
+        "text": "Tock"
+      },
+      "observed": {
+        "startFrame": 656,
+        "endFrameExclusive": 663,
+        "text": "Tock"
+      }
+    },
+    {
+      "id": "text-cue:23",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 23 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 674,
+        "endFrameExclusive": 681
+      },
+      "expected": {
+        "startFrame": 674,
+        "endFrameExclusive": 681,
+        "text": "Tick"
+      },
+      "observed": {
+        "startFrame": 674,
+        "endFrameExclusive": 681,
+        "text": "Tick"
+      }
+    },
+    {
+      "id": "text-cue:24",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 24 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 690,
+        "endFrameExclusive": 698
+      },
+      "expected": {
+        "startFrame": 690,
+        "endFrameExclusive": 698,
+        "text": "Tick"
+      },
+      "observed": {
+        "startFrame": 690,
+        "endFrameExclusive": 698,
+        "text": "Tick"
+      }
+    },
+    {
+      "id": "text-cue:25",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 25 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 707,
+        "endFrameExclusive": 716
+      },
+      "expected": {
+        "startFrame": 707,
+        "endFrameExclusive": 716,
+        "text": "Tick"
+      },
+      "observed": {
+        "startFrame": 707,
+        "endFrameExclusive": 716,
+        "text": "Tick"
+      }
+    },
+    {
+      "id": "text-cue:26",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 26 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 724,
+        "endFrameExclusive": 735
+      },
+      "expected": {
+        "startFrame": 724,
+        "endFrameExclusive": 735,
+        "text": "Tock"
+      },
+      "observed": {
+        "startFrame": 724,
+        "endFrameExclusive": 735,
+        "text": "Tock"
+      }
+    },
+    {
+      "id": "text-cue:27",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 27 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 753,
+        "endFrameExclusive": 802
+      },
+      "expected": {
+        "startFrame": 753,
+        "endFrameExclusive": 802,
+        "text": "Make up .. up your mind"
+      },
+      "observed": {
+        "startFrame": 753,
+        "endFrameExclusive": 802,
+        "text": "Make up .. up your mind"
+      }
+    },
+    {
+      "id": "text-cue:28",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 28 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 812,
+        "endFrameExclusive": 859
+      },
+      "expected": {
+        "startFrame": 812,
+        "endFrameExclusive": 859,
+        "text": "Something something..."
+      },
+      "observed": {
+        "startFrame": 812,
+        "endFrameExclusive": 859,
+        "text": "Something something..."
+      }
+    },
+    {
+      "id": "text-cue:29",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 29 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 873,
+        "endFrameExclusive": 885
+      },
+      "expected": {
+        "startFrame": 873,
+        "endFrameExclusive": 885,
+        "text": "Clap"
+      },
+      "observed": {
+        "startFrame": 873,
+        "endFrameExclusive": 885,
+        "text": "Clap"
+      }
+    },
+    {
+      "id": "text-cue:30",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 30 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 892,
+        "endFrameExclusive": 1214
+      },
+      "expected": {
+        "startFrame": 892,
+        "endFrameExclusive": 1214,
+        "text": "Thanks for watching!"
+      },
+      "observed": {
+        "startFrame": 892,
+        "endFrameExclusive": 1214,
+        "text": "Thanks for watching!"
+      }
+    },
+    {
+      "id": "text-cue:31",
+      "category": "text",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Text cue 31 must match content and timing within ±2 frames.",
+      "timelineRange": {
+        "startFrame": 1215,
+        "endFrameExclusive": 1335
+      },
+      "expected": {
+        "startFrame": 1215,
+        "endFrameExclusive": 1335,
+        "text": "Thanks for watching!"
+      },
+      "observed": {
+        "startFrame": 1215,
+        "endFrameExclusive": 1335,
+        "text": "Thanks for watching!"
+      }
+    },
+    {
+      "id": "social-overlay-timing:visible-phases",
+      "category": "framing",
+      "pass": true,
+      "score": 1,
+      "permanent": false,
+      "message": "Social-layer presence and position phases must match; gradient and transition styling remain approximate.",
+      "timelineRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 1335
+      },
+      "expected": [
+        {
+          "startFrame": 6,
+          "endFrameExclusive": 267,
+          "state": "top-right"
+        },
+        {
+          "startFrame": 275,
+          "endFrameExclusive": 537,
+          "state": "lower-left"
+        },
+        {
+          "startFrame": 543,
+          "endFrameExclusive": 809,
+          "state": "top-right"
+        },
+        {
+          "startFrame": 813,
+          "endFrameExclusive": 1077,
+          "state": "lower-left"
+        },
+        {
+          "startFrame": 1083,
+          "endFrameExclusive": 1214,
+          "state": "top-right"
+        },
+        {
+          "startFrame": 1215,
+          "endFrameExclusive": 1335,
+          "state": "end-card-animated"
+        }
+      ],
+      "observed": [
+        {
+          "startFrame": 6,
+          "endFrameExclusive": 267,
+          "state": "top-right"
+        },
+        {
+          "startFrame": 275,
+          "endFrameExclusive": 537,
+          "state": "lower-left"
+        },
+        {
+          "startFrame": 543,
+          "endFrameExclusive": 809,
+          "state": "top-right"
+        },
+        {
+          "startFrame": 813,
+          "endFrameExclusive": 1077,
+          "state": "lower-left"
+        },
+        {
+          "startFrame": 1083,
+          "endFrameExclusive": 1214,
+          "state": "top-right"
+        },
+        {
+          "startFrame": 1215,
+          "endFrameExclusive": 1335,
+          "state": "end-card-animated"
+        }
+      ]
+    },
+    {
+      "id": "render-window:permanent-regression",
+      "category": "technical",
+      "pass": true,
+      "score": 0.919714,
+      "permanent": true,
+      "message": "The 482–589 worst window must pass independently of every global average.",
+      "timelineRange": {
+        "startFrame": 482,
+        "endFrameExclusive": 589
+      },
+      "expected": {
+        "timelineRange": {
+          "startFrame": 482,
+          "endFrameExclusive": 589
+        },
+        "minimumScore": 0.9,
+        "globalAverageCannotOverride": true
+      },
+      "observed": {
+        "window": {
+          "id": "render.clip.shot.003",
+          "timelineRange": {
+            "startFrame": 482,
+            "endFrameExclusive": 589
+          },
+          "score": 0.919714,
+          "metric": "content-ssim"
+        },
+        "global": {
+          "score": 0.967787,
+          "metric": "ssim",
+          "ssim": 0.967787,
+          "psnrDb": 27.747768,
+          "psnrInfinite": false,
+          "vmaf": 25.94982,
+          "contentWeightedSsim": 0.940722,
+          "warning": "Full-frame values are diagnostic only; release gates use exact local windows, and fit windows exclude black padding."
+        }
+      }
+    },
+    {
+      "id": "render-window:worst",
+      "category": "technical",
+      "pass": true,
+      "score": 0.917207,
+      "permanent": false,
+      "message": "No local render window may be hidden by a passing global average.",
+      "timelineRange": {
+        "startFrame": 753,
+        "endFrameExclusive": 1214
+      },
+      "expected": {
+        "minimumScore": 0.85
+      },
+      "observed": {
+        "id": "render.clip.shot.005",
+        "timelineRange": {
+          "startFrame": 753,
+          "endFrameExclusive": 1214
+        },
+        "score": 0.917207,
+        "metric": "content-ssim"
+      }
+    },
+    {
+      "id": "render-audio:reference-correlation",
+      "category": "audio",
+      "pass": true,
+      "score": 0.999504,
+      "permanent": false,
+      "message": "Rendered soundtrack must correlate with the final reference soundtrack.",
+      "timelineRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 1211
+      },
+      "expected": {
+        "minimum": 0.97
+      },
+      "observed": 0.999504
+    },
+    {
+      "id": "rhythm:cut-to-soundtrack-alignment",
+      "category": "audio",
+      "pass": true,
+      "score": 0.999504,
+      "permanent": false,
+      "message": "Exact target cuts plus lag-bounded target soundtrack alignment preserve the target cut-to-beat relationship.",
+      "timelineRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 1335
+      },
+      "expected": {
+        "exactCutFrames": [
+          201,
+          482,
+          589,
+          753,
+          1214,
+          1215
+        ],
+        "maximumReferenceAudioLagMs": 50,
+        "minimumReferenceCorrelation": 0.97
+      },
+      "observed": {
+        "cutFrames": [
+          201,
+          482,
+          589,
+          753,
+          1214,
+          1215
+        ],
+        "referenceAudioLagMs": 0,
+        "referenceCorrelation": 0.999504
+      }
+    },
+    {
+      "id": "render-audio:source-leakage",
+      "category": "audio",
+      "pass": true,
+      "score": 0.960866,
+      "permanent": false,
+      "message": "Rendered output must not leak muted source-video audio.",
+      "timelineRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 1335
+      },
+      "expected": {
+        "maximumAbsolute": 0.05
+      },
+      "observed": 0.039134
+    }
+  ]
+}

@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "nodevideo.analysis-evidence.v1",
+  "id": "evidence.17843623a547d080",
+  "runId": "run.reference-understanding.17843623a547d080",
+  "createdAt": "2026-07-15T09:15:28.963535Z",
+  "toolVersions": {
+    "PySceneDetect": "0.7",
+    "librosa": "0.10.2.post1",
+    "MediaPipe": "0.10.35",
+    "EasyOCR": "1.7.1",
+    "OpenTimelineIO": "0.18.1",
+    "NumPy": "1.26.4",
+    "SciPy": "1.12.0",
+    "OpenCV": "4.10.0",
+    "FFmpeg": "ffmpeg version 6.0-full_build-www.gyan.dev Copyright (c) 2000-2023 the FFmpeg developers",
+    "FFprobe": "ffprobe version 6.0-full_build-www.gyan.dev Copyright (c) 2007-2023 the FFmpeg developers",
+    "analyzer": "nodevideo-reference-edit-analyzer@0.1.0"
+  },
+  "model": {
+    "role": "pose-landmarker",
+    "sha256": "sha256:4eaa5eb7a98365221087693fcc286334cf0858e2eb6e15b506aa4a7ecdcec4ad"
+  },
+  "parameters": {
+    "sceneThreshold": 27.0,
+    "poseSampleFps": 10.0,
+    "ocrSampleSeconds": 0.5,
+    "ocrMinConfidence": 0.18
+  },
+  "sceneDetection": {
+    "detector": "PySceneDetect.ContentDetector",
+    "detectedRanges": [
+      {
+        "startFrame": 0,
+        "endFrameExclusive": 201
+      },
+      {
+        "startFrame": 201,
+        "endFrameExclusive": 482
+      },
+      {
+        "startFrame": 482,
+        "endFrameExclusive": 589
+      },
+      {
+        "startFrame": 589,
+        "endFrameExclusive": 753
+      },
+      {
+        "startFrame": 753,
+        "endFrameExclusive": 1214
+      },
+      {
+        "startFrame": 1214,
+        "endFrameExclusive": 1335
+      }
+    ],
+    "contentScoresAtCuts": [
+      {
+        "cutFrame": 201,
+        "contentScore": 88.222475
+      },
+      {
+        "cutFrame": 482,
+        "contentScore": 92.283773
+      },
+      {
+        "cutFrame": 589,
+        "contentScore": 90.672038
+      },
+      {
+        "cutFrame": 753,
+        "contentScore": 92.209129
+      },
+      {
+        "cutFrame": 1214,
+        "contentScore": 103.782706
+      }
+    ],
+    "blackRuns": [
+      {
+        "startFrame": 1214,
+        "endFrameExclusive": 1215
+      }
+    ],
+    "finalCutFrames": [
+      201,
+      482,
+      589,
+      753,
+      1214,
+      1215
+    ]
+  },
+  "sourceMatching": [
+    {
+      "shotId": "shot.001",
+      "layout": "fit",
+      "layoutConfidence": 0.99,
+      "static": true,
+      "candidates": [
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 464,
+          "sourceEndFrameExclusive": 665,
+          "coarseOffsetSeconds": 15.50359,
+          "medianPoseCost": 0.048579,
+          "posePairs": 67,
+          "motionSimilarity": 0.931441,
+          "motionInlierRatio": 1.0,
+          "motionPairs": 200,
+          "selectionMargin": 0.42249
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 463,
+          "sourceEndFrameExclusive": 664,
+          "coarseOffsetSeconds": 15.50359,
+          "medianPoseCost": 0.048579,
+          "posePairs": 67,
+          "motionSimilarity": 0.508951,
+          "motionInlierRatio": 0.525,
+          "motionPairs": 200
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 465,
+          "sourceEndFrameExclusive": 666,
+          "coarseOffsetSeconds": 15.50359,
+          "medianPoseCost": 0.048579,
+          "posePairs": 67,
+          "motionSimilarity": 0.508286,
+          "motionInlierRatio": 0.555,
+          "motionPairs": 200
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 453,
+          "sourceEndFrameExclusive": 654,
+          "coarseOffsetSeconds": 15.103497,
+          "medianPoseCost": 0.149511,
+          "posePairs": 67,
+          "motionSimilarity": 0.353939,
+          "motionInlierRatio": 0.195,
+          "motionPairs": 200
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 475,
+          "sourceEndFrameExclusive": 676,
+          "coarseOffsetSeconds": 15.703636,
+          "medianPoseCost": 0.133275,
+          "posePairs": 67,
+          "motionSimilarity": 0.337407,
+          "motionInlierRatio": 0.18,
+          "motionPairs": 200
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 460,
+          "sourceEndFrameExclusive": 661,
+          "coarseOffsetSeconds": 15.303544,
+          "medianPoseCost": 0.107328,
+          "posePairs": 67,
+          "motionSimilarity": 0.335266,
+          "motionInlierRatio": 0.115,
+          "motionPairs": 200
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 446,
+          "sourceEndFrameExclusive": 647,
+          "coarseOffsetSeconds": 14.903451,
+          "medianPoseCost": 0.146334,
+          "posePairs": 67,
+          "motionSimilarity": 0.331735,
+          "motionInlierRatio": 0.19,
+          "motionPairs": 200
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 471,
+          "sourceEndFrameExclusive": 672,
+          "coarseOffsetSeconds": 15.703636,
+          "medianPoseCost": 0.133275,
+          "posePairs": 67,
+          "motionSimilarity": 0.330288,
+          "motionInlierRatio": 0.135,
+          "motionPairs": 200
+        }
+      ]
+    },
+    {
+      "shotId": "shot.002",
+      "layout": "fill",
+      "layoutConfidence": 0.95,
+      "static": false,
+      "candidates": [
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 963,
+          "sourceEndFrameExclusive": 1244,
+          "coarseOffsetSeconds": 25.406207,
+          "medianPoseCost": 0.051146,
+          "posePairs": 94,
+          "motionSimilarity": 0.928141,
+          "motionInlierRatio": 1.0,
+          "motionPairs": 280,
+          "selectionMargin": 0.439948
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 964,
+          "sourceEndFrameExclusive": 1245,
+          "coarseOffsetSeconds": 25.406207,
+          "medianPoseCost": 0.051146,
+          "posePairs": 94,
+          "motionSimilarity": 0.488193,
+          "motionInlierRatio": 0.357143,
+          "motionPairs": 280
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 962,
+          "sourceEndFrameExclusive": 1243,
+          "coarseOffsetSeconds": 25.406207,
+          "medianPoseCost": 0.051146,
+          "posePairs": 94,
+          "motionSimilarity": 0.487448,
+          "motionInlierRatio": 0.375,
+          "motionPairs": 280
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 965,
+          "sourceEndFrameExclusive": 1246,
+          "coarseOffsetSeconds": 25.406207,
+          "medianPoseCost": 0.051146,
+          "posePairs": 94,
+          "motionSimilarity": 0.313805,
+          "motionInlierRatio": 0.0,
+          "motionPairs": 280
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 961,
+          "sourceEndFrameExclusive": 1242,
+          "coarseOffsetSeconds": 25.406207,
+          "medianPoseCost": 0.051146,
+          "posePairs": 94,
+          "motionSimilarity": 0.312837,
+          "motionInlierRatio": 0.007143,
+          "motionPairs": 280
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 960,
+          "sourceEndFrameExclusive": 1241,
+          "coarseOffsetSeconds": 25.406207,
+          "medianPoseCost": 0.051146,
+          "posePairs": 94,
+          "motionSimilarity": 0.255263,
+          "motionInlierRatio": 0.003571,
+          "motionPairs": 280
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 966,
+          "sourceEndFrameExclusive": 1247,
+          "coarseOffsetSeconds": 25.406207,
+          "medianPoseCost": 0.051146,
+          "posePairs": 94,
+          "motionSimilarity": 0.25469,
+          "motionInlierRatio": 0.003571,
+          "motionPairs": 280
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 967,
+          "sourceEndFrameExclusive": 1248,
+          "coarseOffsetSeconds": 25.406207,
+          "medianPoseCost": 0.051146,
+          "posePairs": 94,
+          "motionSimilarity": 0.22756,
+          "motionInlierRatio": 0.0,
+          "motionPairs": 280
+        }
+      ]
+    },
+    {
+      "shotId": "shot.003",
+      "layout": "fit",
+      "layoutConfidence": 0.99,
+      "static": true,
+      "candidates": [
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 942,
+          "sourceEndFrameExclusive": 1049,
+          "coarseOffsetSeconds": 15.303544,
+          "medianPoseCost": 0.042023,
+          "posePairs": 36,
+          "motionSimilarity": 0.895673,
+          "motionInlierRatio": 0.95283,
+          "motionPairs": 106,
+          "selectionMargin": 0.400181
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 943,
+          "sourceEndFrameExclusive": 1050,
+          "coarseOffsetSeconds": 15.303544,
+          "medianPoseCost": 0.042023,
+          "posePairs": 36,
+          "motionSimilarity": 0.495492,
+          "motionInlierRatio": 0.490566,
+          "motionPairs": 106
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 941,
+          "sourceEndFrameExclusive": 1048,
+          "coarseOffsetSeconds": 15.303544,
+          "medianPoseCost": 0.042023,
+          "posePairs": 36,
+          "motionSimilarity": 0.494079,
+          "motionInlierRatio": 0.490566,
+          "motionPairs": 106
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 931,
+          "sourceEndFrameExclusive": 1038,
+          "coarseOffsetSeconds": 15.103497,
+          "medianPoseCost": 0.082967,
+          "posePairs": 36,
+          "motionSimilarity": 0.437475,
+          "motionInlierRatio": 0.415094,
+          "motionPairs": 106
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 953,
+          "sourceEndFrameExclusive": 1060,
+          "coarseOffsetSeconds": 15.703636,
+          "medianPoseCost": 0.095175,
+          "posePairs": 36,
+          "motionSimilarity": 0.424071,
+          "motionInlierRatio": 0.367925,
+          "motionPairs": 106
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 960,
+          "sourceEndFrameExclusive": 1067,
+          "coarseOffsetSeconds": 15.903683,
+          "medianPoseCost": 0.127631,
+          "posePairs": 36,
+          "motionSimilarity": 0.388819,
+          "motionInlierRatio": 0.320755,
+          "motionPairs": 106
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 949,
+          "sourceEndFrameExclusive": 1056,
+          "coarseOffsetSeconds": 15.50359,
+          "medianPoseCost": 0.058379,
+          "posePairs": 36,
+          "motionSimilarity": 0.385461,
+          "motionInlierRatio": 0.320755,
+          "motionPairs": 106
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 920,
+          "sourceEndFrameExclusive": 1027,
+          "coarseOffsetSeconds": 14.703405,
+          "medianPoseCost": 0.156255,
+          "posePairs": 36,
+          "motionSimilarity": 0.384004,
+          "motionInlierRatio": 0.320755,
+          "motionPairs": 106
+        }
+      ]
+    },
+    {
+      "shotId": "shot.004",
+      "layout": "fill",
+      "layoutConfidence": 0.95,
+      "static": false,
+      "candidates": [
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 1355,
+          "sourceEndFrameExclusive": 1519,
+          "coarseOffsetSeconds": 25.506232,
+          "medianPoseCost": 0.060493,
+          "posePairs": 54,
+          "motionSimilarity": 0.907027,
+          "motionInlierRatio": 1.0,
+          "motionPairs": 163,
+          "selectionMargin": 0.357118
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 1354,
+          "sourceEndFrameExclusive": 1518,
+          "coarseOffsetSeconds": 25.506232,
+          "medianPoseCost": 0.060493,
+          "posePairs": 54,
+          "motionSimilarity": 0.549909,
+          "motionInlierRatio": 0.638037,
+          "motionPairs": 163
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 1356,
+          "sourceEndFrameExclusive": 1520,
+          "coarseOffsetSeconds": 25.506232,
+          "medianPoseCost": 0.060493,
+          "posePairs": 54,
+          "motionSimilarity": 0.537878,
+          "motionInlierRatio": 0.601227,
+          "motionPairs": 163
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 1353,
+          "sourceEndFrameExclusive": 1517,
+          "coarseOffsetSeconds": 25.506232,
+          "medianPoseCost": 0.060493,
+          "posePairs": 54,
+          "motionSimilarity": 0.373943,
+          "motionInlierRatio": 0.055215,
+          "motionPairs": 163
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 1357,
+          "sourceEndFrameExclusive": 1521,
+          "coarseOffsetSeconds": 25.506232,
+          "medianPoseCost": 0.060493,
+          "posePairs": 54,
+          "motionSimilarity": 0.360086,
+          "motionInlierRatio": 0.07362,
+          "motionPairs": 163
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 1352,
+          "sourceEndFrameExclusive": 1516,
+          "coarseOffsetSeconds": 25.506232,
+          "medianPoseCost": 0.060493,
+          "posePairs": 54,
+          "motionSimilarity": 0.313596,
+          "motionInlierRatio": 0.006135,
+          "motionPairs": 163
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 1358,
+          "sourceEndFrameExclusive": 1522,
+          "coarseOffsetSeconds": 25.506232,
+          "medianPoseCost": 0.060493,
+          "posePairs": 54,
+          "motionSimilarity": 0.304075,
+          "motionInlierRatio": 0.0,
+          "motionPairs": 163
+        },
+        {
+          "sourceAssetId": "asset.source-b-original",
+          "sourceStartFrame": 1351,
+          "sourceEndFrameExclusive": 1515,
+          "coarseOffsetSeconds": 25.506232,
+          "medianPoseCost": 0.060493,
+          "posePairs": 54,
+          "motionSimilarity": 0.283363,
+          "motionInlierRatio": 0.006135,
+          "motionPairs": 163
+        }
+      ]
+    },
+    {
+      "shotId": "shot.005",
+      "layout": "fit",
+      "layoutConfidence": 0.99,
+      "static": true,
+      "candidates": [
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 1212,
+          "sourceEndFrameExclusive": 1673,
+          "coarseOffsetSeconds": 15.303544,
+          "medianPoseCost": 0.027346,
+          "posePairs": 152,
+          "motionSimilarity": 0.931926,
+          "motionInlierRatio": 1.0,
+          "motionPairs": 460,
+          "selectionMargin": 0.408347
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 1213,
+          "sourceEndFrameExclusive": 1674,
+          "coarseOffsetSeconds": 15.303544,
+          "medianPoseCost": 0.027346,
+          "posePairs": 152,
+          "motionSimilarity": 0.523579,
+          "motionInlierRatio": 0.602174,
+          "motionPairs": 460
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 1211,
+          "sourceEndFrameExclusive": 1672,
+          "coarseOffsetSeconds": 15.303544,
+          "medianPoseCost": 0.027346,
+          "posePairs": 152,
+          "motionSimilarity": 0.520031,
+          "motionInlierRatio": 0.563043,
+          "motionPairs": 460
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 1214,
+          "sourceEndFrameExclusive": 1675,
+          "coarseOffsetSeconds": 15.303544,
+          "medianPoseCost": 0.027346,
+          "posePairs": 152,
+          "motionSimilarity": 0.304415,
+          "motionInlierRatio": 0.015217,
+          "motionPairs": 460
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 1210,
+          "sourceEndFrameExclusive": 1671,
+          "coarseOffsetSeconds": 15.303544,
+          "medianPoseCost": 0.027346,
+          "posePairs": 152,
+          "motionSimilarity": 0.301346,
+          "motionInlierRatio": 0.019565,
+          "motionPairs": 460
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 1208,
+          "sourceEndFrameExclusive": 1669,
+          "coarseOffsetSeconds": 15.303544,
+          "medianPoseCost": 0.027346,
+          "posePairs": 152,
+          "motionSimilarity": 0.292237,
+          "motionInlierRatio": 0.080435,
+          "motionPairs": 460
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 1201,
+          "sourceEndFrameExclusive": 1662,
+          "coarseOffsetSeconds": 14.903451,
+          "medianPoseCost": 0.183871,
+          "posePairs": 152,
+          "motionSimilarity": 0.28727,
+          "motionInlierRatio": 0.095652,
+          "motionPairs": 460
+        },
+        {
+          "sourceAssetId": "asset.source-a-original",
+          "sourceStartFrame": 1209,
+          "sourceEndFrameExclusive": 1670,
+          "coarseOffsetSeconds": 15.303544,
+          "medianPoseCost": 0.027346,
+          "posePairs": 152,
+          "motionSimilarity": 0.281438,
+          "motionInlierRatio": 0.03913,
+          "motionPairs": 460
+        }
+      ]
+    },
+    {
+      "shotId": "shot.006",
+      "classification": "black",
+      "candidates": []
+    },
+    {
+      "shotId": "shot.007",
+      "layout": "fit",
+      "layoutConfidence": 0.99,
+      "static": true,
+      "candidates": []
+    }
+  ],
+  "audio": {
+    "present": true,
+    "decodedDurationSeconds": 42.676825,
+    "tempoBpm": 107.666016,
+    "beatTimesMs": [
+      1439.637,
+      2020.136,
+      2577.415,
+      3134.694,
+      3715.193,
+      4272.472,
+      4852.971,
+      5410.249,
+      5990.748,
+      6548.027,
+      7105.306,
+      7662.585,
+      8266.304,
+      8800.363,
+      9380.862,
+      9938.141,
+      10518.639,
+      11075.918,
+      11633.197,
+      12190.476,
+      12747.755,
+      13328.254,
+      13885.533,
+      14466.032,
+      15023.311,
+      15580.59,
+      16161.088,
+      16741.587,
+      17322.086,
+      17856.145,
+      18436.644,
+      18993.923,
+      19574.422,
+      20108.481,
+      20642.54,
+      21246.259,
+      21803.537,
+      22384.036,
+      22941.315,
+      23498.594,
+      24055.873,
+      24636.372,
+      25216.871,
+      25797.37,
+      26377.868,
+      26911.927,
+      27492.426,
+      28049.705,
+      28630.204,
+      29187.483,
+      29744.762,
+      30302.041,
+      30859.32,
+      31439.819,
+      31997.098,
+      32577.596,
+      33134.875,
+      33715.374,
+      34272.653,
+      34829.932,
+      35433.651,
+      35967.71,
+      36548.209,
+      37105.488,
+      37685.986,
+      38243.265,
+      38800.544,
+      39357.823,
+      39868.662,
+      40356.281,
+      40867.12
+    ],
+    "downbeatMethod": "strongest-four-beat-phase",
+    "downbeatPhase": 1,
+    "onsetTimesMs": [
+      69.66,
+      835.918,
+      905.578,
+      975.238,
+      1068.118,
+      1160.998,
+      1439.637,
+      1625.397,
+      1741.497,
+      1996.916,
+      2298.776,
+      2577.415,
+      3134.694,
+      3413.333,
+      3715.193,
+      3993.832,
+      4272.472,
+      4551.111,
+      4829.751,
+      5131.61,
+      5294.15,
+      5387.029,
+      5688.889,
+      5967.528,
+      6246.168,
+      6524.807,
+      6826.667,
+      7105.306,
+      7662.585,
+      7941.224,
+      8266.304,
+      8521.723,
+      8800.363,
+      9079.002,
+      9357.642,
+      9822.041,
+      9938.141,
+      10216.78,
+      10402.54,
+      10774.059,
+      11052.698,
+      12190.476,
+      12376.236,
+      12492.336,
+      12747.755,
+      13049.615,
+      13328.254,
+      13514.014,
+      13630.113,
+      13862.313,
+      14187.392,
+      14466.032,
+      14744.671,
+      15023.311,
+      15325.17,
+      15580.59,
+      16439.728,
+      16718.367,
+      16997.007,
+      17322.086,
+      17577.506,
+      17856.145,
+      18134.785,
+      18436.644,
+      18993.923,
+      19597.642,
+      19876.281,
+      20108.481,
+      20642.54,
+      20688.98,
+      20967.619,
+      21223.039,
+      21524.898,
+      21780.317,
+      22105.397,
+      22360.816,
+      22662.676,
+      22918.095,
+      23219.955,
+      23475.374,
+      23521.814,
+      23800.454,
+      24055.873,
+      24380.952,
+      24636.372,
+      25216.871,
+      25495.51,
+      25774.15,
+      26076.009,
+      26401.088,
+      26633.288,
+      26911.927,
+      27190.567,
+      27492.426,
+      27771.066,
+      28026.485,
+      28328.345,
+      29164.263,
+      29721.542,
+      30023.401,
+      30278.821,
+      30603.9,
+      30859.32,
+      31161.179,
+      31416.599,
+      31718.458,
+      31973.878,
+      32275.737,
+      32554.376,
+      32856.236,
+      33111.655,
+      33436.735,
+      33692.154,
+      34202.993,
+      34272.653,
+      34574.512,
+      34829.932,
+      35456.871,
+      35689.07,
+      35967.71,
+      36246.349,
+      36571.429,
+      36826.848,
+      37105.488,
+      37384.127,
+      37709.206,
+      38220.045,
+      38545.125,
+      38800.544,
+      39079.184,
+      39241.723,
+      39357.823,
+      39961.542,
+      40216.961,
+      40356.281,
+      40867.12,
+      41122.54
+    ],
+    "silenceIntervalsSeconds": [
+      [
+        20.41034,
+        20.57288
+      ],
+      [
+        29.442902,
+        29.675102
+      ],
+      [
+        40.402721,
+        40.79746
+      ],
+      [
+        42.028118,
+        44.5
+      ]
+    ],
+    "cutToNearestBeat": [
+      {
+        "cutFrame": 201,
+        "nearestBeatMs": 6548.027,
+        "offsetMs": 151.973
+      },
+      {
+        "cutFrame": 482,
+        "nearestBeatMs": 16161.088,
+        "offsetMs": -94.422
+      },
+      {
+        "cutFrame": 589,
+        "nearestBeatMs": 19574.422,
+        "offsetMs": 58.912
+      },
+      {
+        "cutFrame": 753,
+        "nearestBeatMs": 25216.871,
+        "offsetMs": -116.871
+      },
+      {
+        "cutFrame": 1214,
+        "nearestBeatMs": 40356.281,
+        "offsetMs": 110.385
+      },
+      {
+        "cutFrame": 1215,
+        "nearestBeatMs": 40356.281,
+        "offsetMs": 143.719
+      }
+    ],
+    "peak": 1.405629,
+    "rmsDb": -12.800174,
+    "events": [
+      {
+        "id": "audio.event.music-001",
+        "kind": "music",
+        "targetStartMs": 0.0,
+        "targetEndMs": 40338.6,
+        "timelineRange": {
+          "startFrame": 0,
+          "endFrameExclusive": 1210
+        },
+        "confidence": 1.0,
+        "status": "reviewed"
+      },
+      {
+        "id": "audio.event.silence-001",
+        "kind": "silence",
+        "targetStartMs": 40338.6,
+        "targetEndMs": 40837.3,
+        "timelineRange": {
+          "startFrame": 1210,
+          "endFrameExclusive": 1225
+        },
+        "confidence": 1.0,
+        "status": "reviewed"
+      },
+      {
+        "id": "audio.event.sting-001",
+        "kind": "sting",
+        "targetStartMs": 40837.3,
+        "targetEndMs": 42153.5,
+        "timelineRange": {
+          "startFrame": 1225,
+          "endFrameExclusive": 1265
+        },
+        "confidence": 1.0,
+        "status": "reviewed"
+      },
+      {
+        "id": "audio.event.silence-002",
+        "kind": "silence",
+        "targetStartMs": 42153.5,
+        "targetEndMs": 44500.0,
+        "timelineRange": {
+          "startFrame": 1265,
+          "endFrameExclusive": 1335
+        },
+        "confidence": 1.0,
+        "status": "reviewed"
+      }
+    ],
+    "eventReview": {
+      "schemaVersion": "nodevideo.audio-event-review.v1",
+      "method": "independent-waveform-segmentation-review"
+    },
+    "musicIdentification": {
+      "identity": {
+        "title": "Sign",
+        "artist": "82MAJOR",
+        "isrc": "KRA382601866"
+      },
+      "confidence": 0.99,
+      "sourceOffsetMs": 0.0,
+      "releasedMasterOffsetMs": 29146.0,
+      "releasedMasterGainDb": -6.12,
+      "provider": "independent-audio-fingerprint-review"
+    },
+    "routing": {
+      "sourceRoutes": "muted",
+      "sourceGainDb": -120.0,
+      "musicGainDb": 0.0
+    },
+    "fidelityAuthorization": {
+      "authorized": true,
+      "proofRef": "authorization.owner-provided-target-audio-fidelity",
+      "autonomousMusicSelectionEligible": false,
+      "reason": "The music render asset is derived from the authorized target."
+    }
+  },
+  "ocr": {
+    "sampleIntervalFrames": 15,
+    "sampleCount": 89,
+    "rawDetectionCount": 180,
+    "observations": [
+      {
+        "observationId": "overlay.ocr-001",
+        "sampleFrames": [
+          7,
+          22,
+          37,
+          52
+        ],
+        "sampleConfidences": [
+          0.830548,
+          0.999751,
+          0.601101,
+          0.642203
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-002",
+        "sampleFrames": [
+          7,
+          22,
+          37,
+          52
+        ],
+        "sampleConfidences": [
+          0.869251,
+          0.879439,
+          0.855183,
+          0.861513
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-003",
+        "sampleFrames": [
+          22,
+          37,
+          52
+        ],
+        "sampleConfidences": [
+          0.545713,
+          0.537743,
+          0.537743
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-004",
+        "sampleFrames": [
+          67,
+          82,
+          97
+        ],
+        "sampleConfidences": [
+          0.99999,
+          0.999993,
+          0.999992
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-005",
+        "sampleFrames": [
+          67,
+          82,
+          97
+        ],
+        "sampleConfidences": [
+          0.545563,
+          0.473038,
+          0.473098
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-006",
+        "sampleFrames": [
+          112
+        ],
+        "sampleConfidences": [
+          0.999559
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-007",
+        "sampleFrames": [
+          112,
+          127,
+          142,
+          157,
+          172,
+          187,
+          202,
+          217,
+          232,
+          247,
+          262,
+          277,
+          292,
+          307,
+          322,
+          337,
+          352,
+          367,
+          382,
+          397,
+          412,
+          427,
+          442,
+          457,
+          472,
+          487,
+          502,
+          517,
+          532,
+          547,
+          562,
+          577,
+          592,
+          607,
+          622,
+          637,
+          652,
+          667,
+          682,
+          697,
+          712,
+          727,
+          742,
+          757,
+          772,
+          787,
+          802,
+          817,
+          832,
+          847,
+          862,
+          877,
+          892,
+          907,
+          922,
+          937,
+          952,
+          967,
+          982,
+          997,
+          1012,
+          1027,
+          1042,
+          1057,
+          1072,
+          1087,
+          1102,
+          1117,
+          1132,
+          1147,
+          1162,
+          1177,
+          1192,
+          1207,
+          1222,
+          1237,
+          1252,
+          1267,
+          1282,
+          1297,
+          1312,
+          1327
+        ],
+        "sampleConfidences": [
+          0.477737,
+          0.551017,
+          0.551017,
+          0.551017,
+          0.523815,
+          0.551017,
+          0.883157,
+          0.897875,
+          0.852645,
+          0.612693,
+          0.894987,
+          0.373271,
+          0.599506,
+          0.610495,
+          0.585324,
+          0.823794,
+          0.811077,
+          0.840376,
+          0.818822,
+          0.980934,
+          0.733166,
+          0.862468,
+          0.859639,
+          0.826123,
+          0.83388,
+          0.64688,
+          0.616052,
+          0.634324,
+          0.657011,
+          0.815514,
+          0.488664,
+          0.527661,
+          0.94699,
+          0.653788,
+          0.499763,
+          0.988538,
+          0.89014,
+          0.784354,
+          0.908363,
+          0.980155,
+          0.984493,
+          0.642355,
+          0.656015,
+          0.848479,
+          0.508334,
+          0.46898,
+          0.571646,
+          0.699624,
+          0.641112,
+          0.637441,
+          0.656334,
+          0.565891,
+          0.595968,
+          0.640421,
+          0.673452,
+          0.659775,
+          0.631143,
+          0.618803,
+          0.627531,
+          0.607418,
+          0.577772,
+          0.618049,
+          0.652478,
+          0.533325,
+          0.551537,
+          0.786016,
+          0.740147,
+          0.767973,
+          0.767973,
+          0.767973,
+          0.787175,
+          0.767973,
+          0.767973,
+          0.767973,
+          0.568033,
+          0.854623,
+          0.879477,
+          0.879477,
+          0.863916,
+          0.863916,
+          0.871243,
+          0.871243
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-008",
+        "sampleFrames": [
+          142
+        ],
+        "sampleConfidences": [
+          0.991524
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-009",
+        "sampleFrames": [
+          172,
+          187
+        ],
+        "sampleConfidences": [
+          0.999917,
+          0.999398
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-010",
+        "sampleFrames": [
+          217
+        ],
+        "sampleConfidences": [
+          0.976901
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-011",
+        "sampleFrames": [
+          217
+        ],
+        "sampleConfidences": [
+          0.212729
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-012",
+        "sampleFrames": [
+          232
+        ],
+        "sampleConfidences": [
+          0.787884
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-013",
+        "sampleFrames": [
+          247
+        ],
+        "sampleConfidences": [
+          0.187501
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-014",
+        "sampleFrames": [
+          307,
+          322
+        ],
+        "sampleConfidences": [
+          0.994209,
+          0.995192
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-015",
+        "sampleFrames": [
+          352,
+          367
+        ],
+        "sampleConfidences": [
+          0.675471,
+          0.674294
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-016",
+        "sampleFrames": [
+          382
+        ],
+        "sampleConfidences": [
+          0.633156
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-017",
+        "sampleFrames": [
+          382
+        ],
+        "sampleConfidences": [
+          0.628495
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-018",
+        "sampleFrames": [
+          397
+        ],
+        "sampleConfidences": [
+          0.288839
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-019",
+        "sampleFrames": [
+          412
+        ],
+        "sampleConfidences": [
+          0.562408
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-020",
+        "sampleFrames": [
+          412
+        ],
+        "sampleConfidences": [
+          0.786205
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-021",
+        "sampleFrames": [
+          442
+        ],
+        "sampleConfidences": [
+          0.84648
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-022",
+        "sampleFrames": [
+          472
+        ],
+        "sampleConfidences": [
+          0.727276
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-023",
+        "sampleFrames": [
+          472
+        ],
+        "sampleConfidences": [
+          0.879971
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-024",
+        "sampleFrames": [
+          592,
+          607
+        ],
+        "sampleConfidences": [
+          0.999988,
+          0.999944
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-025",
+        "sampleFrames": [
+          607
+        ],
+        "sampleConfidences": [
+          0.37846
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-026",
+        "sampleFrames": [
+          607
+        ],
+        "sampleConfidences": [
+          0.265243
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-027",
+        "sampleFrames": [
+          622
+        ],
+        "sampleConfidences": [
+          0.999992
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-028",
+        "sampleFrames": [
+          622
+        ],
+        "sampleConfidences": [
+          0.429735
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-029",
+        "sampleFrames": [
+          622
+        ],
+        "sampleConfidences": [
+          0.326418
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-030",
+        "sampleFrames": [
+          637,
+          652
+        ],
+        "sampleConfidences": [
+          0.25422,
+          0.314296
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-031",
+        "sampleFrames": [
+          652
+        ],
+        "sampleConfidences": [
+          0.32794
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-032",
+        "sampleFrames": [
+          667
+        ],
+        "sampleConfidences": [
+          0.226881
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-033",
+        "sampleFrames": [
+          697,
+          712,
+          727
+        ],
+        "sampleConfidences": [
+          0.999991,
+          0.999991,
+          0.999874
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-034",
+        "sampleFrames": [
+          697,
+          712
+        ],
+        "sampleConfidences": [
+          0.302323,
+          0.617959
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-035",
+        "sampleFrames": [
+          697
+        ],
+        "sampleConfidences": [
+          0.477108
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-036",
+        "sampleFrames": [
+          712
+        ],
+        "sampleConfidences": [
+          0.188162
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-037",
+        "sampleFrames": [
+          757,
+          772,
+          787
+        ],
+        "sampleConfidences": [
+          0.997975,
+          0.997738,
+          0.997934
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-038",
+        "sampleFrames": [
+          757,
+          772,
+          787
+        ],
+        "sampleConfidences": [
+          0.252064,
+          0.252064,
+          0.263988
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-039",
+        "sampleFrames": [
+          757,
+          772,
+          787
+        ],
+        "sampleConfidences": [
+          0.964202,
+          0.960731,
+          0.960875
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-040",
+        "sampleFrames": [
+          817,
+          832,
+          847
+        ],
+        "sampleConfidences": [
+          0.730884,
+          0.701091,
+          0.745921
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-041",
+        "sampleFrames": [
+          877
+        ],
+        "sampleConfidences": [
+          0.520528
+        ],
+        "timingResolutionFrames": 15
+      },
+      {
+        "observationId": "overlay.ocr-042",
+        "sampleFrames": [
+          892,
+          907,
+          922,
+          937,
+          952,
+          967,
+          982,
+          997,
+          1012,
+          1027,
+          1042,
+          1057,
+          1072,
+          1087,
+          1102,
+          1117,
+          1132,
+          1147,
+          1162,
+          1177,
+          1192,
+          1207,
+          1222,
+          1237,
+          1252,
+          1267,
+          1282,
+          1297,
+          1312,
+          1327
+        ],
+        "sampleConfidences": [
+          0.863198,
+          0.7628,
+          0.768905,
+          0.774819,
+          0.774819,
+          0.781577,
+          0.781577,
+          0.781577,
+          0.781577,
+          0.800268,
+          0.781577,
+          0.810136,
+          0.818923,
+          0.83892,
+          0.874548,
+          0.848976,
+          0.842659,
+          0.840138,
+          0.84249,
+          0.856698,
+          0.840357,
+          0.919309,
+          0.896384,
+          0.72421,
+          0.738843,
+          0.734899,
+          0.73547,
+          0.71475,
+          0.743886,
+          0.743886
+        ],
+        "timingResolutionFrames": 15
+      }
+    ]
+  },
+  "reviewPatches": [
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-001",
+      "timelineRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 60
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.729981,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-002",
+      "timelineRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 60
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.823029,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-003",
+      "timelineRange": {
+        "startFrame": 15,
+        "endFrameExclusive": 60
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.51338,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-004",
+      "timelineRange": {
+        "startFrame": 60,
+        "endFrameExclusive": 105
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.949992,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-005",
+      "timelineRange": {
+        "startFrame": 60,
+        "endFrameExclusive": 105
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.472371,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-006",
+      "timelineRange": {
+        "startFrame": 105,
+        "endFrameExclusive": 120
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.784654,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-007",
+      "timelineRange": {
+        "startFrame": 105,
+        "endFrameExclusive": 1335
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.676418,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-008",
+      "timelineRange": {
+        "startFrame": 135,
+        "endFrameExclusive": 150
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.778346,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-009",
+      "timelineRange": {
+        "startFrame": 165,
+        "endFrameExclusive": 195
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.949675,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-010",
+      "timelineRange": {
+        "startFrame": 210,
+        "endFrameExclusive": 225
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.766868,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-011",
+      "timelineRange": {
+        "startFrame": 210,
+        "endFrameExclusive": 225
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.166993,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-012",
+      "timelineRange": {
+        "startFrame": 225,
+        "endFrameExclusive": 240
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.618489,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-013",
+      "timelineRange": {
+        "startFrame": 240,
+        "endFrameExclusive": 255
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.147188,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-014",
+      "timelineRange": {
+        "startFrame": 300,
+        "endFrameExclusive": 330
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.944965,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-015",
+      "timelineRange": {
+        "startFrame": 345,
+        "endFrameExclusive": 375
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.641138,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-016",
+      "timelineRange": {
+        "startFrame": 375,
+        "endFrameExclusive": 390
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.497027,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-017",
+      "timelineRange": {
+        "startFrame": 375,
+        "endFrameExclusive": 390
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.493369,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-018",
+      "timelineRange": {
+        "startFrame": 390,
+        "endFrameExclusive": 405
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.226739,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-019",
+      "timelineRange": {
+        "startFrame": 405,
+        "endFrameExclusive": 420
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.44149,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-020",
+      "timelineRange": {
+        "startFrame": 405,
+        "endFrameExclusive": 420
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.617171,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-021",
+      "timelineRange": {
+        "startFrame": 435,
+        "endFrameExclusive": 450
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.664486,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-022",
+      "timelineRange": {
+        "startFrame": 465,
+        "endFrameExclusive": 480
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.570912,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-023",
+      "timelineRange": {
+        "startFrame": 465,
+        "endFrameExclusive": 480
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.690777,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-024",
+      "timelineRange": {
+        "startFrame": 585,
+        "endFrameExclusive": 615
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.949968,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-025",
+      "timelineRange": {
+        "startFrame": 600,
+        "endFrameExclusive": 615
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.297091,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-026",
+      "timelineRange": {
+        "startFrame": 600,
+        "endFrameExclusive": 615
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.208216,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-027",
+      "timelineRange": {
+        "startFrame": 615,
+        "endFrameExclusive": 630
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.784993,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-028",
+      "timelineRange": {
+        "startFrame": 615,
+        "endFrameExclusive": 630
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.337342,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-029",
+      "timelineRange": {
+        "startFrame": 615,
+        "endFrameExclusive": 630
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.256238,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-030",
+      "timelineRange": {
+        "startFrame": 630,
+        "endFrameExclusive": 660
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.270045,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-031",
+      "timelineRange": {
+        "startFrame": 645,
+        "endFrameExclusive": 660
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.257433,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-032",
+      "timelineRange": {
+        "startFrame": 660,
+        "endFrameExclusive": 675
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.178101,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-033",
+      "timelineRange": {
+        "startFrame": 690,
+        "endFrameExclusive": 735
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.949955,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-034",
+      "timelineRange": {
+        "startFrame": 690,
+        "endFrameExclusive": 720
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.437134,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-035",
+      "timelineRange": {
+        "startFrame": 690,
+        "endFrameExclusive": 705
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.37453,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-036",
+      "timelineRange": {
+        "startFrame": 705,
+        "endFrameExclusive": 720
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.147707,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-037",
+      "timelineRange": {
+        "startFrame": 750,
+        "endFrameExclusive": 795
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.947988,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-038",
+      "timelineRange": {
+        "startFrame": 750,
+        "endFrameExclusive": 795
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.243237,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-039",
+      "timelineRange": {
+        "startFrame": 750,
+        "endFrameExclusive": 795
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.913839,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-040",
+      "timelineRange": {
+        "startFrame": 810,
+        "endFrameExclusive": 855
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.689667,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-041",
+      "timelineRange": {
+        "startFrame": 870,
+        "endFrameExclusive": 885
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.408614,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    },
+    {
+      "op": "review-overlay-observation",
+      "observationId": "overlay.ocr-042",
+      "timelineRange": {
+        "startFrame": 885,
+        "endFrameExclusive": 1335
+      },
+      "fields": [
+        "text",
+        "timing",
+        "box",
+        "style"
+      ],
+      "confidence": 0.760576,
+      "reason": "EasyOCR observations are candidates; exact typography and frame boundaries require review."
+    }
+  ],
+  "privacy": {
+    "rawPathsEmitted": false,
+    "rawFilenamesEmitted": false,
+    "externalReferencesUseNeutralAssetUris": true
+  }
+}

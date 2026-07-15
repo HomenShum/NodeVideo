@@ -1,0 +1,386 @@
+{
+  "schemaVersion": "nodevideo.release-receipt.v2",
+  "caseId": "authorized-real-v2",
+  "createdAt": "2026-07-15T09:59:34.839Z",
+  "authorization": {
+    "status": "owner-authorized-publication",
+    "proofRef": "authorization.owner-provided-target-audio-fidelity",
+    "scope": [
+      "public metadata-stripped derivatives",
+      "target-guided reference understanding",
+      "authorized target-derived soundtrack and grade-asset fidelity render",
+      "public evaluation evidence"
+    ]
+  },
+  "inputs": [
+    {
+      "id": "asset.source-a-original",
+      "role": "source-video",
+      "usage": "render-source",
+      "sha256": "041f52059ba5ef2e934730f759d139ffc17c029b8b683d027c40c5f2fbdb7614"
+    },
+    {
+      "id": "asset.source-b-original",
+      "role": "source-video",
+      "usage": "render-source",
+      "sha256": "30dedbd0f9ed084838a86e0728049774e7895609c1fea554e7739e9cc20b46d0"
+    },
+    {
+      "id": "asset.reference-target",
+      "role": "reference-target",
+      "usage": "analysis-evaluation-and-authorized-asset-derivation",
+      "sha256": "83e93e1ded63cfc17247e2709f32efa810f55695b5b3063cecd6db9284982841"
+    }
+  ],
+  "analyzer": {
+    "version": "nodevideo-reference-edit-analyzer@0.1.0",
+    "toolVersions": {
+      "PySceneDetect": "0.7",
+      "librosa": "0.10.2.post1",
+      "MediaPipe": "0.10.35",
+      "EasyOCR": "1.7.1",
+      "OpenTimelineIO": "0.18.1",
+      "NumPy": "1.26.4",
+      "SciPy": "1.12.0",
+      "OpenCV": "4.10.0",
+      "FFmpeg": "ffmpeg version 6.0-full_build-www.gyan.dev Copyright (c) 2000-2023 the FFmpeg developers",
+      "FFprobe": "ffprobe version 6.0-full_build-www.gyan.dev Copyright (c) 2007-2023 the FFmpeg developers",
+      "analyzer": "nodevideo-reference-edit-analyzer@0.1.0"
+    },
+    "understandingId": "understanding.17843623a547d080",
+    "recoveredCutFrames": [
+      201,
+      482,
+      589,
+      753,
+      1214,
+      1215
+    ],
+    "permanentWindowSourceStartFrame": 942
+  },
+  "render": {
+    "rendererVersion": "nodevideo.edit-plan-renderer@0.1.0",
+    "planId": "plan.authorized-real-v2.reviewed",
+    "planVersion": 2,
+    "frameRate": 30,
+    "durationFrames": 1335,
+    "canvas": {
+      "width": 720,
+      "height": 1280
+    },
+    "renderAssetIds": [
+      "asset.source-a-original",
+      "asset.source-b-original",
+      "asset.music-target-derived",
+      "asset.graphic-social-top",
+      "asset.graphic-social-left",
+      "asset.graphic-end-card-dim",
+      "asset.graphic-end-card-brand",
+      "asset.grade-target-guided-v1"
+    ],
+    "evaluationOnlyAssetIds": [
+      "asset.reference-target"
+    ],
+    "targetDerivedRenderAssetIds": [
+      "asset.music-target-derived",
+      "asset.grade-target-guided-v1"
+    ],
+    "audioEvents": [
+      {
+        "id": "audio.event.music-001",
+        "kind": "music",
+        "clipId": "audio.music.target-derived-001",
+        "sourceOffsetMs": 0,
+        "releasedMasterOffsetMs": 29146,
+        "releasedMasterGainDb": -6.12,
+        "targetStartMs": 0,
+        "targetEndMs": 40338.6,
+        "gainDb": 0,
+        "identity": {
+          "title": "Sign",
+          "artist": "82MAJOR",
+          "isrc": "KRA382601866"
+        }
+      },
+      {
+        "id": "audio.event.silence-001",
+        "kind": "silence",
+        "targetStartMs": 40338.6,
+        "targetEndMs": 40837.3
+      },
+      {
+        "id": "audio.event.sting-001",
+        "kind": "sting",
+        "clipId": "audio.sting.target-derived-003",
+        "sourceOffsetMs": 40837.3,
+        "targetStartMs": 40837.3,
+        "targetEndMs": 42153.5,
+        "gainDb": 0,
+        "label": "reviewed soundtrack sting"
+      },
+      {
+        "id": "audio.event.silence-002",
+        "kind": "silence",
+        "targetStartMs": 42153.5,
+        "targetEndMs": 44500
+      }
+    ],
+    "audioDelivery": {
+      "integratedLufs": -14.1,
+      "truePeakDbfs": -1.9,
+      "method": "FFmpeg ebur128=peak=true"
+    }
+  },
+  "evaluation": {
+    "evaluatorVersion": "nodevideo.plan-adjudicator@1.2.0",
+    "criticVerdict": "pass",
+    "criticScores": {
+      "technical": 0.9456403333333333,
+      "mapping": 1,
+      "rhythm": 0.999876,
+      "framing": 1,
+      "text": 1,
+      "audio": 0.9959874,
+      "grade": 0.9456403333333333,
+      "taste": null
+    },
+    "criticTasteStatus": "not-evaluated",
+    "planPassed": true,
+    "releaseReady": true,
+    "releaseReadyScope": "technical-reconstruction-of-authorized-reference-case",
+    "eventSummary": {
+      "total": 56,
+      "passed": 56,
+      "failed": 0,
+      "score": 0.9963713392857143,
+      "permanentFailure": false
+    },
+    "technicalPassed": true,
+    "global": {
+      "score": 0.967787,
+      "metric": "ssim",
+      "ssim": 0.967787,
+      "psnrDb": 27.747768,
+      "psnrInfinite": false,
+      "vmaf": 25.94982,
+      "contentWeightedSsim": 0.940722,
+      "warning": "Full-frame values are diagnostic only; release gates use exact local windows, and fit windows exclude black padding."
+    },
+    "permanentWindow": {
+      "id": "render.clip.shot.003",
+      "timelineRange": {
+        "startFrame": 482,
+        "endFrameExclusive": 589
+      },
+      "score": 0.919714,
+      "metric": "content-ssim",
+      "roi": {
+        "x": 0,
+        "y": 437,
+        "width": 720,
+        "height": 406,
+        "strategy": "source-aspect-contain"
+      },
+      "ssim": 0.919714,
+      "psnrDb": 28.605737,
+      "psnrInfinite": false
+    },
+    "endCardWindow": {
+      "id": "render.clip.shot.007",
+      "timelineRange": {
+        "startFrame": 1215,
+        "endFrameExclusive": 1335
+      },
+      "score": 0.944191,
+      "metric": "content-ssim",
+      "roi": {
+        "x": 0,
+        "y": 437,
+        "width": 720,
+        "height": 406,
+        "strategy": "source-aspect-contain"
+      },
+      "ssim": 0.944191,
+      "psnrDb": 24.93293,
+      "psnrInfinite": false
+    },
+    "audio": {
+      "referenceCorrelation": 0.999504,
+      "sourceLeakageCorrelation": 0.039134,
+      "reference": {
+        "status": "measured",
+        "rangeMs": {
+          "start": 0,
+          "end": 40338.6
+        },
+        "sampleRate": 8000,
+        "maximumLagMs": 50,
+        "lagMs": 0,
+        "comparedSamples": 322709,
+        "method": "zero-mean-normalized-waveform-correlation",
+        "comparison": "rendered output versus reference target soundtrack"
+      },
+      "sourceLeakage": {
+        "status": "measured",
+        "correlation": 0.039134,
+        "method": "maximum-absolute-mapped-source-window-correlation",
+        "coverage": {
+          "measuredFrames": 1214,
+          "expectedFrames": 1214,
+          "ratio": 1
+        },
+        "windows": [
+          {
+            "id": "render.clip.shot.001",
+            "timelineRange": {
+              "startFrame": 0,
+              "endFrameExclusive": 201
+            },
+            "sourceAssetId": "asset.source-a-original",
+            "sourceRange": {
+              "startFrame": 464,
+              "endFrameExclusive": 665
+            },
+            "correlation": 0.028229,
+            "lagMs": -31.375,
+            "comparedSamples": 53362,
+            "status": "measured"
+          },
+          {
+            "id": "render.clip.shot.002",
+            "timelineRange": {
+              "startFrame": 201,
+              "endFrameExclusive": 482
+            },
+            "sourceAssetId": "asset.source-b-original",
+            "sourceRange": {
+              "startFrame": 963,
+              "endFrameExclusive": 1244
+            },
+            "correlation": 0.022087,
+            "lagMs": -16.75,
+            "comparedSamples": 74818,
+            "status": "measured"
+          },
+          {
+            "id": "render.clip.shot.003",
+            "timelineRange": {
+              "startFrame": 482,
+              "endFrameExclusive": 589
+            },
+            "sourceAssetId": "asset.source-a-original",
+            "sourceRange": {
+              "startFrame": 942,
+              "endFrameExclusive": 1049
+            },
+            "correlation": 0.039134,
+            "lagMs": 23.875,
+            "comparedSamples": 28343,
+            "status": "measured"
+          },
+          {
+            "id": "render.clip.shot.004",
+            "timelineRange": {
+              "startFrame": 589,
+              "endFrameExclusive": 753
+            },
+            "sourceAssetId": "asset.source-b-original",
+            "sourceRange": {
+              "startFrame": 1355,
+              "endFrameExclusive": 1519
+            },
+            "correlation": 0.024801,
+            "lagMs": -48,
+            "comparedSamples": 43360,
+            "status": "measured"
+          },
+          {
+            "id": "render.clip.shot.005",
+            "timelineRange": {
+              "startFrame": 753,
+              "endFrameExclusive": 1214
+            },
+            "sourceAssetId": "asset.source-a-original",
+            "sourceRange": {
+              "startFrame": 1212,
+              "endFrameExclusive": 1673
+            },
+            "correlation": 0.023421,
+            "lagMs": 9.625,
+            "comparedSamples": 122857,
+            "status": "measured"
+          }
+        ]
+      }
+    }
+  },
+  "privacy": {
+    "sourceContainerMetadataPublished": false,
+    "originalFilenamesPublished": false,
+    "localPathsPublished": false,
+    "neutralAssetIdsOnly": true
+  },
+  "outputs": [
+    {
+      "name": "corrected.mp4",
+      "sha256": "e8c7155ffd5f11d9ae6a96d28c073241e55a5509c3ac7a6fcdee66ba6e726eb8"
+    },
+    {
+      "name": "side-by-side.mp4",
+      "sha256": "3a89d14a5c414e7a3d28e4d3f4a40aa0aaf92d9edeb978243214ab59995c0919"
+    },
+    {
+      "name": "edit-understanding.json",
+      "sha256": "5ef030641aa6fb4b6f89f3c109c987cd5de84e945c820226865c3e42c58ea8dd"
+    },
+    {
+      "name": "edit-plan.json",
+      "sha256": "fa61f5dd4f9ce0e69254c5b09794c3eb155caa06b43543906685351aee3495ee"
+    },
+    {
+      "name": "edit-plan.otio",
+      "sha256": "d368bff446a2881a711492ae2f5554358e938354c0050edf9799019d9991efdf"
+    },
+    {
+      "name": "analysis-evidence.json",
+      "sha256": "c37ca4fc94dd7fad5d52186e7a7a9b8338aa7546c80b4bf5089facad48723c97"
+    },
+    {
+      "name": "agent-review.json",
+      "sha256": "fb8e0a33a365a1f45dba6a333aee44a32e6a6afaeebda17063cdee7efac711fd"
+    },
+    {
+      "name": "render-metrics.json",
+      "sha256": "d3d83fe4c6bd924708b760cc292797c107c93aa2b6c5396ebbd14c5f1489b98e"
+    },
+    {
+      "name": "event-score-report.json",
+      "sha256": "6c98b78b5d807fc266887edde7e8d0167fcf3834488ad369a94fd117dd8b805a"
+    },
+    {
+      "name": "critic-report.json",
+      "sha256": "6e920e3085181229f6ba64f6390c05af9bf0e434fa6376df5aa30d11da750a51"
+    },
+    {
+      "name": "target-guided-grade-v1.cube",
+      "sha256": "8b87b291e87e743c63d898323e4797ab9d5b563a24d384d188081d91d4bdf688"
+    }
+  ],
+  "claimBoundary": {
+    "proven": "Bounded owner-authorized target-guided reconstruction passing the declared case-scoped plan and render gates.",
+    "notProven": [
+      "blind source-only taste equivalence",
+      "autonomous commercial music licensing or catalog selection",
+      "commercial-track ownership or redistribution rights beyond the supplied owner authorization",
+      "bit-identical reproduction of the original editor project"
+    ]
+  },
+  "limitations": [
+    "The soundtrack render asset is explicitly target-derived and proves reference fidelity only.",
+    "The color LUT is target-guided and is named in render lineage.",
+    "Social-layer presence and position timing are deterministic representation checks, not taste evaluation; motion transitions and gradient cycling remain approximate.",
+    "Text gates compare typed plan content and timing with the withheld reference; decoded-render OCR and typography are not independently scored.",
+    "The reference soundtrack correlation compares the render with the target audio, not an independently supplied released master.",
+    "VMAF 25.949820 remains diagnostic and prevents an exact perceptual-identity claim."
+  ]
+}

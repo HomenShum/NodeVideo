@@ -22,6 +22,7 @@
     "worker:private": "node scripts/workers/tutorial-compare.mjs",
     "worker:authorized": "node scripts/workers/reference-reconstruct.mjs --authorized-public",
     "worker:authorized:verify": "node scripts/workers/reference-reconstruct.mjs --verify-public",
+    "worker:edit-plan": "node scripts/workers/edit-plan-renderer.mjs",
     "proof:synthetic": "node scripts/media/generate-synthetic-fixture.mjs",
     "proof": "npm run worker:verify",
     "proof:private": "node scripts/media/inspect-private-media.mjs",

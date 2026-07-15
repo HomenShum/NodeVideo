@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "nodevideo.critic-report.v2",
+  "id": "critic:plan.authorized-real-v2.reviewed:v2",
+  "planId": "plan.authorized-real-v2.reviewed",
+  "planVersion": 2,
+  "renderArtifactId": "artifact.render.sha256-e8c7155ffd5f11d9",
+  "createdAt": "2026-07-15T10:38:21.567Z",
+  "mode": "deterministic",
+  "verdict": "pass",
+  "scores": {
+    "technical": 0.9456403333333333,
+    "mapping": 1,
+    "rhythm": 0.999876,
+    "framing": 1,
+    "text": 1,
+    "audio": 0.9959874,
+    "grade": 0.9456403333333333,
+    "taste": null
+  },
+  "tasteStatus": "not-evaluated",
+  "findings": [],
+  "worstWindows": [],
+  "patches": []
+}

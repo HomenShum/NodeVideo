@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "nodevideo.agent-edit-review.v1",
+  "id": "review.authorized-real-v2",
+  "createdAt": "2026-07-15T09:59:34.839Z",
+  "basePlanId": "plan.17843623a547d080.v1",
+  "outputPlanId": "plan.authorized-real-v2.reviewed",
+  "evidence": [
+    "analysis-evidence.json",
+    "independent visual frame/motion review",
+    "independent soundtrack fingerprint and waveform review"
+  ],
+  "decisions": {
+    "picture": "Accepted all seven analyzer-recovered primary decisions, including Source A frame 942 for output frame 482.",
+    "grade": "Applied the fixed reusable BT.2020 HLG to BT.709 Hable primitive followed by an explicitly target-guided cubic LUT artifact.",
+    "text": "Compiled 31 frame-exact cue observations into fixed text templates; OCR supplied placement evidence and short-event review supplied missed cues.",
+    "social": "Reused repository watermark/end-card primitives across five observed phase intervals; animation and gradient cycling remain approximate.",
+    "audio": "Accepted the four exact reviewed sample-time events and explicit target-derived fidelity lineage."
+  },
+  "claimBoundary": "Target-guided authorized fidelity review; not blind source-only taste or autonomous catalog selection."
+}

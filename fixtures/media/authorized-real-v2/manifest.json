@@ -1,0 +1,250 @@
+{
+  "schemaVersion": "nodevideo.published-case.v2",
+  "id": "authorized-real-v2",
+  "title": "NodeVideo V2 · Authorized audiovisual reconstruction",
+  "claimBoundary": {
+    "proven": [
+      "Target-guided edit understanding for this owner-authorized case",
+      "Deterministic picture execution from the two source videos, with authorized target-derived soundtrack and LUT assets disclosed separately",
+      "Frame-matched cut/source timing and measured target-soundtrack correlation/lag gates for this target-guided replay",
+      "Typed plan content/timing checks for 31 cues plus decoded local render windows"
+    ],
+    "demonstratedBy": [
+      "EditUnderstanding and OTIO artifacts",
+      "56/56 deterministic technical case events",
+      "Content-only local windows and audio correlations"
+    ],
+    "notClaimed": [
+      "Blind source-only taste equivalence or autonomous catalog selection",
+      "Exact perceptual identity; global VMAF is 25.949820",
+      "Decoded-render OCR/typography validation; text gates are plan content/timing checks",
+      "Exact social transition/gradient styling or the original editor grade; both are approximations",
+      "Commercial-track ownership or redistribution rights beyond the supplied owner authorization"
+    ]
+  },
+  "verdict": {
+    "status": "passed",
+    "summary": "56/56 measured technical, case-scoped plan/render gates pass, including the corrected 16.067–19.633 s phrase, target soundtrack timing, local windows, and source-audio leakage. Exact visual identity is not claimed.",
+    "releaseBlockers": []
+  },
+  "eventSummary": {
+    "passedEventCount": 56,
+    "totalEventCount": 56,
+    "picture": "7/7 primary picture decisions match the withheld reference.",
+    "framing": "Static fit/fill decisions and the one-frame black transition match.",
+    "grade": "Fixed HLG→SDR primitive plus a target-guided LUT; visual identity remains limited by VMAF 25.949820."
+  },
+  "permanentWindow": {
+    "startSeconds": 16.067,
+    "endSeconds": 19.633,
+    "expectedSourceLabel": "Source A",
+    "expectedSourceStartSeconds": 31.4,
+    "expectedSourceEndSeconds": 34.967,
+    "passed": true,
+    "summary": "Recovered Source A frame 942, correcting the V1 +76-frame error; foreground-only SSIM 0.919714."
+  },
+  "soundtrack": {
+    "title": "Sign",
+    "artist": "82MAJOR",
+    "outputStartSeconds": 0,
+    "outputEndSeconds": 40.3386,
+    "referenceOffsetSeconds": 29.146,
+    "gainDb": -6.12,
+    "sourceAudioMuted": true,
+    "beatMappingPassed": true,
+    "licenseBoundary": "Owner-authorized target-asset derivation for this named case; not catalog-selection, ownership, licensing, or redistribution proof.",
+    "summary": "Target soundtrack correlation 0.999504 at 0 ms lag; the frame-matched cut map preserves the measured soundtrack relationship; maximum mapped source leakage 0.039134; silence and sting retained."
+  },
+  "textSummary": {
+    "cueCount": 31,
+    "passed": true,
+    "summary": "All 31 typed plan cues match withheld text and frame timing within two frames; typography and decoded-render OCR are not independently validated."
+  },
+  "pictureClips": [
+    {
+      "id": "a-fit-1",
+      "label": "Wide phrase 1",
+      "outputStartSeconds": 0,
+      "outputEndSeconds": 6.7,
+      "sourceLabel": "Source A",
+      "sourceStartSeconds": 15.467,
+      "sourceEndSeconds": 22.167,
+      "framing": "fit",
+      "passed": true
+    },
+    {
+      "id": "b-fill-1",
+      "label": "Close phrase 1",
+      "outputStartSeconds": 6.7,
+      "outputEndSeconds": 16.067,
+      "sourceLabel": "Source B",
+      "sourceStartSeconds": 32.1,
+      "sourceEndSeconds": 41.467,
+      "framing": "fill",
+      "passed": true
+    },
+    {
+      "id": "a-fit-2",
+      "label": "Corrected phrase",
+      "outputStartSeconds": 16.067,
+      "outputEndSeconds": 19.633,
+      "sourceLabel": "Source A",
+      "sourceStartSeconds": 31.4,
+      "sourceEndSeconds": 34.967,
+      "framing": "fit",
+      "passed": true
+    },
+    {
+      "id": "b-fill-2",
+      "label": "Close phrase 2",
+      "outputStartSeconds": 19.633,
+      "outputEndSeconds": 25.1,
+      "sourceLabel": "Source B",
+      "sourceStartSeconds": 45.167,
+      "sourceEndSeconds": 50.633,
+      "framing": "fill",
+      "passed": true
+    },
+    {
+      "id": "a-fit-3",
+      "label": "Wide phrase 3",
+      "outputStartSeconds": 25.1,
+      "outputEndSeconds": 40.467,
+      "sourceLabel": "Source A",
+      "sourceStartSeconds": 40.4,
+      "sourceEndSeconds": 55.767,
+      "framing": "fit",
+      "passed": true
+    },
+    {
+      "id": "black-transition",
+      "label": "Black transition",
+      "outputStartSeconds": 40.467,
+      "outputEndSeconds": 40.5,
+      "sourceLabel": "None",
+      "framing": "black",
+      "passed": true
+    },
+    {
+      "id": "end-card-freeze",
+      "label": "End-card freeze",
+      "outputStartSeconds": 40.5,
+      "outputEndSeconds": 44.5,
+      "sourceLabel": "Source A",
+      "sourceStartSeconds": 55.733,
+      "sourceEndSeconds": 55.733,
+      "framing": "freeze",
+      "passed": true
+    }
+  ],
+  "views": [
+    {
+      "id": "corrected",
+      "label": "Corrected reconstruction",
+      "url": "/media/authorized-real-v2/corrected.mp4",
+      "sha256": "e8c7155ffd5f11d9ae6a96d28c073241e55a5509c3ac7a6fcdee66ba6e726eb8",
+      "mimeType": "video/mp4",
+      "ratio": 0.5625
+    },
+    {
+      "id": "target",
+      "label": "Final target edit",
+      "url": "/media/authorized-real-v1/target-web.mp4",
+      "sha256": "9431a1d9cfce0216bf6f3e93d36e2fd5b7cbbc8c81a202eaf1686b009999a35d",
+      "mimeType": "video/mp4",
+      "ratio": 0.5625
+    },
+    {
+      "id": "side-by-side",
+      "label": "Target | corrected",
+      "url": "/media/authorized-real-v2/side-by-side.mp4",
+      "sha256": "3a89d14a5c414e7a3d28e4d3f4a40aa0aaf92d9edeb978243214ab59995c0919",
+      "mimeType": "video/mp4",
+      "ratio": 1.125
+    },
+    {
+      "id": "source-a",
+      "label": "Source A",
+      "url": "/media/authorized-real-v1/source-a-web.mp4",
+      "sha256": "634bfb9b539c85ef105e93c047267612817a6c4da4a0f830b38be21e3f31b428",
+      "mimeType": "video/mp4",
+      "ratio": 1.777777778
+    },
+    {
+      "id": "source-b",
+      "label": "Source B",
+      "url": "/media/authorized-real-v1/source-b-web.mp4",
+      "sha256": "11ec849d6e99d6aee1f7b3ba8de7a4d248a808062b237889c0baa67498d5bc6a",
+      "mimeType": "video/mp4",
+      "ratio": 1.777777778
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "edit-understanding",
+      "label": "Edit understanding",
+      "url": "/media/authorized-real-v2/edit-understanding.json",
+      "sha256": "5ef030641aa6fb4b6f89f3c109c987cd5de84e945c820226865c3e42c58ea8dd",
+      "mimeType": "application/json"
+    },
+    {
+      "id": "edit-plan",
+      "label": "Reviewed edit plan",
+      "url": "/media/authorized-real-v2/edit-plan.json",
+      "sha256": "fa61f5dd4f9ce0e69254c5b09794c3eb155caa06b43543906685351aee3495ee",
+      "mimeType": "application/json"
+    },
+    {
+      "id": "otio",
+      "label": "OpenTimelineIO timeline",
+      "url": "/media/authorized-real-v2/edit-plan.otio",
+      "sha256": "d368bff446a2881a711492ae2f5554358e938354c0050edf9799019d9991efdf",
+      "mimeType": "application/vnd.otio+json"
+    },
+    {
+      "id": "event-score-report",
+      "label": "56-event score report",
+      "url": "/media/authorized-real-v2/event-score-report.json",
+      "sha256": "6c98b78b5d807fc266887edde7e8d0167fcf3834488ad369a94fd117dd8b805a",
+      "mimeType": "application/json"
+    },
+    {
+      "id": "critic-report",
+      "label": "Deterministic critic report",
+      "url": "/media/authorized-real-v2/critic-report.json",
+      "sha256": "6e920e3085181229f6ba64f6390c05af9bf0e434fa6376df5aa30d11da750a51",
+      "mimeType": "application/json"
+    },
+    {
+      "id": "analysis-evidence",
+      "label": "Primitive analysis evidence",
+      "url": "/media/authorized-real-v2/analysis-evidence.json",
+      "sha256": "c37ca4fc94dd7fad5d52186e7a7a9b8338aa7546c80b4bf5089facad48723c97",
+      "mimeType": "application/json"
+    },
+    {
+      "id": "agent-review",
+      "label": "Typed agent review",
+      "url": "/media/authorized-real-v2/agent-review.json",
+      "sha256": "fb8e0a33a365a1f45dba6a333aee44a32e6a6afaeebda17063cdee7efac711fd",
+      "mimeType": "application/json"
+    },
+    {
+      "id": "render-metrics",
+      "label": "Audiovisual render metrics",
+      "url": "/media/authorized-real-v2/render-metrics.json",
+      "sha256": "d3d83fe4c6bd924708b760cc292797c107c93aa2b6c5396ebbd14c5f1489b98e",
+      "mimeType": "application/json"
+    },
+    {
+      "id": "grade-lut",
+      "label": "Target-guided grade LUT",
+      "url": "/media/authorized-real-v2/target-guided-grade-v1.cube",
+      "sha256": "8b87b291e87e743c63d898323e4797ab9d5b563a24d384d188081d91d4bdf688",
+      "mimeType": "application/octet-stream"
+    }
+  ],
+  "receiptUrl": "/media/authorized-real-v2/receipt.json",
+  "receiptSha256": "eabcc75e68709b163e4c38b3e548a9e932ee06e80e3d22b56b3c7af3ca231ea5",
+  "v1AdjudicationUrl": "/media/authorized-real-v1/adjudication-v2.json"
+}

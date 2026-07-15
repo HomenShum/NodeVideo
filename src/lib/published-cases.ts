@@ -91,6 +91,8 @@ export interface PublishedCaseDescriptor {
   manifestUrl: string;
   resultUrl: string;
   receiptUrl: string;
+  adjudicationUrl: string;
+  adjudicationSha256: string;
   posterUrl: string;
   viewUrls: Record<RealCaseViewId, string>;
 }
@@ -100,14 +102,33 @@ export interface LoadedPublishedCase {
   manifest: PublishedCaseManifest;
   result: PublishedCaseResult;
   receipt: PublishedCaseReceipt;
+  adjudication: PublishedCaseAdjudication;
   views: PublishedCaseView[];
   integrity: {
     verified: true;
     verifiedAssetCount: number;
     posterSha256: string;
     resultSha256: string;
+    adjudicationSha256: string;
   };
   traceSpans: NodeVideoSpan[];
+}
+
+export interface PublishedCaseAdjudication {
+  schema: 'nodevideo.case-adjudication.v2';
+  caseId: 'authorized-real-v1';
+  status: 'invalidated';
+  historicalClaimTier: 'perceptually-close-video';
+  currentVerdict: 'failed-audiovisual-reconstruction';
+  summary: string;
+  findings: Array<{ id: string; severity: 'release-blocking' }>;
+  releasePolicy: {
+    mayClaimPass: false;
+    permanentRegressionRange: { startFrame: 482; endFrameExclusive: 589 };
+    requireAudioEvaluation: true;
+    requireTimedOverlayEvaluation: true;
+    requireWorstWindowGate: true;
+  };
 }
 
 const baseUrl = '/media/authorized-real-v1';
@@ -120,6 +141,8 @@ export const PUBLISHED_REAL_CASE: PublishedCaseDescriptor = {
   manifestUrl: at('case-manifest.json'),
   resultUrl: at('result.json'),
   receiptUrl: at('receipt.json'),
+  adjudicationUrl: at('adjudication-v2.json'),
+  adjudicationSha256: '16f2e29c6d5b77bdfec072429d54f6256ee8f60b632f0b480d1df61b8705ce2e',
   posterUrl: at('comparison-poster.jpg'),
   viewUrls: {
     target: at('target-web.mp4'),
@@ -157,12 +180,14 @@ export const REAL_CASE_VIEW_LABELS: Record<RealCaseViewId, string> = {
 export const REAL_CASE_COPY = {
   subtitle:
     'Two MOV sources were cut, reframed, graded, and rendered against the final MP4 target.',
+  invalidated:
+    'V1 is retained as failure evidence, not a successful reconstruction. It omitted the soundtrack and most timed text, and its 16.067–19.633 second source mapping is 76 frames late. Aggregate padded-frame scores masked that error.',
   consent:
     'Owner-authorized publication. Public files are metadata-stripped derivatives; original container metadata is not published.',
   targetUsage:
-    'The final MP4 is analysis-and-evaluation-only. In this target-guided single case, timing, layout, and grade were inferred against it, but render pixels come from both MOVs plus independently recreated graphics. Output uses reconstructed cut source audio; the target soundtrack is unmatched and was not copied.',
+    'The final MP4 is analysis-and-evaluation-only in this historical V1 run. Its soundtrack was excluded, so V1 could not test music identification, beat mapping, or audiovisual fidelity.',
   replay:
-    'Vercel serves a verified replay of the completed worker run; it is not running FFmpeg live.',
+    'Vercel serves a hash-verified replay of the historical worker run. Integrity proves which bytes ran; it does not make the invalidated quality claim correct.',
 } as const;
 
 export const REAL_CASE_TOOL_STATES = {
@@ -175,15 +200,22 @@ export const REAL_CASE_TOOL_STATES = {
 export async function loadPublishedCase(
   descriptor: PublishedCaseDescriptor = PUBLISHED_REAL_CASE,
 ): Promise<LoadedPublishedCase> {
-  const [manifestBytes, resultBytes, receiptBytes] = await Promise.all([
+  const [manifestBytes, resultBytes, receiptBytes, adjudicationBytes] = await Promise.all([
     fetchBytes(descriptor.manifestUrl, 'case manifest'),
     fetchBytes(descriptor.resultUrl, 'worker result'),
     fetchBytes(descriptor.receiptUrl, 'worker receipt'),
+    fetchBytes(descriptor.adjudicationUrl, 'case adjudication'),
   ]);
   const manifest = decodeJson<PublishedCaseManifest>(manifestBytes);
   const result = decodeJson<PublishedCaseResult>(resultBytes);
   const receipt = decodeJson<PublishedCaseReceipt>(receiptBytes);
+  const adjudication = decodeJson<PublishedCaseAdjudication>(adjudicationBytes);
   assertCaseContract(descriptor, manifest, result, receipt);
+  assertAdjudication(descriptor, adjudication);
+  const adjudicationSha256 = await sha256Hex(adjudicationBytes);
+  if (adjudicationSha256 !== descriptor.adjudicationSha256) {
+    throw new Error('The case adjudication failed SHA-256 verification.');
+  }
 
   const views = REAL_CASE_VIEW_IDS.map((id) => {
     const view = manifest.views.find((candidate) => candidate.id === id);
@@ -220,15 +252,35 @@ export async function loadPublishedCase(
     manifest,
     result,
     receipt,
+    adjudication,
     views,
     integrity: {
       verified: true,
       verifiedAssetCount: verifiedAssets.length,
       posterSha256,
       resultSha256,
+      adjudicationSha256,
     },
     traceSpans: toTraceSpans(receipt),
   };
+}
+
+function assertAdjudication(
+  descriptor: PublishedCaseDescriptor,
+  adjudication: PublishedCaseAdjudication,
+) {
+  if (
+    adjudication.schema !== 'nodevideo.case-adjudication.v2' ||
+    adjudication.caseId !== descriptor.id ||
+    adjudication.status !== 'invalidated' ||
+    adjudication.currentVerdict !== 'failed-audiovisual-reconstruction' ||
+    adjudication.releasePolicy?.mayClaimPass !== false ||
+    adjudication.releasePolicy?.permanentRegressionRange?.startFrame !== 482 ||
+    adjudication.releasePolicy?.permanentRegressionRange?.endFrameExclusive !== 589 ||
+    adjudication.findings?.length < 4
+  ) {
+    throw new Error('The published case is missing its release-blocking V2 adjudication.');
+  }
 }
 
 function assertCaseContract(

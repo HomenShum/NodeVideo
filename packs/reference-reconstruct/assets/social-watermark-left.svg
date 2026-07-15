@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1280" viewBox="0 0 720 1280">
+  <g fill="none" stroke="#fff" stroke-width="5">
+    <rect x="54" y="904" width="38" height="38" rx="10" />
+    <circle cx="73" cy="923" r="9" />
+  </g>
+  <circle cx="83" cy="913" r="3" fill="#fff" />
+  <text
+    x="54"
+    y="986"
+    fill="#fff"
+    font-family="Arial Narrow, Roboto Condensed, sans-serif"
+    font-size="18"
+    font-stretch="condensed"
+    font-weight="700"
+    paint-order="stroke"
+    stroke="#000"
+    stroke-width="1"
+    text-anchor="start"
+  >@SHUMHOMEN</text>
+</svg>

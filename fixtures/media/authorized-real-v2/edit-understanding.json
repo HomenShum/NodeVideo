@@ -1,0 +1,1147 @@
+{
+  "schemaVersion": "nodevideo.edit-understanding.v1",
+  "id": "understanding.17843623a547d080",
+  "runId": "run.reference-understanding.17843623a547d080",
+  "createdAt": "2026-07-15T09:15:28.963535Z",
+  "mode": "reference-understanding",
+  "frameRate": 30.0,
+  "canvas": {
+    "width": 720,
+    "height": 1280
+  },
+  "assets": [
+    {
+      "id": "asset.source-a-original",
+      "role": "source-video",
+      "sha256": "sha256:041f52059ba5ef2e934730f759d139ffc17c029b8b683d027c40c5f2fbdb7614",
+      "mimeType": "video/quicktime",
+      "usage": "render-source"
+    },
+    {
+      "id": "asset.source-b-original",
+      "role": "source-video",
+      "sha256": "sha256:30dedbd0f9ed084838a86e0728049774e7895609c1fea554e7739e9cc20b46d0",
+      "mimeType": "video/quicktime",
+      "usage": "render-source"
+    },
+    {
+      "id": "asset.music-target-derived",
+      "role": "music",
+      "sha256": "sha256:2e20107df93933d68417b05d769c4058706014060c22120b78c470c5fee056fb",
+      "mimeType": "audio/mp4",
+      "usage": "render-source"
+    },
+    {
+      "id": "asset.reference-target",
+      "role": "reference-target",
+      "sha256": "sha256:83e93e1ded63cfc17247e2709f32efa810f55695b5b3063cecd6db9284982841",
+      "mimeType": "video/mp4",
+      "usage": "analysis-evaluation-and-authorized-asset-derivation"
+    }
+  ],
+  "shots": [
+    {
+      "id": "shot.001",
+      "targetRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 201
+      },
+      "candidates": [
+        {
+          "id": "candidate.shot.001.1",
+          "sourceAssetId": "asset.source-a-original",
+          "sourceRange": {
+            "startFrame": 464,
+            "endFrameExclusive": 665
+          },
+          "confidence": 0.934347
+        },
+        {
+          "id": "candidate.shot.001.2",
+          "sourceAssetId": "asset.source-a-original",
+          "sourceRange": {
+            "startFrame": 463,
+            "endFrameExclusive": 664
+          },
+          "confidence": 0.602857
+        },
+        {
+          "id": "candidate.shot.001.3",
+          "sourceAssetId": "asset.source-a-original",
+          "sourceRange": {
+            "startFrame": 465,
+            "endFrameExclusive": 666
+          },
+          "confidence": 0.602186
+        }
+      ],
+      "selectedCandidateId": "candidate.shot.001.1"
+    },
+    {
+      "id": "shot.002",
+      "targetRange": {
+        "startFrame": 201,
+        "endFrameExclusive": 482
+      },
+      "candidates": [
+        {
+          "id": "candidate.shot.002.1",
+          "sourceAssetId": "asset.source-b-original",
+          "sourceRange": {
+            "startFrame": 963,
+            "endFrameExclusive": 1244
+          },
+          "confidence": 0.931139
+        },
+        {
+          "id": "candidate.shot.002.2",
+          "sourceAssetId": "asset.source-b-original",
+          "sourceRange": {
+            "startFrame": 964,
+            "endFrameExclusive": 1245
+          },
+          "confidence": 0.596382
+        },
+        {
+          "id": "candidate.shot.002.3",
+          "sourceAssetId": "asset.source-b-original",
+          "sourceRange": {
+            "startFrame": 962,
+            "endFrameExclusive": 1243
+          },
+          "confidence": 0.59563
+        }
+      ],
+      "selectedCandidateId": "candidate.shot.002.1",
+      "reframe": {
+        "keyframes": [
+          {
+            "timelineFrame": 201,
+            "box": {
+              "x": 0.34176,
+              "y": 0.0,
+              "width": 0.31648,
+              "height": 1.0
+            }
+          },
+          {
+            "timelineFrame": 481,
+            "box": {
+              "x": 0.34176,
+              "y": 0.0,
+              "width": 0.31648,
+              "height": 1.0
+            }
+          }
+        ],
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "shot.003",
+      "targetRange": {
+        "startFrame": 482,
+        "endFrameExclusive": 589
+      },
+      "candidates": [
+        {
+          "id": "candidate.shot.003.1",
+          "sourceAssetId": "asset.source-a-original",
+          "sourceRange": {
+            "startFrame": 942,
+            "endFrameExclusive": 1049
+          },
+          "confidence": 0.915165
+        },
+        {
+          "id": "candidate.shot.003.2",
+          "sourceAssetId": "asset.source-a-original",
+          "sourceRange": {
+            "startFrame": 943,
+            "endFrameExclusive": 1050
+          },
+          "confidence": 0.559679
+        },
+        {
+          "id": "candidate.shot.003.3",
+          "sourceAssetId": "asset.source-a-original",
+          "sourceRange": {
+            "startFrame": 941,
+            "endFrameExclusive": 1048
+          },
+          "confidence": 0.558252
+        }
+      ],
+      "selectedCandidateId": "candidate.shot.003.1"
+    },
+    {
+      "id": "shot.004",
+      "targetRange": {
+        "startFrame": 589,
+        "endFrameExclusive": 753
+      },
+      "candidates": [
+        {
+          "id": "candidate.shot.004.1",
+          "sourceAssetId": "asset.source-b-original",
+          "sourceRange": {
+            "startFrame": 1355,
+            "endFrameExclusive": 1519
+          },
+          "confidence": 0.913868
+        },
+        {
+          "id": "candidate.shot.004.2",
+          "sourceAssetId": "asset.source-b-original",
+          "sourceRange": {
+            "startFrame": 1354,
+            "endFrameExclusive": 1518
+          },
+          "confidence": 0.631082
+        },
+        {
+          "id": "candidate.shot.004.3",
+          "sourceAssetId": "asset.source-b-original",
+          "sourceRange": {
+            "startFrame": 1356,
+            "endFrameExclusive": 1520
+          },
+          "confidence": 0.618931
+        }
+      ],
+      "selectedCandidateId": "candidate.shot.004.1",
+      "reframe": {
+        "keyframes": [
+          {
+            "timelineFrame": 589,
+            "box": {
+              "x": 0.34176,
+              "y": 0.0,
+              "width": 0.31648,
+              "height": 1.0
+            }
+          },
+          {
+            "timelineFrame": 752,
+            "box": {
+              "x": 0.34176,
+              "y": 0.0,
+              "width": 0.31648,
+              "height": 1.0
+            }
+          }
+        ],
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "shot.005",
+      "targetRange": {
+        "startFrame": 753,
+        "endFrameExclusive": 1214
+      },
+      "candidates": [
+        {
+          "id": "candidate.shot.005.1",
+          "sourceAssetId": "asset.source-a-original",
+          "sourceRange": {
+            "startFrame": 1212,
+            "endFrameExclusive": 1673
+          },
+          "confidence": 0.944488
+        },
+        {
+          "id": "candidate.shot.005.2",
+          "sourceAssetId": "asset.source-a-original",
+          "sourceRange": {
+            "startFrame": 1213,
+            "endFrameExclusive": 1674
+          },
+          "confidence": 0.646787
+        },
+        {
+          "id": "candidate.shot.005.3",
+          "sourceAssetId": "asset.source-a-original",
+          "sourceRange": {
+            "startFrame": 1211,
+            "endFrameExclusive": 1672
+          },
+          "confidence": 0.643204
+        }
+      ],
+      "selectedCandidateId": "candidate.shot.005.1"
+    },
+    {
+      "id": "shot.006",
+      "targetRange": {
+        "startFrame": 1214,
+        "endFrameExclusive": 1215
+      },
+      "candidates": []
+    },
+    {
+      "id": "shot.007",
+      "targetRange": {
+        "startFrame": 1215,
+        "endFrameExclusive": 1335
+      },
+      "candidates": [
+        {
+          "id": "candidate.shot.007.freeze",
+          "sourceAssetId": "asset.source-a-original",
+          "sourceRange": {
+            "startFrame": 1672,
+            "endFrameExclusive": 1673
+          },
+          "confidence": 0.55
+        }
+      ],
+      "selectedCandidateId": "candidate.shot.007.freeze"
+    }
+  ],
+  "audio": {
+    "targetAudioUsage": "authorized-render-source",
+    "transcript": [],
+    "musicCandidates": [
+      {
+        "assetId": "asset.music-target-derived",
+        "confidence": 0.99,
+        "rationale": "Reference identification: Sign by 82MAJOR; the edit starts near the original-track offset 29.146 seconds. The render asset is extracted from the authorized target, so this is fidelity evidence, not autonomous music selection.",
+        "identity": {
+          "title": "Sign",
+          "artist": "82MAJOR",
+          "isrc": "KRA382601866"
+        },
+        "excerpt": {
+          "sourceOffsetMs": 0.0,
+          "releasedMasterOffsetMs": 29146.0,
+          "releasedMasterGainDb": -6.12,
+          "targetStartMs": 0.0,
+          "targetEndMs": 40338.6
+        }
+      }
+    ],
+    "beatGrid": {
+      "bpm": 107.666016,
+      "offsetMs": 1439.637,
+      "beatsMs": [
+        1439.637,
+        2020.136,
+        2577.415,
+        3134.694,
+        3715.193,
+        4272.472,
+        4852.971,
+        5410.249,
+        5990.748,
+        6548.027,
+        7105.306,
+        7662.585,
+        8266.304,
+        8800.363,
+        9380.862,
+        9938.141,
+        10518.639,
+        11075.918,
+        11633.197,
+        12190.476,
+        12747.755,
+        13328.254,
+        13885.533,
+        14466.032,
+        15023.311,
+        15580.59,
+        16161.088,
+        16741.587,
+        17322.086,
+        17856.145,
+        18436.644,
+        18993.923,
+        19574.422,
+        20108.481,
+        20642.54,
+        21246.259,
+        21803.537,
+        22384.036,
+        22941.315,
+        23498.594,
+        24055.873,
+        24636.372,
+        25216.871,
+        25797.37,
+        26377.868,
+        26911.927,
+        27492.426,
+        28049.705,
+        28630.204,
+        29187.483,
+        29744.762,
+        30302.041,
+        30859.32,
+        31439.819,
+        31997.098,
+        32577.596,
+        33134.875,
+        33715.374,
+        34272.653,
+        34829.932,
+        35433.651,
+        35967.71,
+        36548.209,
+        37105.488,
+        37685.986,
+        38243.265,
+        38800.544,
+        39357.823,
+        39868.662,
+        40356.281,
+        40867.12
+      ],
+      "downbeatsMs": [
+        2020.136,
+        4272.472,
+        6548.027,
+        8800.363,
+        11075.918,
+        13328.254,
+        15580.59,
+        17856.145,
+        20108.481,
+        22384.036,
+        24636.372,
+        26911.927,
+        29187.483,
+        31439.819,
+        33715.374,
+        35967.71,
+        38243.265,
+        40356.281
+      ],
+      "confidence": 0.662896
+    },
+    "selectedMusicAssetId": "asset.music-target-derived"
+  },
+  "overlays": [
+    {
+      "id": "overlay.ocr-001",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 60
+      },
+      "text": "Sign",
+      "box": {
+        "x": 0.24618,
+        "y": 0.81836,
+        "width": 0.144097,
+        "height": 0.059765
+      },
+      "confidence": 0.729981,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-002",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 60
+      },
+      "text": "solo practice",
+      "box": {
+        "x": 0.4,
+        "y": 0.819141,
+        "width": 0.350694,
+        "height": 0.05625
+      },
+      "confidence": 0.823029,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-003",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 15,
+        "endFrameExclusive": 60
+      },
+      "text": "CSHUMHOMEN",
+      "box": {
+        "x": 0.7625,
+        "y": 0.294531,
+        "width": 0.166667,
+        "height": 0.020313
+      },
+      "confidence": 0.51338,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-004",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 60,
+        "endFrameExclusive": 105
+      },
+      "text": "Left",
+      "box": {
+        "x": 0.129861,
+        "y": 0.283203,
+        "width": 0.122222,
+        "height": 0.04375
+      },
+      "confidence": 0.949992,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-005",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 60,
+        "endFrameExclusive": 105
+      },
+      "text": "Rightomen",
+      "box": {
+        "x": 0.717361,
+        "y": 0.282813,
+        "width": 0.21875,
+        "height": 0.053516
+      },
+      "confidence": 0.472371,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-006",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 105,
+        "endFrameExclusive": 120
+      },
+      "text": "Alright",
+      "box": {
+        "x": 0.402083,
+        "y": 0.280859,
+        "width": 0.199306,
+        "height": 0.057031
+      },
+      "confidence": 0.784654,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-007",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 105,
+        "endFrameExclusive": 1335
+      },
+      "text": "GSHUMHOMEN",
+      "box": {
+        "x": 0.377778,
+        "y": 0.557031,
+        "width": 0.166667,
+        "height": 0.020313
+      },
+      "confidence": 0.676418,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-008",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 135,
+        "endFrameExclusive": 150
+      },
+      "text": "Flip flip",
+      "box": {
+        "x": 0.411111,
+        "y": 0.673047,
+        "width": 0.205556,
+        "height": 0.058594
+      },
+      "confidence": 0.778346,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-009",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 165,
+        "endFrameExclusive": 195
+      },
+      "text": "Jojo mode",
+      "box": {
+        "x": 0.360417,
+        "y": 0.280274,
+        "width": 0.277431,
+        "height": 0.055859
+      },
+      "confidence": 0.949675,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-010",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 210,
+        "endFrameExclusive": 225
+      },
+      "text": "Head + chest",
+      "box": {
+        "x": 0.640972,
+        "y": 0.133984,
+        "width": 0.251389,
+        "height": 0.035156
+      },
+      "confidence": 0.766868,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-011",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 210,
+        "endFrameExclusive": 225
+      },
+      "text": "Su",
+      "box": {
+        "x": 0.429872,
+        "y": 0.468762,
+        "width": 0.117339,
+        "height": 0.054273
+      },
+      "confidence": 0.166993,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-012",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 225,
+        "endFrameExclusive": 240
+      },
+      "text": "Clack",
+      "box": {
+        "x": 0.213889,
+        "y": 0.896875,
+        "width": 0.161111,
+        "height": 0.046875
+      },
+      "confidence": 0.618489,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-013",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 240,
+        "endFrameExclusive": 255
+      },
+      "text": "Slu Gi",
+      "box": {
+        "x": 0.322917,
+        "y": 0.444542,
+        "width": 0.151388,
+        "height": 0.05701
+      },
+      "confidence": 0.147188,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-014",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 300,
+        "endFrameExclusive": 330
+      },
+      "text": "Wheel",
+      "box": {
+        "x": 0.708333,
+        "y": 0.445312,
+        "width": 0.170833,
+        "height": 0.045312
+      },
+      "confidence": 0.944965,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-015",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 345,
+        "endFrameExclusive": 375
+      },
+      "text": "Right now",
+      "box": {
+        "x": 0.059027,
+        "y": 0.369531,
+        "width": 0.267362,
+        "height": 0.05625
+      },
+      "confidence": 0.641138,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-016",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 375,
+        "endFrameExclusive": 390
+      },
+      "text": "#clean",
+      "box": {
+        "x": 0.261806,
+        "y": 0.373047,
+        "width": 0.198611,
+        "height": 0.04375
+      },
+      "confidence": 0.497027,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-017",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 375,
+        "endFrameExclusive": 390
+      },
+      "text": "Sharp",
+      "box": {
+        "x": 0.08934,
+        "y": 0.36486,
+        "width": 0.195625,
+        "height": 0.063639
+      },
+      "confidence": 0.493369,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-018",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 390,
+        "endFrameExclusive": 405
+      },
+      "text": "@eupot",
+      "box": {
+        "x": 0.256371,
+        "y": 0.518758,
+        "width": 0.115731,
+        "height": 0.030061
+      },
+      "confidence": 0.226739,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-019",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 405,
+        "endFrameExclusive": 420
+      },
+      "text": "Dungle",
+      "box": {
+        "x": 0.140972,
+        "y": 0.526953,
+        "width": 0.123611,
+        "height": 0.026562
+      },
+      "confidence": 0.44149,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-020",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 405,
+        "endFrameExclusive": 420
+      },
+      "text": "Cettor",
+      "box": {
+        "x": 0.249754,
+        "y": 0.513089,
+        "width": 0.107437,
+        "height": 0.032416
+      },
+      "confidence": 0.617171,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-021",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 435,
+        "endFrameExclusive": 450
+      },
+      "text": "Clack",
+      "box": {
+        "x": 0.318056,
+        "y": 0.094531,
+        "width": 0.1625,
+        "height": 0.047656
+      },
+      "confidence": 0.664486,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-022",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 465,
+        "endFrameExclusive": 480
+      },
+      "text": "Relaxagain",
+      "box": {
+        "x": 0.666667,
+        "y": 0.100391,
+        "width": 0.217361,
+        "height": 0.045703
+      },
+      "confidence": 0.570912,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-023",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 465,
+        "endFrameExclusive": 480
+      },
+      "text": "Du",
+      "box": {
+        "x": 0.597917,
+        "y": 0.526953,
+        "width": 0.055556,
+        "height": 0.025781
+      },
+      "confidence": 0.690777,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-024",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 585,
+        "endFrameExclusive": 615
+      },
+      "text": "Transition",
+      "box": {
+        "x": 0.1764,
+        "y": 0.168368,
+        "width": 0.18088,
+        "height": 0.043342
+      },
+      "confidence": 0.949968,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-025",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 600,
+        "endFrameExclusive": 615
+      },
+      "text": "Corror",
+      "box": {
+        "x": 0.591667,
+        "y": 0.6,
+        "width": 0.110417,
+        "height": 0.016406
+      },
+      "confidence": 0.297091,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-026",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 600,
+        "endFrameExclusive": 615
+      },
+      "text": "Dunate \"",
+      "box": {
+        "x": 0.475039,
+        "y": 0.575011,
+        "width": 0.129089,
+        "height": 0.045291
+      },
+      "confidence": 0.208216,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-027",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 615,
+        "endFrameExclusive": 630
+      },
+      "text": "Tick",
+      "box": {
+        "x": 0.357639,
+        "y": 0.255078,
+        "width": 0.123611,
+        "height": 0.044531
+      },
+      "confidence": 0.784993,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-028",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 615,
+        "endFrameExclusive": 630
+      },
+      "text": "@rot",
+      "box": {
+        "x": 0.619444,
+        "y": 0.591406,
+        "width": 0.10625,
+        "height": 0.017188
+      },
+      "confidence": 0.337342,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-029",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 615,
+        "endFrameExclusive": 630
+      },
+      "text": "Dungle",
+      "box": {
+        "x": 0.497926,
+        "y": 0.571105,
+        "width": 0.131231,
+        "height": 0.043727
+      },
+      "confidence": 0.256238,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-030",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 630,
+        "endFrameExclusive": 660
+      },
+      "text": "Cettot",
+      "box": {
+        "x": 0.648611,
+        "y": 0.575,
+        "width": 0.113542,
+        "height": 0.023438
+      },
+      "confidence": 0.270045,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-031",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 645,
+        "endFrameExclusive": 660
+      },
+      "text": "Dungle (",
+      "box": {
+        "x": 0.513922,
+        "y": 0.548062,
+        "width": 0.140212,
+        "height": 0.048406
+      },
+      "confidence": 0.257433,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-032",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 660,
+        "endFrameExclusive": 675
+      },
+      "text": "Junglet",
+      "box": {
+        "x": 0.457056,
+        "y": 0.555477,
+        "width": 0.127555,
+        "height": 0.056625
+      },
+      "confidence": 0.178101,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-033",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 690,
+        "endFrameExclusive": 735
+      },
+      "text": "Tick",
+      "box": {
+        "x": 0.515972,
+        "y": 0.254688,
+        "width": 0.125,
+        "height": 0.045312
+      },
+      "confidence": 0.949955,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-034",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 690,
+        "endFrameExclusive": 720
+      },
+      "text": "Cettot",
+      "box": {
+        "x": 0.674653,
+        "y": 0.576172,
+        "width": 0.1125,
+        "height": 0.024609
+      },
+      "confidence": 0.437134,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-035",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 690,
+        "endFrameExclusive": 705
+      },
+      "text": "Sungle",
+      "box": {
+        "x": 0.546528,
+        "y": 0.56095,
+        "width": 0.1375,
+        "height": 0.049584
+      },
+      "confidence": 0.37453,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-036",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 705,
+        "endFrameExclusive": 720
+      },
+      "text": "Juigle(",
+      "box": {
+        "x": 0.562519,
+        "y": 0.556265,
+        "width": 0.137462,
+        "height": 0.046455
+      },
+      "confidence": 0.147707,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-037",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 750,
+        "endFrameExclusive": 795
+      },
+      "text": "Make up _",
+      "box": {
+        "x": 0.202083,
+        "y": 0.687109,
+        "width": 0.230556,
+        "height": 0.054688
+      },
+      "confidence": 0.947988,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-038",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 750,
+        "endFrameExclusive": 795
+      },
+      "text": "00",
+      "box": {
+        "x": 0.426389,
+        "y": 0.715625,
+        "width": 0.034722,
+        "height": 0.0125
+      },
+      "confidence": 0.243237,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-039",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 750,
+        "endFrameExclusive": 795
+      },
+      "text": "up your mind",
+      "box": {
+        "x": 0.455556,
+        "y": 0.686328,
+        "width": 0.342361,
+        "height": 0.057031
+      },
+      "confidence": 0.913839,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-040",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 810,
+        "endFrameExclusive": 855
+      },
+      "text": "Something something-",
+      "box": {
+        "x": 0.575694,
+        "y": 0.661328,
+        "width": 0.367361,
+        "height": 0.039844
+      },
+      "confidence": 0.689667,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-041",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 870,
+        "endFrameExclusive": 885
+      },
+      "text": "Clap",
+      "box": {
+        "x": 0.425316,
+        "y": 0.276579,
+        "width": 0.148673,
+        "height": 0.062857
+      },
+      "confidence": 0.408614,
+      "styleToken": "ocr-observation"
+    },
+    {
+      "id": "overlay.ocr-042",
+      "kind": "text",
+      "targetRange": {
+        "startFrame": 885,
+        "endFrameExclusive": 1335
+      },
+      "text": "Thanks for watchingl",
+      "box": {
+        "x": 0.231944,
+        "y": 0.214844,
+        "width": 0.5375,
+        "height": 0.057422
+      },
+      "confidence": 0.760576,
+      "styleToken": "ocr-observation"
+    }
+  ],
+  "warnings": [
+    "Target audio is an explicitly authorized target-derived render source; this run is eligible for reference-fidelity evaluation and ineligible for autonomous music-selection proof.",
+    "The analyzer did not infer the original color grade; reviewed execution adds an explicitly target-guided LUT, so original grade identity remains unproven.",
+    "OCR overlay timing, typography, and boxes are observations with typed review patches.",
+    "Detailed public-safe primitive evidence is stored in analysis-evidence.json.",
+    "shot.007 is a static, unmatched scene; the plan freezes the preceding source frame and leaves graphics to overlay review."
+  ]
+}
