@@ -4,6 +4,10 @@
   "cleanUrls": true,
   "headers": [
     {
+      "source": "/media/authorized-real-v2/edit-plan.otio",
+      "headers": [{ "key": "Content-Type", "value": "application/vnd.otio+json; charset=utf-8" }]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
