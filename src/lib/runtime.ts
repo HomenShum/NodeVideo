@@ -243,7 +243,7 @@ const validateSettings = (settings: NodeVideoRecipeSettings): void => {
   });
 };
 
-const applyRecipePatch = (
+export const applyNodeVideoRecipePatch = (
   settings: NodeVideoRecipeSettings,
   patch: NodeVideoRecipePatch,
 ): NodeVideoRecipeSettings => {
@@ -448,7 +448,7 @@ export class LocalNodeVideoRuntime {
         input.baseVersion === input.recipeVersion,
         'Proposal base version must match its stage',
       );
-      applyRecipePatch(
+      applyNodeVideoRecipePatch(
         this.requireRecipeVersion(input.recipeId, input.baseVersion).settings,
         input.patch,
       );
@@ -515,7 +515,7 @@ export class LocalNodeVideoRuntime {
       ...clone(base),
       id: this.nextUniqueId('recipe_version'),
       version,
-      settings: applyRecipePatch(base.settings, proposal.patch),
+      settings: applyNodeVideoRecipePatch(base.settings, proposal.patch),
       reason: 'proposal',
       parentVersion: base.version,
       proposalArtifactId: proposal.id,

@@ -40,5 +40,16 @@
       "semicolons": "always",
       "trailingCommas": "all"
     }
-  }
+  },
+  "overrides": [
+    {
+      "include": ["src/lib/workflowExecutionPort.ts"],
+      "formatter": { "enabled": false },
+      "linter": {
+        "rules": {
+          "complexity": { "useLiteralKeys": "off" }
+        }
+      }
+    }
+  ]
 }
