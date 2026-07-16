@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "nodevideo.timed-text-input.v1",
+  "license": "public-domain-generated-fixture",
+  "cues": [
+    {
+      "id": "cue.1",
+      "startMs": 250,
+      "endMs": 1600,
+      "text": "Find the phrase"
+    },
+    {
+      "id": "cue.2",
+      "startMs": 2250,
+      "endMs": 3600,
+      "text": "Cut on the beat"
+    },
+    {
+      "id": "cue.3",
+      "startMs": 4250,
+      "endMs": 5600,
+      "text": "Finish clean"
+    }
+  ]
+}

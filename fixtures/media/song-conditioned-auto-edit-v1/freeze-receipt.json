@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "nodevideo.generation-freeze.v1",
+  "id": "freeze.song-conditioned-auto-edit-v1",
+  "createdAt": "2026-07-15T00:00:00.000Z",
+  "generatorVersion": "nodevideo.song-conditioned-auto-edit@0.1.0",
+  "targetMountedDuringGeneration": false,
+  "targetReadDuringGeneration": false,
+  "files": [
+    {
+      "file": "understanding.json",
+      "sha256": "9e8062543e52e1bb1aca8f35993ef6a7898a40b0bbbf3e18747b10e751c92b1f"
+    },
+    {
+      "file": "grounding-receipt.json",
+      "sha256": "68513ed19c7dd978d9b0e39a1d16d26409ced0988b702b299db050cc78452139"
+    },
+    {
+      "file": "edit-plan.json",
+      "sha256": "5e6900d65aff4a6dba55538fe6139eab0defaa6268e596a4acc48575f92d205c"
+    },
+    {
+      "file": "song-conditioned-plan.json",
+      "sha256": "087010c55876c3194ef13de75f8c91db6cfb59e42dd1743ccd452e23e2feec0f"
+    },
+    {
+      "file": "generation-read-log.json",
+      "sha256": "24e07609065a9b5a94751a30f6840a2c2874e050a4e17be75d4230228c909796"
+    },
+    {
+      "file": "choreography-freeze.json",
+      "sha256": "050c9b33a18e19b98e37070429a8f5b6113e89199c5798a91184dbae41f61e51"
+    },
+    {
+      "file": "preview.mp4",
+      "sha256": "f596fe24cac4e05686c4ddd1bfbe9d341a732d9b1729c456d538dc3ffc545158"
+    }
+  ]
+}

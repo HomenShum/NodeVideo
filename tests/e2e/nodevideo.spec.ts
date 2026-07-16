@@ -34,6 +34,8 @@ const views = [
 ] as const;
 
 const v2CaseBase = '/media/authorized-real-v2';
+const songCaseBase = '/media/song-conditioned-auto-edit-v1';
+const songCalibrationBase = '/media/song-conditioned-real-calibration-v1';
 const v2ManifestSha256 = '04f02098045273f5acf587bbbe177cd25664d474c68e32691b4ab8de45060cd2';
 const blindCaseBase = '/media/blind-source-only-pilot-01';
 const blindManifestSha256 = 'bad6578386c2e9dff1cf6eacbbb3973d67c462c6b8422f0d810168912c192953';
@@ -93,6 +95,8 @@ function observeBrowser(page: Page): BrowserLedger {
     if (
       url.origin === targetOrigin &&
       (url.pathname.startsWith('/media/authorized-real-v') ||
+        url.pathname.startsWith(songCaseBase) ||
+        url.pathname.startsWith(songCalibrationBase) ||
         url.pathname.startsWith(blindCaseBase))
     ) {
       ledger.caseResponses.push({
@@ -192,6 +196,8 @@ async function waitForVerifiedV2(page: Page) {
 }
 
 async function waitForVerifiedBlindPilot(page: Page) {
+  const trigger = page.getByTestId('blind-pilot-trigger');
+  if ((await trigger.getAttribute('aria-expanded')) === 'false') await trigger.click();
   await expect(page.getByTestId('blind-pilot-integrity')).toContainText(
     /9 public proof assets.*sha-256 verified/i,
     { timeout: 90_000 },
@@ -496,58 +502,76 @@ async function expectNoHorizontalClipping(page: Page) {
   ).toEqual([]);
 }
 
-test.describe('NodeVideo blind source-only pilot gate', () => {
-  test('verifies the frozen run and exposes a usable Instagram music handoff', async ({ page }) => {
-    test.skip(test.info().project.name !== 'desktop-chromium', 'desktop blind bundle gate');
+test.describe('NodeVideo song-conditioned choreography gate', () => {
+  test('foregrounds the required inputs, replay, and frozen artifact chain', async ({ page }) => {
+    test.skip(test.info().project.name !== 'desktop-chromium', 'desktop workflow gate');
     const ledger = observeBrowser(page);
-    await page.context().grantPermissions(['clipboard-read', 'clipboard-write'], {
-      origin: targetOrigin,
-    });
     await page.goto('/');
-    await waitForVerifiedBlindPilot(page);
 
-    const independent = await verifyBlindBundleIndependently(page);
-    expect(independent).toMatchObject({
-      anchorCount: 6,
-      assetCount: 9,
-      commercialAudioPublished: false,
-      manifestHash: blindManifestSha256,
-      protocol: {
-        freshPlannerContext: true,
-        targetAccessDuringGeneration: false,
-        targetMountedDuringGeneration: false,
-      },
-      range: { status: 206 },
-      tasteStatus: 'awaiting-blinded-human-evaluation',
-    });
-    expect(independent.range.contentRange).toMatch(/^bytes 0-1023\//i);
-    expect(ledger.caseResponses.some(({ path }) => path.startsWith(v2CaseBase))).toBe(false);
-    expect(independent.evaluation).toMatchObject({
-      isolationAudit: { passed: true },
-      taste: { score: null, status: 'awaiting-blinded-human-evaluation' },
-      technicalComparison: { cutBoundaries: { f1: 0.4, recall: 1 } },
-    });
+    const panel = page.getByTestId('song-conditioned-panel');
+    await expect(panel).toContainText('Original choreography reference');
+    await expect(panel).toContainText('Creator takes');
+    await expect(panel).toContainText('Chosen song + segment');
+    await expect(panel).toContainText('Lyrics + text cues');
+    await expect(panel).toContainText('Grounding: replay');
+    await expect(panel).toContainText('LocateAnything optional');
+    await expect(panel).toContainText('Source-camera audio muted');
+    await expect(page.getByTestId('case-input-boundary')).toContainText(
+      /sha-256 verified.*no independent choreography reference.*song master/i,
+    );
 
-    const preview = page.getByLabel('Blind source-only preview', { exact: true });
+    const preview = page.getByLabel('Song-conditioned deterministic replay', { exact: true });
     await expect(preview).toBeVisible();
     await expect
-      .poll(() => preview.evaluate((node) => (node as HTMLVideoElement).videoWidth))
-      .toBe(1080);
-    await expect
-      .poll(() => preview.evaluate((node) => (node as HTMLVideoElement).videoHeight))
-      .toBe(1920);
-    await expect
-      .poll(() => preview.evaluate((node) => (node as HTMLVideoElement).duration))
-      .toBe(17.8);
+      .poll(() => preview.evaluate((node) => (node as HTMLVideoElement).currentSrc))
+      .toContain(`${songCaseBase}/preview.mp4`);
+    await expect(page.getByTestId('song-conditioned-artifacts').getByRole('link')).toHaveCount(5);
+    await expect(page.getByTestId('song-calibration-integrity')).toContainText(
+      /sha-256 verified.*7 artifacts/i,
+      { timeout: 90_000 },
+    );
+    await expect(page.getByRole('link', { name: /supplied-case picture plan/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /read source-only score/i })).toBeVisible();
 
-    const handoff = page.getByTestId('instagram-music-handoff');
-    await expect(handoff).toContainText(/woman.*doja cat/i);
-    await expect(handoff).toContainText(/catalog-preview-relative/i);
-    await expect(page.getByTestId('music-cue-anchors').locator('li')).toHaveCount(6);
+    await waitForVerifiedBlindPilot(page);
+    const independent = await verifyBlindBundleIndependently(page);
+    expect(independent).toMatchObject({
+      assetCount: 9,
+      manifestHash: blindManifestSha256,
+      protocol: { targetAccessDuringGeneration: false, targetMountedDuringGeneration: false },
+    });
     await expect(page.getByTestId('blind-pilot-artifacts').getByRole('link')).toHaveCount(8);
-    await handoff.getByRole('button', { name: 'Copy search' }).click();
-    await expect(handoff.getByRole('button', { name: 'Search copied' })).toBeVisible();
-    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('Woman Doja Cat');
+    expect(ledger.caseResponses.some(({ path }) => path.startsWith(v2CaseBase))).toBe(false);
+    expectCleanLedger(ledger);
+  });
+
+  test('fails closed when the song replay manifest is tampered', async ({ page }) => {
+    test.skip(test.info().project.name !== 'desktop-chromium', 'desktop song tamper gate');
+    const ledger = observeBrowser(page);
+    await page.route(`**${songCaseBase}/manifest.json`, (route) =>
+      route.fulfill({ body: '{"tampered":true}', contentType: 'application/json' }),
+    );
+    await page.goto('/');
+    await expect(page.getByTestId('case-input-boundary')).toContainText(/replay blocked/i);
+    await expect(page.getByLabel('Song-conditioned deterministic replay')).not.toHaveAttribute(
+      'src',
+    );
+    await expect(page.getByTestId('song-conditioned-artifacts').getByRole('link')).toHaveCount(0);
+    expectCleanLedger(ledger);
+  });
+
+  test('fails closed when the real calibration manifest is tampered', async ({ page }) => {
+    test.skip(test.info().project.name !== 'desktop-chromium', 'desktop calibration tamper gate');
+    const ledger = observeBrowser(page);
+    await page.route(`**${songCalibrationBase}/manifest.json`, (route) =>
+      route.fulfill({ body: '{"tampered":true}', contentType: 'application/json' }),
+    );
+    await page.goto('/');
+    await expect(page.getByTestId('song-calibration-integrity')).toContainText(
+      /failed trusted sha-256/i,
+    );
+    await expect(page.getByRole('link', { name: /supplied-case picture plan/i })).toHaveCount(0);
+    await expect(page.getByRole('link', { name: /read source-only score/i })).toHaveCount(0);
     expectCleanLedger(ledger);
   });
 
@@ -558,7 +582,7 @@ test.describe('NodeVideo blind source-only pilot gate', () => {
       route.fulfill({ body: '{"tampered":true}', contentType: 'application/json' }),
     );
     await page.goto('/');
-    await expect(page.getByTestId('blind-pilot-panel')).toContainText(/no blind claim is shown/i);
+    await page.getByTestId('blind-pilot-trigger').click();
     await expect(page.getByTestId('blind-pilot-integrity')).toContainText(
       /failed trusted sha-256/i,
     );
@@ -578,7 +602,7 @@ test.describe('NodeVideo blind source-only pilot gate', () => {
         route.fulfill({ body: 'tampered', contentType: tamper.type }),
       );
       await page.goto('/');
-      await expect(page.getByTestId('blind-pilot-panel')).toContainText(/no blind claim is shown/i);
+      await page.getByTestId('blind-pilot-trigger').click();
       await expect(page.getByTestId('blind-pilot-integrity')).toContainText(
         /sha-256 verification/i,
       );
@@ -588,20 +612,13 @@ test.describe('NodeVideo blind source-only pilot gate', () => {
     });
   }
 
-  test('copies an honest cue sheet on a phone viewport', async ({ page }) => {
-    test.skip(test.info().project.name !== 'mobile-chromium', 'mobile handoff gate');
+  test('keeps the workflow and replay usable on a phone viewport', async ({ page }) => {
+    test.skip(test.info().project.name !== 'mobile-chromium', 'mobile workflow gate');
     const ledger = observeBrowser(page);
-    await page.context().grantPermissions(['clipboard-read', 'clipboard-write'], {
-      origin: targetOrigin,
-    });
     await page.goto('/');
-    await waitForVerifiedBlindPilot(page);
-    const handoff = page.getByTestId('instagram-music-handoff');
-    await handoff.getByRole('button', { name: 'Copy exact steps' }).click();
-    await expect(handoff.getByRole('button', { name: 'Steps copied' })).toBeVisible();
-    const copied = await page.evaluate(() => navigator.clipboard.readText());
-    expect(copied).toMatch(/locate by ear.*catalog-preview reference/i);
-    expect(copied).toContain('0:17.767');
+    await expect(page.getByTestId('song-conditioned-panel')).toBeVisible();
+    await expect(page.getByLabel('Song-conditioned deterministic replay')).toBeVisible();
+    await expect(page.getByTestId('blind-pilot-trigger')).toHaveAttribute('aria-expanded', 'false');
     await expectNoHorizontalClipping(page);
     expectCleanLedger(ledger);
   });
@@ -689,17 +706,21 @@ test.describe('NodeVideo authorized-real-v2 release gate', () => {
 });
 
 test.describe('NodeVideo authorized-real-v1 release gate', () => {
-  test('shows the V2 proof boundary first and keeps invalidated V1 history accessible', async ({
+  test('shows the song workflow first and keeps invalidated V1 history accessible', async ({
     page,
   }) => {
     const ledger = observeBrowser(page);
     await page.goto('/');
     await expect(page.getByTestId('v2-calibration-trigger')).toBeVisible();
-    await expect(page.getByText('Audited source-only generation', { exact: true })).toBeVisible();
-    await expect(page.getByText('Instagram-ready music cues', { exact: true })).toBeVisible();
-    await expect(
-      page.getByText('Generalized taste awaits multi-case votes', { exact: true }),
-    ).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1 })).toContainText(
+      /understand the choreography/i,
+    );
+    await expect(page.getByTestId('song-calibration-integrity')).toContainText(
+      /sha-256 verified/i,
+      {
+        timeout: 90_000,
+      },
+    );
     await waitForVerifiedBlindPilot(page);
 
     const history = page.getByTestId('v1-history-trigger');

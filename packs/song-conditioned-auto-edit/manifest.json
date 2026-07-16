@@ -1,0 +1,93 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.song-conditioned-auto-edit",
+  "version": "0.1.0",
+  "implementationStatus": "deterministic-replay-validated",
+  "title": "Song-Conditioned Choreography Auto Edit",
+  "description": "Build a source-only edit from one choreography reference, a chosen song excerpt, and multiple takes by aligning phrases, scoring candidates, laying out protected captions, compiling an EditPlan, and freezing generation before held-out evaluation.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": [
+    "video/choreography-reference",
+    "audio/chosen-song",
+    "video/take",
+    "text/protected-lyrics-optional"
+  ],
+  "outputs": [
+    "choreography_analysis",
+    "take_candidate_matrix",
+    "caption_layout",
+    "edit_plan",
+    "rendered_edit",
+    "generation_read_log",
+    "choreography_freeze"
+  ],
+  "tools": [
+    "media.probe",
+    "song.map",
+    "choreography.analyze",
+    "grounding.locate",
+    "choreography.align-takes",
+    "choreography.build-candidates",
+    "captions.layout",
+    "edit.optimize",
+    "edit.validate",
+    "render.edit-plan",
+    "generation.freeze",
+    "result.validate"
+  ],
+  "permissions": [
+    "read_authorized_generation_assets",
+    "write_private_derived_artifacts",
+    "render_authorized_song_use",
+    "seal_generation_before_evaluation"
+  ],
+  "uiRenderers": [
+    "SongExcerptTimeline",
+    "ChoreographyPhraseMap",
+    "TakeCandidateMatrix",
+    "CaptionLayoutOverlay",
+    "FrozenEditReview"
+  ],
+  "evalSuite": "evals/replay-v1.json",
+  "validation": {
+    "profile": "source-only-replay-v1",
+    "status": "passed",
+    "requiredSchemas": [
+      "nodevideo.choreography-analysis.v1",
+      "nodevideo.locate-result.v1",
+      "nodevideo.song-conditioned-plan.v1",
+      "nodevideo.choreography-freeze.v1",
+      "nodevideo.edit-plan.v1"
+    ],
+    "proof": {
+      "fixtureManifest": "../../fixtures/media/song-conditioned-auto-edit-v1/manifest.json",
+      "verificationCommand": "node scripts/workers/song-conditioned-auto-edit.mjs --verify-public",
+      "verificationCheckCount": 19,
+      "canonicalComponentValidatorsPassed": true,
+      "aggregateOutputEnvelopeValidated": false
+    },
+    "excludes": [
+      "production-autonomous-taste",
+      "held-out-target-access-during-generation",
+      "song-license-adjudication",
+      "generic-choreography-alignment-accuracy",
+      "caption-safety-on-held-out-human-media",
+      "live-locateanything-model-accuracy",
+      "aggregate-output-envelope-validation",
+      "live-vercel-media-worker"
+    ]
+  },
+  "execution": {
+    "kind": "source-only-deterministic-plan-and-render-graph",
+    "modelRequired": false,
+    "groundingPack": "nodevideo.embodied-grounding@0.1.0",
+    "renderer": "nodevideo.edit-plan-renderer",
+    "hiddenEvaluationTarget": "forbidden-until-freeze",
+    "hostedBehavior": "verified-public-replay"
+  }
+}

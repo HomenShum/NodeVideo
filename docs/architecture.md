@@ -2,9 +2,12 @@
 
 ## Product outcome
 
-NodeVideo is building an artifact-driven video-editing service. The current release demonstrates
-owner-authorized target understanding and plan-driven reconstruction; autonomous source-only
-editing remains the target architecture. The product is not paid for because it can emit FFmpeg
+NodeVideo is building an artifact-driven video-editing service. The foreground release now
+demonstrates deterministic song-conditioned source-only mechanics: an original choreography
+reference, repeated creator takes, a chosen song segment, and optional timed lyrics compile through
+typed artifacts into a fixed render and freeze. A separate real-media calibration keeps target
+picture and plan outside generation, but uses a disclosed target-audio oracle and therefore does not
+prove autonomous song selection or taste. The product is not paid for because it can emit FFmpeg
 syntax or React code. It is paid for when it can understand and deliver a creator's intended
 outcome: source selection, pacing, music, text, framing, grade, mix, and a usable export.
 
@@ -14,17 +17,18 @@ The architectural rule is:
 > evidence. A typed edit plan controls fixed render templates. Critics may propose typed plan
 > patches, never arbitrary code.
 
-## Three claims that must stay separate
+## Claims that must stay separate
 
 | Mode | Target access | Allowed render assets | What a pass proves |
 | --- | --- | --- | --- |
+| Song-conditioned source-only generation | No final picture or target plan before freeze | Creator takes, chosen/authorized song segment, optional timed lyrics; choreography reference is analysis-only | The system can align takes to choreography, make phrase choices, render a typed plan, and freeze without answer leakage |
 | Reference understanding | Analyzer sees the final target | None | The system recovered its cuts, sources, music, text, framing, grade, and effects |
 | Render fidelity | Renderer receives no final-target container or picture pixels | Generated plan, source footage, licensed assets, and explicitly disclosed target-derived assets | The generated plan and declared assets can reproduce the understood edit |
 | Target autonomous editing | Planner and critic never see the target | Raw footage, user brief, owned/licensed catalog | A held-out pass would show preferred-edit creation without answer leakage |
 
-A target-derived soundtrack or grade LUT can be used in an owner-authorized fidelity replay when
-its lineage is explicit. Those assets do not permit the target container or target picture pixels
-to enter the renderer, and they disqualify that run from blind music-selection or grade evidence.
+A target-derived soundtrack or grade LUT can be used in an owner-authorized calibration when its
+lineage is explicit. Those assets do not permit the target container or target picture pixels to
+enter the renderer, and they disqualify that run from blind music-selection or grade evidence.
 
 ## Control plane and media plane
 
@@ -34,8 +38,9 @@ flowchart LR
   UI --> A["NodeAgent orchestrator"]
   A --> W["Convex durable workflow"]
   W --> T["Versioned deterministic tools"]
-  T --> EU["EditUnderstanding artifact"]
-  EU --> EP["OpenTimelineIO EditPlan"]
+  T --> CA["ChoreographyAnalysis artifact"]
+  CA --> SP["SongConditionedPlan"]
+  SP --> EP["OpenTimelineIO EditPlan"]
   EP --> R["Fixed Remotion and FFmpeg templates"]
   R --> CR["Deterministic critic"]
   CR -->|"typed patch"| EP
@@ -43,7 +48,8 @@ flowchart LR
   MM -->|"typed patch"| EP
   R --> O["Preview, approval, export"]
   W --> TR["react-o11y trace"]
-  EU --> UI
+  CA --> UI
+  SP --> UI
   EP --> UI
   CR --> UI
   TR --> UI
@@ -91,6 +97,18 @@ Every adapter records its version, parameters, input/output hashes, frame or sam
 confidence, latency, and artifact IDs.
 
 ## Canonical artifacts
+
+### ChoreographyAnalysis
+
+The source-only analyzer binds the exact choreography reference, chosen song excerpt, beat evidence,
+take pose alignments, ordered phrases, per-take candidates, and embodied-layout evidence. The
+reference is analysis-only. A finished target has no property in this input contract.
+
+### SongConditionedPlan
+
+The planner selects one admissible candidate per phrase, binds any body-safe caption layouts, and
+records the compiled EditPlan hash. It can change typed choices and timing; it cannot create a new
+renderer implementation.
 
 ### EditUnderstanding
 
@@ -158,15 +176,19 @@ flowchart TD
 Evaluator-only ground truth is physically and logically separated. Analyzer, planner, renderer, and
 critic code must never import it.
 
-## Target autonomous-editing workflow
+## Song-conditioned source-only workflow
 
-For an unseen-edit evaluation, the target architecture mounts the target only inside the evaluator
-after the edit is frozen. NodeAgent would receive raw footage, a creator brief, constraints, and a
-rights-cleared catalog; ask deterministic tools for evidence; generate multiple typed plans; render
-previews; and rank them by technical quality, rhythm, narrative coherence, subject framing, text
-legibility, mix, and creator preference. Human A/B ratings would be the primary taste signal, with a
-model judge secondary and calibrated to those ratings. The current V2 replay does not demonstrate
-this blind workflow.
+The generator receives an original dance reference, repeated takes, an exact chosen song segment,
+optional timed lyrics, and rights/constraint attestations. Deterministic tools align normalized pose,
+map beats and phrases, build per-phrase candidates, ground body-safe regions, and compile a typed
+plan. Camera audio is muted and only the chosen song is routed to program output. The render and all
+generation reads are hash-bound before an evaluator may mount a held-out target.
+
+The public synthetic replay demonstrates those mechanics. The supplied real case demonstrates
+target-picture isolation and close timing/source agreement, but lacks an independent choreography
+reference, independent song master, and timed lyrics; its exact authorized audio was an oracle.
+Human A/B ratings across unseen cases remain the primary release gate for a creative-taste claim.
+See [`song-conditioned-pipeline.md`](song-conditioned-pipeline.md).
 
 ## Release gates
 

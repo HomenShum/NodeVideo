@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "nodevideo.locate-result.v1",
+  "requestId": "request.primary-dancer",
+  "traceId": "trace.055cf616079f70bb",
+  "assetId": "asset.choreography-reference",
+  "provider": {
+    "id": "provider.replay",
+    "implementation": "replay"
+  },
+  "status": "valid",
+  "observations": [
+    {
+      "id": "grounding.primary-dancer",
+      "geometry": {
+        "kind": "box",
+        "box": {
+          "x": 0.18,
+          "y": 0.17,
+          "width": 0.64,
+          "height": 0.72
+        }
+      },
+      "label": "primary dancer full body"
+    }
+  ]
+}

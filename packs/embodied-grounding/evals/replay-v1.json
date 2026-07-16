@@ -1,0 +1,111 @@
+{
+  "schema": "nodevideo.capability-eval.v1",
+  "id": "embodied-grounding-replay-v1",
+  "pack": "nodevideo.embodied-grounding@0.1.0",
+  "status": "contract-replay-defined-not-executed",
+  "executionBoundary": "public-fixture-worker",
+  "purpose": "Define the first formal public-fixture replay matrix for LocateRequest, LocateResult, GroundingHealth, normalized geometry, redaction, and manual fallback. Provider implementations have focused unit proof, but this pack-level replay has no checked-in receipt.",
+  "fixturePolicy": {
+    "allowedSourceClasses": ["public-fixture"],
+    "forbiddenSourceClasses": ["private-user-media"],
+    "containsPersonalMedia": false,
+    "publicationSafe": true,
+    "mediaLocatorRecorded": false,
+    "rawProviderPayloadRecorded": false
+  },
+  "proof": {
+    "executed": false,
+    "receiptPath": null,
+    "resultPath": null,
+    "reason": "The HTTP, manual, disabled, and replay implementations are unit-tested in src/lib/visual-grounding.test.ts, but this formal public-fixture pack replay has not produced a checked-in result and receipt."
+  },
+  "cases": [
+    {
+      "id": "public-fixture-valid-contract",
+      "input": {
+        "schemaVersion": "nodevideo.locate-request.v1",
+        "requestId": "request.grounding.replay.valid",
+        "traceId": "trace.grounding.replay-v1",
+        "assetId": "asset.public-person-frame",
+        "queryKind": "text",
+        "query": "the visible person's body and face",
+        "task": "grounding",
+        "output": "box",
+        "cardinality": "many",
+        "frameNumber": 42,
+        "maxResults": 4
+      },
+      "expected": {
+        "inputSchemaValid": true,
+        "resultStatus": "valid",
+        "normalizedGeometryValid": true,
+        "mediaLocatorAbsent": true,
+        "visualPromptAbsent": true,
+        "healthTextPrompt": true,
+        "healthVisualPrompt": false,
+        "healthLicenseRefsPresent": true
+      },
+      "executed": false
+    },
+    {
+      "id": "ambiguous-requires-review",
+      "expectedResultStatus": "ambiguous",
+      "expectedObservationMinimum": 1,
+      "executed": false
+    },
+    {
+      "id": "malformed-is-not-valid",
+      "expectedResultStatus": "malformed",
+      "expectedObservationCount": 0,
+      "expectedDiagnostic": true,
+      "executed": false
+    },
+    {
+      "id": "empty-is-not-valid",
+      "expectedResultStatus": "empty",
+      "expectedObservationCount": 0,
+      "executed": false
+    },
+    {
+      "id": "failed-is-not-valid",
+      "expectedResultStatus": "failed",
+      "expectedObservationCount": 0,
+      "expectedDiagnostic": true,
+      "executed": false
+    },
+    {
+      "id": "manual-geometry-is-explicit",
+      "expectedResultStatus": "manual",
+      "expectedProviderImplementation": "manual",
+      "expectedProviderConfidence": false,
+      "expectedNormalizedGeometryValid": true,
+      "executed": false
+    }
+  ],
+  "assertions": [
+    "input-and-output-schema-valid",
+    "all-six-result-statuses-covered",
+    "coordinates-finite-and-normalized",
+    "inverted-and-zero-area-boxes-rejected",
+    "text-query-only-and-no-visual-prompt-asset",
+    "trace-and-asset-identifiers-only",
+    "raw-provider-payload-not-retained",
+    "health-reports-text-prompt-true-and-visual-prompt-false",
+    "health-discloses-code-and-model-license-refs",
+    "remote-egress-requires-explicit-authorization",
+    "manual-fallback-remains-explicit"
+  ],
+  "doesNotProve": [
+    "a live LocateAnything service was executed",
+    "body or face localization accuracy",
+    "provider availability or visual-prompt support",
+    "identity or biometric recognition",
+    "legal sufficiency of a rights attestation",
+    "private-media production safety"
+  ],
+  "releaseGate": {
+    "contractReplay": "blocked-until-executed-receipt-and-result-exist",
+    "geometryAccuracy": "blocked-until-consent-cleared-held-out-evaluation",
+    "privateMedia": "blocked-until-egress-redaction-and-retention-proof"
+  }
+}

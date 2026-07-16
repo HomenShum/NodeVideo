@@ -1,0 +1,343 @@
+{
+  "schemaVersion": "nodevideo.edit-plan.v1",
+  "id": "plan.song-conditioned-source-only-v1",
+  "understandingId": "understanding.song-conditioned-source-only-v1",
+  "version": 1,
+  "createdAt": "2026-07-15T23:15:17.283Z",
+  "frameRate": 30,
+  "canvas": {
+    "width": 720,
+    "height": 1280
+  },
+  "durationFrames": 1335,
+  "lineage": {
+    "renderAssetIds": [
+      "asset.take-a",
+      "asset.take-b",
+      "asset.music"
+    ],
+    "evaluationOnlyAssetIds": [],
+    "targetDerivedRenderAssetIds": [
+      "asset.music"
+    ]
+  },
+  "audio": {
+    "routing": [
+      {
+        "id": "route.mute.asset.take-a",
+        "sourceKind": "asset-audio",
+        "sourceId": "asset.take-a",
+        "bus": "program",
+        "muted": true,
+        "gainDb": 0
+      },
+      {
+        "id": "route.mute.asset.take-b",
+        "sourceKind": "asset-audio",
+        "sourceId": "asset.take-b",
+        "bus": "program",
+        "muted": true,
+        "gainDb": 0
+      },
+      {
+        "id": "route.music",
+        "sourceKind": "track",
+        "sourceId": "track.music",
+        "bus": "music",
+        "muted": false,
+        "gainDb": 0
+      }
+    ],
+    "events": [
+      {
+        "id": "event.music",
+        "kind": "music",
+        "clipId": "clip.music",
+        "sourceOffsetMs": 0,
+        "releasedMasterOffsetMs": 29146,
+        "releasedMasterGainDb": 0,
+        "targetStartMs": 0,
+        "targetEndMs": 42666.666666666664,
+        "gainDb": 0,
+        "identity": {
+          "title": "Sign",
+          "artist": "82MAJOR"
+        }
+      },
+      {
+        "id": "event.silence",
+        "kind": "silence",
+        "targetStartMs": 42666.666666666664,
+        "targetEndMs": 44500
+      }
+    ]
+  },
+  "beatGrid": {
+    "bpm": 107.666016,
+    "offsetMs": 1439.637188,
+    "beatsMs": [
+      1439.637188,
+      2020.136054,
+      2577.414966,
+      3134.693878,
+      3715.192744,
+      4272.471655,
+      4852.970522,
+      5410.249433,
+      5990.748299,
+      6548.027211,
+      7105.306122,
+      7662.585034,
+      8266.303855,
+      8800.362812,
+      9380.861678,
+      9938.14059,
+      10518.639456,
+      11075.918367,
+      11633.197279,
+      12190.47619,
+      12747.755102,
+      13328.253968,
+      13885.53288,
+      14466.031746,
+      15023.310658,
+      15580.589569,
+      16161.088435,
+      16741.587302,
+      17322.086168,
+      17856.145125,
+      18436.643991,
+      18993.922902,
+      19574.421769,
+      20108.480726,
+      20642.539683,
+      21246.258503,
+      21803.537415,
+      22384.036281,
+      22941.315193,
+      23498.594104,
+      24055.873016,
+      24636.371882,
+      25216.870748,
+      25797.369615,
+      26377.868481,
+      26911.927438,
+      27492.426304,
+      28049.705215,
+      28630.204082,
+      29187.482993,
+      29744.761905,
+      30302.040816,
+      30859.319728,
+      31439.818594,
+      31997.097506,
+      32577.596372,
+      33134.875283,
+      33715.37415,
+      34272.653061,
+      34829.931973,
+      35433.650794,
+      35967.709751,
+      36548.208617,
+      37105.487528,
+      37685.986395,
+      38243.265306,
+      38800.544218,
+      39357.823129,
+      39868.662132,
+      40356.281179,
+      40867.120181
+    ],
+    "downbeatsMs": [
+      2020.136054,
+      4272.471655,
+      6548.027211,
+      8800.362812,
+      11075.918367,
+      13328.253968,
+      15580.589569,
+      17856.145125,
+      20108.480726,
+      22384.036281,
+      24636.371882,
+      26911.927438,
+      29187.482993,
+      31439.818594,
+      33715.37415,
+      35967.709751,
+      38243.265306,
+      40356.281179
+    ],
+    "confidence": 0.367822
+  },
+  "tracks": [
+    {
+      "id": "track.video.primary",
+      "kind": "video",
+      "role": "primary",
+      "clips": [
+        {
+          "id": "clip.phrase.1",
+          "kind": "source",
+          "assetId": "asset.take-a",
+          "timelineRange": {
+            "startFrame": 0,
+            "endFrameExclusive": 196
+          },
+          "sourceRange": {
+            "startFrame": 464,
+            "endFrameExclusive": 660
+          },
+          "playbackRate": 1,
+          "fit": "fit",
+          "cropKeyframes": [],
+          "grade": {
+            "kind": "hlg-bt2020-to-sdr-bt709-hable"
+          }
+        },
+        {
+          "id": "clip.phrase.2",
+          "kind": "source",
+          "assetId": "asset.take-b",
+          "timelineRange": {
+            "startFrame": 196,
+            "endFrameExclusive": 467
+          },
+          "sourceRange": {
+            "startFrame": 964,
+            "endFrameExclusive": 1235
+          },
+          "playbackRate": 1,
+          "fit": "fit",
+          "cropKeyframes": [],
+          "grade": {
+            "kind": "hlg-bt2020-to-sdr-bt709-hable"
+          }
+        },
+        {
+          "id": "clip.phrase.3",
+          "kind": "source",
+          "assetId": "asset.take-a",
+          "timelineRange": {
+            "startFrame": 467,
+            "endFrameExclusive": 570
+          },
+          "sourceRange": {
+            "startFrame": 931,
+            "endFrameExclusive": 1034
+          },
+          "playbackRate": 1,
+          "fit": "fit",
+          "cropKeyframes": [],
+          "grade": {
+            "kind": "hlg-bt2020-to-sdr-bt709-hable"
+          }
+        },
+        {
+          "id": "clip.phrase.4",
+          "kind": "source",
+          "assetId": "asset.take-b",
+          "timelineRange": {
+            "startFrame": 570,
+            "endFrameExclusive": 739
+          },
+          "sourceRange": {
+            "startFrame": 1338,
+            "endFrameExclusive": 1507
+          },
+          "playbackRate": 1,
+          "fit": "fit",
+          "cropKeyframes": [],
+          "grade": {
+            "kind": "hlg-bt2020-to-sdr-bt709-hable"
+          }
+        },
+        {
+          "id": "clip.phrase.5",
+          "kind": "source",
+          "assetId": "asset.take-a",
+          "timelineRange": {
+            "startFrame": 739,
+            "endFrameExclusive": 1212
+          },
+          "sourceRange": {
+            "startFrame": 1203,
+            "endFrameExclusive": 1676
+          },
+          "playbackRate": 1,
+          "fit": "fit",
+          "cropKeyframes": [],
+          "grade": {
+            "kind": "hlg-bt2020-to-sdr-bt709-hable"
+          }
+        },
+        {
+          "id": "clip.outro-freeze",
+          "kind": "freeze",
+          "assetId": "asset.take-a",
+          "timelineRange": {
+            "startFrame": 1212,
+            "endFrameExclusive": 1335
+          },
+          "sourceFrame": 1675,
+          "fit": "fit",
+          "cropKeyframes": [],
+          "grade": {
+            "kind": "hlg-bt2020-to-sdr-bt709-hable"
+          }
+        }
+      ]
+    },
+    {
+      "id": "track.music",
+      "kind": "audio",
+      "role": "music",
+      "clips": [
+        {
+          "id": "clip.music",
+          "assetId": "asset.music",
+          "timelineRange": {
+            "startFrame": 0,
+            "endFrameExclusive": 1280
+          },
+          "sourceRange": {
+            "startFrame": 0,
+            "endFrameExclusive": 1280
+          },
+          "playbackRate": 1,
+          "role": "music",
+          "gainDb": 0,
+          "fadeInFrames": 0,
+          "fadeOutFrames": 0,
+          "license": {
+            "status": "target-derived-authorized",
+            "proofRef": "authorization.owner-provided-target-audio-oracle"
+          }
+        }
+      ]
+    },
+    {
+      "id": "track.overlays",
+      "kind": "overlay",
+      "clips": [
+        {
+          "id": "overlay.outro",
+          "timelineRange": {
+            "startFrame": 1212,
+            "endFrameExclusive": 1335
+          },
+          "kind": "text",
+          "text": "Thanks for watching!",
+          "templateId": "text.outro",
+          "box": {
+            "x": 0.14,
+            "y": 0.12,
+            "width": 0.72,
+            "height": 0.08
+          },
+          "animation": "fade"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.embodied-grounding",
+  "version": "0.1.0",
+  "implementationStatus": "adapter-implementations-unit-validated",
+  "title": "Embodied Grounding",
+  "description": "Provider-neutral, asset-bound body and face localization for downstream crop and caption safety, with normalized geometry and explicit manual fallback.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": ["grounding/text-locate-request", "visual/asset-frame-binding"],
+  "outputs": ["grounding/locate-result", "grounding/health"],
+  "tools": ["grounding.health", "grounding.locate", "grounding.manual", "grounding.validate"],
+  "permissions": [
+    "read_authorized_visual_media_in_worker",
+    "invoke_authorized_grounding_adapter",
+    "write_normalized_geometry_artifacts"
+  ],
+  "uiRenderers": ["GroundingHealthBadge", "GroundingRegionOverlay", "ManualRegionEditor"],
+  "evalSuite": "evals/replay-v1.json",
+  "validation": {
+    "profile": "provider-neutral-adapter-unit-v1",
+    "status": "passed",
+    "proof": {
+      "testPath": "../../src/lib/visual-grounding.test.ts",
+      "command": "npx vitest run src/lib/visual-grounding.test.ts",
+      "coveredImplementations": ["locateanything-http-mocked", "manual", "disabled", "replay"],
+      "formalPackReplayExecuted": false,
+      "liveLocateAnythingExecuted": false
+    },
+    "excludes": [
+      "provider-quality-or-availability",
+      "generic-visual-prompt-support",
+      "identity-or-biometric-recognition",
+      "legal-license-determination",
+      "production-human-localization-accuracy",
+      "hosted-private-media-egress"
+    ]
+  },
+  "execution": {
+    "kind": "provider-neutral-grounding-adapter",
+    "modelRequired": false,
+    "adapterMayUseModel": true,
+    "supportedBoundaries": ["public-fixture-worker", "private-worker", "local-worker"],
+    "tracePayload": "trace-and-asset-identifiers-plus-normalized-derived-geometry-only",
+    "textPrompting": true,
+    "visualPrompting": false
+  }
+}

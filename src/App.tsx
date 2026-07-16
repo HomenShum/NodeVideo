@@ -1,15 +1,17 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { BlindPilotPanel } from '@/features/nodevideo/blind-pilot-panel';
+import { SongConditionedPanel } from '@/features/nodevideo/blind-pilot-panel';
 import { RealCasePanel } from '@/features/nodevideo/real-case-panel';
 import { V2ProofPanel } from '@/features/nodevideo/v2-proof-panel';
+import { usePublishedSongCalibration } from '@/lib/published-song-calibration';
 import { ChevronDown, Film, GitBranch, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
 
 export function App() {
   const [calibrationOpen, setCalibrationOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
+  const calibration = usePublishedSongCalibration();
 
   return (
     <div className="min-h-svh bg-background text-foreground" data-testid="app-shell">
@@ -20,7 +22,7 @@ export function App() {
           </span>
           <span className="font-heading font-semibold tracking-tight">NodeVideo</span>
           <Badge variant="secondary" data-testid="privacy-badge">
-            <ShieldCheck aria-hidden="true" /> Authorized derivatives only
+            <ShieldCheck aria-hidden="true" /> Local-first media
           </Badge>
           <Button asChild className="ml-auto" size="sm" variant="outline">
             <a href="https://github.com/HomenShum/NodeVideo" rel="noreferrer" target="_blank">
@@ -32,35 +34,50 @@ export function App() {
 
       <main className="mx-auto max-w-6xl space-y-6 px-3 py-6 sm:px-6 sm:py-10">
         <section className="space-y-3" aria-labelledby="page-title">
-          <Badge variant="outline">Source-only creative editing</Badge>
-          <h1 id="page-title" className="max-w-3xl font-heading text-3xl font-semibold sm:text-5xl">
-            Choose the edit before seeing the answer, then make the music handoff usable.
+          <Badge variant="outline">Original dance → takes → chosen song → final edit</Badge>
+          <h1 id="page-title" className="max-w-4xl font-heading text-3xl font-semibold sm:text-5xl">
+            Understand the choreography, then edit each phrase to the music.
           </h1>
           <p className="max-w-3xl text-pretty text-muted-foreground sm:text-lg">
-            A fresh planner receives only the two source videos and public music-catalog context.
-            Its clean edit, text, track candidate, preview-relative segment reference, and desired
-            beat-alignment cues are frozen before the held-out target is opened. The older
-            target-guided reconstruction remains below as calibration evidence, never as blind-taste
-            evidence.
+            NodeVideo aligns every take to an original dance, maps movement accents to a chosen song
+            segment, selects the strongest take, and positions lyric text without covering the body.
+            The edit plan is frozen before any held-out target can be evaluated.
           </p>
-          <div className="flex flex-wrap gap-2" aria-label="Claim boundary">
-            <Badge variant="secondary">Audited source-only generation</Badge>
-            <Badge variant="secondary">Instagram-ready music cues</Badge>
-            <Badge variant="outline">Generalized taste awaits multi-case votes</Badge>
-          </div>
         </section>
 
-        <BlindPilotPanel />
+        <SongConditionedPanel />
 
         <section className="space-y-2" aria-labelledby="calibration-title">
           <Badge variant="outline">Target-guided calibration</Badge>
           <h2 className="font-heading text-2xl font-semibold" id="calibration-title">
-            Reference understanding and reconstruction
+            Reconstruction remains a separate evaluator
           </h2>
           <p className="max-w-3xl text-sm text-muted-foreground">
-            This separate case can score exact target fidelity, including the soundtrack and the
-            16–19 second correction. It does not contribute to the blind claim above.
+            This authorized comparison measures exact target fidelity, including soundtrack timing
+            and the 16–19 second correction. It never supplies choices to the planner above.
           </p>
+          <output
+            className="block text-xs text-muted-foreground"
+            data-testid="song-calibration-integrity"
+          >
+            {calibration.status === 'verified'
+              ? 'Calibration SHA-256 verified · 7 artifacts'
+              : (calibration.error ?? 'Verifying calibration artifacts…')}
+          </output>
+          {calibration.status === 'verified' ? (
+            <div className="flex flex-wrap gap-2">
+              <Button asChild size="sm" variant="outline">
+                <a href="/media/song-conditioned-real-calibration-v1/picture-only-preview.mp4">
+                  Play supplied-case picture plan · silent
+                </a>
+              </Button>
+              <Button asChild size="sm" variant="outline">
+                <a href="/media/song-conditioned-real-calibration-v1/manifest.json">
+                  Read source-only score
+                </a>
+              </Button>
+            </div>
+          ) : null}
         </section>
 
         <Collapsible onOpenChange={setCalibrationOpen} open={calibrationOpen}>
@@ -69,10 +86,7 @@ export function App() {
               {calibrationOpen
                 ? 'Hide target-guided calibration'
                 : 'Load calibration proof · 17 MB'}
-              <ChevronDown
-                aria-hidden="true"
-                className={`transition-transform ${calibrationOpen ? 'rotate-180' : ''}`}
-              />
+              <ChevronDown className={calibrationOpen ? 'rotate-180' : ''} aria-hidden="true" />
             </Button>
           </CollapsibleTrigger>
           <CollapsibleContent>
@@ -90,10 +104,7 @@ export function App() {
               variant="outline"
             >
               V1 failure evidence · historical and invalidated
-              <ChevronDown
-                aria-hidden="true"
-                className={`transition-transform ${historyOpen ? 'rotate-180' : ''}`}
-              />
+              <ChevronDown className={historyOpen ? 'rotate-180' : ''} aria-hidden="true" />
             </Button>
           </CollapsibleTrigger>
           <CollapsibleContent>
@@ -103,10 +114,6 @@ export function App() {
           </CollapsibleContent>
         </Collapsible>
       </main>
-
-      <footer className="border-t px-3 py-5 text-center text-xs text-muted-foreground sm:px-6">
-        Vercel serves verified proof artifacts. Deterministic media workers run locally or in CI.
-      </footer>
     </div>
   );
 }

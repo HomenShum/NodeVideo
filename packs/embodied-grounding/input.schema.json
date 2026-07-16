@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/locate-request.v1.json",
+  "title": "Provider-Neutral LocateRequest",
+  "description": "Text-query-only visual grounding request. Media identity is traceId plus assetId; the closed schema admits no URL, path, token, bytes, locator, thumbnail, or visual-prompt asset.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "requestId",
+    "traceId",
+    "assetId",
+    "queryKind",
+    "query",
+    "task",
+    "output",
+    "cardinality"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "nodevideo.locate-request.v1"
+    },
+    "requestId": {
+      "$ref": "#/$defs/id"
+    },
+    "traceId": {
+      "$ref": "#/$defs/id"
+    },
+    "assetId": {
+      "$ref": "#/$defs/id"
+    },
+    "queryKind": {
+      "const": "text"
+    },
+    "query": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000,
+      "description": "Text query only; never a URL, data URI, local path, media locator, or provider-native multimodal payload."
+    },
+    "task": {
+      "enum": ["grounding", "detection", "pointing"]
+    },
+    "output": {
+      "enum": ["box", "point"]
+    },
+    "cardinality": {
+      "enum": ["one", "many"]
+    },
+    "frameNumber": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "maxResults": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "task": {
+            "const": "pointing"
+          }
+        },
+        "required": ["task"]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "const": "point"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    }
+  }
+}

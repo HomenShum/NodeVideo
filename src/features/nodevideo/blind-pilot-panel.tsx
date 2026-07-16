@@ -3,204 +3,193 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Spinner } from '@/components/ui/spinner';
-import { buildInstagramCueSheet, buildWaveform, formatTimestamp } from '@/lib/music-handoff';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import {
-  type LoadedPublishedBlindPilot,
-  PUBLISHED_BLIND_PILOT,
-  loadPublishedBlindPilot,
-} from '@/lib/published-blind-pilot';
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemGroup,
+  ItemMedia,
+  ItemTitle,
+} from '@/components/ui/item';
+import { usePublishedBlindPilot } from '@/lib/published-blind-pilot';
+import { usePublishedSongReplay } from '@/lib/published-song-conditioned';
 import {
-  CheckCircle2,
-  Clipboard,
-  Download,
-  ExternalLink,
-  FileCheck2,
+  Captions,
+  ChevronDown,
+  FileJson2,
+  Film,
+  GitCompareArrows,
+  ListMusic,
   Music2,
-  TriangleAlert,
+  ShieldCheck,
+  Sparkles,
 } from 'lucide-react';
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BlindPilotEvidence } from './blind-pilot-evidence';
 
-export function BlindPilotPanel() {
-  const [loaded, setLoaded] = useState<LoadedPublishedBlindPilot>();
-  const [error, setError] = useState<string>();
-  const [copied, setCopied] = useState<string>();
-  const verify = useCallback(async () => {
-    setError(undefined);
-    setLoaded(undefined);
-    try {
-      setLoaded(await loadPublishedBlindPilot());
-    } catch (cause) {
-      setError(cause instanceof Error ? cause.message : 'The blind pilot could not be verified.');
-    }
-  }, []);
+const inputs = [
+  {
+    description: 'The intended movement sequence and timing, separate from the creator takes.',
+    icon: GitCompareArrows,
+    title: 'Original choreography reference',
+  },
+  {
+    description: 'One or more recordings to align, score by phrase, and cut between.',
+    icon: Film,
+    title: 'Creator takes',
+  },
+  {
+    description: 'A user-selected track and exact segment provide beats, accents, and phrasing.',
+    icon: Music2,
+    title: 'Chosen song + segment',
+  },
+  {
+    description: 'Lyrics become timed, body-safe overlays instead of fixed screen coordinates.',
+    icon: Captions,
+    title: 'Lyrics + text cues',
+  },
+] as const;
 
-  useEffect(() => void verify(), [verify]);
+const artifacts = [
+  ['Interpretation', 'understanding.json'],
+  ['Frozen edit plan', 'edit-plan.json'],
+  ['Freeze receipt', 'freeze-receipt.json'],
+  ['Post-freeze evaluation', 'evaluator-report.json'],
+  ['Replay manifest', 'manifest.json'],
+] as const;
 
-  const manifest = loaded?.manifest;
-  const handoff = manifest?.musicHandoff;
-  const copy = (label: string, value: string) =>
-    navigator.clipboard.writeText(value).then(
-      () => setCopied(label),
-      () => setCopied(undefined),
-    );
-  const cueSheet = manifest ? buildInstagramCueSheet(manifest) : '';
+const baseUrl = '/media/song-conditioned-auto-edit-v1';
+
+export function SongConditionedPanel() {
+  const [blindOpen, setBlindOpen] = useState(false);
+  const blind = usePublishedBlindPilot(blindOpen);
+  const replay = usePublishedSongReplay();
 
   return (
-    <Card data-testid="blind-pilot-panel">
+    <Card data-testid="song-conditioned-panel">
       <CardHeader>
-        <Badge variant={loaded?.protocolPassed ? 'default' : error ? 'destructive' : 'outline'}>
-          {loaded?.protocolPassed
-            ? 'Source-only plan frozen before target reveal'
-            : error
-              ? 'Blind pilot blocked'
-              : 'Verifying blind-run receipt'}
+        <Badge className="w-fit">
+          <Sparkles aria-hidden="true" /> Public deterministic replay
         </Badge>
-        <CardTitle>{manifest?.title ?? PUBLISHED_BLIND_PILOT.title}</CardTitle>
+        <CardTitle>Song-conditioned choreography edit</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div
-          aria-live="polite"
-          className="flex min-h-10 min-w-0 items-center gap-2 rounded-lg border px-3 py-2 text-sm"
-          data-testid="blind-pilot-integrity"
-        >
-          {loaded ? <FileCheck2 aria-hidden="true" /> : error ? <TriangleAlert /> : <Spinner />}
-          <span className="min-w-0 break-words">
-            {loaded
-              ? `${loaded.integrity.verifiedAssetCount} public proof assets plus the trusted manifest are SHA-256 verified.`
-              : (error ??
-                'Checking source hashes, read log, freeze receipt, preview, and held-out evaluation…')}
-          </span>
+        <Alert data-testid="case-input-boundary">
+          <ShieldCheck aria-hidden="true" />
+          <AlertTitle>
+            {replay.status === 'verified'
+              ? 'Replay SHA-256 verified; supplied-case inputs remain incomplete'
+              : replay.status === 'blocked'
+                ? 'Replay blocked'
+                : 'Verifying replay artifacts'}
+          </AlertTitle>
+          <AlertDescription>
+            {replay.error ??
+              'This public replay proves the mechanics with an original 120 BPM fixture. The supplied real case has two takes, but no independent choreography reference or separately supplied song master. Source A is a creator-selected fallback until those inputs are provided.'}
+          </AlertDescription>
+        </Alert>
+
+        <div className="grid min-w-0 gap-4 lg:grid-cols-2">
+          <section className="space-y-3" aria-labelledby="workflow-inputs-title">
+            <h3 className="font-heading font-medium" id="workflow-inputs-title">
+              Required inputs
+            </h3>
+            <ItemGroup className="gap-2">
+              {inputs.map(({ description, icon: Icon, title }) => (
+                <Item asChild key={title} variant="outline">
+                  <li>
+                    <ItemMedia variant="icon">
+                      <Icon aria-hidden="true" />
+                    </ItemMedia>
+                    <ItemContent className="min-w-0">
+                      <ItemTitle className="line-clamp-none">{title}</ItemTitle>
+                      <ItemDescription className="line-clamp-none">{description}</ItemDescription>
+                    </ItemContent>
+                  </li>
+                </Item>
+              ))}
+            </ItemGroup>
+            <div className="flex flex-wrap gap-2" aria-label="Replay guarantees">
+              <Badge variant="secondary">Grounding: replay</Badge>
+              <Badge variant="outline">Manual boxes supported</Badge>
+              <Badge variant="outline">LocateAnything optional</Badge>
+              <Badge variant="secondary">Source-camera audio muted</Badge>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              The planner aligns movement to song phrases, chooses a take per phrase, places text
+              away from the body, and freezes a typed plan. The CLI accepts no target; its audited
+              allowlist is not an OS sandbox.
+            </p>
+          </section>
+
+          <section className="space-y-3 rounded-lg border p-3" aria-labelledby="replay-title">
+            <div>
+              <h3 className="font-heading font-medium" id="replay-title">
+                Generated replay
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                A/B/A phrase cuts, synthetic music, and body-safe lyric cues.
+              </p>
+            </div>
+            <AspectRatio
+              className="mx-auto max-w-64 overflow-hidden rounded-lg bg-black"
+              ratio={9 / 16}
+            >
+              {/* biome-ignore lint/a11y/useMediaCaption: The fixture has music and visual lyric cues but no spoken dialogue. */}
+              <video
+                aria-label="Song-conditioned deterministic replay"
+                className="size-full object-contain"
+                controls
+                playsInline
+                preload="metadata"
+                src={replay.status === 'verified' ? `${baseUrl}/preview.mp4` : undefined}
+              />
+            </AspectRatio>
+            <div className="flex flex-wrap gap-2" data-testid="song-conditioned-artifacts">
+              {replay.status === 'verified'
+                ? artifacts.map(([label, file]) => (
+                    <Button asChild key={file} size="sm" variant="outline">
+                      <a href={`${baseUrl}/${file}`}>
+                        <FileJson2 aria-hidden="true" /> {label}
+                      </a>
+                    </Button>
+                  ))
+                : null}
+            </div>
+          </section>
         </div>
 
-        {error ? (
-          <Alert variant="destructive">
-            <TriangleAlert aria-hidden="true" />
-            <AlertTitle>No blind claim is shown</AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        ) : null}
-
-        {manifest && loaded?.protocolPassed ? (
-          <>
-            <Alert data-testid="blind-taste-boundary">
-              <CheckCircle2 aria-hidden="true" />
-              <AlertTitle>Blind protocol proven; generalized taste is not</AlertTitle>
-              <AlertDescription>
-                {manifest.verdict.summary} {manifest.verdict.limitations.join(' ')}
-              </AlertDescription>
-            </Alert>
-
-            <div className="grid min-w-0 gap-4 lg:grid-cols-2">
-              <section
-                aria-labelledby="blind-preview-title"
-                className="space-y-3 rounded-lg border p-3"
-              >
-                <h3 className="font-heading font-medium" id="blind-preview-title">
-                  Source-only clean edit
-                </h3>
-                <AspectRatio
-                  className="overflow-hidden rounded-lg bg-black"
-                  ratio={manifest.preview.ratio}
-                >
-                  {/* biome-ignore lint/a11y/useMediaCaption: The preview has no commercial soundtrack; its audio policy is described in the proof. */}
-                  <video
-                    aria-label="Blind source-only preview"
-                    className="size-full object-contain"
-                    controls
-                    playsInline
-                    preload="auto"
-                    src={manifest.preview.url}
-                  />
-                </AspectRatio>
-                <Button asChild className="w-full" variant="outline">
-                  <a download href={manifest.preview.url}>
-                    <Download aria-hidden="true" /> Download clean edit
-                  </a>
-                </Button>
-              </section>
-
-              <section
-                aria-labelledby="music-handoff-title"
-                className="space-y-4 rounded-lg border p-3"
-                data-testid="instagram-music-handoff"
-              >
-                <h3
-                  className="flex items-center gap-2 font-heading font-medium"
-                  id="music-handoff-title"
-                >
-                  <Music2 aria-hidden="true" /> Finish in Instagram
-                </h3>
-                <div>
-                  <p className="font-medium">
-                    {handoff?.title} · {handoff?.artist}
-                  </p>
-                  <p className="text-sm text-muted-foreground">{handoff?.rationale}</p>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex flex-wrap justify-between gap-2 text-xs">
-                    <span>{formatTimestamp(handoff?.referenceStartSeconds ?? 0)}</span>
-                    <span>
-                      {formatTimestamp(handoff?.referenceEndSeconds ?? 0)} ·{' '}
-                      {handoff?.referenceBasis} · {handoff?.referenceCue}
-                    </span>
-                  </div>
-                  <div
-                    aria-label={`Catalog preview reference ${formatTimestamp(handoff?.referenceStartSeconds ?? 0)} to ${formatTimestamp(handoff?.referenceEndSeconds ?? 0)}`}
-                    className="flex h-8 items-center gap-1 overflow-hidden rounded-md bg-muted px-2"
-                    role="img"
-                  >
-                    {buildWaveform(
-                      handoff?.referenceDurationSeconds ?? 1,
-                      handoff?.referenceStartSeconds ?? 0,
-                      handoff?.referenceEndSeconds ?? 0,
-                    ).map((bar) => (
-                      <span
-                        className={`min-w-0 flex-1 rounded-full ${bar.height} ${bar.active ? 'bg-primary' : 'bg-muted-foreground/30'}`}
-                        key={bar.index}
-                      />
-                    ))}
-                  </div>
-                </div>
-                <ol className="space-y-2" data-testid="music-cue-anchors">
-                  {manifest.musicHandoff.anchors.map((anchor) => (
-                    <li className="rounded-lg border px-3 py-2 text-sm" key={anchor.id}>
-                      <p className="font-medium">
-                        {formatTimestamp(anchor.videoSeconds)} video →{' '}
-                        {formatTimestamp(anchor.referenceSeconds)} preview ref
-                      </p>
-                      <p className="text-muted-foreground">Desired alignment: {anchor.label}</p>
-                    </li>
-                  ))}
-                </ol>
-                <div className="grid gap-2 sm:grid-cols-2">
-                  <Button
-                    onClick={() => void copy('search', handoff?.searchQuery ?? '')}
-                    variant="outline"
-                  >
-                    <Clipboard aria-hidden="true" />{' '}
-                    {copied === 'search' ? 'Search copied' : 'Copy search'}
-                  </Button>
-                  <Button onClick={() => void copy('cues', cueSheet)} variant="outline">
-                    <Clipboard aria-hidden="true" />{' '}
-                    {copied === 'cues' ? 'Steps copied' : 'Copy exact steps'}
-                  </Button>
-                  <Button asChild className="sm:col-span-2">
-                    <a href="https://www.instagram.com/reels/" rel="noreferrer" target="_blank">
-                      Open Instagram Reels <ExternalLink aria-hidden="true" />
-                    </a>
-                  </Button>
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  Confirm the track in your Instagram account. Availability varies by account and
-                  region; NodeVideo publishes no commercial audio and grants no music rights.
+        <Collapsible onOpenChange={setBlindOpen} open={blindOpen}>
+          <CollapsibleTrigger asChild>
+            <Button
+              className="w-full justify-between"
+              variant="outline"
+              data-testid="blind-pilot-trigger"
+            >
+              Prior blind source-only pilot
+              <ChevronDown className={blindOpen ? 'rotate-180' : ''} aria-hidden="true" />
+            </Button>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <section
+              className="mt-3 space-y-2 rounded-lg border p-3"
+              data-testid="blind-pilot-panel"
+            >
+              <p className="text-sm text-muted-foreground" data-testid="blind-pilot-integrity">
+                {blind.loaded
+                  ? `${blind.loaded.integrity.verifiedAssetCount} public proof assets plus the trusted manifest are SHA-256 verified.`
+                  : (blind.error ?? 'Verifying the prior frozen source-only run…')}
+              </p>
+              {blind.loaded ? (
+                <p className="text-sm" data-testid="blind-taste-boundary">
+                  Blind protocol proven; generalized taste is not claimed by this single pilot.
                 </p>
-              </section>
-            </div>
-            <BlindPilotEvidence manifest={manifest} />
-          </>
-        ) : null}
+              ) : null}
+              {blind.loaded ? <BlindPilotEvidence manifest={blind.loaded.manifest} /> : null}
+            </section>
+          </CollapsibleContent>
+        </Collapsible>
       </CardContent>
     </Card>
   );

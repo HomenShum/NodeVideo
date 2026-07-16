@@ -26,6 +26,40 @@ const authorizedCase = await readJson('fixtures/media/authorized-real-v1/case-ma
 const authorizedResult = await readJson('fixtures/media/authorized-real-v1/result.json');
 const authorizedReceipt = await readJson('fixtures/media/authorized-real-v1/receipt.json');
 
+const groundingManifest = await readJson('packs/embodied-grounding/manifest.json');
+const groundingInputSchema = await readJson('packs/embodied-grounding/input.schema.json');
+const groundingOutputSchema = await readJson('packs/embodied-grounding/output.schema.json');
+const groundingEvaluation = await readJson('packs/embodied-grounding/evals/replay-v1.json');
+const groundingReplayResult = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/grounding-receipt.json',
+);
+
+const songManifest = await readJson('packs/song-conditioned-auto-edit/manifest.json');
+const songInputSchema = await readJson('packs/song-conditioned-auto-edit/input.schema.json');
+const songOutputSchema = await readJson('packs/song-conditioned-auto-edit/output.schema.json');
+const songEvaluation = await readJson('packs/song-conditioned-auto-edit/evals/replay-v1.json');
+const songAnalysis = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/understanding.json',
+);
+const songPlan = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/song-conditioned-plan.json',
+);
+const songFreeze = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/choreography-freeze.json',
+);
+const songReadLog = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/generation-read-log.json',
+);
+const songReplayManifest = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/manifest.json',
+);
+const songReplayEvaluation = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/evaluator-report.json',
+);
+const songFreezeReceipt = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/freeze-receipt.json',
+);
+
 const ajv = new Ajv2020({ allErrors: true, strict: false });
 addFormats(ajv);
 
@@ -38,6 +72,32 @@ const authorizedInput = authorizedEvaluation.cases[0].input;
 const authorizedInputValid = authorizedInputValidator(authorizedInput);
 const authorizedOutputValidator = ajv.compile(authorizedOutputSchema);
 const authorizedOutputValid = authorizedOutputValidator(authorizedResult);
+
+const groundingInputValidator = ajv.compile(groundingInputSchema);
+const groundingInputValid = groundingInputValidator(groundingEvaluation.cases[0].input);
+const groundingResultValidator = ajv.compile({
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
+  $defs: groundingOutputSchema.$defs,
+  $ref: '#/$defs/locateResult',
+});
+const groundingReplayValid = groundingResultValidator(groundingReplayResult);
+
+const songInputValidator = ajv.compile(songInputSchema);
+const songInputValid = typeof songInputValidator === 'function';
+const songArtifactValidator = (definition) =>
+  ajv.compile({
+    $schema: 'https://json-schema.org/draft/2020-12/schema',
+    $defs: songOutputSchema.$defs,
+    $ref: `#/$defs/${definition}`,
+  });
+const songAnalysisValidator = songArtifactValidator('analysis');
+const songPlanValidator = songArtifactValidator('plan');
+const songFreezeValidator = songArtifactValidator('freeze');
+const songReadLogValidator = songArtifactValidator('generationReadLog');
+const songAnalysisValid = songAnalysisValidator(songAnalysis);
+const songPlanValid = songPlanValidator(songPlan);
+const songFreezeValid = songFreezeValidator(songFreeze);
+const songReadLogValid = songReadLogValidator(songReadLog);
 
 const sameMembers = (left, right) =>
   left.length === right.length && left.every((value) => right.includes(value));
@@ -170,12 +230,81 @@ const authorizedChecks = [
   ],
 ];
 
-const checks = [...tutorialChecks, ...authorizedChecks];
+const groundingChecks = [
+  ['grounding eval input matches LocateRequest schema', groundingInputValid],
+  ['grounding replay result matches LocateResult schema', groundingReplayValid],
+  [
+    'grounding implementation reports its honest validation tier',
+    groundingManifest.implementationStatus === 'adapter-implementations-unit-validated' &&
+      groundingManifest.validation.status === 'passed' &&
+      groundingEvaluation.proof.executed === false,
+  ],
+  [
+    'grounding result retains no provider confidence or media locator',
+    groundingReplayResult.observations.every((item) => item.confidence === undefined) &&
+      !JSON.stringify(groundingReplayResult).match(/(?:url|path|bytes|base64)/iu),
+  ],
+];
+
+const songChecks = [
+  ['song-conditioned input schema compiles (aggregate replay envelope excluded)', songInputValid],
+  ['song choreography analysis matches the canonical artifact schema', songAnalysisValid],
+  ['song selection plan matches the canonical artifact schema', songPlanValid],
+  ['song choreography freeze matches the canonical artifact schema', songFreezeValid],
+  ['song generation read log matches the canonical artifact schema', songReadLogValid],
+  [
+    'song pack is bound to the deterministic replay',
+    songManifest.implementationStatus === 'deterministic-replay-validated' &&
+      songManifest.validation.status === 'passed' &&
+      songEvaluation.proof.executed === true,
+  ],
+  [
+    'song replay proof hashes match checked-in artifacts',
+    songFreezeReceipt.files.length > 0 &&
+      (
+        await Promise.all(
+          songFreezeReceipt.files.map(
+            async (artifact) =>
+              (await digest(`fixtures/media/song-conditioned-auto-edit-v1/${artifact.file}`)) ===
+              artifact.sha256,
+          ),
+        )
+      ).every(Boolean),
+  ],
+  [
+    'song replay freezes source-only inputs before evaluation',
+    songFreeze.isolation.generatorTargetAccess === 'denied' &&
+      songFreeze.isolation.finalTargetMount === 'absent' &&
+      songReadLog.targetAccess === 'denied' &&
+      songReplayManifest.protocol.targetMountedDuringGeneration === false &&
+      songReplayManifest.protocol.targetReadDuringGeneration === false,
+  ],
+  [
+    'song replay renders selected music and structurally mutes camera audio',
+    songReplayManifest.audio.previewContainsChosenSong === true &&
+      songReplayManifest.audio.sourceAudioMuted === true,
+  ],
+  [
+    'song replay evaluator passes mechanics without claiming taste',
+    songReplayEvaluation.passed === true &&
+      songReplayEvaluation.tasteStatus === 'not-evaluated' &&
+      songReplayManifest.evaluation.tasteStatus === 'not-evaluated',
+  ],
+];
+
+const checks = [...tutorialChecks, ...authorizedChecks, ...groundingChecks, ...songChecks];
 
 for (const [label, passed] of checks) console.log(`${passed ? 'PASS' : 'FAIL'}: ${label}`);
 if (checks.some(([, passed]) => !passed)) {
   if (!tutorialOutputValid) console.error(tutorialOutputValidator.errors);
   if (!authorizedInputValid) console.error(authorizedInputValidator.errors);
   if (!authorizedOutputValid) console.error(authorizedOutputValidator.errors);
+  if (!groundingInputValid) console.error(groundingInputValidator.errors);
+  if (!groundingReplayValid) console.error(groundingResultValidator.errors);
+  if (!songInputValid) console.error(songInputValidator.errors);
+  if (!songAnalysisValid) console.error(songAnalysisValidator.errors);
+  if (!songPlanValid) console.error(songPlanValidator.errors);
+  if (!songFreezeValid) console.error(songFreezeValidator.errors);
+  if (!songReadLogValid) console.error(songReadLogValidator.errors);
   process.exitCode = 1;
 }

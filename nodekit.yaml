@@ -30,7 +30,7 @@ noKey:
   status: certified
   command: npm run demo
   externalAccountsRequired: 0
-  disclosure: The public path uses independently verified checked-in receipts for synthetic and owner-authorized media; no provider or cloud account is required.
+  disclosure: The public path uses deterministic song-conditioned replay artifacts and independently verified owner-authorized picture-only calibration evidence; no model, GPU, provider, or cloud account is required.
 
 environment:
   contractVersion: nodeplatform.env/v1

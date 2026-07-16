@@ -1,0 +1,546 @@
+{
+  "schemaVersion": "nodevideo.choreography-analysis.v1",
+  "id": "analysis.song-conditioned-auto-edit-v1",
+  "runId": "run.song-conditioned-auto-edit-v1",
+  "traceId": "trace.055cf616079f70bb",
+  "createdAt": "2026-07-15T00:00:00.000Z",
+  "reference": {
+    "assetId": "asset.choreography-reference",
+    "sha256": "sha256:9cce01af82855387be580c5868f01a5c2ce405f129af04731e80168b48a4ee18",
+    "mimeType": "video/mp4",
+    "usage": "analysis-only",
+    "sourceRange": {
+      "startFrame": 0,
+      "endFrameExclusive": 180
+    },
+    "frameRate": 30,
+    "mirrorPolicy": "as-recorded",
+    "evidenceArtifactIds": [
+      "evidence.fixture-choreography-lineage"
+    ]
+  },
+  "song": {
+    "assetId": "asset.music",
+    "sha256": "sha256:92f9e6d828e62e7f60d16dcb054a6a3e00fe41db1d2d863f4ce6e188773b2c21",
+    "mimeType": "audio/mp4",
+    "usage": "render-source",
+    "excerpt": {
+      "startMs": 0,
+      "endMs": 6000
+    },
+    "license": {
+      "status": "public-domain",
+      "proofRef": "fixture.generated-by-nodevideo"
+    },
+    "beatGrid": {
+      "bpm": 120,
+      "beatsMs": [
+        0,
+        500,
+        1000,
+        1500,
+        2000,
+        2500,
+        3000,
+        3500,
+        4000,
+        4500,
+        5000,
+        5500
+      ],
+      "downbeatsMs": [
+        0,
+        2000,
+        4000
+      ],
+      "evidenceArtifactId": "evidence.beat-grid"
+    }
+  },
+  "timedText": {
+    "assetId": "asset.timed-text",
+    "sha256": "sha256:106a9f13b9b9298b6b9300c0f6280676dc92833bf8f3b929f1cfae8d3e223117",
+    "mimeType": "application/json",
+    "usage": "analysis-only",
+    "cueCount": 3,
+    "license": {
+      "status": "public-domain",
+      "proofRef": "fixture.generated-by-nodevideo"
+    }
+  },
+  "takes": [
+    {
+      "id": "take.a",
+      "assetId": "asset.take-a",
+      "sha256": "sha256:2676bae057e6642f89f429d04a7bb442d4626a9deab43ee4e14337315192b1e8",
+      "mimeType": "video/mp4",
+      "usage": "render-source",
+      "sourceRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 180
+      },
+      "frameRate": 30,
+      "mirrorApplied": false,
+      "alignmentAnchors": [
+        {
+          "referenceFrame": 0,
+          "takeFrame": 0,
+          "timelineMs": 0,
+          "evidenceArtifactId": "evidence.exact-fixture-alignment"
+        },
+        {
+          "referenceFrame": 179,
+          "takeFrame": 179,
+          "timelineMs": 5967,
+          "evidenceArtifactId": "evidence.exact-fixture-alignment"
+        }
+      ],
+      "evidenceArtifactIds": [
+        "evidence.exact-fixture-alignment"
+      ]
+    },
+    {
+      "id": "take.b",
+      "assetId": "asset.take-b",
+      "sha256": "sha256:8ada43b35b9f46f0bbde0661a7602a5b67ae20fae218fa747afc99babe6b0983",
+      "mimeType": "video/mp4",
+      "usage": "render-source",
+      "sourceRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 180
+      },
+      "frameRate": 30,
+      "mirrorApplied": false,
+      "alignmentAnchors": [
+        {
+          "referenceFrame": 0,
+          "takeFrame": 0,
+          "timelineMs": 0,
+          "evidenceArtifactId": "evidence.exact-fixture-alignment"
+        },
+        {
+          "referenceFrame": 179,
+          "takeFrame": 179,
+          "timelineMs": 5967,
+          "evidenceArtifactId": "evidence.exact-fixture-alignment"
+        }
+      ],
+      "evidenceArtifactIds": [
+        "evidence.exact-fixture-alignment"
+      ]
+    }
+  ],
+  "phrases": [
+    {
+      "id": "phrase.1",
+      "order": 0,
+      "referenceRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 60
+      },
+      "timelineRange": {
+        "startMs": 0,
+        "endMs": 2000
+      },
+      "beatRange": {
+        "startIndex": 0,
+        "endIndexExclusive": 4
+      },
+      "movementEvidenceArtifactIds": [
+        "evidence.fixture-choreography-lineage",
+        "evidence.beat-grid"
+      ]
+    },
+    {
+      "id": "phrase.2",
+      "order": 1,
+      "referenceRange": {
+        "startFrame": 60,
+        "endFrameExclusive": 120
+      },
+      "timelineRange": {
+        "startMs": 2000,
+        "endMs": 4000
+      },
+      "beatRange": {
+        "startIndex": 4,
+        "endIndexExclusive": 8
+      },
+      "movementEvidenceArtifactIds": [
+        "evidence.fixture-choreography-lineage",
+        "evidence.beat-grid"
+      ]
+    },
+    {
+      "id": "phrase.3",
+      "order": 2,
+      "referenceRange": {
+        "startFrame": 120,
+        "endFrameExclusive": 180
+      },
+      "timelineRange": {
+        "startMs": 4000,
+        "endMs": 6000
+      },
+      "beatRange": {
+        "startIndex": 8,
+        "endIndexExclusive": 12
+      },
+      "movementEvidenceArtifactIds": [
+        "evidence.fixture-choreography-lineage",
+        "evidence.beat-grid"
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "id": "candidate.1.1",
+      "phraseId": "phrase.1",
+      "takeId": "take.a",
+      "sourceRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 60
+      },
+      "timelineRange": {
+        "startMs": 0,
+        "endMs": 2000
+      },
+      "scores": {
+        "timing": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.exact-fixture-alignment"
+        },
+        "pose": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.fixture-choreography-lineage"
+        },
+        "motion": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.fixture-choreography-lineage"
+        },
+        "visibility": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.replay-grounding"
+        },
+        "framing": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.replay-grounding"
+        },
+        "technical": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.sharpness-score"
+        }
+      },
+      "eligibility": "eligible",
+      "rejectionReasons": [],
+      "evidenceArtifactIds": [
+        "evidence.exact-fixture-alignment",
+        "evidence.sharpness-score"
+      ]
+    },
+    {
+      "id": "candidate.1.2",
+      "phraseId": "phrase.1",
+      "takeId": "take.b",
+      "sourceRange": {
+        "startFrame": 0,
+        "endFrameExclusive": 60
+      },
+      "timelineRange": {
+        "startMs": 0,
+        "endMs": 2000
+      },
+      "scores": {
+        "timing": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.exact-fixture-alignment"
+        },
+        "pose": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.fixture-choreography-lineage"
+        },
+        "motion": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.fixture-choreography-lineage"
+        },
+        "visibility": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.replay-grounding"
+        },
+        "framing": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.replay-grounding"
+        },
+        "technical": {
+          "value": 0.020443,
+          "evidenceArtifactId": "evidence.sharpness-score"
+        }
+      },
+      "eligibility": "eligible",
+      "rejectionReasons": [],
+      "evidenceArtifactIds": [
+        "evidence.exact-fixture-alignment",
+        "evidence.sharpness-score"
+      ]
+    },
+    {
+      "id": "candidate.2.1",
+      "phraseId": "phrase.2",
+      "takeId": "take.a",
+      "sourceRange": {
+        "startFrame": 60,
+        "endFrameExclusive": 120
+      },
+      "timelineRange": {
+        "startMs": 2000,
+        "endMs": 4000
+      },
+      "scores": {
+        "timing": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.exact-fixture-alignment"
+        },
+        "pose": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.fixture-choreography-lineage"
+        },
+        "motion": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.fixture-choreography-lineage"
+        },
+        "visibility": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.replay-grounding"
+        },
+        "framing": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.replay-grounding"
+        },
+        "technical": {
+          "value": 0.020397,
+          "evidenceArtifactId": "evidence.sharpness-score"
+        }
+      },
+      "eligibility": "eligible",
+      "rejectionReasons": [],
+      "evidenceArtifactIds": [
+        "evidence.exact-fixture-alignment",
+        "evidence.sharpness-score"
+      ]
+    },
+    {
+      "id": "candidate.2.2",
+      "phraseId": "phrase.2",
+      "takeId": "take.b",
+      "sourceRange": {
+        "startFrame": 60,
+        "endFrameExclusive": 120
+      },
+      "timelineRange": {
+        "startMs": 2000,
+        "endMs": 4000
+      },
+      "scores": {
+        "timing": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.exact-fixture-alignment"
+        },
+        "pose": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.fixture-choreography-lineage"
+        },
+        "motion": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.fixture-choreography-lineage"
+        },
+        "visibility": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.replay-grounding"
+        },
+        "framing": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.replay-grounding"
+        },
+        "technical": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.sharpness-score"
+        }
+      },
+      "eligibility": "eligible",
+      "rejectionReasons": [],
+      "evidenceArtifactIds": [
+        "evidence.exact-fixture-alignment",
+        "evidence.sharpness-score"
+      ]
+    },
+    {
+      "id": "candidate.3.1",
+      "phraseId": "phrase.3",
+      "takeId": "take.a",
+      "sourceRange": {
+        "startFrame": 120,
+        "endFrameExclusive": 180
+      },
+      "timelineRange": {
+        "startMs": 4000,
+        "endMs": 6000
+      },
+      "scores": {
+        "timing": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.exact-fixture-alignment"
+        },
+        "pose": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.fixture-choreography-lineage"
+        },
+        "motion": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.fixture-choreography-lineage"
+        },
+        "visibility": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.replay-grounding"
+        },
+        "framing": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.replay-grounding"
+        },
+        "technical": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.sharpness-score"
+        }
+      },
+      "eligibility": "eligible",
+      "rejectionReasons": [],
+      "evidenceArtifactIds": [
+        "evidence.exact-fixture-alignment",
+        "evidence.sharpness-score"
+      ]
+    },
+    {
+      "id": "candidate.3.2",
+      "phraseId": "phrase.3",
+      "takeId": "take.b",
+      "sourceRange": {
+        "startFrame": 120,
+        "endFrameExclusive": 180
+      },
+      "timelineRange": {
+        "startMs": 4000,
+        "endMs": 6000
+      },
+      "scores": {
+        "timing": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.exact-fixture-alignment"
+        },
+        "pose": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.fixture-choreography-lineage"
+        },
+        "motion": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.fixture-choreography-lineage"
+        },
+        "visibility": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.replay-grounding"
+        },
+        "framing": {
+          "value": 1,
+          "evidenceArtifactId": "evidence.replay-grounding"
+        },
+        "technical": {
+          "value": 0.020358,
+          "evidenceArtifactId": "evidence.sharpness-score"
+        }
+      },
+      "eligibility": "eligible",
+      "rejectionReasons": [],
+      "evidenceArtifactIds": [
+        "evidence.exact-fixture-alignment",
+        "evidence.sharpness-score"
+      ]
+    }
+  ],
+  "captionLayouts": [
+    {
+      "id": "caption.1",
+      "phraseId": "phrase.1",
+      "timelineRange": {
+        "startMs": 250,
+        "endMs": 1600
+      },
+      "text": "Find the phrase",
+      "lines": [
+        "Find the phrase"
+      ],
+      "box": {
+        "x": 0.1,
+        "y": 0.035,
+        "width": 0.8,
+        "height": 0.09
+      },
+      "templateId": "text.cue",
+      "bodyOverlapRatio": 0,
+      "faceOverlapRatio": 0,
+      "safeAreaEvidenceArtifactIds": [
+        "evidence.replay-grounding"
+      ],
+      "groundingResultId": "grounding.primary-dancer"
+    },
+    {
+      "id": "caption.2",
+      "phraseId": "phrase.2",
+      "timelineRange": {
+        "startMs": 2250,
+        "endMs": 3600
+      },
+      "text": "Cut on the beat",
+      "lines": [
+        "Cut on the beat"
+      ],
+      "box": {
+        "x": 0.1,
+        "y": 0.035,
+        "width": 0.8,
+        "height": 0.09
+      },
+      "templateId": "text.cue",
+      "bodyOverlapRatio": 0,
+      "faceOverlapRatio": 0,
+      "safeAreaEvidenceArtifactIds": [
+        "evidence.replay-grounding"
+      ],
+      "groundingResultId": "grounding.primary-dancer"
+    },
+    {
+      "id": "caption.3",
+      "phraseId": "phrase.3",
+      "timelineRange": {
+        "startMs": 4250,
+        "endMs": 5600
+      },
+      "text": "Finish clean",
+      "lines": [
+        "Finish clean"
+      ],
+      "box": {
+        "x": 0.1,
+        "y": 0.035,
+        "width": 0.8,
+        "height": 0.09
+      },
+      "templateId": "text.cue",
+      "bodyOverlapRatio": 0,
+      "faceOverlapRatio": 0,
+      "safeAreaEvidenceArtifactIds": [
+        "evidence.replay-grounding"
+      ],
+      "groundingResultId": "grounding.primary-dancer"
+    }
+  ],
+  "warnings": [
+    "Replay mode validates orchestration without a model or GPU."
+  ]
+}

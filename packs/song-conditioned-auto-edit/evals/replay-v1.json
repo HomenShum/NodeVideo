@@ -1,0 +1,329 @@
+{
+  "schema": "nodevideo.capability-eval.v1",
+  "id": "song-conditioned-auto-edit-replay-v1",
+  "pack": "nodevideo.song-conditioned-auto-edit@0.1.0",
+  "status": "deterministic-replay-validated",
+  "executionBoundary": "public-fixture-worker",
+  "purpose": "Bind a completed source-only deterministic replay for one choreography reference, one chosen song, two creator takes, three protected captions, phrase candidates, fixed-renderer output, and a hash-bound pre-evaluation freeze. The separate three-take case remains an unexecuted schema fixture.",
+  "fixturePolicy": {
+    "allowedSourceClasses": ["public-fixture"],
+    "forbiddenAssetRoles": ["evaluation-target"],
+    "containsPersonalMedia": false,
+    "publicationSafe": true,
+    "hiddenTargetMountedDuringGeneration": false,
+    "sourceContainerMetadataPublished": false
+  },
+  "proof": {
+    "executed": true,
+    "fixtureManifestPath": "../../../fixtures/media/song-conditioned-auto-edit-v1/manifest.json",
+    "understandingPath": "../../../fixtures/media/song-conditioned-auto-edit-v1/understanding.json",
+    "groundingResultPath": "../../../fixtures/media/song-conditioned-auto-edit-v1/grounding-receipt.json",
+    "editPlanPath": "../../../fixtures/media/song-conditioned-auto-edit-v1/edit-plan.json",
+    "songPlanPath": "../../../fixtures/media/song-conditioned-auto-edit-v1/song-conditioned-plan.json",
+    "renderPath": "../../../fixtures/media/song-conditioned-auto-edit-v1/preview.mp4",
+    "generationReadLogPath": "../../../fixtures/media/song-conditioned-auto-edit-v1/generation-read-log.json",
+    "choreographyFreezePath": "../../../fixtures/media/song-conditioned-auto-edit-v1/choreography-freeze.json",
+    "freezeReceiptPath": "../../../fixtures/media/song-conditioned-auto-edit-v1/freeze-receipt.json",
+    "evaluatorReportPath": "../../../fixtures/media/song-conditioned-auto-edit-v1/evaluator-report.json",
+    "verificationCommand": "node scripts/workers/song-conditioned-auto-edit.mjs --verify-public",
+    "verificationCheckCount": 28,
+    "canonicalComponentValidatorsPassed": true,
+    "aggregateOutputEnvelopeValidated": false,
+    "artifacts": [
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/manifest.json",
+        "sha256": "ae91d3f427b016f6cd15a08ff5e20c9028150b3545eddc90e9dcf0a35b09047c"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/original-choreography-reference.mp4",
+        "sha256": "9cce01af82855387be580c5868f01a5c2ce405f129af04731e80168b48a4ee18"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/creator-take-a.mp4",
+        "sha256": "2676bae057e6642f89f429d04a7bb442d4626a9deab43ee4e14337315192b1e8"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/creator-take-b.mp4",
+        "sha256": "8ada43b35b9f46f0bbde0661a7602a5b67ae20fae218fa747afc99babe6b0983"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/chosen-song.m4a",
+        "sha256": "92f9e6d828e62e7f60d16dcb054a6a3e00fe41db1d2d863f4ce6e188773b2c21"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/timed-text.json",
+        "sha256": "106a9f13b9b9298b6b9300c0f6280676dc92833bf8f3b929f1cfae8d3e223117"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/understanding.json",
+        "sha256": "9e8062543e52e1bb1aca8f35993ef6a7898a40b0bbbf3e18747b10e751c92b1f"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/grounding-receipt.json",
+        "sha256": "68513ed19c7dd978d9b0e39a1d16d26409ced0988b702b299db050cc78452139"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/edit-plan.json",
+        "sha256": "5e6900d65aff4a6dba55538fe6139eab0defaa6268e596a4acc48575f92d205c"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/song-conditioned-plan.json",
+        "sha256": "087010c55876c3194ef13de75f8c91db6cfb59e42dd1743ccd452e23e2feec0f"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/generation-read-log.json",
+        "sha256": "24e07609065a9b5a94751a30f6840a2c2874e050a4e17be75d4230228c909796"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/choreography-freeze.json",
+        "sha256": "050c9b33a18e19b98e37070429a8f5b6113e89199c5798a91184dbae41f61e51"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/preview.mp4",
+        "sha256": "f596fe24cac4e05686c4ddd1bfbe9d341a732d9b1729c456d538dc3ffc545158"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/freeze-receipt.json",
+        "sha256": "8c448d1fc592658795ac5f4e0e752dc7daf5a3a47970a748aad0a1139c638955"
+      },
+      {
+        "path": "fixtures/media/song-conditioned-auto-edit-v1/evaluator-report.json",
+        "sha256": "f932259e06ec59479ef0d459c63066d5141d8ce6d92967db91a150bb797a79eb"
+      }
+    ],
+    "scope": "Typed component artifacts, normalized replay grounding, deterministic candidate selection, EditPlan rendering, chosen-song audio, source muting, hash binding, and freeze-before-evaluation mechanics."
+  },
+  "cases": [
+    {
+      "id": "public-three-take-source-only-schema-contract",
+      "input": {
+        "schema": "nodevideo.song-conditioned-auto-edit.input.v1",
+        "projectId": "project.choreography.replay-v1",
+        "runId": "run.choreography.replay-v1",
+        "traceId": "trace.choreography.replay-v1",
+        "authorization": {
+          "attestationId": "attestation.choreography.public-fixture",
+          "mediaProcessingAuthorized": true,
+          "derivedPreviewAuthorized": true,
+          "sourceContainerMetadataPublished": false
+        },
+        "execution": {
+          "boundary": "public-fixture-worker",
+          "retention": "ephemeral",
+          "allowModelEgress": false,
+          "allowVisualEgress": false,
+          "hostedBehavior": "verified-replay"
+        },
+        "assets": {
+          "reference": {
+            "assetId": "asset.choreography-reference",
+            "kind": "video",
+            "role": "choreography-reference",
+            "mimeType": "video/mp4",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "sourceClass": "public-fixture",
+            "usage": "analysis-only",
+            "locator": {
+              "kind": "fixture-id",
+              "value": "fixture.choreography-reference"
+            }
+          },
+          "song": {
+            "assetId": "asset.chosen-song",
+            "kind": "audio",
+            "role": "chosen-song",
+            "mimeType": "audio/wav",
+            "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "sourceClass": "public-fixture",
+            "usage": "render-source",
+            "locator": {
+              "kind": "fixture-id",
+              "value": "fixture.chosen-song"
+            },
+            "rights": {
+              "attestationId": "attestation.song.public-fixture",
+              "rightsBasis": "owned",
+              "proofRef": "proof.song.public-fixture",
+              "processingAuthorized": true,
+              "previewRenderAuthorized": true,
+              "exportRenderAuthorized": true
+            }
+          },
+          "takes": [
+            {
+              "assetId": "asset.take-a",
+              "kind": "video",
+              "role": "take",
+              "mimeType": "video/mp4",
+              "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+              "sourceClass": "public-fixture",
+              "usage": "render-source",
+              "locator": {
+                "kind": "fixture-id",
+                "value": "fixture.take-a"
+              }
+            },
+            {
+              "assetId": "asset.take-b",
+              "kind": "video",
+              "role": "take",
+              "mimeType": "video/mp4",
+              "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+              "sourceClass": "public-fixture",
+              "usage": "render-source",
+              "locator": {
+                "kind": "fixture-id",
+                "value": "fixture.take-b"
+              }
+            },
+            {
+              "assetId": "asset.take-c",
+              "kind": "video",
+              "role": "take",
+              "mimeType": "video/mp4",
+              "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+              "sourceClass": "public-fixture",
+              "usage": "render-source",
+              "locator": {
+                "kind": "fixture-id",
+                "value": "fixture.take-c"
+              }
+            }
+          ],
+          "lyrics": {
+            "assetId": "asset.protected-lyrics",
+            "kind": "text",
+            "role": "lyric-text",
+            "mimeType": "text/plain",
+            "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+            "sourceClass": "public-fixture",
+            "usage": "protected-text",
+            "locator": {
+              "kind": "fixture-id",
+              "value": "fixture.protected-lyrics"
+            }
+          }
+        },
+        "songExcerpt": {
+          "startMs": 12000,
+          "endMs": 30000
+        },
+        "captions": {
+          "source": "user-supplied-protected-text",
+          "language": "en",
+          "lyricTextAssetId": "asset.protected-lyrics",
+          "layout": {
+            "coordinateSpace": "normalized-frame-top-left-v1",
+            "safeArea": {
+              "xMin": 0.06,
+              "yMin": 0.08,
+              "xMax": 0.86,
+              "yMax": 0.78
+            },
+            "avoidRegions": ["body", "face", "hands", "platform-controls"],
+            "maxLines": 2,
+            "maxCharactersPerLine": 32,
+            "minimumVisibleMs": 700
+          }
+        },
+        "options": {
+          "width": 1080,
+          "height": 1920,
+          "framesPerSecond": 30,
+          "mirrorMode": "auto",
+          "outputAudioMode": "render-with-chosen-song",
+          "sourceAudioMode": "muted",
+          "selectionStrategy": "phrase-candidate-optimizer",
+          "groundingPack": "nodevideo.embodied-grounding@0.1.0",
+          "editPlanSchema": "nodevideo.edit-plan.v1",
+          "plannerSeed": 1
+        },
+        "isolation": {
+          "generationInputClass": "reference-song-and-takes-only",
+          "forbiddenAssetRoles": ["evaluation-target"],
+          "hiddenTargetMounted": false,
+          "parentVolumeAccessible": false,
+          "evaluatorCredentialPresent": false,
+          "freezeBeforeEvaluation": true,
+          "readLogArtifactId": "artifact.generation-read-log"
+        }
+      },
+      "expected": {
+        "inputSchemaValid": true,
+        "analysisSchema": "nodevideo.choreography-analysis.v1",
+        "freezeSchema": "nodevideo.choreography-freeze.v1",
+        "takeCount": 3,
+        "songExcerptDurationMs": 18000,
+        "hiddenTargetUsed": false,
+        "sourceAudioMode": "muted",
+        "outputStatus": "completed",
+        "validationVerdict": "pass"
+      },
+      "executed": false
+    },
+    {
+      "id": "public-two-take-deterministic-replay",
+      "fixtureRoot": "../../../fixtures/media/song-conditioned-auto-edit-v1",
+      "executed": true,
+      "expected": {
+        "takeCount": 2,
+        "phraseCount": 3,
+        "takeSwitchMinimum": 2,
+        "durationMs": 6000,
+        "sourceAudioMuted": true,
+        "chosenSongRendered": true,
+        "hiddenTargetUsed": false,
+        "freezeBeforeEvaluation": true,
+        "mechanicsVerdict": "pass",
+        "tasteStatus": "not-evaluated"
+      },
+      "observed": {
+        "takeCount": 2,
+        "phraseCount": 3,
+        "takeSwitchCount": 2,
+        "durationMs": 6000,
+        "sourceAudioMuted": true,
+        "chosenSongRendered": true,
+        "hiddenTargetUsed": false,
+        "freezeBeforeEvaluation": true,
+        "mechanicsVerdict": "pass",
+        "tasteStatus": "not-evaluated"
+      }
+    }
+  ],
+  "assertions": [
+    "input-and-output-schema-valid",
+    "reference-song-and-take-hashes-bound",
+    "evaluation-target-role-forbidden",
+    "hidden-target-mount-and-evaluator-credential-absent",
+    "song-excerpt-positive-and-duration-bounded",
+    "phrases-ordered-contiguous-and-cover-excerpt",
+    "every-take-has-piecewise-alignment",
+    "one-candidate-row-and-admissible-selection-per-phrase",
+    "caption-layout-normalized-safe-and-grounding-linked",
+    "face-overlap-zero-and-body-overlap-within-thresholds",
+    "edit-plan-contiguous-and-reference-excluded-from-render-lineage",
+    "camera-audio-muted-and-chosen-song-range-exact",
+    "render-decodable-and-plan-hash-linked",
+    "generation-read-log-contains-zero-forbidden-reads",
+    "freeze-hashes-match-before-any-evaluation-target-unseal"
+  ],
+  "doesNotProve": [
+    "autonomous creative taste or preference over a baseline",
+    "generic pose, movement, beat, or alignment accuracy",
+    "lyric transcription accuracy",
+    "caption safety on real human footage",
+    "LocateAnything model accuracy or availability",
+    "validation of one aggregate song-conditioned output envelope",
+    "legal sufficiency of song or lyric rights",
+    "private-media model-egress safety",
+    "live Vercel media-worker execution"
+  ],
+  "releaseGate": {
+    "contractReplay": "passed-deterministic-public-fixture",
+    "sourceOnlyIsolation": "passed-for-deterministic-public-fixture",
+    "humanChoreography": "blocked-until-consent-cleared-held-out-evaluation",
+    "creativeTaste": "blocked-until-blinded-preference-evaluation",
+    "productionSongUse": "blocked-until-rights-and-delivery-policy-review"
+  }
+}
