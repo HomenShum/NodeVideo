@@ -43,6 +43,10 @@ const songManifest = await readJson('packs/song-conditioned-auto-edit/manifest.j
 const songInputSchema = await readJson('packs/song-conditioned-auto-edit/input.schema.json');
 const songOutputSchema = await readJson('packs/song-conditioned-auto-edit/output.schema.json');
 const songEvaluation = await readJson('packs/song-conditioned-auto-edit/evals/replay-v1.json');
+const attentionManifest = await readJson('packs/attention-overlays/manifest.json');
+const attentionInputSchema = await readJson('packs/attention-overlays/input.schema.json');
+const attentionOutputSchema = await readJson('packs/attention-overlays/output.schema.json');
+const attentionEvaluation = await readJson('packs/attention-overlays/evals/contract-v1.json');
 const songAnalysis = await readJson(
   'fixtures/media/song-conditioned-auto-edit-v1/understanding.json',
 );
@@ -107,6 +111,9 @@ const songAnalysisValid = songAnalysisValidator(songAnalysis);
 const songPlanValid = songPlanValidator(songPlan);
 const songFreezeValid = songFreezeValidator(songFreeze);
 const songReadLogValid = songReadLogValidator(songReadLog);
+const attentionInputValidator = ajv.compile(attentionInputSchema);
+const attentionInputValid = attentionInputValidator(attentionEvaluation.cases[0].input);
+const attentionOutputSchemaValid = typeof ajv.compile(attentionOutputSchema) === 'function';
 
 const sameMembers = (left, right) =>
   left.length === right.length && left.every((value) => right.includes(value));
@@ -318,12 +325,31 @@ const songChecks = [
   ],
 ];
 
+const attentionChecks = [
+  ['attention overlay eval input matches its schema', attentionInputValid],
+  ['attention overlay output schema compiles', attentionOutputSchemaValid],
+  [
+    'attention overlay pack keeps grade separate and defaults bright',
+    attentionManifest.implementationStatus === 'private-real-media-and-contract-validated' &&
+      attentionManifest.validation.status === 'passed' &&
+      attentionManifest.execution.defaultGrade === 'hlg-bt2020-to-sdr-bt709-hable' &&
+      attentionManifest.execution.colorPolicy === 'independent-from-overlay-planning',
+  ],
+  [
+    'attention overlay contract is fail-closed on body clearance',
+    attentionEvaluation.cases[0].assertions.includes(
+      'rendered glyph body clearance passes conjunctively',
+    ) && attentionInputSchema.properties.maxBodyOverlapRatio.maximum === 0.05,
+  ],
+];
+
 const checks = [
   ...tutorialChecks,
   ...authorizedChecks,
   ...groundingChecks,
   ...tasteChecks,
   ...songChecks,
+  ...attentionChecks,
 ];
 
 for (const [label, passed] of checks) console.log(`${passed ? 'PASS' : 'FAIL'}: ${label}`);
@@ -339,5 +365,6 @@ if (checks.some(([, passed]) => !passed)) {
   if (!songPlanValid) console.error(songPlanValidator.errors);
   if (!songFreezeValid) console.error(songFreezeValidator.errors);
   if (!songReadLogValid) console.error(songReadLogValidator.errors);
+  if (!attentionInputValid) console.error(attentionInputValidator.errors);
   process.exitCode = 1;
 }

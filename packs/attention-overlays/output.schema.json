@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/attention-overlays/output.v1.json",
+  "title": "Attention overlay pipeline receipt",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schemaVersion", "id", "status", "input", "delivery", "bodySafety", "artifacts"],
+  "properties": {
+    "schemaVersion": { "const": "nodevideo.attention-overlay-pipeline-receipt.v1" },
+    "id": { "type": "string", "minLength": 1 },
+    "status": { "const": "pass" },
+    "input": { "type": "object" },
+    "delivery": {
+      "type": "object",
+      "required": ["gradeKind", "audioPreserved", "outputSha256"]
+    },
+    "bodySafety": {
+      "type": "object",
+      "required": ["status", "score", "maxObservedOverlapRatio"],
+      "properties": {
+        "status": { "const": "pass" },
+        "score": { "const": 1 },
+        "maxObservedOverlapRatio": { "type": "number", "minimum": 0, "maximum": 0.05 }
+      }
+    },
+    "artifacts": { "type": "object", "minProperties": 6 }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.attention-overlays@0.1.0",
+  "implementationStatus": "private-real-media-and-contract-validated",
+  "tools": [
+    {
+      "id": "pose.extract",
+      "stage": "understanding-video",
+      "dependsOn": [],
+      "accepts": ["video/authorized"],
+      "produces": ["video/pose-track"]
+    },
+    {
+      "id": "attention-overlays.plan",
+      "stage": "composing-editorial-overlays",
+      "dependsOn": ["pose.extract"],
+      "accepts": ["video/edit-plan", "video/pose-track", "text/timed-cues"],
+      "produces": ["production/attention-overlay-plan", "production/attention-overlay-plan-receipt"]
+    },
+    {
+      "id": "render.edit-plan",
+      "stage": "rendering-preview",
+      "dependsOn": ["attention-overlays.plan"],
+      "accepts": ["production/attention-overlay-plan"],
+      "produces": ["production/attention-overlay-preview", "production/renderer-manifest"]
+    },
+    {
+      "id": "embodied-overlays.audit",
+      "stage": "evaluating-preview",
+      "dependsOn": ["render.edit-plan"],
+      "accepts": ["production/attention-overlay-preview", "video/pose-track"],
+      "produces": ["production/embodied-overlay-audit", "production/attention-overlay-receipt"]
+    }
+  ],
+  "semanticValidators": [
+    {
+      "id": "attention-overlays.body-clearance",
+      "rules": [
+        "evaluate every admitted pose frame in each cue interval",
+        "use renderer-estimated glyph boxes for the final audit",
+        "fail closed when any cue exceeds five percent body overlap",
+        "keep grade selection independent from overlay placement"
+      ]
+    }
+  ]
+}

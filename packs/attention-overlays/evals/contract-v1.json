@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "nodevideo.attention-overlay-eval.v1",
+  "status": "contract-defined-private-real-media-executed",
+  "cases": [
+    {
+      "id": "body-safe-bright-default",
+      "input": {
+        "schemaVersion": "nodevideo.attention-overlay-request.v1",
+        "requestId": "request.attention-overlay.one",
+        "videoArtifactId": "artifact.video.one",
+        "poseArtifactId": "artifact.pose.one",
+        "gradeKind": "hlg-bt2020-to-sdr-bt709-hable",
+        "maxBodyOverlapRatio": 0.05,
+        "cues": [
+          {
+            "id": "cue.one",
+            "text": "Watch this",
+            "startSeconds": 0,
+            "endSeconds": 1.5,
+            "role": "attention",
+            "animation": "pop"
+          }
+        ]
+      },
+      "assertions": [
+        "overlay planning is independent from grade selection",
+        "rendered glyph body clearance passes conjunctively",
+        "source audio is preserved when present"
+      ]
+    }
+  ]
+}

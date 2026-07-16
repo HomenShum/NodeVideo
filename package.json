@@ -31,6 +31,8 @@
     "overlay:refine": "node scripts/analysis/apply_overlay_refinement.mjs",
     "delivery:refine": "node scripts/analysis/apply_creator_delivery_profile.mjs",
     "overlay:clearance": "python scripts/analysis/audit_overlay_body_clearance.py",
+    "overlay:attention:plan": "python scripts/analysis/plan_attention_overlays.py",
+    "overlay:attention:render": "node scripts/workers/attention-overlay-private-render.mjs",
     "render:geometry-equivalence": "node scripts/analysis/verify_render_geometry_equivalence.mjs",
     "pipeline:gif": "python scripts/media/generate_pipeline_gif.py",
     "worker:grounding:verify": "npm run grounding:doctor",
