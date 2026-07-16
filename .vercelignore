@@ -7,4 +7,5 @@ tests/**
 test-results/**
 playwright-report/**
 node_modules/**
+apps/eve-agent/**
 *.log
