@@ -29,6 +29,7 @@
     "src/components/ui/scroll-area.tsx": "c3e7e2201d33bc24e439b18f3d3eb2568578eb017ca995c899ed0924a569b15d",
     "src/components/ui/select.tsx": "c1295c1404b67895549b89225885eba08198a5d6224c733fbb8964eaaa2edff4",
     "src/components/ui/separator.tsx": "c924a82e99fda03684c17238d04eec857edc83977da2ee601795e94e52b4828f",
+    "src/components/ui/slider.tsx": "216005632a0f441be8eeb0ba76beea2b7ae724e526e500165cb1245369b8183a",
     "src/components/ui/spinner.tsx": "900f722c961fa6e1c28104809d56831c9056dc69599e49d364cc13a6f33966a3",
     "src/components/ui/toggle-group.tsx": "321fa3bc9f3071584a0ee4c97882d4e51ff7ce0f4ec87a3645a2683d989f3c7e",
     "src/components/ui/toggle.tsx": "ae2eec8802536743ca2dea7070a027ac3a311f2789b71af075fba23b1ee65e47",

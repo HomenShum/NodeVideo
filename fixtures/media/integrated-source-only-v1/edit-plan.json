@@ -1,0 +1,558 @@
+{
+  "schemaVersion": "nodevideo.edit-plan.v1",
+  "id": "plan.integrated-source-only-v5",
+  "understandingId": "understanding.integrated-source-only-v5",
+  "version": 1,
+  "createdAt": "2026-07-16T06:32:04.003Z",
+  "frameRate": 30,
+  "canvas": {
+    "width": 720,
+    "height": 1280
+  },
+  "durationFrames": 1335,
+  "lineage": {
+    "renderAssetIds": [
+      "asset.take-a",
+      "asset.take-b",
+      "asset.music"
+    ],
+    "evaluationOnlyAssetIds": [],
+    "targetDerivedRenderAssetIds": []
+  },
+  "audio": {
+    "routing": [
+      {
+        "id": "route.mute.asset.take-a",
+        "sourceKind": "asset-audio",
+        "sourceId": "asset.take-a",
+        "bus": "program",
+        "muted": true,
+        "gainDb": 0
+      },
+      {
+        "id": "route.mute.asset.take-b",
+        "sourceKind": "asset-audio",
+        "sourceId": "asset.take-b",
+        "bus": "program",
+        "muted": true,
+        "gainDb": 0
+      },
+      {
+        "id": "route.music",
+        "sourceKind": "track",
+        "sourceId": "track.music",
+        "bus": "music",
+        "muted": false,
+        "gainDb": 0
+      }
+    ],
+    "events": [
+      {
+        "id": "event.music",
+        "kind": "music",
+        "clipId": "clip.music",
+        "sourceOffsetMs": 0,
+        "releasedMasterOffsetMs": 29157,
+        "releasedMasterGainDb": 0,
+        "targetStartMs": 0,
+        "targetEndMs": 40400,
+        "gainDb": 0,
+        "identity": {
+          "title": "Sign",
+          "artist": "82MAJOR"
+        }
+      },
+      {
+        "id": "event.silence",
+        "kind": "silence",
+        "targetStartMs": 40400,
+        "targetEndMs": 44500
+      }
+    ]
+  },
+  "beatGrid": {
+    "bpm": 107.666016,
+    "offsetMs": 1439.637188,
+    "beatsMs": [
+      1439.637188,
+      2020.136054,
+      2577.414966,
+      3134.693878,
+      3715.192744,
+      4272.471655,
+      4852.970522,
+      5410.249433,
+      5967.528345,
+      6524.807256,
+      7105.306122,
+      7662.585034,
+      8243.0839,
+      8800.362812,
+      9380.861678,
+      9938.14059,
+      10518.639456,
+      11075.918367,
+      11633.197279,
+      12190.47619,
+      12747.755102,
+      13328.253968,
+      13885.53288,
+      14466.031746,
+      15023.310658,
+      15580.589569,
+      16161.088435,
+      16741.587302,
+      17322.086168,
+      17856.145125,
+      18436.643991,
+      18993.922902,
+      19574.421769,
+      20108.480726,
+      20642.539683,
+      21246.258503,
+      21803.537415,
+      22384.036281,
+      22941.315193,
+      23498.594104,
+      24055.873016,
+      24636.371882,
+      25216.870748,
+      25797.369615,
+      26377.868481,
+      26911.927438,
+      27492.426304,
+      28049.705215,
+      28630.204082,
+      29187.482993,
+      29744.761905,
+      30302.040816,
+      30859.319728,
+      31439.818594,
+      31997.097506,
+      32577.596372,
+      33134.875283,
+      33715.37415,
+      34272.653061,
+      34829.931973,
+      35433.650794,
+      35967.709751,
+      36548.208617,
+      37105.487528,
+      37685.986395,
+      38243.265306,
+      38800.544218,
+      39357.823129
+    ],
+    "downbeatsMs": [
+      2020.136054,
+      4272.471655,
+      6524.807256,
+      8800.362812,
+      11075.918367,
+      13328.253968,
+      15580.589569,
+      17856.145125,
+      20108.480726,
+      22384.036281,
+      24636.371882,
+      26911.927438,
+      29187.482993,
+      31439.818594,
+      33715.37415,
+      35967.709751,
+      38243.265306
+    ],
+    "confidence": 0.320883
+  },
+  "tracks": [
+    {
+      "id": "track.video.primary",
+      "kind": "video",
+      "role": "primary",
+      "clips": [
+        {
+          "id": "clip.phrase.1",
+          "kind": "source",
+          "assetId": "asset.take-a",
+          "timelineRange": {
+            "startFrame": 0,
+            "endFrameExclusive": 198
+          },
+          "sourceRange": {
+            "startFrame": 462,
+            "endFrameExclusive": 660
+          },
+          "playbackRate": 1,
+          "fit": "fit",
+          "cropKeyframes": [],
+          "grade": {
+            "kind": "hlg-bt2020-to-sdr-bt709-hable"
+          }
+        },
+        {
+          "id": "clip.phrase.2",
+          "kind": "source",
+          "assetId": "asset.take-b",
+          "timelineRange": {
+            "startFrame": 198,
+            "endFrameExclusive": 474
+          },
+          "sourceRange": {
+            "startFrame": 963,
+            "endFrameExclusive": 1239
+          },
+          "playbackRate": 1,
+          "fit": "fill",
+          "cropKeyframes": [],
+          "grade": {
+            "kind": "hlg-bt2020-to-sdr-bt709-hable"
+          }
+        },
+        {
+          "id": "clip.phrase.3",
+          "kind": "source",
+          "assetId": "asset.take-a",
+          "timelineRange": {
+            "startFrame": 474,
+            "endFrameExclusive": 594
+          },
+          "sourceRange": {
+            "startFrame": 936,
+            "endFrameExclusive": 1056
+          },
+          "playbackRate": 1,
+          "fit": "fit",
+          "cropKeyframes": [],
+          "grade": {
+            "kind": "hlg-bt2020-to-sdr-bt709-hable"
+          }
+        },
+        {
+          "id": "clip.phrase.4",
+          "kind": "source",
+          "assetId": "asset.take-b",
+          "timelineRange": {
+            "startFrame": 594,
+            "endFrameExclusive": 758
+          },
+          "sourceRange": {
+            "startFrame": 1359,
+            "endFrameExclusive": 1523
+          },
+          "playbackRate": 1,
+          "fit": "fill",
+          "cropKeyframes": [],
+          "grade": {
+            "kind": "hlg-bt2020-to-sdr-bt709-hable"
+          }
+        },
+        {
+          "id": "clip.phrase.5",
+          "kind": "source",
+          "assetId": "asset.take-a",
+          "timelineRange": {
+            "startFrame": 758,
+            "endFrameExclusive": 1212
+          },
+          "sourceRange": {
+            "startFrame": 1220,
+            "endFrameExclusive": 1674
+          },
+          "playbackRate": 1,
+          "fit": "fit",
+          "cropKeyframes": [],
+          "grade": {
+            "kind": "hlg-bt2020-to-sdr-bt709-hable"
+          }
+        },
+        {
+          "id": "clip.outro-freeze",
+          "kind": "freeze",
+          "assetId": "asset.take-a",
+          "timelineRange": {
+            "startFrame": 1212,
+            "endFrameExclusive": 1335
+          },
+          "sourceFrame": 1673,
+          "fit": "fit",
+          "cropKeyframes": [],
+          "grade": {
+            "kind": "hlg-bt2020-to-sdr-bt709-hable"
+          }
+        }
+      ]
+    },
+    {
+      "id": "track.music",
+      "kind": "audio",
+      "role": "music",
+      "clips": [
+        {
+          "id": "clip.music",
+          "assetId": "asset.music",
+          "timelineRange": {
+            "startFrame": 0,
+            "endFrameExclusive": 1212
+          },
+          "sourceRange": {
+            "startFrame": 0,
+            "endFrameExclusive": 1212
+          },
+          "playbackRate": 1,
+          "role": "music",
+          "gainDb": 0,
+          "fadeInFrames": 0,
+          "fadeOutFrames": 0,
+          "license": {
+            "status": "reference-only-private",
+            "proofRef": "authorization.creator-private-analysis-and-instagram-handoff"
+          }
+        }
+      ]
+    },
+    {
+      "id": "track.overlays",
+      "kind": "overlay",
+      "clips": [
+        {
+          "id": "overlay.lyric-1",
+          "timelineRange": {
+            "startFrame": 0,
+            "endFrameExclusive": 58
+          },
+          "kind": "text",
+          "text": "Wait a minute",
+          "templateId": "text.cue",
+          "box": {
+            "x": 0.1,
+            "y": 0.791327,
+            "width": 0.8,
+            "height": 0.075
+          },
+          "animation": "pop"
+        },
+        {
+          "id": "overlay.lyric-2",
+          "timelineRange": {
+            "startFrame": 58,
+            "endFrameExclusive": 118
+          },
+          "kind": "text",
+          "text": "Left · right · alright",
+          "templateId": "text.cue",
+          "box": {
+            "x": 0.1,
+            "y": 0.791327,
+            "width": 0.8,
+            "height": 0.075
+          },
+          "animation": "pop"
+        },
+        {
+          "id": "overlay.lyric-3",
+          "timelineRange": {
+            "startFrame": 118,
+            "endFrameExclusive": 198
+          },
+          "kind": "text",
+          "text": "Flip it a little closer",
+          "templateId": "text.cue",
+          "box": {
+            "x": 0.1,
+            "y": 0.791327,
+            "width": 0.8,
+            "height": 0.075
+          },
+          "animation": "pop"
+        },
+        {
+          "id": "overlay.lyric-4",
+          "timelineRange": {
+            "startFrame": 198,
+            "endFrameExclusive": 252
+          },
+          "kind": "text",
+          "text": "Red light · on fire",
+          "templateId": "text.cue",
+          "box": {
+            "x": 0.1,
+            "y": 0.049561,
+            "width": 0.8,
+            "height": 0.075
+          },
+          "animation": "pop"
+        },
+        {
+          "id": "overlay.lyric-5",
+          "timelineRange": {
+            "startFrame": 270,
+            "endFrameExclusive": 337
+          },
+          "kind": "text",
+          "text": "Right now · it's so tight",
+          "templateId": "text.cue",
+          "box": {
+            "x": 0.1,
+            "y": 0.049561,
+            "width": 0.8,
+            "height": 0.075
+          },
+          "animation": "pop"
+        },
+        {
+          "id": "overlay.lyric-6",
+          "timelineRange": {
+            "startFrame": 358,
+            "endFrameExclusive": 474
+          },
+          "kind": "text",
+          "text": "Take that as a sign",
+          "templateId": "text.cue",
+          "box": {
+            "x": 0.1,
+            "y": 0.049561,
+            "width": 0.8,
+            "height": 0.075
+          },
+          "animation": "pop"
+        },
+        {
+          "id": "overlay.lyric-7",
+          "timelineRange": {
+            "startFrame": 474,
+            "endFrameExclusive": 594
+          },
+          "kind": "text",
+          "text": "Show me your sign",
+          "templateId": "text.cue",
+          "box": {
+            "x": 0.1,
+            "y": 0.790858,
+            "width": 0.8,
+            "height": 0.075
+          },
+          "animation": "pop"
+        },
+        {
+          "id": "overlay.lyric-8",
+          "timelineRange": {
+            "startFrame": 594,
+            "endFrameExclusive": 758
+          },
+          "kind": "text",
+          "text": "Tiki taki tak · tiki tiki taki tak",
+          "templateId": "text.cue",
+          "box": {
+            "x": 0.1,
+            "y": 0.085563,
+            "width": 0.8,
+            "height": 0.075
+          },
+          "animation": "pop"
+        },
+        {
+          "id": "overlay.lyric-9",
+          "timelineRange": {
+            "startFrame": 758,
+            "endFrameExclusive": 799
+          },
+          "kind": "text",
+          "text": "Make up your mind",
+          "templateId": "text.cue",
+          "box": {
+            "x": 0.1,
+            "y": 0.791384,
+            "width": 0.8,
+            "height": 0.075
+          },
+          "animation": "pop"
+        },
+        {
+          "id": "overlay.lyric-10",
+          "timelineRange": {
+            "startFrame": 799,
+            "endFrameExclusive": 885
+          },
+          "kind": "text",
+          "text": "Show me your sign",
+          "templateId": "text.cue",
+          "box": {
+            "x": 0.1,
+            "y": 0.791384,
+            "width": 0.8,
+            "height": 0.075
+          },
+          "animation": "pop"
+        },
+        {
+          "id": "overlay.lyric-11",
+          "timelineRange": {
+            "startFrame": 885,
+            "endFrameExclusive": 1009
+          },
+          "kind": "text",
+          "text": "Tiki taki tak · tiki tiki taki tak",
+          "templateId": "text.cue",
+          "box": {
+            "x": 0.1,
+            "y": 0.791384,
+            "width": 0.8,
+            "height": 0.075
+          },
+          "animation": "pop"
+        },
+        {
+          "id": "overlay.lyric-12",
+          "timelineRange": {
+            "startFrame": 1009,
+            "endFrameExclusive": 1137
+          },
+          "kind": "text",
+          "text": "Take that as a sign",
+          "templateId": "text.cue",
+          "box": {
+            "x": 0.1,
+            "y": 0.791384,
+            "width": 0.8,
+            "height": 0.075
+          },
+          "animation": "pop"
+        },
+        {
+          "id": "overlay.lyric-13",
+          "timelineRange": {
+            "startFrame": 1168,
+            "endFrameExclusive": 1210
+          },
+          "kind": "text",
+          "text": "Stay here",
+          "templateId": "text.cue",
+          "box": {
+            "x": 0.1,
+            "y": 0.791384,
+            "width": 0.8,
+            "height": 0.075
+          },
+          "animation": "pop"
+        },
+        {
+          "id": "overlay.outro",
+          "timelineRange": {
+            "startFrame": 1212,
+            "endFrameExclusive": 1335
+          },
+          "kind": "text",
+          "text": "Thanks for watching!",
+          "templateId": "text.outro",
+          "box": {
+            "x": 0.14,
+            "y": 0.12,
+            "width": 0.72,
+            "height": 0.08
+          },
+          "animation": "fade"
+        }
+      ]
+    }
+  ]
+}

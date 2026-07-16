@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "nodevideo.reference-performer-selection.v1",
+  "referenceStartSeconds": 31.12,
+  "durationSeconds": 40.4,
+  "method": "minimum-mirrored-root-normalized-mediapipe-distance-across-creator-takes",
+  "sampleCadenceHz": 9.99001,
+  "alignments": {
+    "asset.take-a": {
+      "choreographyStartSeconds": 15.4,
+      "medianNormalizedPoseDistance": 0.187091,
+      "alternatives": [
+        {
+          "offsetSeconds": 15.4,
+          "medianDistance": 0.187091
+        },
+        {
+          "offsetSeconds": 15.3,
+          "medianDistance": 0.188456
+        },
+        {
+          "offsetSeconds": 15.1,
+          "medianDistance": 0.192535
+        },
+        {
+          "offsetSeconds": 15.5,
+          "medianDistance": 0.193733
+        },
+        {
+          "offsetSeconds": 15.7,
+          "medianDistance": 0.19464
+        },
+        {
+          "offsetSeconds": 15.6,
+          "medianDistance": 0.195654
+        },
+        {
+          "offsetSeconds": 15.2,
+          "medianDistance": 0.199911
+        },
+        {
+          "offsetSeconds": 15,
+          "medianDistance": 0.2053
+        },
+        {
+          "offsetSeconds": 15.8,
+          "medianDistance": 0.205599
+        },
+        {
+          "offsetSeconds": 16,
+          "medianDistance": 0.207229
+        }
+      ]
+    },
+    "asset.take-b": {
+      "choreographyStartSeconds": 25.5,
+      "medianNormalizedPoseDistance": 0.183009,
+      "alternatives": [
+        {
+          "offsetSeconds": 25.5,
+          "medianDistance": 0.183009
+        },
+        {
+          "offsetSeconds": 25.4,
+          "medianDistance": 0.189835
+        },
+        {
+          "offsetSeconds": 25.7,
+          "medianDistance": 0.192453
+        },
+        {
+          "offsetSeconds": 25.6,
+          "medianDistance": 0.19357
+        },
+        {
+          "offsetSeconds": 25.2,
+          "medianDistance": 0.194247
+        },
+        {
+          "offsetSeconds": 25.3,
+          "medianDistance": 0.194999
+        },
+        {
+          "offsetSeconds": 25.1,
+          "medianDistance": 0.199092
+        },
+        {
+          "offsetSeconds": 25.8,
+          "medianDistance": 0.201909
+        },
+        {
+          "offsetSeconds": 26.2,
+          "medianDistance": 0.202219
+        },
+        {
+          "offsetSeconds": 25.9,
+          "medianDistance": 0.203212
+        }
+      ]
+    }
+  },
+  "selection": {
+    "sampleCount": 404,
+    "medianDistance": 0.200041,
+    "personIndexChanges": 117
+  },
+  "limitations": [
+    "Reference person indices are per-frame detector slots, not persistent identities.",
+    "Mirroring is evaluated because the creator practiced from a mirrored choreography view.",
+    "The held-out final edit was not an input."
+  ]
+}
