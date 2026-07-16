@@ -93,7 +93,7 @@ asset-bound request/result/health contract for four modes:
 | `replay` | Deterministic checked-in geometry for CI and public proof. |
 | `manual` | Creator-reviewed normalized boxes when automation is missing or ambiguous. |
 | `disabled` | Explicit fail-closed mode; downstream caption placement cannot pretend grounding succeeded. |
-| `LocateAnything HTTP` | Optional operator-managed text-prompt sidecar behind the same contract. It is not required for the default demo. |
+| `LocateAnything HTTP` | Operator-managed text-prompt sidecar behind the same contract. The free proof backend uses NVIDIA's official queued Hugging Face Space; a local worker can replace it without changing callers. |
 
 Results distinguish `valid`, `ambiguous`, `malformed`, `empty`, `failed`, and `manual`. Confidence is
 stored only when a provider actually reports it; the manual and replay paths do not manufacture a

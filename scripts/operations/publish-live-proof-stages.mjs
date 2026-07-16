@@ -29,9 +29,16 @@ if (expectedRoles.some((role) => !workerInput.assets.some((asset) => asset.role 
 const outputs = new Map([
   ['extract_reference_motion', [join(root, 'reference-selected-30fps.npz'), 'reference-motion']],
   ['analyze_takes', [join(root, 'alignment-30fps.json'), 'take-analysis']],
+  [
+    'ground_subjects',
+    [join(root, 'locate-anything', 'locate-result.json'), 'locate-anything-grounding'],
+  ],
   ['match_phrases', [join(root, 'analysis-strict-candidate.json'), 'phrase-match']],
   ['plan_sequence', [join(root, 'analysis-strict-candidate.json'), 'sequence-plan']],
-  ['place_lyrics', [join(root, 'analysis-strict-candidate.json'), 'lyrics-layout']],
+  [
+    'place_lyrics',
+    [join(root, 'locate-anything', 'caption-safety.json'), 'lyrics-layout-validation'],
+  ],
   ['compile_plan', [join(root, 'strict-render', 'edit-plan.json'), 'edit-plan']],
   ['render_preview', [join(root, 'strict-render', 'source-only-song-preview.mp4'), 'preview']],
   ['validate_preview', [join(root, 'strict-render', 'generation-manifest.json'), 'validation']],
@@ -43,6 +50,7 @@ const stages = [
   'align_reference_song',
   'extract_reference_motion',
   'analyze_takes',
+  'ground_subjects',
   'match_phrases',
   'plan_sequence',
   'place_lyrics',
@@ -53,6 +61,8 @@ const stages = [
 const startStage = optionalValue('--start-stage');
 const startIndex = startStage === undefined ? 0 : stages.indexOf(startStage);
 if (startIndex < 0) throw new Error(`Unknown --start-stage value: ${startStage}`);
+const groundingBytes = await readFile(join(root, 'locate-anything', 'locate-result.json'));
+const groundingDigest = digest(groundingBytes);
 
 for (const stage of stages.slice(startIndex)) {
   const leaseId = `worker.${randomUUID()}`;
@@ -85,8 +95,17 @@ for (const stage of stages.slice(startIndex)) {
       sizeBytes: bytes.byteLength,
       toolName: 'nodevideo.live-proof-stage-publisher',
       toolVersion: '1.0.0',
-      inputDigests: [workerInput.job.inputDigest],
-      metadata: { sourceOnly: true, frozenCandidate: stage === 'validate_preview' },
+      inputDigests: [
+        workerInput.job.inputDigest,
+        ...(stages.indexOf(stage) > stages.indexOf('ground_subjects') ? [groundingDigest] : []),
+      ],
+      metadata: {
+        sourceOnly: true,
+        frozenCandidate: stage === 'validate_preview',
+        ...(stage === 'ground_subjects'
+          ? { provider: 'nvidia/LocateAnything-3B', backend: 'official-hugging-face-space' }
+          : {}),
+      },
     });
     await call('complete-stage', {
       jobId,

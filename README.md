@@ -6,6 +6,8 @@ NodeVideo is a local-first, artifact-driven editor for repeated dance takes. Its
 > -> source-only interpretation -> best take per phrase -> body-safe text -> typed plan -> fixed
 > render -> freeze -> evaluator-only comparison
 
+![NodeVideo durable source-only pipeline](fixtures/proof/nodevideo-live-pipeline.gif)
+
 The product value is the completed editorial outcome: understanding the choreography, choosing the
 right performance for each musical phrase, cutting on intentional beats, keeping text off the body,
 muting unusable camera audio, and handing the creator a usable export or licensed-platform music
@@ -17,6 +19,10 @@ render code.
 [Open the NodeVideo production entry point](https://nodevideo-pi.vercel.app/). When this branch is
 deployed, it presents the song-conditioned replay on laptop and phone with no sign-in. Vercel serves
 hash-bound replay artifacts; heavy media analysis and rendering remain local or in a media worker.
+
+The [animated 16-stage pipeline](https://nodevideo-pi.vercel.app/proof/nodevideo-live-pipeline.gif)
+and [live LocateAnything comparison](https://nodevideo-pi.vercel.app/proof/locateanything-side-by-side.jpg)
+are also served by the production deployment.
 
 The foreground demo is a deterministic six-second public fixture with:
 
@@ -31,8 +37,9 @@ The foreground demo is a deterministic six-second public fixture with:
 [The public replay route](https://nodevideo-pi.vercel.app/media/song-conditioned-auto-edit-v1/preview.mp4)
 and [its manifest route](https://nodevideo-pi.vercel.app/media/song-conditioned-auto-edit-v1/manifest.json)
 are published with this branch.
-This validates mechanics and isolation, not generalized creative taste, arbitrary human-pose
-accuracy, or live LocateAnything accuracy.
+This validates mechanics and isolation, not generalized creative taste or arbitrary human-pose
+accuracy. A separate research-only live receipt exercises NVIDIA LocateAnything on the supplied
+case; one successful frame is not a grounding-accuracy benchmark.
 
 The branch also publishes the supplied real-media case as a silent picture-only calibration via its
 [44.5-second plan route](https://nodevideo-pi.vercel.app/media/song-conditioned-real-calibration-v1/picture-only-preview.mp4)
@@ -42,10 +49,9 @@ No commercial soundtrack or source container is included in that new public prev
 ## How the edit is interpreted
 
 The source-only analyzer aligns time-indexed normalized poses from each take to the original dance,
-maps the user-chosen song's beats and downbeats, and builds a candidate matrix for each phrase. The
-default short-form taste template uses **12 / 16 / 6 / 10 beats** for hook, build, accent, and
-response, with the remainder used as resolution. Boundaries snap to detected beats. The template is
-an explicit, overridable creative prior, not a claim that all good edits share that structure.
+maps the user-chosen song's beats and downbeats, and builds a choreography candidate lattice. A
+global DP/beam search chooses phrase boundaries and takes from motion completion, gesture apex,
+lyric, onset, beat, and downbeat evidence. A fixed beat grammar is not an optimizer input.
 
 Every phrase candidate records choreography agreement, completeness, framing, expression/quality,
 and embodied-layout evidence. A quality gate allows contrast between takes without selecting a
@@ -67,6 +73,23 @@ frozen hashes before it can open a held-out target plan.
 
 Read the full workflow, artifact contracts, rights boundary, proof ledger, and exact evaluator
 command in [`docs/song-conditioned-pipeline.md`](docs/song-conditioned-pipeline.md).
+
+## Live LocateAnything sidecar
+
+NodeVideo now includes a real `/health` + `/locate` sidecar backed by NVIDIA's official free queued
+Hugging Face Space. Copy `.env.example` to `.env`, review the NVIDIA code and model licenses, and set
+`NODEVIDEO_LOCATEANYTHING_LICENSE_ACCEPTED=true` only for permitted research/non-commercial use.
+The included registry points at the public proof frame; replace it with a private ignored registry
+for local assets.
+
+```bash
+npm run grounding:sidecar
+node --env-file=.env scripts/quality/grounding-doctor.mjs --json
+```
+
+The free endpoint can sleep, queue, or rate-limit. `HF_TOKEN` is optional for the public Space but
+recommended for an identifiable Hugging Face quota. The same typed contract can target an
+operator-managed local worker without changing choreography or caption-planning callers.
 
 ## What the supplied-case calibration proves
 

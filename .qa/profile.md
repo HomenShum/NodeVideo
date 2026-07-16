@@ -32,12 +32,13 @@ public derivative of the strict frozen render.
 - The browser verifies the trusted manifest plus seven declared assets before rendering the
   inspector. One 30 fps output frame controls all evidence panels; pose overlays disclose 10 Hz
   measured samples versus interpolated display frames.
-- LocateAnything was not executed because no licensed sidecar is configured. MediaPipe pose
-  evidence is shown honestly instead of relabeling replay boxes.
+- The strict edit retains MediaPipe pose evidence. A separate research-only production follow-up
+  executes NVIDIA LocateAnything as durable `ground_subjects` evidence and validates one active
+  lyric cue at frame 465 with zero body-box intersection.
 
 Not claimed: a fresh independent blind benchmark, bit-identical reproduction, licensed public
-commercial audio, generalized creative taste from one owner-calibrated case, live LocateAnything
-accuracy, or elastic Vercel-hosted FFmpeg/model workers.
+commercial audio, generalized creative taste from one owner-calibrated case, generalized
+LocateAnything accuracy from one live frame, or elastic Vercel-hosted FFmpeg/model workers.
 
 ## Release blockers
 

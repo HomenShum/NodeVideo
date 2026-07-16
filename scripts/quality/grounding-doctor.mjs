@@ -2,6 +2,7 @@
 
 import {
   createDisabledLocateProvider,
+  createLocateAnythingHttpProvider,
   createManualLocateProvider,
   createReplayLocateProvider,
   validateLocateRequest,
@@ -54,15 +55,34 @@ const [replayHealth, replayLocate, manualHealth, manualLocate, disabledHealth, d
     disabled.locate(request),
   ]);
 
+const locateConfigured = Boolean(process.env.NODEVIDEO_LOCATEANYTHING_ENDPOINT);
+const locateProvider = locateConfigured
+  ? createLocateAnythingHttpProvider({
+      endpoint: process.env.NODEVIDEO_LOCATEANYTHING_ENDPOINT,
+      healthEndpoint: process.env.NODEVIDEO_LOCATEANYTHING_HEALTH_ENDPOINT,
+      modelId: 'nvidia/LocateAnything-3B',
+      timeoutMs: 2 * 60_000,
+      licenseBoundary: {
+        codeLicenseRef: process.env.NODEVIDEO_LOCATEANYTHING_CODE_LICENSE_REF ?? 'missing',
+        modelLicenseRef: process.env.NODEVIDEO_LOCATEANYTHING_MODEL_LICENSE_REF ?? 'missing',
+        accepted: process.env.NODEVIDEO_LOCATEANYTHING_LICENSE_ACCEPTED === 'true',
+      },
+    })
+  : undefined;
+const [locateHealth, locateResult] = locateProvider
+  ? await Promise.all([locateProvider.health(), locateProvider.locate(request)])
+  : [undefined, undefined];
 const locateAnything = {
-  configured: Boolean(process.env.NODEVIDEO_LOCATEANYTHING_ENDPOINT),
+  configured: locateConfigured,
   endpointDeclared: Boolean(process.env.NODEVIDEO_LOCATEANYTHING_ENDPOINT),
   codeLicenseRefDeclared: Boolean(process.env.NODEVIDEO_LOCATEANYTHING_CODE_LICENSE_REF),
   modelLicenseRefDeclared: Boolean(process.env.NODEVIDEO_LOCATEANYTHING_MODEL_LICENSE_REF),
   modelLicenseAccepted: process.env.NODEVIDEO_LOCATEANYTHING_LICENSE_ACCEPTED === 'true',
   modelDownloadedByDoctor: false,
   visualPromptClaimed: false,
-  status: 'optional-not-contacted',
+  status: locateResult?.status ?? 'optional-not-contacted',
+  health: locateHealth?.status ?? 'not-contacted',
+  observationCount: locateResult?.observations.length ?? 0,
 };
 const checks = [
   ['replay provider is healthy', replayHealth.status === 'healthy'],
@@ -73,6 +93,23 @@ const checks = [
   ['disabled provider fails closed', disabledLocate.status === 'failed'],
   ['no visual-prompt capability is claimed', replayHealth.capabilities.visualPrompt === false],
   ['doctor never downloads model weights', locateAnything.modelDownloadedByDoctor === false],
+  ...(locateConfigured
+    ? [
+        ['LocateAnything code license is declared', locateAnything.codeLicenseRefDeclared],
+        ['LocateAnything model license is declared', locateAnything.modelLicenseRefDeclared],
+        ['LocateAnything license use is accepted', locateAnything.modelLicenseAccepted],
+        ['LocateAnything sidecar is healthy', locateHealth?.status === 'healthy'],
+        ['LocateAnything returns a live valid observation', locateResult?.status === 'valid'],
+        [
+          'LocateAnything preserves provider identity',
+          locateResult?.provider.implementation === 'locate-anything-http',
+        ],
+        [
+          'LocateAnything does not invent confidence',
+          locateResult?.observations.every((item) => item.confidence === undefined) === true,
+        ],
+      ]
+    : []),
 ];
 const report = {
   schemaVersion: 'nodevideo.grounding-doctor.v1',
@@ -85,7 +122,9 @@ const report = {
     locateAnything,
   },
   nextStep: locateAnything.configured
-    ? 'Use the HTTP provider only after both code and model license references are declared and accepted.'
+    ? reportPassed(locateHealth, locateResult)
+      ? 'Live LocateAnything sidecar is healthy and returned a contract-valid observation.'
+      : 'Inspect the live LocateAnything health and result checks above.'
     : 'Optional: configure an operator-managed LocateAnything HTTP sidecar; replay/manual remain fully usable.',
 };
 
@@ -99,3 +138,7 @@ else {
   console.log(report.nextStep);
 }
 if (!report.passed) process.exitCode = 1;
+
+function reportPassed(health, result) {
+  return health?.status === 'healthy' && result?.status === 'valid';
+}

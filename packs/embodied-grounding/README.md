@@ -4,7 +4,7 @@ Status: `adapter-implementations-unit-validated`; the formal public-fixture pack
 
 This pack defines the narrow visual-grounding boundary used by choreography alignment, crop safety, and body-aware caption placement. It does not choose an AI vendor and does not require a model: deterministic local, local-model, remote-model, and manual adapters all implement the same `LocateRequest`, `LocateResult`, and `GroundingHealth` contract.
 
-`src/lib/visual-grounding.ts` implements LocateAnything HTTP, manual, disabled, and deterministic replay providers behind the same provider-neutral contract. Focused tests execute all six result statuses, coordinate normalization, license fail-closed behavior, trace/asset binding, and the no-invented-confidence rule. The HTTP path is tested with a mock transport; no live LocateAnything service, localization-accuracy benchmark, or formal public-fixture pack receipt is claimed. `evals/replay-v1.json` therefore remains explicitly unexecuted.
+`src/lib/visual-grounding.ts` implements LocateAnything HTTP, manual, disabled, and deterministic replay providers behind the same provider-neutral contract. Focused tests execute all six result statuses, coordinate normalization, license fail-closed behavior, trace/asset binding, and the no-invented-confidence rule. `fixtures/media/locate-anything-live-v1` adds a separate live NVIDIA Space receipt and sampled caption gate; it is not a localization-accuracy benchmark. The older formal replay eval remains explicitly unexecuted and immutable.
 
 ## Contract
 

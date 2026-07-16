@@ -39,6 +39,7 @@ export const stageName = v.union(
   v.literal('align_reference_song'),
   v.literal('extract_reference_motion'),
   v.literal('analyze_takes'),
+  v.literal('ground_subjects'),
   v.literal('match_phrases'),
   v.literal('plan_sequence'),
   v.literal('place_lyrics'),

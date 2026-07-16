@@ -109,6 +109,7 @@ export const StageName = z.enum([
   'align_reference_song',
   'extract_reference_motion',
   'analyze_takes',
+  'ground_subjects',
   'match_phrases',
   'plan_sequence',
   'place_lyrics',

@@ -25,8 +25,8 @@ export function InspectorProof({
         creative taste remains not evaluated.
       </ProofCard>
       <ProofCard icon={<ScanSearch className="size-4" aria-hidden="true" />} title="Pose evidence">
-        MediaPipe analysis runs at {cadence.toFixed(2)} Hz. LocateAnything was not used because no
-        licensed model sidecar is configured.
+        MediaPipe analysis runs at {cadence.toFixed(2)} Hz for this frozen edit. A separate live
+        research stage now verifies NVIDIA LocateAnything without relabeling replay boxes.
       </ProofCard>
       <ProofCard icon={<AudioLines className="size-4" aria-hidden="true" />} title="Music handoff">
         {manifest.result.soundtrack.handoff} Private comparison: correlation{' '}
