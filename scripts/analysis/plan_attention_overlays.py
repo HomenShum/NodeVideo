@@ -125,6 +125,8 @@ def timeline_pose_samples(
         pose = nearest_pose(tracks[asset_id], frame, max_gap)
         if pose is None:
             continue
+        if not np.any(np.isfinite(pose[..., 0]) & np.isfinite(pose[..., 1]) & (pose[..., 3] >= 0.3)):
+            continue
         transformed = transform_points(
             pose,
             clip,
@@ -139,21 +141,68 @@ def center(box: dict[str, float]) -> np.ndarray:
     return np.asarray([box["x"] + box["width"] / 2, box["y"] + box["height"] / 2])
 
 
+def primary_pose(poses: np.ndarray) -> np.ndarray:
+    pose_set = poses[np.newaxis, ...] if poses.ndim == 2 else poses
+    ranked = []
+    for pose in pose_set:
+        visible = np.isfinite(pose[:, 0]) & np.isfinite(pose[:, 1]) & (pose[:, 3] >= 0.3)
+        if np.count_nonzero(visible) < 4:
+            continue
+        points = pose[visible, :2]
+        extent = np.ptp(points, axis=0)
+        area = float(extent[0] * extent[1])
+        centroid = np.mean(points, axis=0)
+        centrality = max(0.1, 1 - float(np.linalg.norm(centroid - np.asarray([0.5, 0.5]))))
+        confidence = float(np.nanmean(pose[visible, 3]))
+        ranked.append((confidence * (0.25 + area) * centrality, pose))
+    if not ranked:
+        raise ValueError("No visible primary pose is available for gesture affinity.")
+    return max(ranked, key=lambda item: item[0])[1]
+
+
+def landmark_xy(pose: np.ndarray, index: int, fallback: np.ndarray) -> np.ndarray:
+    point = pose[index, :2]
+    if pose[index, 3] >= 0.3 and np.all(np.isfinite(point)):
+        return point
+    return fallback
+
+
 def plan_cue(
     cue: dict[str, Any],
     poses: list[tuple[int, np.ndarray]],
     previous_center: np.ndarray | None,
     threshold: float,
+    canvas: dict[str, int] | None = None,
 ) -> tuple[dict[str, float], dict[str, Any], np.ndarray]:
-    audit_width, audit_height = 360, 640
+    canvas = canvas or {"width": 720, "height": 1280}
+    audit_width = 360
+    audit_height = round(audit_width * canvas["height"] / canvas["width"])
     masks = [body_mask(pose, audit_width, audit_height) for _, pose in poses]
     if not masks:
         raise ValueError(f"No admitted pose evidence covers {cue['id']}.")
-    first, middle, last = poses[0][1], poses[len(poses) // 2][1], poses[-1][1]
-    left_travel = float(np.linalg.norm(last[15, :2] - first[15, :2]))
-    right_travel = float(np.linalg.norm(last[16, :2] - first[16, :2]))
+    first = primary_pose(poses[0][1])
+    middle = primary_pose(poses[len(poses) // 2][1])
+    last = primary_pose(poses[-1][1])
+    middle_visible = np.isfinite(middle[:, 0]) & np.isfinite(middle[:, 1]) & (middle[:, 3] >= 0.3)
+    gesture_fallback = (
+        np.mean(middle[middle_visible, :2], axis=0)
+        if np.any(middle_visible)
+        else np.asarray([0.5, 0.5])
+    )
+    left_travel = float(
+        np.linalg.norm(
+            landmark_xy(last, 15, gesture_fallback)
+            - landmark_xy(first, 15, gesture_fallback)
+        )
+    )
+    right_travel = float(
+        np.linalg.norm(
+            landmark_xy(last, 16, gesture_fallback)
+            - landmark_xy(first, 16, gesture_fallback)
+        )
+    )
     wrist = 15 if left_travel >= right_travel else 16
-    active_wrist = middle[wrist, :2]
+    active_wrist = landmark_xy(middle, wrist, gesture_fallback)
     ranked = []
     for box in candidate_boxes(cue):
         overlaps = [overlap_ratio(mask, box) for mask in masks]
@@ -196,7 +245,7 @@ def main() -> None:
         raise ValueError("Invalid overlap threshold or pose gap.")
     plan = json.loads(args.plan.read_text(encoding="utf-8"))
     cues = read_cues(args.cues)
-    tracks = pose_tracks(args.pose)
+    tracks = pose_tracks(args.pose, float(plan["frameRate"]))
     sizes = source_sizes(args.source_size, plan["canvas"])
     primary = next(
         track for track in plan["tracks"] if track["kind"] == "video" and track["role"] == "primary"
@@ -229,6 +278,7 @@ def main() -> None:
             poses,
             previous_center,
             args.max_overlap_ratio,
+            plan["canvas"],
         )
         overlay_track["clips"].append(
             {

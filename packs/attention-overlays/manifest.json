@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "implementationStatus": "private-real-media-and-contract-validated",
   "title": "Embodied Attention Text Overlays",
-  "description": "Plans timed text as attention events against framewise pose silhouettes, renders through the canonical EditPlan renderer, and fails closed when the rendered typography cannot clear the performer.",
+  "description": "Plans timed text as attention events against the union of framewise pose silhouettes, renders through the canonical EditPlan renderer, and fails closed when the rendered typography cannot clear every detected performer.",
   "entrypoints": {
     "skill": "skill.md",
     "inputSchema": "input.schema.json",
@@ -46,7 +46,9 @@
     "kind": "pose-grounded-edit-plan-transform",
     "modelRequired": false,
     "applicationWriteAuthority": "validated-edit-plan-and-receipt",
-    "defaultGrade": "hlg-bt2020-to-sdr-bt709-hable",
-    "colorPolicy": "independent-from-overlay-planning"
+    "defaultGrade": "auto",
+    "defaultCanvasMode": "source",
+    "defaultNumPoses": 6,
+    "colorPolicy": "preserve-sdr-and-convert-hlg-independent-from-overlay-planning"
   }
 }

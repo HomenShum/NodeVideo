@@ -37,6 +37,7 @@
       "id": "attention-overlays.body-clearance",
       "rules": [
         "evaluate every admitted pose frame in each cue interval",
+        "union every detected performer before scoring or auditing clearance",
         "use renderer-estimated glyph boxes for the final audit",
         "fail closed when any cue exceeds five percent body overlap",
         "keep grade selection independent from overlay placement"

@@ -9,7 +9,9 @@
         "requestId": "request.attention-overlay.one",
         "videoArtifactId": "artifact.video.one",
         "poseArtifactId": "artifact.pose.one",
-        "gradeKind": "hlg-bt2020-to-sdr-bt709-hable",
+        "gradeKind": "auto",
+        "numPoses": 6,
+        "canvasMode": "source",
         "maxBodyOverlapRatio": 0.05,
         "cues": [
           {

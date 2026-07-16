@@ -12,14 +12,17 @@
     "poseArtifactId": { "$ref": "#/$defs/id" },
     "gradeKind": {
       "enum": [
+        "auto",
         "none",
         "hlg-bt2020-to-sdr-bt709-hable",
         "hlg-bt2020-to-sdr-bt709-creator-vibrant",
         "hlg-bt2020-to-sdr-bt709-creator-dark-warm",
         "hlg-bt2020-to-sdr-bt709-creator-social-vivid"
       ],
-      "default": "hlg-bt2020-to-sdr-bt709-hable"
+      "default": "auto"
     },
+    "numPoses": { "type": "integer", "minimum": 1, "maximum": 10, "default": 6 },
+    "canvasMode": { "enum": ["source", "vertical"], "default": "source" },
     "maxBodyOverlapRatio": { "type": "number", "minimum": 0, "maximum": 0.05, "default": 0.05 },
     "cues": {
       "type": "array",

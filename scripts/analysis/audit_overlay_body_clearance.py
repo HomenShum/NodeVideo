@@ -51,12 +51,17 @@ def mappings(values: list[str]) -> dict[str, str]:
     return result
 
 
-def pose_tracks(values: list[str]) -> dict[str, dict[int, np.ndarray]]:
+def pose_tracks(values: list[str], frame_rate: float = 30.0) -> dict[str, dict[int, np.ndarray]]:
     result = {}
     for asset_id, path in mappings(values).items():
         data = np.load(path, allow_pickle=False)
+        timeline_frames = (
+            np.rint(data["times"] * frame_rate).astype(int)
+            if "times" in data
+            else data["frames"]
+        )
         result[asset_id] = {
-            int(frame): poses[0] for frame, poses in zip(data["frames"], data["poses"])
+            int(frame): poses for frame, poses in zip(timeline_frames, data["poses"])
         }
     return result
 
@@ -91,29 +96,31 @@ def transform_points(points: np.ndarray, clip: dict, canvas: dict, source_size: 
     transformed = points.copy()
     if clip["fit"] == "crop":
         box = clip["cropKeyframes"][0]["box"]
-        transformed[:, 0] = (transformed[:, 0] - box["x"]) / box["width"]
-        transformed[:, 1] = (transformed[:, 1] - box["y"]) / box["height"]
+        transformed[..., 0] = (transformed[..., 0] - box["x"]) / box["width"]
+        transformed[..., 1] = (transformed[..., 1] - box["y"]) / box["height"]
         return transformed
     scale = min(canvas_width / width, canvas_height / height) if clip["fit"] == "fit" else max(canvas_width / width, canvas_height / height)
     output_width, output_height = width * scale, height * scale
-    transformed[:, 0] = (transformed[:, 0] * output_width + (canvas_width - output_width) / 2) / canvas_width
-    transformed[:, 1] = (transformed[:, 1] * output_height + (canvas_height - output_height) / 2) / canvas_height
+    transformed[..., 0] = (transformed[..., 0] * output_width + (canvas_width - output_width) / 2) / canvas_width
+    transformed[..., 1] = (transformed[..., 1] * output_height + (canvas_height - output_height) / 2) / canvas_height
     return transformed
 
 
 def body_mask(points: np.ndarray, width: int, height: int) -> np.ndarray:
+    pose_set = points[np.newaxis, ...] if points.ndim == 2 else points
     mask = np.zeros((height, width), dtype=np.uint8)
-    finite_points = np.nan_to_num(points, nan=-10.0, posinf=-10.0, neginf=-10.0)
-    xy = np.column_stack((finite_points[:, 0] * width, finite_points[:, 1] * height)).astype(int)
-    confidence = points[:, 3]
     limb_width = max(5, round(width * 0.045))
-    for left, right in BODY_EDGES:
-        if confidence[left] >= 0.5 and confidence[right] >= 0.5:
-            cv2.line(mask, tuple(xy[left]), tuple(xy[right]), 255, limb_width)
-    if all(confidence[index] >= 0.5 for index in (11, 12, 23, 24)):
-        cv2.fillConvexPoly(mask, np.asarray([xy[11], xy[12], xy[24], xy[23]]), 255)
-    if confidence[0] >= 0.5:
-        cv2.circle(mask, tuple(xy[0]), max(7, round(width * 0.06)), 255, -1)
+    for pose in pose_set:
+        finite_points = np.nan_to_num(pose, nan=-10.0, posinf=-10.0, neginf=-10.0)
+        xy = np.column_stack((finite_points[:, 0] * width, finite_points[:, 1] * height)).astype(int)
+        confidence = pose[:, 3]
+        for left, right in BODY_EDGES:
+            if confidence[left] >= 0.5 and confidence[right] >= 0.5:
+                cv2.line(mask, tuple(xy[left]), tuple(xy[right]), 255, limb_width)
+        if all(confidence[index] >= 0.5 for index in (11, 12, 23, 24)):
+            cv2.fillConvexPoly(mask, np.asarray([xy[11], xy[12], xy[24], xy[23]]), 255)
+        if confidence[0] >= 0.5:
+            cv2.circle(mask, tuple(xy[0]), max(7, round(width * 0.06)), 255, -1)
     return mask
 
 
@@ -141,7 +148,7 @@ def main() -> None:
             item["clipId"]: item["estimatedGlyphBox"]
             for item in manifest.get("textPlacements", [])
         }
-    tracks = pose_tracks(args.pose)
+    tracks = pose_tracks(args.pose, float(plan["frameRate"]))
     timeline_track = None
     pose_reuse_receipt = None
     if args.timeline_pose:
@@ -169,8 +176,13 @@ def main() -> None:
             ):
                 raise ValueError("Pose reuse receipt does not bind equivalent render geometry.")
         data = np.load(args.timeline_pose, allow_pickle=False)
+        timeline_frames = (
+            np.rint(data["times"] * float(plan["frameRate"])).astype(int)
+            if "times" in data
+            else data["frames"]
+        )
         timeline_track = {
-            int(frame): poses[0] for frame, poses in zip(data["frames"], data["poses"])
+            int(frame): poses for frame, poses in zip(timeline_frames, data["poses"])
         }
     sizes = source_sizes(args.source_size, plan["canvas"])
     video = next(track for track in plan["tracks"] if track["kind"] == "video" and track["role"] == "primary")

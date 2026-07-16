@@ -13,7 +13,6 @@ import {
 import { renderEditPlan } from './edit-plan-renderer-lib.mjs';
 
 const FRAME_RATE = 30;
-const CANVAS = { width: 720, height: 1280 };
 const options = parseArguments(process.argv.slice(2));
 const outputRoot = resolve(options.outputDirectory);
 await mkdir(outputRoot, { recursive: true });
@@ -30,6 +29,8 @@ const paths = {
 
 const probe = sanitizeProbe(probeMedia(options.video, options.ffprobe));
 if (!probe.video || !probe.format.durationSeconds) throw new Error('Input must be a probed video.');
+const canvas = deliveryCanvas(probe.video, options.canvasMode);
+const gradeKind = resolveGradeKind(options.gradeKind, probe.video);
 const sourceRate =
   rationalNumber(probe.video.averageFrameRate) ??
   rationalNumber(probe.video.nominalFrameRate) ??
@@ -50,7 +51,7 @@ const basePlan = {
   version: 1,
   createdAt: new Date().toISOString(),
   frameRate: FRAME_RATE,
-  canvas: CANVAS,
+  canvas,
   durationFrames,
   lineage: {
     renderAssetIds: [assetId],
@@ -85,7 +86,7 @@ const basePlan = {
           playbackRate: 1,
           fit: options.fit,
           cropKeyframes: [],
-          grade: { kind: options.gradeKind },
+          grade: { kind: gradeKind },
         },
       ],
     },
@@ -152,7 +153,9 @@ const receipt = {
     timedTextSha256: await sha256File(options.cues),
   },
   delivery: {
-    gradeKind: options.gradeKind,
+    gradeKind,
+    requestedGradeKind: options.gradeKind,
+    canvas,
     audioPreserved: Boolean(probe.audio),
     outputSha256: await sha256File(paths.preview),
   },
@@ -190,6 +193,7 @@ function parseArguments(args) {
     '--source-start-seconds',
     '--duration-seconds',
     '--grade-kind',
+    '--canvas-mode',
     '--fit',
     '--max-overlap-ratio',
     '--python',
@@ -199,8 +203,9 @@ function parseArguments(args) {
   for (const value of args) {
     if (value.startsWith('--') && !allowed.has(value)) throw new Error(`Unknown option: ${value}`);
   }
-  const gradeKind = optionalValue(args, '--grade-kind') ?? 'hlg-bt2020-to-sdr-bt709-hable';
+  const gradeKind = optionalValue(args, '--grade-kind') ?? 'auto';
   const supportedGrades = new Set([
+    'auto',
     'none',
     'hlg-bt2020-to-sdr-bt709-hable',
     'hlg-bt2020-to-sdr-bt709-creator-vibrant',
@@ -210,6 +215,10 @@ function parseArguments(args) {
   if (!supportedGrades.has(gradeKind)) throw new Error('--grade-kind is unsupported.');
   const fit = optionalValue(args, '--fit') ?? 'fit';
   if (!['fit', 'fill'].includes(fit)) throw new Error('--fit must be fit or fill.');
+  const canvasMode = optionalValue(args, '--canvas-mode') ?? 'source';
+  if (!['source', 'vertical'].includes(canvasMode)) {
+    throw new Error('--canvas-mode must be source or vertical.');
+  }
   return {
     video: resolve(requiredValue(args, '--video')),
     pose: resolve(requiredValue(args, '--pose')),
@@ -219,12 +228,35 @@ function parseArguments(args) {
     sourceStartSeconds: numberValue(args, '--source-start-seconds', 0),
     durationSeconds: optionalNumberValue(args, '--duration-seconds'),
     gradeKind,
+    canvasMode,
     fit,
     maxOverlapRatio: numberValue(args, '--max-overlap-ratio', 0.05),
     python: optionalValue(args, '--python') ?? 'python',
     ffmpeg: optionalValue(args, '--ffmpeg') ?? 'ffmpeg',
     ffprobe: optionalValue(args, '--ffprobe') ?? 'ffprobe',
   };
+}
+
+function deliveryCanvas(video, mode) {
+  if (mode === 'vertical') return { width: 720, height: 1280 };
+  const sourceWidth = video.codedWidth;
+  const sourceHeight = video.codedHeight;
+  const scale = Math.min(1, 1280 / Math.max(sourceWidth, sourceHeight));
+  return {
+    width: evenDimension(sourceWidth * scale),
+    height: evenDimension(sourceHeight * scale),
+  };
+}
+
+function evenDimension(value) {
+  return Math.max(2, Math.round(value / 2) * 2);
+}
+
+function resolveGradeKind(requested, video) {
+  if (requested !== 'auto') return requested;
+  const isHlg = video.colorTransfer === 'arib-std-b67';
+  const isBt2020 = video.colorSpace === 'bt2020nc' || video.colorPrimaries === 'bt2020';
+  return isHlg || isBt2020 ? 'hlg-bt2020-to-sdr-bt709-hable' : 'none';
 }
 
 function requiredValue(args, name) {

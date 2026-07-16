@@ -329,11 +329,14 @@ const attentionChecks = [
   ['attention overlay eval input matches its schema', attentionInputValid],
   ['attention overlay output schema compiles', attentionOutputSchemaValid],
   [
-    'attention overlay pack keeps grade separate and defaults bright',
+    'attention overlay pack keeps grade separate and resolves color automatically',
     attentionManifest.implementationStatus === 'private-real-media-and-contract-validated' &&
       attentionManifest.validation.status === 'passed' &&
-      attentionManifest.execution.defaultGrade === 'hlg-bt2020-to-sdr-bt709-hable' &&
-      attentionManifest.execution.colorPolicy === 'independent-from-overlay-planning',
+      attentionManifest.execution.defaultGrade === 'auto' &&
+      attentionManifest.execution.defaultCanvasMode === 'source' &&
+      attentionManifest.execution.defaultNumPoses === 6 &&
+      attentionManifest.execution.colorPolicy ===
+        'preserve-sdr-and-convert-hlg-independent-from-overlay-planning',
   ],
   [
     'attention overlay contract is fail-closed on body clearance',

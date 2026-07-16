@@ -1,6 +1,7 @@
 import numpy as np
 import pytest
 
+from audit_overlay_body_clearance import body_mask, pose_tracks
 from plan_attention_overlays import plan_cue
 
 
@@ -47,3 +48,34 @@ def test_plan_cue_fails_without_pose_evidence() -> None:
             None,
             0.05,
         )
+
+
+def test_body_mask_unions_every_detected_performer() -> None:
+    _, left = pose(0)
+    right = left.copy()
+    left[:, 0] -= 0.22
+    right[:, 0] += 0.22
+
+    union = body_mask(np.stack([left, right]), 360, 640)
+    left_only = body_mask(left, 360, 640)
+    right_only = body_mask(right, 360, 640)
+
+    assert np.count_nonzero(union) > np.count_nonzero(left_only)
+    assert np.count_nonzero(union) > np.count_nonzero(right_only)
+    assert np.all(union >= left_only)
+    assert np.all(union >= right_only)
+
+
+def test_pose_tracks_map_native_source_times_to_edit_plan_frames(tmp_path) -> None:
+    path = tmp_path / "sixty-fps-track.npz"
+    poses = np.zeros((2, 1, 33, 4), dtype=np.float32)
+    np.savez_compressed(
+        path,
+        frames=np.asarray([60, 62], dtype=np.int32),
+        times=np.asarray([1.0, 31 / 30], dtype=np.float64),
+        poses=poses,
+    )
+
+    track = pose_tracks([f"asset.video={path}"], frame_rate=30)["asset.video"]
+
+    assert sorted(track) == [30, 31]
