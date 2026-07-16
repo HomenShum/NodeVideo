@@ -135,6 +135,36 @@ npm run production:audit -- `
 Reuse mode recalculates plan binding and every gate score from the persisted
 frame metrics and OCR groups. It never claims to be a new visual observation run.
 
+## Kinetic overlays and embodied clearance
+
+`apply_overlay_refinement.mjs` applies a schema-bounded replacement artifact to
+an admitted EditPlan. It can split one broad lyric cue into several short beat
+events without giving NodeAgent arbitrary renderer or FFmpeg authority:
+
+```powershell
+npm run overlay:refine -- `
+  --plan C:\private\edit-plan.json `
+  --refinement C:\private\overlay-refinement.json `
+  --output C:\private\edit-plan-v2.json
+```
+
+The fixed renderer width-fits text to its admitted box and exposes the estimated
+glyph box in its dry-run manifest. After rendering, run Pose Landmarker directly
+on the timeline, then require the framewise embodied audit:
+
+```powershell
+npm run overlay:clearance -- `
+  --plan C:\private\edit-plan-v2.json `
+  --renderer-manifest C:\private\renderer-manifest.json `
+  --timeline-pose C:\private\rendered-pose.npz `
+  --sample-stride-frames 2 `
+  --output C:\private\embodied-overlay-audit.json
+```
+
+The audit fails closed on missing pose samples and rejects any cue whose rendered
+glyph box exceeds five percent body overlap. Auditing the rendered timeline avoids
+rotation, crop, and fill ambiguities from transforming a source pose after the fact.
+
 ## Upstream primitives
 
 - PySceneDetect Python API: https://www.scenedetect.com/docs/latest/api.html

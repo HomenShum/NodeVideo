@@ -5,7 +5,7 @@ import { REPO_ROOT, requireFile, runText, sha256File } from '../media/media-proo
 
 /** @typedef {import('../../src/lib/edit-contracts.ts').EditPlan} EditPlan */
 
-export const EDIT_PLAN_RENDERER_VERSION = 'nodevideo.edit-plan-renderer@0.2.0';
+export const EDIT_PLAN_RENDERER_VERSION = 'nodevideo.edit-plan-renderer@0.3.0';
 export const SUPPORTED_EDIT_PLAN_SCHEMA = 'nodevideo.edit-plan.v1';
 export const RENDERER_FONT = Object.freeze({
   id: 'font.geist-variable-latin',
@@ -61,7 +61,8 @@ export const FIXED_TEXT_TEMPLATES = Object.freeze({
     shadowY: 2,
   }),
   'text.creator-commentary': Object.freeze({
-    fontScale: 0.62,
+    fontScale: 0.4,
+    maxWidthRatio: 0.86,
     minFontSize: 18,
     maxFontSize: 70,
     color: 'white',
@@ -72,7 +73,8 @@ export const FIXED_TEXT_TEMPLATES = Object.freeze({
     shadowY: 2,
   }),
   'text.creator-title': Object.freeze({
-    fontScale: 0.54,
+    fontScale: 0.34,
+    maxWidthRatio: 0.82,
     minFontSize: 22,
     maxFontSize: 74,
     color: 'white',
@@ -96,7 +98,8 @@ export const FIXED_TEXT_TEMPLATES = Object.freeze({
     horizontalAlign: 'left',
   }),
   'text.creator-cta': Object.freeze({
-    fontScale: 0.6,
+    fontScale: 0.3,
+    maxWidthRatio: 0.82,
     minFontSize: 20,
     maxFontSize: 70,
     color: 'white',
@@ -506,6 +509,11 @@ export function compileEditPlan(input, bindingsInput, options = {}) {
             .flatMap((track) => track.clips.map((clip) => clip.templateId)),
         ),
       ].sort(),
+      textPlacements: plan.tracks
+        .filter((track) => track.kind === 'overlay')
+        .flatMap((track) => track.clips)
+        .filter((clip) => clip.kind === 'text')
+        .map((clip) => textPlacement(clip, plan)),
       gradeKinds: [
         ...new Set(
           primary.clips.filter((clip) => clip.kind !== 'black').map((clip) => clip.grade.kind),
@@ -740,15 +748,8 @@ function gradeFilter(grade, bindings) {
 
 function textOverlayFilter(clip, textPath, plan) {
   const template = FIXED_TEXT_TEMPLATES[clip.templateId];
-  const widthPx = Math.max(2, Math.round(clip.box.width * plan.canvas.width));
-  const heightPx = Math.max(2, Math.round(clip.box.height * plan.canvas.height));
-  const xPx = Math.round(clip.box.x * plan.canvas.width);
-  const yPx = Math.round(clip.box.y * plan.canvas.height);
-  const fontSize = clamp(
-    Math.round(heightPx * template.fontScale),
-    template.minFontSize,
-    template.maxFontSize,
-  );
+  const placement = textPlacement(clip, plan);
+  const { widthPx, heightPx, xPx, yPx, fontSize } = placement;
   const start = clip.timelineRange.startFrame;
   const end = clip.timelineRange.endFrameExclusive - 1;
   const duration = frameCount(clip.timelineRange);
@@ -788,6 +789,67 @@ function textOverlayFilter(clip, textPath, plan) {
     `x='${xExpression}':y='${yExpression}':alpha='${alphaExpression}':`,
     `fix_bounds=1:enable='between(n,${start},${end})'`,
   ].join('');
+}
+
+export function textPlacement(clip, plan) {
+  const template = FIXED_TEXT_TEMPLATES[clip.templateId];
+  const widthPx = Math.max(2, Math.round(clip.box.width * plan.canvas.width));
+  const heightPx = Math.max(2, Math.round(clip.box.height * plan.canvas.height));
+  const xPx = Math.round(clip.box.x * plan.canvas.width);
+  const yPx = Math.round(clip.box.y * plan.canvas.height);
+  const emWidth = estimatedTextEmWidth(clip.text);
+  const fontSize = clamp(
+    Math.min(
+      Math.round(heightPx * template.fontScale),
+      Math.floor(
+        Math.max(1, widthPx * (template.maxWidthRatio ?? 1) - template.borderWidth * 2) / emWidth,
+      ),
+    ),
+    template.minFontSize,
+    template.maxFontSize,
+  );
+  const glyphWidth = Math.min(widthPx, Math.ceil(emWidth * fontSize + template.borderWidth * 2));
+  const glyphHeight = Math.min(
+    heightPx,
+    Math.ceil(fontSize * 1.2 + template.borderWidth * 2 + Math.abs(template.shadowY)),
+  );
+  const glyphX =
+    template.horizontalAlign === 'left'
+      ? xPx
+      : template.horizontalAlign === 'right'
+        ? xPx + widthPx - glyphWidth
+        : xPx + (widthPx - glyphWidth) / 2;
+  const glyphY = yPx + (heightPx - glyphHeight) / 2;
+  return {
+    clipId: clip.id,
+    box: clip.box,
+    fontSize,
+    widthPx,
+    heightPx,
+    xPx,
+    yPx,
+    estimatedGlyphBox: {
+      x: glyphX / plan.canvas.width,
+      y: glyphY / plan.canvas.height,
+      width: glyphWidth / plan.canvas.width,
+      height: glyphHeight / plan.canvas.height,
+    },
+  };
+}
+
+export function estimatedTextEmWidth(text) {
+  return Math.max(
+    1,
+    ...text.split(/\r?\n/u).map((line) =>
+      Array.from(line).reduce((width, character) => {
+        if (/\s/u.test(character)) return width + 0.33;
+        if (/[iIl1|.,'`]/u.test(character)) return width + 0.28;
+        if (/[mMwW@#%&]/u.test(character)) return width + 0.86;
+        if (/[A-Z]/u.test(character)) return width + 0.62;
+        return width + (character.codePointAt(0) > 0xff ? 0.95 : 0.55);
+      }, 0),
+    ),
+  );
 }
 
 function graphicInputFilter(index, clip, outputLabel, plan) {

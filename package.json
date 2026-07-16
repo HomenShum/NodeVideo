@@ -24,6 +24,8 @@
     "taste:audit": "node scripts/analysis/creator-taste-profiler.mjs",
     "taste:evaluate": "node scripts/quality/evaluate-creative-fidelity.mjs",
     "production:audit": "python scripts/analysis/production_style_audit.py",
+    "overlay:refine": "node scripts/analysis/apply_overlay_refinement.mjs",
+    "overlay:clearance": "python scripts/analysis/audit_overlay_body_clearance.py",
     "pipeline:gif": "python scripts/media/generate_pipeline_gif.py",
     "worker:grounding:verify": "npm run grounding:doctor",
     "eval:grounding": "npm run grounding:doctor",

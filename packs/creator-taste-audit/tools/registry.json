@@ -46,6 +46,13 @@
       "dependsOn": ["target-spec.validate", "creator-profile.apply"],
       "accepts": ["production/frozen-candidate", "production/valid-target-spec"],
       "produces": ["production/conjunctive-fidelity-verdict"]
+    },
+    {
+      "id": "embodied-overlay.audit",
+      "stage": "composing-editorial-overlays",
+      "dependsOn": ["creator-profile.apply"],
+      "accepts": ["production/edit-plan", "production/pose-tracks"],
+      "produces": ["production/embodied-overlay-audit"]
     }
   ],
   "semanticValidators": [
@@ -63,6 +70,14 @@
         "visible OCR roles, persistent identity, layout zones, grade, and end card must be represented",
         "any failed consistency check blocks creative-fidelity evaluation",
         "a cut-timing pass cannot imply a creative pass"
+      ]
+    },
+    {
+      "id": "embodied-overlay-clearance.validate",
+      "rules": [
+        "every text box is checked against the rendered pose silhouette for its full frame range",
+        "more than five percent body overlap fails the overlay before render approval",
+        "missing pose evidence fails closed instead of assuming a safe placement"
       ]
     },
     {

@@ -141,16 +141,23 @@ def zone(box: dict) -> str:
 def match_ocr(candidate: list[dict], reference: list[dict]) -> list[dict]:
     candidates = [item for item in candidate if item["maxConfidence"] >= 0.45]
     references = [item for item in reference if item["maxConfidence"] >= 0.45]
-    used: set[int] = set()
     matches = []
     for target in references:
         ranked = []
         for index, item in enumerate(candidates):
-            if index in used:
-                continue
-            text_score = SequenceMatcher(
+            exact_score = SequenceMatcher(
                 None, target["normalizedText"], item["normalizedText"]
             ).ratio()
+            target_compact = target["normalizedText"].replace(" ", "").lstrip("@")
+            item_compact = item["normalizedText"].replace(" ", "").lstrip("@")
+            compact_score = SequenceMatcher(None, target_compact, item_compact).ratio()
+            containment_score = (
+                0.94
+                if min(len(target_compact), len(item_compact)) >= 4
+                and (target_compact in item_compact or item_compact in target_compact)
+                else 0.0
+            )
+            text_score = max(exact_score, compact_score, containment_score)
             time_overlap = max(
                 0.0,
                 min(target["lastSeconds"] + 1, item["lastSeconds"] + 1)
@@ -167,7 +174,6 @@ def match_ocr(candidate: list[dict], reference: list[dict]) -> list[dict]:
         score, index, text_score = max(ranked)
         if text_score < 0.58 or score < 0.5:
             continue
-        used.add(index)
         item = candidates[index]
         matches.append(
             {
@@ -180,6 +186,15 @@ def match_ocr(candidate: list[dict], reference: list[dict]) -> list[dict]:
             }
         )
     return matches
+
+
+def is_identity_group(item: dict, duration: float) -> bool:
+    return not re.search(
+        r"thanks|watching|follow|subscribe", item["normalizedText"]
+    ) and (
+        re.search(r"@|shum|home", item["normalizedText"])
+        or item["lastSeconds"] - item["firstSeconds"] >= duration * 0.3
+    )
 
 
 def source_clip_deltas(candidate_plan: dict | None, reference_plan: dict | None) -> list[dict]:
@@ -243,11 +258,7 @@ def identity_score(
             item
             for item in groups
             if item["maxConfidence"] >= 0.45
-            and not re.search(r"thanks|watching|follow|subscribe", item["normalizedText"])
-            and (
-                re.search(r"@|shum|home", item["normalizedText"])
-                or item["lastSeconds"] - item["firstSeconds"] >= duration * 0.3
-            )
+            and is_identity_group(item, duration)
         ]
 
     candidate_identity = identity_groups(candidate_groups)
@@ -324,6 +335,13 @@ def main() -> None:
         sample_cadence_seconds = args.sample_cadence_seconds
     matches = match_ocr(candidate_ocr, reference_ocr)
     reference_confident = [item for item in reference_ocr if item["maxConfidence"] >= 0.45]
+    semantic_reference = [
+        item for item in reference_confident if not is_identity_group(item, duration)
+    ]
+    semantic_reference_text = {item["normalizedText"] for item in semantic_reference}
+    semantic_matches = [
+        item for item in matches if item["referenceText"] in semantic_reference_text
+    ]
     candidate_means = {
         key: float(np.mean([item["candidate"][key] for item in frames]))
         for key in ("lumaMean", "lumaStd", "saturationMean")
@@ -344,9 +362,10 @@ def main() -> None:
         ) == 0
         for item in deltas
     )
-    semantic_score = len(matches) / max(1, len(reference_confident))
+    semantic_score = len(semantic_matches) / max(1, len(semantic_reference))
     layout_score = (
-        sum(1 for item in matches if item["sameVerticalZone"]) / max(1, len(matches))
+        sum(1 for item in semantic_matches if item["sameVerticalZone"])
+        / max(1, len(semantic_matches))
     )
     visual_score = float(
         np.mean(
@@ -395,7 +414,11 @@ def main() -> None:
             ),
             "ocrReferenceGroups": len(reference_confident),
             "ocrMatchedGroups": len(matches),
-            "layoutZoneMatches": sum(1 for item in matches if item["sameVerticalZone"]),
+            "ocrSemanticReferenceGroups": len(semantic_reference),
+            "ocrSemanticMatchedGroups": len(semantic_matches),
+            "layoutZoneMatches": sum(
+                1 for item in semantic_matches if item["sameVerticalZone"]
+            ),
         },
         "sourceAndCutDeltas": deltas,
         "candidateOcr": candidate_ocr,

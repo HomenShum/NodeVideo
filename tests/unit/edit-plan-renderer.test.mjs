@@ -8,6 +8,7 @@ import {
   FIXED_TEXT_TEMPLATES,
   RENDERER_FONT,
   compileEditPlan,
+  estimatedTextEmWidth,
   validateEditPlan,
 } from '../../scripts/workers/edit-plan-renderer-lib.mjs';
 
@@ -474,6 +475,34 @@ describe('plan-driven deterministic renderer', () => {
       'text.creator-title',
       'text.creator-watermark',
     ]);
+  });
+
+  it('fits long creator text to its admitted box instead of covering the subject', () => {
+    const plan = basePlan();
+    plan.tracks[3].clips = [
+      {
+        id: 'overlay.long-commentary',
+        kind: 'text',
+        timelineRange: range(0, 30),
+        text: 'Something something…',
+        templateId: 'text.creator-commentary',
+        box: { x: 0.51, y: 0.63, width: 0.45, height: 0.07 },
+        animation: 'pop',
+      },
+    ];
+
+    const compiled = compileEditPlan(plan, paths);
+    expect(estimatedTextEmWidth('Something something…')).toBeGreaterThan(10);
+    expect(compiled.filterComplex).toContain("fontsize='24*(0.85+");
+    expect(compiled.filterComplex).not.toContain("fontsize='56*(0.85+");
+    expect(compiled.manifest.textPlacements).toEqual([
+      expect.objectContaining({
+        clipId: 'overlay.long-commentary',
+        fontSize: 24,
+        estimatedGlyphBox: expect.objectContaining({ width: expect.any(Number) }),
+      }),
+    ]);
+    expect(compiled.manifest.textPlacements[0].estimatedGlyphBox.width).toBeLessThanOrEqual(0.45);
   });
 
   it('fails closed on a primary video gap', () => {

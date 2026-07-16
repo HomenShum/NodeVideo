@@ -81,6 +81,11 @@ preserving the original observations and disclosure. This is how the same NodeAg
 evaluate dance, tutorials, talking-head clips, comedy, and montage work without introducing a new
 custom renderer or scoring script for each format.
 
+Kinetic text is represented as discrete overlay events rather than one lyric-length caption. The
+fixed renderer width-fits each cue, emits an inspectable glyph box, and `npm run overlay:clearance`
+checks that box against Pose Landmarker evidence from the rendered timeline. More than five percent
+body overlap blocks approval, including collisions that occur only near a cut boundary.
+
 ## How the edit is interpreted
 
 The source-only analyzer aligns time-indexed normalized poses from each take to the original dance,
