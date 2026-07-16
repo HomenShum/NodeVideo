@@ -2,6 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from 'playwright/test';
 
 test('hash-verifies and synchronizes the frame inspector', async ({ page }) => {
+  const productionPreview = Boolean(process.env.NODEVIDEO_URL || process.env.CI);
   await page.goto('/');
   const inspector = page.getByTestId('integrated-frame-inspector');
   await inspector.getByRole('button', { name: /inspect the calibration cut/i }).click();
@@ -16,7 +17,7 @@ test('hash-verifies and synchronizes the frame inspector', async ({ page }) => {
   await expect(verified.getByText('Manual final MP4', { exact: true })).toBeVisible();
 
   const generated = verified.getByTestId('outcome-comparison').locator('video').first();
-  if (process.env.NODEVIDEO_URL) {
+  if (productionPreview) {
     const privateRoute = await page.request.get('/__nodevideo_local/full-preview.mp4');
     expect(privateRoute.headers()['content-type']).not.toContain('video');
     await expect(verified).toContainText('Public proof · silent');
@@ -55,7 +56,7 @@ test('hash-verifies and synchronizes the frame inspector', async ({ page }) => {
     await generated.evaluate((node) => (node as HTMLVideoElement).pause());
   }
 
-  const expectedFrame = process.env.NODEVIDEO_URL ? 480 : 495;
+  const expectedFrame = productionPreview ? 480 : 495;
   await verified.getByRole('button', { name: 'Next output frame' }).click();
   await expect(verified).toContainText(new RegExp(`Frame ${expectedFrame + 1}`));
   await page.keyboard.press('ArrowLeft');
