@@ -256,6 +256,9 @@ function isSha256(value) {
 function assertPublicSafeJson(bytes, label) {
   const text = bytes.toString('utf8');
   JSON.parse(text);
+  if (text.includes('\r')) {
+    throw new Error(`${label} must use canonical LF line endings before publication.`);
+  }
   if (/[A-Z]:[\\/]|\.mov\b|target-sanitized|source-[ab]-sanitized/iu.test(text)) {
     throw new Error(`${label} exposes a private path or source filename.`);
   }

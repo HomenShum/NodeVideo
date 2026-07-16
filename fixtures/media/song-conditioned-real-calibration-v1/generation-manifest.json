@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nodevideo.song-conditioned-generation-manifest.v1",
   "id": "song-conditioned-source-only-v1",
-  "createdAt": "2026-07-15T23:15:17.283Z",
+  "createdAt": "2026-07-16T00:20:34.443Z",
   "generatorVersion": "nodevideo.song-conditioned-private-render@0.1.0",
   "mode": "target-picture-isolated-target-audio-oracle",
   "inputs": [
@@ -112,7 +112,7 @@
   ],
   "claimBoundary": {
     "proven": [
-      "The final target picture and target plan are absent from the generator interface.",
+      "The generator CLI accepts no final target picture or target plan; its read log is an audited allowlist, not an OS sandbox.",
       "Pose alignment, beat-count phrasing, take contrast, source-audio muting, typed planning, and rendering completed."
     ],
     "notProven": [

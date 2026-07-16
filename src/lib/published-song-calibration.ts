@@ -38,7 +38,7 @@ const REQUIRED_FILES = {
 export const PUBLISHED_SONG_CALIBRATION = {
   manifestSha256:
     import.meta.env.VITE_NODEVIDEO_REAL_CALIBRATION_MANIFEST_SHA256 ??
-    '19ca10170089d4a2c7d9cec1809a00e832a8a9d8b65e17ac3cd12c2b9169b502',
+    '7f149bae3e6378f8adeca65fd97699fecdb839eb840b56f7c16c29760db48133',
   manifestUrl: '/media/song-conditioned-real-calibration-v1/manifest.json',
 };
 

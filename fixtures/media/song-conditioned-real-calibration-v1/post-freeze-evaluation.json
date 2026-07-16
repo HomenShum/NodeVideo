@@ -1,10 +1,10 @@
 {
   "schemaVersion": "nodevideo.song-conditioned-postfreeze-evaluation.v1",
   "evaluatorVersion": "nodevideo.song-conditioned-postfreeze-evaluator@1.0.0",
-  "createdAt": "2026-07-15T23:16:02.727Z",
+  "createdAt": "2026-07-16T00:21:10.959Z",
   "artifactBindings": {
-    "freezeReceiptSha256": "e64ac67448007d1773cdab7583cc05b40ba073d22807831579f8575a23398b4f",
-    "generatedPlanSha256": "1b93ed25e9a547535b948f07dc1a2f859345de5ee836c176d7fa5d5e236f7897",
+    "freezeReceiptSha256": "7d30ac335c10420fa03b134324e60c10db6d35c035181c0dec97912af3b8a474",
+    "generatedPlanSha256": "b6f75bce5b16fc9ac7c38a3ea43d2646d1c228376b1beff29393f784fc6761be",
     "evaluatorOnlyPlanSha256": "fa61f5dd4f9ce0e69254c5b09794c3eb155caa06b43543906685351aee3495ee"
   },
   "isolation": {

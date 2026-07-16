@@ -156,7 +156,7 @@ def main() -> None:
         "warnings": warnings,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(artifact, indent=2) + "\n", encoding="utf-8")
+    args.output.write_bytes((json.dumps(artifact, indent=2) + "\n").encode("utf-8"))
     print(f"Wrote {args.output} with {len(phrases)} phrase decisions.")
 
 
