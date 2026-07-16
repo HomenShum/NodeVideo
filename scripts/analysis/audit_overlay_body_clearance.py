@@ -33,6 +33,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--renderer-manifest", type=Path)
     parser.add_argument("--timeline-pose", type=Path)
+    parser.add_argument("--timeline-pose-metadata", type=Path)
+    parser.add_argument("--rendered-video", type=Path)
+    parser.add_argument("--pose-reuse-receipt", type=Path)
     parser.add_argument("--max-overlap-ratio", type=float, default=0.05)
     parser.add_argument("--sample-stride-frames", type=int, default=1)
     return parser.parse_args()
@@ -140,7 +143,31 @@ def main() -> None:
         }
     tracks = pose_tracks(args.pose)
     timeline_track = None
+    pose_reuse_receipt = None
     if args.timeline_pose:
+        if not args.timeline_pose_metadata or not args.rendered_video:
+            raise ValueError(
+                "--timeline-pose requires --timeline-pose-metadata and --rendered-video."
+            )
+        metadata = json.loads(args.timeline_pose_metadata.read_text(encoding="utf-8"))
+        rendered_sha256 = sha256(args.rendered_video)
+        if metadata.get("videoSha256") != rendered_sha256:
+            if not args.pose_reuse_receipt:
+                raise ValueError("Timeline pose is not bound to the rendered video.")
+            pose_reuse_receipt = json.loads(
+                args.pose_reuse_receipt.read_text(encoding="utf-8")
+            )
+            if not (
+                pose_reuse_receipt.get("geometryEquivalent") is True
+                and pose_reuse_receipt.get("source", {}).get("videoSha256")
+                == metadata.get("videoSha256")
+                and pose_reuse_receipt.get("target", {}).get("videoSha256")
+                == rendered_sha256
+                and pose_reuse_receipt.get("target", {}).get("planId") == plan["id"]
+                and pose_reuse_receipt.get("target", {}).get("planSha256")
+                == sha256(args.plan)
+            ):
+                raise ValueError("Pose reuse receipt does not bind equivalent render geometry.")
         data = np.load(args.timeline_pose, allow_pickle=False)
         timeline_track = {
             int(frame): poses[0] for frame, poses in zip(data["frames"], data["poses"])
@@ -198,6 +225,11 @@ def main() -> None:
         "timelinePose": {
             "path": str(args.timeline_pose),
             "sha256": sha256(args.timeline_pose),
+            "metadataSha256": sha256(args.timeline_pose_metadata),
+            "renderedVideoSha256": sha256(args.rendered_video),
+            "geometryReuseReceiptSha256": (
+                sha256(args.pose_reuse_receipt) if args.pose_reuse_receipt else None
+            ),
         }
         if args.timeline_pose
         else None,

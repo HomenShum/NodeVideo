@@ -111,11 +111,17 @@ def ocr_observations(
 
 
 def summarize_ocr(observations: list[dict]) -> list[dict]:
-    groups: dict[str, list[dict]] = defaultdict(list)
+    groups: dict[tuple[str, str, str], list[dict]] = defaultdict(list)
     for observation in observations:
-        groups[observation["normalizedText"]].append(observation)
+        groups[
+            (
+                observation["normalizedText"],
+                horizontal_zone(observation["box"]),
+                zone(observation["box"]),
+            )
+        ].append(observation)
     result = []
-    for text, items in groups.items():
+    for (text, _, _), items in groups.items():
         boxes = [item["box"] for item in items]
         result.append(
             {
@@ -136,6 +142,21 @@ def summarize_ocr(observations: list[dict]) -> list[dict]:
 def zone(box: dict) -> str:
     center = box["y"] + box["height"] / 2
     return "top" if center < 1 / 3 else "middle" if center < 2 / 3 else "bottom"
+
+
+def horizontal_zone(box: dict) -> str:
+    center = box["x"] + box["width"] / 2
+    return "left" if center < 1 / 3 else "center" if center < 2 / 3 else "right"
+
+
+def box_center_distance(first: dict, second: dict) -> float:
+    first_center = np.asarray(
+        [first["x"] + first["width"] / 2, first["y"] + first["height"] / 2]
+    )
+    second_center = np.asarray(
+        [second["x"] + second["width"] / 2, second["y"] + second["height"] / 2]
+    )
+    return float(np.linalg.norm(first_center - second_center))
 
 
 def match_ocr(candidate: list[dict], reference: list[dict]) -> list[dict]:
@@ -168,21 +189,52 @@ def match_ocr(candidate: list[dict], reference: list[dict]) -> list[dict]:
                 item["lastSeconds"] + 1,
             ) - min(target["firstSeconds"], item["firstSeconds"])
             timing_score = time_overlap / max(time_span, 0.001)
-            ranked.append((0.75 * text_score + 0.25 * timing_score, index, text_score))
+            target_middle = (target["firstSeconds"] + target["lastSeconds"]) / 2
+            item_middle = (item["firstSeconds"] + item["lastSeconds"]) / 2
+            middle_delta = abs(item_middle - target_middle)
+            target_duration = target["lastSeconds"] - target["firstSeconds"] + 1
+            temporal_valid = time_overlap > 0 and (
+                target_duration > 4 or middle_delta <= max(1.5, target_duration / 2)
+            )
+            ranked.append(
+                (
+                    0.68 * text_score + 0.32 * timing_score,
+                    index,
+                    text_score,
+                    timing_score,
+                    temporal_valid,
+                )
+            )
         if not ranked:
             continue
-        score, index, text_score = max(ranked)
-        if text_score < 0.58 or score < 0.5:
+        score, index, text_score, timing_score, temporal_valid = max(ranked)
+        if text_score < 0.58 or score < 0.58 or not temporal_valid:
             continue
         item = candidates[index]
+        center_distance = box_center_distance(target["medianBox"], item["medianBox"])
         matches.append(
             {
                 "referenceText": target["normalizedText"],
                 "candidateText": item["normalizedText"],
                 "score": round(score, 6),
+                "textScore": round(text_score, 6),
+                "timingScore": round(timing_score, 6),
+                "startDeltaSeconds": round(
+                    item["firstSeconds"] - target["firstSeconds"], 6
+                ),
+                "endDeltaSeconds": round(
+                    item["lastSeconds"] - target["lastSeconds"], 6
+                ),
+                "centerDistance": round(center_distance, 6),
+                "placementScore": round(max(0.0, 1 - center_distance / 0.5), 6),
                 "sameVerticalZone": zone(target["medianBox"]) == zone(item["medianBox"]),
+                "sameHorizontalZone": horizontal_zone(
+                    target["medianBox"]
+                ) == horizontal_zone(item["medianBox"]),
                 "referenceZone": zone(target["medianBox"]),
                 "candidateZone": zone(item["medianBox"]),
+                "referenceHorizontalZone": horizontal_zone(target["medianBox"]),
+                "candidateHorizontalZone": horizontal_zone(item["medianBox"]),
             }
         )
     return matches
@@ -274,11 +326,52 @@ def identity_score(
         item["firstSeconds"] for item in reference_identity
     )
     persistence = min(1.0, candidate_span / max(reference_span, 0.001))
+    reference_phases = {
+        (horizontal_zone(item["medianBox"]), zone(item["medianBox"]))
+        for item in reference_identity
+    }
+    candidate_phases = {
+        (horizontal_zone(item["medianBox"]), zone(item["medianBox"]))
+        for item in candidate_identity
+    }
+    if candidate_plan:
+        for track in candidate_plan.get("tracks", []):
+            if track.get("kind") != "overlay":
+                continue
+            for clip in track.get("clips", []):
+                if clip.get("kind") == "text" and re.search(
+                    r"@|shum|home", normalize_text(clip.get("text", ""))
+                ):
+                    candidate_phases.add(
+                        (horizontal_zone(clip["box"]), zone(clip["box"]))
+                    )
+                if clip.get("templateId") == "graphic.creator-end-card":
+                    candidate_phases.add(("center", "middle"))
+    phase_score = len(reference_phases & candidate_phases) / max(1, len(reference_phases))
     render_ids = candidate_plan.get("lineage", {}).get("renderAssetIds", []) if candidate_plan else []
     fixed_identity_assets = any("watermark" in item for item in render_ids) and any(
         "end-card-brand" in item for item in render_ids
     )
-    return 0.5 * persistence + 0.5 * float(fixed_identity_assets)
+    return 0.3 * persistence + 0.5 * phase_score + 0.2 * float(fixed_identity_assets)
+
+
+def identity_phase_summary(groups: list[dict], duration: float) -> list[dict]:
+    phases: dict[tuple[str, str], list[dict]] = defaultdict(list)
+    for item in groups:
+        if item["maxConfidence"] >= 0.45 and is_identity_group(item, duration):
+            phases[(horizontal_zone(item["medianBox"]), zone(item["medianBox"]))].append(
+                item
+            )
+    return [
+        {
+            "horizontalZone": key[0],
+            "verticalZone": key[1],
+            "firstSeconds": min(item["firstSeconds"] for item in items),
+            "lastSeconds": max(item["lastSeconds"] for item in items),
+            "observationCount": sum(item["sampleCount"] for item in items),
+        }
+        for key, items in sorted(phases.items())
+    ]
 
 
 def main() -> None:
@@ -363,9 +456,10 @@ def main() -> None:
         for item in deltas
     )
     semantic_score = len(semantic_matches) / max(1, len(semantic_reference))
-    layout_score = (
-        sum(1 for item in semantic_matches if item["sameVerticalZone"])
-        / max(1, len(semantic_matches))
+    layout_score = float(
+        np.mean([item["placementScore"] for item in semantic_matches])
+        if semantic_matches
+        else 0.0
     )
     visual_score = float(
         np.mean(
@@ -378,6 +472,8 @@ def main() -> None:
     measured_identity_score = identity_score(
         candidate_ocr, reference_ocr, duration, candidate_plan
     )
+    candidate_identity_phases = identity_phase_summary(candidate_ocr, duration)
+    reference_identity_phases = identity_phase_summary(reference_ocr, duration)
     reference_delivery = [
         item
         for item in reference_confident
@@ -419,6 +515,12 @@ def main() -> None:
             "layoutZoneMatches": sum(
                 1 for item in semantic_matches if item["sameVerticalZone"]
             ),
+            "layoutHorizontalZoneMatches": sum(
+                1 for item in semantic_matches if item["sameHorizontalZone"]
+            ),
+            "meanPlacementScore": layout_score,
+            "candidateIdentityPhases": candidate_identity_phases,
+            "referenceIdentityPhases": reference_identity_phases,
         },
         "sourceAndCutDeltas": deltas,
         "candidateOcr": candidate_ocr,

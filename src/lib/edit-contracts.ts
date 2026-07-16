@@ -92,6 +92,7 @@ export interface GradeAnalysis {
     | 'hlg-bt2020-to-sdr-bt709-hable-cube-lut'
     | 'hlg-bt2020-to-sdr-bt709-creator-vibrant'
     | 'hlg-bt2020-to-sdr-bt709-creator-dark-warm'
+    | 'hlg-bt2020-to-sdr-bt709-creator-social-vivid'
     | 'ocio-look'
     | 'cube-lut'
     | 'asc-cdl';
@@ -178,6 +179,7 @@ export interface GradeInstruction {
     | 'hlg-bt2020-to-sdr-bt709-hable-cube-lut'
     | 'hlg-bt2020-to-sdr-bt709-creator-vibrant'
     | 'hlg-bt2020-to-sdr-bt709-creator-dark-warm'
+    | 'hlg-bt2020-to-sdr-bt709-creator-social-vivid'
     | 'ocio-look'
     | 'cube-lut'
     | 'asc-cdl';
@@ -686,6 +688,7 @@ function validateGrade(
       'hlg-bt2020-to-sdr-bt709-hable-cube-lut',
       'hlg-bt2020-to-sdr-bt709-creator-vibrant',
       'hlg-bt2020-to-sdr-bt709-creator-dark-warm',
+      'hlg-bt2020-to-sdr-bt709-creator-social-vivid',
       'ocio-look',
       'cube-lut',
       'asc-cdl',
@@ -696,7 +699,8 @@ function validateGrade(
     grade.kind === 'none' ||
     grade.kind === 'hlg-bt2020-to-sdr-bt709-hable' ||
     grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-vibrant' ||
-    grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-dark-warm'
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-dark-warm' ||
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-social-vivid'
   ) {
     assert(
       grade.artifactId === undefined,

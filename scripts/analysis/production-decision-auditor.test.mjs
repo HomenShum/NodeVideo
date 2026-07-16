@@ -12,7 +12,7 @@ const overlay = (id, text, startFrame, box) => ({
 });
 
 describe('production decision auditor', () => {
-  it('exposes inferred intent and missing performance rationale', () => {
+  it('exposes inferred intent and source-only performance rationale', () => {
     const ledger = auditProductionDecisions({
       styleAudit: {
         summary: {
@@ -61,6 +61,18 @@ describe('production decision auditor', () => {
           waveformCorrelation: 0.64,
         },
       },
+      sourceAnalysis: {
+        phrases: [
+          {
+            selectedTakeAssetId: 'asset.take-a',
+            selectionReason: 'Source-only global optimum.',
+            candidates: [
+              { takeAssetId: 'asset.take-a', totalScore: 0.9 },
+              { takeAssetId: 'asset.take-b', totalScore: 0.8 },
+            ],
+          },
+        ],
+      },
       id: 'ledger.test',
       productionAuditId: 'audit.test',
       productionId: 'production.test',
@@ -68,9 +80,9 @@ describe('production decision auditor', () => {
       contentKind: 'dance',
     });
 
-    expect(ledger.overallStatus).toBe('fail');
+    expect(ledger.overallStatus).toBe('provisional');
     expect(ledger.coverage.find((item) => item.dimension === 'performance')?.status).toBe(
-      'missing',
+      'provisional',
     );
     expect(ledger.coverage.find((item) => item.dimension === 'attention')?.status).toBe(
       'provisional',

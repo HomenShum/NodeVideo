@@ -17,7 +17,6 @@ export const CREATIVE_FIDELITY_GATE_IDS = [
   'visual-treatment',
   'creator-identity',
   'delivery',
-  'intentional-production',
 ] as const;
 
 export type CreativeFidelityGateId = (typeof CREATIVE_FIDELITY_GATE_IDS)[number];
@@ -32,7 +31,6 @@ export const DEFAULT_CREATIVE_FIDELITY_THRESHOLDS: Readonly<
   'visual-treatment': 0.8,
   'creator-identity': 0.9,
   delivery: 0.95,
-  'intentional-production': 0.8,
 });
 
 export interface CreativeFidelityGateEvidence {

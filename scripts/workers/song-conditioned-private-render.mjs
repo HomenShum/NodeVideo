@@ -29,6 +29,7 @@ const paths = {
   plan: join(outputRoot, 'edit-plan.json'),
   bindings: join(outputRoot, 'bindings.private.json'),
   preview: join(outputRoot, 'source-only-song-preview.mp4'),
+  rendererManifest: join(outputRoot, 'renderer-manifest.json'),
   manifest: join(outputRoot, 'generation-manifest.json'),
   freeze: join(outputRoot, 'freeze-receipt.json'),
 };
@@ -59,13 +60,14 @@ await Promise.all([
   writeJson(paths.plan, plan),
   writeJson(paths.bindings, bindings),
 ]);
-await renderEditPlan({
+const renderResult = await renderEditPlan({
   plan,
   bindings,
   outputPath: paths.preview,
   auxiliaryDirectory: join(outputRoot, '.render-work'),
   ffmpeg: options.ffmpeg,
 });
+await writeJson(paths.rendererManifest, renderResult.manifest);
 
 const previewProbe = sanitizeProbe(probeMedia(paths.preview));
 const assertions = validateRender({
@@ -166,10 +168,12 @@ const manifest = {
 await writeJson(paths.manifest, manifest);
 
 const frozen = await Promise.all(
-  [paths.analysis, paths.plan, paths.manifest, paths.preview].map(async (path) => ({
-    file: basename(path),
-    sha256: await sha256File(path),
-  })),
+  [paths.analysis, paths.plan, paths.rendererManifest, paths.manifest, paths.preview].map(
+    async (path) => ({
+      file: basename(path),
+      sha256: await sha256File(path),
+    }),
+  ),
 );
 const freeze = {
   schemaVersion: 'nodevideo.generation-freeze.v1',
@@ -216,7 +220,7 @@ function buildPlan({
       playbackRate: 1,
       fit: phrase.framingTemplate ?? 'fit',
       cropKeyframes: [],
-      grade: { kind: 'hlg-bt2020-to-sdr-bt709-hable' },
+      grade: { kind: options.gradeKind },
     };
   });
   const outroSourceFrame = videoClips.at(-1).sourceRange.endFrameExclusive - 1;
@@ -240,7 +244,7 @@ function buildPlan({
     sourceFrame: outroSourceFrame,
     fit: 'fit',
     cropKeyframes: [],
-    grade: { kind: 'hlg-bt2020-to-sdr-bt709-hable' },
+    grade: { kind: options.gradeKind },
   });
 
   const overlays = analysis.lyricCues.map((cue, index) => {
@@ -263,6 +267,37 @@ function buildPlan({
       animation: 'pop',
     };
   });
+  if (options.creatorHandle) {
+    overlays.push(
+      {
+        id: 'overlay.creator-identity-opening',
+        timelineRange: { startFrame: 45, endFrameExclusive: 495 },
+        kind: 'text',
+        text: options.creatorHandle,
+        templateId: 'text.creator-watermark',
+        box: { x: 0.72, y: 0.27, width: 0.24, height: 0.045 },
+        animation: 'fade',
+      },
+      {
+        id: 'overlay.creator-identity-body',
+        timelineRange: { startFrame: 495, endFrameExclusive: choreographyEndFrame },
+        kind: 'text',
+        text: options.creatorHandle,
+        templateId: 'text.creator-watermark',
+        box: { x: 0.04, y: 0.58, width: 0.27, height: 0.045 },
+        animation: 'fade',
+      },
+      {
+        id: 'overlay.creator-identity-end',
+        timelineRange: { startFrame: 1245, endFrameExclusive: planDurationFrames },
+        kind: 'text',
+        text: options.creatorHandle,
+        templateId: 'text.creator-watermark',
+        box: { x: 0.32, y: 0.52, width: 0.36, height: 0.055 },
+        animation: 'fade',
+      },
+    );
+  }
   if (options.outroText) {
     overlays.push({
       id: 'overlay.outro',
@@ -325,7 +360,7 @@ function buildPlan({
           releasedMasterGainDb: 0,
           targetStartMs: 0,
           targetEndMs: musicEndMs,
-          gainDb: 0,
+          gainDb: options.musicGainDb,
           identity: { title: options.musicTitle, artist: options.musicArtist },
         },
         ...(musicEndFrame < planDurationFrames
@@ -355,7 +390,7 @@ function buildPlan({
             sourceRange: { startFrame: 0, endFrameExclusive: musicEndFrame },
             playbackRate: 1,
             role: 'music',
-            gainDb: 0,
+            gainDb: options.musicGainDb,
             fadeInFrames: 0,
             fadeOutFrames: 0,
             license: { status: options.musicLicenseStatus, proofRef: options.musicProofRef },
@@ -458,6 +493,9 @@ function parseArguments(args) {
     '--music-title',
     '--music-artist',
     '--released-master-offset-ms',
+    '--music-gain-db',
+    '--grade-kind',
+    '--creator-handle',
     '--ffmpeg',
   ]);
   for (const value of args) {
@@ -489,6 +527,22 @@ function parseArguments(args) {
   ) {
     throw new Error('--music-license-status is unsupported.');
   }
+  const musicGainRaw = optionalValue(args, '--music-gain-db');
+  const musicGainDb = musicGainRaw === undefined ? 0 : Number(musicGainRaw);
+  if (musicGainDb < -96 || musicGainDb > 24) {
+    throw new Error('--music-gain-db must be between -96 and 24.');
+  }
+  const gradeKind = optionalValue(args, '--grade-kind') ?? 'hlg-bt2020-to-sdr-bt709-hable';
+  if (
+    ![
+      'hlg-bt2020-to-sdr-bt709-hable',
+      'hlg-bt2020-to-sdr-bt709-creator-vibrant',
+      'hlg-bt2020-to-sdr-bt709-creator-dark-warm',
+      'hlg-bt2020-to-sdr-bt709-creator-social-vivid',
+    ].includes(gradeKind)
+  ) {
+    throw new Error('--grade-kind is unsupported.');
+  }
   const analysis = resolve(value(args, '--analysis'));
   const music = resolve(value(args, '--music'));
   requireFile(analysis, 'source-only analysis');
@@ -506,6 +560,9 @@ function parseArguments(args) {
     musicTitle: value(args, '--music-title'),
     musicArtist: value(args, '--music-artist'),
     releasedMasterOffsetMs: numberValue(args, '--released-master-offset-ms', 0),
+    musicGainDb,
+    gradeKind,
+    creatorHandle: optionalValue(args, '--creator-handle'),
     ffmpeg: optionalValue(args, '--ffmpeg') ?? 'ffmpeg',
   };
 }

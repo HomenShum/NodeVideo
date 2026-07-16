@@ -141,6 +141,11 @@ export const FIXED_GRADE_PRESETS = Object.freeze({
     'eq=brightness=-0.18:contrast=1.08:saturation=1.6:gamma=0.88',
     'colorbalance=rs=0.025:gs=-0.01:bs=-0.035:rm=0.012:bm=-0.018',
   ]),
+  'hlg-bt2020-to-sdr-bt709-creator-social-vivid': Object.freeze([
+    'eq=brightness=-0.18:contrast=1.08:saturation=1.6:gamma=0.88',
+    'colorbalance=rs=0.025:gs=-0.01:bs=-0.035:rm=0.012:bm=-0.018',
+    'hue=s=10',
+  ]),
 });
 
 const VIDEO_ENCODER_ARGS = Object.freeze([
@@ -615,6 +620,7 @@ function validateRendererVideoClip(clip, path, issues) {
     'hlg-bt2020-to-sdr-bt709-hable-cube-lut',
     'hlg-bt2020-to-sdr-bt709-creator-vibrant',
     'hlg-bt2020-to-sdr-bt709-creator-dark-warm',
+    'hlg-bt2020-to-sdr-bt709-creator-social-vivid',
   ]);
   if (!supportedGrades.has(clip.grade.kind)) {
     issues.push(`${path}.grade.kind is not a fixed renderer v1 color primitive`);
@@ -726,7 +732,8 @@ function gradeFilter(grade, bindings) {
     grade.kind === 'hlg-bt2020-to-sdr-bt709-hable' ||
     grade.kind === 'hlg-bt2020-to-sdr-bt709-hable-cube-lut' ||
     grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-vibrant' ||
-    grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-dark-warm'
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-dark-warm' ||
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-social-vivid'
   ) {
     const filters = [
       'zscale=transfer=linear:npl=100',

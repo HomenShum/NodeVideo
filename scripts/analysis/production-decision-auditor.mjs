@@ -15,6 +15,7 @@ const ARTIFACTS = {
   manifest: 'artifact.renderer-manifest',
   embodied: 'artifact.embodied-overlay-audit',
   audio: 'artifact.audio-production-audit',
+  source: 'artifact.source-only-choreography-analysis',
 };
 
 export function auditProductionDecisions({
@@ -23,6 +24,7 @@ export function auditProductionDecisions({
   rendererManifest,
   embodiedAudit,
   audioAudit = null,
+  sourceAnalysis = null,
   id,
   productionAuditId,
   productionId,
@@ -119,6 +121,48 @@ export function auditProductionDecisions({
         confidence: 0.72,
       }),
     );
+  }
+
+  if (sourceAnalysis?.phrases?.length > 0) {
+    const selectedWithRationale = sourceAnalysis.phrases.filter(
+      (phrase) =>
+        phrase.selectedTakeAssetId &&
+        phrase.selectionReason &&
+        Array.isArray(phrase.candidates) &&
+        phrase.candidates.some((candidate) => candidate.takeAssetId === phrase.selectedTakeAssetId),
+    );
+    if (selectedWithRationale.length === sourceAnalysis.phrases.length) {
+      const candidateCount = sourceAnalysis.phrases.reduce(
+        (sum, phrase) => sum + phrase.candidates.length,
+        0,
+      );
+      decisions.push(
+        inferredDecision({
+          id: 'decision.performance.take-selection',
+          dimension: 'performance',
+          observation: `${selectedWithRationale.length} phrase-level take choices were selected from ${candidateCount} scored candidates with source-only pose, motion, framing, technical-quality, and transition evidence.`,
+          intentHypothesis:
+            'The selected takes preserve choreographic fidelity while using framing contrast and avoiding repeated weak performance intervals.',
+          causalFunction:
+            'choose the clearest and most coherent performance moment for each phrase',
+          evidenceArtifactIds: [ARTIFACTS.source, ARTIFACTS.plan],
+          confidence: round(
+            clamp(
+              mean(
+                selectedWithRationale.map((phrase) =>
+                  Number(
+                    phrase.candidates.find(
+                      (candidate) => candidate.takeAssetId === phrase.selectedTakeAssetId,
+                    )?.totalScore ?? 0,
+                  ),
+                ),
+              ),
+            ),
+            3,
+          ),
+        }),
+      );
+    }
   }
 
   const candidateSaturation = Number(styleAudit.summary?.candidate?.saturationMean);
@@ -322,6 +366,7 @@ export function main(argv = process.argv.slice(2)) {
     rendererManifest: readJson(options['renderer-manifest']),
     embodiedAudit: readJson(options['embodied-layout']),
     audioAudit: options['audio-audit'] ? readJson(options['audio-audit']) : null,
+    sourceAnalysis: options['source-analysis'] ? readJson(options['source-analysis']) : null,
     id: options['ledger-id'],
     productionAuditId: options['production-audit-id'],
     productionId: options['production-id'],

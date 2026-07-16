@@ -124,8 +124,9 @@
     {
       "id": "creative-fidelity.conjunction.validate",
       "rules": [
-        "provenance, structure, semantics, layout, visual treatment, creator identity, delivery, and intentional production pass independently",
+        "provenance, structure, semantics, layout, visual treatment, creator identity, and delivery pass independently",
         "the overall verdict passes only when every required gate passes",
+        "blind-generation integrity and creator-profile maturity remain separate verdicts",
         "hidden targets stay unavailable until the candidate and profile bindings are frozen"
       ]
     }

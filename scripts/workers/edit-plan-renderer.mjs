@@ -39,6 +39,10 @@ const result = await renderEditPlan({
   auxiliaryDirectory: options.auxiliaryDirectory,
   ffmpeg: options.ffmpeg,
 });
+if (options.manifestOutputPath) {
+  await mkdir(dirname(options.manifestOutputPath), { recursive: true });
+  await writeFile(options.manifestOutputPath, `${JSON.stringify(result.manifest, null, 2)}\n`);
+}
 console.log(
   `Rendered ${result.manifest.durationFrames} frames for plan ${result.manifest.planId} ` +
     `with ${result.rendererVersion}.`,
