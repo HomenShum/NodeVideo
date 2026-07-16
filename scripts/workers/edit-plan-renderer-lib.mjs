@@ -686,11 +686,10 @@ function sourceVideoFilter(index, clip, durationFrames, plan, bindings) {
   const layout = layoutFilter(clip, plan);
   const grade = gradeFilter(clip.grade, bindings);
   const processing = [grade, layout].filter(Boolean).join(',');
+  const sourceTimes = sourceRangeSeconds(clip.sourceRange, plan.frameRate);
   return (
-    `[${index}:v:0]trim=start_frame=${clip.sourceRange.startFrame}:` +
-    `end_frame=${clip.sourceRange.endFrameExclusive},setpts=(PTS-STARTPTS)/${numeric(
-      clip.playbackRate,
-    )}` +
+    `[${index}:v:0]trim=start=${numeric(sourceTimes.start)}:` +
+    `end=${numeric(sourceTimes.end)},setpts=(PTS-STARTPTS)/${numeric(clip.playbackRate)}` +
     `,fps=${numeric(plan.frameRate)},trim=end_frame=${durationFrames}` +
     `,setpts=N/(${numeric(plan.frameRate)}*TB),${processing},format=yuv420p`
   );
@@ -700,12 +699,23 @@ function freezeFilter(index, clip, durationFrames, plan, bindings) {
   const layout = layoutFilter(clip, plan);
   const grade = gradeFilter(clip.grade, bindings);
   const processing = [grade, layout].filter(Boolean).join(',');
+  const sourceTimes = sourceRangeSeconds(
+    { startFrame: clip.sourceFrame, endFrameExclusive: clip.sourceFrame + 1 },
+    plan.frameRate,
+  );
   return (
-    `[${index}:v:0]trim=start_frame=${clip.sourceFrame}:end_frame=${clip.sourceFrame + 1}` +
+    `[${index}:v:0]trim=start=${numeric(sourceTimes.start)}:end=${numeric(sourceTimes.end)}` +
     `,setpts=PTS-STARTPTS,fps=${numeric(plan.frameRate)},${processing}` +
     `,tpad=stop_mode=clone:stop=${Math.max(0, durationFrames - 1)}` +
     `,trim=end_frame=${durationFrames},setpts=N/(${numeric(plan.frameRate)}*TB),format=yuv420p`
   );
+}
+
+export function sourceRangeSeconds(range, frameRate) {
+  return {
+    start: range.startFrame / frameRate,
+    end: range.endFrameExclusive / frameRate,
+  };
 }
 
 function layoutFilter(clip, plan) {

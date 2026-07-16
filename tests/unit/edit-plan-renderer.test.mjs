@@ -257,7 +257,7 @@ describe('plan-driven deterministic renderer', () => {
       RENDERER_FONT.sha256,
     );
 
-    expect(compiled.filterComplex).toContain('trim=start_frame=100:end_frame=130');
+    expect(compiled.filterComplex).toContain('trim=start=3.333333333:end=4.333333333');
     expect(compiled.filterComplex).toContain('tpad=stop_mode=clone');
     expect(compiled.filterComplex).toContain('color=c=black:s=720x1280:r=30');
     expect(compiled.filterComplex).toContain('drawtext=textfile=');
