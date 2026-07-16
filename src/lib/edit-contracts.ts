@@ -90,6 +90,8 @@ export interface GradeAnalysis {
     | 'none'
     | 'hlg-bt2020-to-sdr-bt709-hable'
     | 'hlg-bt2020-to-sdr-bt709-hable-cube-lut'
+    | 'hlg-bt2020-to-sdr-bt709-creator-vibrant'
+    | 'hlg-bt2020-to-sdr-bt709-creator-dark-warm'
     | 'ocio-look'
     | 'cube-lut'
     | 'asc-cdl';
@@ -174,6 +176,8 @@ export interface GradeInstruction {
     | 'none'
     | 'hlg-bt2020-to-sdr-bt709-hable'
     | 'hlg-bt2020-to-sdr-bt709-hable-cube-lut'
+    | 'hlg-bt2020-to-sdr-bt709-creator-vibrant'
+    | 'hlg-bt2020-to-sdr-bt709-creator-dark-warm'
     | 'ocio-look'
     | 'cube-lut'
     | 'asc-cdl';
@@ -304,6 +308,12 @@ export interface EditLineage {
   renderAssetIds: string[];
   evaluationOnlyAssetIds: string[];
   targetDerivedRenderAssetIds: string[];
+  decisionArtifactIds?: string[];
+  calibration?: {
+    targetAccess: 'none' | 'authorized-profile-learning' | 'post-freeze-evaluation';
+    targetArtifactIds: string[];
+    disclosure: string;
+  };
 }
 
 export interface EditPlan {
@@ -674,13 +684,20 @@ function validateGrade(
       'none',
       'hlg-bt2020-to-sdr-bt709-hable',
       'hlg-bt2020-to-sdr-bt709-hable-cube-lut',
+      'hlg-bt2020-to-sdr-bt709-creator-vibrant',
+      'hlg-bt2020-to-sdr-bt709-creator-dark-warm',
       'ocio-look',
       'cube-lut',
       'asc-cdl',
     ],
     `${label}.kind`,
   );
-  if (grade.kind === 'none' || grade.kind === 'hlg-bt2020-to-sdr-bt709-hable') {
+  if (
+    grade.kind === 'none' ||
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-hable' ||
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-vibrant' ||
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-dark-warm'
+  ) {
     assert(
       grade.artifactId === undefined,
       `${label}.artifactId is not allowed for fixed grade: ${grade.kind}`,
@@ -1348,17 +1365,50 @@ export function validateEditPlan(value: unknown): asserts value is EditPlan {
   if (plan.beatGrid !== undefined) validateBeatGrid(plan.beatGrid, 'EditPlan.beatGrid');
 
   const lineage = asRecord(plan.lineage, 'EditPlan.lineage');
-  assertExactKeys(lineage, 'EditPlan.lineage', [
-    'renderAssetIds',
-    'evaluationOnlyAssetIds',
-    'targetDerivedRenderAssetIds',
-  ]);
+  assertExactKeys(
+    lineage,
+    'EditPlan.lineage',
+    ['renderAssetIds', 'evaluationOnlyAssetIds', 'targetDerivedRenderAssetIds'],
+    ['decisionArtifactIds', 'calibration'],
+  );
   assertUniqueStrings(lineage.renderAssetIds, 'EditPlan.lineage.renderAssetIds');
   assertUniqueStrings(lineage.evaluationOnlyAssetIds, 'EditPlan.lineage.evaluationOnlyAssetIds');
   assertUniqueStrings(
     lineage.targetDerivedRenderAssetIds,
     'EditPlan.lineage.targetDerivedRenderAssetIds',
   );
+  if (lineage.decisionArtifactIds !== undefined) {
+    assertUniqueStrings(lineage.decisionArtifactIds, 'EditPlan.lineage.decisionArtifactIds');
+  }
+  if (lineage.calibration !== undefined) {
+    const calibration = asRecord(lineage.calibration, 'EditPlan.lineage.calibration');
+    assertExactKeys(calibration, 'EditPlan.lineage.calibration', [
+      'targetAccess',
+      'targetArtifactIds',
+      'disclosure',
+    ]);
+    assertOneOf(
+      calibration.targetAccess,
+      ['none', 'authorized-profile-learning', 'post-freeze-evaluation'],
+      'EditPlan.lineage.calibration.targetAccess',
+    );
+    assertUniqueStrings(
+      calibration.targetArtifactIds,
+      'EditPlan.lineage.calibration.targetArtifactIds',
+    );
+    assertString(calibration.disclosure, 'EditPlan.lineage.calibration.disclosure');
+    if (calibration.targetAccess === 'none') {
+      assert(
+        calibration.targetArtifactIds.length === 0,
+        'EditPlan lineage calibration cannot name target artifacts when targetAccess is none',
+      );
+    } else {
+      assert(
+        calibration.targetArtifactIds.length > 0,
+        'EditPlan lineage calibration requires at least one target artifact',
+      );
+    }
+  }
   const renderAssetIds = new Set(lineage.renderAssetIds);
   const evaluationOnlyAssetIds = new Set(lineage.evaluationOnlyAssetIds);
   for (const id of evaluationOnlyAssetIds) {

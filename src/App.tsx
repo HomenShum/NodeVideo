@@ -31,17 +31,17 @@ export function App() {
       <main className="mx-auto max-w-6xl space-y-6 px-3 py-6 sm:px-6 sm:py-10">
         <section className="space-y-3" aria-labelledby="page-title">
           <Badge className="h-auto max-w-full whitespace-normal" variant="outline">
-            Official dance &rarr; raw takes &rarr; chosen song &rarr; frozen edit
+            Creator profile &rarr; source interpretation &rarr; frozen edit &rarr; gated evaluation
           </Badge>
           <h1 id="page-title" className="max-w-4xl font-heading text-3xl font-semibold sm:text-5xl">
-            Inspect how NodeVideo turned choreography into a strict-passing cut.
+            Inspect how NodeVideo learns taste, plans the edit, and proves what passed.
           </h1>
           <p className="max-w-3xl text-pretty text-muted-foreground sm:text-lg">
-            The pipeline aligned both raw MOVs to the official dance, mapped movement and lyric
-            phrases to &ldquo;Sign,&rdquo; selected takes and framing, then froze the edit before
-            opening the manual final MP4. Take choice and all five cut boundaries passed the strict
-            evaluator within two frames. This is an owner-case calibration pass, not a fresh blind
-            benchmark.
+            This owner-authorized calibration aligned both raw MOVs to the original choreography,
+            mapped movement to &ldquo;Sign,&rdquo; and selected all five source ranges within two
+            frames of the manual edit. NodeVideo now treats creator voice, text placement, grade,
+            identity, and delivery as separate fidelity gates; a timing pass alone is no longer
+            reported as a creative pass.
           </p>
         </section>
 

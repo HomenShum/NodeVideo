@@ -1,20 +1,22 @@
-import {
-  Artifact,
-  ArtifactDescription,
-  ArtifactHeader,
-  ArtifactTitle,
-} from '@/components/ai-elements/artifact';
+import { Artifact, ArtifactHeader, ArtifactTitle } from '@/components/ai-elements/artifact';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
-import { Separator } from '@/components/ui/separator';
 import type { JobSnapshot } from '@/lib/live-control-api';
 import { Check, Circle, LockKeyhole, RotateCcw, Upload, X } from 'lucide-react';
 import type { Dispatch, FormEvent, SetStateAction } from 'react';
 
-export type InputKey = 'reference' | 'takeA' | 'takeB' | 'song' | 'lyrics';
-export const REQUIRED: Array<{ key: InputKey; label: string; accept: string; role: string }> = [
+export type InputKey = 'reference' | 'takeA' | 'takeB' | 'song' | 'lyrics' | 'creatorProfile';
+type UploadInput = {
+  key: InputKey;
+  label: string;
+  accept: string;
+  role: string;
+  optional?: boolean;
+};
+
+export const INPUTS: UploadInput[] = [
   {
     key: 'reference',
     label: 'Original choreography',
@@ -25,6 +27,13 @@ export const REQUIRED: Array<{ key: InputKey; label: string; accept: string; rol
   { key: 'takeB', label: 'Creator take B', accept: 'video/*', role: 'creator-take-b' },
   { key: 'song', label: 'Chosen song', accept: 'audio/*,video/*', role: 'chosen-song' },
   { key: 'lyrics', label: 'Timed lyrics', accept: '.json,.lrc,.srt,text/*', role: 'timed-lyrics' },
+  {
+    key: 'creatorProfile',
+    label: 'Creator taste profile (optional)',
+    accept: '.json,application/json',
+    role: 'creator-taste-profile',
+    optional: true,
+  },
 ];
 
 type UploadProps = {
@@ -49,12 +58,9 @@ export function UploadInputs(props: UploadProps) {
           value={props.token}
           onChange={(event) => props.setToken(event.target.value)}
         />
-        <p className="text-xs text-muted-foreground">
-          Kept only in this browser session; never bundled into the site.
-        </p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        {REQUIRED.map(({ key, label, accept }) => (
+        {INPUTS.map(({ key, label, accept }) => (
           <div className="grid gap-2" key={key}>
             <Label htmlFor={`file-${key}`}>{label}</Label>
             <Input
@@ -87,7 +93,7 @@ type StageProps = {
 export function StageView(props: StageProps) {
   const complete =
     props.snapshot?.stages.filter((stage) => stage.status === 'completed').length ?? 0;
-  const total = props.snapshot?.stages.length ?? 15;
+  const total = props.snapshot?.stages.length ?? 19;
   const preview = props.snapshot?.artifacts.find(
     (artifact) => artifact.kind === 'preview' && artifact.url,
   );
@@ -142,21 +148,17 @@ export function StageView(props: StageProps) {
         />
       )}
       {props.snapshot?.artifacts.length ? (
-        <>
-          <Separator />
-          <div className="grid gap-3 sm:grid-cols-2">
-            {props.snapshot.artifacts.map((artifact) => (
-              <Artifact key={artifact._id}>
-                <ArtifactHeader>
-                  <div className="min-w-0">
-                    <ArtifactTitle className="truncate">{artifact.artifactKey}</ArtifactTitle>
-                    <ArtifactDescription>{artifact.kind}</ArtifactDescription>
-                  </div>
-                </ArtifactHeader>
-              </Artifact>
-            ))}
-          </div>
-        </>
+        <div className="grid gap-3 border-t pt-5 sm:grid-cols-2">
+          {props.snapshot.artifacts.map((artifact) => (
+            <Artifact key={artifact._id}>
+              <ArtifactHeader>
+                <div className="min-w-0">
+                  <ArtifactTitle className="truncate">{artifact.artifactKey}</ArtifactTitle>
+                </div>
+              </ArtifactHeader>
+            </Artifact>
+          ))}
+        </div>
       ) : null}
     </div>
   );

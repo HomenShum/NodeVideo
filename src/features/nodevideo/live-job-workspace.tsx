@@ -1,8 +1,7 @@
-import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
+  INPUTS,
   type InputKey,
-  REQUIRED,
   StageView,
   UploadInputs,
 } from '@/features/nodevideo/live-job-views';
@@ -42,7 +41,8 @@ export function LiveJobWorkspace() {
     };
   }, [jobId, token]);
 
-  const canStart = token.length > 8 && REQUIRED.every(({ key }) => files[key]);
+  const canStart =
+    token.length > 8 && INPUTS.filter(({ optional }) => !optional).every(({ key }) => files[key]);
   async function start(event: FormEvent) {
     event.preventDefault();
     if (!canStart) return;
@@ -50,8 +50,9 @@ export function LiveJobWorkspace() {
     setError(undefined);
     try {
       sessionStorage.setItem('nodevideo.owner-token', token);
+      const configuredInputs = INPUTS.filter(({ key, optional }) => !optional || files[key]);
       const bindings = await Promise.all(
-        REQUIRED.map(async ({ key, role }) => {
+        configuredInputs.map(async ({ key, role }) => {
           const file = files[key];
           if (!file) throw new Error(`${role} is missing.`);
           return { role, file, sha256: await sha256File(file) };
@@ -62,6 +63,9 @@ export function LiveJobWorkspace() {
         schemaVersion: 'nodevideo.source-only-case/v1',
         traceId,
         assets: bindings.map(({ role, file, sha256 }) => ({ role, name: file.name, sha256 })),
+        creatorProfilePolicy: files.creatorProfile
+          ? { mode: 'reuse-admitted-profile', role: 'creator-taste-profile' }
+          : { mode: 'learn-case-profile', role: null },
         isolation: { hiddenTargetAdmitted: false },
       };
       const inputDigest = await sha256Json(input);
@@ -122,11 +126,7 @@ export function LiveJobWorkspace() {
   return (
     <Card data-testid="live-job-workspace">
       <CardHeader>
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="secondary">Live product proof</Badge>
-          {snapshot && <Badge variant="outline">{snapshot.job.status.replace('_', ' ')}</Badge>}
-        </div>
-        <CardTitle>Upload once. Keep the hidden target sealed.</CardTitle>
+        <CardTitle>Upload sources, reuse creator taste, keep the target sealed.</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         {!jobId ? (

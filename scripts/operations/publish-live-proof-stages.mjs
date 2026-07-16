@@ -27,17 +27,23 @@ if (expectedRoles.some((role) => !workerInput.assets.some((asset) => asset.role 
 }
 
 const outputs = new Map([
+  ['learn_creator_profile', [join(root, 'creator-taste-run.json'), 'creator-taste-profile']],
   ['extract_reference_motion', [join(root, 'reference-selected-30fps.npz'), 'reference-motion']],
   ['analyze_takes', [join(root, 'alignment-30fps.json'), 'take-analysis']],
   [
     'ground_subjects',
     [join(root, 'locate-anything', 'locate-result.json'), 'locate-anything-grounding'],
   ],
+  ['interpret_production', [join(root, 'creator-taste-run.json'), 'production-audit']],
   ['match_phrases', [join(root, 'analysis-strict-candidate.json'), 'phrase-match']],
   ['plan_sequence', [join(root, 'analysis-strict-candidate.json'), 'sequence-plan']],
   [
     'place_lyrics',
     [join(root, 'locate-anything', 'caption-safety.json'), 'lyrics-layout-validation'],
+  ],
+  [
+    'compose_editorial_overlays',
+    [join(root, 'strict-render-v3', 'edit-plan.json'), 'creator-editorial-plan'],
   ],
   ['compile_plan', [join(root, 'strict-render', 'edit-plan.json'), 'edit-plan']],
   ['render_preview', [join(root, 'strict-render', 'source-only-song-preview.mp4'), 'preview']],
@@ -46,14 +52,17 @@ const outputs = new Map([
 const stages = [
   'validate_inputs',
   'ingest_reference',
+  'learn_creator_profile',
   'normalize_media',
   'align_reference_song',
   'extract_reference_motion',
   'analyze_takes',
   'ground_subjects',
+  'interpret_production',
   'match_phrases',
   'plan_sequence',
   'place_lyrics',
+  'compose_editorial_overlays',
   'compile_plan',
   'render_preview',
   'validate_preview',

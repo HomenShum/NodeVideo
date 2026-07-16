@@ -1,4 +1,5 @@
 import type { NodeVideoStageKind } from './contracts';
+import type { StageName } from './live-control-api';
 import type { PublicWorkerReceipt } from './public-worker';
 
 export type WorkerEvent = PublicWorkerReceipt['events'][number];
@@ -24,6 +25,33 @@ const stageMap: Record<string, NodeVideoStageKind> = {
   completed: 'review',
   failed: 'review',
 };
+
+const durableStageMap: Record<StageName, NodeVideoStageKind> = {
+  validate_inputs: 'ingest',
+  ingest_reference: 'ingest',
+  learn_creator_profile: 'profile',
+  normalize_media: 'normalize',
+  align_reference_song: 'audio',
+  extract_reference_motion: 'pose',
+  analyze_takes: 'pose',
+  ground_subjects: 'grounding',
+  interpret_production: 'planning',
+  match_phrases: 'alignment',
+  plan_sequence: 'planning',
+  place_lyrics: 'editorial',
+  compose_editorial_overlays: 'editorial',
+  compile_plan: 'planning',
+  render_preview: 'render',
+  validate_preview: 'summary',
+  await_review: 'review',
+  freeze: 'review',
+  evaluate_hidden_target: 'evaluation',
+};
+
+/** Maps durable media-workflow stages into the shared NodeAgent presentation vocabulary. */
+export function toNodeVideoStageKind(stage: StageName): NodeVideoStageKind {
+  return durableStageMap[stage];
+}
 
 /** Compatibility seam: worker/NodeAgent events become presentation-only UI events. */
 export function toVideoUiEvent(event: WorkerEvent): VideoUiEvent {

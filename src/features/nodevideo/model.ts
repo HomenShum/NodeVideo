@@ -44,12 +44,17 @@ export const LOCAL_PREVIEW_STAGES = [
 export const DEMO_STAGE_LABELS: Array<{ kind: NodeVideoStageKind; label: string }> = [
   { kind: 'ingest', label: 'Verify input hashes' },
   { kind: 'normalize', label: 'Normalize both videos' },
+  { kind: 'profile', label: 'Learn or reuse creator profile' },
   { kind: 'audio', label: 'Decode beat onsets' },
   { kind: 'pose', label: 'Extract known-marker pose' },
+  { kind: 'grounding', label: 'Ground visible subjects' },
   { kind: 'alignment', label: 'Align decoded timelines' },
   { kind: 'diffs', label: 'Measure critical moments' },
+  { kind: 'planning', label: 'Plan the production globally' },
+  { kind: 'editorial', label: 'Compose creator-led overlays' },
   { kind: 'render', label: 'Render comparisons and bursts' },
   { kind: 'summary', label: 'Validate evidence and coaching' },
+  { kind: 'evaluation', label: 'Run conjunctive fidelity gates' },
   { kind: 'review', label: 'Review recipe change' },
 ];
 

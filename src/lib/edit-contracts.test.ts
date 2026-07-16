@@ -570,6 +570,18 @@ describe('edit contract validators', () => {
     expect(() => validateEditPlan(plan)).toThrow(/cannot be render and evaluation-only/);
   });
 
+  it('discloses target-informed calibration without treating the target as render media', () => {
+    const plan = createPlan();
+    plan.lineage.decisionArtifactIds = ['artifact.creator-taste.owner-v1'];
+    plan.lineage.calibration = {
+      targetAccess: 'authorized-profile-learning',
+      targetArtifactIds: ['target-a'],
+      disclosure: 'Owner-authorized target informed the reusable creator profile.',
+    };
+    expect(() => validateEditPlan(plan)).not.toThrow();
+    expect(plan.lineage.renderAssetIds).not.toContain('target-a');
+  });
+
   it('rejects music without explicit rights evidence', () => {
     const plan = createPlan();
     const musicTrack = plan.tracks[1];

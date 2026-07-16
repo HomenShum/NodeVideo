@@ -1,0 +1,62 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.creator-taste-audit",
+  "version": "0.1.0",
+  "implementationStatus": "local-cli-and-nodeagent-contract-validated",
+  "title": "Creator Taste Learning and Production Audit",
+  "description": "Learns evidence-bound creator preferences from authorized productions, audits new short-form productions across content types, and blocks fidelity scoring when the interpreted target spec cannot explain visible evidence.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": [
+    "production/authorized-audit",
+    "creator/taste-profile-optional",
+    "production/claimed-target-spec-optional"
+  ],
+  "outputs": [
+    "production/audit",
+    "creator/taste-profile",
+    "production/target-spec-consistency",
+    "production/creative-fidelity-verdict"
+  ],
+  "tools": [
+    "production.audit",
+    "creator-profile.learn",
+    "creator-profile.apply",
+    "target-spec.validate",
+    "creative-fidelity.evaluate"
+  ],
+  "permissions": [
+    "read_authorized_derived_production_evidence",
+    "write_profile_and_evaluation_artifacts",
+    "propose_profile_activation_for_owner_review"
+  ],
+  "uiRenderers": ["CreatorTasteProfileCard", "ProductionAuditTimeline", "FidelityGateMatrix"],
+  "evalSuite": "evals/replay-v1.json",
+  "validation": {
+    "profile": "content-neutral-contract-and-cli-v1",
+    "status": "passed",
+    "proof": {
+      "contractTests": "../../src/lib/creator-taste-contracts.test.ts",
+      "nodeAgentTests": "../../src/lib/creator-taste-nodeagent.test.ts",
+      "cliTests": "../../scripts/analysis/creator-taste-profiler.test.mjs"
+    },
+    "excludes": [
+      "automatic-legal-rights-determination",
+      "human-preference-proof-from-one-production",
+      "cross-format-transfer-without-revalidation",
+      "hidden-target-access-before-freeze",
+      "autonomous-publication"
+    ]
+  },
+  "execution": {
+    "kind": "derived-evidence-profile-and-audit-graph",
+    "modelRequired": false,
+    "nodeAgentCandidate": "creator-taste-and-production-audit",
+    "applicationWriteAuthority": "validation-cas-and-owner-review",
+    "hiddenEvaluationTarget": "forbidden-until-freeze"
+  }
+}

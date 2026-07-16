@@ -34,6 +34,11 @@ const groundingReplayResult = await readJson(
   'fixtures/media/song-conditioned-auto-edit-v1/grounding-receipt.json',
 );
 
+const tasteManifest = await readJson('packs/creator-taste-audit/manifest.json');
+const tasteInputSchema = await readJson('packs/creator-taste-audit/input.schema.json');
+const tasteOutputSchema = await readJson('packs/creator-taste-audit/output.schema.json');
+const tasteEvaluation = await readJson('packs/creator-taste-audit/evals/replay-v1.json');
+
 const songManifest = await readJson('packs/song-conditioned-auto-edit/manifest.json');
 const songInputSchema = await readJson('packs/song-conditioned-auto-edit/input.schema.json');
 const songOutputSchema = await readJson('packs/song-conditioned-auto-edit/output.schema.json');
@@ -81,6 +86,10 @@ const groundingResultValidator = ajv.compile({
   $ref: '#/$defs/locateResult',
 });
 const groundingReplayValid = groundingResultValidator(groundingReplayResult);
+
+const tasteInputValidator = ajv.compile(tasteInputSchema);
+const tasteInputValid = tasteInputValidator(tasteEvaluation.cases[0].input);
+const tasteOutputSchemaValid = typeof ajv.compile(tasteOutputSchema) === 'function';
 
 const songInputValidator = ajv.compile(songInputSchema);
 const songInputValid = typeof songInputValidator === 'function';
@@ -246,6 +255,23 @@ const groundingChecks = [
   ],
 ];
 
+const tasteChecks = [
+  ['creator taste eval input matches its schema', tasteInputValid],
+  ['creator taste output schema compiles', tasteOutputSchemaValid],
+  [
+    'creator taste pack keeps NodeVideo as final write authority',
+    tasteManifest.implementationStatus === 'local-cli-and-nodeagent-contract-validated' &&
+      tasteManifest.execution.applicationWriteAuthority === 'validation-cas-and-owner-review' &&
+      tasteManifest.execution.hiddenEvaluationTarget === 'forbidden-until-freeze',
+  ],
+  [
+    'creator taste eval blocks inconsistent interpretations',
+    tasteEvaluation.cases[0].assertions.some((assertion) =>
+      assertion.includes('block creative evaluation'),
+    ),
+  ],
+];
+
 const songChecks = [
   ['song-conditioned input schema compiles (aggregate replay envelope excluded)', songInputValid],
   ['song choreography analysis matches the canonical artifact schema', songAnalysisValid],
@@ -292,7 +318,13 @@ const songChecks = [
   ],
 ];
 
-const checks = [...tutorialChecks, ...authorizedChecks, ...groundingChecks, ...songChecks];
+const checks = [
+  ...tutorialChecks,
+  ...authorizedChecks,
+  ...groundingChecks,
+  ...tasteChecks,
+  ...songChecks,
+];
 
 for (const [label, passed] of checks) console.log(`${passed ? 'PASS' : 'FAIL'}: ${label}`);
 if (checks.some(([, passed]) => !passed)) {
@@ -301,6 +333,7 @@ if (checks.some(([, passed]) => !passed)) {
   if (!authorizedOutputValid) console.error(authorizedOutputValidator.errors);
   if (!groundingInputValid) console.error(groundingInputValidator.errors);
   if (!groundingReplayValid) console.error(groundingResultValidator.errors);
+  if (!tasteInputValid) console.error(tasteInputValidator.errors);
   if (!songInputValid) console.error(songInputValidator.errors);
   if (!songAnalysisValid) console.error(songAnalysisValidator.errors);
   if (!songPlanValid) console.error(songPlanValidator.errors);

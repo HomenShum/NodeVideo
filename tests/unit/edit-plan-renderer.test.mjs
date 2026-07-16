@@ -4,6 +4,8 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   EDIT_PLAN_RENDERER_VERSION,
+  FIXED_GRADE_PRESETS,
+  FIXED_TEXT_TEMPLATES,
   RENDERER_FONT,
   compileEditPlan,
   validateEditPlan,
@@ -235,6 +237,12 @@ describe('plan-driven deterministic renderer', () => {
       renderedAudioClipCount: 2,
       silenceEventCount: 2,
       targetDerivedRenderAssetIds: ['asset.music-1'],
+      overlayTemplates: ['graphic.watermark', 'text.cue', 'text.end-card'],
+      gradeKinds: ['none'],
+      framePolicy: {
+        freezeHolds: 'exact-frame-count',
+        oneFrameBlackGaps: 'rejected',
+      },
     });
     expect(compiled.manifest.rendererAssets).toEqual([
       {
@@ -256,7 +264,8 @@ describe('plan-driven deterministic renderer', () => {
     expect(compiled.filterComplex).toContain("enable='between(n,5,19)'");
     expect(compiled.filterComplex).toContain('overlay=x=');
     expect(compiled.filterComplex).toContain("enable='between(t,");
-    expect(compiled.filterComplex).toContain('tpad=stop_mode=clone:stop_duration=3');
+    expect(compiled.filterComplex).toContain('tpad=stop_mode=clone:stop=29');
+    expect(compiled.filterComplex).toContain('tpad=stop_mode=clone:stop=89');
     expect(compiled.filterComplex).toContain('fontcolor=0x383838');
     expect(compiled.filterComplex).toContain('atrim=start=0:end=2');
     expect(compiled.filterComplex).not.toContain('atrim=start=29.146');
@@ -357,6 +366,114 @@ describe('plan-driven deterministic renderer', () => {
     const cube = compiled.filterComplex.indexOf('lut3d=file=');
     expect(toneMap).toBeGreaterThan(-1);
     expect(cube).toBeGreaterThan(toneMap);
+    expect(compiled.manifest.usedAssetIds).toContain('asset.grade-1');
+
+    const missingGradeBinding = Object.fromEntries(
+      Object.entries(paths).filter(([assetId]) => assetId !== 'asset.grade-1'),
+    );
+    expect(() => compileEditPlan(plan, missingGradeBinding)).toThrow(
+      /missing path binding for asset.grade-1/u,
+    );
+  });
+
+  it('offers fixed creator grade presets without an external LUT artifact', () => {
+    const plan = basePlan();
+    plan.tracks[0].clips[0].grade = {
+      kind: 'hlg-bt2020-to-sdr-bt709-creator-dark-warm',
+    };
+    plan.tracks[0].clips[1].grade = {
+      kind: 'hlg-bt2020-to-sdr-bt709-creator-vibrant',
+    };
+
+    const compiled = compileEditPlan(plan, paths);
+
+    expect(Object.keys(FIXED_GRADE_PRESETS)).toContain('hlg-bt2020-to-sdr-bt709-creator-dark-warm');
+    expect(compiled.filterComplex).toContain(
+      'eq=brightness=-0.18:contrast=1.08:saturation=1.6:gamma=0.88',
+    );
+    expect(compiled.filterComplex).toContain(
+      'colorbalance=rs=0.025:gs=-0.01:bs=-0.035:rm=0.012:bm=-0.018',
+    );
+    expect(compiled.filterComplex).toContain(
+      'eq=brightness=-0.035:contrast=1.08:saturation=1.38:gamma=0.97',
+    );
+    expect(compiled.manifest.gradeKinds).toEqual([
+      'hlg-bt2020-to-sdr-bt709-creator-dark-warm',
+      'hlg-bt2020-to-sdr-bt709-creator-vibrant',
+    ]);
+  });
+
+  it('compiles reusable creator title, commentary, watermark, CTA, and end-card text', () => {
+    const plan = basePlan();
+    plan.tracks[3].clips = [
+      {
+        id: 'overlay.creator-title',
+        kind: 'text',
+        timelineRange: range(0, 20),
+        text: 'Sign\nSolo practice',
+        templateId: 'text.creator-title',
+        box: { x: 0.1, y: 0.08, width: 0.8, height: 0.12 },
+        animation: 'fade',
+      },
+      {
+        id: 'overlay.creator-commentary',
+        kind: 'text',
+        timelineRange: range(20, 40),
+        text: 'Sharp + clean',
+        templateId: 'text.creator-commentary',
+        box: { x: 0.08, y: 0.72, width: 0.4, height: 0.08 },
+        animation: 'pop',
+      },
+      {
+        id: 'overlay.creator-watermark',
+        kind: 'text',
+        timelineRange: range(0, 90),
+        text: '@SHUMHOMEN',
+        templateId: 'text.creator-watermark',
+        box: { x: 0.05, y: 0.04, width: 0.4, height: 0.06 },
+        animation: 'none',
+      },
+      {
+        id: 'overlay.creator-cta',
+        kind: 'text',
+        timelineRange: range(60, 75),
+        text: 'Thanks for watching!',
+        templateId: 'text.creator-cta',
+        box: { x: 0.15, y: 0.36, width: 0.7, height: 0.1 },
+        animation: 'slide-up',
+      },
+      {
+        id: 'overlay.creator-end-card',
+        kind: 'text',
+        timelineRange: range(75, 90),
+        text: 'Follow @SHUMHOMEN',
+        templateId: 'text.creator-end-card',
+        box: { x: 0.12, y: 0.47, width: 0.76, height: 0.1 },
+        animation: 'fade',
+      },
+    ];
+
+    const compiled = compileEditPlan(plan, paths);
+
+    expect(Object.keys(FIXED_TEXT_TEMPLATES)).toEqual(
+      expect.arrayContaining([
+        'text.creator-title',
+        'text.creator-commentary',
+        'text.creator-watermark',
+        'text.creator-cta',
+        'text.creator-end-card',
+      ]),
+    );
+    expect(compiled.auxiliaryFiles).toHaveLength(5);
+    expect(compiled.filterComplex).toContain("x='36':");
+    expect(compiled.filterComplex).toContain("alpha='0.84'");
+    expect(compiled.manifest.overlayTemplates).toEqual([
+      'text.creator-commentary',
+      'text.creator-cta',
+      'text.creator-end-card',
+      'text.creator-title',
+      'text.creator-watermark',
+    ]);
   });
 
   it('fails closed on a primary video gap', () => {
@@ -364,6 +481,25 @@ describe('plan-driven deterministic renderer', () => {
     plan.tracks[0].clips[1].timelineRange.startFrame = 31;
 
     expect(() => validateEditPlan(plan, paths)).toThrow(/contiguous|start at frame 30/u);
+  });
+
+  it('rejects a one-frame black gap while retaining intentional black segments', () => {
+    const accidentalGap = basePlan();
+    accidentalGap.tracks[0].clips[1].timelineRange.endFrameExclusive = 59;
+    accidentalGap.tracks[0].clips[2].timelineRange = range(59, 60);
+    accidentalGap.tracks[0].clips.push({
+      kind: 'freeze',
+      id: 'video.final-hold',
+      assetId: 'asset.source-1',
+      timelineRange: range(60, 90),
+      sourceFrame: 129,
+      fit: 'fill',
+      cropKeyframes: [],
+      grade: { kind: 'none' },
+    });
+
+    expect(() => validateEditPlan(accidentalGap, paths)).toThrow(/one-frame black gap/u);
+    expect(() => validateEditPlan(basePlan(), paths)).not.toThrow();
   });
 
   it('rejects plan-authored FFmpeg fragments and unknown overlay templates', () => {
@@ -386,5 +522,23 @@ describe('plan-driven deterministic renderer', () => {
     plan.tracks[0].clips[0].assetId = 'asset.reference-target';
 
     expect(() => validateEditPlan(plan, paths)).toThrow(/evaluation-only|not a render asset/u);
+  });
+
+  it('discloses target-informed decision artifacts without binding them as render inputs', () => {
+    const plan = basePlan();
+    plan.lineage.decisionArtifactIds = ['asset.reference-target'];
+    plan.lineage.calibration = {
+      targetAccess: 'authorized-profile-learning',
+      targetArtifactIds: ['asset.reference-target'],
+      disclosure: 'Owner-authorized style learning; this is not a blind generation.',
+    };
+
+    const compiled = compileEditPlan(plan, paths);
+
+    expect(compiled.manifest.decisionArtifactIds).toEqual(['asset.reference-target']);
+    expect(compiled.manifest.calibration).toEqual(plan.lineage.calibration);
+    expect(compiled.boundAssets.some((asset) => asset.assetId === 'asset.reference-target')).toBe(
+      false,
+    );
   });
 });

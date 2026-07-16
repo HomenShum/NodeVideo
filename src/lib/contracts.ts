@@ -10,12 +10,17 @@ export const NODE_VIDEO_CHECKPOINT_VERSION = 1 as const;
 export const NODE_VIDEO_STAGE_KINDS = [
   'ingest',
   'normalize',
+  'profile',
   'audio',
   'pose',
+  'grounding',
   'alignment',
   'diffs',
+  'planning',
+  'editorial',
   'render',
   'summary',
+  'evaluation',
   'review',
 ] as const;
 

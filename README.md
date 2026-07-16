@@ -1,10 +1,12 @@
 # NodeVideo
 
-NodeVideo is a local-first, artifact-driven editor for repeated dance takes. Its primary workflow is:
+NodeVideo is a local-first, artifact-driven editor for short-form creator productions. Dance is the
+first deeply instrumented profile, while the creator-taste and audit contracts also cover tutorials,
+talking-head videos, comedy, montage, and other formats. Its primary workflow is:
 
-> original choreography reference + creator takes + chosen song segment + optional timed lyrics
-> -> source-only interpretation -> best take per phrase -> body-safe text -> typed plan -> fixed
-> render -> freeze -> evaluator-only comparison
+> authorized prior productions -> reusable creator profile -> new source/reference media + brief
+> -> source-only interpretation -> global edit and editorial plan -> fixed render -> freeze
+> -> evaluator-only conjunctive fidelity gates
 
 ![NodeVideo durable source-only pipeline](fixtures/proof/nodevideo-live-pipeline.gif)
 
@@ -20,7 +22,7 @@ render code.
 deployed, it presents the song-conditioned replay on laptop and phone with no sign-in. Vercel serves
 hash-bound replay artifacts; heavy media analysis and rendering remain local or in a media worker.
 
-The [animated 16-stage pipeline](https://nodevideo-pi.vercel.app/proof/nodevideo-live-pipeline.gif)
+The [animated 19-stage pipeline](https://nodevideo-pi.vercel.app/proof/nodevideo-live-pipeline.gif)
 and [live LocateAnything comparison](https://nodevideo-pi.vercel.app/proof/locateanything-side-by-side.jpg)
 are also served by the production deployment.
 
@@ -45,6 +47,39 @@ The branch also publishes the supplied real-media case as a silent picture-only 
 [44.5-second plan route](https://nodevideo-pi.vercel.app/media/song-conditioned-real-calibration-v1/picture-only-preview.mp4)
 and [score-manifest route](https://nodevideo-pi.vercel.app/media/song-conditioned-real-calibration-v1/manifest.json).
 No commercial soundtrack or source container is included in that new public preview.
+
+## Reusable creator profile and production audit
+
+`nodevideo.creator-taste-audit` converts authorized production evidence into a versioned
+`CreatorTasteProfile`. Each learned value retains supporting production counts, confidence, and
+evidence references across editorial attention, creator voice, spatial grammar, visual treatment,
+identity, CTA, and end-card behavior. One-production profiles are explicitly provisional.
+
+The same pack audits candidate productions and validates the evaluator's target interpretation.
+If the claimed spec cannot explain visible OCR roles, persistent branding, layout zones, grade, or
+delivery, creative scoring is invalid. Once that prerequisite passes, provenance, structure,
+semantic overlays, layout, visual treatment, creator identity, and delivery are conjunctive gates:
+every required gate must pass. `NodeAgent` proposes profile/audit candidates; NodeVideo retains
+schema, hash, project-boundary, persistence, and owner-review authority.
+
+```powershell
+npm run taste:audit -- `
+  --input .qa/evidence/private/style-gap-audit/style-gap-report.json `
+  --out .qa/evidence/private/creator-taste/run.json `
+  --profile-id creator-taste.owner-v1 `
+  --content-kind dance `
+  --derive-target-spec
+```
+
+`--derive-target-spec` is for an owner-authorized reference-learning run. Omit it when auditing an
+existing interpretation so the consistency gate can expose missing semantics instead of silently
+repairing them.
+
+For each production, `npm run production:audit` produces content-neutral frame, OCR, edit-plan, and
+seven-gate evidence. `--reuse-observations-from` makes evaluator changes cheap to replay while
+preserving the original observations and disclosure. This is how the same NodeAgent workflow can
+evaluate dance, tutorials, talking-head clips, comedy, and montage work without introducing a new
+custom renderer or scoring script for each format.
 
 ## How the edit is interpreted
 

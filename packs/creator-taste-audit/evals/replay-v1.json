@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "nodevideo.creator-taste-eval.v1",
+  "status": "contract-defined-unit-executed",
+  "cases": [
+    {
+      "id": "content-neutral-single-production",
+      "input": {
+        "schemaVersion": "nodevideo.creator-taste-request.v1",
+        "requestId": "request.creator-taste.one",
+        "projectId": "project.nodevideo",
+        "mode": "learn",
+        "contentKind": "other",
+        "productionAuditArtifactIds": ["artifact.production-audit.one"]
+      },
+      "assertions": [
+        "profile values retain evidence references and support counts",
+        "one production produces a provisional caution",
+        "inconsistent target specifications block creative evaluation"
+      ]
+    }
+  ]
+}

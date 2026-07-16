@@ -5,7 +5,7 @@ import { REPO_ROOT, requireFile, runText, sha256File } from '../media/media-proo
 
 /** @typedef {import('../../src/lib/edit-contracts.ts').EditPlan} EditPlan */
 
-export const EDIT_PLAN_RENDERER_VERSION = 'nodevideo.edit-plan-renderer@0.1.0';
+export const EDIT_PLAN_RENDERER_VERSION = 'nodevideo.edit-plan-renderer@0.2.0';
 export const SUPPORTED_EDIT_PLAN_SCHEMA = 'nodevideo.edit-plan.v1';
 export const RENDERER_FONT = Object.freeze({
   id: 'font.geist-variable-latin',
@@ -60,11 +60,85 @@ export const FIXED_TEXT_TEMPLATES = Object.freeze({
     shadowX: 1,
     shadowY: 2,
   }),
+  'text.creator-commentary': Object.freeze({
+    fontScale: 0.62,
+    minFontSize: 18,
+    maxFontSize: 70,
+    color: 'white',
+    borderColor: 'black@0.94',
+    borderWidth: 3,
+    shadowColor: 'black@0.55',
+    shadowX: 1,
+    shadowY: 2,
+  }),
+  'text.creator-title': Object.freeze({
+    fontScale: 0.54,
+    minFontSize: 22,
+    maxFontSize: 74,
+    color: 'white',
+    borderColor: 'black@0.92',
+    borderWidth: 3,
+    shadowColor: 'black@0.6',
+    shadowX: 1,
+    shadowY: 2,
+  }),
+  'text.creator-watermark': Object.freeze({
+    fontScale: 0.48,
+    minFontSize: 14,
+    maxFontSize: 42,
+    color: 'white',
+    borderColor: 'black@0.7',
+    borderWidth: 2,
+    shadowColor: 'black@0.35',
+    shadowX: 1,
+    shadowY: 1,
+    opacity: 0.84,
+    horizontalAlign: 'left',
+  }),
+  'text.creator-cta': Object.freeze({
+    fontScale: 0.6,
+    minFontSize: 20,
+    maxFontSize: 70,
+    color: 'white',
+    borderColor: 'black@0.92',
+    borderWidth: 3,
+    shadowColor: 'black@0.55',
+    shadowX: 1,
+    shadowY: 2,
+  }),
+  'text.creator-end-card': Object.freeze({
+    fontScale: 0.5,
+    minFontSize: 18,
+    maxFontSize: 58,
+    color: 'white',
+    borderColor: 'black@0.88',
+    borderWidth: 3,
+    shadowColor: 'black@0.5',
+    shadowX: 1,
+    shadowY: 2,
+  }),
 });
 
 export const FIXED_GRAPHIC_TEMPLATES = Object.freeze(
-  new Set(['graphic.default', 'graphic.watermark', 'graphic.end-card']),
+  new Set([
+    'graphic.default',
+    'graphic.watermark',
+    'graphic.end-card',
+    'graphic.creator-watermark',
+    'graphic.creator-end-card',
+  ]),
 );
+
+export const FIXED_GRADE_PRESETS = Object.freeze({
+  'hlg-bt2020-to-sdr-bt709-hable': Object.freeze([]),
+  'hlg-bt2020-to-sdr-bt709-creator-vibrant': Object.freeze([
+    'eq=brightness=-0.035:contrast=1.08:saturation=1.38:gamma=0.97',
+  ]),
+  'hlg-bt2020-to-sdr-bt709-creator-dark-warm': Object.freeze([
+    'eq=brightness=-0.18:contrast=1.08:saturation=1.6:gamma=0.88',
+    'colorbalance=rs=0.025:gs=-0.01:bs=-0.035:rm=0.012:bm=-0.018',
+  ]),
+});
 
 const VIDEO_ENCODER_ARGS = Object.freeze([
   '-c:v',
@@ -425,6 +499,22 @@ export function compileEditPlan(input, bindingsInput, options = {}) {
       audioClipCount: declaredAudioClips.length,
       renderedAudioClipCount: audioNumber - silenceEvents.length,
       silenceEventCount: silenceEvents.length,
+      overlayTemplates: [
+        ...new Set(
+          plan.tracks
+            .filter((track) => track.kind === 'overlay')
+            .flatMap((track) => track.clips.map((clip) => clip.templateId)),
+        ),
+      ].sort(),
+      gradeKinds: [
+        ...new Set(
+          primary.clips.filter((clip) => clip.kind !== 'black').map((clip) => clip.grade.kind),
+        ),
+      ].sort(),
+      framePolicy: {
+        freezeHolds: 'exact-frame-count',
+        oneFrameBlackGaps: 'rejected',
+      },
       audioDelivery: hasAudio
         ? {
             limiter: 'ffmpeg-alimiter',
@@ -434,6 +524,8 @@ export function compileEditPlan(input, bindingsInput, options = {}) {
         : null,
       usedAssetIds: boundAssets.map((record) => record.assetId).sort(),
       targetDerivedRenderAssetIds: [...plan.lineage.targetDerivedRenderAssetIds],
+      decisionArtifactIds: [...(plan.lineage.decisionArtifactIds ?? [])],
+      calibration: plan.lineage.calibration ? structuredClone(plan.lineage.calibration) : null,
       rendererAssets: [
         {
           id: RENDERER_FONT.id,
@@ -487,7 +579,14 @@ export async function readEditPlanInputs(planPath, bindingsPath) {
 }
 
 function validateRendererVideoClip(clip, path, issues) {
-  if (clip.kind === 'black') return;
+  if (clip.kind === 'black') {
+    if (frameCount(clip.timelineRange) === 1) {
+      issues.push(
+        `${path} is a one-frame black gap; use a source/freeze hold or an intentional black clip of at least 2 frames`,
+      );
+    }
+    return;
+  }
   if (clip.kind === 'source') {
     if (clip.playbackRate < 0.125 || clip.playbackRate > 8) {
       issues.push(`${path}.playbackRate must be between 0.125 and 8`);
@@ -506,6 +605,8 @@ function validateRendererVideoClip(clip, path, issues) {
     'cube-lut',
     'hlg-bt2020-to-sdr-bt709-hable',
     'hlg-bt2020-to-sdr-bt709-hable-cube-lut',
+    'hlg-bt2020-to-sdr-bt709-creator-vibrant',
+    'hlg-bt2020-to-sdr-bt709-creator-dark-warm',
   ]);
   if (!supportedGrades.has(clip.grade.kind)) {
     issues.push(`${path}.grade.kind is not a fixed renderer v1 color primitive`);
@@ -588,7 +689,7 @@ function freezeFilter(index, clip, durationFrames, plan, bindings) {
   return (
     `[${index}:v:0]trim=start_frame=${clip.sourceFrame}:end_frame=${clip.sourceFrame + 1}` +
     `,setpts=PTS-STARTPTS,fps=${numeric(plan.frameRate)},${processing}` +
-    `,tpad=stop_mode=clone:stop_duration=${seconds(durationFrames, plan.frameRate)}` +
+    `,tpad=stop_mode=clone:stop=${Math.max(0, durationFrames - 1)}` +
     `,trim=end_frame=${durationFrames},setpts=N/(${numeric(plan.frameRate)}*TB),format=yuv420p`
   );
 }
@@ -615,7 +716,9 @@ function gradeFilter(grade, bindings) {
   if (grade.kind === 'none') return '';
   if (
     grade.kind === 'hlg-bt2020-to-sdr-bt709-hable' ||
-    grade.kind === 'hlg-bt2020-to-sdr-bt709-hable-cube-lut'
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-hable-cube-lut' ||
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-vibrant' ||
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-dark-warm'
   ) {
     const filters = [
       'zscale=transfer=linear:npl=100',
@@ -626,6 +729,8 @@ function gradeFilter(grade, bindings) {
     ];
     if (grade.kind === 'hlg-bt2020-to-sdr-bt709-hable-cube-lut') {
       filters.push(`lut3d=file='${escapeFilterPath(bindings.get(grade.artifactId))}'`);
+    } else {
+      filters.push(...(FIXED_GRADE_PRESETS[grade.kind] ?? []));
     }
     return filters.join(',');
   }
@@ -648,13 +753,19 @@ function textOverlayFilter(clip, textPath, plan) {
   const end = clip.timelineRange.endFrameExclusive - 1;
   const duration = frameCount(clip.timelineRange);
   const animationFrames = Math.max(1, Math.min(6, Math.floor(duration / 2)));
-  const xExpression = `${xPx}+(${widthPx}-text_w)/2`;
+  const xExpression =
+    template.horizontalAlign === 'left'
+      ? `${xPx}`
+      : template.horizontalAlign === 'right'
+        ? `${xPx}+${widthPx}-text_w`
+        : `${xPx}+(${widthPx}-text_w)/2`;
   let yExpression = `${yPx}+(${heightPx}-text_h)/2`;
   let fontSizeExpression = String(fontSize);
-  let alphaExpression = '1';
+  let alphaExpression = numeric(template.opacity ?? 1);
   if (clip.animation === 'fade') {
+    const opacity = numeric(template.opacity ?? 1);
     alphaExpression =
-      `if(lt(n,${start + animationFrames}),` +
+      `${opacity}*if(lt(n,${start + animationFrames}),` +
       `(n-${start}+1)/${animationFrames},` +
       `if(gt(n,${end - animationFrames}),(${end}-n+1)/${animationFrames},1))`;
   } else if (clip.animation === 'pop') {
@@ -665,15 +776,18 @@ function textOverlayFilter(clip, textPath, plan) {
       `${yPx}+(${heightPx}-text_h)/2+` +
       `if(lt(n,${start + animationFrames}),${offset}*(1-(n-${start})/${animationFrames}),0)`;
   }
-  return (
-    `drawtext=textfile='${escapeFilterPath(textPath)}':expansion=none:` +
-    `fontfile='${escapeFilterPath(RENDERER_FONT.path)}':fontsize='${fontSizeExpression}':` +
-    `fontcolor=${template.color}:bordercolor=${template.borderColor}:` +
-    `borderw=${template.borderWidth}:shadowcolor=${template.shadowColor}:` +
-    `shadowx=${template.shadowX}:shadowy=${template.shadowY}:` +
-    `x='${xExpression}':y='${yExpression}':alpha='${alphaExpression}':` +
-    `fix_bounds=1:enable='between(n,${start},${end})'`
-  );
+  return [
+    `drawtext=textfile='${escapeFilterPath(textPath)}':expansion=none:`,
+    `fontfile='${escapeFilterPath(RENDERER_FONT.path)}':fontsize='${fontSizeExpression}':`,
+    `fontcolor=${template.color}:bordercolor=${template.borderColor}:`,
+    `borderw=${template.borderWidth}:shadowcolor=${template.shadowColor}:`,
+    `shadowx=${template.shadowX}:shadowy=${template.shadowY}:`,
+    template.boxColor
+      ? `box=1:boxcolor=${template.boxColor}:boxborderw=${template.boxBorderWidth}:`
+      : '',
+    `x='${xExpression}':y='${yExpression}':alpha='${alphaExpression}':`,
+    `fix_bounds=1:enable='between(n,${start},${end})'`,
+  ].join('');
 }
 
 function graphicInputFilter(index, clip, outputLabel, plan) {
@@ -688,7 +802,7 @@ function graphicInputFilter(index, clip, outputLabel, plan) {
   const filters = [
     `[${index}:v:0]fps=${numeric(plan.frameRate)}`,
     'format=rgba',
-    `tpad=stop_mode=clone:stop_duration=${seconds(durationFrames, plan.frameRate)}`,
+    `tpad=stop_mode=clone:stop=${Math.max(0, durationFrames - 1)}`,
     `trim=end_frame=${durationFrames}`,
     `setpts=N/(${numeric(plan.frameRate)}*TB)`,
     scale,
@@ -793,7 +907,7 @@ function referencedAssetIds(plan) {
     for (const clip of track.clips) {
       if (track.kind === 'video' && clip.kind !== 'black') {
         assetIds.add(clip.assetId);
-        if (clip.grade.kind === 'cube-lut') assetIds.add(clip.grade.artifactId);
+        if (clip.grade.artifactId) assetIds.add(clip.grade.artifactId);
       } else if (track.kind === 'audio') {
         assetIds.add(clip.assetId);
       } else if (track.kind === 'overlay' && clip.kind === 'graphic') {
