@@ -12,6 +12,12 @@ import {
   validateCreativeFidelityReport,
 } from './creator-taste-evaluator';
 import {
+  type CreatorIntentProfile,
+  type ProductionDecisionLedger,
+  validateCreatorIntentProfile,
+  validateProductionDecisionLedger,
+} from './production-decision-contracts';
+import {
   type CandidateAdmission,
   type NodeWorkflowRequest,
   type NodeWorkflowResult,
@@ -24,6 +30,14 @@ export interface CreatorTasteWorkflowCandidate {
   profile: CreatorTasteProfile;
   audits: ProductionAudit[];
   consistencyReports: TargetSpecConsistencyReport[];
+  evaluationReady: boolean;
+}
+
+export interface ProductionDecisionWorkflowCandidate {
+  kind: 'production-decision-audit';
+  projectId: string;
+  ledger: ProductionDecisionLedger;
+  creatorIntentProfile: CreatorIntentProfile | null;
   evaluationReady: boolean;
 }
 
@@ -155,6 +169,70 @@ export function inspectCreativeFidelityWorkflowCandidate(args: {
     },
     now: args.now,
   });
+}
+
+/** Admit evidence-bound intentional-production analysis without granting media write authority. */
+export function inspectProductionDecisionWorkflowCandidate(args: {
+  request: NodeWorkflowRequest;
+  result: NodeWorkflowResult<ProductionDecisionWorkflowCandidate>;
+  expectedAppCommit: string;
+  expectedProjectId: string;
+  expectedProductionAuditId: string;
+  digestCandidate: (candidate: ProductionDecisionWorkflowCandidate) => string | Promise<string>;
+  now?: () => Date;
+}): Promise<CandidateAdmission<ProductionDecisionWorkflowCandidate>> {
+  return inspectNodeWorkflowCandidate({
+    request: args.request,
+    result: args.result,
+    expectedApp: 'nodevideo',
+    expectedAppCommit: args.expectedAppCommit,
+    digestCandidate: args.digestCandidate,
+    validateCandidate: (candidate) =>
+      validateProductionDecisionWorkflowCandidate(
+        candidate,
+        args.expectedProjectId,
+        args.expectedProductionAuditId,
+      ),
+    now: args.now,
+  });
+}
+
+export function validateProductionDecisionWorkflowCandidate(
+  candidate: ProductionDecisionWorkflowCandidate,
+  expectedProjectId: string,
+  expectedProductionAuditId: string,
+): string[] {
+  const issues: string[] = [];
+  if (candidate?.kind !== 'production-decision-audit') {
+    return ['Production decision candidate has an unsupported kind.'];
+  }
+  if (candidate.projectId !== expectedProjectId) {
+    issues.push('Production decision candidate crossed the expected project boundary.');
+  }
+  try {
+    validateProductionDecisionLedger(candidate.ledger);
+  } catch (error) {
+    issues.push(`Production decision ledger is invalid: ${message(error)}`);
+    return issues;
+  }
+  if (candidate.ledger.productionAuditId !== expectedProductionAuditId) {
+    issues.push('Production decision ledger crossed the production-audit boundary.');
+  }
+  if (candidate.creatorIntentProfile !== null) {
+    try {
+      validateCreatorIntentProfile(candidate.creatorIntentProfile);
+    } catch (error) {
+      issues.push(`Creator intent profile is invalid: ${message(error)}`);
+    }
+    if (!candidate.creatorIntentProfile.sourceLedgerIds.includes(candidate.ledger.id)) {
+      issues.push('Creator intent profile does not cite the admitted decision ledger.');
+    }
+  }
+  const computedReady = candidate.ledger.overallStatus === 'pass';
+  if (candidate.evaluationReady !== computedReady) {
+    issues.push('evaluationReady does not match the intentional-production ledger status.');
+  }
+  return [...new Set(issues)];
 }
 
 function message(error: unknown): string {

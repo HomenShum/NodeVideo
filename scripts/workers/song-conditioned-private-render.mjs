@@ -248,6 +248,7 @@ function buildPlan({
       (item) =>
         cue.startSeconds >= item.timelineStartSeconds && cue.startSeconds < item.timelineEndSeconds,
     );
+    const attention = analysis.attentionChoreography?.find((item) => item.cueId === cue.id);
     return {
       id: `overlay.lyric-${index + 1}`,
       timelineRange: {
@@ -257,7 +258,8 @@ function buildPlan({
       kind: 'text',
       text: cue.text,
       templateId: 'text.cue',
-      box: phrase?.captionSafeZone ?? { x: 0.1, y: 0.04, width: 0.8, height: 0.075 },
+      box: attention?.box ??
+        phrase?.captionSafeZone ?? { x: 0.1, y: 0.04, width: 0.8, height: 0.075 },
       animation: 'pop',
     };
   });

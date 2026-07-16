@@ -121,6 +121,7 @@
         "every cue must reference an existing protected lyric segment, phrase, and grounding result",
         "face overlap must be zero, body-overlap p95 at most 0.02, and maximum body overlap at most 0.05",
         "non-valid grounding requires explicit manual placement before completion",
+        "attention intent records target, eye travel, motion relationship, novelty, saliency competition, and evidence without claiming an unconfirmed creator rule",
         "protected lyric strings must not appear in traces or public receipts"
       ]
     },
@@ -231,9 +232,9 @@
       "id": "captions.layout",
       "stage": "laying-out-captions",
       "implementation": {
-        "version": "body-aware-caption-layout-contract@1.0.0",
-        "status": "deterministic-replay-validated",
-        "scope": "Align protected lyric segments and place normalized caption boxes outside grounded body, face, hand, and platform-control regions."
+        "version": "pose-attention-caption-layout@0.1.0",
+        "status": "owner-case-private-executed",
+        "scope": "Align protected lyric segments and score reusable safe-area boxes for body clearance, active-wrist affinity, spatial novelty, eye travel, and saliency competition."
       },
       "dependsOn": ["song.map", "grounding.locate", "choreography.align-takes"],
       "accepts": [
@@ -241,7 +242,7 @@
         "grounding/locate-result",
         "choreography_analysis"
       ],
-      "produces": ["caption_layout"]
+      "produces": ["caption_layout", "attention_choreography"]
     },
     {
       "id": "edit.optimize",

@@ -21,6 +21,7 @@
     "choreography_analysis",
     "take_candidate_matrix",
     "caption_layout",
+    "attention_choreography",
     "edit_plan",
     "rendered_edit",
     "generation_read_log",
@@ -51,6 +52,7 @@
     "ChoreographyPhraseMap",
     "TakeCandidateMatrix",
     "CaptionLayoutOverlay",
+    "AttentionChoreographyTimeline",
     "FrozenEditReview"
   ],
   "evalSuite": "evals/replay-v1.json",

@@ -94,6 +94,29 @@ content-neutral: editorial attention, creator voice, role-aware spatial grammar,
 visual treatment, and distribution identity. Support counts, confidence, and
 cautions prevent a single production from being presented as a universal rule.
 
+### Intentional production decisions
+
+The production-decision workflow prevents pixel similarity from being presented as creator-taste understanding. It records ten independently gated dimensions and keeps observation, intent hypothesis, and learned creator rule separate.
+
+```powershell
+node scripts/analysis/audio-production-audit.mjs `
+  --candidate candidate.mp4 --reference authorized-reference.mp4 `
+  --out audio-audit.json
+
+node scripts/analysis/production-decision-auditor.mjs `
+  --style-audit style-audit.json --edit-plan edit-plan.json `
+  --renderer-manifest renderer-manifest.json `
+  --embodied-layout embodied-overlay-audit.json --audio-audit audio-audit.json `
+  --ledger-id ledger.production.one --production-audit-id audit.production.one `
+  --production-id production.one --out decision-ledger.json
+
+node scripts/analysis/creator-intent-profiler.mjs `
+  --input decision-ledger-one.json --input decision-ledger-two.json `
+  --profile-id creator-intent.owner --out creator-intent-profile.json
+```
+
+`song_choreography_analyzer.py` also emits cue-level `attentionChoreography`. Each proposal is scored from the selected take's pose track for performer clearance, active-wrist affinity, spatial novelty, eye travel, and saliency competition. The private renderer consumes those boxes, while the embodied post-render audit remains the final safety authority.
+
 ```powershell
 node scripts/analysis/creator-taste-profiler.mjs `
   --input .qa/evidence/private/style-gap-audit/style-gap-report.json `

@@ -1,11 +1,13 @@
 {
   "schema": "nodevideo.tool-registry.v1",
-  "pack": "nodevideo.creator-taste-audit@0.1.0",
+  "pack": "nodevideo.creator-taste-audit@0.2.0",
   "implementationStatus": "local-cli-and-nodeagent-contract-validated",
   "contracts": {
     "ProductionAudit": { "schema": "nodevideo.production-audit.v1" },
     "CreatorTasteProfile": { "schema": "nodevideo.creator-taste-profile.v1" },
     "TargetSpecConsistency": { "schema": "nodevideo.target-spec-consistency.v1" },
+    "ProductionDecisionLedger": { "schema": "nodevideo.production-decision-ledger.v1" },
+    "CreatorIntentProfile": { "schema": "nodevideo.creator-intent-profile.v1" },
     "NodeAgentCandidate": {
       "kind": "creator-taste-and-production-audit",
       "finalWriteAuthority": "application-validation-cas-review"
@@ -34,6 +36,32 @@
       "produces": ["production/editorial-priors"]
     },
     {
+      "id": "audio.production.audit",
+      "stage": "interpreting-production",
+      "dependsOn": [],
+      "accepts": ["production/candidate-audio", "production/authorized-reference-audio"],
+      "produces": ["production/audio-audit"]
+    },
+    {
+      "id": "production-decisions.audit",
+      "stage": "interpreting-production",
+      "dependsOn": ["production.audit", "embodied-overlay.audit", "audio.production.audit"],
+      "accepts": [
+        "production/edit-plan",
+        "production/style-audit",
+        "production/pose-tracks",
+        "production/audio-audit"
+      ],
+      "produces": ["production/decision-ledger"]
+    },
+    {
+      "id": "creator-intent.learn",
+      "stage": "learning-creator-profile",
+      "dependsOn": ["production-decisions.audit"],
+      "accepts": ["production/owner-confirmed-decision-ledgers"],
+      "produces": ["creator/intent-profile"]
+    },
+    {
       "id": "target-spec.validate",
       "stage": "validating-interpretation",
       "dependsOn": ["production.audit"],
@@ -43,8 +71,12 @@
     {
       "id": "creative-fidelity.evaluate",
       "stage": "evaluating-fidelity",
-      "dependsOn": ["target-spec.validate", "creator-profile.apply"],
-      "accepts": ["production/frozen-candidate", "production/valid-target-spec"],
+      "dependsOn": ["target-spec.validate", "creator-profile.apply", "production-decisions.audit"],
+      "accepts": [
+        "production/frozen-candidate",
+        "production/valid-target-spec",
+        "production/decision-ledger"
+      ],
       "produces": ["production/conjunctive-fidelity-verdict"]
     },
     {
@@ -81,9 +113,18 @@
       ]
     },
     {
+      "id": "production-decisions.completeness.validate",
+      "rules": [
+        "attention, rhythm, composition, typography, performance, color, audio, identity, narrative, and platform are scored independently",
+        "observations never become intent facts without owner confirmation",
+        "a reusable creator rule requires matching owner-confirmed intent across at least two productions",
+        "missing or provisional intentional dimensions block a strict creative-fidelity pass"
+      ]
+    },
+    {
       "id": "creative-fidelity.conjunction.validate",
       "rules": [
-        "provenance, structure, semantics, layout, visual treatment, creator identity, and delivery pass independently",
+        "provenance, structure, semantics, layout, visual treatment, creator identity, delivery, and intentional production pass independently",
         "the overall verdict passes only when every required gate passes",
         "hidden targets stay unavailable until the candidate and profile bindings are frozen"
       ]

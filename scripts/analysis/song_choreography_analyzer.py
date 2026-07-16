@@ -27,7 +27,7 @@ from choreography_sequence_optimizer import CandidateMoment, optimize_sequence
 
 
 SCHEMA_VERSION = "nodevideo.song-choreography-analysis.v1"
-ANALYZER_VERSION = "nodevideo.song-choreography-analyzer@0.2.0"
+ANALYZER_VERSION = "nodevideo.song-choreography-analyzer@0.3.0"
 CORE_JOINTS = np.asarray([0, 11, 12, 13, 14, 15, 16, 23, 24, 25, 26, 27, 28])
 
 
@@ -198,6 +198,12 @@ def main() -> None:
         boundary_moments=sequence.boundaries,
         interval_cache=interval_cache,
     )
+    attention_choreography = plan_attention_choreography(
+        lyrics=lyrics,
+        phrases=phrases,
+        takes=takes,
+        offsets=offsets,
+    )
     warnings = []
     is_fallback_reference = (
         args.reference_asset_id in take_bindings
@@ -274,6 +280,7 @@ def main() -> None:
         ),
         "phrases": phrases,
         "lyricCues": lyrics,
+        "attentionChoreography": attention_choreography,
         "generationIsolation": {
             "finishedEditAcceptedAsInput": False,
             "finishedEditPictureRead": False,
@@ -429,8 +436,18 @@ def build_candidate_moments(
                 )
 
     pose = interpolate_pose(reference, reference_start + timeline)
-    wrist_center = np.nanmean(pose[:, [15, 16]], axis=1)
-    direction = np.diff(wrist_center[:, 0])
+    wrist_x = pose[:, [15, 16], 0]
+    valid_wrist_count = np.sum(np.isfinite(wrist_x), axis=1)
+    wrist_center_x = np.divide(
+        np.nansum(wrist_x, axis=1),
+        valid_wrist_count,
+        out=np.full(len(wrist_x), np.nan),
+        where=valid_wrist_count > 0,
+    )
+    finite_wrist = np.flatnonzero(np.isfinite(wrist_center_x))
+    if len(finite_wrist) >= 2:
+        wrist_center_x = np.interp(np.arange(len(wrist_center_x)), finite_wrist, wrist_center_x[finite_wrist])
+    direction = np.diff(wrist_center_x)
     for index in range(1, len(direction)):
         if abs(direction[index] - direction[index - 1]) > 0.04 and (
             direction[index] * direction[index - 1] < 0
@@ -823,11 +840,142 @@ def caption_safe_zone(box: dict[str, float]) -> dict[str, float]:
     return {"x": 0.1, "y": round_number(y), "width": 0.8, "height": 0.075}
 
 
+def plan_attention_choreography(
+    *,
+    lyrics: list[dict[str, Any]],
+    phrases: list[dict[str, Any]],
+    takes: dict[str, PoseTrack],
+    offsets: dict[str, float],
+) -> list[dict[str, Any]]:
+    """Place lyric cues as attention events using selected-take pose evidence.
+
+    Candidate boxes are reusable safe-area primitives. The scorer rewards performer clearance,
+    proximity to the active wrist without covering it, and spatial novelty from the previous cue.
+    The result is a proposal with explicit intent evidence, not a silently inferred creator rule.
+    """
+
+    candidates = [
+        {"x": 0.04, "y": 0.08, "width": 0.42, "height": 0.075},
+        {"x": 0.54, "y": 0.08, "width": 0.42, "height": 0.075},
+        {"x": 0.04, "y": 0.42, "width": 0.42, "height": 0.075},
+        {"x": 0.54, "y": 0.42, "width": 0.42, "height": 0.075},
+        {"x": 0.04, "y": 0.82, "width": 0.42, "height": 0.075},
+        {"x": 0.54, "y": 0.82, "width": 0.42, "height": 0.075},
+    ]
+    result: list[dict[str, Any]] = []
+    previous_center: np.ndarray | None = None
+    for cue in lyrics:
+        phrase = next(
+            (
+                value
+                for value in phrases
+                if value["timelineStartSeconds"] <= cue["startSeconds"]
+                < value["timelineEndSeconds"]
+            ),
+            None,
+        )
+        if phrase is None:
+            continue
+        take_id = phrase["selectedTakeAssetId"]
+        track = takes[take_id]
+        middle = (float(cue["startSeconds"]) + float(cue["endSeconds"])) / 2
+        source_middle = offsets[take_id] + middle
+        sample_times = source_middle + np.asarray([-0.18, 0.0, 0.18])
+        raw = interpolate_raw(track, sample_times)
+        left_travel = float(np.linalg.norm(raw[-1, 15] - raw[0, 15]))
+        right_travel = float(np.linalg.norm(raw[-1, 16] - raw[0, 16]))
+        wrist_index = 15 if left_travel >= right_travel else 16
+        active_wrist = raw[1, wrist_index]
+        target = "left-hand" if wrist_index == 15 else "right-hand"
+        performer_box = body_box(raw)
+        ranked: list[tuple[float, dict[str, float], float, float]] = []
+        for box in candidates:
+            center = np.asarray([box["x"] + box["width"] / 2, box["y"] + box["height"] / 2])
+            body_overlap = normalized_box_overlap(box, performer_box)
+            wrist_distance = float(np.linalg.norm(center - active_wrist))
+            gesture_affinity = max(0.0, 1 - abs(wrist_distance - 0.24) / 0.5)
+            novelty = (
+                0.5
+                if previous_center is None
+                else min(1.0, float(np.linalg.norm(center - previous_center)) / 0.65)
+            )
+            score = 1.4 * (1 - body_overlap) + 0.44 * gesture_affinity + 0.28 * novelty
+            ranked.append((score, box, novelty, body_overlap))
+        safe_ranked = [item for item in ranked if item[3] <= 0.05]
+        _, selected_box, novelty, body_overlap = max(
+            safe_ranked or ranked,
+            key=lambda item: item[0],
+        )
+        center = np.asarray(
+            [
+                selected_box["x"] + selected_box["width"] / 2,
+                selected_box["y"] + selected_box["height"] / 2,
+            ]
+        )
+        eye_travel = attention_direction(previous_center, center)
+        result.append(
+            {
+                "cueId": cue["id"],
+                "selectedTakeAssetId": take_id,
+                "timelineRange": {
+                    "startSeconds": cue["startSeconds"],
+                    "endSeconds": cue["endSeconds"],
+                },
+                "box": {key: round_number(value) for key, value in selected_box.items()},
+                "attentionTarget": target,
+                "action": "counterpoint" if body_overlap == 0 else "follow-motion",
+                "eyeTravel": eye_travel,
+                "motionRelationship": "coincides",
+                "spatialNovelty": round_number(novelty),
+                "saliencyCompetition": round_number(body_overlap),
+                "intentHypothesis": (
+                    "Move the lyric cue near the active gesture region while preserving the full "
+                    "performer silhouette and refreshing eye position."
+                ),
+                "evidenceArtifactIds": [
+                    f"pose.{take_id}",
+                    f"phrase.{phrase['id']}",
+                    f"lyric.{cue['id']}",
+                ],
+                "requiresOwnerReview": True,
+            }
+        )
+        previous_center = center
+    return result
+
+
+def normalized_box_overlap(first: dict[str, float], second: dict[str, float]) -> float:
+    left = max(first["x"], second["x"])
+    top = max(first["y"], second["y"])
+    right = min(first["x"] + first["width"], second["x"] + second["width"])
+    bottom = min(first["y"] + first["height"], second["y"] + second["height"])
+    intersection = max(0.0, right - left) * max(0.0, bottom - top)
+    area = first["width"] * first["height"]
+    return 0.0 if area <= 0 else min(1.0, intersection / area)
+
+
+def attention_direction(previous: np.ndarray | None, current: np.ndarray) -> str:
+    if previous is None:
+        return "none"
+    delta = current - previous
+    if np.linalg.norm(delta) < 0.08:
+        return "none"
+    if abs(delta[0]) > abs(delta[1]) * 1.5:
+        return "right" if delta[0] > 0 else "left"
+    if abs(delta[1]) > abs(delta[0]) * 1.5:
+        return "down" if delta[1] > 0 else "up"
+    return "diagonal"
+
+
 def read_lyrics(path: Path | None, duration_seconds: float) -> list[dict[str, Any]]:
     if path is None:
         return []
     payload = json.loads(path.read_text(encoding="utf-8"))
-    cues = payload["cues"] if isinstance(payload, dict) else payload
+    cues = (
+        payload.get("cues", payload.get("lyricCues"))
+        if isinstance(payload, dict)
+        else payload
+    )
     if not isinstance(cues, list):
         raise ValueError("Lyrics JSON must be a cue array or an object with a cues array.")
     result = []
