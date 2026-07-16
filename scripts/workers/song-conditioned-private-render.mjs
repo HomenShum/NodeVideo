@@ -117,6 +117,7 @@ const manifest = {
     beatTemplateId: analysis.tasteTemplate.id,
     cameraAudioMuted: true,
     bodySafeLyrics: analysis.lyricCues.length,
+    bodySafeIdentityPhases: analysis.identityChoreography?.length ?? 0,
     outroTextSource: options.outroText ? 'creator-brief' : 'absent',
   },
   isolation: {
@@ -268,25 +269,23 @@ function buildPlan({
     };
   });
   if (options.creatorHandle) {
+    const identityPhases = analysis.identityChoreography ?? [];
     overlays.push(
-      {
-        id: 'overlay.creator-identity-opening',
-        timelineRange: { startFrame: 45, endFrameExclusive: 495 },
+      ...identityPhases.map((phase, index) => ({
+        id: `overlay.creator-identity-phase-${index + 1}`,
+        timelineRange: {
+          startFrame: Math.round(phase.timelineRange.startSeconds * FRAME_RATE),
+          endFrameExclusive: Math.min(
+            choreographyEndFrame,
+            Math.round(phase.timelineRange.endSeconds * FRAME_RATE),
+          ),
+        },
         kind: 'text',
         text: options.creatorHandle,
         templateId: 'text.creator-watermark',
-        box: { x: 0.72, y: 0.27, width: 0.24, height: 0.045 },
+        box: phase.box,
         animation: 'fade',
-      },
-      {
-        id: 'overlay.creator-identity-body',
-        timelineRange: { startFrame: 495, endFrameExclusive: choreographyEndFrame },
-        kind: 'text',
-        text: options.creatorHandle,
-        templateId: 'text.creator-watermark',
-        box: { x: 0.04, y: 0.58, width: 0.27, height: 0.045 },
-        animation: 'fade',
-      },
+      })),
       {
         id: 'overlay.creator-identity-end',
         timelineRange: { startFrame: 1245, endFrameExclusive: planDurationFrames },

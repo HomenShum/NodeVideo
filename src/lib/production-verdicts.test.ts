@@ -82,11 +82,19 @@ describe('production verdict separation', () => {
         targetReadDuringGeneration: false,
         freezeFileCount: 4,
         allGenerationAssertionsPassed: true,
+        embodiedOverlayAuditArtifactId: 'artifact.body-safe-overlays',
+        embodiedOverlayAuditStatus: 'pass',
+        embodiedOverlayAuditScore: 1,
       },
     });
     expect(result.editFidelity.status).toBe('pass');
     expect(result.blindAutonomy.status).toBe('pass');
     expect(result.blindAutonomy.tasteStatus).toBe('awaiting-blinded-human-evaluation');
+    expect(result.blindAutonomy.checks.find((item) => item.id === 'body-safe-overlays')).toEqual({
+      id: 'body-safe-overlays',
+      status: 'pass',
+      evidenceArtifactIds: ['artifact.body-safe-overlays'],
+    });
     expect(result.creatorProfileMaturity.status).toBe('insufficient');
   });
 });

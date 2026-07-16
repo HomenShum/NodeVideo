@@ -2,7 +2,11 @@ from pathlib import Path
 
 import numpy as np
 
-from song_choreography_analyzer import PoseTrack, plan_attention_choreography
+from song_choreography_analyzer import (
+    PoseTrack,
+    plan_attention_choreography,
+    plan_identity_choreography,
+)
 
 
 def test_attention_choreography_uses_pose_and_exposes_intent() -> None:
@@ -49,4 +53,14 @@ def test_attention_choreography_uses_pose_and_exposes_intent() -> None:
     assert result[0]["attentionTarget"] == "left-hand"
     assert result[0]["requiresOwnerReview"] is True
     assert result[0]["saliencyCompetition"] <= 0.05
+    assert result[0]["clearancePolicy"] == "framewise-dilated-pose-silhouette-v1"
     assert result[1]["eyeTravel"] in {"none", "up", "down", "left", "right", "diagonal"}
+
+    identity = plan_identity_choreography(
+        duration_seconds=2.0,
+        phrases=phrases,
+        takes={"asset.take-a": track},
+        offsets={"asset.take-a": 0.0},
+    )
+    assert identity
+    assert all(item["maxBodyOverlapRatio"] <= 0.05 for item in identity)

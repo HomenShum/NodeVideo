@@ -1,13 +1,13 @@
 import {
   type CreativeFidelityReport,
   validateCreativeFidelityReport,
-} from './creator-taste-evaluator';
+} from './creator-taste-evaluator.ts';
 import {
   type CreatorIntentProfile,
   type ProductionDecisionLedger,
   validateCreatorIntentProfile,
   validateProductionDecisionLedger,
-} from './production-decision-contracts';
+} from './production-decision-contracts.ts';
 
 export const PRODUCTION_VERDICT_SET_SCHEMA_VERSION = 'nodevideo.production-verdict-set.v1' as const;
 
@@ -23,6 +23,9 @@ export interface GenerationIsolationEvidence {
   targetReadDuringGeneration: boolean;
   freezeFileCount: number;
   allGenerationAssertionsPassed: boolean;
+  embodiedOverlayAuditArtifactId: string;
+  embodiedOverlayAuditStatus: 'pass' | 'fail';
+  embodiedOverlayAuditScore: number;
 }
 
 export interface ProductionVerdictSet {
@@ -74,6 +77,12 @@ export function evaluateProductionVerdicts(args: {
     ),
     check('freeze-complete', args.isolation.freezeFileCount >= 4),
     check('generation-assertions', args.isolation.allGenerationAssertionsPassed),
+    check(
+      'body-safe-overlays',
+      args.isolation.embodiedOverlayAuditStatus === 'pass' &&
+        args.isolation.embodiedOverlayAuditScore === 1,
+      [args.isolation.embodiedOverlayAuditArtifactId],
+    ),
   ];
   const failedIsolation = checks.filter((item) => item.status === 'fail');
   const learnedDimensions = args.decisionLedger.coverage.filter(
@@ -121,11 +130,14 @@ export function evaluateProductionVerdicts(args: {
     },
   };
 
-  function check(id: string, passed: boolean) {
+  function check(id: string, passed: boolean, evidenceArtifactIds?: string[]) {
     return {
       id,
       status: passed ? ('pass' as const) : ('fail' as const),
-      evidenceArtifactIds: [args.isolation.manifestArtifactId, args.isolation.freezeArtifactId],
+      evidenceArtifactIds: evidenceArtifactIds ?? [
+        args.isolation.manifestArtifactId,
+        args.isolation.freezeArtifactId,
+      ],
     };
   }
 }

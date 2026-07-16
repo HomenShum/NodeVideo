@@ -21,6 +21,7 @@ from pathlib import Path
 from typing import Any
 
 import librosa
+import cv2
 import numpy as np
 
 from choreography_sequence_optimizer import CandidateMoment, optimize_sequence
@@ -29,6 +30,10 @@ from choreography_sequence_optimizer import CandidateMoment, optimize_sequence
 SCHEMA_VERSION = "nodevideo.song-choreography-analysis.v1"
 ANALYZER_VERSION = "nodevideo.song-choreography-analyzer@0.3.0"
 CORE_JOINTS = np.asarray([0, 11, 12, 13, 14, 15, 16, 23, 24, 25, 26, 27, 28])
+BODY_EDGES = (
+    (11, 13), (13, 15), (12, 14), (14, 16), (11, 12), (11, 23), (12, 24),
+    (23, 24), (23, 25), (25, 27), (27, 31), (24, 26), (26, 28), (28, 32),
+)
 
 
 @dataclass(frozen=True)
@@ -204,6 +209,12 @@ def main() -> None:
         takes=takes,
         offsets=offsets,
     )
+    identity_choreography = plan_identity_choreography(
+        duration_seconds=args.duration_seconds,
+        phrases=phrases,
+        takes=takes,
+        offsets=offsets,
+    )
     warnings = []
     is_fallback_reference = (
         args.reference_asset_id in take_bindings
@@ -281,6 +292,7 @@ def main() -> None:
         "phrases": phrases,
         "lyricCues": lyrics,
         "attentionChoreography": attention_choreography,
+        "identityChoreography": identity_choreography,
         "generationIsolation": {
             "finishedEditAcceptedAsInput": False,
             "finishedEditPictureRead": False,
@@ -849,19 +861,11 @@ def plan_attention_choreography(
 ) -> list[dict[str, Any]]:
     """Place lyric cues as attention events using selected-take pose evidence.
 
-    Candidate boxes are reusable safe-area primitives. The scorer rewards performer clearance,
-    proximity to the active wrist without covering it, and spatial novelty from the previous cue.
+    Candidate boxes are reusable safe-area primitives. The scorer rewards framewise silhouette
+    clearance, proximity to the active wrist without covering it, and spatial novelty.
     The result is a proposal with explicit intent evidence, not a silently inferred creator rule.
     """
 
-    candidates = [
-        {"x": 0.04, "y": 0.08, "width": 0.42, "height": 0.075},
-        {"x": 0.54, "y": 0.08, "width": 0.42, "height": 0.075},
-        {"x": 0.04, "y": 0.42, "width": 0.42, "height": 0.075},
-        {"x": 0.54, "y": 0.42, "width": 0.42, "height": 0.075},
-        {"x": 0.04, "y": 0.82, "width": 0.42, "height": 0.075},
-        {"x": 0.54, "y": 0.82, "width": 0.42, "height": 0.075},
-    ]
     result: list[dict[str, Any]] = []
     previous_center: np.ndarray | None = None
     for cue in lyrics:
@@ -887,11 +891,30 @@ def plan_attention_choreography(
         wrist_index = 15 if left_travel >= right_travel else 16
         active_wrist = raw[1, wrist_index]
         target = "left-hand" if wrist_index == 15 else "right-hand"
-        performer_box = body_box(raw)
+        timeline_samples = np.arange(
+            float(cue["startSeconds"]),
+            float(cue["endSeconds"]),
+            1 / 30,
+        )
+        cue_poses = selected_timeline_poses(
+            timeline_samples=timeline_samples,
+            phrases=phrases,
+            takes=takes,
+            offsets=offsets,
+        )
+        text_length = len(str(cue.get("text", "")))
+        box_width = 0.30 if text_length <= 10 else 0.36 if text_length <= 16 else 0.42
+        x_positions = sorted({0.03, round((1 - box_width) / 2, 6), round(0.97 - box_width, 6)})
+        y_positions = [0.05, 0.18, 0.32, 0.46, 0.60, 0.74, 0.87]
+        candidates = [
+            {"x": x, "y": y, "width": box_width, "height": 0.075}
+            for y in y_positions
+            for x in x_positions
+        ]
         ranked: list[tuple[float, dict[str, float], float, float]] = []
         for box in candidates:
             center = np.asarray([box["x"] + box["width"] / 2, box["y"] + box["height"] / 2])
-            body_overlap = normalized_box_overlap(box, performer_box)
+            body_overlap = silhouette_overlap_max(cue_poses, box)
             wrist_distance = float(np.linalg.norm(center - active_wrist))
             gesture_affinity = max(0.0, 1 - abs(wrist_distance - 0.24) / 0.5)
             novelty = (
@@ -902,10 +925,9 @@ def plan_attention_choreography(
             score = 1.4 * (1 - body_overlap) + 0.44 * gesture_affinity + 0.28 * novelty
             ranked.append((score, box, novelty, body_overlap))
         safe_ranked = [item for item in ranked if item[3] <= 0.05]
-        _, selected_box, novelty, body_overlap = max(
-            safe_ranked or ranked,
-            key=lambda item: item[0],
-        )
+        if not safe_ranked:
+            raise ValueError(f"No body-safe caption placement exists for {cue['id']}.")
+        _, selected_box, novelty, body_overlap = max(safe_ranked, key=lambda item: item[0])
         center = np.asarray(
             [
                 selected_box["x"] + selected_box["width"] / 2,
@@ -928,6 +950,7 @@ def plan_attention_choreography(
                 "motionRelationship": "coincides",
                 "spatialNovelty": round_number(novelty),
                 "saliencyCompetition": round_number(body_overlap),
+                "clearancePolicy": "framewise-dilated-pose-silhouette-v1",
                 "intentHypothesis": (
                     "Move the lyric cue near the active gesture region while preserving the full "
                     "performer silhouette and refreshing eye position."
@@ -942,6 +965,126 @@ def plan_attention_choreography(
         )
         previous_center = center
     return result
+
+
+def plan_identity_choreography(
+    *,
+    duration_seconds: float,
+    phrases: list[dict[str, Any]],
+    takes: dict[str, PoseTrack],
+    offsets: dict[str, float],
+) -> list[dict[str, Any]]:
+    """Plan persistent creator identity in short, independently body-safe phases."""
+
+    start = min(1.5, duration_seconds)
+    boundaries = [start]
+    boundaries.extend(
+        value["timelineEndSeconds"]
+        for value in phrases
+        if start + 3 <= value["timelineEndSeconds"] < duration_seconds - 1
+    )
+    cursor = start
+    while cursor + 7.5 < duration_seconds:
+        cursor += 7.5
+        boundaries.append(cursor)
+    boundaries.append(duration_seconds)
+    boundaries = sorted(set(round_number(value) for value in boundaries))
+    candidates = [
+        {"x": 0.03, "y": 0.05, "width": 0.27, "height": 0.045},
+        {"x": 0.70, "y": 0.05, "width": 0.27, "height": 0.045},
+        {"x": 0.03, "y": 0.20, "width": 0.27, "height": 0.045},
+        {"x": 0.70, "y": 0.20, "width": 0.27, "height": 0.045},
+        {"x": 0.03, "y": 0.48, "width": 0.27, "height": 0.045},
+        {"x": 0.70, "y": 0.48, "width": 0.27, "height": 0.045},
+        {"x": 0.03, "y": 0.76, "width": 0.27, "height": 0.045},
+        {"x": 0.70, "y": 0.76, "width": 0.27, "height": 0.045},
+        {"x": 0.03, "y": 0.90, "width": 0.27, "height": 0.045},
+        {"x": 0.70, "y": 0.90, "width": 0.27, "height": 0.045},
+    ]
+    result = []
+    previous_center: np.ndarray | None = None
+    for index, (phase_start, phase_end) in enumerate(zip(boundaries, boundaries[1:])):
+        if phase_end - phase_start < 0.25:
+            continue
+        timeline_samples = np.arange(phase_start, phase_end, 1 / 30)
+        poses = selected_timeline_poses(
+            timeline_samples=timeline_samples,
+            phrases=phrases,
+            takes=takes,
+            offsets=offsets,
+        )
+        ranked = []
+        for box in candidates:
+            center = np.asarray([box["x"] + box["width"] / 2, box["y"] + box["height"] / 2])
+            overlap = silhouette_overlap_max(poses, box)
+            travel = 0.0 if previous_center is None else float(np.linalg.norm(center - previous_center))
+            ranked.append((overlap + 0.025 * travel, overlap, box, center))
+        _, overlap, box, center = min(ranked, key=lambda item: item[0])
+        if overlap > 0.05:
+            raise ValueError(f"No body-safe creator identity placement exists for phase {index + 1}.")
+        result.append(
+            {
+                "id": f"identity.phase-{index + 1}",
+                "timelineRange": {
+                    "startSeconds": round_number(phase_start),
+                    "endSeconds": round_number(phase_end),
+                },
+                "box": {key: round_number(value) for key, value in box.items()},
+                "maxBodyOverlapRatio": round_number(overlap),
+                "clearancePolicy": "framewise-dilated-pose-silhouette-v1",
+                "requiresOwnerReview": True,
+            }
+        )
+        previous_center = center
+    return result
+
+
+def selected_timeline_poses(
+    *,
+    timeline_samples: np.ndarray,
+    phrases: list[dict[str, Any]],
+    takes: dict[str, PoseTrack],
+    offsets: dict[str, float],
+) -> np.ndarray:
+    result = []
+    for timeline_time in timeline_samples:
+        phrase = next(
+            (
+                item
+                for item in phrases
+                if item["timelineStartSeconds"] <= timeline_time < item["timelineEndSeconds"]
+            ),
+            phrases[-1],
+        )
+        take_id = phrase["selectedTakeAssetId"]
+        result.append(interpolate_raw(takes[take_id], np.asarray([offsets[take_id] + timeline_time]))[0])
+    return np.asarray(result)
+
+
+def silhouette_overlap_max(poses: np.ndarray, box: dict[str, float]) -> float:
+    """Match the final auditor's dilated body geometry in normalized canvas coordinates."""
+
+    width, height = 180, 320
+    left = max(0, min(width, round(box["x"] * width)))
+    top = max(0, min(height, round(box["y"] * height)))
+    right = max(left + 1, min(width, round((box["x"] + box["width"]) * width)))
+    bottom = max(top + 1, min(height, round((box["y"] + box["height"]) * height)))
+    maximum = 0.0
+    for pose in poses:
+        mask = np.zeros((height, width), dtype=np.uint8)
+        finite = np.nan_to_num(pose, nan=-10.0, posinf=-10.0, neginf=-10.0)
+        xy = np.column_stack((finite[:, 0] * width, finite[:, 1] * height)).astype(int)
+        limb_width = max(5, round(width * 0.045))
+        for first, second in BODY_EDGES:
+            if np.isfinite(pose[first]).all() and np.isfinite(pose[second]).all():
+                cv2.line(mask, tuple(xy[first]), tuple(xy[second]), 255, limb_width)
+        if all(np.isfinite(pose[joint]).all() for joint in (11, 12, 23, 24)):
+            cv2.fillConvexPoly(mask, np.asarray([xy[11], xy[12], xy[24], xy[23]]), 255)
+        if np.isfinite(pose[0]).all():
+            cv2.circle(mask, tuple(xy[0]), max(7, round(width * 0.06)), 255, -1)
+        region = mask[top:bottom, left:right]
+        maximum = max(maximum, float(np.count_nonzero(region) / max(1, region.size)))
+    return maximum
 
 
 def normalized_box_overlap(first: dict[str, float], second: dict[str, float]) -> float:

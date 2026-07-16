@@ -8,6 +8,7 @@ const decisionLedger = await readJson(required('--decision-ledger'));
 const creatorIntentProfile = await readJson(required('--creator-intent-profile'));
 const generationManifest = await readJson(required('--generation-manifest'));
 const freeze = await readJson(required('--freeze'));
+const embodiedOverlayAudit = await readJson(required('--embodied-overlay-audit'));
 const output = resolve(required('--out'));
 const verdicts = evaluateProductionVerdicts({
   creativeFidelity,
@@ -28,6 +29,9 @@ const verdicts = evaluateProductionVerdicts({
     targetReadDuringGeneration: freeze.targetReadDuringGeneration,
     freezeFileCount: freeze.files.length,
     allGenerationAssertionsPassed: generationManifest.assertions.every((item) => item.pass),
+    embodiedOverlayAuditArtifactId: `audit.embodied-overlays.${embodiedOverlayAudit.planId}`,
+    embodiedOverlayAuditStatus: embodiedOverlayAudit.status,
+    embodiedOverlayAuditScore: embodiedOverlayAudit.score,
   },
 });
 await writeFile(output, `${JSON.stringify(verdicts, null, 2)}\n`);
