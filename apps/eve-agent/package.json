@@ -1,0 +1,39 @@
+{
+  "name": "@nodevideo/eve-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Least-privilege Eve control plane for NodeVideo.",
+  "imports": {
+    "#*": "./agent/*",
+    "#evals/*": "./evals/*"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "eve dev",
+    "start": "eve start",
+    "info": "eve info",
+    "typecheck": "tsc",
+    "eval": "eve eval --strict",
+    "clean": "node scripts/clean-generated.mjs",
+    "prebuild": "npm run clean",
+    "test:structure": "node scripts/verify-isolation.mjs",
+    "check": "npm run test:structure && npm run typecheck && npm run build && npm run info"
+  },
+  "dependencies": {
+    "@vercel/connect": "0.2.2",
+    "ai": "7.0.28",
+    "eve": "0.24.4",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "typescript": "7.0.2"
+  },
+  "overrides": {
+    "ai": "7.0.28"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}

@@ -1,0 +1,43 @@
+name: Eve agent
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/eve-agent/**'
+      - '.github/workflows/eve-agent.yml'
+  pull_request:
+    paths:
+      - 'apps/eve-agent/**'
+      - '.github/workflows/eve-agent.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: eve-agent-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: apps/eve-agent
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: apps/eve-agent/package-lock.json
+      - run: npm ci
+      - run: npm run test:structure
+      - run: npm run typecheck
+      - run: npm run info
+      - run: npm run build
+
+  # Live model evals are intentionally separate from the deterministic build.
+  # Run `npm run eval` locally or against a protected preview with provider auth.
