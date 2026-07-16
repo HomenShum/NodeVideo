@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nodevideo.generation-freeze.v1",
-  "id": "freeze.integrated-source-only-v5",
-  "createdAt": "2026-07-16T06:32:45.857Z",
+  "id": "freeze.live-owner-strict-candidate-v1",
+  "createdAt": "2026-07-16T10:40:48.948Z",
   "generatorVersion": "nodevideo.song-conditioned-private-render@0.1.0",
   "targetMountedDuringGeneration": false,
   "targetReadDuringGeneration": false,
@@ -9,19 +9,19 @@
   "files": [
     {
       "file": "analysis.json",
-      "sha256": "c888ddf983d7f28be7856183044415b325a7795fdc99ec87d110a6dcb9d84249"
+      "sha256": "00f47b663f6471ceb9f54c6e2c39e209613fb9eac2d7459db74098cf905081a6"
     },
     {
       "file": "edit-plan.json",
-      "sha256": "e9015930921d1634a3e34f29767bc1fd1da50913ec79cbf1597e6210411518eb"
+      "sha256": "45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07"
     },
     {
       "file": "generation-manifest.json",
-      "sha256": "52dd273450dbe821fcc9adef141710e4b47ad4b5c717207fb73e9dc50d35f37f"
+      "sha256": "c94ccd494d2b0f26832a92ec98835191d1901066f1339c05221ded398d48850d"
     },
     {
       "file": "source-only-song-preview.mp4",
-      "sha256": "96b499bcb3530f39631a69d362a3cb059fa3596ae6162457a8d4e0567ba63dc3"
+      "sha256": "dc85cd654aaa86f02514cc0071ec97fa97cc5ac83fa20a2d69669f325bfe088c"
     }
   ]
 }

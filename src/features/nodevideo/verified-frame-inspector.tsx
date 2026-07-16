@@ -72,11 +72,8 @@ export function VerifiedFrameInspector({
             <Badge className="h-auto max-w-full whitespace-normal text-center" variant="outline">
               Target opened after freeze
             </Badge>
-            <Badge
-              className="h-auto max-w-full whitespace-normal text-center"
-              variant="destructive"
-            >
-              Strict timing failed
+            <Badge className="h-auto max-w-full whitespace-normal text-center">
+              Strict timing passed
             </Badge>
             <Badge
               className="h-auto max-w-full whitespace-normal text-center"
@@ -86,7 +83,7 @@ export function VerifiedFrameInspector({
               {localPreview ? 'Local soundtrack enabled' : 'Public proof · silent'}
             </Badge>
           </div>
-          <CardTitle className="mt-2">Compare the calibration edit</CardTitle>
+          <CardTitle className="mt-2">Compare the strict-passing frozen edit</CardTitle>
           <CardDescription className="font-mono tabular-nums">
             Frame {frame} · {outputSeconds.toFixed(3)} s · phrase {phraseIndex + 1} ·{' '}
             {manifest.synchronization.selectedTakeAssetIds[phraseIndex].replace('asset.', '')} ·{' '}

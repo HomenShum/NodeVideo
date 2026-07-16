@@ -8,7 +8,7 @@ const privatePreview =
   process.env.NODEVIDEO_LOCAL_PREVIEW ??
   path.resolve(
     __dirname,
-    '.qa/evidence/private/integrated-inspector-v1/frozen-generation-v5/source-only-song-preview.mp4',
+    '.qa/evidence/private/live-product-proof/strict-render/source-only-song-preview.mp4',
   );
 
 export default defineConfig({

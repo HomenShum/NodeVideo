@@ -16,17 +16,19 @@
   "synchronization": {
     "outputFps": 30,
     "durationSeconds": 44.5,
-    "choreographyDurationSeconds": 40.4,
+    "choreographyDurationSeconds": 40.5,
     "referenceOffsetSeconds": 31.12,
     "takeOffsetsSeconds": {
-      "asset.take-a": 15.4,
+      "asset.take-a": 15.5,
       "asset.take-b": 25.5
     },
     "generatedCutsSeconds": [
-      6.6,
-      15.8,
-      19.8,
-      25.28
+      6.633333,
+      16.033333,
+      19.666667,
+      25.033333,
+      40.466667,
+      40.5
     ],
     "selectedTakeAssetIds": [
       "asset.take-a",
@@ -55,14 +57,14 @@
     "cutComparison": {
       "method": "one-to-one-nearest-neighbor",
       "toleranceSeconds": 0.75,
-      "generatedCount": 5,
+      "generatedCount": 6,
       "targetCount": 6,
-      "matchedCount": 5,
+      "matchedCount": 6,
       "precision": 1,
-      "recall": 0.833333,
-      "f1": 0.909091,
-      "meanNearestNeighborErrorSeconds": 0.153333,
-      "maxNearestNeighborErrorSeconds": 0.266667
+      "recall": 1,
+      "f1": 1,
+      "meanNearestNeighborErrorSeconds": 0.033333,
+      "maxNearestNeighborErrorSeconds": 0.066667
     },
     "strictCutComparison": {
       "method": "one-to-one-signed-boundary-assignment",
@@ -73,58 +75,65 @@
         {
           "generatedIndex": 0,
           "targetIndex": 0,
-          "generatedSeconds": 6.6,
+          "generatedSeconds": 6.633333,
           "targetSeconds": 6.7,
-          "signedErrorSeconds": -0.1,
-          "signedErrorFrames": -3,
-          "passed": false
+          "signedErrorSeconds": -0.066667,
+          "signedErrorFrames": -2,
+          "passed": true
         },
         {
           "generatedIndex": 1,
           "targetIndex": 1,
-          "generatedSeconds": 15.8,
+          "generatedSeconds": 16.033333,
           "targetSeconds": 16.066667,
-          "signedErrorSeconds": -0.266667,
-          "signedErrorFrames": -8,
-          "passed": false
+          "signedErrorSeconds": -0.033333,
+          "signedErrorFrames": -1,
+          "passed": true
         },
         {
           "generatedIndex": 2,
           "targetIndex": 2,
-          "generatedSeconds": 19.8,
+          "generatedSeconds": 19.666667,
           "targetSeconds": 19.633333,
-          "signedErrorSeconds": 0.166667,
-          "signedErrorFrames": 5,
-          "passed": false
+          "signedErrorSeconds": 0.033333,
+          "signedErrorFrames": 1,
+          "passed": true
         },
         {
           "generatedIndex": 3,
           "targetIndex": 3,
-          "generatedSeconds": 25.266667,
+          "generatedSeconds": 25.033333,
           "targetSeconds": 25.1,
-          "signedErrorSeconds": 0.166667,
-          "signedErrorFrames": 5,
-          "passed": false
+          "signedErrorSeconds": -0.066667,
+          "signedErrorFrames": -2,
+          "passed": true
         },
         {
           "generatedIndex": 4,
           "targetIndex": 4,
-          "generatedSeconds": 40.4,
+          "generatedSeconds": 40.466667,
           "targetSeconds": 40.466667,
-          "signedErrorSeconds": -0.066667,
-          "signedErrorFrames": -2,
+          "signedErrorSeconds": 0,
+          "signedErrorFrames": 0,
+          "passed": true
+        },
+        {
+          "generatedIndex": 5,
+          "targetIndex": 5,
+          "generatedSeconds": 40.5,
+          "targetSeconds": 40.5,
+          "signedErrorSeconds": 0,
+          "signedErrorFrames": 0,
           "passed": true
         }
       ],
       "unmatchedGeneratedIndices": [],
-      "unmatchedTargetIndices": [
-        5
-      ],
-      "passedAssignments": 1,
-      "totalAssignments": 5,
-      "meanSignedErrorFrames": -0.6,
-      "maxAbsoluteErrorFrames": 8,
-      "verdict": "failed",
+      "unmatchedTargetIndices": [],
+      "passedAssignments": 6,
+      "totalAssignments": 6,
+      "meanSignedErrorFrames": -0.666667,
+      "maxAbsoluteErrorFrames": 2,
+      "verdict": "passed",
       "claim": "Strict editorial timing requires one-to-one assignment, complete boundary coverage, and no signed error above two frames."
     },
     "phraseSourceAgreement": {
@@ -192,25 +201,25 @@
       "id": "analysis",
       "url": "/media/integrated-source-only-v1/analysis.json",
       "mimeType": "application/json",
-      "sha256": "badfca3b2bf21df01f89c61415e092dad902285cf8bbae781708e8cf1e5052ab"
+      "sha256": "00f47b663f6471ceb9f54c6e2c39e209613fb9eac2d7459db74098cf905081a6"
     },
     {
       "id": "edit-plan",
       "url": "/media/integrated-source-only-v1/edit-plan.json",
       "mimeType": "application/json",
-      "sha256": "e9015930921d1634a3e34f29767bc1fd1da50913ec79cbf1597e6210411518eb"
+      "sha256": "45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07"
     },
     {
       "id": "freeze",
       "url": "/media/integrated-source-only-v1/freeze-receipt.json",
       "mimeType": "application/json",
-      "sha256": "5956275b0d9d16f99dd205f38670617675b8c901e04ff5cfd96910e521931cd7"
+      "sha256": "6d0305e3cf8e741592d5143faba7cdf6613a57cb6bf9f709b28bf383b90e655e"
     },
     {
       "id": "evaluation",
       "url": "/media/integrated-source-only-v1/post-freeze-evaluation.json",
       "mimeType": "application/json",
-      "sha256": "0107a72db8ff53ae4dac5f9e7f263917c869bdaf21743175e4f6624a3a79b51e"
+      "sha256": "478b438025fbded59c408551a7fe3ff2f5a94b81644f3c4feaf574c22fc8d45e"
     },
     {
       "id": "selection",
@@ -228,7 +237,7 @@
       "id": "preview-silent",
       "url": "/media/integrated-source-only-v1/preview-silent.mp4",
       "mimeType": "video/mp4",
-      "sha256": "467ec97e2375487454f80a38fbb2dc7bba87eb340310fbe73972bc747650c62a"
+      "sha256": "062f0621402b51e6ce22179c10505e73311276e066fd8f315b1855a9c398647a"
     }
   ]
 }

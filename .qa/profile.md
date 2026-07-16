@@ -1,11 +1,11 @@
-# QA profile: NodeVideo integrated source-only calibration
+# QA profile: NodeVideo live choreography-driven milestone
 
 Mode: AUTHORIZED PRODUCTION. Execute claims literally and fail closed.
 
-The foreground release is `integrated-source-only-v1`. It binds the official choreography,
-two sanitized creator takes, source-only analysis and edit plan, a pre-target freeze receipt,
-post-freeze evaluation, selected-performer evidence, real MediaPipe pose tracks, and a silent
-generated preview. Legacy proof bundles remain public artifacts but are no longer presentation UI.
+The foreground release is the strict `integrated-source-only-v1` inspector plus the production
+Convex workflow. It binds the official choreography, two creator takes, chosen song, timed lyrics,
+DP/beam plan, pre-target freeze, post-freeze evaluation, real MediaPipe pose tracks, and a silent
+public derivative of the strict frozen render.
 
 ## Environment and gates
 
@@ -19,14 +19,14 @@ generated preview. Legacy proof bundles remain public artifacts but are no longe
 
 ## Proven claim boundary
 
-- The two creator takes align to the independently downloaded official choreography at 15.4 s
+- The two creator takes align to the independently downloaded official choreography at 15.5 s
   and 25.5 s using mirrored, root-normalized multi-person MediaPipe matching.
-- The source-only planner selected A/B/A/B/A, fit/fill/fit/fill/fit, and cuts at 6.6, 15.8,
-  19.8, and 25.28 seconds before the target was mounted or read.
-- Post-freeze evaluation reports exact 44.5 s duration and 5/5 phrase-source agreement. The legacy
-  0.75 s proximity diagnostic reports F1 0.909091, but it is not an editorial pass.
-- Strict one-to-one signed errors are -3, -8, +5, +5, and -2 frames, with one unmatched target
-  boundary. Only 1/5 assigned boundaries passes the two-frame gate; strict verdict: failed.
+- The choreography-driven global DP/beam planner selected A/B/A/B/A and fit/fill/fit/fill/fit.
+- Post-freeze evaluation reports exact 44.5 s duration, 5/5 phrase-source agreement, complete
+  boundary coverage, and signed errors of -2, -1, +1, -2, 0, and 0 frames.
+- All 6/6 assigned boundaries pass the two-frame gate; strict verdict: passed.
+- Production Convex records 15/15 completed stages, 13 artifacts, review/freeze receipts, evaluator
+  isolation, and a recoverable retry event for the preview upload.
 - The independently sourced private soundtrack comparison reports 0.979986 correlation and
   0.75 ms best lag. The public preview is silent; the UI gives an Instagram search/segment handoff.
 - The browser verifies the trusted manifest plus seven declared assets before rendering the
@@ -35,9 +35,9 @@ generated preview. Legacy proof bundles remain public artifacts but are no longe
 - LocateAnything was not executed because no licensed sidecar is configured. MediaPipe pose
   evidence is shown honestly instead of relabeling replay boxes.
 
-Not claimed: successful strict editorial reconstruction, bit-identical reproduction, licensed
-public commercial audio, generalized creative taste from one case, live LocateAnything accuracy,
-or a Vercel-hosted FFmpeg/model job.
+Not claimed: a fresh independent blind benchmark, bit-identical reproduction, licensed public
+commercial audio, generalized creative taste from one owner-calibrated case, live LocateAnything
+accuracy, or elastic Vercel-hosted FFmpeg/model workers.
 
 ## Release blockers
 

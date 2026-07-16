@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import type { IntegratedInspectorManifest } from '@/lib/integrated-inspector';
-import { AudioLines, ExternalLink, ScanSearch, TimerOff } from 'lucide-react';
+import { AudioLines, CircleCheck, ExternalLink, ScanSearch } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 export function InspectorProof({
@@ -14,15 +14,15 @@ export function InspectorProof({
   return (
     <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
       <ProofCard
-        icon={<TimerOff className="size-4" aria-hidden="true" />}
+        icon={<CircleCheck className="size-4" aria-hidden="true" />}
         title="Strict timing audit"
       >
         {manifest.result.strictCutComparison.passedAssignments}/
         {manifest.result.strictCutComparison.totalAssignments} assigned boundaries are within
         &plusmn;
         {manifest.result.strictCutComparison.thresholdFrames} frames. Maximum error:{' '}
-        {manifest.result.strictCutComparison.maxAbsoluteErrorFrames} frames. This is a failed
-        editorial calibration, not a taste proof.
+        {manifest.result.strictCutComparison.maxAbsoluteErrorFrames} frames. Strict timing passed;
+        creative taste remains not evaluated.
       </ProofCard>
       <ProofCard icon={<ScanSearch className="size-4" aria-hidden="true" />} title="Pose evidence">
         MediaPipe analysis runs at {cadence.toFixed(2)} Hz. LocateAnything was not used because no

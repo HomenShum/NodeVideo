@@ -92,4 +92,79 @@ export const EvaluationReceipt = z.object({
   status: z.enum(['queued', 'running', 'succeeded', 'failed']),
 });
 
+export const CaseReceipt = z.object({
+  caseId: OpaqueId,
+  reused: z.boolean(),
+});
+
+export const StartJobReceipt = z.object({
+  jobId: OpaqueId,
+  reused: z.boolean(),
+});
+
+export const StageName = z.enum([
+  'validate_inputs',
+  'ingest_reference',
+  'normalize_media',
+  'align_reference_song',
+  'extract_reference_motion',
+  'analyze_takes',
+  'match_phrases',
+  'plan_sequence',
+  'place_lyrics',
+  'compile_plan',
+  'render_preview',
+  'validate_preview',
+  'await_review',
+  'freeze',
+  'evaluate_hidden_target',
+]);
+
+export const JobSnapshot = z.object({
+  job: z
+    .object({
+      _id: OpaqueId,
+      status: z.enum(['queued', 'running', 'awaiting_review', 'completed', 'failed', 'cancelled']),
+      currentStage: StageName.optional(),
+      frozenPlanDigest: SHA256.optional(),
+      error: z.string().optional(),
+    })
+    .passthrough(),
+  stages: z.array(
+    z
+      .object({
+        _id: OpaqueId,
+        ordinal: z.number().int().nonnegative(),
+        name: StageName,
+        status: z.enum([
+          'pending',
+          'running',
+          'awaiting_approval',
+          'completed',
+          'failed',
+          'cancelled',
+        ]),
+        attempt: z.number().int().nonnegative(),
+        maxAttempts: z.number().int().positive(),
+        error: z.string().optional(),
+        outputArtifactIds: z.array(OpaqueId),
+      })
+      .passthrough(),
+  ),
+  events: z.array(
+    z.object({ sequence: z.number().int().positive(), kind: z.string() }).passthrough(),
+  ),
+  artifacts: z.array(
+    z
+      .object({ _id: OpaqueId, artifactKey: z.string(), kind: z.string(), sha256: SHA256 })
+      .passthrough(),
+  ),
+});
+
+export const ApprovalReceipt = z.object({ approved: z.boolean(), reused: z.boolean() });
+export const FreezeReceipt = z.object({ freezeReceiptId: OpaqueId, reused: z.boolean() });
+export const UnsealReceipt = z.object({ evaluationReceiptId: OpaqueId, reused: z.boolean() });
+export const CancellationReceipt = z.object({ cancelled: z.boolean(), reused: z.boolean() });
+export const RetryReceipt = z.object({ retried: z.boolean() });
+
 export type PreparedGeneration = z.infer<typeof PreparedGeneration>;

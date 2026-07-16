@@ -9,7 +9,8 @@ test('hash-verifies and synchronizes the frame inspector', async ({ page }) => {
 
   const verified = page.getByTestId('verified-frame-inspector');
   await expect(verified).toContainText('7/7 SHA-256 verified', { timeout: 90_000 });
-  await expect(verified).toContainText(/Frame 480 .* 16\.000 s .* take-a .* fit/);
+  await expect(verified).toContainText(/Frame 480 .* 16\.000 s .* take-b .* fill/);
+  await expect(verified).toContainText('Strict timing passed');
   await expect(verified.getByText('Original choreography pose')).toBeVisible();
   await expect(verified.getByText('Creator take A', { exact: true })).toBeVisible();
   await expect(verified.getByText('Creator take B', { exact: true })).toBeVisible();

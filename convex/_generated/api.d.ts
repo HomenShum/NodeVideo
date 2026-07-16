@@ -9,12 +9,14 @@
  */
 
 import type * as artifacts from "../artifacts.js";
+import type * as http from "../http.js";
 import type * as jobs from "../jobs.js";
 import type * as lib_durability from "../lib/durability.js";
 import type * as lib_persistence from "../lib/persistence.js";
 import type * as proposals from "../proposals.js";
 import type * as runtimeSources from "../runtimeSources.js";
 import type * as validators from "../validators.js";
+import type * as workflow from "../workflow.js";
 
 import type {
   ApiFromModules,
@@ -24,12 +26,14 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   artifacts: typeof artifacts;
+  http: typeof http;
   jobs: typeof jobs;
   "lib/durability": typeof lib_durability;
   "lib/persistence": typeof lib_persistence;
   proposals: typeof proposals;
   runtimeSources: typeof runtimeSources;
   validators: typeof validators;
+  workflow: typeof workflow;
 }>;
 
 /**

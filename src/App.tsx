@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { FrameInspector } from '@/features/nodevideo/frame-inspector';
+import { LiveJobWorkspace } from '@/features/nodevideo/live-job-workspace';
 import { ThemeToggle } from '@/features/nodevideo/theme-toggle';
 import { Film, GitBranch, ShieldCheck } from 'lucide-react';
 
@@ -30,18 +31,21 @@ export function App() {
       <main className="mx-auto max-w-6xl space-y-6 px-3 py-6 sm:px-6 sm:py-10">
         <section className="space-y-3" aria-labelledby="page-title">
           <Badge className="h-auto max-w-full whitespace-normal" variant="outline">
-            Original dance → raw takes → chosen song → frozen edit
+            Official dance &rarr; raw takes &rarr; chosen song &rarr; frozen edit
           </Badge>
           <h1 id="page-title" className="max-w-4xl font-heading text-3xl font-semibold sm:text-5xl">
-            Inspect what NodeVideo understood &mdash; and where the cut still misses.
+            Inspect how NodeVideo turned choreography into a strict-passing cut.
           </h1>
           <p className="max-w-3xl text-pretty text-muted-foreground sm:text-lg">
             The pipeline aligned both raw MOVs to the official dance, mapped movement and lyric
-            phrases to “Sign,” selected takes and framing, then froze the edit before opening the
-            manual final MP4 for strict evaluation. Source selection matched; editorial timing did
-            not yet pass.
+            phrases to &ldquo;Sign,&rdquo; selected takes and framing, then froze the edit before
+            opening the manual final MP4. Take choice and all five cut boundaries passed the strict
+            evaluator within two frames. This is an owner-case calibration pass, not a fresh blind
+            benchmark.
           </p>
         </section>
+
+        <LiveJobWorkspace />
 
         <FrameInspector />
 

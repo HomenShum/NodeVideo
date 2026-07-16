@@ -3,8 +3,8 @@
 
 The analyzer accepts precomputed pose tracks and a separately declared music input. It never
 accepts a finished edit. It aligns repeated takes to a creator-selected choreography reference,
-segments a short-form hook with a reusable beat-count grammar, scores every take per phrase, and
-emits neutral IDs only. Pose extraction remains an upstream capability; this module deliberately
+builds source-only boundary candidates from choreography, music, and lyrics; jointly selects the
+complete boundary/take sequence; and emits neutral IDs only. Pose extraction remains upstream;
 has no MediaPipe/model import so replay and precomputed-source proofs stay lightweight.
 """
 
@@ -23,9 +23,11 @@ from typing import Any
 import librosa
 import numpy as np
 
+from choreography_sequence_optimizer import CandidateMoment, optimize_sequence
+
 
 SCHEMA_VERSION = "nodevideo.song-choreography-analysis.v1"
-ANALYZER_VERSION = "nodevideo.song-choreography-analyzer@0.1.0"
+ANALYZER_VERSION = "nodevideo.song-choreography-analyzer@0.2.0"
 CORE_JOINTS = np.asarray([0, 11, 12, 13, 14, 15, 16, 23, 24, 25, 26, 27, 28])
 
 
@@ -59,10 +61,25 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--music", type=Path, required=True)
     parser.add_argument("--duration-seconds", type=float, required=True)
-    parser.add_argument("--phrase-beats", default="12,16,6,10")
+    parser.add_argument(
+        "--phrase-beats",
+        default="",
+        help="Deprecated optional prior retained for receipt compatibility; never authoritative.",
+    )
+    parser.add_argument(
+        "--phrase-count",
+        type=int,
+        help="Optional creator preference. By default phrase count is inferred from duration.",
+    )
     parser.add_argument("--lyrics-json", type=Path)
+    parser.add_argument(
+        "--phrase-anchor-json",
+        type=Path,
+        help="Optional source-only Eve interpretation with one semantic anchor per interior cut.",
+    )
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--ffmpeg", default="ffmpeg")
+    parser.add_argument("--terminal-transition-frames", type=int, default=0)
     parser.add_argument(
         "--quality-tolerance",
         type=float,
@@ -78,9 +95,11 @@ def main() -> None:
         raise ValueError("Reference start must be non-negative and duration must be positive.")
     if not 0 <= args.quality_tolerance <= 1:
         raise ValueError("--quality-tolerance must be between 0 and 1.")
+    if not 0 <= args.terminal_transition_frames <= 12:
+        raise ValueError("--terminal-transition-frames must be between 0 and 12.")
     phrase_beats = [int(value) for value in args.phrase_beats.split(",") if value.strip()]
-    if not phrase_beats or any(value <= 0 for value in phrase_beats):
-        raise ValueError("--phrase-beats must contain positive beat counts.")
+    if any(value <= 0 for value in phrase_beats):
+        raise ValueError("--phrase-beats values must be positive.")
 
     take_bindings = parse_bindings(args.take_pose)
     reference = load_pose_track(args.reference_asset_id, args.reference_pose)
@@ -89,13 +108,6 @@ def main() -> None:
     }
     music = analyze_music(args.music, args.ffmpeg)
     lyrics = read_lyrics(args.lyrics_json, args.duration_seconds)
-    boundaries = build_phrase_boundaries(
-        tempo=music["bpm"],
-        beats_ms=music["beatsMs"],
-        duration_seconds=args.duration_seconds,
-        phrase_beats=phrase_beats,
-    )
-    boundaries = refine_boundaries_with_cues(boundaries, lyrics)
     alignments = (
         read_alignment_receipt(args.alignment_json, takes, args.duration_seconds)
         if args.alignment_json
@@ -106,6 +118,74 @@ def main() -> None:
             duration=args.duration_seconds,
         )
     )
+    phrase_count = args.phrase_count or int(np.clip(round(args.duration_seconds / 8.0), 3, 8))
+    if phrase_count < 2 or phrase_count > 12:
+        raise ValueError("--phrase-count must be between 2 and 12.")
+    offsets = {
+        item["takeAssetId"]: float(item["choreographyStartSeconds"])
+        for item in alignments
+    }
+    moments = build_candidate_moments(
+        reference=reference,
+        reference_start=args.reference_start_seconds,
+        takes=takes,
+        offsets=offsets,
+        music=music,
+        lyrics=lyrics,
+        duration_seconds=args.duration_seconds,
+    )
+    interpretation = read_phrase_anchors(args.phrase_anchor_json, phrase_count, args.duration_seconds)
+    if interpretation:
+        beats = [value / 1000 for value in music["beatsMs"]]
+        for item in interpretation:
+            time_seconds = float(item["timeSeconds"])
+            nearest = min(beats, key=lambda value: abs(value - time_seconds)) if beats else None
+            moments.append(
+                CandidateMoment(
+                    time_seconds=time_seconds,
+                    evidence_score=0.9,
+                    evidence=("eve-source-only-interpretation",),
+                    choreography_landmark="semantic-phrase-and-consensus-motion-anchor",
+                    nearest_music_event_seconds=round_number(nearest) if nearest is not None else None,
+                    signed_music_offset_seconds=(
+                        round_number(time_seconds - nearest) if nearest is not None else None
+                    ),
+                )
+            )
+        moments.sort(key=lambda value: value.time_seconds)
+    interval_cache: dict[tuple[float, float], list[dict[str, Any]]] = {}
+    full_timeline = np.arange(0, args.duration_seconds, 0.1)
+    opening_take = min(
+        takes,
+        key=lambda asset_id: body_box(
+            interpolate_raw(takes[asset_id], offsets[asset_id] + full_timeline)
+        )["y"],
+    )
+
+    def interval_candidates(start: float, end: float) -> list[dict[str, Any]]:
+        key = (round(start, 6), round(end, 6))
+        if key not in interval_cache:
+            interval_cache[key] = score_interval_candidates(
+                reference, takes, offsets, args.reference_start_seconds, start, end
+            )
+        return interval_cache[key]
+
+    sequence = optimize_sequence(
+        moments=moments,
+        duration_seconds=args.duration_seconds,
+        take_ids=takes,
+        interval_score=lambda start, end, take_id: next(
+            item["totalScore"]
+            for item in interval_candidates(start, end)
+            if item["takeAssetId"] == take_id
+        ),
+        desired_phrases=phrase_count,
+        anchor_times=[item["timeSeconds"] for item in interpretation] if interpretation else None,
+        preferred_opening_take=opening_take,
+        minimum_phrase_seconds=max(1.2, args.duration_seconds / (phrase_count * 3.2)),
+        maximum_phrase_seconds=min(16.0, args.duration_seconds / phrase_count * 2.1),
+    )
+    boundaries = [0.0, *[item.time_seconds for item in sequence.boundaries], args.duration_seconds]
     phrases = score_phrases(
         reference=reference,
         takes=takes,
@@ -114,6 +194,9 @@ def main() -> None:
         reference_asset_id=args.reference_asset_id,
         reference_start=args.reference_start_seconds,
         quality_tolerance=args.quality_tolerance,
+        selected_take_ids=sequence.take_ids,
+        boundary_moments=sequence.boundaries,
+        interval_cache=interval_cache,
     )
     warnings = []
     is_fallback_reference = (
@@ -156,13 +239,31 @@ def main() -> None:
             },
         },
         "tasteTemplate": {
-            "id": "short-form-hook-build-accent-response-resolve.v1",
-            "phraseBeatCounts": phrase_beats,
-            "boundaryPolicy": "accumulated-beat-count-snapped-to-nearest-detected-beat",
-            "takePolicy": "quality-gated-contrast-with-switch-when-within-tolerance",
+            "id": "choreography-led-global-sequence.v2",
+            "planner": "deterministic-dynamic-programming-beam-search",
+            "phraseCount": phrase_count,
+            "optionalPhraseBeatPrior": phrase_beats or None,
+            "optionalPhraseBeatPriorWeight": 0,
+            "boundaryPolicy": "joint-source-only-choreography-music-lyric-candidate-lattice",
+            "takePolicy": "joint-interval-quality-and-transition-optimization",
             "qualityTolerance": args.quality_tolerance,
+            "candidateMomentCount": len(moments),
+            "winningScore": round_number(sequence.score),
+            "sourceOnlyInterpretation": interpretation,
+            "terminalTransitionFrames": args.terminal_transition_frames,
         },
         "alignments": alignments,
+        "candidateMoments": [
+            {
+                "timeSeconds": moment.time_seconds,
+                "evidenceScore": moment.evidence_score,
+                "evidence": list(moment.evidence),
+                "choreographyLandmark": moment.choreography_landmark,
+                "nearestMusicEventSeconds": moment.nearest_music_event_seconds,
+                "signedMusicOffsetSeconds": moment.signed_music_offset_seconds,
+            }
+            for moment in moments
+        ],
         "alignmentEvidence": (
             {
                 "schemaVersion": "nodevideo.reference-performer-selection.v1",
@@ -211,6 +312,8 @@ def load_pose_track(asset_id: str, path: Path) -> PoseTrack:
     payload = np.load(path)
     times = np.asarray(payload["times"], dtype=np.float64)
     poses = np.asarray(payload["poses"], dtype=np.float64)
+    if poses.ndim == 4 and poses.shape[1] == 1:
+        poses = poses[:, 0]
     if times.ndim != 1 or poses.ndim != 3 or poses.shape[0] != len(times) or poses.shape[1] < 29:
         raise ValueError(f"Unsupported pose track shape for {asset_id}.")
     raw_xy = poses[:, :, :2]
@@ -271,13 +374,171 @@ def analyze_music(path: Path, ffmpeg: str) -> dict[str, Any]:
     confidence = 0.0
     if len(strength):
         confidence = float(np.clip(np.median(strength) / (np.max(onset) + 1e-9), 0, 1))
+    onset_frames = librosa.onset.onset_detect(
+        onset_envelope=onset, sr=sample_rate, hop_length=hop_length, backtrack=False
+    )
+    onset_times = librosa.frames_to_time(onset_frames, sr=sample_rate, hop_length=hop_length)
+    onset_strengths = onset[onset_frames] if len(onset_frames) else np.asarray([])
+    onset_peak = float(np.max(onset_strengths)) if len(onset_strengths) else 1.0
     return {
         "durationSeconds": len(samples) / sample_rate,
         "bpm": bpm,
         "beatsMs": beats_ms,
         "downbeatsMs": downbeats_ms,
+        "onsetsMs": (onset_times * 1000).tolist(),
+        "onsetStrengths": (onset_strengths / (onset_peak + 1e-9)).tolist(),
         "confidence": confidence,
     }
+
+
+def build_candidate_moments(
+    reference: PoseTrack,
+    reference_start: float,
+    takes: dict[str, PoseTrack],
+    offsets: dict[str, float],
+    music: dict[str, Any],
+    lyrics: list[dict[str, Any]],
+    duration_seconds: float,
+) -> list[CandidateMoment]:
+    """Fuse independently observed source-only events into a compact candidate lattice."""
+
+    events: list[tuple[float, float, str, str | None]] = []
+    for value in music["beatsMs"]:
+        events.append((value / 1000, 0.32, "beat", None))
+    for value in music["downbeatsMs"]:
+        events.append((value / 1000, 0.58, "downbeat", None))
+    for value, strength in zip(music.get("onsetsMs", []), music.get("onsetStrengths", [])):
+        if strength >= 0.28:
+            events.append((value / 1000, 0.25 + 0.4 * strength, "onset", None))
+    for cue in lyrics:
+        events.append((float(cue["startSeconds"]), 0.56, "lyric-boundary", None))
+        events.append((float(cue["endSeconds"]), 0.48, "lyric-boundary", None))
+
+    timeline = np.arange(0.0, duration_seconds, 0.05)
+    motion = interpolate_motion(reference, reference_start + timeline)
+    if len(motion) >= 5:
+        high = float(np.quantile(motion, 0.76))
+        low = float(np.quantile(motion, 0.24))
+        for index in range(2, len(motion) - 2):
+            local = motion[index - 2 : index + 3]
+            if motion[index] >= high and motion[index] == np.max(local):
+                events.append((float(timeline[index]), 0.78, "gesture-apex", "motion-apex"))
+            if motion[index] <= low and motion[index] == np.min(local):
+                events.append(
+                    (float(timeline[index]), 0.72, "hold-or-completion", "movement-completion")
+                )
+
+    pose = interpolate_pose(reference, reference_start + timeline)
+    wrist_center = np.nanmean(pose[:, [15, 16]], axis=1)
+    direction = np.diff(wrist_center[:, 0])
+    for index in range(1, len(direction)):
+        if abs(direction[index] - direction[index - 1]) > 0.04 and (
+            direction[index] * direction[index - 1] < 0
+        ):
+            events.append(
+                (float(timeline[index]), 0.66, "direction-change", "wrist-direction-change")
+            )
+
+    events = [event for event in events if 0.2 < event[0] < duration_seconds - 0.2]
+    events.sort(key=lambda value: value[0])
+    clusters: list[list[tuple[float, float, str, str | None]]] = []
+    for event in events:
+        if clusters and event[0] - clusters[-1][-1][0] <= 0.12:
+            clusters[-1].append(event)
+        else:
+            clusters.append([event])
+
+    beats = [value / 1000 for value in music["beatsMs"]]
+    result: list[CandidateMoment] = []
+    for cluster in clusters:
+        weight = sum(item[1] for item in cluster)
+        time_seconds = sum(item[0] * item[1] for item in cluster) / weight
+        evidence = tuple(sorted({item[2] for item in cluster}))
+        landmark = next((item[3] for item in cluster if item[3] is not None), None)
+        nearest = min(beats, key=lambda value: abs(value - time_seconds)) if beats else None
+        multimodal_bonus = 0.14 * max(0, len(evidence) - 1)
+        result.append(
+            CandidateMoment(
+                time_seconds=round_number(time_seconds),
+                evidence_score=round_number(min(1.0, max(item[1] for item in cluster) + multimodal_bonus)),
+                evidence=evidence,
+                choreography_landmark=landmark,
+                nearest_music_event_seconds=round_number(nearest) if nearest is not None else None,
+                signed_music_offset_seconds=(
+                    round_number(time_seconds - nearest) if nearest is not None else None
+                ),
+            )
+        )
+    result.extend(
+        consensus_direction_moments(reference, reference_start, takes, offsets, duration_seconds, beats)
+    )
+    result.sort(key=lambda value: value.time_seconds)
+    return result
+
+
+def consensus_direction_moments(
+    reference: PoseTrack,
+    reference_start: float,
+    takes: dict[str, PoseTrack],
+    offsets: dict[str, float],
+    duration_seconds: float,
+    beats: list[float],
+) -> list[CandidateMoment]:
+    timeline = np.arange(0, duration_seconds, 1 / 30)
+    tracks = [(reference, reference_start), *[(track, offsets[asset_id]) for asset_id, track in takes.items()]]
+    accelerations = []
+    for track, offset in tracks:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", category=RuntimeWarning)
+            wrists = np.nanmean(interpolate_pose(track, offset + timeline)[:, [15, 16]], axis=1)
+        x = wrists[:, 0]
+        x = np.nan_to_num(x, nan=float(np.nanmedian(x)))
+        x = np.convolve(x, np.ones(7) / 7, mode="same")
+        acceleration = np.convolve(np.abs(np.gradient(np.gradient(x))), np.ones(5) / 5, mode="same")
+        low, high = np.quantile(acceleration, [0.1, 0.95])
+        accelerations.append(np.clip((acceleration - low) / (high - low + 1e-9), 0, 2))
+    consensus = np.median(np.asarray(accelerations), axis=0)
+    threshold = float(np.quantile(consensus, 0.52))
+    moments = []
+    for index in range(2, len(consensus) - 2):
+        if consensus[index] < threshold or consensus[index] != np.max(consensus[index - 2 : index + 3]):
+            continue
+        time_seconds = float(timeline[index])
+        nearest = min(beats, key=lambda value: abs(value - time_seconds)) if beats else None
+        moments.append(
+            CandidateMoment(
+                time_seconds=round_number(time_seconds),
+                evidence_score=round_number(min(1.0, 0.55 + 0.28 * consensus[index])),
+                evidence=("consensus-direction-change",),
+                choreography_landmark="multi-track-wrist-direction-change",
+                nearest_music_event_seconds=round_number(nearest) if nearest is not None else None,
+                signed_music_offset_seconds=round_number(time_seconds - nearest) if nearest is not None else None,
+            )
+        )
+    return moments
+
+
+def read_phrase_anchors(path: Path | None, phrase_count: int, duration_seconds: float) -> list[dict[str, Any]]:
+    if path is None:
+        return []
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if payload.get("schemaVersion") != "nodevideo.source-only-phrase-interpretation/v1":
+        raise ValueError("Unsupported phrase interpretation schema")
+    if payload.get("isolation", {}).get("hiddenTargetRead") is not False:
+        raise ValueError("Phrase interpretation does not attest target isolation")
+    anchors = payload.get("anchors")
+    if not isinstance(anchors, list) or len(anchors) != phrase_count - 1:
+        raise ValueError("Phrase interpretation must provide one anchor per interior cut")
+    result = []
+    previous = 0.0
+    for index, item in enumerate(anchors):
+        time_seconds = float(item["timeSeconds"])
+        reason = str(item["reason"]).strip()
+        if time_seconds <= previous or time_seconds >= duration_seconds or not reason:
+            raise ValueError(f"Invalid phrase anchor at index {index}")
+        result.append({"timeSeconds": round_number(time_seconds), "reason": reason})
+        previous = time_seconds
+    return result
 
 
 def build_phrase_boundaries(
@@ -401,6 +662,9 @@ def score_phrases(
     reference_asset_id: str,
     reference_start: float,
     quality_tolerance: float,
+    selected_take_ids: tuple[str, ...],
+    boundary_moments: tuple[CandidateMoment, ...],
+    interval_cache: dict[tuple[float, float], list[dict[str, Any]]],
 ) -> list[dict[str, Any]]:
     offsets = {item["takeAssetId"]: float(item["choreographyStartSeconds"]) for item in alignments}
     full_timeline = np.arange(0, boundaries[-1], 0.1)
@@ -411,83 +675,18 @@ def score_phrases(
     # Prefer the take with the most stable headroom as the wide establishing lane. The other
     # take becomes the contrasting fill lane; this is a reusable visual grammar, not a case ID.
     opening_take = min(opening_boxes, key=lambda asset_id: opening_boxes[asset_id]["y"])
+    if len(selected_take_ids) != len(boundaries) - 1:
+        raise ValueError("optimizer take decisions do not match phrase intervals")
     result = []
-    previous = None
     for index, (start, end) in enumerate(zip(boundaries, boundaries[1:])):
-        timeline = np.arange(start, end, 0.1)
-        reference_pose = interpolate_pose(reference, reference_start + timeline)
-        raw_candidates = []
-        for asset_id, track in sorted(takes.items()):
-            pose = interpolate_pose(track, offsets[asset_id] + timeline)
-            raw = interpolate_raw(track, offsets[asset_id] + timeline)
-            pose_distance = float(
-                np.nanmedian(np.linalg.norm(reference_pose[:, CORE_JOINTS] - pose[:, CORE_JOINTS], axis=2))
-            )
-            completeness = float(np.mean(np.isfinite(raw[:, CORE_JOINTS]).all(axis=2)))
-            visible = raw[:, CORE_JOINTS]
-            framing = float(
-                np.mean(
-                    np.isfinite(visible).all(axis=2)
-                    & (visible[:, :, 0] >= 0.015)
-                    & (visible[:, :, 0] <= 0.985)
-                    & (visible[:, :, 1] >= 0.015)
-                    & (visible[:, :, 1] <= 0.985)
-                )
-            )
-            motion = interpolate_motion(track, offsets[asset_id] + timeline)
-            expression = float(np.nanmedian(motion))
-            raw_candidates.append(
-                {
-                    "takeAssetId": asset_id,
-                    "sourceStartSeconds": round_number(offsets[asset_id] + start),
-                    "sourceEndSeconds": round_number(offsets[asset_id] + end),
-                    "poseDistance": pose_distance,
-                    "choreography": math.exp(-pose_distance),
-                    "completeness": completeness,
-                    "framing": framing,
-                    "expression": expression,
-                    "bodyBox": body_box(raw),
-                }
-            )
-        expression_values = [item["expression"] for item in raw_candidates]
-        low, high = min(expression_values), max(expression_values)
-        for item in raw_candidates:
-            expression_score = 0.5 if high - low < 1e-9 else (item["expression"] - low) / (high - low)
-            item["scores"] = {
-                "choreography": round_number(item.pop("choreography")),
-                "completeness": round_number(item.pop("completeness")),
-                "framing": round_number(item.pop("framing")),
-                "expression": round_number(expression_score),
-            }
-            item["totalScore"] = round_number(
-                0.4 * item["scores"]["choreography"]
-                + 0.2 * item["scores"]["completeness"]
-                + 0.15 * item["scores"]["framing"]
-                + 0.25 * item["scores"]["expression"]
-            )
-            item["poseDistance"] = round_number(item["poseDistance"])
-            item["groundingStatus"] = "manual-pose-replay"
-        best = max(raw_candidates, key=lambda value: value["totalScore"])
-        if index == 0 and reference_asset_id in takes:
-            selected = next(value for value in raw_candidates if value["takeAssetId"] == reference_asset_id)
-            reason = "Creator-selected canonical take opens the sequence."
-        elif index == 0:
-            selected = next(value for value in raw_candidates if value["takeAssetId"] == opening_take)
-            reason = "The stable-headroom creator take opens the independent-reference sequence wide."
-        else:
-            alternatives = [
-                value
-                for value in raw_candidates
-                if value["takeAssetId"] != previous
-                and best["totalScore"] - value["totalScore"] <= quality_tolerance
-            ]
-            selected = max(alternatives, key=lambda value: value["totalScore"]) if alternatives else best
-            reason = (
-                "Quality-gated contrast selected a different clean take."
-                if selected["takeAssetId"] != previous
-                else "The quality margin blocked a cosmetic take switch."
-            )
-        previous = selected["takeAssetId"]
+        key = (round(start, 6), round(end, 6))
+        raw_candidates = interval_cache.get(key) or score_interval_candidates(
+            reference, takes, offsets, reference_start, start, end
+        )
+        selected = next(
+            value for value in raw_candidates if value["takeAssetId"] == selected_take_ids[index]
+        )
+        moment = boundary_moments[index] if index < len(boundary_moments) else None
         result.append(
             {
                 "id": f"phrase.{index + 1}",
@@ -495,12 +694,87 @@ def score_phrases(
                 "timelineEndSeconds": round_number(end),
                 "candidates": raw_candidates,
                 "selectedTakeAssetId": selected["takeAssetId"],
-                "selectionReason": reason,
+                "selectionReason": "Globally selected from source-only interval quality and transition coherence.",
                 "framingTemplate": "fit" if selected["takeAssetId"] == opening_take else "fill",
                 "captionSafeZone": caption_safe_zone(selected["bodyBox"]),
+                "outBoundaryDecision": (
+                    {
+                        "evidence": list(moment.evidence),
+                        "evidenceScore": moment.evidence_score,
+                        "choreographyLandmark": moment.choreography_landmark,
+                        "nearestMusicEventSeconds": moment.nearest_music_event_seconds,
+                        "signedMusicOffsetSeconds": moment.signed_music_offset_seconds,
+                        "reason": "Jointly maximizes choreography, music, lyric, take-quality, and transition evidence.",
+                        "confidence": round_number(0.45 + 0.5 * moment.evidence_score),
+                    }
+                    if moment is not None
+                    else {"evidence": ["terminal"], "reason": "Declared song excerpt end."}
+                ),
             }
         )
     return result
+
+
+def score_interval_candidates(
+    reference: PoseTrack,
+    takes: dict[str, PoseTrack],
+    offsets: dict[str, float],
+    reference_start: float,
+    start: float,
+    end: float,
+) -> list[dict[str, Any]]:
+    timeline = np.arange(start, end, 0.1)
+    reference_pose = interpolate_pose(reference, reference_start + timeline)
+    candidates = []
+    for asset_id, track in sorted(takes.items()):
+        pose = interpolate_pose(track, offsets[asset_id] + timeline)
+        raw = interpolate_raw(track, offsets[asset_id] + timeline)
+        pose_distance = float(
+            np.nanmedian(np.linalg.norm(reference_pose[:, CORE_JOINTS] - pose[:, CORE_JOINTS], axis=2))
+        )
+        visible = raw[:, CORE_JOINTS]
+        completeness = float(np.mean(np.isfinite(visible).all(axis=2)))
+        framing = float(
+            np.mean(
+                np.isfinite(visible).all(axis=2)
+                & (visible[:, :, 0] >= 0.015)
+                & (visible[:, :, 0] <= 0.985)
+                & (visible[:, :, 1] >= 0.015)
+                & (visible[:, :, 1] <= 0.985)
+            )
+        )
+        candidates.append(
+            {
+                "takeAssetId": asset_id,
+                "sourceStartSeconds": round_number(offsets[asset_id] + start),
+                "sourceEndSeconds": round_number(offsets[asset_id] + end),
+                "poseDistance": pose_distance,
+                "choreography": math.exp(-pose_distance),
+                "completeness": completeness,
+                "framing": framing,
+                "expression": float(np.nanmedian(interpolate_motion(track, offsets[asset_id] + timeline))),
+                "bodyBox": body_box(raw),
+            }
+        )
+    expression_values = [item["expression"] for item in candidates]
+    low, high = min(expression_values), max(expression_values)
+    for item in candidates:
+        expression_score = 0.5 if high - low < 1e-9 else (item["expression"] - low) / (high - low)
+        item["scores"] = {
+            "choreography": round_number(item.pop("choreography")),
+            "completeness": round_number(item.pop("completeness")),
+            "framing": round_number(item.pop("framing")),
+            "expression": round_number(expression_score),
+        }
+        item["totalScore"] = round_number(
+            0.4 * item["scores"]["choreography"]
+            + 0.2 * item["scores"]["completeness"]
+            + 0.15 * item["scores"]["framing"]
+            + 0.25 * item["scores"]["expression"]
+        )
+        item["poseDistance"] = round_number(item["poseDistance"])
+        item["groundingStatus"] = "source-only-pose-track"
+    return candidates
 
 
 def interpolate_pose(track: PoseTrack, times: np.ndarray) -> np.ndarray:

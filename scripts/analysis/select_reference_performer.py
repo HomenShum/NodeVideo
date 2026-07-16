@@ -119,8 +119,12 @@ def main() -> None:
     for asset_id, path in parse_takes(args.take).items():
         payload = np.load(path)
         raw = np.asarray(payload["poses"], dtype=np.float32)
+        if raw.ndim == 4 and raw.shape[1] == 1:
+            raw = raw[:, 0]
+        if raw.ndim != 3:
+            raise ValueError(f"Take {asset_id} must contain exactly one performer track")
         pose = normalize(raw[None, ..., :2])[0][:, JOINTS]
-        visibility = raw[:, JOINTS, 2]
+        visibility = raw[:, JOINTS, 3 if raw.shape[2] >= 4 else 2]
         times = np.asarray(payload["times"], dtype=np.float64)
         offset, distance, alternatives = scan_take(
             reference_times,

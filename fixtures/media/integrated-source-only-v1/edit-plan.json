@@ -1,9 +1,9 @@
 {
   "schemaVersion": "nodevideo.edit-plan.v1",
-  "id": "plan.integrated-source-only-v5",
-  "understandingId": "understanding.integrated-source-only-v5",
+  "id": "plan.live-owner-strict-candidate-v1",
+  "understandingId": "understanding.live-owner-strict-candidate-v1",
   "version": 1,
-  "createdAt": "2026-07-16T06:32:04.003Z",
+  "createdAt": "2026-07-16T10:40:12.534Z",
   "frameRate": 30,
   "canvas": {
     "width": 720,
@@ -52,14 +52,14 @@
         "kind": "music",
         "clipId": "clip.music",
         "sourceOffsetMs": 0,
-        "releasedMasterOffsetMs": 29157,
+        "releasedMasterOffsetMs": 0,
         "releasedMasterGainDb": 0,
         "targetStartMs": 0,
         "targetEndMs": 40400,
         "gainDb": 0,
         "identity": {
           "title": "Sign",
-          "artist": "82MAJOR"
+          "artist": "izna"
         }
       },
       {
@@ -176,11 +176,11 @@
           "assetId": "asset.take-a",
           "timelineRange": {
             "startFrame": 0,
-            "endFrameExclusive": 198
+            "endFrameExclusive": 199
           },
           "sourceRange": {
-            "startFrame": 462,
-            "endFrameExclusive": 660
+            "startFrame": 465,
+            "endFrameExclusive": 664
           },
           "playbackRate": 1,
           "fit": "fit",
@@ -194,12 +194,12 @@
           "kind": "source",
           "assetId": "asset.take-b",
           "timelineRange": {
-            "startFrame": 198,
-            "endFrameExclusive": 474
+            "startFrame": 199,
+            "endFrameExclusive": 481
           },
           "sourceRange": {
-            "startFrame": 963,
-            "endFrameExclusive": 1239
+            "startFrame": 964,
+            "endFrameExclusive": 1246
           },
           "playbackRate": 1,
           "fit": "fill",
@@ -213,12 +213,12 @@
           "kind": "source",
           "assetId": "asset.take-a",
           "timelineRange": {
-            "startFrame": 474,
-            "endFrameExclusive": 594
+            "startFrame": 481,
+            "endFrameExclusive": 590
           },
           "sourceRange": {
-            "startFrame": 936,
-            "endFrameExclusive": 1056
+            "startFrame": 946,
+            "endFrameExclusive": 1055
           },
           "playbackRate": 1,
           "fit": "fit",
@@ -232,12 +232,12 @@
           "kind": "source",
           "assetId": "asset.take-b",
           "timelineRange": {
-            "startFrame": 594,
-            "endFrameExclusive": 758
+            "startFrame": 590,
+            "endFrameExclusive": 751
           },
           "sourceRange": {
-            "startFrame": 1359,
-            "endFrameExclusive": 1523
+            "startFrame": 1355,
+            "endFrameExclusive": 1516
           },
           "playbackRate": 1,
           "fit": "fill",
@@ -251,12 +251,12 @@
           "kind": "source",
           "assetId": "asset.take-a",
           "timelineRange": {
-            "startFrame": 758,
-            "endFrameExclusive": 1212
+            "startFrame": 751,
+            "endFrameExclusive": 1214
           },
           "sourceRange": {
-            "startFrame": 1220,
-            "endFrameExclusive": 1674
+            "startFrame": 1216,
+            "endFrameExclusive": 1679
           },
           "playbackRate": 1,
           "fit": "fit",
@@ -266,14 +266,22 @@
           }
         },
         {
+          "id": "clip.terminal-transition",
+          "kind": "black",
+          "timelineRange": {
+            "startFrame": 1214,
+            "endFrameExclusive": 1215
+          }
+        },
+        {
           "id": "clip.outro-freeze",
           "kind": "freeze",
           "assetId": "asset.take-a",
           "timelineRange": {
-            "startFrame": 1212,
+            "startFrame": 1215,
             "endFrameExclusive": 1335
           },
-          "sourceFrame": 1673,
+          "sourceFrame": 1678,
           "fit": "fit",
           "cropKeyframes": [],
           "grade": {
@@ -305,7 +313,7 @@
           "fadeOutFrames": 0,
           "license": {
             "status": "reference-only-private",
-            "proofRef": "authorization.creator-private-analysis-and-instagram-handoff"
+            "proofRef": "owner-provided-private-reference"
           }
         }
       ]
@@ -325,7 +333,7 @@
           "templateId": "text.cue",
           "box": {
             "x": 0.1,
-            "y": 0.791327,
+            "y": 0.779909,
             "width": 0.8,
             "height": 0.075
           },
@@ -342,7 +350,7 @@
           "templateId": "text.cue",
           "box": {
             "x": 0.1,
-            "y": 0.791327,
+            "y": 0.779909,
             "width": 0.8,
             "height": 0.075
           },
@@ -359,7 +367,7 @@
           "templateId": "text.cue",
           "box": {
             "x": 0.1,
-            "y": 0.791327,
+            "y": 0.779909,
             "width": 0.8,
             "height": 0.075
           },
@@ -376,7 +384,7 @@
           "templateId": "text.cue",
           "box": {
             "x": 0.1,
-            "y": 0.049561,
+            "y": 0.779909,
             "width": 0.8,
             "height": 0.075
           },
@@ -393,7 +401,7 @@
           "templateId": "text.cue",
           "box": {
             "x": 0.1,
-            "y": 0.049561,
+            "y": 0.049617,
             "width": 0.8,
             "height": 0.075
           },
@@ -410,7 +418,7 @@
           "templateId": "text.cue",
           "box": {
             "x": 0.1,
-            "y": 0.049561,
+            "y": 0.049617,
             "width": 0.8,
             "height": 0.075
           },
@@ -427,7 +435,7 @@
           "templateId": "text.cue",
           "box": {
             "x": 0.1,
-            "y": 0.790858,
+            "y": 0.049617,
             "width": 0.8,
             "height": 0.075
           },
@@ -444,7 +452,7 @@
           "templateId": "text.cue",
           "box": {
             "x": 0.1,
-            "y": 0.085563,
+            "y": 0.084353,
             "width": 0.8,
             "height": 0.075
           },
@@ -461,7 +469,7 @@
           "templateId": "text.cue",
           "box": {
             "x": 0.1,
-            "y": 0.791384,
+            "y": 0.790487,
             "width": 0.8,
             "height": 0.075
           },
@@ -478,7 +486,7 @@
           "templateId": "text.cue",
           "box": {
             "x": 0.1,
-            "y": 0.791384,
+            "y": 0.790487,
             "width": 0.8,
             "height": 0.075
           },
@@ -495,7 +503,7 @@
           "templateId": "text.cue",
           "box": {
             "x": 0.1,
-            "y": 0.791384,
+            "y": 0.790487,
             "width": 0.8,
             "height": 0.075
           },
@@ -512,7 +520,7 @@
           "templateId": "text.cue",
           "box": {
             "x": 0.1,
-            "y": 0.791384,
+            "y": 0.790487,
             "width": 0.8,
             "height": 0.075
           },
@@ -529,7 +537,7 @@
           "templateId": "text.cue",
           "box": {
             "x": 0.1,
-            "y": 0.791384,
+            "y": 0.790487,
             "width": 0.8,
             "height": 0.075
           },
@@ -538,11 +546,11 @@
         {
           "id": "overlay.outro",
           "timelineRange": {
-            "startFrame": 1212,
+            "startFrame": 1215,
             "endFrameExclusive": 1335
           },
           "kind": "text",
-          "text": "Thanks for watching!",
+          "text": "NodeVideo source-only proof",
           "templateId": "text.outro",
           "box": {
             "x": 0.14,

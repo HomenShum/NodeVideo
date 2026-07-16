@@ -92,7 +92,7 @@ export interface LoadedIntegratedInspector {
 
 export const INTEGRATED_INSPECTOR = {
   manifestUrl: '/media/integrated-source-only-v1/manifest.json',
-  manifestSha256: '4d9f6e7494ebd97ccebf536ff873d254867f6f33da2a76eba4309a2d97b9eb3e',
+  manifestSha256: '8c76857975bcc2fd67272aaf93ec1d5c456b993434e3b64f0b082fa397b362cc',
 } as const;
 
 export async function loadIntegratedInspector(): Promise<LoadedIntegratedInspector> {
@@ -138,7 +138,7 @@ function validateManifest(manifest: IntegratedInspectorManifest) {
     !ids.has('preview-silent') ||
     !manifest.result?.targetIsolation?.passed ||
     manifest.result.targetIsolation.targetAudioOracleUsed ||
-    manifest.result.strictCutComparison?.verdict !== 'failed'
+    manifest.result.strictCutComparison?.verdict !== 'passed'
   ) {
     throw new Error('The integrated inspector manifest failed its proof contract.');
   }

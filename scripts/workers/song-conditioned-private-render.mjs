@@ -219,12 +219,25 @@ function buildPlan({
       grade: { kind: 'hlg-bt2020-to-sdr-bt709-hable' },
     };
   });
+  const outroSourceFrame = videoClips.at(-1).sourceRange.endFrameExclusive - 1;
+  const terminalTransitionFrames = analysis.tasteTemplate?.terminalTransitionFrames ?? 0;
+  if (terminalTransitionFrames > 0) {
+    videoClips.push({
+      id: 'clip.terminal-transition',
+      kind: 'black',
+      timelineRange: {
+        startFrame: choreographyEndFrame,
+        endFrameExclusive: choreographyEndFrame + terminalTransitionFrames,
+      },
+    });
+  }
+  const freezeStartFrame = choreographyEndFrame + terminalTransitionFrames;
   videoClips.push({
     id: 'clip.outro-freeze',
     kind: 'freeze',
     assetId: analysis.phrases.at(-1).selectedTakeAssetId,
-    timelineRange: { startFrame: choreographyEndFrame, endFrameExclusive: planDurationFrames },
-    sourceFrame: videoClips.at(-1).sourceRange.endFrameExclusive - 1,
+    timelineRange: { startFrame: freezeStartFrame, endFrameExclusive: planDurationFrames },
+    sourceFrame: outroSourceFrame,
     fit: 'fit',
     cropKeyframes: [],
     grade: { kind: 'hlg-bt2020-to-sdr-bt709-hable' },
@@ -251,7 +264,7 @@ function buildPlan({
   if (options.outroText) {
     overlays.push({
       id: 'overlay.outro',
-      timelineRange: { startFrame: choreographyEndFrame, endFrameExclusive: planDurationFrames },
+      timelineRange: { startFrame: freezeStartFrame, endFrameExclusive: planDurationFrames },
       kind: 'text',
       text: options.outroText,
       templateId: 'text.outro',
@@ -396,23 +409,23 @@ function validateRender({ analysis, plan, previewProbe, choreographyEndFrame, mu
       true,
     ),
     assertion(
-      'five choreography phrases compile',
-      analysis.phrases.length === 5,
+      'globally planned choreography phrases compile',
+      analysis.phrases.length >= 2 &&
+        analysis.tasteTemplate?.planner === 'deterministic-dynamic-programming-beam-search',
       analysis.phrases.length,
-      5,
+      'at least 2 phrases from the global planner',
     ),
     assertion(
-      'source identities alternate',
-      analysis.phrases.every(
-        (phrase, index) =>
-          index === 0 ||
-          phrase.selectedTakeAssetId !== analysis.phrases[index - 1].selectedTakeAssetId,
-      ),
+      'every interior cut carries source-only decision evidence',
+      analysis.phrases
+        .slice(0, -1)
+        .every((phrase) => phrase.outBoundaryDecision?.evidence?.length > 0),
     ),
     assertion(
       'outro freezes after choreography',
       primary.clips.at(-1).kind === 'freeze' &&
-        primary.clips.at(-1).timelineRange.startFrame === choreographyEndFrame,
+        primary.clips.at(-1).timelineRange.startFrame ===
+          choreographyEndFrame + (analysis.tasteTemplate?.terminalTransitionFrames ?? 0),
     ),
     assertion(
       'camera audio is muted',

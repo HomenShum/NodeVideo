@@ -23,6 +23,40 @@ export const jobEventKind = v.union(
   v.literal('proposal.created'),
   v.literal('proposal.approved'),
   v.literal('proposal.rejected'),
+  v.literal('stage.started'),
+  v.literal('stage.completed'),
+  v.literal('stage.failed'),
+  v.literal('stage.retry_scheduled'),
+  v.literal('stage.awaiting_approval'),
+  v.literal('plan.frozen'),
+  v.literal('evaluation.unsealed'),
+);
+
+export const stageName = v.union(
+  v.literal('validate_inputs'),
+  v.literal('ingest_reference'),
+  v.literal('normalize_media'),
+  v.literal('align_reference_song'),
+  v.literal('extract_reference_motion'),
+  v.literal('analyze_takes'),
+  v.literal('match_phrases'),
+  v.literal('plan_sequence'),
+  v.literal('place_lyrics'),
+  v.literal('compile_plan'),
+  v.literal('render_preview'),
+  v.literal('validate_preview'),
+  v.literal('await_review'),
+  v.literal('freeze'),
+  v.literal('evaluate_hidden_target'),
+);
+
+export const stageStatus = v.union(
+  v.literal('pending'),
+  v.literal('running'),
+  v.literal('awaiting_approval'),
+  v.literal('completed'),
+  v.literal('failed'),
+  v.literal('cancelled'),
 );
 
 export const workerEventKind = v.union(v.literal('worker.progress'), v.literal('worker.log'));
@@ -53,4 +87,11 @@ export type JobEventKind =
   | 'artifact.recorded'
   | 'proposal.created'
   | 'proposal.approved'
-  | 'proposal.rejected';
+  | 'proposal.rejected'
+  | 'stage.started'
+  | 'stage.completed'
+  | 'stage.failed'
+  | 'stage.retry_scheduled'
+  | 'stage.awaiting_approval'
+  | 'plan.frozen'
+  | 'evaluation.unsealed';
