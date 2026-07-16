@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile } from 'node:fs/promises';
 import { basename, isAbsolute, join, relative, resolve } from 'node:path';
 import {
   PRIVATE_EVIDENCE_ROOT,
@@ -23,7 +23,9 @@ const analysis = JSON.parse(await readFile(options.analysis, 'utf8'));
 validateAnalysis(analysis, options);
 const outputRoot = resolve(options.outputDirectory);
 assertPrivateOutputRoot(outputRoot);
+await mkdir(outputRoot, { recursive: true });
 const paths = {
+  analysis: join(outputRoot, 'analysis.json'),
   plan: join(outputRoot, 'edit-plan.json'),
   bindings: join(outputRoot, 'bindings.private.json'),
   preview: join(outputRoot, 'source-only-song-preview.mp4'),
@@ -52,7 +54,11 @@ const plan = buildPlan({
 });
 const bindings = Object.fromEntries([...options.takes.entries(), ['asset.music', options.music]]);
 
-await Promise.all([writeJson(paths.plan, plan), writeJson(paths.bindings, bindings)]);
+await Promise.all([
+  copyFile(options.analysis, paths.analysis),
+  writeJson(paths.plan, plan),
+  writeJson(paths.bindings, bindings),
+]);
 await renderEditPlan({
   plan,
   bindings,
@@ -114,18 +120,27 @@ const manifest = {
   isolation: {
     level: 'audited-input-allowlist',
     finishedEditAcceptedByCli: false,
-    targetPictureMountedDuringGeneration: false,
-    targetPictureReadDuringGeneration: false,
-    targetPlanReadDuringGeneration: false,
-    targetAudioOracle:
-      options.musicLicenseStatus === 'target-derived-authorized'
-        ? {
+    ...(options.musicLicenseStatus === 'target-derived-authorized'
+      ? {
+          targetPictureMountedDuringGeneration: false,
+          targetPictureReadDuringGeneration: false,
+          targetPlanReadDuringGeneration: false,
+        }
+      : {
+          forbiddenMediaMountedDuringGeneration: false,
+          forbiddenMediaReadDuringGeneration: false,
+          forbiddenPlanReadDuringGeneration: false,
+        }),
+    ...(options.musicLicenseStatus === 'target-derived-authorized'
+      ? {
+          targetAudioOracle: {
             used: true,
             proofRef: options.musicProofRef,
             limitation:
               'This run tests picture planning against the exact user-authorized soundtrack; it does not prove song or excerpt selection.',
-          }
-        : { used: false },
+          },
+        }
+      : {}),
   },
   render: {
     file: basename(paths.preview),
@@ -151,7 +166,7 @@ const manifest = {
 await writeJson(paths.manifest, manifest);
 
 const frozen = await Promise.all(
-  [options.analysis, paths.plan, paths.manifest, paths.preview].map(async (path) => ({
+  [paths.analysis, paths.plan, paths.manifest, paths.preview].map(async (path) => ({
     file: basename(path),
     sha256: await sha256File(path),
   })),
@@ -163,7 +178,9 @@ const freeze = {
   generatorVersion: VERSION,
   targetMountedDuringGeneration: false,
   targetReadDuringGeneration: false,
-  targetPlanReadDuringGeneration: false,
+  ...(options.musicLicenseStatus === 'target-derived-authorized'
+    ? { targetPlanReadDuringGeneration: false }
+    : {}),
   isolationLevel: 'audited-input-allowlist',
   files: frozen,
 };
@@ -197,7 +214,7 @@ function buildPlan({
         endFrameExclusive: sourceStart + timelineEnd - timelineStart,
       },
       playbackRate: 1,
-      fit: 'fit',
+      fit: phrase.framingTemplate ?? 'fit',
       cropKeyframes: [],
       grade: { kind: 'hlg-bt2020-to-sdr-bt709-hable' },
     };
@@ -336,12 +353,13 @@ function buildPlan({
 }
 
 function validateAnalysis(analysis, options) {
+  const isolation = analysis.generationIsolation ?? analysis.targetIsolation;
   if (
     analysis.schemaVersion !== 'nodevideo.song-choreography-analysis.v1' ||
     analysis.mode !== 'song-conditioned-source-only' ||
-    analysis.targetIsolation?.finishedEditAcceptedAsInput !== false ||
-    analysis.targetIsolation?.targetPictureRead !== false ||
-    analysis.targetIsolation?.targetPlanRead !== false
+    isolation?.finishedEditAcceptedAsInput !== false ||
+    (isolation.finishedEditPictureRead ?? isolation.targetPictureRead) !== false ||
+    (isolation.finishedEditPlanRead ?? isolation.targetPlanRead) !== false
   ) {
     throw new Error('Analysis does not satisfy the source-only contract.');
   }
@@ -446,9 +464,13 @@ function parseArguments(args) {
   if (takes.size < 2) throw new Error('At least two --take bindings are required.');
   const musicLicenseStatus = value(args, '--music-license-status');
   if (
-    !['owned', 'licensed', 'public-domain', 'target-derived-authorized'].includes(
-      musicLicenseStatus,
-    )
+    ![
+      'owned',
+      'licensed',
+      'public-domain',
+      'reference-only-private',
+      'target-derived-authorized',
+    ].includes(musicLicenseStatus)
   ) {
     throw new Error('--music-license-status is unsupported.');
   }

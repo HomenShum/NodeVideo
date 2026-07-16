@@ -29,7 +29,12 @@ export interface BeatGrid {
 }
 
 export interface MusicLicense {
-  status: 'owned' | 'licensed' | 'public-domain' | 'target-derived-authorized';
+  status:
+    | 'owned'
+    | 'licensed'
+    | 'public-domain'
+    | 'reference-only-private'
+    | 'target-derived-authorized';
   proofRef: string;
   expiresAt?: string;
 }
@@ -610,7 +615,7 @@ function validateMusicLicense(value: unknown, label: string): asserts value is M
   assertExactKeys(license, label, ['status', 'proofRef'], ['expiresAt']);
   assertOneOf(
     license.status,
-    ['owned', 'licensed', 'public-domain', 'target-derived-authorized'],
+    ['owned', 'licensed', 'public-domain', 'reference-only-private', 'target-derived-authorized'],
     `${label}.status`,
   );
   assertString(license.proofRef, `${label}.proofRef`, 2_048);

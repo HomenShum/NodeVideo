@@ -14,6 +14,7 @@
       "fixtures/media/blind-source-only-pilot-01",
       "fixtures/media/song-conditioned-auto-edit-v1",
       "fixtures/media/song-conditioned-real-calibration-v1",
+      "fixtures/media/integrated-source-only-v1",
       "convex/_generated",
       "src/styles.css",
       "src/components/ui",

@@ -46,6 +46,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--reference-pose", type=Path, required=True)
     parser.add_argument("--reference-start-seconds", type=float, required=True)
     parser.add_argument(
+        "--alignment-json",
+        type=Path,
+        help="Optional source-only multi-person reference alignment receipt.",
+    )
+    parser.add_argument(
         "--take-pose",
         action="append",
         default=[],
@@ -78,24 +83,28 @@ def main() -> None:
         raise ValueError("--phrase-beats must contain positive beat counts.")
 
     take_bindings = parse_bindings(args.take_pose)
-    if args.reference_asset_id not in take_bindings:
-        raise ValueError("The reference asset must also appear in --take-pose for fallback rendering.")
     reference = load_pose_track(args.reference_asset_id, args.reference_pose)
     takes = {
         asset_id: load_pose_track(asset_id, path) for asset_id, path in take_bindings.items()
     }
     music = analyze_music(args.music, args.ffmpeg)
+    lyrics = read_lyrics(args.lyrics_json, args.duration_seconds)
     boundaries = build_phrase_boundaries(
         tempo=music["bpm"],
         beats_ms=music["beatsMs"],
         duration_seconds=args.duration_seconds,
         phrase_beats=phrase_beats,
     )
-    alignments = align_takes(
-        reference=reference,
-        takes=takes,
-        reference_start=args.reference_start_seconds,
-        duration=args.duration_seconds,
+    boundaries = refine_boundaries_with_cues(boundaries, lyrics)
+    alignments = (
+        read_alignment_receipt(args.alignment_json, takes, args.duration_seconds)
+        if args.alignment_json
+        else align_takes(
+            reference=reference,
+            takes=takes,
+            reference_start=args.reference_start_seconds,
+            duration=args.duration_seconds,
+        )
     )
     phrases = score_phrases(
         reference=reference,
@@ -103,11 +112,15 @@ def main() -> None:
         alignments=alignments,
         boundaries=boundaries,
         reference_asset_id=args.reference_asset_id,
+        reference_start=args.reference_start_seconds,
         quality_tolerance=args.quality_tolerance,
     )
-    lyrics = read_lyrics(args.lyrics_json, args.duration_seconds)
     warnings = []
-    if args.reference_pose.resolve() == take_bindings[args.reference_asset_id].resolve():
+    is_fallback_reference = (
+        args.reference_asset_id in take_bindings
+        and args.reference_pose.resolve() == take_bindings[args.reference_asset_id].resolve()
+    )
+    if is_fallback_reference:
         warnings.append(
             "No independent choreography reference was supplied; the creator-selected canonical "
             "take is used as a disclosed fallback reference."
@@ -123,7 +136,11 @@ def main() -> None:
             "assetId": args.reference_asset_id,
             "sha256": sha256(args.reference_pose),
             "choreographyStartSeconds": round_number(args.reference_start_seconds),
-            "role": "creator-selected-canonical-fallback",
+            "role": (
+                "creator-selected-canonical-fallback"
+                if is_fallback_reference
+                else "independent-original-choreography-reference"
+            ),
         },
         "music": {
             "assetId": "asset.music",
@@ -146,12 +163,20 @@ def main() -> None:
             "qualityTolerance": args.quality_tolerance,
         },
         "alignments": alignments,
+        "alignmentEvidence": (
+            {
+                "schemaVersion": "nodevideo.reference-performer-selection.v1",
+                "sha256": sha256(args.alignment_json),
+            }
+            if args.alignment_json
+            else None
+        ),
         "phrases": phrases,
         "lyricCues": lyrics,
-        "targetIsolation": {
+        "generationIsolation": {
             "finishedEditAcceptedAsInput": False,
-            "targetPictureRead": False,
-            "targetPlanRead": False,
+            "finishedEditPictureRead": False,
+            "finishedEditPlanRead": False,
         },
         "warnings": warnings,
     }
@@ -273,6 +298,30 @@ def build_phrase_boundaries(
     return [0.0, *ideal, duration_seconds]
 
 
+def refine_boundaries_with_cues(
+    boundaries: list[float], lyrics: list[dict[str, Any]], maximum_shift: float = 0.9
+) -> list[float]:
+    if not lyrics or len(boundaries) <= 2:
+        return boundaries
+    transitions = sorted(
+        {
+            float(value)
+            for cue in lyrics
+            for value in (cue["startSeconds"], cue["endSeconds"])
+            if 0 < float(value) < boundaries[-1]
+        }
+    )
+    refined = [boundaries[0]]
+    for boundary in boundaries[1:-1]:
+        candidates = [value for value in transitions if abs(value - boundary) <= maximum_shift]
+        selected = min(candidates, key=lambda value: abs(value - boundary)) if candidates else boundary
+        if selected <= refined[-1] + 0.25:
+            selected = boundary
+        refined.append(selected)
+    refined.append(boundaries[-1])
+    return refined
+
+
 def align_takes(
     reference: PoseTrack,
     takes: dict[str, PoseTrack],
@@ -290,6 +339,34 @@ def align_takes(
                 "takeAssetId": asset_id,
                 "choreographyStartSeconds": round_number(offset),
                 "method": "identity" if asset_id == reference.asset_id else "normalized-pose-offset-search",
+                "medianNormalizedPoseDistance": round_number(distance),
+                "confidence": round_number(math.exp(-distance)),
+            }
+        )
+    return results
+
+
+def read_alignment_receipt(
+    path: Path, takes: dict[str, PoseTrack], duration: float
+) -> list[dict[str, Any]]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if payload.get("schemaVersion") != "nodevideo.reference-performer-selection.v1":
+        raise ValueError("Unsupported alignment receipt schema.")
+    declared = payload.get("alignments", {})
+    if set(declared) != set(takes):
+        raise ValueError("Alignment receipt take IDs do not match the admitted creator takes.")
+    results = []
+    for asset_id, take in takes.items():
+        record = declared[asset_id]
+        offset = float(record["choreographyStartSeconds"])
+        distance = float(record["medianNormalizedPoseDistance"])
+        if offset < 0 or offset + duration > take.times[-1] + 0.6 or distance < 0:
+            raise ValueError(f"Alignment receipt is out of bounds for {asset_id}.")
+        results.append(
+            {
+                "takeAssetId": asset_id,
+                "choreographyStartSeconds": round_number(offset),
+                "method": "multi-person-mirrored-normalized-pose-offset-search",
                 "medianNormalizedPoseDistance": round_number(distance),
                 "confidence": round_number(math.exp(-distance)),
             }
@@ -322,14 +399,23 @@ def score_phrases(
     alignments: list[dict[str, Any]],
     boundaries: list[float],
     reference_asset_id: str,
+    reference_start: float,
     quality_tolerance: float,
 ) -> list[dict[str, Any]]:
     offsets = {item["takeAssetId"]: float(item["choreographyStartSeconds"]) for item in alignments}
+    full_timeline = np.arange(0, boundaries[-1], 0.1)
+    opening_boxes = {
+        asset_id: body_box(interpolate_raw(track, offsets[asset_id] + full_timeline))
+        for asset_id, track in takes.items()
+    }
+    # Prefer the take with the most stable headroom as the wide establishing lane. The other
+    # take becomes the contrasting fill lane; this is a reusable visual grammar, not a case ID.
+    opening_take = min(opening_boxes, key=lambda asset_id: opening_boxes[asset_id]["y"])
     result = []
     previous = None
     for index, (start, end) in enumerate(zip(boundaries, boundaries[1:])):
         timeline = np.arange(start, end, 0.1)
-        reference_pose = interpolate_pose(reference, offsets[reference_asset_id] + timeline)
+        reference_pose = interpolate_pose(reference, reference_start + timeline)
         raw_candidates = []
         for asset_id, track in sorted(takes.items()):
             pose = interpolate_pose(track, offsets[asset_id] + timeline)
@@ -382,9 +468,12 @@ def score_phrases(
             item["poseDistance"] = round_number(item["poseDistance"])
             item["groundingStatus"] = "manual-pose-replay"
         best = max(raw_candidates, key=lambda value: value["totalScore"])
-        if index == 0:
+        if index == 0 and reference_asset_id in takes:
             selected = next(value for value in raw_candidates if value["takeAssetId"] == reference_asset_id)
             reason = "Creator-selected canonical take opens the sequence."
+        elif index == 0:
+            selected = next(value for value in raw_candidates if value["takeAssetId"] == opening_take)
+            reason = "The stable-headroom creator take opens the independent-reference sequence wide."
         else:
             alternatives = [
                 value
@@ -407,6 +496,7 @@ def score_phrases(
                 "candidates": raw_candidates,
                 "selectedTakeAssetId": selected["takeAssetId"],
                 "selectionReason": reason,
+                "framingTemplate": "fit" if selected["takeAssetId"] == opening_take else "fill",
                 "captionSafeZone": caption_safe_zone(selected["bodyBox"]),
             }
         )
