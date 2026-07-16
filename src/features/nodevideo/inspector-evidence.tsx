@@ -46,16 +46,22 @@ export function PoseEvidenceCard({
 }
 
 export function VideoEvidenceCard({
+  controls = false,
   description,
   mediaTime,
+  muted = true,
+  onPlaybackTime,
   poseTrack,
   videoRef,
   src,
   title,
   wide = false,
 }: {
+  controls?: boolean;
   description: string;
   mediaTime: number;
+  muted?: boolean;
+  onPlaybackTime?: (seconds: number) => void;
   poseTrack?: PoseTrack;
   videoRef: RefObject<HTMLVideoElement | null>;
   src: string;
@@ -69,8 +75,12 @@ export function VideoEvidenceCard({
       >
         <video
           className="size-full object-contain"
-          muted
+          controls={controls}
+          muted={muted}
           onLoadedMetadata={() => seek(videoRef, mediaTime)}
+          onTimeUpdate={(event) => {
+            if (!event.currentTarget.paused) onPlaybackTime?.(event.currentTarget.currentTime);
+          }}
           playsInline
           preload="metadata"
           ref={videoRef}

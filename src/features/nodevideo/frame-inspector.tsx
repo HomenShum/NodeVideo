@@ -35,7 +35,7 @@ export function FrameInspector() {
           >
             <span>
               <span className="block font-medium" id="frame-inspector-title">
-                Inspect the autonomous cut frame by frame
+                Inspect the calibration cut frame by frame
               </span>
               <span className="block text-xs font-normal text-muted-foreground">
                 Official choreography · both takes · MediaPipe · generated edit · held-out final

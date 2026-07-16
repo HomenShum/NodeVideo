@@ -2,9 +2,17 @@ import path from 'node:path';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
+import { localPrivatePreview } from './scripts/dev/local-private-preview';
+
+const privatePreview =
+  process.env.NODEVIDEO_LOCAL_PREVIEW ??
+  path.resolve(
+    __dirname,
+    '.qa/evidence/private/integrated-inspector-v1/frozen-generation-v5/source-only-song-preview.mp4',
+  );
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [localPrivatePreview(privatePreview), react(), tailwindcss()],
   publicDir: 'fixtures',
   resolve: {
     alias: {

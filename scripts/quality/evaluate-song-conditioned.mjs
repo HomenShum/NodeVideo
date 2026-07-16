@@ -106,6 +106,12 @@ export function comparePlans(generatedPlan, targetPlan, toleranceSeconds = CUT_T
       absoluteDifferenceSeconds: round(Math.abs(generatedDurationSeconds - targetDurationSeconds)),
     },
     cutBoundaries: cuts,
+    strictCutBoundaries: matchBoundariesStrict(
+      generatedCuts,
+      targetCuts,
+      generatedPlan.frameRate,
+      targetPlan.frameRate,
+    ),
     phraseSourceAgreement: comparePhraseSources(
       generatedPrimary,
       generatedPlan.frameRate,
@@ -113,6 +119,87 @@ export function comparePlans(generatedPlan, targetPlan, toleranceSeconds = CUT_T
       targetPlan.frameRate,
     ),
   };
+}
+
+function matchBoundariesStrict(generated, target, generatedRate, targetRate) {
+  const pairs = orderedBoundaryPairs(generated, target);
+  const usedGenerated = new Set(pairs.map(({ generatedIndex }) => generatedIndex));
+  const usedTarget = new Set(pairs.map(({ targetIndex }) => targetIndex));
+  const assignments = pairs.map(({ generatedIndex, targetIndex }) => {
+    const generatedSeconds = generated[generatedIndex];
+    const targetSeconds = target[targetIndex];
+    const signedErrorFrames = Math.round((generatedSeconds - targetSeconds) * generatedRate);
+    return {
+      generatedIndex,
+      targetIndex,
+      generatedSeconds: round(generatedSeconds),
+      targetSeconds: round(targetSeconds),
+      signedErrorSeconds: round(generatedSeconds - targetSeconds),
+      signedErrorFrames,
+      passed: Math.abs(signedErrorFrames) <= 2,
+    };
+  });
+  const unmatchedGeneratedIndices = generated
+    .map((_, index) => index)
+    .filter((index) => !usedGenerated.has(index));
+  const unmatchedTargetIndices = target
+    .map((_, index) => index)
+    .filter((index) => !usedTarget.has(index));
+  const signedErrors = assignments.map(({ signedErrorFrames }) => signedErrorFrames);
+  const passedAssignments = assignments.filter(({ passed }) => passed).length;
+  return {
+    method: 'one-to-one-signed-boundary-assignment',
+    thresholdFrames: 2,
+    generatedFrameRate: generatedRate,
+    targetFrameRate: targetRate,
+    assignments,
+    unmatchedGeneratedIndices,
+    unmatchedTargetIndices,
+    passedAssignments,
+    totalAssignments: assignments.length,
+    meanSignedErrorFrames: signedErrors.length === 0 ? null : round(mean(signedErrors)),
+    maxAbsoluteErrorFrames:
+      signedErrors.length === 0 ? null : Math.max(...signedErrors.map((value) => Math.abs(value))),
+    verdict:
+      passedAssignments === assignments.length &&
+      assignments.length === generated.length &&
+      assignments.length === target.length
+        ? 'passed'
+        : 'failed',
+    claim:
+      'Strict editorial timing requires one-to-one assignment, complete boundary coverage, and no signed error above two frames.',
+  };
+}
+
+function orderedBoundaryPairs(generated, target) {
+  const memo = new Map();
+  const solve = (generatedIndex, targetIndex) => {
+    const key = `${generatedIndex}:${targetIndex}`;
+    if (memo.has(key)) return memo.get(key);
+    if (generatedIndex >= generated.length || targetIndex >= target.length) return [];
+    const matched = [
+      { generatedIndex, targetIndex },
+      ...solve(generatedIndex + 1, targetIndex + 1),
+    ];
+    const options = [
+      matched,
+      solve(generatedIndex + 1, targetIndex),
+      solve(generatedIndex, targetIndex + 1),
+    ];
+    options.sort((left, right) => {
+      if (left.length !== right.length) return right.length - left.length;
+      const cost = (pairs) =>
+        pairs.reduce(
+          (total, pair) =>
+            total + Math.abs(generated[pair.generatedIndex] - target[pair.targetIndex]),
+          0,
+        );
+      return cost(left) - cost(right);
+    });
+    memo.set(key, options[0]);
+    return options[0];
+  };
+  return solve(0, 0);
 }
 
 export function neutralSourceLabel(value) {
