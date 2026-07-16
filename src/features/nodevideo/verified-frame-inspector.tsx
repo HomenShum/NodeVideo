@@ -3,9 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
 import type { LoadedIntegratedInspector } from '@/lib/integrated-inspector';
-import { AudioLines, ExternalLink, ScanSearch, StepBack, StepForward } from 'lucide-react';
+import { StepBack, StepForward, Volume2, VolumeX } from 'lucide-react';
 import { useCallback, useEffect, useRef } from 'react';
 import { PoseEvidenceCard, VideoEvidenceCard, seek } from './inspector-evidence';
+import { InspectorProof } from './inspector-proof';
+import { LOCAL_PREVIEW_URL, useLocalPreview } from './local-preview';
 
 export function VerifiedFrameInspector({
   frame,
@@ -17,6 +19,7 @@ export function VerifiedFrameInspector({
   setFrame: (frame: number) => void;
 }) {
   const { manifest, pose } = loaded;
+  const localPreview = useLocalPreview();
   const maxFrame = Math.round(manifest.synchronization.durationSeconds * 30) - 1;
   const outputSeconds = frame / 30;
   const choreographySeconds = Math.min(
@@ -59,8 +62,8 @@ export function VerifiedFrameInspector({
   }, [move]);
 
   return (
-    <div className="space-y-3" data-testid="verified-frame-inspector">
-      <Card>
+    <div className="space-y-5" data-testid="verified-frame-inspector">
+      <Card className="overflow-hidden">
         <CardHeader>
           <div className="flex flex-wrap items-center gap-2">
             <Badge className="h-auto max-w-full whitespace-normal text-center">
@@ -69,24 +72,34 @@ export function VerifiedFrameInspector({
             <Badge className="h-auto max-w-full whitespace-normal text-center" variant="outline">
               Target opened after freeze
             </Badge>
-            <Badge className="h-auto max-w-full whitespace-normal text-center" variant="outline">
-              LocateAnything not executed
+            <Badge
+              className="h-auto max-w-full whitespace-normal text-center"
+              variant="destructive"
+            >
+              Strict timing failed
+            </Badge>
+            <Badge
+              className="h-auto max-w-full whitespace-normal text-center"
+              variant={localPreview ? 'default' : 'outline'}
+            >
+              {localPreview ? <Volume2 aria-hidden="true" /> : <VolumeX aria-hidden="true" />}
+              {localPreview ? 'Local soundtrack enabled' : 'Public proof · silent'}
             </Badge>
           </div>
-          <CardTitle className="mt-2">One output frame controls every evidence panel</CardTitle>
-          <CardDescription>
+          <CardTitle className="mt-2">Compare the calibration edit</CardTitle>
+          <CardDescription className="font-mono tabular-nums">
             Frame {frame} · {outputSeconds.toFixed(3)} s · phrase {phraseIndex + 1} ·{' '}
             {manifest.synchronization.selectedTakeAssetIds[phraseIndex].replace('asset.', '')} ·{' '}
             {manifest.synchronization.framingTemplates[phraseIndex]}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 rounded-xl border bg-muted/30 p-2">
             <Button
               aria-label="Previous output frame"
               onClick={() => move(-1)}
               size="icon"
-              variant="outline"
+              variant="ghost"
             >
               <StepBack aria-hidden="true" />
             </Button>
@@ -103,40 +116,26 @@ export function VerifiedFrameInspector({
               aria-label="Next output frame"
               onClick={() => move(1)}
               size="icon"
-              variant="outline"
+              variant="ghost"
             >
               <StepForward aria-hidden="true" />
             </Button>
           </div>
-          <div className="grid gap-3 lg:grid-cols-2">
-            <PoseEvidenceCard
-              description={`Reference ${referenceTime.toFixed(3)} s`}
-              mediaTime={referenceTime}
-              track={pose.tracks.reference}
-            />
+          <div className="grid gap-3 md:grid-cols-2" data-testid="outcome-comparison">
             <VideoEvidenceCard
-              description={`Source ${takeATime.toFixed(3)} s · fit lane`}
-              mediaTime={takeATime}
-              poseTrack={pose.tracks['take-a']}
-              videoRef={takeARef}
-              src={manifest.media.takeA}
-              title="Creator take A"
-              wide
-            />
-            <VideoEvidenceCard
-              description={`Source ${takeBTime.toFixed(3)} s · fill lane`}
-              mediaTime={takeBTime}
-              poseTrack={pose.tracks['take-b']}
-              videoRef={takeBRef}
-              src={manifest.media.takeB}
-              title="Creator take B"
-              wide
-            />
-            <VideoEvidenceCard
-              description="Autonomous output · public copy is silent"
+              controls
+              description={
+                localPreview
+                  ? 'Private local render · soundtrack enabled'
+                  : 'Hash-bound public render · silent'
+              }
               mediaTime={outputSeconds}
+              muted={!localPreview}
+              onPlaybackTime={(seconds) =>
+                localPreview && setFrame(Math.min(maxFrame, Math.round(seconds * 30)))
+              }
               videoRef={generatedRef}
-              src={manifest.media.generated}
+              src={localPreview ? LOCAL_PREVIEW_URL : manifest.media.generated}
               title="Frozen generated edit"
             />
             <VideoEvidenceCard
@@ -150,50 +149,43 @@ export function VerifiedFrameInspector({
           </div>
         </CardContent>
       </Card>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <ProofCard
-          icon={<ScanSearch className="size-4" aria-hidden="true" />}
-          title="Pose evidence"
-        >
-          Real MediaPipe analysis at {pose.tracks.reference.sampleCadenceHz.toFixed(2)} Hz.
-          LocateAnything was not used because no licensed model sidecar is configured.
-        </ProofCard>
-        <ProofCard
-          icon={<AudioLines className="size-4" aria-hidden="true" />}
-          title="Music handoff"
-        >
-          {manifest.result.soundtrack.handoff} Private comparison: correlation{' '}
-          {manifest.result.soundtrack.privateAudioCorrelation.toFixed(4)}, lag{' '}
-          {manifest.result.soundtrack.bestLagMs.toFixed(2)} ms.
-          <Button asChild className="mt-2" size="sm" variant="outline">
-            <a href={manifest.reference.url} rel="noreferrer" target="_blank">
-              <ExternalLink aria-hidden="true" /> Open official choreography
-            </a>
-          </Button>
-        </ProofCard>
-      </div>
-    </div>
-  );
-}
 
-function ProofCard({
-  children,
-  icon,
-  title,
-}: {
-  children: React.ReactNode;
-  icon: React.ReactNode;
-  title: string;
-}) {
-  return (
-    <Card size="sm">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          {icon}
-          {title}
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="text-xs text-muted-foreground">{children}</CardContent>
-    </Card>
+      <section className="space-y-3" aria-labelledby="frame-evidence-title">
+        <div>
+          <h2 className="font-heading text-xl font-semibold" id="frame-evidence-title">
+            Why this frame
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            Official movement and both raw takes at the same choreography moment.
+          </p>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3" data-testid="motion-evidence">
+          <PoseEvidenceCard
+            description={`Reference ${referenceTime.toFixed(3)} s`}
+            mediaTime={referenceTime}
+            track={pose.tracks.reference}
+          />
+          <VideoEvidenceCard
+            description={`Source ${takeATime.toFixed(3)} s · fit lane`}
+            mediaTime={takeATime}
+            poseTrack={pose.tracks['take-a']}
+            videoRef={takeARef}
+            src={manifest.media.takeA}
+            title="Creator take A"
+            wide
+          />
+          <VideoEvidenceCard
+            description={`Source ${takeBTime.toFixed(3)} s · fill lane`}
+            mediaTime={takeBTime}
+            poseTrack={pose.tracks['take-b']}
+            videoRef={takeBRef}
+            src={manifest.media.takeB}
+            title="Creator take B"
+            wide
+          />
+        </div>
+      </section>
+      <InspectorProof cadence={pose.tracks.reference.sampleCadenceHz} manifest={manifest} />
+    </div>
   );
 }

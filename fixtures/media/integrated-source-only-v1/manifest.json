@@ -64,6 +64,69 @@
       "meanNearestNeighborErrorSeconds": 0.153333,
       "maxNearestNeighborErrorSeconds": 0.266667
     },
+    "strictCutComparison": {
+      "method": "one-to-one-signed-boundary-assignment",
+      "thresholdFrames": 2,
+      "generatedFrameRate": 30,
+      "targetFrameRate": 30,
+      "assignments": [
+        {
+          "generatedIndex": 0,
+          "targetIndex": 0,
+          "generatedSeconds": 6.6,
+          "targetSeconds": 6.7,
+          "signedErrorSeconds": -0.1,
+          "signedErrorFrames": -3,
+          "passed": false
+        },
+        {
+          "generatedIndex": 1,
+          "targetIndex": 1,
+          "generatedSeconds": 15.8,
+          "targetSeconds": 16.066667,
+          "signedErrorSeconds": -0.266667,
+          "signedErrorFrames": -8,
+          "passed": false
+        },
+        {
+          "generatedIndex": 2,
+          "targetIndex": 2,
+          "generatedSeconds": 19.8,
+          "targetSeconds": 19.633333,
+          "signedErrorSeconds": 0.166667,
+          "signedErrorFrames": 5,
+          "passed": false
+        },
+        {
+          "generatedIndex": 3,
+          "targetIndex": 3,
+          "generatedSeconds": 25.266667,
+          "targetSeconds": 25.1,
+          "signedErrorSeconds": 0.166667,
+          "signedErrorFrames": 5,
+          "passed": false
+        },
+        {
+          "generatedIndex": 4,
+          "targetIndex": 4,
+          "generatedSeconds": 40.4,
+          "targetSeconds": 40.466667,
+          "signedErrorSeconds": -0.066667,
+          "signedErrorFrames": -2,
+          "passed": true
+        }
+      ],
+      "unmatchedGeneratedIndices": [],
+      "unmatchedTargetIndices": [
+        5
+      ],
+      "passedAssignments": 1,
+      "totalAssignments": 5,
+      "meanSignedErrorFrames": -0.6,
+      "maxAbsoluteErrorFrames": 8,
+      "verdict": "failed",
+      "claim": "Strict editorial timing requires one-to-one assignment, complete boundary coverage, and no signed error above two frames."
+    },
     "phraseSourceAgreement": {
       "method": "generated-phrase-midpoint-with-neutral-A/B-suffix-mapping",
       "generatedPhraseCount": 5,
@@ -147,7 +210,7 @@
       "id": "evaluation",
       "url": "/media/integrated-source-only-v1/post-freeze-evaluation.json",
       "mimeType": "application/json",
-      "sha256": "edaff44fe64fcc042679f82ddfc47b45e70b1e5aae610a435d5b4819c2e6f4bf"
+      "sha256": "0107a72db8ff53ae4dac5f9e7f263917c869bdaf21743175e4f6624a3a79b51e"
     },
     {
       "id": "selection",

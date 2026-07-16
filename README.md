@@ -84,6 +84,10 @@ the evaluator open the target plan. This is an audited CLI/read-log boundary, no
 | Duration | `44.5 s` generated / `44.5 s` target |
 | Taste status | `not-evaluated` |
 
+These are legacy proximity diagnostics, not an editorial pass. The `0.75 s` tolerance is too loose
+for dance editing, and the nearest-cut aggregate does not replace signed, frame-level accounting.
+The supplied-case reconstruction verdict is therefore **failed** under the current two-frame gate.
+
 This is a target-picture-isolated, **target-audio-oracle calibration**. The exact authorized audio
 excerpt was supplied as timing input, so it does not prove song identity/excerpt selection or blind
 creative taste. The current supplied case also lacks an independent original choreography video, an
@@ -109,6 +113,15 @@ npm run dev
 In PowerShell, use `Copy-Item .env.example .env`. Open `http://localhost:4173` from the laptop, or
 use the laptop's LAN address from a phone on the same network; Vite is configured to listen on the
 host interface.
+
+When the private integrated render exists at
+`.qa/evidence/private/integrated-inspector-v1/frozen-generation-v5/source-only-song-preview.mp4`,
+`npm run dev` exposes it through a byte-range-capable development-only route. The generated-edit
+player then shows **Local soundtrack enabled**, plays the AAC soundtrack, and drives the shared
+frame inspector while it plays. Set `NODEVIDEO_LOCAL_PREVIEW` to another private MP4 path to
+override the default. `npm run build`, `npm run preview`, Git, and Vercel continue to use the silent
+hash-bound public preview; outside the Vite development server the private URL never returns video
+bytes (static hosts may route the unknown URL to the HTML application shell).
 
 Run the complete capability/grounding/worker health check:
 
@@ -231,7 +244,10 @@ arbitrary Tailwind dimensions, extra authored stylesheets, and custom media quer
 
 ## Claim boundary
 
-The checked-in synthetic replay proves deterministic mechanics. The supplied real case proves a
-strong, target-picture-isolated calibration under a disclosed target-audio oracle. Neither proves
-general creative taste. That requires the full independent input set and preregistered blinded human
-preference across multiple unseen cases.
+The checked-in synthetic replay proves deterministic mechanics. The supplied real case is a
+target-picture-isolated development calibration under a disclosed target-audio oracle; it does not
+pass strict editorial timing. The newer integrated case proves independent-reference ingestion,
+target isolation, artifact integrity, and `5 / 5` source choices, but its signed boundary errors are
+`-3, -8, +5, +5, -2` frames, with one additional unmatched target boundary. Its strict verdict is
+also **failed**. Neither case proves general creative taste. See
+[`docs/strict-editorial-audit.md`](docs/strict-editorial-audit.md).

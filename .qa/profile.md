@@ -1,4 +1,4 @@
-# QA profile: NodeVideo integrated source-only proof
+# QA profile: NodeVideo integrated source-only calibration
 
 Mode: AUTHORIZED PRODUCTION. Execute claims literally and fail closed.
 
@@ -23,8 +23,10 @@ generated preview. Legacy proof bundles remain public artifacts but are no longe
   and 25.5 s using mirrored, root-normalized multi-person MediaPipe matching.
 - The source-only planner selected A/B/A/B/A, fit/fill/fit/fill/fit, and cuts at 6.6, 15.8,
   19.8, and 25.28 seconds before the target was mounted or read.
-- Post-freeze evaluation reports exact 44.5 s duration, 5/5 phrase-source agreement, cut F1
-  0.909091, 0.153333 s mean boundary error, and 0.266667 s maximum boundary error.
+- Post-freeze evaluation reports exact 44.5 s duration and 5/5 phrase-source agreement. The legacy
+  0.75 s proximity diagnostic reports F1 0.909091, but it is not an editorial pass.
+- Strict one-to-one signed errors are -3, -8, +5, +5, and -2 frames, with one unmatched target
+  boundary. Only 1/5 assigned boundaries passes the two-frame gate; strict verdict: failed.
 - The independently sourced private soundtrack comparison reports 0.979986 correlation and
   0.75 ms best lag. The public preview is silent; the UI gives an Instagram search/segment handoff.
 - The browser verifies the trusted manifest plus seven declared assets before rendering the
@@ -33,15 +35,18 @@ generated preview. Legacy proof bundles remain public artifacts but are no longe
 - LocateAnything was not executed because no licensed sidecar is configured. MediaPipe pose
   evidence is shown honestly instead of relabeling replay boxes.
 
-Not claimed: bit-identical reproduction, licensed public commercial audio, generalized creative
-taste from one case, live LocateAnything accuracy, or a Vercel-hosted FFmpeg/model job.
+Not claimed: successful strict editorial reconstruction, bit-identical reproduction, licensed
+public commercial audio, generalized creative taste from one case, live LocateAnything accuracy,
+or a Vercel-hosted FFmpeg/model job.
 
 ## Release blockers
 
 1. Trusted manifest and all seven public artifact hashes must verify.
 2. Target mount/read and target-audio-oracle flags must remain false during generation.
 3. Pose artifacts must contain reference, take A, take B, and target tracks with JSON-safe nulls.
-4. Generated preview must remain silent and public media sanitized.
+4. Generated preview must remain silent and public media sanitized. The local-only route may expose
+   the private soundtrack in Vite development, but production preview must never return video bytes
+   from that URL.
 5. Desktop, 1280, tablet, 390 px phone, and 320 px compact-phone tests must have no overflow,
    serious accessibility violations, or broken one-frame controls.
 6. `npm run check` and the focused five-viewport Playwright suite must pass before deployment.
@@ -64,3 +69,6 @@ taste from one case, live LocateAnything accuracy, or a Vercel-hosted FFmpeg/mod
 3. Repeat at all five configured viewport sizes; assert ≤1 px document overflow and zero Axe
    violations inside the verified inspector.
 4. On production, verify the same journey plus manifest/content-type/range delivery.
+5. In local development, verify the private player is unmuted, byte-range capable, and drives the
+   shared frame. In production preview, verify the private URL is HTML/not-video and the public
+   generated preview remains muted.

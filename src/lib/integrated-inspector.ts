@@ -48,6 +48,22 @@ export interface IntegratedInspectorManifest {
       meanNearestNeighborErrorSeconds: number;
       maxNearestNeighborErrorSeconds: number;
     };
+    strictCutComparison: {
+      thresholdFrames: number;
+      passedAssignments: number;
+      totalAssignments: number;
+      meanSignedErrorFrames: number;
+      maxAbsoluteErrorFrames: number;
+      verdict: 'passed' | 'failed';
+      assignments: Array<{
+        generatedIndex: number;
+        targetIndex: number;
+        signedErrorFrames: number;
+        passed: boolean;
+      }>;
+      unmatchedGeneratedIndices: number[];
+      unmatchedTargetIndices: number[];
+    };
     phraseSourceAgreement: { agreementRatio: number };
     soundtrack: {
       title: string;
@@ -76,7 +92,7 @@ export interface LoadedIntegratedInspector {
 
 export const INTEGRATED_INSPECTOR = {
   manifestUrl: '/media/integrated-source-only-v1/manifest.json',
-  manifestSha256: '1698c4f7134e8a66335497ccad33a0a75db11620c4ac273ca7c2e8fe5ede9131',
+  manifestSha256: '4d9f6e7494ebd97ccebf536ff873d254867f6f33da2a76eba4309a2d97b9eb3e',
 } as const;
 
 export async function loadIntegratedInspector(): Promise<LoadedIntegratedInspector> {
@@ -121,7 +137,8 @@ function validateManifest(manifest: IntegratedInspectorManifest) {
     !ids.has('pose-tracks') ||
     !ids.has('preview-silent') ||
     !manifest.result?.targetIsolation?.passed ||
-    manifest.result.targetIsolation.targetAudioOracleUsed
+    manifest.result.targetIsolation.targetAudioOracleUsed ||
+    manifest.result.strictCutComparison?.verdict !== 'failed'
   ) {
     throw new Error('The integrated inspector manifest failed its proof contract.');
   }

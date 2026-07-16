@@ -113,6 +113,7 @@ const manifest = {
   result: {
     targetIsolation: evaluation.isolation,
     cutComparison: evaluation.technicalComparison.cutBoundaries,
+    strictCutComparison: evaluation.technicalComparison.strictCutBoundaries,
     phraseSourceAgreement: evaluation.technicalComparison.phraseSourceAgreement,
     soundtrack: {
       title: 'Sign',

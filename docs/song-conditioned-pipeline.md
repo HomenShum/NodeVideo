@@ -165,6 +165,10 @@ plan only after verifying the freeze.
 | Duration | `44.5 s` generated / `44.5 s` target |
 | Taste status | `not-evaluated` |
 
+These `0.75 s` values are retained as legacy calibration diagnostics. They are not a successful
+editorial verdict: dance-edit acceptance now requires signed one-to-one boundary errors no greater
+than two frames, and this supplied-case run fails that gate.
+
 This is a **target-picture-isolated, target-audio-oracle calibration**. The exact authorized audio
 excerpt was supplied to test picture planning, so the run does not prove autonomous song identity or
 excerpt selection. This case also lacks three product-correct inputs: an independent original
