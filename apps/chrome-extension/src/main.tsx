@@ -78,6 +78,24 @@ function CoachPanel() {
   const [busy, setBusy] = useState(false);
   const [comparisonUrl, setComparisonUrl] = useState('');
   const videoRef = useRef<HTMLVideoElement>(null);
+  const referencePreviewUrl = useMemo(
+    () => (referenceFile ? URL.createObjectURL(referenceFile) : ''),
+    [referenceFile],
+  );
+  const attemptPreviewUrl = useMemo(() => (attempt ? URL.createObjectURL(attempt) : ''), [attempt]);
+  const youTubeId = reference.url.match(/[?&]v=([\w-]{11})/)?.[1] ?? '';
+  useEffect(
+    () => () => {
+      if (referencePreviewUrl) URL.revokeObjectURL(referencePreviewUrl);
+    },
+    [referencePreviewUrl],
+  );
+  useEffect(
+    () => () => {
+      if (attemptPreviewUrl) URL.revokeObjectURL(attemptPreviewUrl);
+    },
+    [attemptPreviewUrl],
+  );
 
   useEffect(() => {
     void initialize();
@@ -112,7 +130,11 @@ function CoachPanel() {
     });
     const saved = extensionApi
       ? await extensionApi.storage.local.get(['endpoint', 'token', 'people'])
-      : { endpoint: 'http://127.0.0.1:4319', token: preview.get('token') ?? '', people: 10 };
+      : {
+          endpoint: preview.get('endpoint') ?? 'http://127.0.0.1:4319',
+          token: preview.get('token') ?? '',
+          people: 10,
+        };
     if (typeof saved.endpoint === 'string') setEndpoint(saved.endpoint);
     if (typeof saved.token === 'string') setToken(saved.token);
     if (typeof saved.people === 'number') setPeople(saved.people);
@@ -250,6 +272,29 @@ function CoachPanel() {
               : reference.url || 'This panel reads only the active YouTube watch URL.'}
           </CardDescription>
         </CardHeader>
+        {(referencePreviewUrl || youTubeId) && (
+          <CardContent>
+            {referencePreviewUrl ? (
+              <video
+                aria-label="Reference video preview"
+                className="w-full rounded-lg"
+                controls
+                muted
+                playsInline
+                preload="metadata"
+                src={referencePreviewUrl}
+              />
+            ) : (
+              <iframe
+                allow="encrypted-media; picture-in-picture"
+                allowFullScreen
+                className="aspect-video w-full rounded-lg border-0"
+                src={`https://www.youtube-nocookie.com/embed/${youTubeId}`}
+                title="Reference choreography preview"
+              />
+            )}
+          </CardContent>
+        )}
       </Card>
 
       <form className="space-y-4" onSubmit={submit}>
@@ -277,6 +322,17 @@ function CoachPanel() {
           <FieldDescription>
             MP4 or MOV · processed on this laptop{attempt ? ` · ${formatBytes(attempt.size)}` : ''}
           </FieldDescription>
+          {attemptPreviewUrl && (
+            <video
+              aria-label="Your dance take preview"
+              className="w-full rounded-lg"
+              controls
+              muted
+              playsInline
+              preload="metadata"
+              src={attemptPreviewUrl}
+            />
+          )}
         </Field>
 
         <Collapsible>

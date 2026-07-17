@@ -101,7 +101,8 @@ const mockSidecar = createServer((request, response) => {
   });
   response.end(JSON.stringify(job ?? { error: 'job_not_found' }));
 });
-await new Promise((resolveListen) => mockSidecar.listen(4319, '127.0.0.1', resolveListen));
+const mockPort = 4339;
+await new Promise((resolveListen) => mockSidecar.listen(mockPort, '127.0.0.1', resolveListen));
 
 const browser = await chromium.launch();
 try {
@@ -183,9 +184,10 @@ try {
 
     for (const state of surface.states ?? []) {
       const statePage = await browser.newPage({ viewport: { width: 420, height: 900 } });
-      await statePage.goto(`${base}${surface.route}?job=${state.id}&token=contract-state-check`, {
-        waitUntil: 'networkidle',
-      });
+      await statePage.goto(
+        `${base}${surface.route}?job=${state.id}&token=contract-state-check&endpoint=${encodeURIComponent(`http://127.0.0.1:${mockPort}`)}`,
+        { waitUntil: 'networkidle' },
+      );
       for (const text of state.requireTexts ?? []) {
         (await statePage
           .getByText(text)
