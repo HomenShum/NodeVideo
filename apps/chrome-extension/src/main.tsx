@@ -150,6 +150,7 @@ function CoachPanel() {
       const value = (await response.json()) as Job & { error?: string };
       if (!response.ok) throw new Error(humanError(value.error));
       setJob(value);
+      setError('');
       if (value.status === 'failed') {
         setBusy(false);
         setError(value.error ? humanError(value.error) : 'The comparison worker failed.');
