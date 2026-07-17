@@ -120,7 +120,7 @@ try {
 
     const landmark = locate(page, surface.landmark);
     (await landmark?.count())
-      ? ok(`landmark resolves`)
+      ? ok('landmark resolves')
       : fail(`${surface.id}: landmark did not resolve`);
 
     const expanded = new Set();
