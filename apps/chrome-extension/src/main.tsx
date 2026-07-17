@@ -66,6 +66,7 @@ function CoachPanel() {
   const preview = useMemo(() => new URLSearchParams(location.search), []);
   const [reference, setReference] = useState({ url: '', title: 'Open a YouTube dance video' });
   const [attempt, setAttempt] = useState<File | null>(null);
+  const [referenceFile, setReferenceFile] = useState<File | null>(null);
   const [endpoint, setEndpoint] = useState('http://127.0.0.1:4319');
   const [token, setToken] = useState('');
   const [people, setPeople] = useState(10);
@@ -141,8 +142,10 @@ function CoachPanel() {
   async function submit(event: React.FormEvent) {
     event.preventDefault();
     setError('');
-    if (!reference.url)
-      return setError('Open the reference choreography on a YouTube watch page first.');
+    if (!reference.url && !referenceFile)
+      return setError(
+        'Open the reference choreography on a YouTube watch page, or upload the reference video file.',
+      );
     if (!attempt) return setError('Choose your dance video.');
     if (!token.trim()) return setError('Paste the token printed by the local NodeVideo worker.');
     if (!rights) return setError('Confirm that you have permission to analyze both videos.');
@@ -165,7 +168,8 @@ function CoachPanel() {
     if (extensionApi) await extensionApi.storage.local.set({ endpoint: base, token, people });
     const body = new FormData();
     body.set('attempt', attempt);
-    body.set('referenceUrl', reference.url);
+    if (referenceFile) body.set('reference', referenceFile);
+    else body.set('referenceUrl', reference.url);
     body.set('rightsConfirmed', 'true');
     body.set('people', String(people));
     if (hasReferenceStart) {
@@ -238,15 +242,30 @@ function CoachPanel() {
             Reference on this page
           </Badge>
           <CardTitle>
-            <h1>{reference.title}</h1>
+            <h1>{referenceFile ? referenceFile.name : reference.title}</h1>
           </CardTitle>
           <CardDescription className="break-all">
-            {reference.url || 'This panel reads only the active YouTube watch URL.'}
+            {referenceFile
+              ? 'Uploaded reference file · used instead of the page URL'
+              : reference.url || 'This panel reads only the active YouTube watch URL.'}
           </CardDescription>
         </CardHeader>
       </Card>
 
       <form className="space-y-4" onSubmit={submit}>
+        <Field>
+          <FieldLabel htmlFor="reference-file">Reference video file (optional)</FieldLabel>
+          <Input
+            id="reference-file"
+            type="file"
+            accept="video/mp4,video/quicktime,video/*"
+            onChange={(event) => setReferenceFile(event.target.files?.[0] ?? null)}
+          />
+          <FieldDescription>
+            For references that are not on YouTube (a saved reel, a studio recording). Overrides the
+            page URL; analyzed privately on this laptop like everything else.
+          </FieldDescription>
+        </Field>
         <Field>
           <FieldLabel htmlFor="attempt">Your dance take</FieldLabel>
           <Input

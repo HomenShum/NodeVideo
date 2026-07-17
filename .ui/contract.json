@@ -66,6 +66,12 @@
       "description": "Choreography coach: upload a dance take, compare against a reference, receive relative motion signals from a local-only worker.",
       "controls": [
         {
+          "id": "reference-file",
+          "css": "#reference-file",
+          "label": "Reference video file (optional)",
+          "meaning": "Non-YouTube references (saved reels, studio recordings) upload here and override the page URL; Instagram URLs are never fetched directly."
+        },
+        {
           "id": "attempt-file",
           "css": "#attempt",
           "label": "Your dance take",
