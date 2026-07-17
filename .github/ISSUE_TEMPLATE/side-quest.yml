@@ -1,0 +1,38 @@
+name: Side quest
+description: Out-of-scope discovery captured during another task. Keeps the active task focused.
+title: "[Side quest] "
+labels: ["side-quest"]
+body:
+  - type: input
+    id: observed-during
+    attributes:
+      label: Observed during
+      description: PR, task, or session where this surfaced.
+    validations:
+      required: true
+  - type: textarea
+    id: why-it-matters
+    attributes:
+      label: Why it matters
+    validations:
+      required: true
+  - type: textarea
+    id: why-out-of-scope
+    attributes:
+      label: Why it is out of scope for the current task
+    validations:
+      required: true
+  - type: input
+    id: relevant-files
+    attributes:
+      label: Relevant files
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Risk class (see AGENT_EXECUTION_POLICY)
+      options:
+        - A — cheap to reverse
+        - B — moderate
+        - C — expensive / security / privacy / schema
+    validations:
+      required: true
