@@ -22,6 +22,13 @@ receive precise, non-gamified help at the moment you need it.
   ~40–70s degrades to close-ups and motion blur, where the judge abstains.
   Candidate P0 phrase from the primary-dancer scorer: **2.13–10.13s**
   (75% track visibility) — Homen confirms the exact counts.
+- **Full-reel practice sections exist** via
+  `scripts/analysis/segment_practice_sections.py`: 8-count blocks on the
+  reel's own beat grid (103.4 BPM), boundaries snapped to Larry's
+  motion-energy landings, low-visibility sections gated watch-only. Result:
+  15 sections, 8 practice-ready; the 48–62s close-up stretch is correctly
+  watch-only. Learners progress section-by-section by relative difficulty;
+  watch-only sections play the reference without scoring.
 - **Dancer selection is suggested, never decided.** The deterministic scorer
   (`scripts/analysis/suggest_primary_dancer.py`) ranks stabilized tracks on
   presence, continuity, centrality, prominence, and motion, and emits
