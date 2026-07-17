@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Use Node.js 22
         uses: actions/setup-node@v4
@@ -36,6 +38,11 @@ jobs:
 
       - name: Install locked dependencies
         run: npm ci
+
+      - name: Block new oversized media
+        run: npm run check:bloat
+        env:
+          NODEVIDEO_BLOAT_BASE: origin/${{ github.base_ref || 'main' }}
 
       - name: Install FFmpeg worker tools
         run: |

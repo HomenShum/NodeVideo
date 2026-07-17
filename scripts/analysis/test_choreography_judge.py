@@ -115,6 +115,24 @@ class JudgeTests(unittest.TestCase):
         self.assertEqual(result["measurements"]["alignmentMode"], "pose-offset-dynamic")
         self.assertGreater(result["scores"]["timing"], 90)
 
+    def test_static_attempt_does_not_score_as_a_pass(self):
+        reference = fixture(frames=120)
+        frozen = np.repeat(reference.poses[:1], 120, axis=0)
+        result = score(reference, Track(reference.times, frozen))
+        self.assertEqual(result["status"], "abstained")
+        self.assertIsNone(result["overall"])
+        self.assertIn("insufficient_attempt_motion", result["limitations"])
+        self.assertIn("timing", result["unmeasurableScores"])
+        self.assertIn("dynamics", result["unmeasurableScores"])
+        self.assertNotIn("timing", result["scores"])
+        self.assertNotIn("dynamics", result["scores"])
+
+    def test_measurable_dynamics_still_reports_a_score(self):
+        result = score(fixture(), fixture())
+        self.assertEqual(result["status"], "completed")
+        self.assertIn("dynamics", result["scores"])
+        self.assertEqual(result["unmeasurableScores"], [])
+
     def test_long_group_reference_prunes_full_dtw_hypotheses(self):
         reference = fixture(frames=100, people=6)
         attempt = fixture(frames=40)

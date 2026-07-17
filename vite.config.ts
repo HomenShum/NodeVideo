@@ -19,6 +19,17 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    rollupOptions: {
+      input: {
+        index: path.resolve(__dirname, 'index.html'),
+        'chrome-extension-sidepanel': path.resolve(
+          __dirname,
+          'apps/chrome-extension/sidepanel.html',
+        ),
+      },
+    },
+  },
   server: {
     host: true,
     port: 4173,

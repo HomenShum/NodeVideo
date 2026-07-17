@@ -16,6 +16,7 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "capability:validate": "node scripts/quality/validate-capability-pack.mjs",
+    "check:bloat": "node scripts/quality/check-repo-bloat.mjs",
     "doctor": "npm run capability:validate && npm run grounding:doctor && npm run worker:verify && npm run worker:song:verify",
     "grounding:doctor": "node scripts/quality/grounding-doctor.mjs",
     "grounding:sidecar": "node --env-file-if-exists=.env scripts/grounding/locate-anything-sidecar.mjs",

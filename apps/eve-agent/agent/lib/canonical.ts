@@ -9,8 +9,11 @@ export function canonicalJson(value: unknown): string {
   }
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
   if (typeof value !== 'object') throw new Error('Canonical JSON accepts JSON values only.');
+  // Code-unit key ordering to match the server's canonicalizer
+  // (convex/lib/durability.ts uses Object.keys().sort()). localeCompare would
+  // diverge for mixed-case / non-ASCII keys and break the shared CAS digest.
   return `{${Object.entries(value as Record<string, unknown>)
-    .sort(([left], [right]) => left.localeCompare(right))
+    .sort(([left], [right]) => (left < right ? -1 : left > right ? 1 : 0))
     .map(([key, item]) => `${JSON.stringify(key)}:${canonicalJson(item)}`)
     .join(',')}}`;
 }

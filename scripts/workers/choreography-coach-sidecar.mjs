@@ -25,6 +25,23 @@ const poseCacheRoot = resolve(root, '.qa/cache/private-pose');
 const analysisMediaCacheRoot = resolve(root, '.qa/cache/private-analysis-media');
 const jobs = new Map();
 const maxUpload = 700 * 1024 * 1024;
+// Bound the in-memory job registry and the number of concurrently running
+// jobs. Each job spawns yt-dlp + ffmpeg + Python, so an unbounded registry or
+// unbounded concurrency exhausts memory/CPU under an agent loop.
+const TERMINAL_STATUSES = new Set(['completed', 'abstained', 'failed']);
+const maxJobs = Math.max(1, Number(process.env.NODEVIDEO_COACH_MAX_JOBS ?? 200));
+const maxActiveJobs = Math.max(1, Number(process.env.NODEVIDEO_COACH_MAX_ACTIVE ?? 2));
+let activeJobs = 0;
+
+function evictTerminalJobs() {
+  if (jobs.size <= maxJobs) return;
+  const evictable = [...jobs.values()]
+    .filter((job) => TERMINAL_STATUSES.has(job.status))
+    .sort((a, b) => (a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0));
+  while (jobs.size > maxJobs && evictable.length > 0) {
+    jobs.delete(evictable.shift().id);
+  }
+}
 
 await mkdir(jobsRoot, { recursive: true });
 await mkdir(poseCacheRoot, { recursive: true });
@@ -78,6 +95,12 @@ server.listen(port, host, () => {
 });
 
 async function createJob(request, response) {
+  if (activeJobs >= maxActiveJobs)
+    return json(response, 429, {
+      error: 'too_many_active_jobs',
+      activeJobs,
+      maxActiveJobs,
+    });
   const contentLength = Number(request.headers['content-length'] ?? 0);
   if (contentLength <= 0 || contentLength > maxUpload)
     return json(response, 413, { error: 'upload_too_large' });
@@ -139,12 +162,14 @@ async function createJob(request, response) {
     events: [],
   };
   jobs.set(id, job);
+  evictTerminalJobs();
   await persist(job);
   void runJob(job);
   return json(response, 202, publicJob(job));
 }
 
 async function runJob(job) {
+  activeJobs += 1;
   try {
     if (!job.referencePath) {
       update(job, 'acquiring_reference', 8, 'Resolving authorized YouTube reference');
@@ -259,6 +284,8 @@ async function runJob(job) {
     job.error = error instanceof Error ? error.message : 'job_failed';
     job.events.push({ at: new Date().toISOString(), stage: 'failed', detail: job.error });
     await persist(job);
+  } finally {
+    activeJobs -= 1;
   }
 }
 
@@ -519,18 +546,23 @@ async function persist(job) {
   await writeFile(join(job.directory, 'job-state.json'), `${JSON.stringify(job, null, 2)}\n`);
 }
 async function restoreJobs() {
+  const restored = [];
   for (const entry of await readdir(jobsRoot, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
     try {
       const job = JSON.parse(await readFile(join(jobsRoot, entry.name, 'job-state.json'), 'utf8'));
-      if (!['completed', 'abstained', 'failed'].includes(job.status)) {
+      if (!TERMINAL_STATUSES.has(job.status)) {
         job.status = 'failed';
         job.stage = 'failed';
         job.error = 'worker_restarted_before_completion';
       }
-      jobs.set(job.id, job);
+      restored.push(job);
     } catch {}
   }
+  // Only keep the most recent maxJobs in memory so a large on-disk history
+  // cannot re-inflate the registry past its bound on restart.
+  restored.sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0));
+  for (const job of restored.slice(0, maxJobs)) jobs.set(job.id, job);
 }
 function json(response, status, value) {
   response.writeHead(status, {

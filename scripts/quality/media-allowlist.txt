@@ -1,0 +1,11 @@
+# Media over the size cap that predates the repo-bloat guard. These are
+# grandfathered so the guard does not demand a history rewrite. Do NOT add new
+# entries here to sneak large media in — route new heavy media through Git LFS
+# or keep it under .qa/evidence/ (gitignored). One repo-relative path per line.
+fixtures/media/integrated-source-only-v1/preview-silent.mp4
+fixtures/media/authorized-real-v2/corrected.mp4
+fixtures/media/authorized-real-v1/reconstruction.mp4
+fixtures/media/blind-source-only-pilot-01/source-only-preview.mp4
+fixtures/media/song-conditioned-real-calibration-v1/picture-only-preview.mp4
+fixtures/media/authorized-real-v2/side-by-side.mp4
+fixtures/media/authorized-real-v1/source-b-web.mp4

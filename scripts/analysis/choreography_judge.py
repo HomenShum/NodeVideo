@@ -581,11 +581,25 @@ def score(reference: Track, attempt: Track) -> dict:
     path_accuracy = 100 * math.exp(-mean_distance / 0.42)
     median_timing = float(np.median(timing_errors)) if timing_errors else 9.9
     timing = 100 * math.exp(-median_timing / 0.32)
-    if len(ref_velocity) > 2 and np.std(ref_velocity) > 1e-6 and np.std(att_velocity) > 1e-6:
+
+    # Motion-evidence gate. Timing is deviation from the linear time-warp and
+    # dynamics is a velocity correlation; both are only meaningful when the
+    # attempt actually performs. A near-static upload trivially matches the
+    # warp (timing -> 100) and has undefined velocity correlation, which used
+    # to manufacture a passing-looking verdict. Mark them unmeasurable and
+    # abstain instead of emitting a fabricated middle score.
+    reference_motion = float(np.median(ref_velocity)) if ref_velocity else 0.0
+    attempt_motion = float(np.median(att_velocity)) if att_velocity else 0.0
+    attempt_is_static = attempt_motion < 1e-3 or (
+        reference_motion > 0 and attempt_motion < 0.2 * reference_motion
+    )
+    timing_measurable = not attempt_is_static
+    if (len(ref_velocity) > 2 and np.std(ref_velocity) > 1e-6
+            and np.std(att_velocity) > 1e-6 and not attempt_is_static):
         dynamics_corr = float(np.corrcoef(ref_velocity, att_velocity)[0, 1])
+        dynamics = 50 * (1 + float(np.clip(dynamics_corr, -1, 1)))
     else:
-        dynamics_corr = 0.0
-    dynamics = 50 * (1 + np.clip(dynamics_corr, -1, 1))
+        dynamics = None
 
     sampled_path = path[::max(1, len(path)//120)]
     reference_counts = [len(group_centers(reference.poses[i])) for i, _ in sampled_path]
@@ -617,18 +631,35 @@ def score(reference: Track, attempt: Track) -> dict:
         if len(separated) == 5:
             break
 
+    # Assemble only the fronts we could actually measure; unmeasurable ones are
+    # omitted (not defaulted to a plausible number) and disclosed explicitly.
+    fronts = {"form": form}
+    weights_by_front = {"form": .33}
+    if timing_measurable:
+        fronts["timing"] = timing
+        weights_by_front["timing"] = .28
+    fronts["path"] = path_accuracy
+    weights_by_front["path"] = .22
+    if dynamics is not None:
+        fronts["dynamics"] = dynamics
+        weights_by_front["dynamics"] = .17
+    if formation is not None:
+        fronts["formation"] = formation
+        weights_by_front["formation"] = .10
+    unmeasurable = [name for name in ("timing", "dynamics") if name not in fronts]
+
     issues = []
     if visibility < .55: issues.append("low_joint_visibility")
     if coverage < .72: issues.append("insufficient_overlap")
     if alignment_confidence < .52: issues.append("weak_motion_alignment")
-    status = "abstained" if confidence < .45 else "completed"
+    if attempt_is_static: issues.append("insufficient_attempt_motion")
+    elif "dynamics" in unmeasurable: issues.append("dynamics_unmeasurable")
+    # A static attempt makes the timing/dynamics fronts meaningless, so the
+    # verdict cannot be a completed score no matter how confident the pose
+    # tracking is.
+    status = "abstained" if (confidence < .45 or attempt_is_static) else "completed"
     if status == "abstained" and not issues: issues.append("low_combined_confidence")
-    fronts = {"form": form, "timing": timing, "path": path_accuracy, "dynamics": dynamics}
-    weights = [.33, .28, .22, .17]
-    if formation is not None:
-        fronts["formation"] = formation
-        weights = [.30, .25, .20, .15, .10]
-    overall = float(np.average(list(fronts.values()), weights=weights))
+    overall = float(np.average(list(fronts.values()), weights=list(weights_by_front.values())))
     judged = ["2D pose form", "motion timing", "body path", "pose-speed dynamics"]
     not_judged = ["artistry", "musicality", "expression", "confidence", "creator taste", "safety"]
     if team_mode:
@@ -644,6 +675,7 @@ def score(reference: Track, attempt: Track) -> dict:
         "observableMotionOnly": True,
         "scoreInterpretation": "relative-motion-signal-not-calibrated-pass-fail",
         "scores": {key: round(float(value), 1) for key, value in fronts.items()},
+        "unmeasurableScores": unmeasurable,
         "overall": round(overall, 1) if status == "completed" else None,
         "measurements": {"poseCost": round(cost, 5), "jointCoverage": round(visibility, 4),
                          "durationCoverage": round(coverage, 4), "medianTimingErrorMs": round(median_timing*1000),
@@ -677,7 +709,8 @@ def abstention(reason: str) -> dict:
             "confidence": 0.0, "limitations": [reason], "mirrorApplied": False,
             "observableMotionOnly": True,
             "scoreInterpretation": "relative-motion-signal-not-calibrated-pass-fail",
-            "scores": {}, "overall": None, "measurements": {}, "alignment": [],
+            "scores": {}, "unmeasurableScores": ["timing", "dynamics"],
+            "overall": None, "measurements": {}, "alignment": [],
             "criticalMoments": [], "scoreBoundaries": {
                 "judged": [],
                 "notJudged": ["insufficient observable motion evidence"]

@@ -29,6 +29,7 @@ type Verdict = {
   overall: number | null;
   scoreInterpretation?: 'relative-motion-signal-not-calibrated-pass-fail';
   scores: Record<string, number>;
+  unmeasurableScores?: string[];
   measurements?: {
     comparisonMode?: 'team' | 'solo-focal-performer';
     medianTimingErrorMs?: number;
@@ -381,7 +382,7 @@ function CoachPanel() {
       {verdict && (
         <Card>
           <CardHeader>
-            <Badge variant="outline">Evidence-backed verdict</Badge>
+            <Badge variant="outline">Relative motion comparison</Badge>
             <CardTitle className="text-2xl">
               {verdict.status === 'abstained'
                 ? 'Needs a clearer take'
@@ -420,6 +421,13 @@ function CoachPanel() {
                 </Card>
               ))}
             </div>
+            {verdict.unmeasurableScores && verdict.unmeasurableScores.length > 0 && (
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                Not measurable from this upload:{' '}
+                <span className="capitalize">{verdict.unmeasurableScores.join(', ')}</span>. The
+                attempt showed too little motion to score these fronts.
+              </p>
+            )}
             <section className="space-y-2" aria-labelledby="moments-title">
               <h2 className="font-heading font-medium" id="moments-title">
                 Review these moments
