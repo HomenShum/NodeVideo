@@ -243,8 +243,8 @@ function CoachPanel() {
 
   const verdict = job?.verdict;
   return (
-    <main className="mx-auto min-h-svh max-w-lg space-y-4 bg-background p-3 text-foreground sm:p-4">
-      <header className="flex items-center gap-2 py-1">
+    <main className="mx-auto min-h-svh max-w-lg space-y-4 bg-background p-3 text-foreground sm:p-4 lg:grid lg:max-w-6xl lg:grid-cols-2 lg:items-start lg:gap-x-6 lg:gap-y-4 lg:space-y-0">
+      <header className="flex items-center gap-2 py-1 lg:col-span-2">
         <Item className="p-0">
           <ItemMedia
             className="size-9 rounded-lg bg-primary text-primary-foreground"
@@ -259,7 +259,7 @@ function CoachPanel() {
         </Item>
       </header>
 
-      <Card size="sm">
+      <Card className="lg:col-start-1" size="sm">
         <CardHeader>
           <Badge className="mb-1" variant="outline">
             Reference on this page
@@ -298,7 +298,7 @@ function CoachPanel() {
         )}
       </Card>
 
-      <form className="space-y-4" onSubmit={submit}>
+      <form className="space-y-4 lg:col-start-2 lg:row-span-4 lg:row-start-2" onSubmit={submit}>
         <Field>
           <FieldLabel htmlFor="reference-file">Reference video file (optional)</FieldLabel>
           <Input
@@ -436,7 +436,7 @@ function CoachPanel() {
       </form>
 
       {job && (
-        <Card size="sm">
+        <Card className="lg:col-start-1" size="sm">
           <CardHeader>
             <CardTitle>{label(job.stage)}</CardTitle>
             <CardAction>{job.progress}%</CardAction>
@@ -450,7 +450,7 @@ function CoachPanel() {
         </Card>
       )}
       {error && (
-        <Alert variant="destructive">
+        <Alert className="lg:col-start-1" variant="destructive">
           <AlertCircle aria-hidden="true" />
           <AlertTitle>Could not complete the comparison</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
@@ -458,7 +458,7 @@ function CoachPanel() {
       )}
 
       {verdict && (
-        <Card>
+        <Card className="lg:col-start-1">
           <CardHeader>
             <Badge variant="outline">Relative motion comparison</Badge>
             <CardTitle className="text-2xl">
