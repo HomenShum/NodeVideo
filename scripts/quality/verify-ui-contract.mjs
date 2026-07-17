@@ -88,7 +88,9 @@ await new Promise((resolveWait, reject) => {
 const stateFixtures = new Map();
 for (const surface of contract.surfaces) {
   for (const state of surface.states ?? []) {
-    stateFixtures.set(state.id, JSON.parse(readFileSync(join(root, state.fixture), 'utf8')));
+    if (state.fixture) {
+      stateFixtures.set(state.id, JSON.parse(readFileSync(join(root, state.fixture), 'utf8')));
+    }
   }
 }
 const mockSidecar = createServer((request, response) => {
@@ -184,10 +186,10 @@ try {
 
     for (const state of surface.states ?? []) {
       const statePage = await browser.newPage({ viewport: { width: 420, height: 900 } });
-      await statePage.goto(
-        `${base}${surface.route}?job=${state.id}&token=contract-state-check&endpoint=${encodeURIComponent(`http://127.0.0.1:${mockPort}`)}`,
-        { waitUntil: 'networkidle' },
-      );
+      const stateQuery = state.fixture
+        ? `?job=${state.id}&token=contract-state-check&endpoint=${encodeURIComponent(`http://127.0.0.1:${mockPort}`)}`
+        : '';
+      await statePage.goto(`${base}${surface.route}${stateQuery}`, { waitUntil: 'networkidle' });
       for (const text of state.requireTexts ?? []) {
         (await statePage
           .getByText(text)

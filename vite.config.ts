@@ -23,6 +23,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: path.resolve(__dirname, 'index.html'),
+        studio: path.resolve(__dirname, 'studio.html'),
         'chrome-extension-sidepanel': path.resolve(
           __dirname,
           'apps/chrome-extension/sidepanel.html',

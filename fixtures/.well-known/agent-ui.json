@@ -20,8 +20,33 @@
   },
   "surfaces": [
     {
-      "id": "workspace",
+      "id": "landing",
       "route": "/",
+      "landmark": { "testid": "landing" },
+      "description": "Intent-first landing: one primary action into the coach, the pose-skeleton signature moment, and the count-driven motion identity. No owner machinery.",
+      "controls": [
+        { "id": "open-coach", "role": "link", "name": "Open the coach" },
+        { "id": "see-comparison", "role": "link", "name": "See a verified comparison" },
+        { "id": "proof-studio-nav", "role": "link", "name": "Proof studio" },
+        { "id": "agent-contract-nav", "role": "link", "name": "Agent contract" }
+      ],
+      "states": [
+        {
+          "id": "landing-first-run",
+          "meaning": "A net-new visitor sees intent, not machinery: the composer action leads; the owner console lives only in the studio.",
+          "requireTexts": [
+            "Learn the dance you admire.",
+            "Open the coach",
+            "Relative signals, never grades."
+          ],
+          "forbidTexts": ["Owner access key", "Start source-only job"]
+        }
+      ],
+      "agentGuidance": "Public surface; follow the links. The count ticker and skeleton replay real verified case data — they are presentation, not live analysis."
+    },
+    {
+      "id": "workspace",
+      "route": "/studio.html",
       "landmark": { "testid": "app-shell" },
       "description": "Owner calibration workspace plus the public frame-by-frame proof inspector.",
       "controls": [
