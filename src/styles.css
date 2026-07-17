@@ -100,4 +100,19 @@
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+
+  /* Native file inputs are the only OS-styled control in the shell; dress the
+     selector button as a small secondary action so upload rows match the rest
+     of the design system in both themes. */
+  input[type="file"] {
+    @apply text-muted-foreground;
+  }
+
+  input[type="file"]::file-selector-button {
+    @apply mr-3 h-6 cursor-pointer rounded-sm border-0 bg-secondary px-2.5 font-sans text-xs font-medium text-secondary-foreground;
+  }
+
+  input[type="file"]:hover::file-selector-button {
+    @apply bg-accent;
+  }
 }
