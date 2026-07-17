@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "nodevideo.locate-result.v1",
+  "requestId": "request.locate-anything.a5e27c85-df16-430f-8462-cc8857a8f645",
+  "traceId": "trace.locate-anything.103c9037-c6cb-4db3-91e5-08f1bd64c078",
+  "assetId": "asset.integrated-source-only.preview-frame-465",
+  "provider": {
+    "id": "provider.locate-anything.official-space",
+    "implementation": "locate-anything-http",
+    "modelId": "nvidia/LocateAnything-3B"
+  },
+  "status": "valid",
+  "observations": [
+    {
+      "id": "observation.locate-anything.1",
+      "geometry": {
+        "kind": "box",
+        "box": {
+          "x": 0.481,
+          "y": 0.165,
+          "width": 0.518,
+          "height": 0.727
+        }
+      },
+      "label": "Take dancer full body"
+    }
+  ]
+}

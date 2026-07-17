@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "nodevideo.song-conditioned-postfreeze-evaluation.v1",
+  "evaluatorVersion": "nodevideo.song-conditioned-postfreeze-evaluator@1.0.0",
+  "createdAt": "2026-07-16T10:40:48.948Z",
+  "artifactBindings": {
+    "freezeReceiptSha256": "6d0305e3cf8e741592d5143faba7cdf6613a57cb6bf9f709b28bf383b90e655e",
+    "generatedPlanSha256": "45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07",
+    "evaluatorOnlyPlanSha256": "e7b2139ea1690a484bb26595ae844983693f3304f2b2045f0e44b4c3ee4de5b7"
+  },
+  "isolation": {
+    "passed": true,
+    "verifiedGenerationFileCount": 4,
+    "targetMountedDuringGeneration": false,
+    "targetReadDuringGeneration": false,
+    "targetOpenedOnlyAfterFreezeVerification": true,
+    "targetAudioOracleUsed": false
+  },
+  "technicalComparison": {
+    "duration": {
+      "generatedSeconds": 44.5,
+      "targetSeconds": 44.5,
+      "differenceSeconds": 0,
+      "absoluteDifferenceSeconds": 0
+    },
+    "cutBoundaries": {
+      "method": "one-to-one-nearest-neighbor",
+      "toleranceSeconds": 0.75,
+      "generatedCount": 6,
+      "targetCount": 6,
+      "matchedCount": 6,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1,
+      "meanNearestNeighborErrorSeconds": 0.033333,
+      "maxNearestNeighborErrorSeconds": 0.066667
+    },
+    "strictCutBoundaries": {
+      "method": "one-to-one-signed-boundary-assignment",
+      "thresholdFrames": 2,
+      "generatedFrameRate": 30,
+      "targetFrameRate": 30,
+      "assignments": [
+        {
+          "generatedIndex": 0,
+          "targetIndex": 0,
+          "generatedSeconds": 6.633333,
+          "targetSeconds": 6.7,
+          "signedErrorSeconds": -0.066667,
+          "signedErrorFrames": -2,
+          "passed": true
+        },
+        {
+          "generatedIndex": 1,
+          "targetIndex": 1,
+          "generatedSeconds": 16.033333,
+          "targetSeconds": 16.066667,
+          "signedErrorSeconds": -0.033333,
+          "signedErrorFrames": -1,
+          "passed": true
+        },
+        {
+          "generatedIndex": 2,
+          "targetIndex": 2,
+          "generatedSeconds": 19.666667,
+          "targetSeconds": 19.633333,
+          "signedErrorSeconds": 0.033333,
+          "signedErrorFrames": 1,
+          "passed": true
+        },
+        {
+          "generatedIndex": 3,
+          "targetIndex": 3,
+          "generatedSeconds": 25.033333,
+          "targetSeconds": 25.1,
+          "signedErrorSeconds": -0.066667,
+          "signedErrorFrames": -2,
+          "passed": true
+        },
+        {
+          "generatedIndex": 4,
+          "targetIndex": 4,
+          "generatedSeconds": 40.466667,
+          "targetSeconds": 40.466667,
+          "signedErrorSeconds": 0,
+          "signedErrorFrames": 0,
+          "passed": true
+        },
+        {
+          "generatedIndex": 5,
+          "targetIndex": 5,
+          "generatedSeconds": 40.5,
+          "targetSeconds": 40.5,
+          "signedErrorSeconds": 0,
+          "signedErrorFrames": 0,
+          "passed": true
+        }
+      ],
+      "unmatchedGeneratedIndices": [],
+      "unmatchedTargetIndices": [],
+      "passedAssignments": 6,
+      "totalAssignments": 6,
+      "meanSignedErrorFrames": -0.666667,
+      "maxAbsoluteErrorFrames": 2,
+      "verdict": "passed",
+      "claim": "Strict editorial timing requires one-to-one assignment, complete boundary coverage, and no signed error above two frames."
+    },
+    "phraseSourceAgreement": {
+      "method": "generated-phrase-midpoint-with-neutral-A/B-suffix-mapping",
+      "generatedPhraseCount": 5,
+      "comparablePhraseCount": 5,
+      "agreementCount": 5,
+      "agreementRatio": 1,
+      "phrases": [
+        {
+          "phrase": 1,
+          "generatedSource": "A",
+          "targetSource": "A",
+          "comparable": true,
+          "agrees": true
+        },
+        {
+          "phrase": 2,
+          "generatedSource": "B",
+          "targetSource": "B",
+          "comparable": true,
+          "agrees": true
+        },
+        {
+          "phrase": 3,
+          "generatedSource": "A",
+          "targetSource": "A",
+          "comparable": true,
+          "agrees": true
+        },
+        {
+          "phrase": 4,
+          "generatedSource": "B",
+          "targetSource": "B",
+          "comparable": true,
+          "agrees": true
+        },
+        {
+          "phrase": 5,
+          "generatedSource": "A",
+          "targetSource": "A",
+          "comparable": true,
+          "agrees": true
+        }
+      ]
+    }
+  },
+  "tasteStatus": "not-evaluated",
+  "claim": "This report measures timing and neutral A/B source-decision similarity only; it does not establish creative taste."
+}

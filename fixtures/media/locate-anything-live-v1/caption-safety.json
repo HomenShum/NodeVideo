@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "nodevideo.locate-caption-safety.v1",
+  "frameNumber": 465,
+  "coordinateSpace": "normalized-frame-top-left-v1",
+  "groundingProvider": {
+    "id": "provider.locate-anything.official-space",
+    "implementation": "locate-anything-http",
+    "modelId": "nvidia/LocateAnything-3B"
+  },
+  "groundingResultSha256": "sha256:d8f8c5f579aa1072da961852af20dc6beb88597c9a9fa78ba80f1d61cdfecef5",
+  "planSha256": "sha256:45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07",
+  "checks": [
+    {
+      "overlayId": "overlay.lyric-6",
+      "overlayBox": {
+        "x": 0.1,
+        "y": 0.049617,
+        "width": 0.8,
+        "height": 0.075
+      },
+      "subjectBox": {
+        "x": 0.481,
+        "y": 0.165,
+        "width": 0.518,
+        "height": 0.727
+      },
+      "intersectionArea": 0,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "sampled-live-grounding-gate"
+}

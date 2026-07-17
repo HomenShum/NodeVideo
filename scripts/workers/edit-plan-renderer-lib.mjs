@@ -5,7 +5,7 @@ import { REPO_ROOT, requireFile, runText, sha256File } from '../media/media-proo
 
 /** @typedef {import('../../src/lib/edit-contracts.ts').EditPlan} EditPlan */
 
-export const EDIT_PLAN_RENDERER_VERSION = 'nodevideo.edit-plan-renderer@0.1.0';
+export const EDIT_PLAN_RENDERER_VERSION = 'nodevideo.edit-plan-renderer@0.3.0';
 export const SUPPORTED_EDIT_PLAN_SCHEMA = 'nodevideo.edit-plan.v1';
 export const RENDERER_FONT = Object.freeze({
   id: 'font.geist-variable-latin',
@@ -60,11 +60,93 @@ export const FIXED_TEXT_TEMPLATES = Object.freeze({
     shadowX: 1,
     shadowY: 2,
   }),
+  'text.creator-commentary': Object.freeze({
+    fontScale: 0.4,
+    maxWidthRatio: 0.86,
+    minFontSize: 18,
+    maxFontSize: 70,
+    color: 'white',
+    borderColor: 'black@0.94',
+    borderWidth: 3,
+    shadowColor: 'black@0.55',
+    shadowX: 1,
+    shadowY: 2,
+  }),
+  'text.creator-title': Object.freeze({
+    fontScale: 0.34,
+    maxWidthRatio: 0.82,
+    minFontSize: 22,
+    maxFontSize: 74,
+    color: 'white',
+    borderColor: 'black@0.92',
+    borderWidth: 3,
+    shadowColor: 'black@0.6',
+    shadowX: 1,
+    shadowY: 2,
+  }),
+  'text.creator-watermark': Object.freeze({
+    fontScale: 0.48,
+    minFontSize: 14,
+    maxFontSize: 42,
+    color: 'white',
+    borderColor: 'black@0.7',
+    borderWidth: 2,
+    shadowColor: 'black@0.35',
+    shadowX: 1,
+    shadowY: 1,
+    opacity: 0.84,
+    horizontalAlign: 'left',
+  }),
+  'text.creator-cta': Object.freeze({
+    fontScale: 0.3,
+    maxWidthRatio: 0.82,
+    minFontSize: 20,
+    maxFontSize: 70,
+    color: 'white',
+    borderColor: 'black@0.92',
+    borderWidth: 3,
+    shadowColor: 'black@0.55',
+    shadowX: 1,
+    shadowY: 2,
+  }),
+  'text.creator-end-card': Object.freeze({
+    fontScale: 0.5,
+    minFontSize: 18,
+    maxFontSize: 58,
+    color: 'white',
+    borderColor: 'black@0.88',
+    borderWidth: 3,
+    shadowColor: 'black@0.5',
+    shadowX: 1,
+    shadowY: 2,
+  }),
 });
 
 export const FIXED_GRAPHIC_TEMPLATES = Object.freeze(
-  new Set(['graphic.default', 'graphic.watermark', 'graphic.end-card']),
+  new Set([
+    'graphic.default',
+    'graphic.watermark',
+    'graphic.end-card',
+    'graphic.creator-watermark',
+    'graphic.creator-end-card',
+  ]),
 );
+
+export const FIXED_GRADE_PRESETS = Object.freeze({
+  'hlg-bt2020-to-sdr-bt709-hable': Object.freeze([]),
+  'hlg-bt2020-to-sdr-bt709-creator-vibrant': Object.freeze([
+    'eq=brightness=-0.035:contrast=1.08:saturation=1.38:gamma=0.97',
+  ]),
+  'hlg-bt2020-to-sdr-bt709-creator-dark-warm': Object.freeze([
+    'eq=brightness=-0.18:contrast=1.08:saturation=1.6:gamma=0.88',
+    'colorbalance=rs=0.025:gs=-0.01:bs=-0.035:rm=0.012:bm=-0.018',
+  ]),
+  'hlg-bt2020-to-sdr-bt709-creator-social-vivid': Object.freeze([
+    'eq=brightness=-0.18:contrast=1.08:saturation=1.6:gamma=0.88',
+    'colorbalance=rs=0.025:gs=-0.01:bs=-0.035:rm=0.012:bm=-0.018',
+    'hue=s=10',
+  ]),
+});
 
 const VIDEO_ENCODER_ARGS = Object.freeze([
   '-c:v',
@@ -425,6 +507,27 @@ export function compileEditPlan(input, bindingsInput, options = {}) {
       audioClipCount: declaredAudioClips.length,
       renderedAudioClipCount: audioNumber - silenceEvents.length,
       silenceEventCount: silenceEvents.length,
+      overlayTemplates: [
+        ...new Set(
+          plan.tracks
+            .filter((track) => track.kind === 'overlay')
+            .flatMap((track) => track.clips.map((clip) => clip.templateId)),
+        ),
+      ].sort(),
+      textPlacements: plan.tracks
+        .filter((track) => track.kind === 'overlay')
+        .flatMap((track) => track.clips)
+        .filter((clip) => clip.kind === 'text')
+        .map((clip) => textPlacement(clip, plan)),
+      gradeKinds: [
+        ...new Set(
+          primary.clips.filter((clip) => clip.kind !== 'black').map((clip) => clip.grade.kind),
+        ),
+      ].sort(),
+      framePolicy: {
+        freezeHolds: 'exact-frame-count',
+        oneFrameBlackGaps: 'rejected',
+      },
       audioDelivery: hasAudio
         ? {
             limiter: 'ffmpeg-alimiter',
@@ -434,6 +537,8 @@ export function compileEditPlan(input, bindingsInput, options = {}) {
         : null,
       usedAssetIds: boundAssets.map((record) => record.assetId).sort(),
       targetDerivedRenderAssetIds: [...plan.lineage.targetDerivedRenderAssetIds],
+      decisionArtifactIds: [...(plan.lineage.decisionArtifactIds ?? [])],
+      calibration: plan.lineage.calibration ? structuredClone(plan.lineage.calibration) : null,
       rendererAssets: [
         {
           id: RENDERER_FONT.id,
@@ -487,7 +592,14 @@ export async function readEditPlanInputs(planPath, bindingsPath) {
 }
 
 function validateRendererVideoClip(clip, path, issues) {
-  if (clip.kind === 'black') return;
+  if (clip.kind === 'black') {
+    if (frameCount(clip.timelineRange) === 1) {
+      issues.push(
+        `${path} is a one-frame black gap; use a source/freeze hold or an intentional black clip of at least 2 frames`,
+      );
+    }
+    return;
+  }
   if (clip.kind === 'source') {
     if (clip.playbackRate < 0.125 || clip.playbackRate > 8) {
       issues.push(`${path}.playbackRate must be between 0.125 and 8`);
@@ -506,6 +618,9 @@ function validateRendererVideoClip(clip, path, issues) {
     'cube-lut',
     'hlg-bt2020-to-sdr-bt709-hable',
     'hlg-bt2020-to-sdr-bt709-hable-cube-lut',
+    'hlg-bt2020-to-sdr-bt709-creator-vibrant',
+    'hlg-bt2020-to-sdr-bt709-creator-dark-warm',
+    'hlg-bt2020-to-sdr-bt709-creator-social-vivid',
   ]);
   if (!supportedGrades.has(clip.grade.kind)) {
     issues.push(`${path}.grade.kind is not a fixed renderer v1 color primitive`);
@@ -571,11 +686,10 @@ function sourceVideoFilter(index, clip, durationFrames, plan, bindings) {
   const layout = layoutFilter(clip, plan);
   const grade = gradeFilter(clip.grade, bindings);
   const processing = [grade, layout].filter(Boolean).join(',');
+  const sourceTimes = sourceRangeSeconds(clip.sourceRange, plan.frameRate);
   return (
-    `[${index}:v:0]trim=start_frame=${clip.sourceRange.startFrame}:` +
-    `end_frame=${clip.sourceRange.endFrameExclusive},setpts=(PTS-STARTPTS)/${numeric(
-      clip.playbackRate,
-    )}` +
+    `[${index}:v:0]trim=start=${numeric(sourceTimes.start)}:` +
+    `end=${numeric(sourceTimes.end)},setpts=(PTS-STARTPTS)/${numeric(clip.playbackRate)}` +
     `,fps=${numeric(plan.frameRate)},trim=end_frame=${durationFrames}` +
     `,setpts=N/(${numeric(plan.frameRate)}*TB),${processing},format=yuv420p`
   );
@@ -585,12 +699,23 @@ function freezeFilter(index, clip, durationFrames, plan, bindings) {
   const layout = layoutFilter(clip, plan);
   const grade = gradeFilter(clip.grade, bindings);
   const processing = [grade, layout].filter(Boolean).join(',');
+  const sourceTimes = sourceRangeSeconds(
+    { startFrame: clip.sourceFrame, endFrameExclusive: clip.sourceFrame + 1 },
+    plan.frameRate,
+  );
   return (
-    `[${index}:v:0]trim=start_frame=${clip.sourceFrame}:end_frame=${clip.sourceFrame + 1}` +
+    `[${index}:v:0]trim=start=${numeric(sourceTimes.start)}:end=${numeric(sourceTimes.end)}` +
     `,setpts=PTS-STARTPTS,fps=${numeric(plan.frameRate)},${processing}` +
-    `,tpad=stop_mode=clone:stop_duration=${seconds(durationFrames, plan.frameRate)}` +
+    `,tpad=stop_mode=clone:stop=${Math.max(0, durationFrames - 1)}` +
     `,trim=end_frame=${durationFrames},setpts=N/(${numeric(plan.frameRate)}*TB),format=yuv420p`
   );
+}
+
+export function sourceRangeSeconds(range, frameRate) {
+  return {
+    start: range.startFrame / frameRate,
+    end: range.endFrameExclusive / frameRate,
+  };
 }
 
 function layoutFilter(clip, plan) {
@@ -615,7 +740,10 @@ function gradeFilter(grade, bindings) {
   if (grade.kind === 'none') return '';
   if (
     grade.kind === 'hlg-bt2020-to-sdr-bt709-hable' ||
-    grade.kind === 'hlg-bt2020-to-sdr-bt709-hable-cube-lut'
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-hable-cube-lut' ||
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-vibrant' ||
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-dark-warm' ||
+    grade.kind === 'hlg-bt2020-to-sdr-bt709-creator-social-vivid'
   ) {
     const filters = [
       'zscale=transfer=linear:npl=100',
@@ -626,6 +754,8 @@ function gradeFilter(grade, bindings) {
     ];
     if (grade.kind === 'hlg-bt2020-to-sdr-bt709-hable-cube-lut') {
       filters.push(`lut3d=file='${escapeFilterPath(bindings.get(grade.artifactId))}'`);
+    } else {
+      filters.push(...(FIXED_GRADE_PRESETS[grade.kind] ?? []));
     }
     return filters.join(',');
   }
@@ -635,26 +765,25 @@ function gradeFilter(grade, bindings) {
 
 function textOverlayFilter(clip, textPath, plan) {
   const template = FIXED_TEXT_TEMPLATES[clip.templateId];
-  const widthPx = Math.max(2, Math.round(clip.box.width * plan.canvas.width));
-  const heightPx = Math.max(2, Math.round(clip.box.height * plan.canvas.height));
-  const xPx = Math.round(clip.box.x * plan.canvas.width);
-  const yPx = Math.round(clip.box.y * plan.canvas.height);
-  const fontSize = clamp(
-    Math.round(heightPx * template.fontScale),
-    template.minFontSize,
-    template.maxFontSize,
-  );
+  const placement = textPlacement(clip, plan);
+  const { widthPx, heightPx, xPx, yPx, fontSize } = placement;
   const start = clip.timelineRange.startFrame;
   const end = clip.timelineRange.endFrameExclusive - 1;
   const duration = frameCount(clip.timelineRange);
   const animationFrames = Math.max(1, Math.min(6, Math.floor(duration / 2)));
-  const xExpression = `${xPx}+(${widthPx}-text_w)/2`;
+  const xExpression =
+    template.horizontalAlign === 'left'
+      ? `${xPx}`
+      : template.horizontalAlign === 'right'
+        ? `${xPx}+${widthPx}-text_w`
+        : `${xPx}+(${widthPx}-text_w)/2`;
   let yExpression = `${yPx}+(${heightPx}-text_h)/2`;
   let fontSizeExpression = String(fontSize);
-  let alphaExpression = '1';
+  let alphaExpression = numeric(template.opacity ?? 1);
   if (clip.animation === 'fade') {
+    const opacity = numeric(template.opacity ?? 1);
     alphaExpression =
-      `if(lt(n,${start + animationFrames}),` +
+      `${opacity}*if(lt(n,${start + animationFrames}),` +
       `(n-${start}+1)/${animationFrames},` +
       `if(gt(n,${end - animationFrames}),(${end}-n+1)/${animationFrames},1))`;
   } else if (clip.animation === 'pop') {
@@ -665,14 +794,78 @@ function textOverlayFilter(clip, textPath, plan) {
       `${yPx}+(${heightPx}-text_h)/2+` +
       `if(lt(n,${start + animationFrames}),${offset}*(1-(n-${start})/${animationFrames}),0)`;
   }
-  return (
-    `drawtext=textfile='${escapeFilterPath(textPath)}':expansion=none:` +
-    `fontfile='${escapeFilterPath(RENDERER_FONT.path)}':fontsize='${fontSizeExpression}':` +
-    `fontcolor=${template.color}:bordercolor=${template.borderColor}:` +
-    `borderw=${template.borderWidth}:shadowcolor=${template.shadowColor}:` +
-    `shadowx=${template.shadowX}:shadowy=${template.shadowY}:` +
-    `x='${xExpression}':y='${yExpression}':alpha='${alphaExpression}':` +
-    `fix_bounds=1:enable='between(n,${start},${end})'`
+  return [
+    `drawtext=textfile='${escapeFilterPath(textPath)}':expansion=none:`,
+    `fontfile='${escapeFilterPath(RENDERER_FONT.path)}':fontsize='${fontSizeExpression}':`,
+    `fontcolor=${template.color}:bordercolor=${template.borderColor}:`,
+    `borderw=${template.borderWidth}:shadowcolor=${template.shadowColor}:`,
+    `shadowx=${template.shadowX}:shadowy=${template.shadowY}:`,
+    template.boxColor
+      ? `box=1:boxcolor=${template.boxColor}:boxborderw=${template.boxBorderWidth}:`
+      : '',
+    `x='${xExpression}':y='${yExpression}':alpha='${alphaExpression}':`,
+    `fix_bounds=1:enable='between(n,${start},${end})'`,
+  ].join('');
+}
+
+export function textPlacement(clip, plan) {
+  const template = FIXED_TEXT_TEMPLATES[clip.templateId];
+  const widthPx = Math.max(2, Math.round(clip.box.width * plan.canvas.width));
+  const heightPx = Math.max(2, Math.round(clip.box.height * plan.canvas.height));
+  const xPx = Math.round(clip.box.x * plan.canvas.width);
+  const yPx = Math.round(clip.box.y * plan.canvas.height);
+  const emWidth = estimatedTextEmWidth(clip.text);
+  const fontSize = clamp(
+    Math.min(
+      Math.round(heightPx * template.fontScale),
+      Math.floor(
+        Math.max(1, widthPx * (template.maxWidthRatio ?? 1) - template.borderWidth * 2) / emWidth,
+      ),
+    ),
+    template.minFontSize,
+    template.maxFontSize,
+  );
+  const glyphWidth = Math.min(widthPx, Math.ceil(emWidth * fontSize + template.borderWidth * 2));
+  const glyphHeight = Math.min(
+    heightPx,
+    Math.ceil(fontSize * 1.2 + template.borderWidth * 2 + Math.abs(template.shadowY)),
+  );
+  const glyphX =
+    template.horizontalAlign === 'left'
+      ? xPx
+      : template.horizontalAlign === 'right'
+        ? xPx + widthPx - glyphWidth
+        : xPx + (widthPx - glyphWidth) / 2;
+  const glyphY = yPx + (heightPx - glyphHeight) / 2;
+  return {
+    clipId: clip.id,
+    box: clip.box,
+    fontSize,
+    widthPx,
+    heightPx,
+    xPx,
+    yPx,
+    estimatedGlyphBox: {
+      x: glyphX / plan.canvas.width,
+      y: glyphY / plan.canvas.height,
+      width: glyphWidth / plan.canvas.width,
+      height: glyphHeight / plan.canvas.height,
+    },
+  };
+}
+
+export function estimatedTextEmWidth(text) {
+  return Math.max(
+    1,
+    ...text.split(/\r?\n/u).map((line) =>
+      Array.from(line).reduce((width, character) => {
+        if (/\s/u.test(character)) return width + 0.33;
+        if (/[iIl1|.,'`]/u.test(character)) return width + 0.28;
+        if (/[mMwW@#%&]/u.test(character)) return width + 0.86;
+        if (/[A-Z]/u.test(character)) return width + 0.62;
+        return width + (character.codePointAt(0) > 0xff ? 0.95 : 0.55);
+      }, 0),
+    ),
   );
 }
 
@@ -688,7 +881,7 @@ function graphicInputFilter(index, clip, outputLabel, plan) {
   const filters = [
     `[${index}:v:0]fps=${numeric(plan.frameRate)}`,
     'format=rgba',
-    `tpad=stop_mode=clone:stop_duration=${seconds(durationFrames, plan.frameRate)}`,
+    `tpad=stop_mode=clone:stop=${Math.max(0, durationFrames - 1)}`,
     `trim=end_frame=${durationFrames}`,
     `setpts=N/(${numeric(plan.frameRate)}*TB)`,
     scale,
@@ -793,7 +986,7 @@ function referencedAssetIds(plan) {
     for (const clip of track.clips) {
       if (track.kind === 'video' && clip.kind !== 'black') {
         assetIds.add(clip.assetId);
-        if (clip.grade.kind === 'cube-lut') assetIds.add(clip.grade.artifactId);
+        if (clip.grade.artifactId) assetIds.add(clip.grade.artifactId);
       } else if (track.kind === 'audio') {
         assetIds.add(clip.assetId);
       } else if (track.kind === 'overlay' && clip.kind === 'graphic') {

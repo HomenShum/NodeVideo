@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "nodevideo.generation-read-log.v1",
+  "runId": "run.song-conditioned-auto-edit-v1",
+  "createdAt": "2026-07-15T00:00:00.000Z",
+  "networkAccess": false,
+  "reads": [
+    {
+      "assetId": "asset.choreography-reference",
+      "sha256": "sha256:9cce01af82855387be580c5868f01a5c2ce405f129af04731e80168b48a4ee18"
+    },
+    {
+      "assetId": "asset.take-a",
+      "sha256": "sha256:2676bae057e6642f89f429d04a7bb442d4626a9deab43ee4e14337315192b1e8"
+    },
+    {
+      "assetId": "asset.take-b",
+      "sha256": "sha256:8ada43b35b9f46f0bbde0661a7602a5b67ae20fae218fa747afc99babe6b0983"
+    },
+    {
+      "assetId": "asset.music",
+      "sha256": "sha256:92f9e6d828e62e7f60d16dcb054a6a3e00fe41db1d2d863f4ce6e188773b2c21"
+    },
+    {
+      "assetId": "asset.timed-text",
+      "sha256": "sha256:106a9f13b9b9298b6b9300c0f6280676dc92833bf8f3b929f1cfae8d3e223117"
+    }
+  ],
+  "targetAccess": "denied"
+}

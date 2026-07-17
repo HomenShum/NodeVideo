@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "nodevideo.locate-anything-live-receipt.v1",
+  "backend": "official-hugging-face-space",
+  "space": "nvidia/LocateAnything",
+  "modelId": "nvidia/LocateAnything-3B",
+  "licenseUse": "research-and-development-non-commercial",
+  "inputSha256": "sha256:f93aaa33b5d98e4f5007da8ea10441c976670bc7218528333ec2874c6394fc12",
+  "resultSha256": "sha256:d8f8c5f579aa1072da961852af20dc6beb88597c9a9fa78ba80f1d61cdfecef5",
+  "annotatedImageSha256": "sha256:8532f336972db2639af03df2c761e034a96aaa241525df805b83b40573fc447d",
+  "rawText": "<ref>Take dancer full body</ref><box><481><165><999><892></box><|im_end|>",
+  "stats": {
+    "Statistic Info, num_tokens": "13",
+    "generate_time(s)": "1.0780",
+    "tps": "12.0599",
+    "forward_step": "3",
+    "num_boxes": "1",
+    "bps": "0.9277",
+    "prefill_time": "0.9994",
+    "switch_to_ar": "0"
+  },
+  "completedAt": "2026-07-16T17:43:55.045Z"
+}

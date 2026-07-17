@@ -30,16 +30,29 @@ export function requireFile(path, alias = 'media input') {
   }
 }
 
+// Ceiling on any single media subprocess (ffmpeg/ffprobe). A malformed or
+// adversarial input must not let the worker hang indefinitely.
+const DEFAULT_BINARY_TIMEOUT_MS = 10 * 60 * 1000;
+
 export function runBinary(command, args, options = {}) {
+  const timeout = options.timeout ?? DEFAULT_BINARY_TIMEOUT_MS;
   const result = spawnSync(command, args, {
     cwd: options.cwd ?? REPO_ROOT,
     encoding: options.encoding ?? null,
     maxBuffer: options.maxBuffer ?? 128 * 1024 * 1024,
+    timeout,
+    killSignal: 'SIGKILL',
     windowsHide: true,
   });
 
   if (result.error) {
+    if (result.error.code === 'ETIMEDOUT' || result.signal === 'SIGKILL') {
+      throw new Error(`${command} timed out after ${timeout}ms and was terminated.`);
+    }
     throw new Error(`${command} could not start: ${result.error.message}`);
+  }
+  if (result.signal === 'SIGKILL') {
+    throw new Error(`${command} timed out after ${timeout}ms and was terminated.`);
   }
   if (result.status !== 0) {
     const stderr = Buffer.isBuffer(result.stderr)

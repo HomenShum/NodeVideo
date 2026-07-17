@@ -1,0 +1,54 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.attention-overlays",
+  "version": "0.1.0",
+  "implementationStatus": "private-real-media-and-contract-validated",
+  "title": "Embodied Attention Text Overlays",
+  "description": "Plans timed text as attention events against the union of framewise pose silhouettes, renders through the canonical EditPlan renderer, and fails closed when the rendered typography cannot clear every detected performer.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": ["video/authorized", "video/pose-track", "text/timed-cues"],
+  "outputs": [
+    "production/attention-overlay-plan",
+    "production/attention-overlay-preview",
+    "production/embodied-overlay-audit",
+    "production/attention-overlay-receipt"
+  ],
+  "tools": [
+    "pose.extract",
+    "attention-overlays.plan",
+    "render.edit-plan",
+    "embodied-overlays.audit"
+  ],
+  "permissions": ["read_authorized_video", "write_private_derived_artifacts"],
+  "uiRenderers": ["AttentionOverlayTimeline", "EmbodiedOverlayAudit"],
+  "evalSuite": "evals/contract-v1.json",
+  "validation": {
+    "profile": "real-media-private-forward-test-v1",
+    "status": "passed",
+    "proof": {
+      "worker": "../../scripts/workers/attention-overlay-private-render.mjs",
+      "planner": "../../scripts/analysis/plan_attention_overlays.py",
+      "auditor": "../../scripts/analysis/audit_overlay_body_clearance.py",
+      "privateReceipt": ".qa/evidence/private/live-product-proof/attention-overlay-plugin-v1/attention-overlay-pipeline-receipt.json"
+    },
+    "excludes": [
+      "automatic_transcription_without_timed_text",
+      "human_attention_preference_proof",
+      "public_hosted_video_processing"
+    ]
+  },
+  "execution": {
+    "kind": "pose-grounded-edit-plan-transform",
+    "modelRequired": false,
+    "applicationWriteAuthority": "validated-edit-plan-and-receipt",
+    "defaultGrade": "auto",
+    "defaultCanvasMode": "source",
+    "defaultNumPoses": 6,
+    "colorPolicy": "preserve-sdr-and-convert-hlg-independent-from-overlay-planning"
+  }
+}

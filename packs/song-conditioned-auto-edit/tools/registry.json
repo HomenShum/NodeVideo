@@ -1,0 +1,315 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.song-conditioned-auto-edit@0.1.0",
+  "implementationStatus": "deterministic-replay-validated",
+  "contracts": {
+    "analysis": {
+      "schema": "nodevideo.choreography-analysis.v1",
+      "binds": ["referenceAssetId", "songAssetId", "takeAssetIds", "songExcerpt"],
+      "contains": ["beatGridArtifactId", "groundingResultArtifactIds", "phrases", "takeAlignments"]
+    },
+    "candidates": {
+      "schema": "nodevideo.choreography-candidates.v1",
+      "rowKey": "phraseId",
+      "selectionRule": "selectedCandidateId-must-name-an-admissible-row-member"
+    },
+    "captions": {
+      "schema": "nodevideo.caption-layout.v1",
+      "coordinateSpace": "normalized-frame-top-left-v1",
+      "protectedTextInTrace": false,
+      "faceOverlapMaximum": 0,
+      "bodyOverlapP95Maximum": 0.02,
+      "bodyOverlapMaximum": 0.05
+    },
+    "freeze": {
+      "schema": "nodevideo.choreography-freeze.v1",
+      "generationInputs": "reference-song-takes-and-optional-protected-lyrics-only",
+      "forbiddenRole": "evaluation-target",
+      "hiddenTargetMounted": false,
+      "evaluatorCredentialPresent": false,
+      "sealedBeforeEvaluation": true
+    }
+  },
+  "validationProfiles": {
+    "sourceOnlyReplayV1": {
+      "status": "passed-deterministic-replay",
+      "boundary": "public-fixture-worker",
+      "eval": "../evals/replay-v1.json",
+      "proofManifest": "../../../fixtures/media/song-conditioned-auto-edit-v1/manifest.json",
+      "verificationCommand": "node scripts/workers/song-conditioned-auto-edit.mjs --verify-public",
+      "verificationCheckCount": 19,
+      "scope": "Executed replay for one choreography reference, one chosen song, two generated creator takes, three protected captions, deterministic plan/render linkage, and pre-evaluation freeze. Canonical component artifacts pass runtime validators; the aggregate output envelope is not yet emitted."
+    },
+    "heldOutHumanChoreography": {
+      "status": "not-validated",
+      "scope": "Blind human choreography selection, creative quality, caption safety, and held-out preference remain unproven."
+    }
+  },
+  "defaults": {
+    "execution": "source-only-worker-graph",
+    "modelRequired": false,
+    "groundingContract": "nodevideo.embodied-grounding@0.1.0",
+    "planContract": "nodevideo.edit-plan.v1",
+    "sourceAudioMode": "muted",
+    "tracePolicy": {
+      "allow": [
+        "run, trace, asset, phrase, candidate, cue, evidence, tool, and artifact IDs",
+        "input and output hashes",
+        "song, source, reference, and output ranges",
+        "finite normalized derived geometry",
+        "scores, confidence, status, and validation verdicts",
+        "tool versions, latency, and timestamps"
+      ],
+      "deny": [
+        "raw frames, audio, thumbnails, or protected lyric text",
+        "media locators, signed references, local paths, URLs, or filenames",
+        "hidden evaluation target identities, bytes, hashes, or derivatives before freeze",
+        "provider request and response payloads",
+        "credentials and hidden reasoning"
+      ]
+    },
+    "rightsPolicy": {
+      "songAttestationRequired": true,
+      "renderWithSongRequiresPreviewAndExportAuthorization": true,
+      "platformCatalogFallback": "timing-guide-muted-export",
+      "determinesLicenseSufficiency": false,
+      "clearsLyricPublicationRights": false
+    }
+  },
+  "semanticValidators": [
+    {
+      "id": "choreography.inputs.validate",
+      "rules": [
+        "asset IDs must be unique and hashes must bind one role only",
+        "exactly one reference and one song plus at least one take are required",
+        "the reference is analysis-only and every take is a render source",
+        "no evaluation-target role or undeclared asset may enter generation",
+        "the song excerpt must have positive duration and remain inside the song"
+      ]
+    },
+    {
+      "id": "choreography.analysis.validate",
+      "rules": [
+        "analysis asset identities and song excerpt must equal admitted input bindings",
+        "phrase indices and IDs must be unique and strictly ordered",
+        "phrase song ranges must be positive, non-overlapping, gapless, and exactly cover the chosen excerpt",
+        "phrase reference ranges and beat ranges must be positive and ordered",
+        "every phrase must reference movement and tool evidence",
+        "every admitted take must have exactly one alignment",
+        "alignment anchors must be strictly increasing in song, reference, and take time"
+      ]
+    },
+    {
+      "id": "choreography.candidates.validate",
+      "rules": [
+        "candidate rows and analysis phrases must have identical phrase-ID sets",
+        "candidate and selected IDs must be unique within their declared scope",
+        "candidate take IDs must belong to admitted takes",
+        "candidate source ranges must be positive and inside probed take durations",
+        "candidate song ranges must equal the owning phrase song range",
+        "scores must be finite in the inclusive range zero through one",
+        "rejected candidates must carry rejection codes",
+        "every selected candidate must exist in its row and be admissible"
+      ]
+    },
+    {
+      "id": "captions.layout.validate",
+      "rules": [
+        "caption and safe-area coordinates must be finite and normalized",
+        "xMin must be less than xMax and yMin must be less than yMax",
+        "every cue must remain within the declared safe area and chosen song excerpt",
+        "every cue must reference an existing protected lyric segment, phrase, and grounding result",
+        "face overlap must be zero, body-overlap p95 at most 0.02, and maximum body overlap at most 0.05",
+        "non-valid grounding requires explicit manual placement before completion",
+        "attention intent records target, eye travel, motion relationship, novelty, saliency competition, and evidence without claiming an unconfirmed creator rule",
+        "protected lyric strings must not appear in traces or public receipts"
+      ]
+    },
+    {
+      "id": "edit.plan.validate",
+      "rules": [
+        "EditPlan must validate as nodevideo.edit-plan.v1",
+        "primary video must be contiguous and cover the exact chosen-song output duration",
+        "video lineage may contain selected take assets only and must exclude the choreography reference",
+        "camera/source audio must be muted structurally",
+        "authorized audio output must use the exact chosen song asset and excerpt",
+        "every source clip must link to its selected phrase candidate",
+        "caption overlay timing and normalized boxes must equal the validated caption layout"
+      ]
+    },
+    {
+      "id": "choreography.freeze.validate",
+      "rules": [
+        "input bindings must equal reference, song, takes, and optional protected lyrics admitted at generation",
+        "frozen hashes must match the exact stored analysis, candidates, caption layout, plan, render, and read-log bytes",
+        "read-log asset IDs must be unique, hash-bound, and limited to admitted generation inputs",
+        "networkAccess must be false and targetAccess must remain denied",
+        "hidden target, parent volume, and evaluator credential must be absent",
+        "targetUnsealedAt must be null and freeze must be sealed before evaluation",
+        "the receipt artifact hash is verified externally and is not a recursive self-hash"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "id": "media.probe",
+      "stage": "admitting-inputs",
+      "implementation": {
+        "version": "media-binding-contract@1.0.0",
+        "status": "deterministic-replay-validated",
+        "scope": "Resolve and probe admitted reference, song, takes, and protected lyric assets inside the media worker."
+      },
+      "dependsOn": [],
+      "accepts": [
+        "video/choreography-reference",
+        "audio/chosen-song",
+        "video/take",
+        "text/protected-lyrics-optional"
+      ],
+      "produces": ["bound-generation-assets", "generation-read-log"]
+    },
+    {
+      "id": "song.map",
+      "stage": "mapping-song",
+      "implementation": {
+        "version": "beat-onset-phrase-contract@1.0.0",
+        "status": "deterministic-fixture-replay-validated",
+        "scope": "Analyze the exact chosen song excerpt into beats, downbeats, onsets, energy, and phrase boundaries."
+      },
+      "dependsOn": ["media.probe"],
+      "accepts": ["audio/chosen-song", "song/excerpt"],
+      "produces": ["beat_grid", "song_phrase_evidence"]
+    },
+    {
+      "id": "choreography.analyze",
+      "stage": "analyzing-choreography",
+      "implementation": {
+        "version": "pose-motion-analysis-contract@1.0.0",
+        "status": "deterministic-fixture-replay-validated",
+        "scope": "Extract motion, pose, subject visibility, framing, and quality evidence from the reference and every take."
+      },
+      "dependsOn": ["media.probe", "song.map"],
+      "accepts": ["video/choreography-reference", "video/take", "beat_grid"],
+      "produces": ["movement_evidence", "quality_evidence"]
+    },
+    {
+      "id": "grounding.locate",
+      "stage": "grounding-subjects",
+      "implementation": {
+        "version": "nodevideo.embodied-grounding@0.1.0",
+        "status": "replay-result-validated",
+        "scope": "Call text-query-only LocateRequest by trace and asset ID; visual-prompt assets are unsupported."
+      },
+      "dependsOn": ["media.probe"],
+      "accepts": ["grounding/text-locate-request", "visual/worker-bound-asset-frame"],
+      "produces": ["grounding/locate-result"]
+    },
+    {
+      "id": "choreography.align-takes",
+      "stage": "aligning-takes",
+      "implementation": {
+        "version": "piecewise-choreography-alignment-contract@1.0.0",
+        "status": "deterministic-fixture-replay-validated",
+        "scope": "Map reference and every take to a shared chosen-song clock using ordered piecewise anchors."
+      },
+      "dependsOn": ["song.map", "choreography.analyze", "grounding.locate"],
+      "accepts": ["beat_grid", "movement_evidence", "grounding/locate-result"],
+      "produces": ["choreography_analysis"]
+    },
+    {
+      "id": "choreography.build-candidates",
+      "stage": "building-candidates",
+      "implementation": {
+        "version": "phrase-candidate-matrix-contract@1.0.0",
+        "status": "deterministic-replay-validated",
+        "scope": "Create evidence-linked, duration-valid take candidates and decomposed scores for every choreography phrase."
+      },
+      "dependsOn": ["choreography.align-takes"],
+      "accepts": ["choreography_analysis", "quality_evidence"],
+      "produces": ["take_candidate_matrix"]
+    },
+    {
+      "id": "captions.layout",
+      "stage": "laying-out-captions",
+      "implementation": {
+        "version": "pose-attention-caption-layout@0.1.0",
+        "status": "owner-case-private-executed",
+        "scope": "Align protected lyric segments and score reusable safe-area boxes for body clearance, active-wrist affinity, spatial novelty, eye travel, and saliency competition."
+      },
+      "dependsOn": ["song.map", "grounding.locate", "choreography.align-takes"],
+      "accepts": [
+        "text/protected-lyrics-or-transcript",
+        "grounding/locate-result",
+        "choreography_analysis"
+      ],
+      "produces": ["caption_layout", "attention_choreography"]
+    },
+    {
+      "id": "edit.optimize",
+      "stage": "selecting-edit",
+      "implementation": {
+        "version": "phrase-sequence-optimizer-contract@1.0.0",
+        "status": "deterministic-replay-validated",
+        "scope": "Select one admissible candidate per phrase under timing, movement, continuity, take-switch, framing, and quality costs."
+      },
+      "dependsOn": ["choreography.build-candidates", "captions.layout"],
+      "accepts": ["take_candidate_matrix", "caption_layout", "beat_grid"],
+      "produces": ["edit_plan"]
+    },
+    {
+      "id": "edit.validate",
+      "stage": "validating-plan",
+      "implementation": {
+        "version": "edit-plan-v1-plus-choreography-validator@1.0.0",
+        "status": "deterministic-replay-validated",
+        "scope": "Validate canonical EditPlan structure plus phrase/candidate lineage, chosen-song routing, muted source audio, and caption-layout equality."
+      },
+      "dependsOn": ["edit.optimize"],
+      "accepts": ["edit_plan", "choreography_analysis", "take_candidate_matrix", "caption_layout"],
+      "produces": ["validated_edit_plan"]
+    },
+    {
+      "id": "render.edit-plan",
+      "stage": "rendering",
+      "implementation": {
+        "version": "nodevideo-fixed-edit-plan-renderer",
+        "status": "deterministic-replay-validated",
+        "scope": "Render the validated plan through the fixed deterministic renderer; no model-generated FFmpeg or executable fragment."
+      },
+      "dependsOn": ["edit.validate"],
+      "accepts": ["validated_edit_plan", "bound-generation-assets"],
+      "produces": ["rendered_edit", "renderer_receipt"]
+    },
+    {
+      "id": "generation.freeze",
+      "stage": "freezing-generation",
+      "implementation": {
+        "version": "choreography-freeze-contract@1.0.0",
+        "status": "deterministic-replay-validated",
+        "scope": "Hash-bind inputs and generation artifacts, verify the source-only read log, and seal before a separate evaluator can receive a hidden target."
+      },
+      "dependsOn": ["render.edit-plan"],
+      "accepts": [
+        "choreography_analysis",
+        "take_candidate_matrix",
+        "caption_layout",
+        "validated_edit_plan",
+        "rendered_edit",
+        "generation-read-log"
+      ],
+      "produces": ["choreography_freeze"]
+    },
+    {
+      "id": "result.validate",
+      "stage": "validating-result",
+      "implementation": {
+        "version": "song-conditioned-result-validator@1.0.0",
+        "status": "component-artifacts-replay-validated",
+        "scope": "Run every declared cross-artifact validator and permit completed status only after a passing source-only freeze."
+      },
+      "dependsOn": ["generation.freeze"],
+      "accepts": ["song-conditioned-auto-edit-output"],
+      "produces": ["validation_verdict", "validation_receipt"]
+    }
+  ]
+}

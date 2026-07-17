@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "nodevideo.song-conditioned-postfreeze-evaluation.v1",
+  "evaluatorVersion": "nodevideo.song-conditioned-postfreeze-evaluator@1.0.0",
+  "createdAt": "2026-07-16T00:21:10.959Z",
+  "artifactBindings": {
+    "freezeReceiptSha256": "7d30ac335c10420fa03b134324e60c10db6d35c035181c0dec97912af3b8a474",
+    "generatedPlanSha256": "b6f75bce5b16fc9ac7c38a3ea43d2646d1c228376b1beff29393f784fc6761be",
+    "evaluatorOnlyPlanSha256": "fa61f5dd4f9ce0e69254c5b09794c3eb155caa06b43543906685351aee3495ee"
+  },
+  "isolation": {
+    "passed": true,
+    "verifiedGenerationFileCount": 4,
+    "targetMountedDuringGeneration": false,
+    "targetReadDuringGeneration": false,
+    "targetOpenedOnlyAfterFreezeVerification": true,
+    "targetAudioOracleUsed": true,
+    "targetPictureMountedDuringGeneration": false,
+    "targetPictureReadDuringGeneration": false,
+    "targetPlanReadDuringGeneration": false
+  },
+  "technicalComparison": {
+    "duration": {
+      "generatedSeconds": 44.5,
+      "targetSeconds": 44.5,
+      "differenceSeconds": 0,
+      "absoluteDifferenceSeconds": 0
+    },
+    "cutBoundaries": {
+      "method": "one-to-one-nearest-neighbor",
+      "toleranceSeconds": 0.75,
+      "generatedCount": 5,
+      "targetCount": 6,
+      "matchedCount": 5,
+      "precision": 1,
+      "recall": 0.833333,
+      "f1": 0.909091,
+      "meanNearestNeighborErrorSeconds": 0.366667,
+      "maxNearestNeighborErrorSeconds": 0.633333
+    },
+    "phraseSourceAgreement": {
+      "method": "generated-phrase-midpoint-with-neutral-A/B-suffix-mapping",
+      "generatedPhraseCount": 5,
+      "comparablePhraseCount": 5,
+      "agreementCount": 5,
+      "agreementRatio": 1,
+      "phrases": [
+        {
+          "phrase": 1,
+          "generatedSource": "A",
+          "targetSource": "A",
+          "comparable": true,
+          "agrees": true
+        },
+        {
+          "phrase": 2,
+          "generatedSource": "B",
+          "targetSource": "B",
+          "comparable": true,
+          "agrees": true
+        },
+        {
+          "phrase": 3,
+          "generatedSource": "A",
+          "targetSource": "A",
+          "comparable": true,
+          "agrees": true
+        },
+        {
+          "phrase": 4,
+          "generatedSource": "B",
+          "targetSource": "B",
+          "comparable": true,
+          "agrees": true
+        },
+        {
+          "phrase": 5,
+          "generatedSource": "A",
+          "targetSource": "A",
+          "comparable": true,
+          "agrees": true
+        }
+      ]
+    }
+  },
+  "tasteStatus": "not-evaluated",
+  "claim": "This calibration measures target-picture-isolated timing and neutral A/B source decisions; song or excerpt selection and creative taste are not proven because target-derived authorized audio was supplied as an oracle."
+}

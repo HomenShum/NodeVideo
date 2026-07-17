@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "nodevideo.locate-anything-live-manifest.v1",
+  "provider": "nvidia/LocateAnything-3B",
+  "backend": "official-hugging-face-space",
+  "licenseUse": "research-and-development-non-commercial",
+  "prompt": "primary dancer full body",
+  "frameNumber": 465,
+  "claim": "One live valid grounding observation and one sampled no-overlap caption gate; not an accuracy benchmark.",
+  "artifacts": [
+    {
+      "path": "input-frame.jpg",
+      "sha256": "f93aaa33b5d98e4f5007da8ea10441c976670bc7218528333ec2874c6394fc12"
+    },
+    {
+      "path": "annotated.png",
+      "sha256": "8532f336972db2639af03df2c761e034a96aaa241525df805b83b40573fc447d"
+    },
+    {
+      "path": "locate-result.json",
+      "sha256": "d8f8c5f579aa1072da961852af20dc6beb88597c9a9fa78ba80f1d61cdfecef5"
+    },
+    {
+      "path": "runtime-receipt.json",
+      "sha256": "c7a82a4aacc55b1b1baafa1505ca0956b6f0287eaabef97bac1e589518ae4728"
+    },
+    {
+      "path": "caption-safety.json",
+      "sha256": "3a8b6113b264822812c8545e606f1ac5b7c711c552bb9ba92e0e9c83e1e57ae7"
+    }
+  ]
+}

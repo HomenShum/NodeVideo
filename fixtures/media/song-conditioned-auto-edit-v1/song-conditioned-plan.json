@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "nodevideo.song-conditioned-plan.v1",
+  "id": "song-plan.song-conditioned-auto-edit-v1",
+  "analysisId": "analysis.song-conditioned-auto-edit-v1",
+  "runId": "run.song-conditioned-auto-edit-v1",
+  "traceId": "trace.055cf616079f70bb",
+  "createdAt": "2026-07-15T00:00:00.000Z",
+  "durationMs": 6000,
+  "selections": [
+    {
+      "phraseId": "phrase.1",
+      "candidateId": "candidate.1.1",
+      "cutBeatIndex": 3,
+      "rationale": "Highest deterministic sharpness score inside the complete musical phrase.",
+      "evidenceArtifactIds": [
+        "evidence.sharpness-score",
+        "evidence.exact-fixture-alignment"
+      ]
+    },
+    {
+      "phraseId": "phrase.2",
+      "candidateId": "candidate.2.2",
+      "cutBeatIndex": 7,
+      "rationale": "Highest deterministic sharpness score inside the complete musical phrase.",
+      "evidenceArtifactIds": [
+        "evidence.sharpness-score",
+        "evidence.exact-fixture-alignment"
+      ]
+    },
+    {
+      "phraseId": "phrase.3",
+      "candidateId": "candidate.3.1",
+      "cutBeatIndex": 11,
+      "rationale": "Highest deterministic sharpness score inside the complete musical phrase.",
+      "evidenceArtifactIds": [
+        "evidence.sharpness-score",
+        "evidence.exact-fixture-alignment"
+      ]
+    }
+  ],
+  "captionLayouts": [
+    {
+      "id": "caption.1",
+      "phraseId": "phrase.1",
+      "timelineRange": {
+        "startMs": 250,
+        "endMs": 1600
+      },
+      "text": "Find the phrase",
+      "lines": [
+        "Find the phrase"
+      ],
+      "box": {
+        "x": 0.1,
+        "y": 0.035,
+        "width": 0.8,
+        "height": 0.09
+      },
+      "templateId": "text.cue",
+      "bodyOverlapRatio": 0,
+      "faceOverlapRatio": 0,
+      "safeAreaEvidenceArtifactIds": [
+        "evidence.replay-grounding"
+      ],
+      "groundingResultId": "grounding.primary-dancer"
+    },
+    {
+      "id": "caption.2",
+      "phraseId": "phrase.2",
+      "timelineRange": {
+        "startMs": 2250,
+        "endMs": 3600
+      },
+      "text": "Cut on the beat",
+      "lines": [
+        "Cut on the beat"
+      ],
+      "box": {
+        "x": 0.1,
+        "y": 0.035,
+        "width": 0.8,
+        "height": 0.09
+      },
+      "templateId": "text.cue",
+      "bodyOverlapRatio": 0,
+      "faceOverlapRatio": 0,
+      "safeAreaEvidenceArtifactIds": [
+        "evidence.replay-grounding"
+      ],
+      "groundingResultId": "grounding.primary-dancer"
+    },
+    {
+      "id": "caption.3",
+      "phraseId": "phrase.3",
+      "timelineRange": {
+        "startMs": 4250,
+        "endMs": 5600
+      },
+      "text": "Finish clean",
+      "lines": [
+        "Finish clean"
+      ],
+      "box": {
+        "x": 0.1,
+        "y": 0.035,
+        "width": 0.8,
+        "height": 0.09
+      },
+      "templateId": "text.cue",
+      "bodyOverlapRatio": 0,
+      "faceOverlapRatio": 0,
+      "safeAreaEvidenceArtifactIds": [
+        "evidence.replay-grounding"
+      ],
+      "groundingResultId": "grounding.primary-dancer"
+    }
+  ],
+  "editPlanArtifactId": "plan.song-conditioned-auto-edit-v1",
+  "editPlanSha256": "sha256:5e6900d65aff4a6dba55538fe6139eab0defaa6268e596a4acc48575f92d205c"
+}

@@ -26,6 +26,58 @@ const authorizedCase = await readJson('fixtures/media/authorized-real-v1/case-ma
 const authorizedResult = await readJson('fixtures/media/authorized-real-v1/result.json');
 const authorizedReceipt = await readJson('fixtures/media/authorized-real-v1/receipt.json');
 
+const groundingManifest = await readJson('packs/embodied-grounding/manifest.json');
+const groundingInputSchema = await readJson('packs/embodied-grounding/input.schema.json');
+const groundingOutputSchema = await readJson('packs/embodied-grounding/output.schema.json');
+const groundingEvaluation = await readJson('packs/embodied-grounding/evals/replay-v1.json');
+const groundingReplayResult = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/grounding-receipt.json',
+);
+
+const tasteManifest = await readJson('packs/creator-taste-audit/manifest.json');
+const tasteInputSchema = await readJson('packs/creator-taste-audit/input.schema.json');
+const tasteOutputSchema = await readJson('packs/creator-taste-audit/output.schema.json');
+const tasteEvaluation = await readJson('packs/creator-taste-audit/evals/replay-v1.json');
+
+const songManifest = await readJson('packs/song-conditioned-auto-edit/manifest.json');
+const songInputSchema = await readJson('packs/song-conditioned-auto-edit/input.schema.json');
+const songOutputSchema = await readJson('packs/song-conditioned-auto-edit/output.schema.json');
+const songEvaluation = await readJson('packs/song-conditioned-auto-edit/evals/replay-v1.json');
+const attentionManifest = await readJson('packs/attention-overlays/manifest.json');
+const attentionInputSchema = await readJson('packs/attention-overlays/input.schema.json');
+const attentionOutputSchema = await readJson('packs/attention-overlays/output.schema.json');
+const attentionEvaluation = await readJson('packs/attention-overlays/evals/contract-v1.json');
+const coachManifest = await readJson('packs/choreography-coach/manifest.json');
+const coachInputSchema = await readJson('packs/choreography-coach/input.schema.json');
+const coachOutputSchema = await readJson('packs/choreography-coach/output.schema.json');
+const coachCalibrationManifestSchema = await readJson(
+  'packs/choreography-coach/calibration-manifest.schema.json',
+);
+const coachCalibrationReportSchema = await readJson(
+  'packs/choreography-coach/calibration-report.schema.json',
+);
+const songAnalysis = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/understanding.json',
+);
+const songPlan = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/song-conditioned-plan.json',
+);
+const songFreeze = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/choreography-freeze.json',
+);
+const songReadLog = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/generation-read-log.json',
+);
+const songReplayManifest = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/manifest.json',
+);
+const songReplayEvaluation = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/evaluator-report.json',
+);
+const songFreezeReceipt = await readJson(
+  'fixtures/media/song-conditioned-auto-edit-v1/freeze-receipt.json',
+);
+
 const ajv = new Ajv2020({ allErrors: true, strict: false });
 addFormats(ajv);
 
@@ -38,6 +90,45 @@ const authorizedInput = authorizedEvaluation.cases[0].input;
 const authorizedInputValid = authorizedInputValidator(authorizedInput);
 const authorizedOutputValidator = ajv.compile(authorizedOutputSchema);
 const authorizedOutputValid = authorizedOutputValidator(authorizedResult);
+
+const groundingInputValidator = ajv.compile(groundingInputSchema);
+const groundingInputValid = groundingInputValidator(groundingEvaluation.cases[0].input);
+const groundingResultValidator = ajv.compile({
+  $schema: 'https://json-schema.org/draft/2020-12/schema',
+  $defs: groundingOutputSchema.$defs,
+  $ref: '#/$defs/locateResult',
+});
+const groundingReplayValid = groundingResultValidator(groundingReplayResult);
+
+const tasteInputValidator = ajv.compile(tasteInputSchema);
+const tasteInputValid = tasteInputValidator(tasteEvaluation.cases[0].input);
+const tasteOutputSchemaValid = typeof ajv.compile(tasteOutputSchema) === 'function';
+
+const songInputValidator = ajv.compile(songInputSchema);
+const songInputValid = typeof songInputValidator === 'function';
+const songArtifactValidator = (definition) =>
+  ajv.compile({
+    $schema: 'https://json-schema.org/draft/2020-12/schema',
+    $defs: songOutputSchema.$defs,
+    $ref: `#/$defs/${definition}`,
+  });
+const songAnalysisValidator = songArtifactValidator('analysis');
+const songPlanValidator = songArtifactValidator('plan');
+const songFreezeValidator = songArtifactValidator('freeze');
+const songReadLogValidator = songArtifactValidator('generationReadLog');
+const songAnalysisValid = songAnalysisValidator(songAnalysis);
+const songPlanValid = songPlanValidator(songPlan);
+const songFreezeValid = songFreezeValidator(songFreeze);
+const songReadLogValid = songReadLogValidator(songReadLog);
+const attentionInputValidator = ajv.compile(attentionInputSchema);
+const attentionInputValid = attentionInputValidator(attentionEvaluation.cases[0].input);
+const attentionOutputSchemaValid = typeof ajv.compile(attentionOutputSchema) === 'function';
+const coachInputSchemaValid = typeof ajv.compile(coachInputSchema) === 'function';
+const coachOutputSchemaValid = typeof ajv.compile(coachOutputSchema) === 'function';
+const coachCalibrationManifestSchemaValid =
+  typeof ajv.compile(coachCalibrationManifestSchema) === 'function';
+const coachCalibrationReportSchemaValid =
+  typeof ajv.compile(coachCalibrationReportSchema) === 'function';
 
 const sameMembers = (left, right) =>
   left.length === right.length && left.every((value) => right.includes(value));
@@ -170,12 +261,143 @@ const authorizedChecks = [
   ],
 ];
 
-const checks = [...tutorialChecks, ...authorizedChecks];
+const groundingChecks = [
+  ['grounding eval input matches LocateRequest schema', groundingInputValid],
+  ['grounding replay result matches LocateResult schema', groundingReplayValid],
+  [
+    'grounding implementation reports its honest validation tier',
+    groundingManifest.implementationStatus === 'adapter-implementations-unit-validated' &&
+      groundingManifest.validation.status === 'passed' &&
+      groundingEvaluation.proof.executed === false,
+  ],
+  [
+    'grounding result retains no provider confidence or media locator',
+    groundingReplayResult.observations.every((item) => item.confidence === undefined) &&
+      !JSON.stringify(groundingReplayResult).match(/(?:url|path|bytes|base64)/iu),
+  ],
+];
+
+const tasteChecks = [
+  ['creator taste eval input matches its schema', tasteInputValid],
+  ['creator taste output schema compiles', tasteOutputSchemaValid],
+  [
+    'creator taste pack keeps NodeVideo as final write authority',
+    tasteManifest.implementationStatus === 'local-cli-and-nodeagent-contract-validated' &&
+      tasteManifest.execution.applicationWriteAuthority === 'validation-cas-and-owner-review' &&
+      tasteManifest.execution.hiddenEvaluationTarget === 'forbidden-until-freeze',
+  ],
+  [
+    'creator taste eval blocks inconsistent interpretations',
+    tasteEvaluation.cases[0].assertions.some((assertion) =>
+      assertion.includes('block creative evaluation'),
+    ),
+  ],
+];
+
+const songChecks = [
+  ['song-conditioned input schema compiles (aggregate replay envelope excluded)', songInputValid],
+  ['song choreography analysis matches the canonical artifact schema', songAnalysisValid],
+  ['song selection plan matches the canonical artifact schema', songPlanValid],
+  ['song choreography freeze matches the canonical artifact schema', songFreezeValid],
+  ['song generation read log matches the canonical artifact schema', songReadLogValid],
+  [
+    'song pack is bound to the deterministic replay',
+    songManifest.implementationStatus === 'deterministic-replay-validated' &&
+      songManifest.validation.status === 'passed' &&
+      songEvaluation.proof.executed === true,
+  ],
+  [
+    'song replay proof hashes match checked-in artifacts',
+    songFreezeReceipt.files.length > 0 &&
+      (
+        await Promise.all(
+          songFreezeReceipt.files.map(
+            async (artifact) =>
+              (await digest(`fixtures/media/song-conditioned-auto-edit-v1/${artifact.file}`)) ===
+              artifact.sha256,
+          ),
+        )
+      ).every(Boolean),
+  ],
+  [
+    'song replay freezes source-only inputs before evaluation',
+    songFreeze.isolation.generatorTargetAccess === 'denied' &&
+      songFreeze.isolation.finalTargetMount === 'absent' &&
+      songReadLog.targetAccess === 'denied' &&
+      songReplayManifest.protocol.targetMountedDuringGeneration === false &&
+      songReplayManifest.protocol.targetReadDuringGeneration === false,
+  ],
+  [
+    'song replay renders selected music and structurally mutes camera audio',
+    songReplayManifest.audio.previewContainsChosenSong === true &&
+      songReplayManifest.audio.sourceAudioMuted === true,
+  ],
+  [
+    'song replay evaluator passes mechanics without claiming taste',
+    songReplayEvaluation.passed === true &&
+      songReplayEvaluation.tasteStatus === 'not-evaluated' &&
+      songReplayManifest.evaluation.tasteStatus === 'not-evaluated',
+  ],
+];
+
+const attentionChecks = [
+  ['attention overlay eval input matches its schema', attentionInputValid],
+  ['attention overlay output schema compiles', attentionOutputSchemaValid],
+  [
+    'attention overlay pack keeps grade separate and resolves color automatically',
+    attentionManifest.implementationStatus === 'private-real-media-and-contract-validated' &&
+      attentionManifest.validation.status === 'passed' &&
+      attentionManifest.execution.defaultGrade === 'auto' &&
+      attentionManifest.execution.defaultCanvasMode === 'source' &&
+      attentionManifest.execution.defaultNumPoses === 6 &&
+      attentionManifest.execution.colorPolicy ===
+        'preserve-sdr-and-convert-hlg-independent-from-overlay-planning',
+  ],
+  [
+    'attention overlay contract is fail-closed on body clearance',
+    attentionEvaluation.cases[0].assertions.includes(
+      'rendered glyph body clearance passes conjunctively',
+    ) && attentionInputSchema.properties.maxBodyOverlapRatio.maximum === 0.05,
+  ],
+];
+
+const coachChecks = [
+  ['choreography coach input schema compiles', coachInputSchemaValid],
+  ['choreography coach output schema compiles', coachOutputSchemaValid],
+  ['choreography calibration manifest schema compiles', coachCalibrationManifestSchemaValid],
+  ['choreography calibration report schema compiles', coachCalibrationReportSchemaValid],
+  [
+    'choreography coach pack keeps the human-video claim boundary explicit',
+    coachManifest.implementationStatus === 'private-human-experimental' &&
+      coachManifest.execution.validatedBoundaries.includes('private-local-calibration') &&
+      coachManifest.validation.excludes.includes('artistry') &&
+      coachManifest.validation.excludes.includes('generalized-expert-validation'),
+  ],
+];
+
+const checks = [
+  ...tutorialChecks,
+  ...authorizedChecks,
+  ...groundingChecks,
+  ...tasteChecks,
+  ...songChecks,
+  ...attentionChecks,
+  ...coachChecks,
+];
 
 for (const [label, passed] of checks) console.log(`${passed ? 'PASS' : 'FAIL'}: ${label}`);
 if (checks.some(([, passed]) => !passed)) {
   if (!tutorialOutputValid) console.error(tutorialOutputValidator.errors);
   if (!authorizedInputValid) console.error(authorizedInputValidator.errors);
   if (!authorizedOutputValid) console.error(authorizedOutputValidator.errors);
+  if (!groundingInputValid) console.error(groundingInputValidator.errors);
+  if (!groundingReplayValid) console.error(groundingResultValidator.errors);
+  if (!tasteInputValid) console.error(tasteInputValidator.errors);
+  if (!songInputValid) console.error(songInputValidator.errors);
+  if (!songAnalysisValid) console.error(songAnalysisValidator.errors);
+  if (!songPlanValid) console.error(songPlanValidator.errors);
+  if (!songFreezeValid) console.error(songFreezeValidator.errors);
+  if (!songReadLogValid) console.error(songReadLogValidator.errors);
+  if (!attentionInputValid) console.error(attentionInputValidator.errors);
   process.exitCode = 1;
 }

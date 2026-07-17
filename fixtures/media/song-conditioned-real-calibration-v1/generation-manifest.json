@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "nodevideo.song-conditioned-generation-manifest.v1",
+  "id": "song-conditioned-source-only-v1",
+  "createdAt": "2026-07-16T00:20:34.443Z",
+  "generatorVersion": "nodevideo.song-conditioned-private-render@0.1.0",
+  "mode": "target-picture-isolated-target-audio-oracle",
+  "inputs": [
+    {
+      "assetId": "asset.choreography-reference-pose",
+      "role": "analysis-only-reference",
+      "sha256": "492d4b0f81af4bd0a8faa54edbe0673268f786e7ac1e95593387d3d177ac930e"
+    },
+    {
+      "assetId": "asset.take-a",
+      "role": "render-source",
+      "sha256": "14e7c50dca05da91b11c7d2a864e3ee5a40a09cfcd553836f07d554579087cc7"
+    },
+    {
+      "assetId": "asset.take-b",
+      "role": "render-source",
+      "sha256": "5d054cbbcd29c95e7ae1782e6beb77cef743f7f8c80a680850f5869b5219a5eb"
+    },
+    {
+      "assetId": "asset.music",
+      "role": "render-music",
+      "sha256": "b3763a3ebc4ebc7f1fb08710d6e3f2fd3b9eb441238b6cf423113d799f480b99"
+    }
+  ],
+  "decisions": {
+    "phraseBoundariesSeconds": [
+      6.548027,
+      15.58059,
+      18.993923,
+      24.636372,
+      40.4
+    ],
+    "selectedTakeAssetIds": [
+      "asset.take-a",
+      "asset.take-b",
+      "asset.take-a",
+      "asset.take-b",
+      "asset.take-a"
+    ],
+    "beatTemplateId": "short-form-hook-build-accent-response-resolve.v1",
+    "cameraAudioMuted": true,
+    "bodySafeLyrics": 0,
+    "outroTextSource": "creator-brief"
+  },
+  "isolation": {
+    "level": "audited-input-allowlist",
+    "finishedEditAcceptedByCli": false,
+    "targetPictureMountedDuringGeneration": false,
+    "targetPictureReadDuringGeneration": false,
+    "targetPlanReadDuringGeneration": false,
+    "targetAudioOracle": {
+      "used": true,
+      "proofRef": "authorization.owner-provided-target-audio-oracle",
+      "limitation": "This run tests picture planning against the exact user-authorized soundtrack; it does not prove song or excerpt selection."
+    }
+  },
+  "render": {
+    "file": "source-only-song-preview.mp4",
+    "sha256": "33525b682e0087f55fefa6998b5e5c0101f0af3a1ed2b8d00ed48bd74511f761",
+    "durationSeconds": 44.5,
+    "width": 720,
+    "height": 1280,
+    "hasAudio": true
+  },
+  "assertions": [
+    {
+      "name": "preview duration matches plan",
+      "pass": true,
+      "actual": 44.5,
+      "expected": 44.5
+    },
+    {
+      "name": "preview is 720x1280",
+      "pass": true,
+      "actual": "720x1280",
+      "expected": "720x1280"
+    },
+    {
+      "name": "preview has chosen audio",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "five choreography phrases compile",
+      "pass": true,
+      "actual": 5,
+      "expected": 5
+    },
+    {
+      "name": "source identities alternate",
+      "pass": true
+    },
+    {
+      "name": "outro freezes after choreography",
+      "pass": true
+    },
+    {
+      "name": "camera audio is muted",
+      "pass": true
+    },
+    {
+      "name": "music precedes planned silence",
+      "pass": true,
+      "actual": 1280,
+      "expected": 1335
+    }
+  ],
+  "claimBoundary": {
+    "proven": [
+      "The generator CLI accepts no final target picture or target plan; its read log is an audited allowlist, not an OS sandbox.",
+      "Pose alignment, beat-count phrasing, take contrast, source-audio muting, typed planning, and rendering completed."
+    ],
+    "notProven": [
+      "Independent choreography-reference fidelity for this case.",
+      "Autonomous song or excerpt selection when target-derived authorized audio is used.",
+      "General creative taste or blinded human preference."
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "nodevideo.choreography-freeze.v1",
+  "id": "choreography-freeze.song-conditioned-auto-edit-v1",
+  "analysisId": "analysis.song-conditioned-auto-edit-v1",
+  "planArtifactId": "song-plan.song-conditioned-auto-edit-v1",
+  "renderArtifactId": "render.song-conditioned-auto-edit-v1",
+  "runId": "run.song-conditioned-auto-edit-v1",
+  "traceId": "trace.055cf616079f70bb",
+  "frozenAt": "2026-07-15T00:00:00.000Z",
+  "digests": {
+    "input": "sha256:f1cead15151189b4191d38b0c1f88fb379f827c91ee41123ee2ba829ca713342",
+    "analysis": "sha256:9e8062543e52e1bb1aca8f35993ef6a7898a40b0bbbf3e18747b10e751c92b1f",
+    "plan": "sha256:087010c55876c3194ef13de75f8c91db6cfb59e42dd1743ccd452e23e2feec0f",
+    "render": "sha256:f596fe24cac4e05686c4ddd1bfbe9d341a732d9b1729c456d538dc3ffc545158",
+    "generationReadLog": "sha256:24e07609065a9b5a94751a30f6840a2c2874e050a4e17be75d4230228c909796"
+  },
+  "generationInputAssetIds": [
+    "asset.choreography-reference",
+    "asset.music",
+    "asset.take-a",
+    "asset.take-b",
+    "asset.timed-text"
+  ],
+  "evaluationOnlyAssetIds": [
+    "asset.evaluator.synthetic-policy"
+  ],
+  "isolation": {
+    "generatorTargetAccess": "denied",
+    "finalTargetMount": "absent",
+    "evaluatorUnlock": "after-freeze-verification"
+  }
+}

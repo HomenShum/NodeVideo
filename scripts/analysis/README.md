@@ -84,6 +84,110 @@ confidence and a `review-overlay-observation` patch in the evidence bundle.
 Unmatched moving scenes fail closed to black. A static scene following a matched
 clip can compile to a source freeze, with that inference disclosed as a warning.
 
+## Creator taste learning and consistency gate
+
+`creator-taste-profiler.mjs` turns one or more production audits into a reusable,
+evidence-bound `nodevideo.creator-taste-profile.v1`. It accepts canonical
+`nodevideo.production-audit.v1` inputs and adapts the existing private
+`nodevideo.private-style-gap-audit.v1` report. The learned dimensions are
+content-neutral: editorial attention, creator voice, role-aware spatial grammar,
+visual treatment, and distribution identity. Support counts, confidence, and
+cautions prevent a single production from being presented as a universal rule.
+
+### Intentional production decisions
+
+The production-decision workflow prevents pixel similarity from being presented as creator-taste understanding. It records ten independently gated dimensions and keeps observation, intent hypothesis, and learned creator rule separate.
+
+```powershell
+node scripts/analysis/audio-production-audit.mjs `
+  --candidate candidate.mp4 --reference authorized-reference.mp4 `
+  --out audio-audit.json
+
+node scripts/analysis/production-decision-auditor.mjs `
+  --style-audit style-audit.json --edit-plan edit-plan.json `
+  --renderer-manifest renderer-manifest.json `
+  --embodied-layout embodied-overlay-audit.json --audio-audit audio-audit.json `
+  --ledger-id ledger.production.one --production-audit-id audit.production.one `
+  --production-id production.one --out decision-ledger.json
+
+node scripts/analysis/creator-intent-profiler.mjs `
+  --input decision-ledger-one.json --input decision-ledger-two.json `
+  --profile-id creator-intent.owner --out creator-intent-profile.json
+```
+
+`song_choreography_analyzer.py` also emits cue-level `attentionChoreography`. Each proposal is scored from the selected take's pose track for performer clearance, active-wrist affinity, spatial novelty, eye travel, and saliency competition. The private renderer consumes those boxes, while the embodied post-render audit remains the final safety authority.
+
+```powershell
+node scripts/analysis/creator-taste-profiler.mjs `
+  --input .qa/evidence/private/style-gap-audit/style-gap-report.json `
+  --input C:\private\another-production-audit.json `
+  --out .qa/evidence/private/creator-taste/taste-run.json `
+  --profile-id creator-taste.owner-v1 `
+  --content-kind dance
+```
+
+Every run also emits a target-spec consistency report. Creative fidelity remains
+invalid when the interpreted target spec cannot explain observed OCR roles,
+persistent branding, grade measurements, end-card behavior, or layout zones.
+Use `--derive-target-spec` only on an authorized reference-learning run to rebuild
+the claimed spec from the visible audit evidence; the default deliberately keeps
+an existing claimed spec intact so lossy interpretations remain detectable.
+After that prerequisite passes, `evaluateCreativeFidelity` applies conjunctive
+provenance, structural, semantic-overlay, layout, visual-treatment,
+creator-identity, and delivery gates. This separation lets NodeAgent rerun the
+same workflow for dance, tutorials, talking-head videos, comedy, or montages
+without embedding a dance-only scoring grammar.
+
+`production_style_audit.py` is the corresponding rerunnable observation tool. It
+compares any candidate/reference pair, binds optional edit plans, and emits the
+seven normalized gate signals consumed by the evaluator. The expensive frame and
+OCR observations can be replayed after scorer changes without silently changing
+the evidence:
+
+```powershell
+npm run production:audit -- `
+  --candidate C:\private\candidate.mp4 `
+  --reference C:\private\reference.mp4 `
+  --candidate-plan C:\private\candidate-plan.json `
+  --reference-plan C:\private\reference-plan.json `
+  --output C:\private\audit-v2.json `
+  --content-kind tutorial `
+  --reuse-observations-from C:\private\audit-v1.json
+```
+
+Reuse mode recalculates plan binding and every gate score from the persisted
+frame metrics and OCR groups. It never claims to be a new visual observation run.
+
+## Kinetic overlays and embodied clearance
+
+`apply_overlay_refinement.mjs` applies a schema-bounded replacement artifact to
+an admitted EditPlan. It can split one broad lyric cue into several short beat
+events without giving NodeAgent arbitrary renderer or FFmpeg authority:
+
+```powershell
+npm run overlay:refine -- `
+  --plan C:\private\edit-plan.json `
+  --refinement C:\private\overlay-refinement.json `
+  --output C:\private\edit-plan-v2.json
+```
+
+The fixed renderer width-fits text to its admitted box and exposes the estimated
+glyph box in its dry-run manifest. After rendering, run Pose Landmarker directly
+on the timeline, then require the framewise embodied audit:
+
+```powershell
+npm run overlay:clearance -- `
+  --plan C:\private\edit-plan-v2.json `
+  --renderer-manifest C:\private\renderer-manifest.json `
+  --timeline-pose C:\private\rendered-pose.npz `
+  --sample-stride-frames 2 `
+  --output C:\private\embodied-overlay-audit.json
+```
+
+The audit fails closed on missing pose samples and rejects any cue whose rendered
+glyph box exceeds five percent body overlap. Auditing the rendered timeline avoids
+rotation, crop, and fill ambiguities from transforming a source pose after the fact.
+
 ## Upstream primitives
 
 - PySceneDetect Python API: https://www.scenedetect.com/docs/latest/api.html

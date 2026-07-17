@@ -25,6 +25,12 @@ export interface NodeVideoWorkflowCandidate {
   durationMs: number;
   shots: NodeVideoRenderShot[];
   reusedShotIds: string[];
+  creatorTaste?: {
+    profileId: string;
+    profileDigest: `sha256:${string}`;
+    sourceProductionIds: string[];
+    evaluationReady: boolean;
+  };
 }
 
 /**
@@ -144,6 +150,26 @@ export function validateNodeVideoWorkflowCandidate(
   const reused = candidate.reusedShotIds ?? [];
   if (new Set(reused).size !== reused.length || reused.some((id) => !shotIds.has(id))) {
     issues.push('NodeVideo reused-shot references are invalid.');
+  }
+  if (candidate.creatorTaste !== undefined) {
+    const taste = candidate.creatorTaste;
+    if (!bounded(taste.profileId, 1, 256)) {
+      issues.push('NodeVideo creator taste profile ID is invalid.');
+    }
+    if (!/^sha256:[a-f0-9]{64}$/.test(taste.profileDigest)) {
+      issues.push('NodeVideo creator taste profile digest is invalid.');
+    }
+    if (
+      !Array.isArray(taste.sourceProductionIds) ||
+      taste.sourceProductionIds.length < 1 ||
+      new Set(taste.sourceProductionIds).size !== taste.sourceProductionIds.length ||
+      taste.sourceProductionIds.some((id) => !bounded(id, 1, 256))
+    ) {
+      issues.push('NodeVideo creator taste source productions are invalid.');
+    }
+    if (typeof taste.evaluationReady !== 'boolean') {
+      issues.push('NodeVideo creator taste evaluation readiness is invalid.');
+    }
   }
   return [...new Set(issues)];
 }

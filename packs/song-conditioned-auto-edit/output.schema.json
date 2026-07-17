@@ -1,0 +1,1123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/song-conditioned-auto-edit/output.v1.json",
+  "title": "Song-Conditioned Choreography Auto Edit Output",
+  "description": "Evidence-linked result containing the canonical choreography analysis, song-conditioned plan, deterministic render bindings, generation read log, and pre-evaluation choreography freeze.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "projectId",
+    "runId",
+    "traceId",
+    "status",
+    "artifacts",
+    "failures",
+    "validation",
+    "provenance"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "nodevideo.song-conditioned-auto-edit.output.v1"
+    },
+    "projectId": {
+      "$ref": "#/$defs/id"
+    },
+    "runId": {
+      "$ref": "#/$defs/id"
+    },
+    "traceId": {
+      "$ref": "#/$defs/id"
+    },
+    "status": {
+      "enum": ["completed", "partial", "failed", "cancelled"]
+    },
+    "artifacts": {
+      "$ref": "#/$defs/artifacts"
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/failure"
+      }
+    },
+    "validation": {
+      "$ref": "#/$defs/validation"
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "completed"
+          }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "required": ["analysis", "plan", "editPlan", "render", "generationReadLog", "freeze"]
+          },
+          "failures": {
+            "maxItems": 0
+          },
+          "validation": {
+            "properties": {
+              "verdict": {
+                "const": "pass"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "failed"
+          }
+        },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "failures": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "frameRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startFrame", "endFrameExclusive"],
+      "properties": {
+        "startFrame": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "endFrameExclusive": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "millisecondRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startMs", "endMs"],
+      "properties": {
+        "startMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "endMs": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "beatRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startIndex", "endIndexExclusive"],
+      "properties": {
+        "startIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "endIndexExclusive": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "normalizedBox": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "width", "height"],
+      "properties": {
+        "x": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "y": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "height": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "evidenceScore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "evidenceArtifactId"],
+      "properties": {
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "evidenceArtifactId": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assetId",
+        "sha256",
+        "mimeType",
+        "usage",
+        "sourceRange",
+        "frameRate",
+        "mirrorPolicy",
+        "evidenceArtifactIds"
+      ],
+      "properties": {
+        "assetId": {
+          "$ref": "#/$defs/id"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "mimeType": {
+          "type": "string",
+          "pattern": "^video/",
+          "maxLength": 120
+        },
+        "usage": {
+          "const": "analysis-only"
+        },
+        "sourceRange": {
+          "$ref": "#/$defs/frameRange"
+        },
+        "frameRate": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "mirrorPolicy": {
+          "enum": ["as-recorded", "mirror", "auto"]
+        },
+        "evidenceArtifactIds": {
+          "$ref": "#/$defs/nonEmptyUniqueIds"
+        }
+      }
+    },
+    "songLicense": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "proofRef"],
+      "properties": {
+        "status": {
+          "enum": ["owned", "licensed", "public-domain", "platform-handoff-only"]
+        },
+        "proofRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      }
+    },
+    "song": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assetId", "sha256", "mimeType", "usage", "excerpt", "license", "beatGrid"],
+      "properties": {
+        "assetId": {
+          "$ref": "#/$defs/id"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "mimeType": {
+          "type": "string",
+          "pattern": "^audio/",
+          "maxLength": 120
+        },
+        "usage": {
+          "enum": ["render-source", "analysis-only"]
+        },
+        "excerpt": {
+          "$ref": "#/$defs/millisecondRange"
+        },
+        "license": {
+          "$ref": "#/$defs/songLicense"
+        },
+        "beatGrid": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["bpm", "beatsMs", "downbeatsMs", "evidenceArtifactId"],
+          "properties": {
+            "bpm": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "beatsMs": {
+              "$ref": "#/$defs/nonEmptyTimes"
+            },
+            "downbeatsMs": {
+              "$ref": "#/$defs/times"
+            },
+            "evidenceArtifactId": {
+              "$ref": "#/$defs/id"
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "license": {
+                "properties": {
+                  "status": {
+                    "const": "platform-handoff-only"
+                  }
+                },
+                "required": ["status"]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "usage": {
+                "const": "analysis-only"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "timedText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assetId", "sha256", "mimeType", "usage", "cueCount", "license"],
+      "properties": {
+        "assetId": {
+          "$ref": "#/$defs/id"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "mimeType": {
+          "const": "application/json"
+        },
+        "usage": {
+          "const": "analysis-only"
+        },
+        "cueCount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "license": {
+          "$ref": "#/$defs/songLicense"
+        }
+      }
+    },
+    "alignmentAnchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["referenceFrame", "takeFrame", "timelineMs", "evidenceArtifactId"],
+      "properties": {
+        "referenceFrame": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "takeFrame": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timelineMs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "evidenceArtifactId": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    },
+    "take": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "assetId",
+        "sha256",
+        "mimeType",
+        "usage",
+        "sourceRange",
+        "frameRate",
+        "mirrorApplied",
+        "alignmentAnchors",
+        "evidenceArtifactIds"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "assetId": {
+          "$ref": "#/$defs/id"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "mimeType": {
+          "type": "string",
+          "pattern": "^video/",
+          "maxLength": 120
+        },
+        "usage": {
+          "const": "render-source"
+        },
+        "sourceRange": {
+          "$ref": "#/$defs/frameRange"
+        },
+        "frameRate": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "mirrorApplied": {
+          "type": "boolean"
+        },
+        "alignmentAnchors": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/alignmentAnchor"
+          }
+        },
+        "evidenceArtifactIds": {
+          "$ref": "#/$defs/nonEmptyUniqueIds"
+        }
+      }
+    },
+    "phrase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "order",
+        "referenceRange",
+        "timelineRange",
+        "beatRange",
+        "movementEvidenceArtifactIds"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "referenceRange": {
+          "$ref": "#/$defs/frameRange"
+        },
+        "timelineRange": {
+          "$ref": "#/$defs/millisecondRange"
+        },
+        "beatRange": {
+          "$ref": "#/$defs/beatRange"
+        },
+        "movementEvidenceArtifactIds": {
+          "$ref": "#/$defs/nonEmptyUniqueIds"
+        }
+      }
+    },
+    "candidateScores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["timing", "pose", "motion", "visibility", "framing", "technical"],
+      "properties": {
+        "timing": {
+          "$ref": "#/$defs/evidenceScore"
+        },
+        "pose": {
+          "$ref": "#/$defs/evidenceScore"
+        },
+        "motion": {
+          "$ref": "#/$defs/evidenceScore"
+        },
+        "visibility": {
+          "$ref": "#/$defs/evidenceScore"
+        },
+        "framing": {
+          "$ref": "#/$defs/evidenceScore"
+        },
+        "technical": {
+          "$ref": "#/$defs/evidenceScore"
+        }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "phraseId",
+        "takeId",
+        "sourceRange",
+        "timelineRange",
+        "scores",
+        "eligibility",
+        "rejectionReasons",
+        "evidenceArtifactIds"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "phraseId": {
+          "$ref": "#/$defs/id"
+        },
+        "takeId": {
+          "$ref": "#/$defs/id"
+        },
+        "sourceRange": {
+          "$ref": "#/$defs/frameRange"
+        },
+        "timelineRange": {
+          "$ref": "#/$defs/millisecondRange"
+        },
+        "scores": {
+          "$ref": "#/$defs/candidateScores"
+        },
+        "eligibility": {
+          "enum": ["eligible", "rejected"]
+        },
+        "rejectionReasons": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        },
+        "evidenceArtifactIds": {
+          "$ref": "#/$defs/nonEmptyUniqueIds"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "eligibility": {
+                "const": "rejected"
+              }
+            },
+            "required": ["eligibility"]
+          },
+          "then": {
+            "properties": {
+              "rejectionReasons": {
+                "minItems": 1
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "rejectionReasons": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "captionLayout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "timelineRange",
+        "text",
+        "lines",
+        "box",
+        "templateId",
+        "bodyOverlapRatio",
+        "faceOverlapRatio",
+        "safeAreaEvidenceArtifactIds",
+        "groundingResultId"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "phraseId": {
+          "$ref": "#/$defs/id"
+        },
+        "timelineRange": {
+          "$ref": "#/$defs/millisecondRange"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "lines": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 250
+          }
+        },
+        "box": {
+          "$ref": "#/$defs/normalizedBox"
+        },
+        "templateId": {
+          "$ref": "#/$defs/id"
+        },
+        "bodyOverlapRatio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.05
+        },
+        "faceOverlapRatio": {
+          "const": 0
+        },
+        "safeAreaEvidenceArtifactIds": {
+          "$ref": "#/$defs/nonEmptyUniqueIds"
+        },
+        "groundingResultId": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    },
+    "analysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "id",
+        "runId",
+        "traceId",
+        "createdAt",
+        "reference",
+        "song",
+        "timedText",
+        "takes",
+        "phrases",
+        "candidates",
+        "captionLayouts",
+        "warnings"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": "nodevideo.choreography-analysis.v1"
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "runId": {
+          "$ref": "#/$defs/id"
+        },
+        "traceId": {
+          "$ref": "#/$defs/id"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reference": {
+          "$ref": "#/$defs/reference"
+        },
+        "song": {
+          "$ref": "#/$defs/song"
+        },
+        "timedText": {
+          "$ref": "#/$defs/timedText"
+        },
+        "takes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/take"
+          }
+        },
+        "phrases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/phrase"
+          }
+        },
+        "candidates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/candidate"
+          }
+        },
+        "captionLayouts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/captionLayout"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          }
+        }
+      }
+    },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phraseId", "candidateId", "cutBeatIndex", "rationale", "evidenceArtifactIds"],
+      "properties": {
+        "phraseId": {
+          "$ref": "#/$defs/id"
+        },
+        "candidateId": {
+          "$ref": "#/$defs/id"
+        },
+        "cutBeatIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "evidenceArtifactIds": {
+          "$ref": "#/$defs/nonEmptyUniqueIds"
+        }
+      }
+    },
+    "plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "id",
+        "analysisId",
+        "runId",
+        "traceId",
+        "createdAt",
+        "durationMs",
+        "selections",
+        "captionLayouts",
+        "editPlanArtifactId",
+        "editPlanSha256"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": "nodevideo.song-conditioned-plan.v1"
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "analysisId": {
+          "$ref": "#/$defs/id"
+        },
+        "runId": {
+          "$ref": "#/$defs/id"
+        },
+        "traceId": {
+          "$ref": "#/$defs/id"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "durationMs": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "selections": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/selection"
+          }
+        },
+        "captionLayouts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/captionLayout"
+          }
+        },
+        "editPlanArtifactId": {
+          "$ref": "#/$defs/id"
+        },
+        "editPlanSha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "artifactRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifactId", "sha256", "payloadSchema"],
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/id"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "payloadSchema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifactId", "sha256", "mimeType", "planArtifactId", "decodable"],
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/id"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "mimeType": {
+          "type": "string",
+          "pattern": "^video/",
+          "maxLength": 120
+        },
+        "planArtifactId": {
+          "$ref": "#/$defs/id"
+        },
+        "decodable": {
+          "const": true
+        }
+      }
+    },
+    "generationReadLog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "runId", "createdAt", "networkAccess", "reads", "targetAccess"],
+      "properties": {
+        "schemaVersion": {
+          "const": "nodevideo.generation-read-log.v1"
+        },
+        "runId": {
+          "$ref": "#/$defs/id"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "networkAccess": {
+          "const": false
+        },
+        "reads": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["assetId", "sha256"],
+            "properties": {
+              "assetId": {
+                "$ref": "#/$defs/id"
+              },
+              "sha256": {
+                "$ref": "#/$defs/sha256"
+              }
+            }
+          }
+        },
+        "targetAccess": {
+          "const": "denied"
+        }
+      }
+    },
+    "freeze": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "id",
+        "analysisId",
+        "planArtifactId",
+        "renderArtifactId",
+        "runId",
+        "traceId",
+        "frozenAt",
+        "digests",
+        "generationInputAssetIds",
+        "evaluationOnlyAssetIds",
+        "isolation"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": "nodevideo.choreography-freeze.v1"
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "analysisId": {
+          "$ref": "#/$defs/id"
+        },
+        "planArtifactId": {
+          "$ref": "#/$defs/id"
+        },
+        "renderArtifactId": {
+          "$ref": "#/$defs/id"
+        },
+        "runId": {
+          "$ref": "#/$defs/id"
+        },
+        "traceId": {
+          "$ref": "#/$defs/id"
+        },
+        "frozenAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "digests": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["input", "analysis", "plan", "render", "generationReadLog"],
+          "properties": {
+            "input": {
+              "$ref": "#/$defs/sha256"
+            },
+            "analysis": {
+              "$ref": "#/$defs/sha256"
+            },
+            "plan": {
+              "$ref": "#/$defs/sha256"
+            },
+            "render": {
+              "$ref": "#/$defs/sha256"
+            },
+            "generationReadLog": {
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        },
+        "generationInputAssetIds": {
+          "$ref": "#/$defs/nonEmptyUniqueIds"
+        },
+        "evaluationOnlyAssetIds": {
+          "$ref": "#/$defs/nonEmptyUniqueIds"
+        },
+        "isolation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["generatorTargetAccess", "finalTargetMount", "evaluatorUnlock"],
+          "properties": {
+            "generatorTargetAccess": {
+              "const": "denied"
+            },
+            "finalTargetMount": {
+              "const": "absent"
+            },
+            "evaluatorUnlock": {
+              "const": "after-freeze-verification"
+            }
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generationReadLog"],
+      "properties": {
+        "analysis": {
+          "$ref": "#/$defs/analysis"
+        },
+        "plan": {
+          "$ref": "#/$defs/plan"
+        },
+        "editPlan": {
+          "$ref": "#/$defs/artifactRef"
+        },
+        "render": {
+          "$ref": "#/$defs/render"
+        },
+        "generationReadLog": {
+          "$ref": "#/$defs/generationReadLog"
+        },
+        "freeze": {
+          "$ref": "#/$defs/freeze"
+        }
+      }
+    },
+    "failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "stage", "retryable", "message"],
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/id"
+        },
+        "stage": {
+          "enum": [
+            "admission",
+            "probe",
+            "song-map",
+            "grounding",
+            "choreography-analysis",
+            "candidate-selection",
+            "caption-layout",
+            "plan-validation",
+            "render",
+            "freeze",
+            "result-validation"
+          ]
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["verdict", "checks", "validatedAt", "validatorVersion"],
+      "properties": {
+        "verdict": {
+          "enum": ["pass", "fail", "blocked"]
+        },
+        "checks": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "validatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "validatorVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "executionBoundary",
+        "inputAssetIds",
+        "toolVersions",
+        "createdAt",
+        "hiddenTargetUsed"
+      ],
+      "properties": {
+        "executionBoundary": {
+          "enum": ["public-fixture-worker", "private-worker", "local-worker"]
+        },
+        "inputAssetIds": {
+          "$ref": "#/$defs/nonEmptyUniqueIds"
+        },
+        "toolVersions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["toolId", "version"],
+            "properties": {
+              "toolId": {
+                "$ref": "#/$defs/id"
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              }
+            }
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "hiddenTargetUsed": {
+          "const": false
+        }
+      }
+    },
+    "times": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0
+      }
+    },
+    "nonEmptyTimes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "number",
+        "minimum": 0
+      }
+    },
+    "uniqueIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      }
+    },
+    "nonEmptyUniqueIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/id"
+      }
+    }
+  }
+}

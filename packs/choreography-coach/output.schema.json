@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/choreography-coach/output.v1.json",
+  "title": "Choreography Coach Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "status",
+    "confidence",
+    "observableMotionOnly",
+    "scoreInterpretation",
+    "scores",
+    "overall",
+    "alignment",
+    "criticalMoments",
+    "scoreBoundaries"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "nodevideo.choreography-verdict.v1" },
+    "status": { "enum": ["completed", "abstained"] },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "limitations": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "mirrorApplied": { "type": "boolean" },
+    "observableMotionOnly": { "const": true },
+    "scoreInterpretation": { "const": "relative-motion-signal-not-calibrated-pass-fail" },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "form": { "$ref": "#/$defs/score" },
+        "timing": { "$ref": "#/$defs/score" },
+        "path": { "$ref": "#/$defs/score" },
+        "dynamics": { "$ref": "#/$defs/score" },
+        "formation": { "$ref": "#/$defs/score" }
+      }
+    },
+    "overall": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+    "measurements": { "type": "object" },
+    "alignment": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["referenceFrame", "attemptFrame", "referenceTime", "attemptTime"],
+        "properties": {
+          "referenceFrame": { "type": "integer", "minimum": 0 },
+          "attemptFrame": { "type": "integer", "minimum": 0 },
+          "referencePerson": { "type": "integer", "minimum": 0 },
+          "referenceTime": { "type": "number", "minimum": 0 },
+          "attemptTime": { "type": "number", "minimum": 0 }
+        }
+      }
+    },
+    "criticalMoments": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["referenceTime", "attemptTime", "severity"],
+        "properties": {
+          "referenceTime": { "type": "number", "minimum": 0 },
+          "attemptTime": { "type": "number", "minimum": 0 },
+          "severity": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "scoreBoundaries": {
+      "type": "object",
+      "required": ["judged", "notJudged"],
+      "properties": {
+        "judged": { "type": "array", "items": { "type": "string" } },
+        "notJudged": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "$defs": { "score": { "type": "number", "minimum": 0, "maximum": 100 } }
+}

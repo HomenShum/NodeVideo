@@ -12,6 +12,8 @@ permissions:
 env:
   VITE_NODEVIDEO_V2_MANIFEST_SHA256: 04f02098045273f5acf587bbbe177cd25664d474c68e32691b4ab8de45060cd2
   VITE_NODEVIDEO_BLIND_MANIFEST_SHA256: bad6578386c2e9dff1cf6eacbbb3973d67c462c6b8422f0d810168912c192953
+  VITE_NODEVIDEO_SONG_MANIFEST_SHA256: ae91d3f427b016f6cd15a08ff5e20c9028150b3545eddc90e9dcf0a35b09047c
+  VITE_NODEVIDEO_REAL_CALIBRATION_MANIFEST_SHA256: 7f149bae3e6378f8adeca65fd97699fecdb839eb840b56f7c16c29760db48133
 
 concurrency:
   group: quality-${{ github.workflow }}-${{ github.ref }}
@@ -25,6 +27,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Use Node.js 22
         uses: actions/setup-node@v4
@@ -34,6 +38,11 @@ jobs:
 
       - name: Install locked dependencies
         run: npm ci
+
+      - name: Block new oversized media
+        run: npm run check:bloat
+        env:
+          NODEVIDEO_BLOAT_BASE: origin/${{ github.base_ref || 'main' }}
 
       - name: Install FFmpeg worker tools
         run: |
@@ -52,7 +61,10 @@ jobs:
       - name: Verify worker receipt and capability schemas
         run: |
           npm run capability:validate
+          npm run grounding:doctor
           npm run worker:verify
+          npm run worker:song:verify
+          npm run proof:song:real:verify
           npm run worker:authorized:verify
 
       - name: Primitive-first UI policy and budgets

@@ -1,0 +1,243 @@
+{
+  "schemaVersion": "nodevideo.integrated-inspector-manifest.v1",
+  "id": "integrated-source-only-v1",
+  "reference": {
+    "label": "82MAJOR 'Sign' LIVE Dance Practice",
+    "url": "https://www.youtube.com/watch?v=ssA5AJdQtlc",
+    "outputStartSeconds": 31.12,
+    "role": "independent-original-choreography-reference"
+  },
+  "media": {
+    "generated": "/media/integrated-source-only-v1/preview-silent.mp4",
+    "target": "/media/authorized-real-v1/target-web.mp4",
+    "takeA": "/media/authorized-real-v1/source-a-web.mp4",
+    "takeB": "/media/authorized-real-v1/source-b-web.mp4"
+  },
+  "synchronization": {
+    "outputFps": 30,
+    "durationSeconds": 44.5,
+    "choreographyDurationSeconds": 40.5,
+    "referenceOffsetSeconds": 31.12,
+    "takeOffsetsSeconds": {
+      "asset.take-a": 15.5,
+      "asset.take-b": 25.5
+    },
+    "generatedCutsSeconds": [
+      6.633333,
+      16.033333,
+      19.666667,
+      25.033333,
+      40.466667,
+      40.5
+    ],
+    "selectedTakeAssetIds": [
+      "asset.take-a",
+      "asset.take-b",
+      "asset.take-a",
+      "asset.take-b",
+      "asset.take-a"
+    ],
+    "framingTemplates": [
+      "fit",
+      "fill",
+      "fit",
+      "fill",
+      "fit"
+    ]
+  },
+  "result": {
+    "targetIsolation": {
+      "passed": true,
+      "verifiedGenerationFileCount": 4,
+      "targetMountedDuringGeneration": false,
+      "targetReadDuringGeneration": false,
+      "targetOpenedOnlyAfterFreezeVerification": true,
+      "targetAudioOracleUsed": false
+    },
+    "cutComparison": {
+      "method": "one-to-one-nearest-neighbor",
+      "toleranceSeconds": 0.75,
+      "generatedCount": 6,
+      "targetCount": 6,
+      "matchedCount": 6,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1,
+      "meanNearestNeighborErrorSeconds": 0.033333,
+      "maxNearestNeighborErrorSeconds": 0.066667
+    },
+    "strictCutComparison": {
+      "method": "one-to-one-signed-boundary-assignment",
+      "thresholdFrames": 2,
+      "generatedFrameRate": 30,
+      "targetFrameRate": 30,
+      "assignments": [
+        {
+          "generatedIndex": 0,
+          "targetIndex": 0,
+          "generatedSeconds": 6.633333,
+          "targetSeconds": 6.7,
+          "signedErrorSeconds": -0.066667,
+          "signedErrorFrames": -2,
+          "passed": true
+        },
+        {
+          "generatedIndex": 1,
+          "targetIndex": 1,
+          "generatedSeconds": 16.033333,
+          "targetSeconds": 16.066667,
+          "signedErrorSeconds": -0.033333,
+          "signedErrorFrames": -1,
+          "passed": true
+        },
+        {
+          "generatedIndex": 2,
+          "targetIndex": 2,
+          "generatedSeconds": 19.666667,
+          "targetSeconds": 19.633333,
+          "signedErrorSeconds": 0.033333,
+          "signedErrorFrames": 1,
+          "passed": true
+        },
+        {
+          "generatedIndex": 3,
+          "targetIndex": 3,
+          "generatedSeconds": 25.033333,
+          "targetSeconds": 25.1,
+          "signedErrorSeconds": -0.066667,
+          "signedErrorFrames": -2,
+          "passed": true
+        },
+        {
+          "generatedIndex": 4,
+          "targetIndex": 4,
+          "generatedSeconds": 40.466667,
+          "targetSeconds": 40.466667,
+          "signedErrorSeconds": 0,
+          "signedErrorFrames": 0,
+          "passed": true
+        },
+        {
+          "generatedIndex": 5,
+          "targetIndex": 5,
+          "generatedSeconds": 40.5,
+          "targetSeconds": 40.5,
+          "signedErrorSeconds": 0,
+          "signedErrorFrames": 0,
+          "passed": true
+        }
+      ],
+      "unmatchedGeneratedIndices": [],
+      "unmatchedTargetIndices": [],
+      "passedAssignments": 6,
+      "totalAssignments": 6,
+      "meanSignedErrorFrames": -0.666667,
+      "maxAbsoluteErrorFrames": 2,
+      "verdict": "passed",
+      "claim": "Strict editorial timing requires one-to-one assignment, complete boundary coverage, and no signed error above two frames."
+    },
+    "phraseSourceAgreement": {
+      "method": "generated-phrase-midpoint-with-neutral-A/B-suffix-mapping",
+      "generatedPhraseCount": 5,
+      "comparablePhraseCount": 5,
+      "agreementCount": 5,
+      "agreementRatio": 1,
+      "phrases": [
+        {
+          "phrase": 1,
+          "generatedSource": "A",
+          "targetSource": "A",
+          "comparable": true,
+          "agrees": true
+        },
+        {
+          "phrase": 2,
+          "generatedSource": "B",
+          "targetSource": "B",
+          "comparable": true,
+          "agrees": true
+        },
+        {
+          "phrase": 3,
+          "generatedSource": "A",
+          "targetSource": "A",
+          "comparable": true,
+          "agrees": true
+        },
+        {
+          "phrase": 4,
+          "generatedSource": "B",
+          "targetSource": "B",
+          "comparable": true,
+          "agrees": true
+        },
+        {
+          "phrase": 5,
+          "generatedSource": "A",
+          "targetSource": "A",
+          "comparable": true,
+          "agrees": true
+        }
+      ]
+    },
+    "soundtrack": {
+      "title": "Sign",
+      "artist": "82MAJOR",
+      "releasedMasterOffsetMs": 29157,
+      "independentOfficialSource": true,
+      "privateAudioCorrelation": 0.979986,
+      "bestLagMs": 0.75,
+      "publicPreviewIsSilent": true,
+      "handoff": "Search “Sign · 82MAJOR” in Instagram and start near 00:29.16 of the released master."
+    }
+  },
+  "grounding": {
+    "pose": "live-analysis-artifact",
+    "poseModel": "MediaPipe Pose Landmarker",
+    "locateAnything": "not-executed-no-configured-sidecar"
+  },
+  "assets": [
+    {
+      "id": "analysis",
+      "url": "/media/integrated-source-only-v1/analysis.json",
+      "mimeType": "application/json",
+      "sha256": "00f47b663f6471ceb9f54c6e2c39e209613fb9eac2d7459db74098cf905081a6"
+    },
+    {
+      "id": "edit-plan",
+      "url": "/media/integrated-source-only-v1/edit-plan.json",
+      "mimeType": "application/json",
+      "sha256": "45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07"
+    },
+    {
+      "id": "freeze",
+      "url": "/media/integrated-source-only-v1/freeze-receipt.json",
+      "mimeType": "application/json",
+      "sha256": "6d0305e3cf8e741592d5143faba7cdf6613a57cb6bf9f709b28bf383b90e655e"
+    },
+    {
+      "id": "evaluation",
+      "url": "/media/integrated-source-only-v1/post-freeze-evaluation.json",
+      "mimeType": "application/json",
+      "sha256": "478b438025fbded59c408551a7fe3ff2f5a94b81644f3c4feaf574c22fc8d45e"
+    },
+    {
+      "id": "selection",
+      "url": "/media/integrated-source-only-v1/reference-performer-selection.json",
+      "mimeType": "application/json",
+      "sha256": "79a3540461dc265a6cb2bc20aa74e1b3dd2d10280b2d932fa09dea5fd7f89f7c"
+    },
+    {
+      "id": "pose-tracks",
+      "url": "/media/integrated-source-only-v1/pose-tracks.json",
+      "mimeType": "application/json",
+      "sha256": "74deecdbd0513062bebc9759739763882f1462d8545778d5bf1fd51bc31f9ae8"
+    },
+    {
+      "id": "preview-silent",
+      "url": "/media/integrated-source-only-v1/preview-silent.mp4",
+      "mimeType": "video/mp4",
+      "sha256": "062f0621402b51e6ce22179c10505e73311276e066fd8f315b1855a9c398647a"
+    }
+  ]
+}

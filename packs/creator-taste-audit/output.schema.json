@@ -1,0 +1,298 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/creator-taste-audit/output.v1.json",
+  "title": "Creator taste run",
+  "oneOf": [{ "$ref": "#/$defs/run" }, { "$ref": "#/$defs/creativeFidelityReport" }],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "contentKind": {
+      "enum": ["dance", "talking-head", "tutorial", "comedy", "montage", "other"]
+    },
+    "cueRole": {
+      "enum": ["hook", "commentary", "instruction", "lyric", "identity", "cta", "end-card", "other"]
+    },
+    "zone": { "enum": ["top", "middle", "bottom"] },
+    "idArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/id" }
+    },
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "width", "height"],
+      "properties": {
+        "x": { "type": "number", "minimum": 0, "maximum": 1 },
+        "y": { "type": "number", "minimum": 0, "maximum": 1 },
+        "width": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+        "height": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 }
+      }
+    },
+    "textCue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "role", "startMs", "endMs", "confidence", "region"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "role": { "$ref": "#/$defs/cueRole" },
+        "startMs": { "type": "number", "minimum": 0 },
+        "endMs": { "type": "number", "exclusiveMinimum": 0 },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "region": { "$ref": "#/$defs/region" }
+      }
+    },
+    "visualTreatment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lumaMean", "lumaStd", "saturationMean"],
+      "properties": {
+        "lumaMean": { "type": "number", "minimum": 0, "maximum": 255 },
+        "lumaStd": { "type": "number", "minimum": 0, "maximum": 255 },
+        "saturationMean": { "type": "number", "minimum": 0, "maximum": 255 }
+      }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "id",
+        "createdAt",
+        "durationMs",
+        "contentKind",
+        "evidenceArtifactIds",
+        "observations"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "nodevideo.production-audit.v1" },
+        "id": { "$ref": "#/$defs/id" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "durationMs": { "type": "number", "exclusiveMinimum": 0 },
+        "contentKind": { "$ref": "#/$defs/contentKind" },
+        "evidenceArtifactIds": { "$ref": "#/$defs/idArray" },
+        "observations": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["textCues", "cuts"],
+          "properties": {
+            "textCues": { "type": "array", "items": { "$ref": "#/$defs/textCue" } },
+            "cuts": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["frame", "confidence"],
+                "properties": {
+                  "frame": { "type": "integer", "minimum": 0 },
+                  "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+                }
+              }
+            },
+            "visualTreatment": { "$ref": "#/$defs/visualTreatment" }
+          }
+        },
+        "claimedTargetSpec": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "overlayCount",
+            "roles",
+            "persistentIdentity",
+            "endCard",
+            "visualTreatmentDescribed",
+            "verticalZones"
+          ],
+          "properties": {
+            "overlayCount": { "type": "integer", "minimum": 0 },
+            "roles": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/cueRole" }
+            },
+            "persistentIdentity": { "type": "boolean" },
+            "endCard": { "type": "boolean" },
+            "visualTreatmentDescribed": { "type": "boolean" },
+            "verticalZones": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/zone" }
+            }
+          }
+        }
+      }
+    },
+    "supported": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "supportProductions", "confidence", "evidenceRefs"],
+      "properties": {
+        "value": {},
+        "supportProductions": { "type": "integer", "minimum": 1 },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "evidenceRefs": { "$ref": "#/$defs/idArray" }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "id",
+        "learnedAt",
+        "sourceProductionIds",
+        "applicableContentKinds",
+        "confidence",
+        "editorialAttention",
+        "creatorVoice",
+        "spatialGrammar",
+        "distributionIdentity",
+        "cautions"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "nodevideo.creator-taste-profile.v1" },
+        "id": { "$ref": "#/$defs/id" },
+        "learnedAt": { "type": "string", "format": "date-time" },
+        "sourceProductionIds": { "$ref": "#/$defs/idArray" },
+        "applicableContentKinds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/contentKind" }
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "editorialAttention": { "$ref": "#/$defs/profileObject" },
+        "creatorVoice": { "$ref": "#/$defs/profileObject" },
+        "spatialGrammar": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["roleZones"],
+          "properties": {
+            "roleZones": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["role", "zone", "confidence", "samples"],
+                "properties": {
+                  "role": { "$ref": "#/$defs/cueRole" },
+                  "zone": { "$ref": "#/$defs/zone" },
+                  "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+                  "samples": { "type": "integer", "minimum": 1 }
+                }
+              }
+            },
+            "persistentIdentityZone": { "$ref": "#/$defs/supported" }
+          }
+        },
+        "visualWorld": { "$ref": "#/$defs/profileObject" },
+        "distributionIdentity": { "$ref": "#/$defs/profileObject" },
+        "cautions": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "profileObject": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": { "$ref": "#/$defs/supported" }
+    },
+    "consistency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "auditId", "status", "score", "checks", "blockingReasons"],
+      "properties": {
+        "schemaVersion": { "const": "nodevideo.target-spec-consistency.v1" },
+        "auditId": { "$ref": "#/$defs/id" },
+        "status": { "enum": ["pass", "fail", "insufficient-evidence"] },
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "checks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "status", "observed", "claimed", "message"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id" },
+              "status": { "enum": ["pass", "fail", "insufficient-evidence"] },
+              "observed": { "type": "string", "minLength": 1 },
+              "claimed": { "type": "string", "minLength": 1 },
+              "message": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "blockingReasons": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "generatedAt", "profile", "audits", "consistencyReports"],
+      "properties": {
+        "schemaVersion": { "const": "nodevideo.creator-taste-run.v1" },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "profile": { "$ref": "#/$defs/profile" },
+        "audits": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/audit" } },
+        "consistencyReports": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/consistency" }
+        }
+      }
+    },
+    "creativeFidelityReport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "candidateArtifactId",
+        "referenceAuditId",
+        "status",
+        "conjunctive",
+        "score",
+        "gates",
+        "blockingReasons"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "nodevideo.creative-fidelity-report.v1" },
+        "candidateArtifactId": { "$ref": "#/$defs/id" },
+        "referenceAuditId": { "$ref": "#/$defs/id" },
+        "status": { "enum": ["pass", "fail", "invalid"] },
+        "conjunctive": { "const": true },
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "gates": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "score", "threshold", "status", "evidenceArtifactIds", "note"],
+            "properties": {
+              "id": {
+                "enum": [
+                  "provenance",
+                  "structural",
+                  "semantic-overlays",
+                  "layout",
+                  "visual-treatment",
+                  "creator-identity",
+                  "delivery"
+                ]
+              },
+              "score": { "type": "number", "minimum": 0, "maximum": 1 },
+              "threshold": { "type": "number", "minimum": 0, "maximum": 1 },
+              "status": { "enum": ["pass", "fail", "invalid"] },
+              "evidenceArtifactIds": { "$ref": "#/$defs/idArray" },
+              "note": { "type": "string", "minLength": 1, "maxLength": 2000 }
+            }
+          }
+        },
+        "blockingReasons": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    }
+  }
+}

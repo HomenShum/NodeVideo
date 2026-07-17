@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 export const BLIND_PILOT_ARTIFACT_IDS = [
   'edit-plan',
   'music-handoff',
@@ -150,6 +152,29 @@ export async function loadPublishedBlindPilot(
     manifest,
     protocolPassed: computeProtocolPassed(manifest),
   };
+}
+
+export function usePublishedBlindPilot(enabled: boolean) {
+  const [state, setState] = useState<{
+    error?: string;
+    loaded?: LoadedPublishedBlindPilot;
+  }>({});
+  useEffect(() => {
+    if (!enabled || state.loaded || state.error) return;
+    let active = true;
+    loadPublishedBlindPilot().then(
+      (loaded) => active && setState({ loaded }),
+      (error) =>
+        active &&
+        setState({
+          error: error instanceof Error ? error.message : 'Prior proof could not be verified.',
+        }),
+    );
+    return () => {
+      active = false;
+    };
+  }, [enabled, state.error, state.loaded]);
+  return state;
 }
 
 function computeProtocolPassed(manifest: PublishedBlindPilotManifest) {

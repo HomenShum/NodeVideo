@@ -62,13 +62,48 @@ export class SyntheticDemoRuntime extends LocalNodeVideoRuntime {
     const evidenceIds: string[] = [];
     evidenceIds.push(this.runIngest(recipe).id);
     this.runNormalize(recipe);
+    this.runEvidenceStage(
+      recipe,
+      'profile',
+      'Learn reusable creator profile',
+      'creator-profile.learn',
+      'The public tutorial fixture carries a deterministic profile prior only.',
+    );
     evidenceIds.push(this.runAudio(recipe).id);
     evidenceIds.push(this.runPose(recipe).id);
+    this.runEvidenceStage(
+      recipe,
+      'grounding',
+      'Ground visible subjects',
+      'grounding.locate',
+      'Normalized subject regions are available for layout safety.',
+    );
     evidenceIds.push(this.runAlignment(recipe).id);
     const differenceArtifacts = this.runDifferences(recipe);
     evidenceIds.push(...differenceArtifacts.map((artifact) => artifact.id));
+    this.runEvidenceStage(
+      recipe,
+      'planning',
+      'Plan the production globally',
+      'edit.optimize',
+      'Candidate decisions remain evidence-bound and inspectable.',
+    );
+    this.runEvidenceStage(
+      recipe,
+      'editorial',
+      'Compose creator-led overlays',
+      'creator-profile.apply',
+      'Editorial roles and layout are separate from lyric transcription.',
+    );
     evidenceIds.push(...this.runRender(recipe).map((artifact) => artifact.id));
     evidenceIds.push(this.runSummary(recipe, evidenceIds).id);
+    this.runEvidenceStage(
+      recipe,
+      'evaluation',
+      'Run conjunctive fidelity gates',
+      'creative-fidelity.evaluate',
+      'A structural pass cannot imply a creative pass.',
+    );
     this.runReview(recipe);
     this.applyWorkerRootSpan();
     return this.snapshot();
@@ -211,6 +246,17 @@ export class SyntheticDemoRuntime extends LocalNodeVideoRuntime {
       };
     }
     return stage;
+  }
+
+  private runEvidenceStage(
+    recipe: NodeVideoRecipeVersion,
+    kind: NodeVideoStageKind,
+    label: string,
+    toolId: string,
+    message: string,
+  ): void {
+    const stage = this.startWorkerStage(recipe, kind, label, toolId);
+    this.completeStage(stage.id, message);
   }
 
   private runIngest(recipe: NodeVideoRecipeVersion) {

@@ -1,0 +1,640 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/song-conditioned-auto-edit/input.v1.json",
+  "title": "Song-Conditioned Choreography Auto Edit Input",
+  "description": "Source-only generation input containing a choreography reference, chosen song, takes, and optional protected lyric text. The closed asset object has no evaluation-target slot.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "projectId",
+    "runId",
+    "traceId",
+    "authorization",
+    "execution",
+    "assets",
+    "songExcerpt",
+    "captions",
+    "options",
+    "isolation"
+  ],
+  "properties": {
+    "schema": {
+      "const": "nodevideo.song-conditioned-auto-edit.input.v1"
+    },
+    "projectId": {
+      "$ref": "#/$defs/id"
+    },
+    "runId": {
+      "$ref": "#/$defs/id"
+    },
+    "traceId": {
+      "$ref": "#/$defs/id"
+    },
+    "authorization": {
+      "$ref": "#/$defs/authorization"
+    },
+    "execution": {
+      "$ref": "#/$defs/execution"
+    },
+    "assets": {
+      "$ref": "#/$defs/assets"
+    },
+    "songExcerpt": {
+      "$ref": "#/$defs/timeRangeMs"
+    },
+    "captions": {
+      "$ref": "#/$defs/captionPolicy"
+    },
+    "options": {
+      "$ref": "#/$defs/options"
+    },
+    "isolation": {
+      "$ref": "#/$defs/isolation"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "captions": {
+            "properties": {
+              "source": {
+                "const": "user-supplied-protected-text"
+              }
+            },
+            "required": ["source"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "assets": {
+            "required": ["lyrics"]
+          },
+          "captions": {
+            "required": ["lyricTextAssetId"]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "options": {
+            "properties": {
+              "outputAudioMode": {
+                "const": "render-with-chosen-song"
+              }
+            },
+            "required": ["outputAudioMode"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "assets": {
+            "properties": {
+              "song": {
+                "properties": {
+                  "rights": {
+                    "properties": {
+                      "previewRenderAuthorized": {
+                        "const": true
+                      },
+                      "exportRenderAuthorized": {
+                        "const": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "boundary": {
+                "const": "public-fixture-worker"
+              }
+            },
+            "required": ["boundary"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "assets": {
+            "properties": {
+              "reference": {
+                "properties": {
+                  "sourceClass": {
+                    "const": "public-fixture"
+                  }
+                }
+              },
+              "song": {
+                "properties": {
+                  "sourceClass": {
+                    "const": "public-fixture"
+                  }
+                }
+              },
+              "takes": {
+                "items": {
+                  "properties": {
+                    "sourceClass": {
+                      "const": "public-fixture"
+                    }
+                  }
+                }
+              },
+              "lyrics": {
+                "properties": {
+                  "sourceClass": {
+                    "const": "public-fixture"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "timeRangeMs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startMs", "endMs"],
+      "properties": {
+        "startMs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "endMs": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attestationId",
+        "mediaProcessingAuthorized",
+        "derivedPreviewAuthorized",
+        "sourceContainerMetadataPublished"
+      ],
+      "properties": {
+        "attestationId": {
+          "$ref": "#/$defs/id"
+        },
+        "mediaProcessingAuthorized": {
+          "const": true
+        },
+        "derivedPreviewAuthorized": {
+          "type": "boolean"
+        },
+        "sourceContainerMetadataPublished": {
+          "const": false
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "boundary",
+        "retention",
+        "allowModelEgress",
+        "allowVisualEgress",
+        "hostedBehavior"
+      ],
+      "properties": {
+        "boundary": {
+          "enum": ["public-fixture-worker", "private-worker", "local-worker"]
+        },
+        "retention": {
+          "enum": ["ephemeral", "configured-private-retention"]
+        },
+        "allowModelEgress": {
+          "type": "boolean"
+        },
+        "allowVisualEgress": {
+          "type": "boolean"
+        },
+        "hostedBehavior": {
+          "enum": ["worker-execution", "verified-replay"]
+        }
+      }
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {
+          "enum": ["fixture-id", "signed-media-reference", "worker-local-token"]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "description": "Opaque media-plane capability; never copy it into traces, artifacts, read logs, or receipts."
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "songRights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attestationId",
+        "rightsBasis",
+        "proofRef",
+        "processingAuthorized",
+        "previewRenderAuthorized",
+        "exportRenderAuthorized"
+      ],
+      "properties": {
+        "attestationId": {
+          "$ref": "#/$defs/id"
+        },
+        "rightsBasis": {
+          "enum": ["owned", "licensed", "public-domain", "platform-catalog-user-selected"]
+        },
+        "proofRef": {
+          "$ref": "#/$defs/id"
+        },
+        "processingAuthorized": {
+          "const": true
+        },
+        "previewRenderAuthorized": {
+          "type": "boolean"
+        },
+        "exportRenderAuthorized": {
+          "type": "boolean"
+        }
+      }
+    },
+    "mediaAsset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assetId",
+        "kind",
+        "role",
+        "mimeType",
+        "sha256",
+        "sourceClass",
+        "usage",
+        "locator"
+      ],
+      "properties": {
+        "assetId": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "enum": ["video", "audio", "text"]
+        },
+        "role": {
+          "enum": ["choreography-reference", "chosen-song", "take", "lyric-text"]
+        },
+        "mimeType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "sourceClass": {
+          "enum": ["public-fixture", "private-user-media"]
+        },
+        "usage": {
+          "enum": ["analysis-only", "render-source", "conditioning-only", "protected-text"]
+        },
+        "locator": {
+          "$ref": "#/$defs/locator"
+        },
+        "rights": {
+          "$ref": "#/$defs/songRights"
+        }
+      }
+    },
+    "referenceAsset": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/mediaAsset"
+        },
+        {
+          "required": ["kind", "role", "usage"],
+          "properties": {
+            "kind": {
+              "const": "video"
+            },
+            "role": {
+              "const": "choreography-reference"
+            },
+            "usage": {
+              "const": "analysis-only"
+            }
+          }
+        }
+      ]
+    },
+    "songAsset": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/mediaAsset"
+        },
+        {
+          "required": ["kind", "role", "usage", "rights"],
+          "properties": {
+            "kind": {
+              "const": "audio"
+            },
+            "role": {
+              "const": "chosen-song"
+            },
+            "usage": {
+              "enum": ["render-source", "conditioning-only"]
+            }
+          }
+        }
+      ]
+    },
+    "takeAsset": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/mediaAsset"
+        },
+        {
+          "required": ["kind", "role", "usage"],
+          "properties": {
+            "kind": {
+              "const": "video"
+            },
+            "role": {
+              "const": "take"
+            },
+            "usage": {
+              "const": "render-source"
+            }
+          }
+        }
+      ]
+    },
+    "lyricAsset": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/mediaAsset"
+        },
+        {
+          "required": ["kind", "role", "usage"],
+          "properties": {
+            "kind": {
+              "const": "text"
+            },
+            "role": {
+              "const": "lyric-text"
+            },
+            "usage": {
+              "const": "protected-text"
+            }
+          }
+        }
+      ]
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference", "song", "takes"],
+      "properties": {
+        "reference": {
+          "$ref": "#/$defs/referenceAsset"
+        },
+        "song": {
+          "$ref": "#/$defs/songAsset"
+        },
+        "takes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "items": {
+            "$ref": "#/$defs/takeAsset"
+          }
+        },
+        "lyrics": {
+          "$ref": "#/$defs/lyricAsset"
+        }
+      }
+    },
+    "normalizedBox": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["xMin", "yMin", "xMax", "yMax"],
+      "properties": {
+        "xMin": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "yMin": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "xMax": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "yMax": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "captionPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "language", "layout"],
+      "properties": {
+        "source": {
+          "enum": ["transcribe-chosen-song", "user-supplied-protected-text", "none"]
+        },
+        "language": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 35
+        },
+        "lyricTextAssetId": {
+          "$ref": "#/$defs/id"
+        },
+        "layout": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "coordinateSpace",
+            "safeArea",
+            "avoidRegions",
+            "maxLines",
+            "maxCharactersPerLine",
+            "minimumVisibleMs"
+          ],
+          "properties": {
+            "coordinateSpace": {
+              "const": "normalized-frame-top-left-v1"
+            },
+            "safeArea": {
+              "$ref": "#/$defs/normalizedBox"
+            },
+            "avoidRegions": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "enum": ["body", "face", "hands", "platform-controls"]
+              }
+            },
+            "maxLines": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2
+            },
+            "maxCharactersPerLine": {
+              "type": "integer",
+              "minimum": 8,
+              "maximum": 48
+            },
+            "minimumVisibleMs": {
+              "type": "integer",
+              "minimum": 300,
+              "maximum": 10000
+            }
+          }
+        }
+      }
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "width",
+        "height",
+        "framesPerSecond",
+        "mirrorMode",
+        "outputAudioMode",
+        "sourceAudioMode",
+        "selectionStrategy",
+        "groundingPack",
+        "editPlanSchema",
+        "plannerSeed"
+      ],
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 320,
+          "maximum": 4096
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 320,
+          "maximum": 4096
+        },
+        "framesPerSecond": {
+          "enum": [24, 25, 30, 50, 60]
+        },
+        "mirrorMode": {
+          "enum": ["auto", "never", "force"]
+        },
+        "outputAudioMode": {
+          "enum": ["render-with-chosen-song", "timing-guide-muted-export"]
+        },
+        "sourceAudioMode": {
+          "const": "muted"
+        },
+        "selectionStrategy": {
+          "const": "phrase-candidate-optimizer"
+        },
+        "groundingPack": {
+          "const": "nodevideo.embodied-grounding@0.1.0"
+        },
+        "editPlanSchema": {
+          "const": "nodevideo.edit-plan.v1"
+        },
+        "plannerSeed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2147483647
+        }
+      }
+    },
+    "isolation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "generationInputClass",
+        "forbiddenAssetRoles",
+        "hiddenTargetMounted",
+        "parentVolumeAccessible",
+        "evaluatorCredentialPresent",
+        "freezeBeforeEvaluation",
+        "readLogArtifactId"
+      ],
+      "properties": {
+        "generationInputClass": {
+          "const": "reference-song-and-takes-only"
+        },
+        "forbiddenAssetRoles": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "prefixItems": [
+            {
+              "const": "evaluation-target"
+            }
+          ],
+          "items": false
+        },
+        "hiddenTargetMounted": {
+          "const": false
+        },
+        "parentVolumeAccessible": {
+          "const": false
+        },
+        "evaluatorCredentialPresent": {
+          "const": false
+        },
+        "freezeBeforeEvaluation": {
+          "const": true
+        },
+        "readLogArtifactId": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/embodied-grounding/output.v1.json",
+  "title": "Provider-Neutral LocateResult or LocateHealth",
+  "description": "Validates either a nodevideo.locate-result.v1 artifact or a nodevideo.locate-health.v1 artifact. Both are closed, provider-neutral, and locator-free.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/locateResult"
+    },
+    {
+      "$ref": "#/$defs/locateHealth"
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "normalizedPoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "properties": {
+        "x": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "y": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "normalizedBox": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "width", "height"],
+      "properties": {
+        "x": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "y": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "height": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "geometry": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "point"],
+          "properties": {
+            "kind": {
+              "const": "point"
+            },
+            "point": {
+              "$ref": "#/$defs/normalizedPoint"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "box"],
+          "properties": {
+            "kind": {
+              "const": "box"
+            },
+            "box": {
+              "$ref": "#/$defs/normalizedBox"
+            }
+          }
+        }
+      ]
+    },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "implementation"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "implementation": {
+          "enum": ["locate-anything-http", "manual", "disabled", "replay"]
+        },
+        "modelId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      }
+    },
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "retryable"],
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/id"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "retryable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "provenance"],
+      "properties": {
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "provenance": {
+          "const": "provider-reported"
+        }
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "geometry"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "geometry": {
+          "$ref": "#/$defs/geometry"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        }
+      }
+    },
+    "locateResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "requestId",
+        "traceId",
+        "assetId",
+        "provider",
+        "status",
+        "observations"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": "nodevideo.locate-result.v1"
+        },
+        "requestId": {
+          "$ref": "#/$defs/id"
+        },
+        "traceId": {
+          "$ref": "#/$defs/id"
+        },
+        "assetId": {
+          "$ref": "#/$defs/id"
+        },
+        "provider": {
+          "$ref": "#/$defs/provider"
+        },
+        "status": {
+          "enum": ["valid", "ambiguous", "malformed", "empty", "failed", "manual"]
+        },
+        "observations": {
+          "type": "array",
+          "maxItems": 1000,
+          "items": {
+            "$ref": "#/$defs/observation"
+          }
+        },
+        "diagnostic": {
+          "$ref": "#/$defs/diagnostic"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": ["valid", "ambiguous", "manual"]
+              }
+            },
+            "required": ["status"]
+          },
+          "then": {
+            "properties": {
+              "observations": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": ["malformed", "empty", "failed"]
+              }
+            },
+            "required": ["status"]
+          },
+          "then": {
+            "properties": {
+              "observations": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": ["malformed", "failed"]
+              }
+            },
+            "required": ["status"]
+          },
+          "then": {
+            "required": ["diagnostic"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "manual"
+              }
+            },
+            "required": ["status"]
+          },
+          "then": {
+            "properties": {
+              "observations": {
+                "items": {
+                  "not": {
+                    "required": ["confidence"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "licenseBoundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["codeLicenseRef", "modelLicenseRef", "accepted"],
+      "properties": {
+        "codeLicenseRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "modelLicenseRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "accepted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "locateHealth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "provider",
+        "status",
+        "capabilities",
+        "licenseBoundary",
+        "checkedAt"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": "nodevideo.locate-health.v1"
+        },
+        "provider": {
+          "$ref": "#/$defs/provider"
+        },
+        "status": {
+          "enum": ["healthy", "degraded", "unavailable", "disabled"]
+        },
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["textPrompt", "visualPrompt", "boxes", "points"],
+          "properties": {
+            "textPrompt": {
+              "type": "boolean"
+            },
+            "visualPrompt": {
+              "const": false
+            },
+            "boxes": {
+              "type": "boolean"
+            },
+            "points": {
+              "type": "boolean"
+            }
+          }
+        },
+        "licenseBoundary": {
+          "$ref": "#/$defs/licenseBoundary"
+        },
+        "checkedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "diagnostic": {
+          "$ref": "#/$defs/diagnostic"
+        }
+      }
+    }
+  }
+}

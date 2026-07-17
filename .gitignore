@@ -7,6 +7,9 @@ __pycache__/
 playwright-report/
 test-results/
 .playwright-mcp/
+.eve/
+.output/
+.nitro/
 
 # Local environment
 .env
@@ -14,7 +17,9 @@ test-results/
 !.env.example
 
 # QA evidence stays local unless an explicitly authorized case publishes selected sanitized derivatives.
+.qa/cache/
 .qa/evidence/
+.qa/models/
 .qa/*.log
 
 .vercel

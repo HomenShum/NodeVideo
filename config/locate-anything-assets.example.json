@@ -1,0 +1,8 @@
+{
+  "assets": {
+    "asset.doctor-fixture": {
+      "path": "fixtures/media/locate-anything-live-v1/input-frame.jpg",
+      "kind": "image"
+    }
+  }
+}

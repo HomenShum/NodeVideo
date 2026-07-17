@@ -1,0 +1,134 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.creator-taste-audit@0.2.0",
+  "implementationStatus": "local-cli-and-nodeagent-contract-validated",
+  "contracts": {
+    "ProductionAudit": { "schema": "nodevideo.production-audit.v1" },
+    "CreatorTasteProfile": { "schema": "nodevideo.creator-taste-profile.v1" },
+    "TargetSpecConsistency": { "schema": "nodevideo.target-spec-consistency.v1" },
+    "ProductionDecisionLedger": { "schema": "nodevideo.production-decision-ledger.v1" },
+    "CreatorIntentProfile": { "schema": "nodevideo.creator-intent-profile.v1" },
+    "NodeAgentCandidate": {
+      "kind": "creator-taste-and-production-audit",
+      "finalWriteAuthority": "application-validation-cas-review"
+    }
+  },
+  "tools": [
+    {
+      "id": "production.audit",
+      "stage": "interpreting-production",
+      "dependsOn": [],
+      "accepts": ["production/authorized-derived-evidence"],
+      "produces": ["production/audit"]
+    },
+    {
+      "id": "creator-profile.learn",
+      "stage": "learning-creator-profile",
+      "dependsOn": ["production.audit"],
+      "accepts": ["production/audit"],
+      "produces": ["creator/taste-profile"]
+    },
+    {
+      "id": "creator-profile.apply",
+      "stage": "planning-production",
+      "dependsOn": ["creator-profile.learn"],
+      "accepts": ["creator/taste-profile", "production/source-analysis"],
+      "produces": ["production/editorial-priors"]
+    },
+    {
+      "id": "audio.production.audit",
+      "stage": "interpreting-production",
+      "dependsOn": [],
+      "accepts": ["production/candidate-audio", "production/authorized-reference-audio"],
+      "produces": ["production/audio-audit"]
+    },
+    {
+      "id": "production-decisions.audit",
+      "stage": "interpreting-production",
+      "dependsOn": ["production.audit", "embodied-overlay.audit", "audio.production.audit"],
+      "accepts": [
+        "production/edit-plan",
+        "production/style-audit",
+        "production/pose-tracks",
+        "production/audio-audit"
+      ],
+      "produces": ["production/decision-ledger"]
+    },
+    {
+      "id": "creator-intent.learn",
+      "stage": "learning-creator-profile",
+      "dependsOn": ["production-decisions.audit"],
+      "accepts": ["production/owner-confirmed-decision-ledgers"],
+      "produces": ["creator/intent-profile"]
+    },
+    {
+      "id": "target-spec.validate",
+      "stage": "validating-interpretation",
+      "dependsOn": ["production.audit"],
+      "accepts": ["production/audit", "production/claimed-target-spec"],
+      "produces": ["production/target-spec-consistency"]
+    },
+    {
+      "id": "creative-fidelity.evaluate",
+      "stage": "evaluating-fidelity",
+      "dependsOn": ["target-spec.validate", "creator-profile.apply", "production-decisions.audit"],
+      "accepts": [
+        "production/frozen-candidate",
+        "production/valid-target-spec",
+        "production/decision-ledger"
+      ],
+      "produces": ["production/conjunctive-fidelity-verdict"]
+    },
+    {
+      "id": "embodied-overlay.audit",
+      "stage": "composing-editorial-overlays",
+      "dependsOn": ["creator-profile.apply"],
+      "accepts": ["production/edit-plan", "production/pose-tracks"],
+      "produces": ["production/embodied-overlay-audit"]
+    }
+  ],
+  "semanticValidators": [
+    {
+      "id": "profile.evidence.validate",
+      "rules": [
+        "every learned value carries supporting production count, confidence, and evidence references",
+        "profile source production IDs exactly equal the admitted audit IDs",
+        "single-production profiles remain provisional"
+      ]
+    },
+    {
+      "id": "target-spec.consistency.validate",
+      "rules": [
+        "visible OCR roles, persistent identity, layout zones, grade, and end card must be represented",
+        "any failed consistency check blocks creative-fidelity evaluation",
+        "a cut-timing pass cannot imply a creative pass"
+      ]
+    },
+    {
+      "id": "embodied-overlay-clearance.validate",
+      "rules": [
+        "every text box is checked against the rendered pose silhouette for its full frame range",
+        "more than five percent body overlap fails the overlay before render approval",
+        "missing pose evidence fails closed instead of assuming a safe placement"
+      ]
+    },
+    {
+      "id": "production-decisions.completeness.validate",
+      "rules": [
+        "attention, rhythm, composition, typography, performance, color, audio, identity, narrative, and platform are scored independently",
+        "observations never become intent facts without owner confirmation",
+        "a reusable creator rule requires matching owner-confirmed intent across at least two productions",
+        "missing or provisional intentional dimensions block a strict creative-fidelity pass"
+      ]
+    },
+    {
+      "id": "creative-fidelity.conjunction.validate",
+      "rules": [
+        "provenance, structure, semantics, layout, visual treatment, creator identity, and delivery pass independently",
+        "the overall verdict passes only when every required gate passes",
+        "blind-generation integrity and creator-profile maturity remain separate verdicts",
+        "hidden targets stay unavailable until the candidate and profile bindings are frozen"
+      ]
+    }
+  ]
+}

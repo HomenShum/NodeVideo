@@ -5,6 +5,7 @@ import type { NodeVideoRecipeSettings } from './contracts';
 import {
   type NodeVideoWorkflowCandidate,
   inspectNodeVideoWorkflowCandidate,
+  validateNodeVideoWorkflowCandidate,
 } from './nodeVideoWorkflowCandidate';
 import {
   NODE_WORKFLOW_PROTOCOL_VERSION,
@@ -110,6 +111,27 @@ describe('NodeVideo workflow execution port', () => {
     expect(admission.receipt.issues).toContain(
       'NodeVideo shot shot-1 crossed the expected asset boundary.',
     );
+  });
+
+  it('binds a reusable creator profile to the edit candidate', () => {
+    const candidate = buildCandidate();
+    candidate.creatorTaste = {
+      profileId: 'creator-taste.owner-v1',
+      profileDigest: `sha256:${'a'.repeat(64)}`,
+      sourceProductionIds: ['production.reference-1'],
+      evaluationReady: true,
+    };
+    expect(
+      validateNodeVideoWorkflowCandidate(
+        candidate,
+        request,
+        baseSettings,
+        ['shot-1', 'shot-2', 'shot-3', 'shot-4'],
+        'project-1',
+        'recipe-1',
+        ['project-1:asset-a', 'project-1:asset-b'],
+      ),
+    ).toEqual([]);
   });
 });
 

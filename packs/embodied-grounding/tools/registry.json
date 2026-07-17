@@ -1,0 +1,176 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.embodied-grounding@0.1.0",
+  "implementationStatus": "adapter-implementations-unit-validated",
+  "contracts": {
+    "LocateRequest": {
+      "schema": "nodevideo.locate-request.v1",
+      "identity": ["requestId", "traceId", "assetId"],
+      "mediaReference": "trace-id-plus-asset-id-only",
+      "query": "bounded-text-only",
+      "coordinateSpace": "normalized-frame-top-left-v1",
+      "visualPromptAsset": "not-accepted"
+    },
+    "LocateResult": {
+      "schema": "nodevideo.locate-result.v1",
+      "statuses": ["valid", "ambiguous", "malformed", "empty", "failed", "manual"],
+      "geometry": "finite-normalized-points-or-x-y-width-height-boxes",
+      "rawProviderPayload": "forbidden"
+    },
+    "GroundingHealth": {
+      "schema": "nodevideo.locate-health.v1",
+      "statuses": ["healthy", "degraded", "unavailable", "disabled"],
+      "context": ["provider", "capabilities", "licenseBoundary", "checkedAt"],
+      "capabilities": {
+        "textPrompt": true,
+        "visualPrompt": false,
+        "normalizedCoordinates": true
+      },
+      "licenseDisclosure": ["codeLicenseRef", "modelLicenseRef", "accepted"]
+    }
+  },
+  "validationProfiles": {
+    "providerNeutralAdapterUnitV1": {
+      "status": "passed",
+      "test": "../../../src/lib/visual-grounding.test.ts",
+      "command": "npx vitest run src/lib/visual-grounding.test.ts",
+      "scope": "Mocked LocateAnything HTTP parsing plus manual, disabled, replay, health, normalization, identity, status, license, and confidence invariants; no live-provider accuracy claim."
+    },
+    "contractReplayV1": {
+      "status": "defined-not-executed",
+      "boundary": "public-fixture-worker",
+      "sourceClass": "public-fixture",
+      "eval": "../evals/replay-v1.json",
+      "scope": "Schema and semantic replay matrix for all six LocateResult statuses; no geometry-accuracy claim."
+    },
+    "productionHumanGrounding": {
+      "status": "not-validated",
+      "scope": "Consent-cleared held-out body and face localization, adapter reliability, and caption-safety performance remain unproven."
+    }
+  },
+  "defaults": {
+    "execution": "provider-neutral-adapter",
+    "modelRequired": false,
+    "rawProviderPayloadRetention": false,
+    "lifecycle": {
+      "typedRetry": true,
+      "manualFallback": true,
+      "checkpointResume": false,
+      "durableLease": false
+    },
+    "tracePolicy": {
+      "allow": [
+        "request, run, trace, asset, region, evidence, adapter, and artifact IDs",
+        "content hashes",
+        "finite normalized derived geometry",
+        "bounded text query and diagnostic codes",
+        "status and confidence",
+        "tool and contract versions",
+        "latency and timestamps"
+      ],
+      "deny": [
+        "raw media, thumbnails, or extracted frames",
+        "media locators, URLs, local paths, object URLs, or filenames",
+        "visual-prompt assets or provider-native multimodal prompts",
+        "vendor request and response payloads",
+        "identity or biometric inferences",
+        "credentials and hidden reasoning"
+      ]
+    },
+    "rightsPolicy": {
+      "requiresProcessingAuthorization": true,
+      "remoteEgressRequiresExplicitAuthorization": true,
+      "determinesLicenseSufficiency": false,
+      "grantsLikenessOrBiometricRights": false
+    }
+  },
+  "semanticValidators": [
+    {
+      "id": "grounding.identity.validate",
+      "rules": [
+        "request ID, trace ID, and asset ID must match",
+        "observation IDs must be unique within the result",
+        "observation geometry kind must equal the requested output kind",
+        "single-cardinality valid results must contain exactly one observation"
+      ]
+    },
+    {
+      "id": "grounding.geometry.validate",
+      "rules": [
+        "all coordinates and confidence values must be finite",
+        "all normalized coordinates must be in the inclusive range zero through one",
+        "box width and height must be positive",
+        "x plus width and y plus height must not exceed one",
+        "geometry must reference the decoded rotation-corrected frame and declared mirror state"
+      ]
+    },
+    {
+      "id": "grounding.status.validate",
+      "rules": [
+        "valid, ambiguous, and manual require at least one observation",
+        "malformed, empty, and failed require zero observations",
+        "malformed and failed require a typed diagnostic",
+        "manual observations cannot claim provider-reported confidence"
+      ]
+    },
+    {
+      "id": "grounding.trace.validate",
+      "rules": [
+        "control-plane payloads contain asset and trace identities rather than media locators",
+        "raw provider payload retention must be false",
+        "the request contains text query only and no visual-prompt asset or vendor-native payload may be emitted",
+        "automated provider health must declare textPrompt true, all health must declare visualPrompt false, and code/model license references plus acceptance are required"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "id": "grounding.health",
+      "stage": "checking-adapter",
+      "implementation": {
+        "version": "adapter-health-contract@1.0.0",
+        "status": "unit-validated",
+        "scope": "Report adapter contract readiness, textPrompt true, visualPrompt false, and code/model license references without vendor payloads."
+      },
+      "dependsOn": [],
+      "accepts": ["grounding/health-context"],
+      "produces": ["grounding/health"]
+    },
+    {
+      "id": "grounding.locate",
+      "stage": "locating",
+      "implementation": {
+        "version": "provider-neutral-locate-port@1.0.0",
+        "status": "unit-validated",
+        "scope": "Invoke a configured deterministic, local-model, remote-model, or manual adapter through the same text-query-only LocateRequest contract."
+      },
+      "dependsOn": ["grounding.health"],
+      "accepts": ["grounding/text-locate-request", "visual/worker-bound-asset-frame"],
+      "produces": ["grounding/unvalidated-locate-result"]
+    },
+    {
+      "id": "grounding.manual",
+      "stage": "manual-fallback",
+      "implementation": {
+        "version": "normalized-region-editor-contract@1.0.0",
+        "status": "unit-validated",
+        "scope": "Resolve an ambiguous, malformed, empty, or failed result with explicit reviewed normalized geometry."
+      },
+      "dependsOn": ["grounding.locate"],
+      "accepts": ["grounding/unvalidated-locate-result", "grounding/manual-region-decision"],
+      "produces": ["grounding/manual-locate-result"]
+    },
+    {
+      "id": "grounding.validate",
+      "stage": "validating",
+      "implementation": {
+        "version": "grounding-contract-validator@1.0.0",
+        "status": "unit-validated",
+        "scope": "Enforce identity, target vocabulary, finite normalized geometry, status cardinality, provenance, and trace redaction invariants."
+      },
+      "dependsOn": ["grounding.locate"],
+      "accepts": ["grounding/unvalidated-locate-result", "grounding/manual-locate-result"],
+      "produces": ["grounding/locate-result", "grounding/validation-verdict"]
+    }
+  ]
+}

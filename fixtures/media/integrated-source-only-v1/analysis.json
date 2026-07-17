@@ -1,0 +1,2594 @@
+{
+  "schemaVersion": "nodevideo.song-choreography-analysis.v1",
+  "analyzerVersion": "nodevideo.song-choreography-analyzer@0.2.0",
+  "mode": "song-conditioned-source-only",
+  "reference": {
+    "assetId": "asset.choreography-reference",
+    "sha256": "756cec76a05af03791c7707e3a27c469e757aee279b6cbc28dbc9b2ca6274427",
+    "choreographyStartSeconds": 31.12,
+    "role": "independent-original-choreography-reference"
+  },
+  "music": {
+    "assetId": "asset.music",
+    "sha256": "982743b6390498e2b8aa59e619ded458e79a7d0839e00970479eb6852c97591a",
+    "durationSeconds": 40.405351,
+    "segment": {
+      "startSeconds": 0,
+      "endSeconds": 40.466667
+    },
+    "beatGrid": {
+      "bpm": 107.666016,
+      "offsetMs": 1439.637188,
+      "beatsMs": [
+        1439.637188,
+        2020.136054,
+        2577.414966,
+        3134.693878,
+        3715.192744,
+        4272.471655,
+        4852.970522,
+        5410.249433,
+        5967.528345,
+        6524.807256,
+        7105.306122,
+        7662.585034,
+        8243.0839,
+        8800.362812,
+        9380.861678,
+        9938.14059,
+        10518.639456,
+        11075.918367,
+        11633.197279,
+        12190.47619,
+        12747.755102,
+        13328.253968,
+        13885.53288,
+        14466.031746,
+        15023.310658,
+        15580.589569,
+        16161.088435,
+        16741.587302,
+        17322.086168,
+        17856.145125,
+        18436.643991,
+        18993.922902,
+        19574.421769,
+        20108.480726,
+        20642.539683,
+        21246.258503,
+        21803.537415,
+        22384.036281,
+        22941.315193,
+        23498.594104,
+        24055.873016,
+        24636.371882,
+        25216.870748,
+        25797.369615,
+        26377.868481,
+        26911.927438,
+        27492.426304,
+        28049.705215,
+        28630.204082,
+        29187.482993,
+        29744.761905,
+        30302.040816,
+        30859.319728,
+        31439.818594,
+        31997.097506,
+        32577.596372,
+        33134.875283,
+        33715.37415,
+        34272.653061,
+        34829.931973,
+        35433.650794,
+        35967.709751,
+        36548.208617,
+        37105.487528,
+        37685.986395,
+        38243.265306,
+        38800.544218,
+        39357.823129
+      ],
+      "downbeatsMs": [
+        2020.136054,
+        4272.471655,
+        6524.807256,
+        8800.362812,
+        11075.918367,
+        13328.253968,
+        15580.589569,
+        17856.145125,
+        20108.480726,
+        22384.036281,
+        24636.371882,
+        26911.927438,
+        29187.482993,
+        31439.818594,
+        33715.37415,
+        35967.709751,
+        38243.265306
+      ],
+      "confidence": 0.320883
+    }
+  },
+  "tasteTemplate": {
+    "id": "choreography-led-global-sequence.v2",
+    "planner": "deterministic-dynamic-programming-beam-search",
+    "phraseCount": 5,
+    "optionalPhraseBeatPrior": null,
+    "optionalPhraseBeatPriorWeight": 0,
+    "boundaryPolicy": "joint-source-only-choreography-music-lyric-candidate-lattice",
+    "takePolicy": "joint-interval-quality-and-transition-optimization",
+    "qualityTolerance": 0.4,
+    "candidateMomentCount": 182,
+    "winningScore": 7.66961,
+    "sourceOnlyInterpretation": [
+      {
+        "timeSeconds": 6.633333,
+        "reason": "Multi-track wrist-direction consensus completes the three-line setup immediately after the lyric handoff."
+      },
+      {
+        "timeSeconds": 16.033333,
+        "reason": "The build completes at the frame-rate consensus reversal following the first explicit Sign refrain."
+      },
+      {
+        "timeSeconds": 19.666667,
+        "reason": "The compact refrain anticipates the lyric handoff at the nearest multi-take direction change."
+      },
+      {
+        "timeSeconds": 25.033333,
+        "reason": "The response phrase resolves at the consensus direction change before the repeated lyric cycle."
+      }
+    ],
+    "terminalTransitionFrames": 1
+  },
+  "alignments": [
+    {
+      "takeAssetId": "asset.take-a",
+      "choreographyStartSeconds": 15.5,
+      "method": "multi-person-mirrored-normalized-pose-offset-search",
+      "medianNormalizedPoseDistance": 0.193869,
+      "confidence": 0.823766
+    },
+    {
+      "takeAssetId": "asset.take-b",
+      "choreographyStartSeconds": 25.5,
+      "method": "multi-person-mirrored-normalized-pose-offset-search",
+      "medianNormalizedPoseDistance": 0.181995,
+      "confidence": 0.833606
+    }
+  ],
+  "candidateMoments": [
+    {
+      "timeSeconds": 0.472222,
+      "evidenceScore": 0.86,
+      "evidence": [
+        "direction-change",
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 1.439637,
+      "signedMusicOffsetSeconds": -0.967415
+    },
+    {
+      "timeSeconds": 0.966667,
+      "evidenceScore": 0.648671,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 1.439637,
+      "signedMusicOffsetSeconds": -0.472971
+    },
+    {
+      "timeSeconds": 0.999436,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "direction-change",
+        "gesture-apex",
+        "onset"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 1.439637,
+      "signedMusicOffsetSeconds": -0.440202
+    },
+    {
+      "timeSeconds": 1.1,
+      "evidenceScore": 0.637524,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 1.439637,
+      "signedMusicOffsetSeconds": -0.339637
+    },
+    {
+      "timeSeconds": 1.366667,
+      "evidenceScore": 0.613383,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 1.439637,
+      "signedMusicOffsetSeconds": -0.072971
+    },
+    {
+      "timeSeconds": 1.446811,
+      "evidenceScore": 0.86,
+      "evidence": [
+        "beat",
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 1.439637,
+      "signedMusicOffsetSeconds": 0.007174
+    },
+    {
+      "timeSeconds": 1.566667,
+      "evidenceScore": 0.623212,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 1.439637,
+      "signedMusicOffsetSeconds": 0.127029
+    },
+    {
+      "timeSeconds": 1.666667,
+      "evidenceScore": 0.643781,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 1.439637,
+      "signedMusicOffsetSeconds": 0.227029
+    },
+    {
+      "timeSeconds": 1.866667,
+      "evidenceScore": 0.777464,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 2.020136,
+      "signedMusicOffsetSeconds": -0.153469
+    },
+    {
+      "timeSeconds": 1.91785,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "hold-or-completion",
+        "lyric-boundary",
+        "onset"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 2.020136,
+      "signedMusicOffsetSeconds": -0.102286
+    },
+    {
+      "timeSeconds": 2.1,
+      "evidenceScore": 0.772641,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 2.020136,
+      "signedMusicOffsetSeconds": 0.079864
+    },
+    {
+      "timeSeconds": 2.333333,
+      "evidenceScore": 0.658048,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 2.577415,
+      "signedMusicOffsetSeconds": -0.244082
+    },
+    {
+      "timeSeconds": 2.533333,
+      "evidenceScore": 0.666991,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 2.577415,
+      "signedMusicOffsetSeconds": -0.044082
+    },
+    {
+      "timeSeconds": 2.833333,
+      "evidenceScore": 0.760779,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 2.577415,
+      "signedMusicOffsetSeconds": 0.255918
+    },
+    {
+      "timeSeconds": 3.0,
+      "evidenceScore": 0.774866,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 3.134694,
+      "signedMusicOffsetSeconds": -0.134694
+    },
+    {
+      "timeSeconds": 3.041106,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 3.134694,
+      "signedMusicOffsetSeconds": -0.093588
+    },
+    {
+      "timeSeconds": 3.166667,
+      "evidenceScore": 0.886298,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 3.134694,
+      "signedMusicOffsetSeconds": 0.031973
+    },
+    {
+      "timeSeconds": 3.266667,
+      "evidenceScore": 0.861595,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 3.134694,
+      "signedMusicOffsetSeconds": 0.131973
+    },
+    {
+      "timeSeconds": 3.433333,
+      "evidenceScore": 0.971286,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 3.715193,
+      "signedMusicOffsetSeconds": -0.281859
+    },
+    {
+      "timeSeconds": 3.6,
+      "evidenceScore": 0.851465,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 3.715193,
+      "signedMusicOffsetSeconds": -0.115193
+    },
+    {
+      "timeSeconds": 3.7,
+      "evidenceScore": 0.851098,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 3.715193,
+      "signedMusicOffsetSeconds": -0.015193
+    },
+    {
+      "timeSeconds": 3.937,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "direction-change",
+        "gesture-apex",
+        "lyric-boundary"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 3.715193,
+      "signedMusicOffsetSeconds": 0.221807
+    },
+    {
+      "timeSeconds": 4.1,
+      "evidenceScore": 0.800759,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 4.272472,
+      "signedMusicOffsetSeconds": -0.172472
+    },
+    {
+      "timeSeconds": 4.377991,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "gesture-apex",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 4.272472,
+      "signedMusicOffsetSeconds": 0.105519
+    },
+    {
+      "timeSeconds": 4.6,
+      "evidenceScore": 0.841316,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 4.852971,
+      "signedMusicOffsetSeconds": -0.252971
+    },
+    {
+      "timeSeconds": 4.809631,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 4.852971,
+      "signedMusicOffsetSeconds": -0.04334
+    },
+    {
+      "timeSeconds": 4.833333,
+      "evidenceScore": 0.830561,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 4.852971,
+      "signedMusicOffsetSeconds": -0.019637
+    },
+    {
+      "timeSeconds": 5.0,
+      "evidenceScore": 0.66,
+      "evidence": [
+        "direction-change"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 4.852971,
+      "signedMusicOffsetSeconds": 0.147029
+    },
+    {
+      "timeSeconds": 5.066667,
+      "evidenceScore": 0.720195,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 4.852971,
+      "signedMusicOffsetSeconds": 0.213696
+    },
+    {
+      "timeSeconds": 5.2,
+      "evidenceScore": 0.66,
+      "evidence": [
+        "direction-change"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 5.410249,
+      "signedMusicOffsetSeconds": -0.210249
+    },
+    {
+      "timeSeconds": 5.266667,
+      "evidenceScore": 0.796768,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 5.410249,
+      "signedMusicOffsetSeconds": -0.143583
+    },
+    {
+      "timeSeconds": 5.5,
+      "evidenceScore": 0.931757,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 5.410249,
+      "signedMusicOffsetSeconds": 0.089751
+    },
+    {
+      "timeSeconds": 5.794472,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex",
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 5.967528,
+      "signedMusicOffsetSeconds": -0.173056
+    },
+    {
+      "timeSeconds": 6.466667,
+      "evidenceScore": 0.622563,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 6.524807,
+      "signedMusicOffsetSeconds": -0.058141
+    },
+    {
+      "timeSeconds": 6.532609,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "downbeat",
+        "hold-or-completion",
+        "lyric-boundary",
+        "onset"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 6.524807,
+      "signedMusicOffsetSeconds": 0.007802
+    },
+    {
+      "timeSeconds": 6.633333,
+      "evidenceScore": 0.9,
+      "evidence": [
+        "eve-source-only-interpretation"
+      ],
+      "choreographyLandmark": "semantic-phrase-and-consensus-motion-anchor",
+      "nearestMusicEventSeconds": 6.524807,
+      "signedMusicOffsetSeconds": 0.108526
+    },
+    {
+      "timeSeconds": 6.766667,
+      "evidenceScore": 0.623036,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 6.524807,
+      "signedMusicOffsetSeconds": 0.241859
+    },
+    {
+      "timeSeconds": 6.851786,
+      "evidenceScore": 0.86,
+      "evidence": [
+        "direction-change",
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 7.105306,
+      "signedMusicOffsetSeconds": -0.25352
+    },
+    {
+      "timeSeconds": 7.635595,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 7.662585,
+      "signedMusicOffsetSeconds": -0.02699
+    },
+    {
+      "timeSeconds": 8.431082,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "hold-or-completion",
+        "lyric-boundary"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 8.243084,
+      "signedMusicOffsetSeconds": 0.187998
+    },
+    {
+      "timeSeconds": 8.812189,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 8.800363,
+      "signedMusicOffsetSeconds": 0.011826
+    },
+    {
+      "timeSeconds": 9.259206,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex",
+        "lyric-boundary",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 9.380862,
+      "signedMusicOffsetSeconds": -0.121656
+    },
+    {
+      "timeSeconds": 9.3,
+      "evidenceScore": 0.631435,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 9.380862,
+      "signedMusicOffsetSeconds": -0.080862
+    },
+    {
+      "timeSeconds": 9.5,
+      "evidenceScore": 0.714492,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 9.380862,
+      "signedMusicOffsetSeconds": 0.119138
+    },
+    {
+      "timeSeconds": 9.773913,
+      "evidenceScore": 0.86,
+      "evidence": [
+        "direction-change",
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 9.938141,
+      "signedMusicOffsetSeconds": -0.164228
+    },
+    {
+      "timeSeconds": 9.833333,
+      "evidenceScore": 0.660064,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 9.938141,
+      "signedMusicOffsetSeconds": -0.104807
+    },
+    {
+      "timeSeconds": 10.066667,
+      "evidenceScore": 0.846287,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 9.938141,
+      "signedMusicOffsetSeconds": 0.128526
+    },
+    {
+      "timeSeconds": 10.333333,
+      "evidenceScore": 0.921621,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 10.518639,
+      "signedMusicOffsetSeconds": -0.185306
+    },
+    {
+      "timeSeconds": 10.339052,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 10.518639,
+      "signedMusicOffsetSeconds": -0.179588
+    },
+    {
+      "timeSeconds": 10.566667,
+      "evidenceScore": 0.6599,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 10.518639,
+      "signedMusicOffsetSeconds": 0.048027
+    },
+    {
+      "timeSeconds": 10.7,
+      "evidenceScore": 0.675897,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 10.518639,
+      "signedMusicOffsetSeconds": 0.181361
+    },
+    {
+      "timeSeconds": 10.866667,
+      "evidenceScore": 0.696924,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 11.075918,
+      "signedMusicOffsetSeconds": -0.209252
+    },
+    {
+      "timeSeconds": 10.988023,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 11.075918,
+      "signedMusicOffsetSeconds": -0.087895
+    },
+    {
+      "timeSeconds": 11.1,
+      "evidenceScore": 0.679011,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 11.075918,
+      "signedMusicOffsetSeconds": 0.024082
+    },
+    {
+      "timeSeconds": 11.295581,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "direction-change",
+        "gesture-apex",
+        "lyric-boundary"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 11.075918,
+      "signedMusicOffsetSeconds": 0.219663
+    },
+    {
+      "timeSeconds": 11.5,
+      "evidenceScore": 0.684668,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 11.633197,
+      "signedMusicOffsetSeconds": -0.133197
+    },
+    {
+      "timeSeconds": 11.623896,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 11.633197,
+      "signedMusicOffsetSeconds": -0.009301
+    },
+    {
+      "timeSeconds": 11.7,
+      "evidenceScore": 0.766178,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 11.633197,
+      "signedMusicOffsetSeconds": 0.066803
+    },
+    {
+      "timeSeconds": 11.9292,
+      "evidenceScore": 0.86,
+      "evidence": [
+        "hold-or-completion",
+        "lyric-boundary"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 12.190476,
+      "signedMusicOffsetSeconds": -0.261276
+    },
+    {
+      "timeSeconds": 11.966667,
+      "evidenceScore": 0.791499,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 12.190476,
+      "signedMusicOffsetSeconds": -0.22381
+    },
+    {
+      "timeSeconds": 12.2,
+      "evidenceScore": 0.687648,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 12.190476,
+      "signedMusicOffsetSeconds": 0.009524
+    },
+    {
+      "timeSeconds": 12.209453,
+      "evidenceScore": 0.94,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 12.190476,
+      "signedMusicOffsetSeconds": 0.018977
+    },
+    {
+      "timeSeconds": 12.433333,
+      "evidenceScore": 0.633238,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 12.190476,
+      "signedMusicOffsetSeconds": 0.242857
+    },
+    {
+      "timeSeconds": 12.761528,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "gesture-apex",
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 12.747755,
+      "signedMusicOffsetSeconds": 0.013773
+    },
+    {
+      "timeSeconds": 12.833333,
+      "evidenceScore": 0.667859,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 12.747755,
+      "signedMusicOffsetSeconds": 0.085578
+    },
+    {
+      "timeSeconds": 13.083696,
+      "evidenceScore": 0.92,
+      "evidence": [
+        "direction-change",
+        "gesture-apex"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 13.328254,
+      "signedMusicOffsetSeconds": -0.244558
+    },
+    {
+      "timeSeconds": 13.166667,
+      "evidenceScore": 0.644099,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 13.328254,
+      "signedMusicOffsetSeconds": -0.161587
+    },
+    {
+      "timeSeconds": 13.3,
+      "evidenceScore": 0.62713,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 13.328254,
+      "signedMusicOffsetSeconds": -0.028254
+    },
+    {
+      "timeSeconds": 13.416505,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "gesture-apex",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 13.328254,
+      "signedMusicOffsetSeconds": 0.088251
+    },
+    {
+      "timeSeconds": 13.75,
+      "evidenceScore": 0.66,
+      "evidence": [
+        "direction-change"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 13.885533,
+      "signedMusicOffsetSeconds": -0.135533
+    },
+    {
+      "timeSeconds": 13.766667,
+      "evidenceScore": 0.61664,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 13.885533,
+      "signedMusicOffsetSeconds": -0.118866
+    },
+    {
+      "timeSeconds": 13.897277,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 13.885533,
+      "signedMusicOffsetSeconds": 0.011744
+    },
+    {
+      "timeSeconds": 14.2,
+      "evidenceScore": 0.646693,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 14.466032,
+      "signedMusicOffsetSeconds": -0.266032
+    },
+    {
+      "timeSeconds": 14.433333,
+      "evidenceScore": 0.632979,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 14.466032,
+      "signedMusicOffsetSeconds": -0.032698
+    },
+    {
+      "timeSeconds": 14.436208,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 14.466032,
+      "signedMusicOffsetSeconds": -0.029823
+    },
+    {
+      "timeSeconds": 14.6,
+      "evidenceScore": 0.652976,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 14.466032,
+      "signedMusicOffsetSeconds": 0.133968
+    },
+    {
+      "timeSeconds": 14.833333,
+      "evidenceScore": 0.651774,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 15.023311,
+      "signedMusicOffsetSeconds": -0.189977
+    },
+    {
+      "timeSeconds": 14.966667,
+      "evidenceScore": 0.630783,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 15.023311,
+      "signedMusicOffsetSeconds": -0.056644
+    },
+    {
+      "timeSeconds": 15.046112,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 15.023311,
+      "signedMusicOffsetSeconds": 0.022801
+    },
+    {
+      "timeSeconds": 15.1,
+      "evidenceScore": 0.664074,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 15.023311,
+      "signedMusicOffsetSeconds": 0.076689
+    },
+    {
+      "timeSeconds": 15.2,
+      "evidenceScore": 0.649106,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 15.023311,
+      "signedMusicOffsetSeconds": 0.176689
+    },
+    {
+      "timeSeconds": 15.333333,
+      "evidenceScore": 0.725625,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 15.58059,
+      "signedMusicOffsetSeconds": -0.247256
+    },
+    {
+      "timeSeconds": 15.433333,
+      "evidenceScore": 0.714212,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 15.58059,
+      "signedMusicOffsetSeconds": -0.147256
+    },
+    {
+      "timeSeconds": 15.455235,
+      "evidenceScore": 0.94,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 15.58059,
+      "signedMusicOffsetSeconds": -0.125355
+    },
+    {
+      "timeSeconds": 15.566667,
+      "evidenceScore": 0.735863,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 15.58059,
+      "signedMusicOffsetSeconds": -0.013923
+    },
+    {
+      "timeSeconds": 15.9,
+      "evidenceScore": 0.675305,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 16.161088,
+      "signedMusicOffsetSeconds": -0.261088
+    },
+    {
+      "timeSeconds": 16.033333,
+      "evidenceScore": 0.659343,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 16.161088,
+      "signedMusicOffsetSeconds": -0.127755
+    },
+    {
+      "timeSeconds": 16.033333,
+      "evidenceScore": 0.9,
+      "evidence": [
+        "eve-source-only-interpretation"
+      ],
+      "choreographyLandmark": "semantic-phrase-and-consensus-motion-anchor",
+      "nearestMusicEventSeconds": 16.161088,
+      "signedMusicOffsetSeconds": -0.127755
+    },
+    {
+      "timeSeconds": 16.053862,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex",
+        "hold-or-completion",
+        "lyric-boundary"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 16.161088,
+      "signedMusicOffsetSeconds": -0.107226
+    },
+    {
+      "timeSeconds": 16.4,
+      "evidenceScore": 0.662296,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 16.161088,
+      "signedMusicOffsetSeconds": 0.238912
+    },
+    {
+      "timeSeconds": 16.865025,
+      "evidenceScore": 0.8,
+      "evidence": [
+        "beat",
+        "direction-change"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 16.741587,
+      "signedMusicOffsetSeconds": 0.123438
+    },
+    {
+      "timeSeconds": 17.2,
+      "evidenceScore": 0.72,
+      "evidence": [
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 17.322086,
+      "signedMusicOffsetSeconds": -0.122086
+    },
+    {
+      "timeSeconds": 17.322086,
+      "evidenceScore": 0.32,
+      "evidence": [
+        "beat"
+      ],
+      "choreographyLandmark": null,
+      "nearestMusicEventSeconds": 17.322086,
+      "signedMusicOffsetSeconds": 0.0
+    },
+    {
+      "timeSeconds": 17.5,
+      "evidenceScore": 0.72,
+      "evidence": [
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 17.322086,
+      "signedMusicOffsetSeconds": 0.177914
+    },
+    {
+      "timeSeconds": 17.923766,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 17.856145,
+      "signedMusicOffsetSeconds": 0.067621
+    },
+    {
+      "timeSeconds": 17.933333,
+      "evidenceScore": 0.617273,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 17.856145,
+      "signedMusicOffsetSeconds": 0.077188
+    },
+    {
+      "timeSeconds": 18.3,
+      "evidenceScore": 0.664681,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 18.436644,
+      "signedMusicOffsetSeconds": -0.136644
+    },
+    {
+      "timeSeconds": 18.380381,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 18.436644,
+      "signedMusicOffsetSeconds": -0.056263
+    },
+    {
+      "timeSeconds": 19.074123,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex",
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 18.993923,
+      "signedMusicOffsetSeconds": 0.0802
+    },
+    {
+      "timeSeconds": 19.666667,
+      "evidenceScore": 0.9,
+      "evidence": [
+        "eve-source-only-interpretation"
+      ],
+      "choreographyLandmark": "semantic-phrase-and-consensus-motion-anchor",
+      "nearestMusicEventSeconds": 19.574422,
+      "signedMusicOffsetSeconds": 0.092245
+    },
+    {
+      "timeSeconds": 19.790204,
+      "evidenceScore": 0.94,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "lyric-boundary"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 19.574422,
+      "signedMusicOffsetSeconds": 0.215782
+    },
+    {
+      "timeSeconds": 19.966667,
+      "evidenceScore": 0.60918,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 20.108481,
+      "signedMusicOffsetSeconds": -0.141814
+    },
+    {
+      "timeSeconds": 20.154303,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 20.108481,
+      "signedMusicOffsetSeconds": 0.045822
+    },
+    {
+      "timeSeconds": 20.4,
+      "evidenceScore": 0.66,
+      "evidence": [
+        "direction-change"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 20.64254,
+      "signedMusicOffsetSeconds": -0.24254
+    },
+    {
+      "timeSeconds": 21.266622,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 21.246259,
+      "signedMusicOffsetSeconds": 0.020363
+    },
+    {
+      "timeSeconds": 21.833333,
+      "evidenceScore": 0.622723,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 21.803537,
+      "signedMusicOffsetSeconds": 0.029796
+    },
+    {
+      "timeSeconds": 22.066667,
+      "evidenceScore": 0.619329,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 21.803537,
+      "signedMusicOffsetSeconds": 0.263129
+    },
+    {
+      "timeSeconds": 22.138043,
+      "evidenceScore": 0.92,
+      "evidence": [
+        "direction-change",
+        "gesture-apex"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 22.384036,
+      "signedMusicOffsetSeconds": -0.245993
+    },
+    {
+      "timeSeconds": 22.4,
+      "evidenceScore": 0.658458,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 22.384036,
+      "signedMusicOffsetSeconds": 0.015964
+    },
+    {
+      "timeSeconds": 22.401095,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 22.384036,
+      "signedMusicOffsetSeconds": 0.017059
+    },
+    {
+      "timeSeconds": 22.654857,
+      "evidenceScore": 0.86,
+      "evidence": [
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 22.384036,
+      "signedMusicOffsetSeconds": 0.27082
+    },
+    {
+      "timeSeconds": 22.986589,
+      "evidenceScore": 0.94,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 22.941315,
+      "signedMusicOffsetSeconds": 0.045273
+    },
+    {
+      "timeSeconds": 23.699985,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 23.498594,
+      "signedMusicOffsetSeconds": 0.201391
+    },
+    {
+      "timeSeconds": 24.066667,
+      "evidenceScore": 0.624096,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 24.055873,
+      "signedMusicOffsetSeconds": 0.010794
+    },
+    {
+      "timeSeconds": 24.366667,
+      "evidenceScore": 0.657222,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 24.636372,
+      "signedMusicOffsetSeconds": -0.269705
+    },
+    {
+      "timeSeconds": 24.447143,
+      "evidenceScore": 0.92,
+      "evidence": [
+        "direction-change",
+        "gesture-apex"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 24.636372,
+      "signedMusicOffsetSeconds": -0.189229
+    },
+    {
+      "timeSeconds": 25.033333,
+      "evidenceScore": 0.652845,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 25.216871,
+      "signedMusicOffsetSeconds": -0.183537
+    },
+    {
+      "timeSeconds": 25.033333,
+      "evidenceScore": 0.9,
+      "evidence": [
+        "eve-source-only-interpretation"
+      ],
+      "choreographyLandmark": "semantic-phrase-and-consensus-motion-anchor",
+      "nearestMusicEventSeconds": 25.216871,
+      "signedMusicOffsetSeconds": -0.183538
+    },
+    {
+      "timeSeconds": 25.2,
+      "evidenceScore": 0.668472,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 25.216871,
+      "signedMusicOffsetSeconds": -0.016871
+    },
+    {
+      "timeSeconds": 25.789996,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "gesture-apex",
+        "hold-or-completion",
+        "lyric-boundary",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 25.79737,
+      "signedMusicOffsetSeconds": -0.007374
+    },
+    {
+      "timeSeconds": 25.9,
+      "evidenceScore": 0.644367,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 25.79737,
+      "signedMusicOffsetSeconds": 0.10263
+    },
+    {
+      "timeSeconds": 26.1,
+      "evidenceScore": 0.671779,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 26.377868,
+      "signedMusicOffsetSeconds": -0.277868
+    },
+    {
+      "timeSeconds": 26.466667,
+      "evidenceScore": 0.675521,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 26.377868,
+      "signedMusicOffsetSeconds": 0.088798
+    },
+    {
+      "timeSeconds": 26.7,
+      "evidenceScore": 0.656169,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 26.911927,
+      "signedMusicOffsetSeconds": -0.211927
+    },
+    {
+      "timeSeconds": 26.8,
+      "evidenceScore": 0.663948,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 26.911927,
+      "signedMusicOffsetSeconds": -0.111927
+    },
+    {
+      "timeSeconds": 26.933333,
+      "evidenceScore": 0.654343,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 26.911927,
+      "signedMusicOffsetSeconds": 0.021406
+    },
+    {
+      "timeSeconds": 27.066667,
+      "evidenceScore": 0.691407,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 26.911927,
+      "signedMusicOffsetSeconds": 0.154739
+    },
+    {
+      "timeSeconds": 27.327693,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 27.492426,
+      "signedMusicOffsetSeconds": -0.164733
+    },
+    {
+      "timeSeconds": 27.733333,
+      "evidenceScore": 0.645656,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 27.492426,
+      "signedMusicOffsetSeconds": 0.240907
+    },
+    {
+      "timeSeconds": 28.05278,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex",
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 28.049705,
+      "signedMusicOffsetSeconds": 0.003075
+    },
+    {
+      "timeSeconds": 28.60267,
+      "evidenceScore": 0.8,
+      "evidence": [
+        "beat",
+        "direction-change"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 28.630204,
+      "signedMusicOffsetSeconds": -0.027534
+    },
+    {
+      "timeSeconds": 29.096501,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "gesture-apex",
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 29.187483,
+      "signedMusicOffsetSeconds": -0.090982
+    },
+    {
+      "timeSeconds": 29.804477,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex",
+        "hold-or-completion",
+        "lyric-boundary",
+        "onset"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 29.744762,
+      "signedMusicOffsetSeconds": 0.059715
+    },
+    {
+      "timeSeconds": 30.342226,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 30.302041,
+      "signedMusicOffsetSeconds": 0.040185
+    },
+    {
+      "timeSeconds": 30.651471,
+      "evidenceScore": 0.86,
+      "evidence": [
+        "direction-change",
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 30.85932,
+      "signedMusicOffsetSeconds": -0.207849
+    },
+    {
+      "timeSeconds": 30.927765,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 30.85932,
+      "signedMusicOffsetSeconds": 0.068445
+    },
+    {
+      "timeSeconds": 31.380014,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 31.439819,
+      "signedMusicOffsetSeconds": -0.059804
+    },
+    {
+      "timeSeconds": 31.733333,
+      "evidenceScore": 0.688816,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 31.997098,
+      "signedMusicOffsetSeconds": -0.263764
+    },
+    {
+      "timeSeconds": 31.738755,
+      "evidenceScore": 0.92,
+      "evidence": [
+        "gesture-apex",
+        "onset"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 31.997098,
+      "signedMusicOffsetSeconds": -0.258342
+    },
+    {
+      "timeSeconds": 31.9,
+      "evidenceScore": 0.715908,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 31.997098,
+      "signedMusicOffsetSeconds": -0.097098
+    },
+    {
+      "timeSeconds": 32.0,
+      "evidenceScore": 0.679908,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 31.997098,
+      "signedMusicOffsetSeconds": 0.002902
+    },
+    {
+      "timeSeconds": 32.3,
+      "evidenceScore": 0.657177,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 32.577596,
+      "signedMusicOffsetSeconds": -0.277596
+    },
+    {
+      "timeSeconds": 32.4,
+      "evidenceScore": 0.676512,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 32.577596,
+      "signedMusicOffsetSeconds": -0.177596
+    },
+    {
+      "timeSeconds": 32.566667,
+      "evidenceScore": 0.677946,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 32.577596,
+      "signedMusicOffsetSeconds": -0.01093
+    },
+    {
+      "timeSeconds": 32.854082,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "gesture-apex",
+        "lyric-boundary",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 32.577596,
+      "signedMusicOffsetSeconds": 0.276485
+    },
+    {
+      "timeSeconds": 33.876087,
+      "evidenceScore": 0.86,
+      "evidence": [
+        "direction-change",
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 33.715374,
+      "signedMusicOffsetSeconds": 0.160713
+    },
+    {
+      "timeSeconds": 34.05,
+      "evidenceScore": 0.66,
+      "evidence": [
+        "direction-change"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 34.272653,
+      "signedMusicOffsetSeconds": -0.222653
+    },
+    {
+      "timeSeconds": 34.254119,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 34.272653,
+      "signedMusicOffsetSeconds": -0.018534
+    },
+    {
+      "timeSeconds": 34.466667,
+      "evidenceScore": 0.749416,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 34.272653,
+      "signedMusicOffsetSeconds": 0.194014
+    },
+    {
+      "timeSeconds": 34.521739,
+      "evidenceScore": 0.92,
+      "evidence": [
+        "direction-change",
+        "gesture-apex"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 34.272653,
+      "signedMusicOffsetSeconds": 0.249086
+    },
+    {
+      "timeSeconds": 34.6,
+      "evidenceScore": 0.816323,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 34.829932,
+      "signedMusicOffsetSeconds": -0.229932
+    },
+    {
+      "timeSeconds": 34.8,
+      "evidenceScore": 0.818381,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 34.829932,
+      "signedMusicOffsetSeconds": -0.029932
+    },
+    {
+      "timeSeconds": 34.869949,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "hold-or-completion",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 34.829932,
+      "signedMusicOffsetSeconds": 0.040017
+    },
+    {
+      "timeSeconds": 35.166667,
+      "evidenceScore": 0.633725,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 35.433651,
+      "signedMusicOffsetSeconds": -0.266984
+    },
+    {
+      "timeSeconds": 35.26109,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 35.433651,
+      "signedMusicOffsetSeconds": -0.17256
+    },
+    {
+      "timeSeconds": 35.533333,
+      "evidenceScore": 0.638497,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 35.433651,
+      "signedMusicOffsetSeconds": 0.099683
+    },
+    {
+      "timeSeconds": 35.8,
+      "evidenceScore": 0.752697,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 35.96771,
+      "signedMusicOffsetSeconds": -0.16771
+    },
+    {
+      "timeSeconds": 35.933333,
+      "evidenceScore": 0.878283,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 35.96771,
+      "signedMusicOffsetSeconds": -0.034376
+    },
+    {
+      "timeSeconds": 36.030589,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "gesture-apex",
+        "onset"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 35.96771,
+      "signedMusicOffsetSeconds": 0.062879
+    },
+    {
+      "timeSeconds": 36.133333,
+      "evidenceScore": 0.781435,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 35.96771,
+      "signedMusicOffsetSeconds": 0.165624
+    },
+    {
+      "timeSeconds": 36.3,
+      "evidenceScore": 0.759726,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 36.548209,
+      "signedMusicOffsetSeconds": -0.248209
+    },
+    {
+      "timeSeconds": 36.566667,
+      "evidenceScore": 0.65464,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 36.548209,
+      "signedMusicOffsetSeconds": 0.018458
+    },
+    {
+      "timeSeconds": 36.766667,
+      "evidenceScore": 0.626134,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 36.548209,
+      "signedMusicOffsetSeconds": 0.218458
+    },
+    {
+      "timeSeconds": 36.857355,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex",
+        "onset"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 37.105488,
+      "signedMusicOffsetSeconds": -0.248132
+    },
+    {
+      "timeSeconds": 36.966667,
+      "evidenceScore": 0.660049,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 37.105488,
+      "signedMusicOffsetSeconds": -0.138821
+    },
+    {
+      "timeSeconds": 37.066667,
+      "evidenceScore": 0.660004,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 37.105488,
+      "signedMusicOffsetSeconds": -0.038821
+    },
+    {
+      "timeSeconds": 37.391429,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "direction-change",
+        "gesture-apex",
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 37.105488,
+      "signedMusicOffsetSeconds": 0.285941
+    },
+    {
+      "timeSeconds": 37.566667,
+      "evidenceScore": 0.635671,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 37.685986,
+      "signedMusicOffsetSeconds": -0.11932
+    },
+    {
+      "timeSeconds": 37.842054,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex",
+        "lyric-boundary"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 37.685986,
+      "signedMusicOffsetSeconds": 0.156068
+    },
+    {
+      "timeSeconds": 38.243711,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "downbeat",
+        "gesture-apex",
+        "onset"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 38.243265,
+      "signedMusicOffsetSeconds": 0.000446
+    },
+    {
+      "timeSeconds": 38.4,
+      "evidenceScore": 0.72,
+      "evidence": [
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 38.243265,
+      "signedMusicOffsetSeconds": 0.156735
+    },
+    {
+      "timeSeconds": 38.433333,
+      "evidenceScore": 0.672244,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 38.243265,
+      "signedMusicOffsetSeconds": 0.190068
+    },
+    {
+      "timeSeconds": 38.55,
+      "evidenceScore": 0.66,
+      "evidence": [
+        "direction-change"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 38.800544,
+      "signedMusicOffsetSeconds": -0.250544
+    },
+    {
+      "timeSeconds": 38.566667,
+      "evidenceScore": 0.761278,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 38.800544,
+      "signedMusicOffsetSeconds": -0.233878
+    },
+    {
+      "timeSeconds": 38.733333,
+      "evidenceScore": 0.761954,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 38.800544,
+      "signedMusicOffsetSeconds": -0.067211
+    },
+    {
+      "timeSeconds": 38.933333,
+      "evidenceScore": 0.816182,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 38.800544,
+      "signedMusicOffsetSeconds": 0.132789
+    },
+    {
+      "timeSeconds": 39.132406,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "beat",
+        "direction-change",
+        "gesture-apex",
+        "hold-or-completion",
+        "lyric-boundary",
+        "onset"
+      ],
+      "choreographyLandmark": "movement-completion",
+      "nearestMusicEventSeconds": 39.357823,
+      "signedMusicOffsetSeconds": -0.225417
+    },
+    {
+      "timeSeconds": 39.333333,
+      "evidenceScore": 0.760911,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 39.357823,
+      "signedMusicOffsetSeconds": -0.02449
+    },
+    {
+      "timeSeconds": 39.533333,
+      "evidenceScore": 0.680364,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 39.357823,
+      "signedMusicOffsetSeconds": 0.17551
+    },
+    {
+      "timeSeconds": 39.725,
+      "evidenceScore": 0.66,
+      "evidence": [
+        "direction-change"
+      ],
+      "choreographyLandmark": "wrist-direction-change",
+      "nearestMusicEventSeconds": 39.357823,
+      "signedMusicOffsetSeconds": 0.367177
+    },
+    {
+      "timeSeconds": 39.866667,
+      "evidenceScore": 0.619931,
+      "evidence": [
+        "consensus-direction-change"
+      ],
+      "choreographyLandmark": "multi-track-wrist-direction-change",
+      "nearestMusicEventSeconds": 39.357823,
+      "signedMusicOffsetSeconds": 0.508844
+    },
+    {
+      "timeSeconds": 40.096875,
+      "evidenceScore": 1.0,
+      "evidence": [
+        "direction-change",
+        "gesture-apex",
+        "hold-or-completion"
+      ],
+      "choreographyLandmark": "motion-apex",
+      "nearestMusicEventSeconds": 39.357823,
+      "signedMusicOffsetSeconds": 0.739052
+    }
+  ],
+  "alignmentEvidence": {
+    "schemaVersion": "nodevideo.reference-performer-selection.v1",
+    "sha256": "f08dfd86a0c4e2791778c1a6af0a79ed162e3b19b3ad27ecc5b332c4b504e75f"
+  },
+  "phrases": [
+    {
+      "id": "phrase.1",
+      "timelineStartSeconds": 0.0,
+      "timelineEndSeconds": 6.633333,
+      "candidates": [
+        {
+          "takeAssetId": "asset.take-a",
+          "sourceStartSeconds": 15.5,
+          "sourceEndSeconds": 22.133333,
+          "poseDistance": 1.768299,
+          "expression": 0.1853158724669441,
+          "bodyBox": {
+            "x": 0.461817,
+            "y": 0.111402,
+            "width": 0.117073,
+            "height": 0.643507
+          },
+          "scores": {
+            "choreography": 0.170623,
+            "completeness": 1.0,
+            "framing": 0.997704,
+            "expression": 0.0
+          },
+          "totalScore": 0.417905,
+          "groundingStatus": "source-only-pose-track"
+        },
+        {
+          "takeAssetId": "asset.take-b",
+          "sourceStartSeconds": 25.5,
+          "sourceEndSeconds": 32.133333,
+          "poseDistance": 1.418313,
+          "expression": 0.2063079416976969,
+          "bodyBox": {
+            "x": 0.423172,
+            "y": 0.205941,
+            "width": 0.131984,
+            "height": 0.622651
+          },
+          "scores": {
+            "choreography": 0.242122,
+            "completeness": 1.0,
+            "framing": 1.0,
+            "expression": 1.0
+          },
+          "totalScore": 0.696849,
+          "groundingStatus": "source-only-pose-track"
+        }
+      ],
+      "selectedTakeAssetId": "asset.take-a",
+      "selectionReason": "Globally selected from source-only interval quality and transition coherence.",
+      "framingTemplate": "fit",
+      "captionSafeZone": {
+        "x": 0.1,
+        "y": 0.779909,
+        "width": 0.8,
+        "height": 0.075
+      },
+      "outBoundaryDecision": {
+        "evidence": [
+          "eve-source-only-interpretation"
+        ],
+        "evidenceScore": 0.9,
+        "choreographyLandmark": "semantic-phrase-and-consensus-motion-anchor",
+        "nearestMusicEventSeconds": 6.524807,
+        "signedMusicOffsetSeconds": 0.108526,
+        "reason": "Jointly maximizes choreography, music, lyric, take-quality, and transition evidence.",
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "phrase.2",
+      "timelineStartSeconds": 6.633333,
+      "timelineEndSeconds": 16.033333,
+      "candidates": [
+        {
+          "takeAssetId": "asset.take-a",
+          "sourceStartSeconds": 22.133333,
+          "sourceEndSeconds": 31.533333,
+          "poseDistance": 0.855084,
+          "expression": 0.18757773452896043,
+          "bodyBox": {
+            "x": 0.416504,
+            "y": 0.079185,
+            "width": 0.223103,
+            "height": 0.681719
+          },
+          "scores": {
+            "choreography": 0.425247,
+            "completeness": 1.0,
+            "framing": 0.996727,
+            "expression": 0.0
+          },
+          "totalScore": 0.519608,
+          "groundingStatus": "source-only-pose-track"
+        },
+        {
+          "takeAssetId": "asset.take-b",
+          "sourceStartSeconds": 32.133333,
+          "sourceEndSeconds": 41.533333,
+          "poseDistance": 0.887244,
+          "expression": 0.2058293738640077,
+          "bodyBox": {
+            "x": 0.373994,
+            "y": 0.165389,
+            "width": 0.243193,
+            "height": 0.669962
+          },
+          "scores": {
+            "choreography": 0.411789,
+            "completeness": 1.0,
+            "framing": 1.0,
+            "expression": 1.0
+          },
+          "totalScore": 0.764716,
+          "groundingStatus": "source-only-pose-track"
+        }
+      ],
+      "selectedTakeAssetId": "asset.take-b",
+      "selectionReason": "Globally selected from source-only interval quality and transition coherence.",
+      "framingTemplate": "fill",
+      "captionSafeZone": {
+        "x": 0.1,
+        "y": 0.049617,
+        "width": 0.8,
+        "height": 0.075
+      },
+      "outBoundaryDecision": {
+        "evidence": [
+          "consensus-direction-change"
+        ],
+        "evidenceScore": 0.659343,
+        "choreographyLandmark": "multi-track-wrist-direction-change",
+        "nearestMusicEventSeconds": 16.161088,
+        "signedMusicOffsetSeconds": -0.127755,
+        "reason": "Jointly maximizes choreography, music, lyric, take-quality, and transition evidence.",
+        "confidence": 0.779672
+      }
+    },
+    {
+      "id": "phrase.3",
+      "timelineStartSeconds": 16.033333,
+      "timelineEndSeconds": 19.666667,
+      "candidates": [
+        {
+          "takeAssetId": "asset.take-a",
+          "sourceStartSeconds": 31.533333,
+          "sourceEndSeconds": 35.166667,
+          "poseDistance": 1.001013,
+          "expression": 0.13584642031673239,
+          "bodyBox": {
+            "x": 0.465509,
+            "y": 0.102832,
+            "width": 0.144514,
+            "height": 0.655193
+          },
+          "scores": {
+            "choreography": 0.367507,
+            "completeness": 1.0,
+            "framing": 0.997921,
+            "expression": 0.0
+          },
+          "totalScore": 0.496691,
+          "groundingStatus": "source-only-pose-track"
+        },
+        {
+          "takeAssetId": "asset.take-b",
+          "sourceStartSeconds": 41.533333,
+          "sourceEndSeconds": 45.166667,
+          "poseDistance": 1.199554,
+          "expression": 0.1947814367340747,
+          "bodyBox": {
+            "x": 0.487324,
+            "y": 0.168054,
+            "width": 0.150531,
+            "height": 0.667742
+          },
+          "scores": {
+            "choreography": 0.301328,
+            "completeness": 1.0,
+            "framing": 1.0,
+            "expression": 1.0
+          },
+          "totalScore": 0.720531,
+          "groundingStatus": "source-only-pose-track"
+        }
+      ],
+      "selectedTakeAssetId": "asset.take-a",
+      "selectionReason": "Globally selected from source-only interval quality and transition coherence.",
+      "framingTemplate": "fit",
+      "captionSafeZone": {
+        "x": 0.1,
+        "y": 0.783025,
+        "width": 0.8,
+        "height": 0.075
+      },
+      "outBoundaryDecision": {
+        "evidence": [
+          "eve-source-only-interpretation"
+        ],
+        "evidenceScore": 0.9,
+        "choreographyLandmark": "semantic-phrase-and-consensus-motion-anchor",
+        "nearestMusicEventSeconds": 19.574422,
+        "signedMusicOffsetSeconds": 0.092245,
+        "reason": "Jointly maximizes choreography, music, lyric, take-quality, and transition evidence.",
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "phrase.4",
+      "timelineStartSeconds": 19.666667,
+      "timelineEndSeconds": 25.033333,
+      "candidates": [
+        {
+          "takeAssetId": "asset.take-a",
+          "sourceStartSeconds": 35.166667,
+          "sourceEndSeconds": 40.533333,
+          "poseDistance": 0.716329,
+          "expression": 0.12745683599102303,
+          "bodyBox": {
+            "x": 0.407155,
+            "y": 0.197718,
+            "width": 0.170603,
+            "height": 0.575295
+          },
+          "scores": {
+            "choreography": 0.488542,
+            "completeness": 1.0,
+            "framing": 1.0,
+            "expression": 1.0
+          },
+          "totalScore": 0.795417,
+          "groundingStatus": "source-only-pose-track"
+        },
+        {
+          "takeAssetId": "asset.take-b",
+          "sourceStartSeconds": 45.166667,
+          "sourceEndSeconds": 50.533333,
+          "poseDistance": 0.719194,
+          "expression": 0.12147442719462306,
+          "bodyBox": {
+            "x": 0.176791,
+            "y": 0.281178,
+            "width": 0.453237,
+            "height": 0.565115
+          },
+          "scores": {
+            "choreography": 0.487145,
+            "completeness": 1.0,
+            "framing": 1.0,
+            "expression": 0.0
+          },
+          "totalScore": 0.544858,
+          "groundingStatus": "source-only-pose-track"
+        }
+      ],
+      "selectedTakeAssetId": "asset.take-b",
+      "selectionReason": "Globally selected from source-only interval quality and transition coherence.",
+      "framingTemplate": "fill",
+      "captionSafeZone": {
+        "x": 0.1,
+        "y": 0.084353,
+        "width": 0.8,
+        "height": 0.075
+      },
+      "outBoundaryDecision": {
+        "evidence": [
+          "consensus-direction-change"
+        ],
+        "evidenceScore": 0.652845,
+        "choreographyLandmark": "multi-track-wrist-direction-change",
+        "nearestMusicEventSeconds": 25.216871,
+        "signedMusicOffsetSeconds": -0.183537,
+        "reason": "Jointly maximizes choreography, music, lyric, take-quality, and transition evidence.",
+        "confidence": 0.776423
+      }
+    },
+    {
+      "id": "phrase.5",
+      "timelineStartSeconds": 25.033333,
+      "timelineEndSeconds": 40.466667,
+      "candidates": [
+        {
+          "takeAssetId": "asset.take-a",
+          "sourceStartSeconds": 40.533333,
+          "sourceEndSeconds": 55.966667,
+          "poseDistance": 0.797402,
+          "expression": 0.1368599110745825,
+          "bodyBox": {
+            "x": 0.388151,
+            "y": 0.0924,
+            "width": 0.194479,
+            "height": 0.673087
+          },
+          "scores": {
+            "choreography": 0.450498,
+            "completeness": 0.974194,
+            "framing": 0.967742,
+            "expression": 0.0
+          },
+          "totalScore": 0.520199,
+          "groundingStatus": "source-only-pose-track"
+        },
+        {
+          "takeAssetId": "asset.take-b",
+          "sourceStartSeconds": 50.533333,
+          "sourceEndSeconds": 65.966667,
+          "poseDistance": 0.740454,
+          "expression": 0.14245246831488978,
+          "bodyBox": {
+            "x": 0.43858,
+            "y": 0.200687,
+            "width": 0.17735,
+            "height": 0.634408
+          },
+          "scores": {
+            "choreography": 0.476898,
+            "completeness": 1.0,
+            "framing": 1.0,
+            "expression": 1.0
+          },
+          "totalScore": 0.790759,
+          "groundingStatus": "source-only-pose-track"
+        }
+      ],
+      "selectedTakeAssetId": "asset.take-a",
+      "selectionReason": "Globally selected from source-only interval quality and transition coherence.",
+      "framingTemplate": "fit",
+      "captionSafeZone": {
+        "x": 0.1,
+        "y": 0.790487,
+        "width": 0.8,
+        "height": 0.075
+      },
+      "outBoundaryDecision": {
+        "evidence": [
+          "terminal"
+        ],
+        "reason": "Declared song excerpt end."
+      }
+    }
+  ],
+  "lyricCues": [
+    {
+      "id": "lyric.1",
+      "text": "Wait a minute",
+      "startSeconds": 0.0,
+      "endSeconds": 1.92
+    },
+    {
+      "id": "lyric.2",
+      "text": "Left \u00b7 right \u00b7 alright",
+      "startSeconds": 1.92,
+      "endSeconds": 3.94
+    },
+    {
+      "id": "lyric.3",
+      "text": "Flip it a little closer",
+      "startSeconds": 3.94,
+      "endSeconds": 6.6
+    },
+    {
+      "id": "lyric.4",
+      "text": "Red light \u00b7 on fire",
+      "startSeconds": 6.6,
+      "endSeconds": 8.4
+    },
+    {
+      "id": "lyric.5",
+      "text": "Right now \u00b7 it's so tight",
+      "startSeconds": 9.0,
+      "endSeconds": 11.22
+    },
+    {
+      "id": "lyric.6",
+      "text": "Take that as a sign",
+      "startSeconds": 11.94,
+      "endSeconds": 15.8
+    },
+    {
+      "id": "lyric.7",
+      "text": "Show me your sign",
+      "startSeconds": 15.8,
+      "endSeconds": 19.8
+    },
+    {
+      "id": "lyric.8",
+      "text": "Tiki taki tak \u00b7 tiki tiki taki tak",
+      "startSeconds": 19.8,
+      "endSeconds": 25.28
+    },
+    {
+      "id": "lyric.9",
+      "text": "Make up your mind",
+      "startSeconds": 25.28,
+      "endSeconds": 26.62
+    },
+    {
+      "id": "lyric.10",
+      "text": "Show me your sign",
+      "startSeconds": 26.62,
+      "endSeconds": 29.5
+    },
+    {
+      "id": "lyric.11",
+      "text": "Tiki taki tak \u00b7 tiki tiki taki tak",
+      "startSeconds": 29.5,
+      "endSeconds": 33.62
+    },
+    {
+      "id": "lyric.12",
+      "text": "Take that as a sign",
+      "startSeconds": 33.62,
+      "endSeconds": 37.9
+    },
+    {
+      "id": "lyric.13",
+      "text": "Stay here",
+      "startSeconds": 38.94,
+      "endSeconds": 40.34
+    }
+  ],
+  "generationIsolation": {
+    "finishedEditAcceptedAsInput": false,
+    "finishedEditPictureRead": false,
+    "finishedEditPlanRead": false
+  },
+  "warnings": []
+}

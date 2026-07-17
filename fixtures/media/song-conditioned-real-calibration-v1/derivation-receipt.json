@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "nodevideo.picture-only-derivation.v1",
+  "createdAt": "2026-07-16T00:21:10.959Z",
+  "sourceFreezeReceiptSha256": "7d30ac335c10420fa03b134324e60c10db6d35c035181c0dec97912af3b8a474",
+  "sourceRenderSha256": "33525b682e0087f55fefa6998b5e5c0101f0af3a1ed2b8d00ed48bd74511f761",
+  "publishedPreviewSha256": "4be7c3081cfe3244198e7ae163f4213e201bf6a1786606882670f1cc2b7399c2",
+  "transform": "copy-video-stream-remove-all-audio-faststart",
+  "audioRemoved": true
+}

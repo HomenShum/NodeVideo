@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import { resolve } from 'node:path';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
 import { compileEditPlan, readEditPlanInputs, renderEditPlan } from './edit-plan-renderer-lib.mjs';
 
 const options = parseArguments(process.argv.slice(2));
@@ -11,6 +12,10 @@ if (options.dryRun) {
     outputPath: options.outputPath,
     auxiliaryDirectory: options.auxiliaryDirectory,
   });
+  if (options.manifestOutputPath) {
+    await mkdir(dirname(options.manifestOutputPath), { recursive: true });
+    await writeFile(options.manifestOutputPath, `${JSON.stringify(compiled.manifest, null, 2)}\n`);
+  }
   console.log(
     JSON.stringify(
       {
@@ -34,6 +39,10 @@ const result = await renderEditPlan({
   auxiliaryDirectory: options.auxiliaryDirectory,
   ffmpeg: options.ffmpeg,
 });
+if (options.manifestOutputPath) {
+  await mkdir(dirname(options.manifestOutputPath), { recursive: true });
+  await writeFile(options.manifestOutputPath, `${JSON.stringify(result.manifest, null, 2)}\n`);
+}
 console.log(
   `Rendered ${result.manifest.durationFrames} frames for plan ${result.manifest.planId} ` +
     `with ${result.rendererVersion}.`,
@@ -47,6 +56,7 @@ function parseArguments(args) {
     '--work-dir',
     '--ffmpeg',
     '--dry-run',
+    '--manifest-output',
   ]);
   for (const value of args) {
     if (value.startsWith('--') && !allowed.has(value)) {
@@ -58,12 +68,14 @@ function parseArguments(args) {
   const outputPath = requiredValue(args, '--output');
   const workDir = optionalValue(args, '--work-dir');
   const ffmpeg = optionalValue(args, '--ffmpeg');
+  const manifestOutput = optionalValue(args, '--manifest-output');
   return {
     planPath: resolve(planPath),
     bindingsPath: resolve(bindingsPath),
     outputPath: resolve(outputPath),
     auxiliaryDirectory: workDir ? resolve(workDir) : undefined,
     ffmpeg,
+    manifestOutputPath: manifestOutput ? resolve(manifestOutput) : undefined,
     dryRun: args.includes('--dry-run'),
   };
 }

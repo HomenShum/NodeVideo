@@ -1,0 +1,573 @@
+#!/usr/bin/env node
+
+import { execFile } from 'node:child_process';
+import { createHash, randomBytes } from 'node:crypto';
+import { createReadStream } from 'node:fs';
+import { copyFile, mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
+import { createServer } from 'node:http';
+import { basename, join, resolve } from 'node:path';
+import { Readable } from 'node:stream';
+import { promisify } from 'node:util';
+
+const exec = promisify(execFile);
+const root = resolve(import.meta.dirname, '../..');
+const host = process.env.NODEVIDEO_COACH_HOST ?? '127.0.0.1';
+const port = Number(process.env.NODEVIDEO_COACH_PORT ?? 4319);
+const token = process.env.NODEVIDEO_COACH_TOKEN ?? randomBytes(18).toString('base64url');
+const python = process.env.NODEVIDEO_PYTHON ?? 'python';
+const model = resolve(
+  process.env.NODEVIDEO_POSE_MODEL ?? join(root, '.qa/models/pose_landmarker_full.task'),
+);
+const jobsRoot = resolve(
+  process.env.NODEVIDEO_COACH_JOBS ?? join(root, '.qa/evidence/private/choreography-jobs'),
+);
+const poseCacheRoot = resolve(root, '.qa/cache/private-pose');
+const analysisMediaCacheRoot = resolve(root, '.qa/cache/private-analysis-media');
+const jobs = new Map();
+const maxUpload = 700 * 1024 * 1024;
+// Bound the in-memory job registry and the number of concurrently running
+// jobs. Each job spawns yt-dlp + ffmpeg + Python, so an unbounded registry or
+// unbounded concurrency exhausts memory/CPU under an agent loop.
+const TERMINAL_STATUSES = new Set(['completed', 'abstained', 'failed']);
+const maxJobs = Math.max(1, Number(process.env.NODEVIDEO_COACH_MAX_JOBS ?? 200));
+const maxActiveJobs = Math.max(1, Number(process.env.NODEVIDEO_COACH_MAX_ACTIVE ?? 2));
+let activeJobs = 0;
+
+function evictTerminalJobs() {
+  if (jobs.size <= maxJobs) return;
+  const evictable = [...jobs.values()]
+    .filter((job) => TERMINAL_STATUSES.has(job.status))
+    .sort((a, b) => (a.createdAt < b.createdAt ? -1 : a.createdAt > b.createdAt ? 1 : 0));
+  while (jobs.size > maxJobs && evictable.length > 0) {
+    jobs.delete(evictable.shift().id);
+  }
+}
+
+await mkdir(jobsRoot, { recursive: true });
+await mkdir(poseCacheRoot, { recursive: true });
+await mkdir(analysisMediaCacheRoot, { recursive: true });
+await restoreJobs();
+
+const server = createServer(async (request, response) => {
+  const origin = request.headers.origin ?? '';
+  if (origin && !isAllowedOrigin(origin))
+    return json(response, 403, { error: 'origin_not_allowed' });
+  if (origin) response.setHeader('access-control-allow-origin', origin);
+  response.setHeader('vary', 'origin');
+  response.setHeader('access-control-allow-headers', 'authorization,content-type');
+  response.setHeader('access-control-allow-methods', 'GET,POST,OPTIONS');
+  if (request.method === 'OPTIONS') return response.writeHead(204).end();
+  try {
+    if (request.method === 'GET' && request.url === '/health') {
+      return json(response, 200, {
+        service: 'nodevideo-choreography-coach',
+        version: 1,
+        privateLocal: true,
+      });
+    }
+    if (!authorized(request)) return json(response, 401, { error: 'invalid_token' });
+    if (request.method === 'POST' && request.url === '/v1/jobs')
+      return createJob(request, response);
+    const jobMatch = request.url?.match(/^\/v1\/jobs\/([a-z0-9-]+)$/);
+    if (request.method === 'GET' && jobMatch) {
+      const job = jobs.get(jobMatch[1]);
+      return job
+        ? json(response, 200, publicJob(job))
+        : json(response, 404, { error: 'job_not_found' });
+    }
+    const artifactMatch = request.url?.match(
+      /^\/v1\/jobs\/([a-z0-9-]+)\/artifacts\/([a-z0-9.-]+)$/,
+    );
+    if (request.method === 'GET' && artifactMatch)
+      return serveArtifact(response, artifactMatch[1], artifactMatch[2]);
+    return json(response, 404, { error: 'not_found' });
+  } catch (error) {
+    return json(response, 400, {
+      error: error instanceof Error ? error.message : 'request_failed',
+    });
+  }
+});
+
+server.listen(port, host, () => {
+  console.log(`NodeVideo choreography coach listening at http://${host}:${port}`);
+  console.log(`Extension token: ${token}`);
+  console.log('Private local analysis only; no media is uploaded by this service.');
+});
+
+async function createJob(request, response) {
+  if (activeJobs >= maxActiveJobs)
+    return json(response, 429, {
+      error: 'too_many_active_jobs',
+      activeJobs,
+      maxActiveJobs,
+    });
+  const contentLength = Number(request.headers['content-length'] ?? 0);
+  if (contentLength <= 0 || contentLength > maxUpload)
+    return json(response, 413, { error: 'upload_too_large' });
+  const webRequest = new Request('http://localhost/v1/jobs', {
+    method: 'POST',
+    headers: request.headers,
+    body: Readable.toWeb(request),
+    duplex: 'half',
+  });
+  const form = await webRequest.formData();
+  if (form.get('rightsConfirmed') !== 'true')
+    return json(response, 422, { error: 'rights_confirmation_required' });
+  const attempt = form.get('attempt');
+  const referenceFile = form.get('reference');
+  const referenceUrl = String(form.get('referenceUrl') ?? '').trim();
+  if (!(attempt instanceof File) || attempt.size === 0)
+    return json(response, 422, { error: 'attempt_required' });
+  if (!(referenceFile instanceof File) && !validYouTubeUrl(referenceUrl)) {
+    return json(response, 422, { error: 'youtube_reference_or_file_required' });
+  }
+  const referenceStartSeconds = optionalNumber(form.get('referenceStartSeconds'));
+  const referenceEndSeconds = optionalNumber(form.get('referenceEndSeconds'));
+  if (
+    (referenceStartSeconds === null) !== (referenceEndSeconds === null) ||
+    (referenceStartSeconds !== null &&
+      (!Number.isFinite(referenceStartSeconds) ||
+        !Number.isFinite(referenceEndSeconds) ||
+        referenceStartSeconds < 0 ||
+        referenceEndSeconds <= referenceStartSeconds ||
+        referenceEndSeconds - referenceStartSeconds > 90))
+  ) {
+    return json(response, 422, { error: 'invalid_reference_segment' });
+  }
+  const id = `coach-${Date.now().toString(36)}-${randomBytes(3).toString('hex')}`;
+  const directory = join(jobsRoot, id);
+  await mkdir(directory, { recursive: true });
+  const attemptOriginalPath = join(directory, safeMediaName('attempt', attempt.name));
+  await writeFile(attemptOriginalPath, Buffer.from(await attempt.arrayBuffer()));
+  let referencePath = null;
+  if (referenceFile instanceof File && referenceFile.size > 0) {
+    referencePath = join(directory, safeMediaName('reference', referenceFile.name));
+    await writeFile(referencePath, Buffer.from(await referenceFile.arrayBuffer()));
+  }
+  const job = {
+    id,
+    status: 'queued',
+    stage: 'queued',
+    progress: 0,
+    directory,
+    attemptOriginalPath,
+    attemptPath: attemptOriginalPath,
+    referencePath,
+    referenceUrl,
+    referenceStartSeconds,
+    referenceEndSeconds,
+    people: clamp(Number(form.get('people') ?? 10), 1, 10),
+    createdAt: new Date().toISOString(),
+    artifacts: {},
+    events: [],
+  };
+  jobs.set(id, job);
+  evictTerminalJobs();
+  await persist(job);
+  void runJob(job);
+  return json(response, 202, publicJob(job));
+}
+
+async function runJob(job) {
+  activeJobs += 1;
+  try {
+    if (!job.referencePath) {
+      update(job, 'acquiring_reference', 8, 'Resolving authorized YouTube reference');
+      job.referencePath = join(job.directory, 'reference.mp4');
+      await exec(
+        'yt-dlp',
+        [
+          '--no-playlist',
+          '--match-filter',
+          'duration <= 900',
+          '--max-filesize',
+          '500M',
+          '-f',
+          'bv*[height<=720]+ba/b[height<=720]',
+          '--merge-output-format',
+          'mp4',
+          '-o',
+          job.referencePath,
+          job.referenceUrl,
+        ],
+        { timeout: 10 * 60_000, windowsHide: true },
+      );
+    }
+    if (
+      job.referenceStartSeconds === null &&
+      job.referenceEndSeconds === null &&
+      (await mediaDurationSeconds(job.referencePath)) > 90
+    ) {
+      throw new Error('reference_segment_required_for_long_video');
+    }
+    update(job, 'normalizing_attempt', 14, 'Preparing a deterministic analysis proxy');
+    job.attemptPath = await ensureAnalysisProxy(
+      job.attemptOriginalPath ?? job.attemptPath,
+      job.directory,
+    );
+    await ensureModel();
+    const referenceTrack = join(job.directory, 'reference-pose.npz');
+    const attemptTrack = join(job.directory, 'attempt-pose.npz');
+    update(job, 'extracting_reference_pose', 22, 'Running MediaPipe on reference');
+    await extractPose(job.referencePath, referenceTrack, job.people);
+    update(job, 'extracting_attempt_pose', 43, 'Running MediaPipe on attempt');
+    await extractPose(job.attemptPath, attemptTrack, job.people);
+    update(job, 'aligning_motion', 62, 'Aligning choreography with constrained DTW');
+    const verdictPath = join(job.directory, 'verdict.json');
+    const judgeArguments = [
+      join(root, 'scripts/analysis/choreography_judge.py'),
+      '--reference-track',
+      referenceTrack,
+      '--attempt-track',
+      attemptTrack,
+      '--output',
+      verdictPath,
+    ];
+    if (job.referenceStartSeconds !== null && job.referenceEndSeconds !== null) {
+      judgeArguments.push(
+        '--reference-start',
+        String(job.referenceStartSeconds),
+        '--reference-end',
+        String(job.referenceEndSeconds),
+      );
+    }
+    await exec(python, judgeArguments, { timeout: 5 * 60_000, windowsHide: true });
+    job.verdict = JSON.parse(await readFile(verdictPath, 'utf8'));
+    update(job, 'rendering_comparison', 78, 'Rendering private comparison video');
+    const comparison = join(job.directory, 'comparison.mp4');
+    await renderComparison(
+      job.referencePath,
+      job.attemptPath,
+      referenceTrack,
+      attemptTrack,
+      verdictPath,
+      comparison,
+      job.verdict.measurements?.referenceWindow?.startSeconds ?? 0,
+    );
+    await writeFile(
+      join(job.directory, 'provenance.json'),
+      `${JSON.stringify(
+        {
+          schemaVersion: 'nodevideo.choreography-job-provenance.v1',
+          reference: await digest(job.referencePath),
+          attempt: await digest(job.attemptOriginalPath ?? job.attemptPath),
+          attemptAnalysis: await digest(job.attemptPath),
+          attemptAnalysisProxy: job.attemptPath !== (job.attemptOriginalPath ?? job.attemptPath),
+          model: await digest(model),
+          createdAt: job.createdAt,
+          privacy: 'local-private',
+          referenceUrl: job.referenceUrl || null,
+        },
+        null,
+        2,
+      )}\n`,
+    );
+    job.artifacts = {
+      comparison: artifact(job, 'comparison.mp4', 'video/mp4'),
+      verdict: artifact(job, 'verdict.json', 'application/json'),
+      referencePose: artifact(job, 'reference-pose.npz', 'application/octet-stream'),
+      attemptPose: artifact(job, 'attempt-pose.npz', 'application/octet-stream'),
+      provenance: artifact(job, 'provenance.json', 'application/json'),
+    };
+    job.status = job.verdict.status;
+    update(
+      job,
+      job.verdict.status === 'abstained' ? 'abstained' : 'completed',
+      100,
+      job.verdict.status === 'abstained'
+        ? 'Evidence quality was too low for a verdict'
+        : 'Verdict and evidence ready',
+    );
+  } catch (error) {
+    job.status = 'failed';
+    job.stage = 'failed';
+    job.error = error instanceof Error ? error.message : 'job_failed';
+    job.events.push({ at: new Date().toISOString(), stage: 'failed', detail: job.error });
+    await persist(job);
+  } finally {
+    activeJobs -= 1;
+  }
+}
+
+async function ensureModel() {
+  try {
+    if ((await stat(model)).size > 1_000_000) return;
+  } catch {}
+  await mkdir(resolve(model, '..'), { recursive: true });
+  const url =
+    'https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/latest/pose_landmarker_full.task';
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`pose_model_download_failed_${response.status}`);
+  await writeFile(model, Buffer.from(await response.arrayBuffer()));
+}
+
+async function extractPose(video, output, people) {
+  const key = `${await digest(video)}-${await digest(model)}-fps15-people${people}`;
+  const cachedTrack = join(poseCacheRoot, `${key}.npz`);
+  const cachedMetadata = join(poseCacheRoot, `${key}.json`);
+  try {
+    if ((await stat(cachedTrack)).size > 1_000) {
+      await copyFile(cachedTrack, output);
+      await copyFile(cachedMetadata, output.replace(/\.npz$/i, '.json'));
+      return;
+    }
+  } catch {}
+  await exec(
+    python,
+    [
+      join(root, 'scripts/analysis/extract_pose_landmarks.py'),
+      '--video',
+      video,
+      '--model',
+      model,
+      '--output',
+      output,
+      '--sample-fps',
+      '15',
+      '--num-poses',
+      String(people),
+    ],
+    { timeout: 12 * 60_000, windowsHide: true },
+  );
+  await copyFile(output, cachedTrack);
+  await copyFile(output.replace(/\.npz$/i, '.json'), cachedMetadata);
+}
+
+async function ensureAnalysisProxy(input, directory) {
+  const sourceHash = await digest(input);
+  const output = join(directory, 'attempt-analysis.mp4');
+  const cached = join(analysisMediaCacheRoot, `${sourceHash}-h264-yuv420p-v1.mp4`);
+  try {
+    if ((await stat(cached)).size > 1_000) {
+      await copyFile(cached, output);
+      return output;
+    }
+  } catch {}
+  const { stdout } = await exec(
+    'ffprobe',
+    [
+      '-v',
+      'error',
+      '-select_streams',
+      'v:0',
+      '-show_entries',
+      'stream=codec_name,pix_fmt',
+      '-of',
+      'json',
+      input,
+    ],
+    { timeout: 60_000, windowsHide: true },
+  );
+  const stream = JSON.parse(stdout).streams?.[0];
+  if (stream?.codec_name === 'h264' && stream?.pix_fmt === 'yuv420p') return input;
+  await exec(
+    'ffmpeg',
+    [
+      '-hide_banner',
+      '-loglevel',
+      'error',
+      '-y',
+      '-i',
+      input,
+      '-map',
+      '0:v:0',
+      '-map',
+      '0:a?',
+      '-c:v',
+      'libx264',
+      '-preset',
+      'veryfast',
+      '-crf',
+      '20',
+      '-pix_fmt',
+      'yuv420p',
+      '-c:a',
+      'aac',
+      '-b:a',
+      '160k',
+      '-movflags',
+      '+faststart',
+      output,
+    ],
+    { timeout: 12 * 60_000, windowsHide: true },
+  );
+  await copyFile(output, cached);
+  return output;
+}
+
+async function mediaDurationSeconds(input) {
+  const { stdout } = await exec(
+    'ffprobe',
+    ['-v', 'error', '-show_entries', 'format=duration', '-of', 'json', input],
+    { timeout: 60_000, windowsHide: true },
+  );
+  return Number(JSON.parse(stdout).format?.duration ?? 0);
+}
+
+async function renderComparison(
+  reference,
+  attempt,
+  referenceTrack,
+  attemptTrack,
+  verdict,
+  output,
+  referenceStart,
+) {
+  const silent = output.replace(/\.mp4$/i, '-silent.mp4');
+  await exec(
+    python,
+    [
+      join(root, 'scripts/analysis/render_choreography_comparison.py'),
+      '--reference-video',
+      reference,
+      '--attempt-video',
+      attempt,
+      '--reference-track',
+      referenceTrack,
+      '--attempt-track',
+      attemptTrack,
+      '--verdict',
+      verdict,
+      '--output',
+      silent,
+    ],
+    { timeout: 12 * 60_000, windowsHide: true },
+  );
+  await exec(
+    'ffmpeg',
+    [
+      '-hide_banner',
+      '-loglevel',
+      'error',
+      '-y',
+      '-i',
+      silent,
+      '-ss',
+      String(referenceStart),
+      '-i',
+      reference,
+      '-map',
+      '0:v',
+      '-map',
+      '1:a?',
+      '-c:v',
+      'libx264',
+      '-preset',
+      'veryfast',
+      '-crf',
+      '21',
+      '-c:a',
+      'aac',
+      '-b:a',
+      '160k',
+      '-shortest',
+      '-movflags',
+      '+faststart',
+      output,
+    ],
+    { timeout: 12 * 60_000, windowsHide: true },
+  );
+}
+
+async function serveArtifact(response, id, name) {
+  const job = jobs.get(id);
+  const allowed = job && Object.values(job.artifacts).find((item) => item.name === name);
+  if (!allowed) return json(response, 404, { error: 'artifact_not_found' });
+  const info = await stat(join(job.directory, name));
+  response.writeHead(200, {
+    'content-type': allowed.contentType,
+    'content-length': info.size,
+    'content-disposition': `inline; filename="${name}"`,
+    'cache-control': 'private, no-store',
+  });
+  createReadStream(join(job.directory, name)).pipe(response);
+}
+
+function artifact(job, name, contentType) {
+  return { name, contentType, url: `/v1/jobs/${job.id}/artifacts/${name}` };
+}
+function update(job, stage, progress, detail) {
+  job.stage = stage;
+  job.progress = progress;
+  job.events.push({ at: new Date().toISOString(), stage, detail });
+  void persist(job);
+}
+function publicJob(job) {
+  return {
+    id: job.id,
+    status: job.status,
+    stage: job.stage,
+    progress: job.progress,
+    createdAt: job.createdAt,
+    verdict: job.verdict,
+    error: job.error,
+    artifacts: job.artifacts,
+    events: job.events.slice(-12),
+  };
+}
+function authorized(request) {
+  return request.headers.authorization === `Bearer ${token}`;
+}
+function isAllowedOrigin(origin) {
+  return (
+    origin.startsWith('chrome-extension://') ||
+    /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+  );
+}
+function validYouTubeUrl(value) {
+  try {
+    const url = new URL(value);
+    return (
+      ['youtube.com', 'www.youtube.com', 'm.youtube.com', 'youtu.be'].includes(url.hostname) &&
+      url.protocol === 'https:'
+    );
+  } catch {
+    return false;
+  }
+}
+function safeMediaName(prefix, name) {
+  const ext = basename(name).match(/\.[a-z0-9]{2,5}$/i)?.[0] ?? '.mp4';
+  return `${prefix}${ext.toLowerCase()}`;
+}
+function optionalNumber(value) {
+  if (value === null || String(value).trim() === '') return null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : Number.NaN;
+}
+function clamp(value, low, high) {
+  return Math.max(low, Math.min(high, Number.isFinite(value) ? Math.round(value) : low));
+}
+async function digest(path) {
+  const hash = createHash('sha256');
+  for await (const chunk of createReadStream(path)) hash.update(chunk);
+  return hash.digest('hex');
+}
+async function persist(job) {
+  await writeFile(join(job.directory, 'job-state.json'), `${JSON.stringify(job, null, 2)}\n`);
+}
+async function restoreJobs() {
+  const restored = [];
+  for (const entry of await readdir(jobsRoot, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    try {
+      const job = JSON.parse(await readFile(join(jobsRoot, entry.name, 'job-state.json'), 'utf8'));
+      if (!TERMINAL_STATUSES.has(job.status)) {
+        job.status = 'failed';
+        job.stage = 'failed';
+        job.error = 'worker_restarted_before_completion';
+      }
+      restored.push(job);
+    } catch {}
+  }
+  // Only keep the most recent maxJobs in memory so a large on-disk history
+  // cannot re-inflate the registry past its bound on restart.
+  restored.sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0));
+  for (const job of restored.slice(0, maxJobs)) jobs.set(job.id, job);
+}
+function json(response, status, value) {
+  response.writeHead(status, {
+    'content-type': 'application/json; charset=utf-8',
+    'cache-control': 'no-store',
+  });
+  response.end(JSON.stringify(value));
+}

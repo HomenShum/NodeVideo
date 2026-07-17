@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "nodevideo.song-conditioned-evaluator.v1",
+  "createdAt": "2026-07-15T00:00:00.000Z",
+  "freezeReceiptSha256": "8c448d1fc592658795ac5f4e0e752dc7daf5a3a47970a748aad0a1139c638955",
+  "targetComparison": "not-run-no-held-out-target",
+  "tasteStatus": "not-evaluated",
+  "passed": true,
+  "assertions": [
+    {
+      "name": "plan duration is six seconds",
+      "pass": true,
+      "actual": 180,
+      "expected": 180
+    },
+    {
+      "name": "each phrase has two candidates",
+      "pass": true
+    },
+    {
+      "name": "selection alternates A/B/A",
+      "pass": true,
+      "actual": [
+        "asset.take-a",
+        "asset.take-b",
+        "asset.take-a"
+      ]
+    },
+    {
+      "name": "preview has music",
+      "pass": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "preview is vertical",
+      "pass": true,
+      "actual": "360x640",
+      "expected": "360x640"
+    }
+  ],
+  "claim": "Mechanics and isolation passed for a deterministic public replay; creative taste is not established."
+}
