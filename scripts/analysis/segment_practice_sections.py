@@ -31,6 +31,26 @@ from suggest_primary_dancer import visible_mask
 MIN_SECTION_COUNTS = 4
 WATCH_ONLY_VISIBILITY = 0.6
 
+# MediaPipe pose landmark regions. A degraded reference often still shows a
+# clean upper body (feet cropped, close-ups), so feedback degrades by region
+# instead of dying: full -> partial-upper -> beat-timing. Beat-timing needs no
+# reference pose at all (the learner's landings are judged against the music
+# grid), so an end-to-end run always produces some honest feedback.
+UPPER_BODY = [11, 12, 13, 14, 15, 16, 23, 24]
+LOWER_BODY = [25, 26, 27, 28, 29, 30, 31, 32]
+TIER_SIGNALS = {
+    "full": ["form", "timing", "path", "dynamics"],
+    "partial-upper": ["upperForm", "timing"],
+    "partial-lower": ["lowerForm", "timing"],
+    "beat-timing": ["beatTiming"],
+}
+TIER_UNVERIFIED = {
+    "full": [],
+    "partial-upper": ["lowerBody"],
+    "partial-lower": ["upperBody"],
+    "beat-timing": ["referenceForm"],
+}
+
 
 def extract_beats(media: Path) -> tuple[float, np.ndarray]:
     import librosa
@@ -96,6 +116,11 @@ def build_sections(
     energy = motion_energy(times, poses, track_id)
     stable_visible = visible_mask(stabilize_people(poses))[:, track_id]
 
+    stable = stabilize_people(poses)
+    joint_ok = stable[:, track_id, :, 3] > 0.5
+    upper_visible = joint_ok[:, UPPER_BODY].sum(axis=1) >= 5
+    lower_visible = joint_ok[:, LOWER_BODY].sum(axis=1) >= 4
+
     boundaries = [float(beats[0])]
     for index in range(counts_per_section, len(beats), counts_per_section):
         boundaries.append(snap_to_landing(float(beats[index]), times, energy, 0.6 * beat_period))
@@ -110,6 +135,22 @@ def build_sections(
         span_energy = energy[span]
         span_energy = span_energy[np.isfinite(span_energy)]
         visibility = float(stable_visible[span].mean()) if len(span) else 0.0
+        upper = float(upper_visible[span].mean()) if len(span) else 0.0
+        lower = float(lower_visible[span].mean()) if len(span) else 0.0
+        # "full" must mean full-body evidence: overall joint count alone would
+        # still pass with the entire lower body hidden (25 of 33 joints
+        # remain), silently overclaiming on cropped-feet footage. Partial
+        # tiers are symmetric — IG crops typically hide feet, but fast arm
+        # work can blur upper landmarks while footwork tracks cleanly.
+        if visibility >= WATCH_ONLY_VISIBILITY and upper >= WATCH_ONLY_VISIBILITY \
+                and lower >= WATCH_ONLY_VISIBILITY:
+            tier = "full"
+        elif upper >= WATCH_ONLY_VISIBILITY:
+            tier = "partial-upper"
+        elif lower >= WATCH_ONLY_VISIBILITY:
+            tier = "partial-lower"
+        else:
+            tier = "beat-timing"
         sections.append(
             {
                 "index": index,
@@ -117,7 +158,12 @@ def build_sections(
                 "endSeconds": round(end, 2),
                 "counts": counts_per_section,
                 "visibility": round(visibility, 3),
-                "practiceReady": visibility >= WATCH_ONLY_VISIBILITY,
+                "upperBodyVisibility": round(upper, 3),
+                "lowerBodyVisibility": round(lower, 3),
+                "practiceReady": tier != "beat-timing",
+                "feedbackTier": tier,
+                "feedbackSignals": TIER_SIGNALS[tier],
+                "unverified": TIER_UNVERIFIED[tier],
                 "medianMotion": round(float(np.median(span_energy)), 5) if len(span_energy) else None,
                 "directionChanges": direction_changes(times, poses, track_id, start, end),
             }
@@ -149,6 +195,11 @@ def main() -> None:
     sections = build_sections(
         beat_times, data["times"], data["poses"], args.track, args.counts, args.count_offset
     )
+    durations = {}
+    for section in sections:
+        length = section["endSeconds"] - section["startSeconds"]
+        durations[section["feedbackTier"]] = durations.get(section["feedbackTier"], 0.0) + length
+    total = sum(durations.values()) or 1.0
     report = {
         "schemaVersion": "nodevideo.practice-sections.v1",
         "interpretation": "beat-grid-sections-relative-difficulty-user-adjustable",
@@ -157,6 +208,9 @@ def main() -> None:
         "trackId": args.track,
         "sections": sections,
         "practiceReadyCount": sum(1 for s in sections if s["practiceReady"]),
+        # Time-weighted evidence base for an end-to-end run: overall feedback
+        # must be reported with this coverage, never as a bare number.
+        "runCoverage": {tier: round(seconds / total, 3) for tier, seconds in sorted(durations.items())},
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2) + "\n")
