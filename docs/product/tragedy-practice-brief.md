@@ -25,10 +25,18 @@ receive precise, non-gamified help at the moment you need it.
 - **Full-reel practice sections exist** via
   `scripts/analysis/segment_practice_sections.py`: 8-count blocks on the
   reel's own beat grid (103.4 BPM), boundaries snapped to Larry's
-  motion-energy landings, low-visibility sections gated watch-only. Result:
-  15 sections, 8 practice-ready; the 48–62s close-up stretch is correctly
-  watch-only. Learners progress section-by-section by relative difficulty;
-  watch-only sections play the reference without scoring.
+  motion-energy landings, and a **tiered feedback ladder** instead of a
+  binary watch-only gate, so an end-to-end run gives honest feedback
+  everywhere: `full` (form/timing/path/dynamics — requires full-body
+  evidence) → `partial-upper` / `partial-lower` (one body region + timing,
+  the other disclosed unverified) → `beat-timing` (learner landings vs the
+  music grid; needs no reference pose, so no section is ever a dead zone).
+  Overall run feedback is reported with `runCoverage`, the time-weighted
+  evidence base — never as a bare number. Lestwin reel result: 15 sections;
+  33% full, 12% partial-lower (Larry's fast arm work blurs upper landmarks
+  while footwork tracks — the inverse of the assumed cropped-feet failure),
+  54% beat-timing; 7 practice-ready. Sections #1 and #5 become
+  footwork-focus sections.
 - **Dancer selection is suggested, never decided.** The deterministic scorer
   (`scripts/analysis/suggest_primary_dancer.py`) ranks stabilized tracks on
   presence, continuity, centrality, prominence, and motion, and emits
