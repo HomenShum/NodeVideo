@@ -11,11 +11,22 @@ receive precise, non-gamified help at the moment you need it.
 
 ## Reference case
 
-- Song: **"Tragedy" — believed to be TellaX** (house track with existing dance
-  choreography, e.g. NEOH's). **UNCONFIRMED** — before the case manifest is
-  created, Homen must confirm the exact track URL, artist spelling, and the
-  specific dancer video being learned. Do not publish any case artifact until
-  the manifest carries a verified source URL and rights attestation.
+- Song: **"Tragedy" by TellaX**. Reference interpretation chosen by Homen:
+  the "lestwin" Instagram reel
+  (https://www.instagram.com/reels/DYheVqJsiNE/ — attribution URL only, see
+  ingestion note below). If the performer is the Les Twins duo, Homen selects
+  which dancer is the learning target; the judge's continuity-constrained
+  focal-performer selection handles duo references.
+- **Reference ingestion is source-agnostic and file-based.** Instagram has no
+  player API, no clock control, and blocks anonymous access, so IG URLs are
+  never ingested directly (no scraping, no allowlist extension). Homen supplies
+  a local copy for private practice analysis under the existing rights
+  attestation; it is never republished. The practice player plays a local
+  analysis proxy of the reference — which provides a frame-exact clock on both
+  surfaces. The YouTube IFrame Player path remains for YouTube-sourced
+  references only.
+- Beat alignment uses the reel's own audio track (reels frequently run
+  sped-up relative to the canonical song recording).
 - Interpretation model: per-dancer. Each reference video is its own comparison
   target. Never average multiple dancers into one "correct" version.
 
@@ -24,7 +35,7 @@ receive precise, non-gamified help at the moment you need it.
 | Decision | Choice |
 |---|---|
 | Merge base | `v0.2.0-live-coach-base` (PR #12 squash, commit 226a3c4) |
-| Surfaces | **Both** practice web page and extension side panel, sharing one practice runtime. Both embed the reference via the official YouTube IFrame Player API — the side panel is an extension page and hosts the same player component. No syncing against YouTube's own page DOM, ever. |
+| Surfaces | **Both** practice web page and extension side panel, sharing one practice runtime. The practice player plays the local reference proxy (frame-exact clock); YouTube-sourced references may alternatively embed via the official IFrame Player API. No syncing against any site's page DOM, ever. |
 | P0 scope | One 8–16-count phrase, one solo dancer reference, one camera, one user |
 | Camera data | Local-only, ephemeral. Frames are pose-processed in-browser; raw video is never written to disk unless the user explicitly saves an attempt. Pose tracks are session-local with a delete control. |
 | Mirroring | Mirrored camera ON by default (dancers practice facing a mirror) |
