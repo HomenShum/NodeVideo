@@ -1,0 +1,25 @@
+{
+  "id": "verdict-abstained",
+  "status": "abstained",
+  "stage": "abstained",
+  "progress": 100,
+  "artifacts": {},
+  "verdict": {
+    "schemaVersion": "nodevideo.choreography-verdict.v1",
+    "status": "abstained",
+    "confidence": 0.21,
+    "limitations": ["insufficient_attempt_motion"],
+    "mirrorApplied": false,
+    "observableMotionOnly": true,
+    "scoreInterpretation": "relative-motion-signal-not-calibrated-pass-fail",
+    "scores": {},
+    "unmeasurableScores": ["timing", "dynamics"],
+    "overall": null,
+    "measurements": {},
+    "criticalMoments": [],
+    "scoreBoundaries": {
+      "judged": [],
+      "notJudged": ["insufficient observable motion evidence"]
+    }
+  }
+}

@@ -2,6 +2,10 @@
   "schemaVersion": "nodevideo.ui-contract.v1",
   "app": "NodeVideo",
   "purpose": "Machine-readable UI contract. Any agent can drive these surfaces through the accessibility tree without vision: every control is bound to a stable testid, role+name, or label-backed id. CI runs scripts/quality/verify-ui-contract.mjs against the production build; drift between this file and the rendered UI fails the build. The same file is served at /.well-known/agent-ui.json in production and must stay byte-identical to this source.",
+  "buildReceipt": {
+    "path": "/.well-known/agent-ui.build.json",
+    "meaning": "Written by the same build that emitted the served bundle. Carries the SHA-256 of the served contract plus the source commit. Agents SHOULD fetch it and verify contractSha256 matches the bytes of /.well-known/agent-ui.json; a mismatch means the deploy is inconsistent and the contract must not be trusted."
+  },
   "invariants": {
     "charset": "UTF-8",
     "themes": ["dark", "light"],
@@ -123,7 +127,38 @@
           "check": "References longer than 90 seconds without an explicit segment are refused (reference_segment_required_for_long_video)."
         }
       ],
-      "agentGuidance": "All processing is laptop-local via the token-gated sidecar; nothing uploads to a cloud. Never bypass the consent checkbox on a user's behalf."
+      "agentGuidance": "All processing is laptop-local via the token-gated sidecar; nothing uploads to a cloud. Never bypass the consent checkbox on a user's behalf.",
+      "states": [
+        {
+          "id": "verdict-completed-full",
+          "fixture": ".ui/fixtures/job-verdict-completed-full.json",
+          "meaning": "All four signals measured; overall shown as a relative number, never pass/fail.",
+          "requireTexts": [
+            "67 / 100",
+            "Relative motion comparison",
+            "78% evidence",
+            "133 ms median timing drift"
+          ],
+          "requireScoreChips": ["form", "timing", "path", "dynamics"],
+          "forbidTexts": ["Not measurable from this upload", "Needs a clearer take"]
+        },
+        {
+          "id": "verdict-completed-partial",
+          "fixture": ".ui/fixtures/job-verdict-completed-partial.json",
+          "meaning": "Unmeasurable signals are omitted from the score chips and disclosed in plain text — never defaulted to a plausible number.",
+          "requireTexts": ["61 / 100", "Not measurable from this upload"],
+          "requireScoreChips": ["form", "timing", "path"],
+          "forbidScoreChips": ["dynamics"],
+          "forbidTexts": ["Needs a clearer take"]
+        },
+        {
+          "id": "verdict-abstained",
+          "fixture": ".ui/fixtures/job-verdict-abstained.json",
+          "meaning": "Insufficient evidence abstains visibly: no overall number may appear.",
+          "requireTexts": ["Needs a clearer take"],
+          "forbidTexts": ["/ 100"]
+        }
+      ]
     }
   ]
 }

@@ -7,8 +7,10 @@
 // copy at fixtures/.well-known/agent-ui.json — fails the build.
 
 import { spawn } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { mkdtemp, rm } from 'node:fs/promises';
+import { createServer } from 'node:http';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { chromium } from 'playwright';
@@ -60,6 +62,46 @@ await new Promise((resolveWait, reject) => {
   };
   poll();
 });
+
+// Build receipt: the served contract must be hash-bound to this build.
+{
+  const servedContract = await fetch(`${base}/.well-known/agent-ui.json`);
+  const servedBytes = Buffer.from(await servedContract.arrayBuffer());
+  const receiptResponse = await fetch(`${base}/.well-known/agent-ui.build.json`);
+  if (!receiptResponse.ok) {
+    fail('build receipt /.well-known/agent-ui.build.json is not served');
+  } else {
+    const receipt = await receiptResponse.json();
+    const actual = createHash('sha256').update(servedBytes).digest('hex');
+    receipt.contractSha256 === actual
+      ? ok(
+          `build receipt binds contract (${actual.slice(0, 12)}…, commit ${String(receipt.sourceCommit).slice(0, 8)})`,
+        )
+      : fail(
+          `build receipt contractSha256 ${receipt.contractSha256?.slice(0, 12)}… != served contract ${actual.slice(0, 12)}…`,
+        );
+  }
+}
+
+// Mock sidecar: serves contract state fixtures so declared UI states are
+// verified against rendered DOM without the Python worker.
+const stateFixtures = new Map();
+for (const surface of contract.surfaces) {
+  for (const state of surface.states ?? []) {
+    stateFixtures.set(state.id, JSON.parse(readFileSync(join(root, state.fixture), 'utf8')));
+  }
+}
+const mockSidecar = createServer((request, response) => {
+  const match = request.url?.match(/^\/v1\/jobs\/([a-z0-9-]+)$/);
+  const job = match ? stateFixtures.get(match[1]) : undefined;
+  response.writeHead(job ? 200 : 404, {
+    'content-type': 'application/json',
+    'access-control-allow-origin': request.headers.origin ?? '*',
+    'access-control-allow-headers': 'authorization,content-type',
+  });
+  response.end(JSON.stringify(job ?? { error: 'job_not_found' }));
+});
+await new Promise((resolveListen) => mockSidecar.listen(4319, '127.0.0.1', resolveListen));
 
 const browser = await chromium.launch();
 try {
@@ -139,11 +181,46 @@ try {
       await rm(scratch, { recursive: true, force: true });
     }
 
+    for (const state of surface.states ?? []) {
+      const statePage = await browser.newPage({ viewport: { width: 420, height: 900 } });
+      await statePage.goto(`${base}${surface.route}?job=${state.id}&token=contract-state-check`, {
+        waitUntil: 'networkidle',
+      });
+      for (const text of state.requireTexts ?? []) {
+        (await statePage
+          .getByText(text)
+          .first()
+          .isVisible()
+          .catch(() => false))
+          ? ok(`state ${state.id}: shows "${text}"`)
+          : fail(`${surface.id}/${state.id}: required text "${text}" not visible`);
+      }
+      for (const text of state.forbidTexts ?? []) {
+        (await statePage.getByText(text).count()) === 0
+          ? ok(`state ${state.id}: never shows "${text}"`)
+          : fail(`${surface.id}/${state.id}: forbidden text "${text}" is present`);
+      }
+      const chip = (name) =>
+        statePage.locator('strong + span', { hasText: new RegExp(`^${name}$`) });
+      for (const name of state.requireScoreChips ?? []) {
+        (await chip(name).count()) === 1
+          ? ok(`state ${state.id}: score chip ${name}`)
+          : fail(`${surface.id}/${state.id}: score chip ${name} missing or duplicated`);
+      }
+      for (const name of state.forbidScoreChips ?? []) {
+        (await chip(name).count()) === 0
+          ? ok(`state ${state.id}: no fabricated ${name} chip`)
+          : fail(`${surface.id}/${state.id}: forbidden score chip ${name} rendered`);
+      }
+      await statePage.close();
+    }
+
     await page.close();
   }
 } finally {
   await browser.close();
   preview.kill('SIGKILL');
+  mockSidecar.close();
 }
 
 if (failures.length > 0) {

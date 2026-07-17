@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "demo": "npm run dev",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && node scripts/quality/stamp-contract-build.mjs",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
