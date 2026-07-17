@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "nodevideo.ui-contract.v1",
+  "app": "NodeVideo",
+  "purpose": "Machine-readable UI contract. Any agent can drive these surfaces through the accessibility tree without vision: every control is bound to a stable testid, role+name, or label-backed id. CI runs scripts/quality/verify-ui-contract.mjs against the production build; drift between this file and the rendered UI fails the build. The same file is served at /.well-known/agent-ui.json in production and must stay byte-identical to this source.",
+  "invariants": {
+    "charset": "UTF-8",
+    "themes": ["dark", "light"],
+    "themeMechanism": "in-app toggle sets the dark class on <html>; prefers-color-scheme is not honored. Toggle accessible name flips between 'Switch to light theme' and 'Switch to dark theme'.",
+    "defaultTheme": "dark",
+    "noHorizontalOverflowAtWidths": [1440, 1280, 834, 390, 320],
+    "honesty": [
+      "Verdict scores carry scoreInterpretation=relative-motion-signal-not-calibrated-pass-fail and are never presented as pass/fail grades.",
+      "Signals that cannot be measured are disclosed in unmeasurableScores, never defaulted to a plausible number.",
+      "Consent is enforced client-side with a visible error and independently server-side (HTTP 422 rights_confirmation_required)."
+    ]
+  },
+  "surfaces": [
+    {
+      "id": "workspace",
+      "route": "/",
+      "landmark": { "testid": "app-shell" },
+      "description": "Owner calibration workspace plus the public frame-by-frame proof inspector.",
+      "controls": [
+        {
+          "id": "theme-toggle",
+          "role": "button",
+          "nameAnyOf": ["Switch to light theme", "Switch to dark theme"]
+        },
+        {
+          "id": "owner-access-key",
+          "css": "#owner-token",
+          "label": "Owner access key",
+          "gated": "owner-only; agents without the key must not attempt job submission"
+        },
+        {
+          "id": "source-upload-original",
+          "css": "#file-reference",
+          "label": "Original choreography; sibling inputs follow the pattern [id^='file-']"
+        },
+        {
+          "id": "start-job",
+          "role": "button",
+          "name": "Start source-only job",
+          "gated": "requires owner access key + all required sources"
+        },
+        {
+          "id": "inspector-disclosure",
+          "testid": "integrated-frame-inspector",
+          "state": "collapsed on first load; no heavy pose fetch until opened"
+        }
+      ],
+      "agentGuidance": "Public agents: expand the inspector for hash-verified evidence; do not fill the owner console. The inspector is the read-only proof surface."
+    },
+    {
+      "id": "coach-sidepanel",
+      "route": "/apps/chrome-extension/sidepanel.html",
+      "landmark": {
+        "role": "heading",
+        "name": "10count choreography · UI preview",
+        "note": "web-preview heading; inside Chrome the heading is the detected video title"
+      },
+      "description": "Choreography coach: upload a dance take, compare against a reference, receive relative motion signals from a local-only worker.",
+      "controls": [
+        {
+          "id": "attempt-file",
+          "css": "#attempt",
+          "label": "Your dance take",
+          "accepts": "video/mp4,video/quicktime"
+        },
+        {
+          "id": "options-disclosure",
+          "role": "button",
+          "name": "Segment, team, and connection",
+          "state": "collapsed by default; expand before using the controls inside"
+        },
+        {
+          "id": "segment-start",
+          "role": "spinbutton",
+          "name": "Reference start seconds",
+          "requiresExpand": "options-disclosure"
+        },
+        {
+          "id": "segment-end",
+          "role": "spinbutton",
+          "name": "Reference end seconds",
+          "requiresExpand": "options-disclosure"
+        },
+        {
+          "id": "people",
+          "css": "#people",
+          "label": "Maximum dancers to track",
+          "requiresExpand": "options-disclosure"
+        },
+        {
+          "id": "endpoint",
+          "css": "#endpoint",
+          "label": "Local service",
+          "requiresExpand": "options-disclosure"
+        },
+        {
+          "id": "token",
+          "css": "#token",
+          "label": "Service token",
+          "requiresExpand": "options-disclosure"
+        },
+        {
+          "id": "consent",
+          "css": "#rights",
+          "label": "I have permission to privately analyze this reference and my upload."
+        },
+        { "id": "judge", "role": "button", "name": "Judge choreography" }
+      ],
+      "gates": [
+        {
+          "id": "consent-gate",
+          "kind": "client-validated + server-enforced",
+          "check": "Submitting with reference, attempt, and token present but consent unchecked must surface the exact text: 'Confirm that you have permission to analyze both videos.'",
+          "serverBackstop": "POST /v1/jobs without rightsConfirmed=true returns 422 rights_confirmation_required"
+        },
+        {
+          "id": "long-reference-gate",
+          "kind": "server-enforced",
+          "check": "References longer than 90 seconds without an explicit segment are refused (reference_segment_required_for_long_video)."
+        }
+      ],
+      "agentGuidance": "All processing is laptop-local via the token-gated sidecar; nothing uploads to a cloud. Never bypass the consent checkbox on a user's behalf."
+    }
+  ]
+}

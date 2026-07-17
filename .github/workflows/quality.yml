@@ -75,6 +75,11 @@ jobs:
       - name: Production build
         run: npm run build
 
+      - name: UI contract (agent-native surface guarantee)
+        run: |
+          npx playwright install --with-deps chromium
+          npm run check:contract
+
   ui-ux-qa:
     name: Agentic UI Bar — authorized real-media path
     needs: code-quality
