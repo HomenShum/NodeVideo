@@ -65,7 +65,8 @@ def main() -> None:
     if not alignment:
         raise ValueError("verdict has no alignment path")
     ref_capture, att_capture = cv2.VideoCapture(str(args.reference_video)), cv2.VideoCapture(str(args.attempt_video))
-    output = cv2.VideoWriter(str(args.output), cv2.VideoWriter_fourcc(*"mp4v"), 15.0, (720, 640))
+    cadence = 1 / float(np.median(np.diff(reference["times"])))
+    output = cv2.VideoWriter(str(args.output), cv2.VideoWriter_fourcc(*"mp4v"), cadence, (720, 640))
     if not output.isOpened():
         raise RuntimeError("could not open comparison writer")
     ref_index = att_index = -1
@@ -80,9 +81,11 @@ def main() -> None:
             ref_panel, rs, rx, ry = panel(ref_frame, 360, 640)
             att_panel, ass, ax, ay = panel(att_frame, 360, 640)
             ref_people = reference["poses"][ri]; att_people = attempt["poses"][ai]
-            for pose in ref_people:
+            selected_reference = pair.get("referencePerson")
+            for person_index, pose in enumerate(ref_people):
                 if np.count_nonzero(pose[:,3] >= .35) >= 5:
-                    draw_pose(ref_panel, pose, rs, rx, ry, ref_frame.shape[:2], (98,255,217))
+                    color = (98,255,217) if selected_reference in (None, person_index) else (90,96,108)
+                    draw_pose(ref_panel, pose, rs, rx, ry, ref_frame.shape[:2], color)
             for pose in att_people:
                 if np.count_nonzero(pose[:,3] >= .35) >= 5:
                     draw_pose(att_panel, pose, ass, ax, ay, att_frame.shape[:2], (250,139,167))

@@ -14,6 +14,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
+from scipy.optimize import linear_sum_assignment
 
 LANDMARKS = [0, 11, 12, 13, 14, 15, 16, 23, 24, 25, 26, 27, 28]
 LEFT_RIGHT = {11: 12, 12: 11, 13: 14, 14: 13, 15: 16, 16: 15,
@@ -33,7 +34,13 @@ def load_track(path: Path) -> Track:
     poses = np.asarray(data["poses"], dtype=np.float32)
     if poses.ndim == 3:
         poses = poses[:, None, :, :]
-    return Track(np.asarray(data["times"], dtype=np.float64), poses)
+    if poses.shape[-1] == 3:
+        converted = np.full((*poses.shape[:-1], 4), np.nan, dtype=np.float32)
+        converted[..., :2] = poses[..., :2]
+        converted[..., 2] = 0
+        converted[..., 3] = poses[..., 2]
+        poses = converted
+    return Track(np.asarray(data["times"], dtype=np.float64), stabilize_people(poses))
 
 
 def pose_centroid(pose: np.ndarray) -> np.ndarray:
@@ -51,8 +58,12 @@ def ordered_people(frame: np.ndarray) -> list[np.ndarray]:
 
 
 def normalized_pose(pose: np.ndarray, mirrored: bool = False) -> tuple[np.ndarray, np.ndarray]:
+    if pose.shape[-1] < 4 or not np.isfinite(pose[[11, 12, 23, 24], :2]).any():
+        return np.zeros((len(LANDMARKS), 2), dtype=np.float32), np.zeros(len(LANDMARKS), dtype=bool)
     hip = np.nanmean(pose[[23, 24], :2], axis=0)
     shoulder = np.nanmean(pose[[11, 12], :2], axis=0)
+    if not np.isfinite(hip).all() or not np.isfinite(shoulder).all():
+        return np.zeros((len(LANDMARKS), 2), dtype=np.float32), np.zeros(len(LANDMARKS), dtype=bool)
     scale = max(float(np.linalg.norm(shoulder - hip)),
                 float(np.linalg.norm(pose[11, :2] - pose[12, :2])), 0.05)
     order = [LEFT_RIGHT[index] if mirrored else index for index in LANDMARKS]
@@ -61,6 +72,66 @@ def normalized_pose(pose: np.ndarray, mirrored: bool = False) -> tuple[np.ndarra
         points[:, 0] *= -1
     visible = np.isfinite(points).all(axis=1) & (pose[order, 3] >= 0.35)
     return np.nan_to_num(points, nan=0.0), visible
+
+
+def tracking_cost(previous: np.ndarray, current: np.ndarray) -> float:
+    previous_center, current_center = pose_centroid(previous), pose_centroid(current)
+    if not np.isfinite(previous_center).all() or not np.isfinite(current_center).all():
+        return float("inf")
+    previous_points, previous_mask = normalized_pose(previous)
+    current_points, current_mask = normalized_pose(current)
+    shared = previous_mask & current_mask
+    shape = float(np.median(np.linalg.norm(previous_points[shared] - current_points[shared], axis=1))) \
+        if shared.sum() >= 5 else .8
+    return float(np.linalg.norm(previous_center - current_center) + .18 * shape)
+
+
+def stabilize_people(poses: np.ndarray, maximum_gap: int = 15) -> np.ndarray:
+    """Convert unstable per-frame detector order into bounded persistent slots."""
+    if poses.shape[1] <= 1:
+        return poses.copy()
+    stable = np.full_like(poses, np.nan)
+    last_pose: list[np.ndarray | None] = [None] * poses.shape[1]
+    last_seen = np.full(poses.shape[1], -maximum_gap - 1, dtype=np.int32)
+    for frame_index, frame in enumerate(poses):
+        detections = [pose for pose in frame if np.isfinite(pose_centroid(pose)).all()]
+        detections.sort(key=lambda pose: float(pose_centroid(pose)[0]))
+        active = [index for index, pose in enumerate(last_pose)
+                  if pose is not None and frame_index - last_seen[index] <= maximum_gap]
+        assigned_slots: set[int] = set()
+        assigned_detections: set[int] = set()
+        if active and detections:
+            costs = np.asarray([[tracking_cost(last_pose[slot], detection)
+                                 for detection in detections] for slot in active])
+            rows, columns = linear_sum_assignment(costs)
+            for row, column in zip(rows, columns):
+                if costs[row, column] > .55:
+                    continue
+                slot = active[int(row)]
+                stable[frame_index, slot] = detections[int(column)]
+                last_pose[slot], last_seen[slot] = detections[int(column)], frame_index
+                assigned_slots.add(slot)
+                assigned_detections.add(int(column))
+        available = [index for index in range(poses.shape[1]) if index not in assigned_slots and
+                     (last_pose[index] is None or frame_index - last_seen[index] > maximum_gap)]
+        for detection_index, slot in zip(
+            [index for index in range(len(detections)) if index not in assigned_detections], available
+        ):
+            stable[frame_index, slot] = detections[detection_index]
+            last_pose[slot], last_seen[slot] = detections[detection_index], frame_index
+    return stable
+
+
+def performer_descriptor(track: Track, person_index: int, mirrored: bool = False) -> tuple[np.ndarray, np.ndarray]:
+    samples = [normalized_pose(frame[person_index], mirrored) for frame in track.poses]
+    points, masks = zip(*samples)
+    return np.asarray(points).reshape(len(points), -1), np.asarray(masks)
+
+
+def active_people(track: Track) -> list[int]:
+    minimum = max(3, round(len(track.times) * .03))
+    return [person for person in range(track.poses.shape[1])
+            if sum(np.isfinite(pose_centroid(frame[person])).all() for frame in track.poses) >= minimum]
 
 
 def frame_descriptor(frame: np.ndarray, slots: int, mirrored: bool = False) -> tuple[np.ndarray, np.ndarray]:
@@ -93,8 +164,7 @@ def align_tracks(reference: np.ndarray, ref_mask: np.ndarray, attempt: np.ndarra
                  attempt_mask: np.ndarray) -> tuple[list[tuple[int, int]], float, str]:
     n, m = len(reference), len(attempt)
     if max(n, m) <= min(n, m) * 1.35:
-        path, cost = dtw(reference, ref_mask, attempt, attempt_mask)
-        return path, cost, "global"
+        return pose_offset_dtw(reference, ref_mask, attempt, attempt_mask)
     if n < m:
         reversed_path, cost, _ = align_tracks(attempt, attempt_mask, reference, ref_mask)
         return [(attempt_index, reference_index) for reference_index, attempt_index in reversed_path], cost, "subsequence"
@@ -160,6 +230,160 @@ def dtw(reference: np.ndarray, ref_mask: np.ndarray, attempt: np.ndarray,
     return path, float(costs[n, m] / max(len(path), 1))
 
 
+def pose_offset_dtw(reference: np.ndarray, ref_mask: np.ndarray, attempt: np.ndarray,
+                    attempt_mask: np.ndarray) -> tuple[list[tuple[int, int]], float, str]:
+    """Estimate bounded pre-roll by pose evidence, then run one local DTW."""
+    n, m = len(reference), len(attempt)
+    maximum_shift = max(1, round(min(n, m) * .04))
+    sample_step = max(1, min(n, m) // 240)
+    candidates = []
+    for shift in range(-maximum_shift, maximum_shift + 1):
+        reference_start, attempt_start = max(shift, 0), max(-shift, 0)
+        length = min(n - reference_start, m - attempt_start)
+        costs = [masked_cost(reference[i], ref_mask[i], attempt[j], attempt_mask[j])
+                 for i, j in zip(range(reference_start, reference_start + length, sample_step),
+                                 range(attempt_start, attempt_start + length, sample_step))]
+        candidates.append((float(np.median(costs)) + .05 * abs(shift) / min(n, m),
+                           shift, reference_start, attempt_start, length))
+    _, shift, reference_start, attempt_start, length = min(candidates)
+    local_path, cost = dtw(
+        reference[reference_start:reference_start + length],
+        ref_mask[reference_start:reference_start + length],
+        attempt[attempt_start:attempt_start + length],
+        attempt_mask[attempt_start:attempt_start + length],
+        band_ratio=.16,
+    )
+    return ([(i + reference_start, j + attempt_start) for i, j in local_path], cost,
+            "global" if shift == 0 else "pose-offset")
+
+
+def select_performer_match(reference: Track, attempt: Track):
+    reference_people = active_people(reference)
+    attempt_people = active_people(attempt)
+    similar_sample_lengths = max(len(reference.times), len(attempt.times)) <= \
+        min(len(reference.times), len(attempt.times)) * 1.35
+    if len(reference_people) > 1 and len(attempt_people) == 1 and similar_sample_lengths:
+        return select_dynamic_focal_match(reference, attempt, attempt_people[0])
+    candidates = []
+    for reference_person in reference_people:
+        ref_desc, ref_mask = performer_descriptor(reference, reference_person)
+        for attempt_person in attempt_people:
+            for mirrored in (False, True):
+                att_desc, att_mask = performer_descriptor(attempt, attempt_person, mirrored)
+                path, cost, alignment_mode = align_tracks(ref_desc, ref_mask, att_desc, att_mask)
+                if not path:
+                    continue
+                valid = [(i, j) for i, j in path if np.count_nonzero(ref_mask[i] & att_mask[j]) >= 5]
+                if not valid:
+                    continue
+                visibility = float(np.mean([np.mean(ref_mask[i] & att_mask[j]) for i, j in valid]))
+                if len(attempt.times) <= len(reference.times):
+                    active_frames = max(1, int(np.count_nonzero(np.count_nonzero(att_mask, axis=1) >= 5)))
+                    covered = len({j for i, j in valid}) / active_frames
+                else:
+                    active_frames = max(1, int(np.count_nonzero(np.count_nonzero(ref_mask, axis=1) >= 5)))
+                    covered = len({i for i, j in valid}) / active_frames
+                confidence = visibility * min(1.0, covered) * math.exp(-max(cost, 0) / .55)
+                candidates.append((confidence, -cost, reference_person, attempt_person, mirrored,
+                                   path, ref_desc, ref_mask, att_desc, att_mask, alignment_mode))
+    return max(candidates, key=lambda item: item[:2]) if candidates else None
+
+
+def select_reference_sequence(reference: Track, attempt: Track, path: list[tuple[int, int]],
+                              attempt_person: int, mirrored: bool) -> list[int]:
+    """Choose a temporally coherent reference performer along an established time path."""
+    states = active_people(reference)
+    if len(states) <= 1:
+        return [states[0]] * len(path)
+    emissions = np.full((len(path), len(states)), .6, dtype=np.float32)
+    centers = np.full((len(path), len(states), 2), np.nan, dtype=np.float32)
+    for step, (reference_index, attempt_index) in enumerate(path):
+        attempt_points, attempt_mask = normalized_pose(attempt.poses[attempt_index, attempt_person], mirrored)
+        for state_index, person in enumerate(states):
+            reference_pose = reference.poses[reference_index, person]
+            reference_points, reference_mask = normalized_pose(reference_pose)
+            emissions[step, state_index] = masked_cost(
+                reference_points.reshape(-1), reference_mask,
+                attempt_points.reshape(-1), attempt_mask,
+            )
+            centers[step, state_index] = pose_centroid(reference_pose)
+    costs = np.full_like(emissions, np.inf)
+    previous = np.full(emissions.shape, -1, dtype=np.int16)
+    costs[0] = emissions[0]
+    for step in range(1, len(path)):
+        for current in range(len(states)):
+            transitions = costs[step - 1].copy()
+            for prior in range(len(states)):
+                if prior == current:
+                    continue
+                spatial = .25
+                if np.isfinite(centers[step - 1, prior]).all() and np.isfinite(centers[step, current]).all():
+                    spatial = float(np.linalg.norm(centers[step - 1, prior] - centers[step, current]))
+                transitions[prior] += .25 + .20 * spatial
+            best = int(np.argmin(transitions))
+            costs[step, current] = transitions[best] + emissions[step, current]
+            previous[step, current] = best
+    state = int(np.argmin(costs[-1]))
+    selected = [state]
+    for step in range(len(path) - 1, 0, -1):
+        state = int(previous[step, state])
+        selected.append(state)
+    selected.reverse()
+    return [states[index] for index in selected]
+
+
+def select_dynamic_focal_match(reference: Track, attempt: Track, attempt_person: int):
+    reference_people = active_people(reference)
+    reference_descriptors = {person: performer_descriptor(reference, person)
+                             for person in reference_people}
+    candidates = []
+    for mirrored in (False, True):
+        att_desc, att_mask = performer_descriptor(attempt, attempt_person, mirrored)
+        maximum_shift = max(1, round(min(len(reference.times), len(attempt.times)) * .04))
+        sample_step = max(1, min(len(reference.times), len(attempt.times)) // 240)
+        offsets = []
+        for shift in range(-maximum_shift, maximum_shift + 1):
+            reference_start, attempt_start = max(shift, 0), max(-shift, 0)
+            length = min(len(reference.times) - reference_start, len(attempt.times) - attempt_start)
+            frame_costs = []
+            for reference_index, attempt_index in zip(
+                range(reference_start, reference_start + length, sample_step),
+                range(attempt_start, attempt_start + length, sample_step),
+            ):
+                frame_costs.append(min(
+                    masked_cost(reference_descriptors[person][0][reference_index],
+                                reference_descriptors[person][1][reference_index],
+                                att_desc[attempt_index], att_mask[attempt_index])
+                    for person in reference_people
+                ))
+            offsets.append((float(np.median(frame_costs)) + .05 * abs(shift) / min(
+                len(reference.times), len(attempt.times)), shift, reference_start, attempt_start, length))
+        _, shift, reference_start, attempt_start, length = min(offsets)
+        linear_path = list(zip(range(reference_start, reference_start + length),
+                               range(attempt_start, attempt_start + length)))
+        sequence = select_reference_sequence(reference, attempt, linear_path, attempt_person, mirrored)
+        dynamic_points, dynamic_masks = [], []
+        for (reference_index, _), person in zip(linear_path, sequence):
+            dynamic_points.append(reference_descriptors[person][0][reference_index])
+            dynamic_masks.append(reference_descriptors[person][1][reference_index])
+        dynamic_points, dynamic_masks = np.asarray(dynamic_points), np.asarray(dynamic_masks)
+        local_path, cost = dtw(dynamic_points, dynamic_masks,
+                               att_desc[attempt_start:attempt_start + length],
+                               att_mask[attempt_start:attempt_start + length], band_ratio=.16)
+        path = [(i + reference_start, j + attempt_start) for i, j in local_path]
+        valid = [(i, j) for i, j in path if np.count_nonzero(
+            dynamic_masks[i - reference_start] & att_mask[j]) >= 5]
+        visibility = float(np.mean([np.mean(dynamic_masks[i - reference_start] & att_mask[j])
+                                    for i, j in valid])) if valid else 0
+        confidence = visibility * math.exp(-max(cost, 0) / .55)
+        first_person = sequence[0]
+        ref_desc, ref_mask = reference_descriptors[first_person]
+        candidates.append((confidence, -cost, first_person, attempt_person, mirrored, path,
+                           ref_desc, ref_mask, att_desc, att_mask,
+                           "global" if shift == 0 else "pose-offset-dynamic"))
+    return max(candidates, key=lambda item: item[:2])
+
+
 def angle(p1: np.ndarray, p2: np.ndarray, p3: np.ndarray) -> float:
     a, b = p1 - p2, p3 - p2
     denom = np.linalg.norm(a) * np.linalg.norm(b)
@@ -174,55 +398,67 @@ def group_centers(frame: np.ndarray) -> np.ndarray:
 
 
 def score(reference: Track, attempt: Track) -> dict:
-    slots = max(reference.poses.shape[1], attempt.poses.shape[1])
-    ref_desc, ref_mask = descriptor_track(reference, slots=slots)
-    candidates = []
-    for mirrored in (False, True):
-        att_desc, att_mask = descriptor_track(attempt, mirrored, slots)
-        path, cost, alignment_mode = align_tracks(ref_desc, ref_mask, att_desc, att_mask)
-        candidates.append((cost, mirrored, path, att_desc, att_mask, alignment_mode))
-    cost, mirrored, path, att_desc, att_mask, alignment_mode = min(candidates, key=lambda item: item[0])
-    if not path:
+    reference = Track(reference.times, stabilize_people(reference.poses))
+    attempt = Track(attempt.times, stabilize_people(attempt.poses))
+    if not active_people(reference) or not active_people(attempt):
+        return abstention("low_joint_visibility")
+    match = select_performer_match(reference, attempt)
+    if match is None:
         return abstention("alignment_failed")
-
-    visibility = float(np.mean([np.mean(ref_mask[i] & att_mask[j]) for i, j in path]))
-    shorter_length = min(len(reference.times), len(attempt.times))
-    covered_shorter = len({j for _, j in path}) if len(attempt.times) <= len(reference.times) else len({i for i, _ in path})
-    coverage = float(covered_shorter / max(shorter_length, 1))
+    _, negative_cost, reference_person, attempt_person, mirrored, path, ref_desc, ref_mask, \
+        att_desc, att_mask, alignment_mode = match
+    reference_sequence = select_reference_sequence(reference, attempt, path, attempt_person, mirrored)
+    pair_ref_desc, pair_ref_mask = [], []
+    for (reference_index, _), person in zip(path, reference_sequence):
+        points, mask = normalized_pose(reference.poses[reference_index, person])
+        pair_ref_desc.append(points.reshape(-1))
+        pair_ref_mask.append(mask)
+    pair_ref_desc, pair_ref_mask = np.asarray(pair_ref_desc), np.asarray(pair_ref_mask)
+    pair_att_desc = np.asarray([att_desc[j] for _, j in path])
+    pair_att_mask = np.asarray([att_mask[j] for _, j in path])
+    valid_steps = [step for step in range(len(path))
+                   if np.count_nonzero(pair_ref_mask[step] & pair_att_mask[step]) >= 5]
+    if not valid_steps:
+        return abstention("low_joint_visibility")
+    pair_costs = [masked_cost(pair_ref_desc[step], pair_ref_mask[step],
+                              pair_att_desc[step], pair_att_mask[step]) for step in valid_steps]
+    cost = float(np.mean(pair_costs))
+    visibility = float(np.mean([np.mean(pair_ref_mask[step] & pair_att_mask[step])
+                                for step in valid_steps]))
+    if len(attempt.times) <= len(reference.times):
+        active_shorter = max(1, int(np.count_nonzero(np.count_nonzero(att_mask, axis=1) >= 5)))
+        covered_shorter = len({path[step][1] for step in valid_steps})
+    else:
+        active_shorter = max(1, len({i for i, _ in path}))
+        covered_shorter = len({path[step][0] for step in valid_steps})
+    coverage = float(min(1, covered_shorter / active_shorter))
     alignment_confidence = math.exp(-max(cost, 0) / 0.55)
     confidence = float(np.clip(visibility * coverage * alignment_confidence, 0, 1))
 
     distances, angle_errors, ref_velocity, att_velocity, timing_errors = [], [], [], [], []
-    prior = None
     ref_start, ref_end = float(reference.times[path[0][0]]), float(reference.times[path[-1][0]])
     att_start, att_end = float(attempt.times[path[0][1]]), float(attempt.times[path[-1][1]])
-    for i, j in path:
-        mask = np.repeat(ref_mask[i] & att_mask[j], 2)
+    for step, (i, j) in enumerate(path):
+        mask = np.repeat(pair_ref_mask[step] & pair_att_mask[step], 2)
         if mask.any():
-            distances.append(float(np.mean(np.abs(ref_desc[i][mask] - att_desc[j][mask]))))
-        ref_people, att_people = ordered_people(reference.poses[i]), ordered_people(attempt.poses[j])
-        if ref_people and att_people:
-            if mirrored:
-                att_people.reverse()
-            for rp, original_ap in zip(ref_people, att_people):
-                ap = original_ap
-                if mirrored:
-                    ap = original_ap.copy()
-                    remapped = ap.copy()
-                    for left, right in LEFT_RIGHT.items():
-                        remapped[left] = ap[right]
-                    ap = remapped
-                for a, b, c in JOINT_TRIPLES:
-                    ra, aa = angle(rp[a,:2], rp[b,:2], rp[c,:2]), angle(ap[a,:2], ap[b,:2], ap[c,:2])
-                    if np.isfinite(ra) and np.isfinite(aa):
-                        angle_errors.append(abs(ra-aa))
+            distances.append(float(np.mean(np.abs(pair_ref_desc[step][mask] - pair_att_desc[step][mask]))))
+        rp = reference.poses[i, reference_sequence[step]]
+        original_ap = attempt.poses[j, attempt_person]
+        ap = original_ap
+        if mirrored:
+            remapped = original_ap.copy()
+            for left, right in LEFT_RIGHT.items():
+                remapped[left] = original_ap[right]
+            ap = remapped
+        for a, b, c in JOINT_TRIPLES:
+            ra, aa = angle(rp[a,:2], rp[b,:2], rp[c,:2]), angle(ap[a,:2], ap[b,:2], ap[c,:2])
+            if np.isfinite(ra) and np.isfinite(aa):
+                angle_errors.append(abs(ra-aa))
         linear_t = att_start + (reference.times[i] - ref_start) / max(ref_end - ref_start, 1e-6) * (att_end - att_start)
         timing_errors.append(abs(float(attempt.times[j] - linear_t)))
-        if prior:
-            pi, pj = prior
-            ref_velocity.append(float(np.linalg.norm(ref_desc[i] - ref_desc[pi])))
-            att_velocity.append(float(np.linalg.norm(att_desc[j] - att_desc[pj])))
-        prior = (i, j)
+        if step:
+            ref_velocity.append(float(np.linalg.norm(pair_ref_desc[step] - pair_ref_desc[step - 1])))
+            att_velocity.append(float(np.linalg.norm(pair_att_desc[step] - pair_att_desc[step - 1])))
 
     mean_distance = float(np.mean(distances)) if distances else 3.0
     mean_angle = float(np.mean(angle_errors)) if angle_errors else math.pi
@@ -236,21 +472,28 @@ def score(reference: Track, attempt: Track) -> dict:
         dynamics_corr = 0.0
     dynamics = 50 * (1 + np.clip(dynamics_corr, -1, 1))
 
-    group_pairs = []
-    count_matches = []
-    for i, j in path[::max(1, len(path)//120)]:
-        rc, ac = group_centers(reference.poses[i]), group_centers(attempt.poses[j])
-        count_matches.append(1.0 if len(rc) == 0 and len(ac) == 0 else min(len(rc), len(ac)) / max(len(rc), len(ac), 1))
-        if len(rc) > 1 and len(rc) == len(ac):
-            rspan, aspan = max(np.ptp(rc[:,0]), .05), max(np.ptp(ac[:,0]), .05)
-            group_pairs.append(float(np.mean(np.abs((rc[:,0]-rc[:,0].mean())/rspan - (ac[:,0]-ac[:,0].mean())/aspan))))
-    formation = 100 * float(np.mean(count_matches))
-    if group_pairs:
-        formation *= math.exp(-float(np.mean(group_pairs)) / .28)
+    sampled_path = path[::max(1, len(path)//120)]
+    reference_counts = [len(group_centers(reference.poses[i])) for i, _ in sampled_path]
+    attempt_counts = [len(group_centers(attempt.poses[j])) for _, j in sampled_path]
+    team_mode = float(np.median(attempt_counts)) >= 1.5
+    formation = None
+    if team_mode:
+        group_pairs, count_matches = [], []
+        for i, j in sampled_path:
+            rc, ac = group_centers(reference.poses[i]), group_centers(attempt.poses[j])
+            count_matches.append(min(len(rc), len(ac)) / max(len(rc), len(ac), 1))
+            if len(rc) > 1 and len(rc) == len(ac):
+                rspan, aspan = max(np.ptp(rc[:,0]), .05), max(np.ptp(ac[:,0]), .05)
+                group_pairs.append(float(np.mean(np.abs((rc[:,0]-rc[:,0].mean())/rspan -
+                                                         (ac[:,0]-ac[:,0].mean())/aspan))))
+        formation = 100 * float(np.mean(count_matches))
+        if group_pairs:
+            formation *= math.exp(-float(np.mean(group_pairs)) / .28)
 
-    per_pair = [(pair_cost, i, j) for i, j in path
-                if np.count_nonzero(ref_mask[i] & att_mask[j]) >= 5
-                for pair_cost in [masked_cost(ref_desc[i], ref_mask[i], att_desc[j], att_mask[j])]
+    per_pair = [(pair_cost, i, j) for step, (i, j) in enumerate(path)
+                if np.count_nonzero(pair_ref_mask[step] & pair_att_mask[step]) >= 5
+                for pair_cost in [masked_cost(pair_ref_desc[step], pair_ref_mask[step],
+                                              pair_att_desc[step], pair_att_mask[step])]
                 if pair_cost >= .12]
     separated = []
     for pair_cost, i, j in sorted(per_pair, reverse=True):
@@ -265,9 +508,18 @@ def score(reference: Track, attempt: Track) -> dict:
     if alignment_confidence < .52: issues.append("weak_motion_alignment")
     status = "abstained" if confidence < .45 else "completed"
     if status == "abstained" and not issues: issues.append("low_combined_confidence")
-    fronts = {"form": form, "timing": timing, "path": path_accuracy,
-              "dynamics": dynamics, "formation": formation}
-    overall = float(np.average(list(fronts.values()), weights=[.30,.25,.20,.15,.10]))
+    fronts = {"form": form, "timing": timing, "path": path_accuracy, "dynamics": dynamics}
+    weights = [.33, .28, .22, .17]
+    if formation is not None:
+        fronts["formation"] = formation
+        weights = [.30, .25, .20, .15, .10]
+    overall = float(np.average(list(fronts.values()), weights=weights))
+    judged = ["2D pose form", "motion timing", "body path", "pose-speed dynamics"]
+    not_judged = ["artistry", "musicality", "expression", "confidence", "creator taste", "safety"]
+    if team_mode:
+        judged.append("coarse formation")
+    else:
+        not_judged.append("team formation for a solo upload")
     return {
         "schemaVersion": "nodevideo.choreography-verdict.v1",
         "status": status,
@@ -280,16 +532,25 @@ def score(reference: Track, attempt: Track) -> dict:
         "measurements": {"poseCost": round(cost, 5), "jointCoverage": round(visibility, 4),
                          "durationCoverage": round(coverage, 4), "medianTimingErrorMs": round(median_timing*1000),
                          "alignmentMode": alignment_mode,
+                         "comparisonMode": "team" if team_mode else "solo-focal-performer",
+                         "selectedReferencePerson": int(reference_person),
+                         "referencePeopleUsed": sorted({int(person) for person in reference_sequence}),
+                         "referencePersonChanges": int(np.count_nonzero(np.diff(reference_sequence))),
+                         "selectedAttemptPerson": int(attempt_person),
+                         "medianReferencePeople": round(float(np.median(reference_counts)), 2),
+                         "medianAttemptPeople": round(float(np.median(attempt_counts)), 2),
                          "referenceWindow": {"startSeconds": round(ref_start, 4), "endSeconds": round(ref_end, 4)},
                          "attemptWindow": {"startSeconds": round(att_start, 4), "endSeconds": round(att_end, 4)}},
         "alignment": [{"referenceFrame": i, "attemptFrame": j,
+                       "referencePerson": int(person),
                        "referenceTime": round(float(reference.times[i]), 4),
-                       "attemptTime": round(float(attempt.times[j]), 4)} for i, j in path],
+                       "attemptTime": round(float(attempt.times[j]), 4)}
+                      for (i, j), person in zip(path, reference_sequence)],
         "criticalMoments": [{"referenceTime": round(rt, 3), "attemptTime": round(at, 3),
                              "severity": round(float(min(pc/1.2, 1)), 3)} for rt, at, pc in separated],
         "scoreBoundaries": {
-            "judged": ["2D pose form", "motion timing", "body path", "pose-speed dynamics", "coarse formation"],
-            "notJudged": ["artistry", "musicality", "expression", "confidence", "creator taste", "safety"]
+            "judged": judged,
+            "notJudged": not_judged
         }
     }
 

@@ -28,6 +28,11 @@ type Verdict = {
   confidence: number;
   overall: number | null;
   scores: Record<string, number>;
+  measurements?: {
+    comparisonMode?: 'team' | 'solo-focal-performer';
+    medianTimingErrorMs?: number;
+    referencePeopleUsed?: number[];
+  };
   criticalMoments: Moment[];
   limitations: string[];
 };
@@ -297,8 +302,8 @@ function CoachPanel() {
           {busy ? 'Comparing…' : 'Judge choreography'}
         </Button>
         <p className="text-xs leading-relaxed text-muted-foreground">
-          Measures visible 2D form, timing, path, dynamics, and coarse formation. It does not grade
-          artistry, expression, identity, or safety.
+          Measures visible 2D form, timing, path, and dynamics. Formation is included when both
+          videos show a team. It does not grade artistry, expression, identity, or safety.
         </p>
       </form>
 
@@ -338,6 +343,19 @@ function CoachPanel() {
             </CardAction>
           </CardHeader>
           <CardContent className="space-y-4">
+            <div className="flex flex-wrap gap-2">
+              {verdict.measurements?.comparisonMode === 'solo-focal-performer' && (
+                <Badge variant="outline">Focal dancer matched</Badge>
+              )}
+              {verdict.measurements?.comparisonMode === 'team' && (
+                <Badge variant="outline">Team formation included</Badge>
+              )}
+              {verdict.measurements?.medianTimingErrorMs !== undefined && (
+                <Badge variant="secondary">
+                  {Math.round(verdict.measurements.medianTimingErrorMs)} ms median timing drift
+                </Badge>
+              )}
+            </div>
             <div className="flex flex-wrap gap-2">
               {Object.entries(verdict.scores).map(([name, value]) => (
                 <Card className="min-w-32 flex-1" key={name} size="sm">

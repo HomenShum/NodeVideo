@@ -43,6 +43,7 @@
         "properties": {
           "referenceFrame": { "type": "integer", "minimum": 0 },
           "attemptFrame": { "type": "integer", "minimum": 0 },
+          "referencePerson": { "type": "integer", "minimum": 0 },
           "referenceTime": { "type": "number", "minimum": 0 },
           "attemptTime": { "type": "number", "minimum": 0 }
         }

@@ -30,8 +30,25 @@ class JudgeTests(unittest.TestCase):
         self.assertIn("low_joint_visibility", result["limitations"])
 
     def test_group_count_affects_formation(self):
-        result = score(fixture(people=2), fixture(people=1))
-        self.assertLess(result["scores"]["formation"], 75)
+        result = score(fixture(people=3), fixture(people=2))
+        self.assertLess(result["scores"]["formation"], 80)
+
+    def test_requested_empty_slots_do_not_dilute_solo_confidence(self):
+        track = fixture(people=10)
+        track.poses[:, 1:] = np.nan
+        result = score(track, track)
+        self.assertEqual(result["status"], "completed")
+        self.assertGreater(result["confidence"], .9)
+        self.assertEqual(result["measurements"]["comparisonMode"], "solo-focal-performer")
+        self.assertNotIn("formation", result["scores"])
+
+    def test_detector_order_swaps_are_stabilized(self):
+        reference = fixture(people=2)
+        scrambled = reference.poses.copy()
+        scrambled[1::2] = scrambled[1::2, ::-1]
+        result = score(reference, Track(reference.times, scrambled))
+        self.assertEqual(result["status"], "completed")
+        self.assertGreater(result["overall"], 95)
 
     def test_attempt_can_match_reference_subsequence(self):
         reference = fixture(frames=180)
@@ -41,6 +58,29 @@ class JudgeTests(unittest.TestCase):
         self.assertEqual(result["measurements"]["alignmentMode"], "subsequence")
         self.assertAlmostEqual(result["measurements"]["referenceWindow"]["startSeconds"], reference.times[55], delta=.35)
         self.assertGreater(result["overall"], 90)
+
+    def test_equal_length_preroll_is_not_scored_as_timing_error(self):
+        reference = fixture(frames=120)
+        delay = 4
+        delayed = np.concatenate([
+            np.repeat(reference.poses[:1], delay, axis=0),
+            reference.poses[:-delay],
+        ])
+        result = score(reference, Track(reference.times, delayed))
+        self.assertEqual(result["status"], "completed")
+        self.assertEqual(result["measurements"]["alignmentMode"], "pose-offset")
+        self.assertAlmostEqual(result["measurements"]["attemptWindow"]["startSeconds"], delay / 15, delta=.2)
+        self.assertGreater(result["scores"]["timing"], 90)
+
+    def test_solo_attempt_selects_performer_from_group_before_alignment(self):
+        reference = fixture(frames=120, people=3)
+        delay = 4
+        performer = reference.poses[:, 1:2]
+        delayed = np.concatenate([np.repeat(performer[:1], delay, axis=0), performer[:-delay]])
+        result = score(reference, Track(reference.times, delayed))
+        self.assertEqual(result["status"], "completed")
+        self.assertEqual(result["measurements"]["alignmentMode"], "pose-offset-dynamic")
+        self.assertGreater(result["scores"]["timing"], 90)
 
 
 if __name__ == "__main__":
