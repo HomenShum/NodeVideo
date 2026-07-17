@@ -11,12 +11,27 @@ receive precise, non-gamified help at the moment you need it.
 
 ## Reference case
 
-- Song: **"Tragedy" by TellaX**. Reference interpretation chosen by Homen:
-  the "lestwin" Instagram reel
+- Song: **"Tragedy" by TellaX** (confirmed: the reel credits @tellax.tm).
+  Reference interpretation chosen by Homen: the lolatwins Instagram reel
   (https://www.instagram.com/reels/DYheVqJsiNE/ — attribution URL only, see
-  ingestion note below). If the performer is the Les Twins duo, Homen selects
-  which dancer is the learning target; the judge's continuity-constrained
-  focal-performer selection handles duo references.
+  ingestion note below), filmed at Kumbala Dance Studio.
+- **Primary dancer: Larry Bourgeois (Les Twins)** — named in the reel caption
+  and visually confirmed (cream graphic tee, black cap, center-frame performer;
+  Laurent watches from the circle). Footage reality: a handheld freestyle
+  cypher with ~10–15 people. Roughly 2–35s Larry is full-body and frontal;
+  ~40–70s degrades to close-ups and motion blur, where the judge abstains.
+  Candidate P0 phrase from the primary-dancer scorer: **2.13–10.13s**
+  (75% track visibility) — Homen confirms the exact counts.
+- **Dancer selection is suggested, never decided.** The deterministic scorer
+  (`scripts/analysis/suggest_primary_dancer.py`) ranks stabilized tracks on
+  presence, continuity, centrality, prominence, and motion, and emits
+  thumbnail timestamps; the UI binds identity through thumbnails (stabilized
+  slot ids are internal and do not survive re-runs), pre-selects the
+  suggestion with its signal chips, and the user confirms or overrides. On
+  handheld cypher footage the ranking margin is thin (global camera motion
+  saturates the motion signal; tracks fragment) — thin margins render as an
+  explicit question, not a confident default. Follow-up: global-motion
+  compensation before per-track motion scoring.
 - **Reference ingestion is source-agnostic and file-based.** Instagram has no
   player API, no clock control, and blocks anonymous access, so IG URLs are
   never ingested directly (no scraping, no allowlist extension). Homen supplies
