@@ -1,7 +1,8 @@
 import unittest
+from unittest.mock import patch
 import numpy as np
 
-from choreography_judge import Track, score
+from choreography_judge import Track, collapse_solo_tracklets, score, select_performer_match
 
 
 def fixture(frames=90, people=1, noisy=False, missing=False):
@@ -23,11 +24,17 @@ class JudgeTests(unittest.TestCase):
         self.assertEqual(result["status"], "completed")
         self.assertGreater(result["overall"], 95)
         self.assertGreater(result["confidence"], .9)
+        self.assertEqual(
+            result["scoreInterpretation"],
+            "relative-motion-signal-not-calibrated-pass-fail",
+        )
 
     def test_low_visibility_abstains(self):
         result = score(fixture(), fixture(missing=True))
         self.assertEqual(result["status"], "abstained")
         self.assertIn("low_joint_visibility", result["limitations"])
+        self.assertIn("measurements", result)
+        self.assertIn("scoreBoundaries", result)
 
     def test_group_count_affects_formation(self):
         result = score(fixture(people=3), fixture(people=2))
@@ -49,6 +56,15 @@ class JudgeTests(unittest.TestCase):
         result = score(reference, Track(reference.times, scrambled))
         self.assertEqual(result["status"], "completed")
         self.assertGreater(result["overall"], 95)
+
+    def test_fragmented_solo_tracklets_collapse_to_one_performer(self):
+        source = fixture(frames=90)
+        poses = np.full((90, 4, 33, 4), np.nan, dtype=np.float32)
+        for index in range(90):
+            poses[index, index // 23] = source.poses[index, 0]
+        collapsed = collapse_solo_tracklets(Track(source.times, poses))
+        self.assertEqual(collapsed.poses.shape[1], 1)
+        self.assertTrue(np.isfinite(collapsed.poses[:, 0, 0, 0]).all())
 
     def test_attempt_can_match_reference_subsequence(self):
         reference = fixture(frames=180)
@@ -72,6 +88,23 @@ class JudgeTests(unittest.TestCase):
         self.assertAlmostEqual(result["measurements"]["attemptWindow"]["startSeconds"], delay / 15, delta=.2)
         self.assertGreater(result["scores"]["timing"], 90)
 
+    def test_reference_duration_finds_take_inside_longer_upload(self):
+        reference = fixture(frames=90)
+        prefix = np.repeat(reference.poses[:1], 35, axis=0)
+        attempt_poses = np.concatenate([prefix, reference.poses])
+        attempt = Track(np.arange(len(attempt_poses)) / 15, attempt_poses)
+        result = score(reference, attempt)
+        self.assertEqual(
+            result["measurements"]["attemptSegmentationMode"],
+            "pose-window-from-reference-duration",
+        )
+        self.assertAlmostEqual(
+            result["measurements"]["attemptCandidateWindow"]["startSeconds"],
+            35 / 15,
+            delta=1.1,
+        )
+        self.assertGreater(result["overall"], 90)
+
     def test_solo_attempt_selects_performer_from_group_before_alignment(self):
         reference = fixture(frames=120, people=3)
         delay = 4
@@ -81,6 +114,16 @@ class JudgeTests(unittest.TestCase):
         self.assertEqual(result["status"], "completed")
         self.assertEqual(result["measurements"]["alignmentMode"], "pose-offset-dynamic")
         self.assertGreater(result["scores"]["timing"], 90)
+
+    def test_long_group_reference_prunes_full_dtw_hypotheses(self):
+        reference = fixture(frames=100, people=6)
+        attempt = fixture(frames=40)
+        with patch(
+            "choreography_judge.align_tracks",
+            return_value=([(0, 0)], .1, "subsequence"),
+        ) as align:
+            self.assertIsNotNone(select_performer_match(reference, attempt))
+        self.assertEqual(align.call_count, 4)
 
 
 if __name__ == "__main__":

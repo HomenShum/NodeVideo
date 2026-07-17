@@ -22,11 +22,13 @@ const jobsRoot = resolve(
   process.env.NODEVIDEO_COACH_JOBS ?? join(root, '.qa/evidence/private/choreography-jobs'),
 );
 const poseCacheRoot = resolve(root, '.qa/cache/private-pose');
+const analysisMediaCacheRoot = resolve(root, '.qa/cache/private-analysis-media');
 const jobs = new Map();
 const maxUpload = 700 * 1024 * 1024;
 
 await mkdir(jobsRoot, { recursive: true });
 await mkdir(poseCacheRoot, { recursive: true });
+await mkdir(analysisMediaCacheRoot, { recursive: true });
 await restoreJobs();
 
 const server = createServer(async (request, response) => {
@@ -96,11 +98,24 @@ async function createJob(request, response) {
   if (!(referenceFile instanceof File) && !validYouTubeUrl(referenceUrl)) {
     return json(response, 422, { error: 'youtube_reference_or_file_required' });
   }
+  const referenceStartSeconds = optionalNumber(form.get('referenceStartSeconds'));
+  const referenceEndSeconds = optionalNumber(form.get('referenceEndSeconds'));
+  if (
+    (referenceStartSeconds === null) !== (referenceEndSeconds === null) ||
+    (referenceStartSeconds !== null &&
+      (!Number.isFinite(referenceStartSeconds) ||
+        !Number.isFinite(referenceEndSeconds) ||
+        referenceStartSeconds < 0 ||
+        referenceEndSeconds <= referenceStartSeconds ||
+        referenceEndSeconds - referenceStartSeconds > 90))
+  ) {
+    return json(response, 422, { error: 'invalid_reference_segment' });
+  }
   const id = `coach-${Date.now().toString(36)}-${randomBytes(3).toString('hex')}`;
   const directory = join(jobsRoot, id);
   await mkdir(directory, { recursive: true });
-  const attemptPath = join(directory, safeMediaName('attempt', attempt.name));
-  await writeFile(attemptPath, Buffer.from(await attempt.arrayBuffer()));
+  const attemptOriginalPath = join(directory, safeMediaName('attempt', attempt.name));
+  await writeFile(attemptOriginalPath, Buffer.from(await attempt.arrayBuffer()));
   let referencePath = null;
   if (referenceFile instanceof File && referenceFile.size > 0) {
     referencePath = join(directory, safeMediaName('reference', referenceFile.name));
@@ -112,9 +127,12 @@ async function createJob(request, response) {
     stage: 'queued',
     progress: 0,
     directory,
-    attemptPath,
+    attemptOriginalPath,
+    attemptPath: attemptOriginalPath,
     referencePath,
     referenceUrl,
+    referenceStartSeconds,
+    referenceEndSeconds,
     people: clamp(Number(form.get('people') ?? 10), 1, 10),
     createdAt: new Date().toISOString(),
     artifacts: {},
@@ -150,6 +168,18 @@ async function runJob(job) {
         { timeout: 10 * 60_000, windowsHide: true },
       );
     }
+    if (
+      job.referenceStartSeconds === null &&
+      job.referenceEndSeconds === null &&
+      (await mediaDurationSeconds(job.referencePath)) > 90
+    ) {
+      throw new Error('reference_segment_required_for_long_video');
+    }
+    update(job, 'normalizing_attempt', 14, 'Preparing a deterministic analysis proxy');
+    job.attemptPath = await ensureAnalysisProxy(
+      job.attemptOriginalPath ?? job.attemptPath,
+      job.directory,
+    );
     await ensureModel();
     const referenceTrack = join(job.directory, 'reference-pose.npz');
     const attemptTrack = join(job.directory, 'attempt-pose.npz');
@@ -159,19 +189,24 @@ async function runJob(job) {
     await extractPose(job.attemptPath, attemptTrack, job.people);
     update(job, 'aligning_motion', 62, 'Aligning choreography with constrained DTW');
     const verdictPath = join(job.directory, 'verdict.json');
-    await exec(
-      python,
-      [
-        join(root, 'scripts/analysis/choreography_judge.py'),
-        '--reference-track',
-        referenceTrack,
-        '--attempt-track',
-        attemptTrack,
-        '--output',
-        verdictPath,
-      ],
-      { timeout: 5 * 60_000, windowsHide: true },
-    );
+    const judgeArguments = [
+      join(root, 'scripts/analysis/choreography_judge.py'),
+      '--reference-track',
+      referenceTrack,
+      '--attempt-track',
+      attemptTrack,
+      '--output',
+      verdictPath,
+    ];
+    if (job.referenceStartSeconds !== null && job.referenceEndSeconds !== null) {
+      judgeArguments.push(
+        '--reference-start',
+        String(job.referenceStartSeconds),
+        '--reference-end',
+        String(job.referenceEndSeconds),
+      );
+    }
+    await exec(python, judgeArguments, { timeout: 5 * 60_000, windowsHide: true });
     job.verdict = JSON.parse(await readFile(verdictPath, 'utf8'));
     update(job, 'rendering_comparison', 78, 'Rendering private comparison video');
     const comparison = join(job.directory, 'comparison.mp4');
@@ -190,7 +225,9 @@ async function runJob(job) {
         {
           schemaVersion: 'nodevideo.choreography-job-provenance.v1',
           reference: await digest(job.referencePath),
-          attempt: await digest(job.attemptPath),
+          attempt: await digest(job.attemptOriginalPath ?? job.attemptPath),
+          attemptAnalysis: await digest(job.attemptPath),
+          attemptAnalysisProxy: job.attemptPath !== (job.attemptOriginalPath ?? job.attemptPath),
           model: await digest(model),
           createdAt: job.createdAt,
           privacy: 'local-private',
@@ -267,6 +304,77 @@ async function extractPose(video, output, people) {
   );
   await copyFile(output, cachedTrack);
   await copyFile(output.replace(/\.npz$/i, '.json'), cachedMetadata);
+}
+
+async function ensureAnalysisProxy(input, directory) {
+  const sourceHash = await digest(input);
+  const output = join(directory, 'attempt-analysis.mp4');
+  const cached = join(analysisMediaCacheRoot, `${sourceHash}-h264-yuv420p-v1.mp4`);
+  try {
+    if ((await stat(cached)).size > 1_000) {
+      await copyFile(cached, output);
+      return output;
+    }
+  } catch {}
+  const { stdout } = await exec(
+    'ffprobe',
+    [
+      '-v',
+      'error',
+      '-select_streams',
+      'v:0',
+      '-show_entries',
+      'stream=codec_name,pix_fmt',
+      '-of',
+      'json',
+      input,
+    ],
+    { timeout: 60_000, windowsHide: true },
+  );
+  const stream = JSON.parse(stdout).streams?.[0];
+  if (stream?.codec_name === 'h264' && stream?.pix_fmt === 'yuv420p') return input;
+  await exec(
+    'ffmpeg',
+    [
+      '-hide_banner',
+      '-loglevel',
+      'error',
+      '-y',
+      '-i',
+      input,
+      '-map',
+      '0:v:0',
+      '-map',
+      '0:a?',
+      '-c:v',
+      'libx264',
+      '-preset',
+      'veryfast',
+      '-crf',
+      '20',
+      '-pix_fmt',
+      'yuv420p',
+      '-c:a',
+      'aac',
+      '-b:a',
+      '160k',
+      '-movflags',
+      '+faststart',
+      output,
+    ],
+    { timeout: 12 * 60_000, windowsHide: true },
+  );
+  await copyFile(output, cached);
+  return output;
+}
+
+async function mediaDurationSeconds(input) {
+  const { stdout } = await exec(
+    'ffprobe',
+    ['-v', 'error', '-show_entries', 'format=duration', '-of', 'json', input],
+    { timeout: 60_000, windowsHide: true },
+  );
+  return Number(JSON.parse(stdout).format?.duration ?? 0);
 }
 
 async function renderComparison(
@@ -393,6 +501,11 @@ function validYouTubeUrl(value) {
 function safeMediaName(prefix, name) {
   const ext = basename(name).match(/\.[a-z0-9]{2,5}$/i)?.[0] ?? '.mp4';
   return `${prefix}${ext.toLowerCase()}`;
+}
+function optionalNumber(value) {
+  if (value === null || String(value).trim() === '') return null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : Number.NaN;
 }
 function clamp(value, low, high) {
   return Math.max(low, Math.min(high, Number.isFinite(value) ? Math.round(value) : low));

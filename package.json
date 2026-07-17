@@ -23,6 +23,7 @@
     "grounding:proof:verify": "node scripts/quality/verify-locate-anything-proof.mjs",
     "coach:sidecar": "node --env-file-if-exists=.env scripts/workers/choreography-coach-sidecar.mjs",
     "coach:test": "python scripts/analysis/test_choreography_judge.py",
+    "coach:calibrate": "python scripts/analysis/calibrate_choreography_judge.py",
     "extension:dev": "vite --config apps/chrome-extension/vite.config.ts",
     "extension:build": "vite build --config apps/chrome-extension/vite.config.ts",
     "taste:audit": "node scripts/analysis/creator-taste-profiler.mjs",

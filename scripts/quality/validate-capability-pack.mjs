@@ -50,6 +50,12 @@ const attentionEvaluation = await readJson('packs/attention-overlays/evals/contr
 const coachManifest = await readJson('packs/choreography-coach/manifest.json');
 const coachInputSchema = await readJson('packs/choreography-coach/input.schema.json');
 const coachOutputSchema = await readJson('packs/choreography-coach/output.schema.json');
+const coachCalibrationManifestSchema = await readJson(
+  'packs/choreography-coach/calibration-manifest.schema.json',
+);
+const coachCalibrationReportSchema = await readJson(
+  'packs/choreography-coach/calibration-report.schema.json',
+);
 const songAnalysis = await readJson(
   'fixtures/media/song-conditioned-auto-edit-v1/understanding.json',
 );
@@ -119,6 +125,10 @@ const attentionInputValid = attentionInputValidator(attentionEvaluation.cases[0]
 const attentionOutputSchemaValid = typeof ajv.compile(attentionOutputSchema) === 'function';
 const coachInputSchemaValid = typeof ajv.compile(coachInputSchema) === 'function';
 const coachOutputSchemaValid = typeof ajv.compile(coachOutputSchema) === 'function';
+const coachCalibrationManifestSchemaValid =
+  typeof ajv.compile(coachCalibrationManifestSchema) === 'function';
+const coachCalibrationReportSchemaValid =
+  typeof ajv.compile(coachCalibrationReportSchema) === 'function';
 
 const sameMembers = (left, right) =>
   left.length === right.length && left.every((value) => right.includes(value));
@@ -354,6 +364,8 @@ const attentionChecks = [
 const coachChecks = [
   ['choreography coach input schema compiles', coachInputSchemaValid],
   ['choreography coach output schema compiles', coachOutputSchemaValid],
+  ['choreography calibration manifest schema compiles', coachCalibrationManifestSchemaValid],
+  ['choreography calibration report schema compiles', coachCalibrationReportSchemaValid],
   [
     'choreography coach pack keeps the human-video claim boundary explicit',
     coachManifest.implementationStatus === 'private-human-experimental' &&

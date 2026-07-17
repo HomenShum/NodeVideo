@@ -1,7 +1,7 @@
 {
   "schema": "nodevideo.capability-pack.v1",
   "id": "nodevideo.choreography-coach",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "implementationStatus": "private-human-experimental",
   "title": "Choreography Coach",
   "description": "Compare an authorized reference choreography with a dancer upload using inspectable MediaPipe tracks, constrained DTW, confidence-aware scoring, and an abstention boundary.",
@@ -9,6 +9,8 @@
     "skill": "skill.md",
     "inputSchema": "input.schema.json",
     "outputSchema": "output.schema.json",
+    "calibrationManifestSchema": "calibration-manifest.schema.json",
+    "calibrationReportSchema": "calibration-report.schema.json",
     "toolRegistry": "tools/registry.json"
   },
   "inputs": ["video/reference", "video/attempt"],

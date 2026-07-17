@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/choreography-coach/calibration-manifest.v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "clips", "pairs"],
+  "properties": {
+    "schemaVersion": { "const": "nodevideo.choreography-calibration-manifest.v1" },
+    "clips": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "track", "mediaSha256", "choreographyFamily", "productionFamily"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "track": { "type": "string", "minLength": 1 },
+          "mediaSha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+          "choreographyFamily": { "type": "string", "minLength": 1 },
+          "productionFamily": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "pairs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "reference",
+          "attempt",
+          "expected",
+          "independence",
+          "caseGroup",
+          "labelSource"
+        ],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "reference": { "type": "string", "minLength": 1 },
+          "attempt": { "type": "string", "minLength": 1 },
+          "expected": { "enum": ["same-choreography", "different-choreography"] },
+          "independence": { "enum": ["independent", "dependent"] },
+          "caseGroup": { "type": "string", "minLength": 1 },
+          "labelSource": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

@@ -27,6 +27,7 @@ type Verdict = {
   status: 'completed' | 'abstained';
   confidence: number;
   overall: number | null;
+  scoreInterpretation?: 'relative-motion-signal-not-calibrated-pass-fail';
   scores: Record<string, number>;
   measurements?: {
     comparisonMode?: 'team' | 'solo-focal-performer';
@@ -67,6 +68,8 @@ function CoachPanel() {
   const [endpoint, setEndpoint] = useState('http://127.0.0.1:4319');
   const [token, setToken] = useState('');
   const [people, setPeople] = useState(10);
+  const [referenceStart, setReferenceStart] = useState(preview.get('referenceStart') ?? '');
+  const [referenceEnd, setReferenceEnd] = useState(preview.get('referenceEnd') ?? '');
   const [rights, setRights] = useState(false);
   const [job, setJob] = useState<Job | null>(null);
   const [error, setError] = useState('');
@@ -125,7 +128,7 @@ function CoachPanel() {
       setJob(value);
       if (value.status === 'failed') {
         setBusy(false);
-        setError(value.error || 'The comparison worker failed.');
+        setError(value.error ? humanError(value.error) : 'The comparison worker failed.');
       }
       if (['completed', 'abstained'].includes(value.status)) setBusy(false);
     } catch (cause) {
@@ -142,6 +145,21 @@ function CoachPanel() {
     if (!attempt) return setError('Choose your dance video.');
     if (!token.trim()) return setError('Paste the token printed by the local NodeVideo worker.');
     if (!rights) return setError('Confirm that you have permission to analyze both videos.');
+    const hasReferenceStart = referenceStart.trim() !== '';
+    const hasReferenceEnd = referenceEnd.trim() !== '';
+    if (hasReferenceStart !== hasReferenceEnd)
+      return setError('Enter both the start and end of the reference choreography segment.');
+    const referenceStartValue = Number(referenceStart);
+    const referenceEndValue = Number(referenceEnd);
+    if (
+      hasReferenceStart &&
+      (!Number.isFinite(referenceStartValue) ||
+        !Number.isFinite(referenceEndValue) ||
+        referenceStartValue < 0 ||
+        referenceEndValue <= referenceStartValue ||
+        referenceEndValue - referenceStartValue > 90)
+    )
+      return setError('Reference segment must be a valid range no longer than 90 seconds.');
     const base = endpoint.replace(/\/$/, '');
     if (extensionApi) await extensionApi.storage.local.set({ endpoint: base, token, people });
     const body = new FormData();
@@ -149,6 +167,10 @@ function CoachPanel() {
     body.set('referenceUrl', reference.url);
     body.set('rightsConfirmed', 'true');
     body.set('people', String(people));
+    if (hasReferenceStart) {
+      body.set('referenceStartSeconds', String(referenceStartValue));
+      body.set('referenceEndSeconds', String(referenceEndValue));
+    }
     setBusy(true);
     setJob({
       id: '',
@@ -240,7 +262,7 @@ function CoachPanel() {
         <Collapsible>
           <CollapsibleTrigger asChild>
             <Button className="w-full justify-between" type="button" variant="outline">
-              Team and connection
+              Segment, team, and connection
               <ChevronDown aria-hidden="true" />
             </Button>
           </CollapsibleTrigger>
@@ -248,6 +270,33 @@ function CoachPanel() {
             <Card size="sm">
               <CardContent>
                 <FieldGroup>
+                  <Field>
+                    <FieldLabel>Reference choreography segment</FieldLabel>
+                    <div className="grid grid-cols-2 gap-2">
+                      <Input
+                        aria-label="Reference start seconds"
+                        inputMode="decimal"
+                        min={0}
+                        placeholder="Start seconds"
+                        type="number"
+                        value={referenceStart}
+                        onChange={(event) => setReferenceStart(event.target.value)}
+                      />
+                      <Input
+                        aria-label="Reference end seconds"
+                        inputMode="decimal"
+                        min={0}
+                        placeholder="End seconds"
+                        type="number"
+                        value={referenceEnd}
+                        onChange={(event) => setReferenceEnd(event.target.value)}
+                      />
+                    </div>
+                    <FieldDescription>
+                      Use the exact music/choreography section. NodeVideo will locate that section
+                      inside your longer raw take.
+                    </FieldDescription>
+                  </Field>
                   <Field>
                     <FieldLabel htmlFor="people">Maximum dancers to track</FieldLabel>
                     <Input
@@ -343,6 +392,11 @@ function CoachPanel() {
             </CardAction>
           </CardHeader>
           <CardContent className="space-y-4">
+            {verdict.scoreInterpretation === 'relative-motion-signal-not-calibrated-pass-fail' && (
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                Relative motion score for comparing takes—not a calibrated pass/fail grade.
+              </p>
+            )}
             <div className="flex flex-wrap gap-2">
               {verdict.measurements?.comparisonMode === 'solo-focal-performer' && (
                 <Badge variant="outline">Focal dancer matched</Badge>
@@ -477,6 +531,9 @@ function humanError(code = '') {
         invalid_token: 'The local service token is incorrect.',
         rights_confirmation_required: 'Confirm that you have permission to analyze both videos.',
         upload_too_large: 'The video is larger than the 700 MB local limit.',
+        invalid_reference_segment: 'Enter a valid reference segment no longer than 90 seconds.',
+        reference_segment_required_for_long_video:
+          'Choose the exact choreography segment for reference videos longer than 90 seconds.',
       } as Record<string, string>
     )[code] || code.replaceAll('_', ' ')
   );

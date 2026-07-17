@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/choreography-coach/calibration-report.v1.json",
+  "type": "object",
+  "required": ["schemaVersion", "manifestSha256", "cohort", "calibration", "pairs"],
+  "properties": {
+    "schemaVersion": { "const": "nodevideo.choreography-calibration-report.v1" },
+    "manifestSha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+    "cohort": {
+      "type": "object",
+      "required": ["clipCount", "pairCount", "independentPairCount"],
+      "properties": {
+        "clipCount": { "type": "integer", "minimum": 2 },
+        "pairCount": { "type": "integer", "minimum": 1 },
+        "independentPairCount": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "calibration": {
+      "type": "object",
+      "required": [
+        "status",
+        "scoreBandsPublished",
+        "publishedThreshold",
+        "exploratoryCandidate",
+        "policy",
+        "evidence"
+      ],
+      "properties": {
+        "status": { "enum": ["publishable", "insufficient-independent-evidence"] },
+        "scoreBandsPublished": { "type": "boolean" },
+        "publishedThreshold": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+        "exploratoryCandidate": { "type": "object" },
+        "policy": { "type": "object" },
+        "evidence": { "type": "object" }
+      }
+    },
+    "pairs": { "type": "array", "items": { "type": "object" } }
+  }
+}

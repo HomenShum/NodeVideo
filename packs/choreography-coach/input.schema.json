@@ -26,6 +26,15 @@
         { "$ref": "#/$defs/privateAsset" }
       ]
     },
+    "referenceSegment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startSeconds", "endSeconds"],
+      "properties": {
+        "startSeconds": { "type": "number", "minimum": 0 },
+        "endSeconds": { "type": "number", "exclusiveMinimum": 0, "maximum": 900 }
+      }
+    },
     "attempt": { "$ref": "#/$defs/privateAsset" },
     "rights": {
       "type": "object",

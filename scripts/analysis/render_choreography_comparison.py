@@ -73,7 +73,12 @@ def main() -> None:
     ref_frame = att_frame = None
     try:
         for pair in alignment:
-            ri, ai = pair["referenceFrame"], pair["attemptFrame"]
+            # Frame indices can be local to an explicitly selected window;
+            # absolute track times remain stable against the full pose tracks.
+            ri = int(np.clip(np.searchsorted(reference["times"], pair["referenceTime"]),
+                             0, len(reference["times"]) - 1))
+            ai = int(np.clip(np.searchsorted(attempt["times"], pair["attemptTime"]),
+                             0, len(attempt["times"]) - 1))
             ref_ok, ref_frame, ref_index = advance(ref_capture, ref_index, int(reference["frames"][ri]), ref_frame)
             att_ok, att_frame, att_index = advance(att_capture, att_index, int(attempt["frames"][ai]), att_frame)
             if not ref_ok or not att_ok:

@@ -40,7 +40,9 @@ def load_track(path: Path) -> Track:
         converted[..., 2] = 0
         converted[..., 3] = poses[..., 2]
         poses = converted
-    return Track(np.asarray(data["times"], dtype=np.float64), stabilize_people(poses))
+    # score() owns identity stabilization so direct callers and loaded tracks
+    # follow one identical path without paying the association cost twice.
+    return Track(np.asarray(data["times"], dtype=np.float64), poses)
 
 
 def pose_centroid(pose: np.ndarray) -> np.ndarray:
@@ -134,6 +136,26 @@ def active_people(track: Track) -> list[int]:
             if sum(np.isfinite(pose_centroid(frame[person])).all() for frame in track.poses) >= minimum]
 
 
+def collapse_solo_tracklets(track: Track) -> Track:
+    """Merge fragmented detector slots when no frame contains a real team."""
+    counts = [sum(np.isfinite(pose_centroid(pose)).all() for pose in frame) for frame in track.poses]
+    if track.poses.shape[1] <= 1 or float(np.median(counts)) >= 1.5:
+        return track
+    poses = np.full((len(track.times), 1, track.poses.shape[2], track.poses.shape[3]),
+                    np.nan, dtype=track.poses.dtype)
+    for frame_index, frame in enumerate(track.poses):
+        candidates = [pose for pose in frame if np.isfinite(pose_centroid(pose)).all()]
+        if not candidates:
+            continue
+        def quality(pose: np.ndarray) -> tuple[int, float]:
+            visible = int(np.count_nonzero(pose[:, 3] >= .35))
+            points = pose[pose[:, 3] >= .35, :2]
+            span = float(np.ptp(points[:, 0]) * np.ptp(points[:, 1])) if len(points) >= 5 else 0
+            return visible, span
+        poses[frame_index, 0] = max(candidates, key=quality)
+    return Track(track.times, poses)
+
+
 def frame_descriptor(frame: np.ndarray, slots: int, mirrored: bool = False) -> tuple[np.ndarray, np.ndarray]:
     people = ordered_people(frame)
     if mirrored:
@@ -178,7 +200,7 @@ def align_tracks(reference: np.ndarray, ref_mask: np.ndarray, attempt: np.ndarra
     for candidate in np.argsort(correlation)[::-1]:
         if all(abs(int(candidate) - selected) >= minimum_separation for selected in candidate_starts):
             candidate_starts.append(int(candidate))
-        if len(candidate_starts) == min(5, len(correlation)):
+        if len(candidate_starts) == min(3, len(correlation)):
             break
     best: tuple[list[tuple[int, int]], float] = ([], float("inf"))
     for start in candidate_starts:
@@ -188,6 +210,39 @@ def align_tracks(reference: np.ndarray, ref_mask: np.ndarray, attempt: np.ndarra
         if cost < best[1]:
             best = ([(i + int(start), j) for i, j in local_path], cost)
     return best[0], best[1], "subsequence"
+
+
+def alignment_probe_cost(reference: np.ndarray, ref_mask: np.ndarray, attempt: np.ndarray,
+                         attempt_mask: np.ndarray) -> float:
+    """Rank performer hypotheses cheaply before allocating full DTW matrices."""
+    n, m = len(reference), len(attempt)
+    if n < m:
+        return alignment_probe_cost(attempt, attempt_mask, reference, ref_mask)
+    sample_count = min(160, m)
+    sample_indices = np.linspace(0, m - 1, sample_count, dtype=np.int32)
+    if n > m * 1.35:
+        ref_energy = motion_energy(reference, ref_mask)
+        attempt_energy = motion_energy(attempt, attempt_mask)
+        ref_signal = (ref_energy - np.mean(ref_energy)) / max(float(np.std(ref_energy)), 1e-6)
+        attempt_signal = (attempt_energy - np.mean(attempt_energy)) / max(float(np.std(attempt_energy)), 1e-6)
+        start = int(np.argmax(np.correlate(ref_signal, attempt_signal, mode="valid")))
+    else:
+        maximum_shift = max(1, round(min(n, m) * .04))
+        shifts = range(-maximum_shift, maximum_shift + 1, max(1, maximum_shift // 6))
+        scored_shifts = []
+        for shift in shifts:
+            reference_start, attempt_start = max(shift, 0), max(-shift, 0)
+            length = min(n - reference_start, m - attempt_start)
+            probe = np.linspace(0, length - 1, min(sample_count, length), dtype=np.int32)
+            costs = [masked_cost(reference[reference_start + index], ref_mask[reference_start + index],
+                                 attempt[attempt_start + index], attempt_mask[attempt_start + index])
+                     for index in probe]
+            scored_shifts.append((float(np.median(costs)), reference_start, attempt_start, length))
+        cost, _, _, _ = min(scored_shifts)
+        return cost
+    costs = [masked_cost(reference[start + index], ref_mask[start + index],
+                         attempt[index], attempt_mask[index]) for index in sample_indices]
+    return float(np.median(costs))
 
 
 def masked_cost(a: np.ndarray, am: np.ndarray, b: np.ndarray, bm: np.ndarray) -> float:
@@ -264,28 +319,36 @@ def select_performer_match(reference: Track, attempt: Track):
         min(len(reference.times), len(attempt.times)) * 1.35
     if len(reference_people) > 1 and len(attempt_people) == 1 and similar_sample_lengths:
         return select_dynamic_focal_match(reference, attempt, attempt_people[0])
-    candidates = []
+    probes = []
     for reference_person in reference_people:
         ref_desc, ref_mask = performer_descriptor(reference, reference_person)
         for attempt_person in attempt_people:
             for mirrored in (False, True):
                 att_desc, att_mask = performer_descriptor(attempt, attempt_person, mirrored)
-                path, cost, alignment_mode = align_tracks(ref_desc, ref_mask, att_desc, att_mask)
-                if not path:
-                    continue
-                valid = [(i, j) for i, j in path if np.count_nonzero(ref_mask[i] & att_mask[j]) >= 5]
-                if not valid:
-                    continue
-                visibility = float(np.mean([np.mean(ref_mask[i] & att_mask[j]) for i, j in valid]))
-                if len(attempt.times) <= len(reference.times):
-                    active_frames = max(1, int(np.count_nonzero(np.count_nonzero(att_mask, axis=1) >= 5)))
-                    covered = len({j for i, j in valid}) / active_frames
-                else:
-                    active_frames = max(1, int(np.count_nonzero(np.count_nonzero(ref_mask, axis=1) >= 5)))
-                    covered = len({i for i, j in valid}) / active_frames
-                confidence = visibility * min(1.0, covered) * math.exp(-max(cost, 0) / .55)
-                candidates.append((confidence, -cost, reference_person, attempt_person, mirrored,
-                                   path, ref_desc, ref_mask, att_desc, att_mask, alignment_mode))
+                probes.append((alignment_probe_cost(ref_desc, ref_mask, att_desc, att_mask),
+                               reference_person, attempt_person, mirrored,
+                               ref_desc, ref_mask, att_desc, att_mask))
+    probes.sort(key=lambda item: item[0])
+    budget = len(probes) if len(probes) <= 4 else (4 if len(attempt_people) == 1 else 8)
+    candidates = []
+    for _, reference_person, attempt_person, mirrored, ref_desc, ref_mask, att_desc, att_mask \
+            in probes[:budget]:
+        path, cost, alignment_mode = align_tracks(ref_desc, ref_mask, att_desc, att_mask)
+        if not path:
+            continue
+        valid = [(i, j) for i, j in path if np.count_nonzero(ref_mask[i] & att_mask[j]) >= 5]
+        if not valid:
+            continue
+        visibility = float(np.mean([np.mean(ref_mask[i] & att_mask[j]) for i, j in valid]))
+        if len(attempt.times) <= len(reference.times):
+            active_frames = max(1, int(np.count_nonzero(np.count_nonzero(att_mask, axis=1) >= 5)))
+            covered = len({j for i, j in valid}) / active_frames
+        else:
+            active_frames = max(1, int(np.count_nonzero(np.count_nonzero(ref_mask, axis=1) >= 5)))
+            covered = len({i for i, j in valid}) / active_frames
+        confidence = visibility * min(1.0, covered) * math.exp(-max(cost, 0) / .55)
+        candidates.append((confidence, -cost, reference_person, attempt_person, mirrored,
+                           path, ref_desc, ref_mask, att_desc, att_mask, alignment_mode))
     return max(candidates, key=lambda item: item[:2]) if candidates else None
 
 
@@ -397,9 +460,61 @@ def group_centers(frame: np.ndarray) -> np.ndarray:
     return np.asarray(centers, dtype=np.float32)
 
 
+def discover_attempt_window(reference: Track, attempt: Track) -> tuple[Track, dict]:
+    """Use a selected short-form reference duration to find the take window."""
+    reference_duration = float(reference.times[-1] - reference.times[0])
+    attempt_duration = float(attempt.times[-1] - attempt.times[0])
+    reference_people = active_people(reference)
+    attempt_people = active_people(attempt)
+    if (reference_duration < 5 or reference_duration > 90 or
+            attempt_duration <= reference_duration * 1.2 or len(attempt_people) != 1):
+        return attempt, {}
+    attempt_step = float(np.median(np.diff(attempt.times)))
+    window_samples = min(len(attempt.times), max(3, round(reference_duration / attempt_step) + 1))
+    if window_samples >= len(attempt.times):
+        return attempt, {}
+    sample_count = min(120, len(reference.times), window_samples)
+    reference_indices = np.linspace(0, len(reference.times) - 1, sample_count, dtype=np.int32)
+    attempt_offsets = np.linspace(0, window_samples - 1, sample_count, dtype=np.int32)
+    reference_descriptors = [performer_descriptor(reference, person) for person in reference_people]
+    candidates = []
+    start_step = max(1, round(1 / attempt_step))
+    for mirrored in (False, True):
+        attempt_descriptor, attempt_mask = performer_descriptor(attempt, attempt_people[0], mirrored)
+        for start in range(0, len(attempt.times) - window_samples + 1, start_step):
+            costs = []
+            for reference_index, offset in zip(reference_indices, attempt_offsets):
+                attempt_index = start + offset
+                costs.append(min(
+                    masked_cost(descriptor[reference_index], mask[reference_index],
+                                attempt_descriptor[attempt_index], attempt_mask[attempt_index])
+                    for descriptor, mask in reference_descriptors
+                ))
+            candidates.append((float(np.median(costs)), start, mirrored))
+    if not candidates:
+        return attempt, {}
+    cost, start, mirrored = min(candidates)
+    end = start + window_samples
+    selected = Track(attempt.times[start:end], attempt.poses[start:end])
+    return selected, {
+        "attemptSegmentationMode": "pose-window-from-reference-duration",
+        "attemptInputWindow": {
+            "startSeconds": round(float(attempt.times[0]), 4),
+            "endSeconds": round(float(attempt.times[-1]), 4),
+        },
+        "attemptCandidateWindow": {
+            "startSeconds": round(float(selected.times[0]), 4),
+            "endSeconds": round(float(selected.times[-1]), 4),
+        },
+        "attemptCandidatePoseCost": round(cost, 5),
+        "attemptCandidateMirrored": mirrored,
+    }
+
+
 def score(reference: Track, attempt: Track) -> dict:
-    reference = Track(reference.times, stabilize_people(reference.poses))
-    attempt = Track(attempt.times, stabilize_people(attempt.poses))
+    reference = collapse_solo_tracklets(Track(reference.times, stabilize_people(reference.poses)))
+    attempt = collapse_solo_tracklets(Track(attempt.times, stabilize_people(attempt.poses)))
+    attempt, segmentation = discover_attempt_window(reference, attempt)
     if not active_people(reference) or not active_people(attempt):
         return abstention("low_joint_visibility")
     match = select_performer_match(reference, attempt)
@@ -527,6 +642,7 @@ def score(reference: Track, attempt: Track) -> dict:
         "limitations": issues,
         "mirrorApplied": mirrored,
         "observableMotionOnly": True,
+        "scoreInterpretation": "relative-motion-signal-not-calibrated-pass-fail",
         "scores": {key: round(float(value), 1) for key, value in fronts.items()},
         "overall": round(overall, 1) if status == "completed" else None,
         "measurements": {"poseCost": round(cost, 5), "jointCoverage": round(visibility, 4),
@@ -540,7 +656,8 @@ def score(reference: Track, attempt: Track) -> dict:
                          "medianReferencePeople": round(float(np.median(reference_counts)), 2),
                          "medianAttemptPeople": round(float(np.median(attempt_counts)), 2),
                          "referenceWindow": {"startSeconds": round(ref_start, 4), "endSeconds": round(ref_end, 4)},
-                         "attemptWindow": {"startSeconds": round(att_start, 4), "endSeconds": round(att_end, 4)}},
+                         "attemptWindow": {"startSeconds": round(att_start, 4), "endSeconds": round(att_end, 4)},
+                         **segmentation},
         "alignment": [{"referenceFrame": i, "attemptFrame": j,
                        "referencePerson": int(person),
                        "referenceTime": round(float(reference.times[i]), 4),
@@ -557,8 +674,27 @@ def score(reference: Track, attempt: Track) -> dict:
 
 def abstention(reason: str) -> dict:
     return {"schemaVersion": "nodevideo.choreography-verdict.v1", "status": "abstained",
-            "confidence": 0.0, "limitations": [reason], "observableMotionOnly": True,
-            "scores": {}, "overall": None, "alignment": [], "criticalMoments": []}
+            "confidence": 0.0, "limitations": [reason], "mirrorApplied": False,
+            "observableMotionOnly": True,
+            "scoreInterpretation": "relative-motion-signal-not-calibrated-pass-fail",
+            "scores": {}, "overall": None, "measurements": {}, "alignment": [],
+            "criticalMoments": [], "scoreBoundaries": {
+                "judged": [],
+                "notJudged": ["insufficient observable motion evidence"]
+            }}
+
+
+def slice_track(track: Track, start: float | None, end: float | None) -> Track:
+    if start is None and end is None:
+        return track
+    mask = np.ones(len(track.times), dtype=bool)
+    if start is not None:
+        mask &= track.times >= start
+    if end is not None:
+        mask &= track.times <= end
+    if np.count_nonzero(mask) < 3:
+        raise ValueError("requested track window contains fewer than three samples")
+    return Track(track.times[mask], track.poses[mask])
 
 
 def main() -> None:
@@ -566,8 +702,14 @@ def main() -> None:
     parser.add_argument("--reference-track", required=True, type=Path)
     parser.add_argument("--attempt-track", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--reference-start", type=float)
+    parser.add_argument("--reference-end", type=float)
+    parser.add_argument("--attempt-start", type=float)
+    parser.add_argument("--attempt-end", type=float)
     args = parser.parse_args()
-    result = score(load_track(args.reference_track), load_track(args.attempt_track))
+    reference = slice_track(load_track(args.reference_track), args.reference_start, args.reference_end)
+    attempt = slice_track(load_track(args.attempt_track), args.attempt_start, args.attempt_end)
+    result = score(reference, attempt)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({key: result[key] for key in ("status", "confidence", "overall")}))

@@ -9,6 +9,7 @@
     "status",
     "confidence",
     "observableMotionOnly",
+    "scoreInterpretation",
     "scores",
     "overall",
     "alignment",
@@ -22,6 +23,7 @@
     "limitations": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
     "mirrorApplied": { "type": "boolean" },
     "observableMotionOnly": { "const": true },
+    "scoreInterpretation": { "const": "relative-motion-signal-not-calibrated-pass-fail" },
     "scores": {
       "type": "object",
       "additionalProperties": false,
