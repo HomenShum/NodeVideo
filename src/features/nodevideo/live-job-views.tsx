@@ -1,7 +1,8 @@
 import { Artifact, ArtifactHeader, ArtifactTitle } from '@/components/ai-elements/artifact';
 import { Button } from '@/components/ui/button';
+import { Field, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Item } from '@/components/ui/item';
 import { Progress } from '@/components/ui/progress';
 import type { JobSnapshot } from '@/lib/live-control-api';
 import { Check, Circle, LockKeyhole, RotateCcw, Upload, X } from 'lucide-react';
@@ -49,8 +50,8 @@ type UploadProps = {
 export function UploadInputs(props: UploadProps) {
   return (
     <form className="space-y-5" onSubmit={props.onSubmit}>
-      <div className="grid gap-2">
-        <Label htmlFor="owner-token">Owner access key</Label>
+      <Field>
+        <FieldLabel htmlFor="owner-token">Owner access key</FieldLabel>
         <Input
           id="owner-token"
           type="password"
@@ -58,11 +59,11 @@ export function UploadInputs(props: UploadProps) {
           value={props.token}
           onChange={(event) => props.setToken(event.target.value)}
         />
-      </div>
-      <div className="grid gap-4 sm:grid-cols-2">
+      </Field>
+      <FieldGroup className="grid gap-4 sm:grid-cols-2">
         {INPUTS.map(({ key, label, accept }) => (
-          <div className="grid gap-2" key={key}>
-            <Label htmlFor={`file-${key}`}>{label}</Label>
+          <Field key={key}>
+            <FieldLabel htmlFor={`file-${key}`}>{label}</FieldLabel>
             <Input
               id={`file-${key}`}
               type="file"
@@ -71,9 +72,9 @@ export function UploadInputs(props: UploadProps) {
                 props.setFiles((current) => ({ ...current, [key]: event.target.files?.[0] }))
               }
             />
-          </div>
+          </Field>
         ))}
-      </div>
+      </FieldGroup>
       <Button disabled={!props.canStart || props.busy} type="submit">
         <Upload aria-hidden="true" />
         {props.busy ? 'Hashing and uploading...' : 'Start source-only job'}
@@ -110,7 +111,7 @@ export function StageView(props: StageProps) {
       </div>
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
         {props.snapshot?.stages.map((stage) => (
-          <div className="flex min-w-0 items-start gap-2 rounded-lg border p-3" key={stage._id}>
+          <Item className="min-w-0" key={stage._id} size="sm" variant="outline">
             <StageIcon status={stage.status} />
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium">{stage.name.replaceAll('_', ' ')}</p>
@@ -130,7 +131,7 @@ export function StageView(props: StageProps) {
                 <RotateCcw aria-hidden="true" />
               </Button>
             )}
-          </div>
+          </Item>
         ))}
       </div>
       {props.snapshot?.job.currentStage === 'await_review' && (

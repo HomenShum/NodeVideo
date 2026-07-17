@@ -47,6 +47,9 @@ const attentionManifest = await readJson('packs/attention-overlays/manifest.json
 const attentionInputSchema = await readJson('packs/attention-overlays/input.schema.json');
 const attentionOutputSchema = await readJson('packs/attention-overlays/output.schema.json');
 const attentionEvaluation = await readJson('packs/attention-overlays/evals/contract-v1.json');
+const coachManifest = await readJson('packs/choreography-coach/manifest.json');
+const coachInputSchema = await readJson('packs/choreography-coach/input.schema.json');
+const coachOutputSchema = await readJson('packs/choreography-coach/output.schema.json');
 const songAnalysis = await readJson(
   'fixtures/media/song-conditioned-auto-edit-v1/understanding.json',
 );
@@ -114,6 +117,8 @@ const songReadLogValid = songReadLogValidator(songReadLog);
 const attentionInputValidator = ajv.compile(attentionInputSchema);
 const attentionInputValid = attentionInputValidator(attentionEvaluation.cases[0].input);
 const attentionOutputSchemaValid = typeof ajv.compile(attentionOutputSchema) === 'function';
+const coachInputSchemaValid = typeof ajv.compile(coachInputSchema) === 'function';
+const coachOutputSchemaValid = typeof ajv.compile(coachOutputSchema) === 'function';
 
 const sameMembers = (left, right) =>
   left.length === right.length && left.every((value) => right.includes(value));
@@ -346,6 +351,18 @@ const attentionChecks = [
   ],
 ];
 
+const coachChecks = [
+  ['choreography coach input schema compiles', coachInputSchemaValid],
+  ['choreography coach output schema compiles', coachOutputSchemaValid],
+  [
+    'choreography coach pack keeps the human-video claim boundary explicit',
+    coachManifest.implementationStatus === 'private-human-experimental' &&
+      coachManifest.execution.validatedBoundaries.includes('private-local-calibration') &&
+      coachManifest.validation.excludes.includes('artistry') &&
+      coachManifest.validation.excludes.includes('generalized-expert-validation'),
+  ],
+];
+
 const checks = [
   ...tutorialChecks,
   ...authorizedChecks,
@@ -353,6 +370,7 @@ const checks = [
   ...tasteChecks,
   ...songChecks,
   ...attentionChecks,
+  ...coachChecks,
 ];
 
 for (const [label, passed] of checks) console.log(`${passed ? 'PASS' : 'FAIL'}: ${label}`);

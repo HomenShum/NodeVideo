@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Item } from '@/components/ui/item';
 import { Slider } from '@/components/ui/slider';
 import type { LoadedIntegratedInspector } from '@/lib/integrated-inspector';
 import { StepBack, StepForward, Volume2, VolumeX } from 'lucide-react';
@@ -91,7 +92,7 @@ export function VerifiedFrameInspector({
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center gap-2 rounded-xl border bg-muted/30 p-2">
+          <Item className="flex-nowrap" variant="muted">
             <Button
               aria-label="Previous output frame"
               onClick={() => move(-1)}
@@ -117,7 +118,7 @@ export function VerifiedFrameInspector({
             >
               <StepForward aria-hidden="true" />
             </Button>
-          </div>
+          </Item>
           <div className="grid gap-3 md:grid-cols-2" data-testid="outcome-comparison">
             <VideoEvidenceCard
               controls

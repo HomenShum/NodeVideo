@@ -1,3 +1,4 @@
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   INPUTS,
@@ -12,6 +13,7 @@ import {
   sha256Json,
   uploadFile,
 } from '@/lib/live-control-api';
+import { AlertCircle } from 'lucide-react';
 import { type FormEvent, useEffect, useState } from 'react';
 
 export function LiveJobWorkspace() {
@@ -149,12 +151,11 @@ export function LiveJobWorkspace() {
           />
         )}
         {error && (
-          <div
-            className="rounded-lg border border-destructive/40 bg-destructive/5 p-3 text-sm text-destructive"
-            role="alert"
-          >
-            {error}
-          </div>
+          <Alert variant="destructive">
+            <AlertCircle aria-hidden="true" />
+            <AlertTitle>NodeVideo could not complete that action</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
         )}
       </CardContent>
     </Card>

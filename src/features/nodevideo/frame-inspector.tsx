@@ -1,12 +1,13 @@
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Item } from '@/components/ui/item';
 import { Spinner } from '@/components/ui/spinner';
 import {
   type LoadedIntegratedInspector,
   loadIntegratedInspector,
 } from '@/lib/integrated-inspector';
-import { ChevronDown } from 'lucide-react';
+import { AlertCircle, ChevronDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { VerifiedFrameInspector } from './verified-frame-inspector';
 
@@ -46,19 +47,17 @@ export function FrameInspector() {
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-3">
           {!loaded && !error ? (
-            <Card>
-              <CardContent className="flex items-center gap-2 py-3 text-sm text-muted-foreground">
-                <Spinner /> Verifying seven hash-bound inspector artifacts…
-              </CardContent>
-            </Card>
+            <Item variant="muted">
+              <Spinner />
+              <span className="text-muted-foreground">Verifying inspector artifacts…</span>
+            </Item>
           ) : null}
           {error ? (
-            <Card>
-              <CardHeader>
-                <CardTitle>Inspector blocked</CardTitle>
-                <CardDescription>{error}</CardDescription>
-              </CardHeader>
-            </Card>
+            <Alert variant="destructive">
+              <AlertCircle aria-hidden="true" />
+              <AlertTitle>Inspector blocked</AlertTitle>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
           ) : null}
           {loaded ? (
             <VerifiedFrameInspector frame={frame} loaded={loaded} setFrame={setFrame} />

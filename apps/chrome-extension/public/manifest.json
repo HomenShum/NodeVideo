@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "NodeVideo Choreography Coach",
+  "version": "0.1.0",
+  "description": "Privately compare your dance take with the YouTube choreography on the current page.",
+  "permissions": ["activeTab", "sidePanel", "storage", "tabs"],
+  "host_permissions": ["http://127.0.0.1:4319/*", "http://localhost:4319/*"],
+  "background": { "service_worker": "service-worker.js" },
+  "side_panel": { "default_path": "sidepanel.html" },
+  "action": { "default_title": "Open NodeVideo coach" }
+}

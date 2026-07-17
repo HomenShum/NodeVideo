@@ -1,3 +1,4 @@
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import type { PoseTrack } from '@/lib/integrated-inspector';
 import { type ReactNode, type RefObject, useMemo } from 'react';
@@ -34,13 +35,13 @@ export function PoseEvidenceCard({
 }) {
   return (
     <EvidenceCard description={description} title="Original choreography pose">
-      <div className="relative aspect-video bg-zinc-950">
+      <AspectRatio className="bg-zinc-950" ratio={16 / 9}>
         <PoseSvg
           label="Selected official choreography performer"
           mediaTime={mediaTime}
           track={track}
         />
-      </div>
+      </AspectRatio>
     </EvidenceCard>
   );
 }

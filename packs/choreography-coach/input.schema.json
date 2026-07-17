@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nodevideo.local/schemas/choreography-coach/input.v1.json",
+  "title": "Choreography Coach Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "jobId", "reference", "attempt", "rights", "options"],
+  "properties": {
+    "schemaVersion": { "const": "nodevideo.choreography-coach.input.v1" },
+    "jobId": { "type": "string", "pattern": "^[a-z0-9-]{8,96}$" },
+    "reference": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "url"],
+          "properties": {
+            "kind": { "const": "youtube-url" },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://(www\\.|m\\.)?youtube\\.com/watch\\?"
+            }
+          }
+        },
+        { "$ref": "#/$defs/privateAsset" }
+      ]
+    },
+    "attempt": { "$ref": "#/$defs/privateAsset" },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["confirmed", "scope"],
+      "properties": { "confirmed": { "const": true }, "scope": { "const": "private-analysis" } }
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["people", "sampleFps"],
+      "properties": {
+        "people": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "sampleFps": { "type": "number", "minimum": 10, "maximum": 30 },
+        "allowMirror": { "type": "boolean", "default": true }
+      }
+    }
+  },
+  "$defs": {
+    "privateAsset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "artifactId", "sha256"],
+      "properties": {
+        "kind": { "const": "private-artifact" },
+        "artifactId": { "type": "string", "pattern": "^[a-zA-Z0-9._-]{3,160}$" },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    }
+  }
+}

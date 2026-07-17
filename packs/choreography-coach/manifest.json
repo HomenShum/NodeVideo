@@ -1,0 +1,46 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.choreography-coach",
+  "version": "0.1.0",
+  "implementationStatus": "private-human-experimental",
+  "title": "Choreography Coach",
+  "description": "Compare an authorized reference choreography with a dancer upload using inspectable MediaPipe tracks, constrained DTW, confidence-aware scoring, and an abstention boundary.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": ["video/reference", "video/attempt"],
+  "outputs": ["choreography_verdict", "pose_tracks", "skeleton_comparison", "provenance"],
+  "permissions": [
+    "read_authorized_reference",
+    "read_uploaded_media",
+    "write_private_derived_artifacts"
+  ],
+  "tools": [
+    "reference.acquire",
+    "pose.extract-mediapipe",
+    "choreography.align-dtw",
+    "choreography.score-observable-motion",
+    "render.skeleton-comparison"
+  ],
+  "execution": {
+    "kind": "private-local-worker-graph",
+    "modelRequired": true,
+    "supportedBoundaries": ["private-worker"],
+    "validatedBoundaries": ["private-local-calibration"]
+  },
+  "validation": {
+    "profile": "private-human-experimental",
+    "excludes": [
+      "artistry",
+      "musicality",
+      "expression",
+      "safety",
+      "biomechanics",
+      "employment-or-audition-ranking",
+      "generalized-expert-validation"
+    ]
+  }
+}

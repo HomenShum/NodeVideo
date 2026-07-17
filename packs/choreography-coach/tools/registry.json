@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "nodevideo.tool-registry.v1",
+  "tools": [
+    {
+      "id": "reference.acquire",
+      "implementation": "yt-dlp/local-file",
+      "boundary": "private-worker"
+    },
+    {
+      "id": "pose.extract-mediapipe",
+      "implementation": "scripts/analysis/extract_pose_landmarks.py",
+      "boundary": "private-worker"
+    },
+    {
+      "id": "choreography.align-dtw",
+      "implementation": "scripts/analysis/choreography_judge.py",
+      "boundary": "private-worker"
+    },
+    {
+      "id": "choreography.score-observable-motion",
+      "implementation": "scripts/analysis/choreography_judge.py",
+      "boundary": "private-worker"
+    },
+    {
+      "id": "render.skeleton-comparison",
+      "implementation": "scripts/analysis/render_choreography_comparison.py",
+      "boundary": "private-worker"
+    }
+  ]
+}
