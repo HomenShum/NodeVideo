@@ -354,6 +354,7 @@ function CoachPanel() {
                         inputMode="decimal"
                         min={0}
                         placeholder="Start seconds"
+                        step="any"
                         type="number"
                         value={referenceStart}
                         onChange={(event) => setReferenceStart(event.target.value)}
@@ -363,6 +364,7 @@ function CoachPanel() {
                         inputMode="decimal"
                         min={0}
                         placeholder="End seconds"
+                        step="any"
                         type="number"
                         value={referenceEnd}
                         onChange={(event) => setReferenceEnd(event.target.value)}
