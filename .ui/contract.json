@@ -187,7 +187,21 @@
           "css": "#rights",
           "label": "I have permission to privately analyze this reference and my upload."
         },
-        { "id": "judge", "role": "button", "name": "Judge choreography" }
+        { "id": "judge", "role": "button", "name": "Judge choreography" },
+        {
+          "id": "coach-input",
+          "role": "textbox",
+          "name": "Ask the coach about your comparison",
+          "meaning": "Streaming thread to the rule-grounded local coach (SSE events: reasoning, tool, text, proposal, done). Replies are computed from the stored verdict on the local worker; no cloud model. Proposals render inline and are accepted in place."
+        },
+        { "id": "coach-suggestion-scores", "role": "button", "name": "Why these scores?" },
+        { "id": "coach-suggestion-review", "role": "button", "name": "What should I review?" },
+        {
+          "id": "coach-suggestion-segment",
+          "role": "button",
+          "name": "Propose a practice segment",
+          "meaning": "Streams an inline reference-segment proposal; 'Use this segment' fills the segment inputs in place."
+        }
       ],
       "gates": [
         {

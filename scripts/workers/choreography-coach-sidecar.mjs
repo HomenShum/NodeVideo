@@ -74,6 +74,8 @@ const server = createServer(async (request, response) => {
       });
     }
     if (!authorized(request)) return json(response, 401, { error: 'invalid_token' });
+    if (request.method === 'POST' && request.url === '/v1/coach/chat')
+      return coachChat(request, response);
     if (request.method === 'POST' && request.url === '/v1/jobs')
       return createJob(request, response);
     const jobMatch = request.url?.match(/^\/v1\/jobs\/([a-z0-9-]+)$/);
@@ -101,6 +103,140 @@ server.listen(port, host, () => {
   console.log(`Extension token: ${token}`);
   console.log('Private local analysis only; no media is uploaded by this service.');
 });
+
+// Rule-grounded coach thread: every reply is computed from the stored verdict
+// on this machine — visible tool executions, a real reasoning trace, and at
+// most one inline proposal the panel can accept in place. No cloud model is
+// involved; when an LLM (Eve) is connected it streams over this same event
+// contract. Events: reasoning | tool | text | proposal | done.
+async function coachChat(request, response) {
+  const parts = [];
+  for await (const part of request) parts.push(part);
+  let body = {};
+  try {
+    body = JSON.parse(Buffer.concat(parts).toString('utf8'));
+  } catch {
+    return json(response, 400, { error: 'invalid_json' });
+  }
+  const message = String(body.message ?? '').slice(0, 2000);
+  const job = jobs.get(String(body.jobId ?? ''));
+  response.writeHead(200, {
+    'content-type': 'text/event-stream',
+    'cache-control': 'no-cache',
+  });
+  const send = (event) => response.write(`data: ${JSON.stringify(event)}\n\n`);
+  const say = (text) => {
+    for (const word of text.split(/(?<= )/)) send({ type: 'text', delta: word });
+  };
+  const verdict = job?.verdict;
+  const wants = (pattern) => pattern.test(message);
+
+  if (!verdict) {
+    say(
+      'I coach from evidence, so I need a completed comparison first. Upload your take, run Judge choreography, then ask me anything about the result.',
+    );
+    send({ type: 'done' });
+    return response.end();
+  }
+
+  const scores = Object.entries(verdict.scores ?? {}).filter(([, v]) => typeof v === 'number');
+  const unmeasured = verdict.unmeasurableScores ?? [];
+  const timing = verdict.measurements?.medianTimingErrorMs;
+
+  if (wants(/segment|window|where.*(practice|start)|propose/i)) {
+    send({
+      type: 'reasoning',
+      delta:
+        'The judge already located your take inside the reference; reusing that window keeps the next run comparable. ',
+    });
+    const window = verdict.measurements?.referenceWindow;
+    send({
+      type: 'tool',
+      name: 'locate_reference_window',
+      input: { jobId: job.id },
+      output: window ?? { error: 'window_not_measured' },
+    });
+    if (window) {
+      const start = Math.round(window.startSeconds * 10) / 10;
+      const end = Math.round(window.endSeconds * 10) / 10;
+      say(
+        `Your take matched the reference between ${start}s and ${end}s. Locking that segment focuses the next comparison on exactly the choreography you practiced.`,
+      );
+      send({
+        type: 'proposal',
+        proposal: {
+          kind: 'reference-segment',
+          startSeconds: start,
+          endSeconds: end,
+          rationale: 'Matched window from the last comparison',
+        },
+      });
+    } else {
+      say(
+        'The last run did not measure a reference window, so I have no segment to propose. Run a comparison first.',
+      );
+    }
+  } else if (wants(/moment|review|worst|timestamp/i)) {
+    const moments = [...(verdict.criticalMoments ?? [])]
+      .sort((a, b) => b.severity - a.severity)
+      .slice(0, 3);
+    send({
+      type: 'reasoning',
+      delta: `Ranking ${verdict.criticalMoments?.length ?? 0} flagged moments by severity. `,
+    });
+    send({
+      type: 'tool',
+      name: 'list_critical_moments',
+      input: { jobId: job.id, top: 3 },
+      output: moments,
+    });
+    if (moments.length === 0) {
+      say('No moments crossed the review threshold in this comparison.');
+    } else {
+      const worst = moments[0];
+      say(
+        `${moments.length} moments are worth reviewing. The largest difference is at ${worst.referenceTime.toFixed(1)}s in the reference (${worst.attemptTime.toFixed(1)}s in your take) — scrub the comparison video there and watch both dancers on the same count.`,
+      );
+    }
+  } else {
+    const ranked = [...scores].sort((a, b) => a[1] - b[1]);
+    send({
+      type: 'reasoning',
+      delta: `Measured signals ranked: ${ranked.map(([k, v]) => `${k} ${v}`).join(', ')}. ${timing != null ? `Median timing offset ${timing}ms. ` : ''}${unmeasured.length ? `Unmeasured: ${unmeasured.join(', ')} — I will not invent those. ` : ''}`,
+    });
+    send({
+      type: 'tool',
+      name: 'get_verdict',
+      input: { jobId: job.id },
+      output: {
+        scores: verdict.scores,
+        unmeasurableScores: unmeasured,
+        confidence: verdict.confidence,
+      },
+    });
+    if (ranked.length === 0) {
+      say(
+        'This verdict has no measurable scores — the evidence was too thin to coach from. Try a clearer recording.',
+      );
+    } else {
+      const [weakestName] = ranked[0];
+      const advice = {
+        timing: `your landings drift from the reference count${timing != null ? ` by about ${timing}ms at the median` : ''} — practice with the music at half speed and land the hits on the count`,
+        form: 'your joint angles differ most from the reference — pick the worst moment below and match the exact shape at the hit',
+        path: 'your body travels differently across the floor — walk the pattern without arms first',
+        dynamics:
+          'your accents are softer or sharper than the reference — exaggerate the pops, relax the transitions',
+        formation:
+          'spacing relative to the team drifts — anchor to the dancer next to you at each landmark',
+      };
+      say(
+        `These are relative signals, not grades. The furthest signal from the reference is ${weakestName}: ${advice[weakestName] ?? 'review the flagged moments below'}. Ask "propose a practice segment" and I will lock the matched window for your next run.`,
+      );
+    }
+  }
+  send({ type: 'done' });
+  return response.end();
+}
 
 async function createJob(request, response) {
   if (activeJobs >= maxActiveJobs)

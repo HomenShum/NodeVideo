@@ -1,4 +1,26 @@
 import './extension.css';
+import {
+  Conversation,
+  ConversationContent,
+  ConversationEmptyState,
+} from '@/components/ai-elements/conversation';
+import { Message, MessageContent, MessageResponse } from '@/components/ai-elements/message';
+import {
+  PromptInput,
+  PromptInputBody,
+  PromptInputFooter,
+  PromptInputSubmit,
+  PromptInputTextarea,
+} from '@/components/ai-elements/prompt-input';
+import { Reasoning, ReasoningContent, ReasoningTrigger } from '@/components/ai-elements/reasoning';
+import { Suggestion, Suggestions } from '@/components/ai-elements/suggestion';
+import {
+  Tool,
+  ToolContent,
+  ToolHeader,
+  ToolInput,
+  ToolOutput,
+} from '@/components/ai-elements/tool';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -49,6 +71,22 @@ type Job = {
   verdict?: Verdict;
   artifacts: Record<string, Artifact>;
 };
+type ChatProposal = {
+  kind: 'reference-segment';
+  startSeconds: number;
+  endSeconds: number;
+  rationale: string;
+  accepted?: boolean;
+};
+type ChatTurn = {
+  id: string;
+  role: 'user' | 'assistant';
+  text: string;
+  reasoning: string;
+  tools: Array<{ name: string; input: unknown; output: unknown }>;
+  proposal?: ChatProposal;
+  streaming?: boolean;
+};
 type ExtensionApi = {
   tabs: { query(options: object): Promise<Array<{ url?: string; title?: string }>> };
   storage: {
@@ -79,7 +117,76 @@ function CoachPanel() {
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const [comparisonUrl, setComparisonUrl] = useState('');
+  const [thread, setThread] = useState<ChatTurn[]>([]);
+  const [chatBusy, setChatBusy] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const patchLastTurn = (change: (turn: ChatTurn) => ChatTurn) => {
+    setThread((current) =>
+      current.map((turn, i) => (i === current.length - 1 ? change(turn) : turn)),
+    );
+  };
+
+  async function askCoach(text: string) {
+    if (chatBusy || !text.trim()) return;
+    setChatBusy(true);
+    const id = String(Date.now());
+    setThread((current) => [
+      ...current,
+      { id: `${id}-u`, role: 'user', text, reasoning: '', tools: [] },
+      { id: `${id}-a`, role: 'assistant', text: '', reasoning: '', tools: [], streaming: true },
+    ]);
+    try {
+      const base = endpoint.replace(/\/$/, '');
+      const response = await fetch(`${base}/v1/coach/chat`, {
+        method: 'POST',
+        headers: { ...authorization(token), 'content-type': 'application/json' },
+        body: JSON.stringify({ jobId: job?.id ?? '', message: text }),
+      });
+      if (!response.ok || !response.body) throw new Error('coach_unreachable');
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffered = '';
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffered += decoder.decode(value, { stream: true });
+        const lines = buffered.split('\n\n');
+        buffered = lines.pop() ?? '';
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const event = JSON.parse(line.slice(6));
+          if (event.type === 'text') patchLastTurn((t) => ({ ...t, text: t.text + event.delta }));
+          if (event.type === 'reasoning')
+            patchLastTurn((t) => ({ ...t, reasoning: t.reasoning + event.delta }));
+          if (event.type === 'tool') patchLastTurn((t) => ({ ...t, tools: [...t.tools, event] }));
+          if (event.type === 'proposal') patchLastTurn((t) => ({ ...t, proposal: event.proposal }));
+        }
+      }
+      patchLastTurn((t) => ({ ...t, streaming: false }));
+    } catch {
+      patchLastTurn((t) => ({
+        ...t,
+        streaming: false,
+        text:
+          t.text ||
+          'The local coach is not reachable. Start the worker (npm run coach:sidecar) and check the token under Segment, team, and connection.',
+      }));
+    }
+    setChatBusy(false);
+  }
+
+  function acceptProposal(turnId: string, proposal: ChatProposal) {
+    setReferenceStart(String(proposal.startSeconds));
+    setReferenceEnd(String(proposal.endSeconds));
+    setThread((current) =>
+      current.map((turn) =>
+        turn.id === turnId && turn.proposal
+          ? { ...turn, proposal: { ...turn.proposal, accepted: true } }
+          : turn,
+      ),
+    );
+  }
   const referencePreviewUrl = useMemo(
     () => (referenceFile ? URL.createObjectURL(referenceFile) : ''),
     [referenceFile],
@@ -603,6 +710,104 @@ function CoachPanel() {
           </CardContent>
         </Card>
       )}
+
+      <Card className="lg:col-start-1" size="sm">
+        <CardHeader>
+          <CardTitle>
+            <h2>Coach</h2>
+          </CardTitle>
+          <CardDescription>
+            Rule-grounded local coach — replies are computed from your verdict on this laptop. No
+            cloud model.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <Conversation className="max-h-96 rounded-lg border border-border">
+            <ConversationContent className="space-y-3">
+              {thread.length === 0 && (
+                <ConversationEmptyState
+                  description="Run a comparison, then ask about your scores, the moments to review, or a practice segment."
+                  title="Ask the coach"
+                />
+              )}
+              {thread.map((turn) =>
+                turn.role === 'user' ? (
+                  <Message from="user" key={turn.id}>
+                    <MessageContent>{turn.text}</MessageContent>
+                  </Message>
+                ) : (
+                  <Message from="assistant" key={turn.id}>
+                    <MessageContent className="w-full space-y-2">
+                      {turn.reasoning && (
+                        <Reasoning isStreaming={turn.streaming}>
+                          <ReasoningTrigger />
+                          <ReasoningContent>{turn.reasoning}</ReasoningContent>
+                        </Reasoning>
+                      )}
+                      {turn.tools.map((tool) => (
+                        <Tool key={`${turn.id}-${tool.name}`}>
+                          <ToolHeader
+                            state="output-available"
+                            toolName={tool.name}
+                            type="dynamic-tool"
+                          />
+                          <ToolContent>
+                            <ToolInput input={tool.input} />
+                            <ToolOutput output={tool.output} />
+                          </ToolContent>
+                        </Tool>
+                      ))}
+                      {turn.text && <MessageResponse>{turn.text}</MessageResponse>}
+                      {turn.proposal && (
+                        <div className="rounded-lg border border-border bg-card p-3">
+                          <p className="text-sm font-medium">
+                            Practice segment · {turn.proposal.startSeconds}s –{' '}
+                            {turn.proposal.endSeconds}s
+                          </p>
+                          <p className="text-xs text-muted-foreground">{turn.proposal.rationale}</p>
+                          <Button
+                            className="mt-2"
+                            disabled={turn.proposal.accepted}
+                            onClick={() => acceptProposal(turn.id, turn.proposal as ChatProposal)}
+                            size="sm"
+                            type="button"
+                          >
+                            {turn.proposal.accepted ? 'Segment applied' : 'Use this segment'}
+                          </Button>
+                        </div>
+                      )}
+                    </MessageContent>
+                  </Message>
+                ),
+              )}
+            </ConversationContent>
+          </Conversation>
+          {thread.length === 0 && (
+            <Suggestions className="w-full flex-wrap">
+              {['Why these scores?', 'What should I review?', 'Propose a practice segment'].map(
+                (suggestion) => (
+                  <Suggestion
+                    key={suggestion}
+                    onClick={() => void askCoach(suggestion)}
+                    suggestion={suggestion}
+                  />
+                ),
+              )}
+            </Suggestions>
+          )}
+          <PromptInput onSubmit={({ text }) => void askCoach(text ?? '')}>
+            <PromptInputBody>
+              <PromptInputTextarea
+                aria-label="Ask the coach about your comparison"
+                placeholder="Ask the coach about your comparison"
+              />
+            </PromptInputBody>
+            <PromptInputFooter>
+              <PromptInputSubmit status={chatBusy ? 'streaming' : undefined} />
+            </PromptInputFooter>
+          </PromptInput>
+        </CardContent>
+      </Card>
     </main>
   );
 }
