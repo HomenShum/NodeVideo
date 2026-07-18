@@ -125,7 +125,18 @@
           "name": "Undo last patch",
           "gated": "disabled until a patch or timeline drag has been applied"
         },
-        { "id": "beat-timeline", "css": "[aria-label='Beat-aligned edit timeline']" }
+        { "id": "beat-timeline", "css": "[aria-label='Beat-aligned edit timeline']" },
+        {
+          "id": "edit-overlays",
+          "role": "button",
+          "name": "Edit overlays",
+          "meaning": "Toggles direct manipulation of the lyric overlays on the paused frame: drag/resize via real handles (react-moveable), text edits via the Overlay text field. Every gesture is an applied, undoable plan patch. Name flips to 'Done editing overlays' while active."
+        },
+        {
+          "id": "clip-order",
+          "css": "[aria-label='Clip order']",
+          "meaning": "Drag-to-reorder clip chips (dnd-kit; keyboard: Enter picks up, arrows move, Enter drops). Reordering re-lays the timeline contiguously; each clip keeps its own source frames."
+        }
       ],
       "states": [
         {

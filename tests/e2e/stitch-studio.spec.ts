@@ -33,6 +33,37 @@ test('stitch studio loads the frozen plan and the edit agent applies a patch', a
   await undo.click();
   await expect(undo).toBeDisabled();
 
+  // Direct manipulation: overlay edit mode exposes the lyric box, selecting
+  // it attaches real resize handles, and the text edit lands as an undoable
+  // patch that re-renders the composition.
+  await page.getByRole('button', { name: 'Edit overlays' }).click();
+  const overlayBox = page.getByTestId('overlay-box').first();
+  await expect(overlayBox).toBeVisible();
+  await overlayBox.dispatchEvent('pointerdown');
+  await expect(page.locator('.moveable-control-box')).toBeAttached();
+  await page.getByLabel('Overlay text').fill('Wait a second');
+  await page.getByLabel('Overlay text').press('Enter');
+  await expect(page.getByTestId('overlay-box').first()).toHaveText('Wait a second');
+  await expect(undo).toBeEnabled();
+  await undo.click();
+  await page.getByRole('button', { name: 'Done editing overlays' }).click();
+
+  // Clip reordering via keyboard (dnd-kit): pick up the first chip, move it
+  // one slot right, drop — the strip re-lays contiguously and undo reverts.
+  const firstChip = page.getByRole('button', { name: 'Clip 0 take A' });
+  await firstChip.focus();
+  // dnd-kit's keyboard sensor advances one droppable per keypress and needs a
+  // beat between events to announce and settle.
+  await page.keyboard.press('Enter');
+  await page.waitForTimeout(250);
+  await page.keyboard.press('ArrowRight');
+  await page.waitForTimeout(250);
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('button', { name: 'Clip 0 take B' })).toBeVisible();
+  await expect(undo).toBeEnabled();
+  await undo.click();
+  await expect(page.getByRole('button', { name: 'Clip 0 take A' })).toBeVisible();
+
   const geometry = await page.evaluate(() => ({
     viewport: window.innerWidth,
     document: document.documentElement.scrollWidth,
