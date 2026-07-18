@@ -244,12 +244,15 @@ function Landing() {
           <div className="space-y-2 rounded-2xl border border-border bg-card p-5">
             <h3 className="font-heading font-medium">Practice live</h3>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              In progress: a camera practice room — countdown, section retries, and honest per-count
-              feedback while you dance.
+              A camera practice room: follow the reference skeleton, get honest per-beat similarity
+              signals, retry the phrase. Pose tracking runs on your device.
             </p>
-            <span className="inline-flex items-center font-mono text-xs text-muted-foreground">
-              in development
-            </span>
+            <a
+              className="inline-flex items-center text-sm font-medium text-foreground underline underline-offset-4"
+              href="/practice.html"
+            >
+              Open the practice room (early beta)
+            </a>
           </div>
         </div>
       </section>

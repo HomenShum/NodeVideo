@@ -125,6 +125,12 @@ try {
 
     const expanded = new Set();
     for (const control of surface.controls ?? []) {
+      // Controls behind hardware gates (e.g. camera permission) cannot be
+      // resolved in this headless pass; the contract must say why.
+      if (control.deferredResolution) {
+        ok(`control ${control.id} deferred (${control.deferredResolution})`);
+        continue;
+      }
       if (control.requiresExpand && !expanded.has(control.requiresExpand)) {
         const opener = surface.controls.find((c) => c.id === control.requiresExpand);
         await locate(page, opener)?.click();

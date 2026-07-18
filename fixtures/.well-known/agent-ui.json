@@ -22,11 +22,21 @@
     {
       "id": "landing",
       "route": "/",
-      "landmark": { "testid": "landing" },
+      "landmark": {
+        "testid": "landing"
+      },
       "description": "Intent-first landing: one primary action into the coach, the pose-skeleton signature moment, and the count-driven motion identity. No owner machinery.",
       "controls": [
-        { "id": "open-coach", "role": "link", "name": "Open the coach" },
-        { "id": "see-comparison", "role": "link", "name": "See a verified comparison" },
+        {
+          "id": "open-coach",
+          "role": "link",
+          "name": "Open the coach"
+        },
+        {
+          "id": "see-comparison",
+          "role": "link",
+          "name": "See a verified comparison"
+        },
         {
           "id": "sample-verdict",
           "role": "link",
@@ -39,9 +49,21 @@
           "name": "Open the stitch studio",
           "meaning": "Interactive beat-grid editor at /edit.html"
         },
-        { "id": "proof-console", "role": "link", "name": "Proof console" },
-        { "id": "proof-studio-nav", "role": "link", "name": "Proof studio" },
-        { "id": "agent-contract-nav", "role": "link", "name": "Agent contract" }
+        {
+          "id": "proof-console",
+          "role": "link",
+          "name": "Proof console"
+        },
+        {
+          "id": "proof-studio-nav",
+          "role": "link",
+          "name": "Proof studio"
+        },
+        {
+          "id": "agent-contract-nav",
+          "role": "link",
+          "name": "Agent contract"
+        }
       ],
       "states": [
         {
@@ -60,13 +82,31 @@
     {
       "id": "collab-editor",
       "route": "/collab.html",
-      "landmark": { "testid": "collab-editor" },
+      "landmark": {
+        "testid": "collab-editor"
+      },
       "description": "In-browser collab editor: reference + take composited side-by-side or top-and-bottom, aligned by nudge, exported as WebM. No worker, no upload — both files stay in the tab.",
       "controls": [
-        { "id": "reference-video", "css": "#reference-video", "label": "Reference video" },
-        { "id": "take-video", "css": "#take-video", "label": "Your take" },
-        { "id": "layout-side-by-side", "role": "button", "name": "Side by side" },
-        { "id": "layout-top-bottom", "role": "button", "name": "Top and bottom" },
+        {
+          "id": "reference-video",
+          "css": "#reference-video",
+          "label": "Reference video"
+        },
+        {
+          "id": "take-video",
+          "css": "#take-video",
+          "label": "Your take"
+        },
+        {
+          "id": "layout-side-by-side",
+          "role": "button",
+          "name": "Side by side"
+        },
+        {
+          "id": "layout-top-bottom",
+          "role": "button",
+          "name": "Top and bottom"
+        },
         {
           "id": "play-preview",
           "role": "button",
@@ -95,12 +135,68 @@
       "agentGuidance": "Fully client-side surface. Do not look for a job API here; there is none. Export produces WebM via MediaRecorder."
     },
     {
+      "id": "practice-room",
+      "route": "/practice.html",
+      "landmark": {
+        "testid": "practice-room"
+      },
+      "description": "Camera practice room (early beta): follow the committed Sign reference skeleton on its measured beat grid, with on-device MediaPipe pose tracking, per-beat relative-similarity marks, honest abstention, and retry. No video or pose data leaves the browser; nothing is recorded. The phrase runs on a silent beat clock — the Sign master is not distributed.",
+      "controls": [
+        {
+          "id": "start-camera",
+          "role": "button",
+          "name": "Start camera",
+          "gated": "requests camera permission explicitly; declining shows an honest explanation, never a fake feed"
+        },
+        {
+          "id": "start-phrase",
+          "role": "button",
+          "name": "Start the phrase",
+          "state": "appears after camera setup; disabled until a full body is actually detected in frame",
+          "gated": "readiness is measured (>=10 core joints visible), never assumed",
+          "deferredResolution": "exists only after camera permission is granted; verified by the practice-room E2E spec with a fake camera"
+        },
+        {
+          "id": "reference-skeleton",
+          "css": "[aria-label='Reference skeleton']",
+          "state": "camera-setup and later modes",
+          "deferredResolution": "exists only after camera permission is granted; verified by the practice-room E2E spec with a fake camera"
+        },
+        {
+          "id": "beat-feedback",
+          "css": "[aria-label='Beat feedback']",
+          "state": "camera-setup and later modes",
+          "meaning": "Per-beat marks: close / off / abstain-dot. Beats with fewer than five clean pose samples abstain and are excluded from the summary.",
+          "deferredResolution": "exists only after camera permission is granted; verified by the practice-room E2E spec with a fake camera"
+        }
+      ],
+      "states": [
+        {
+          "id": "practice-first-run",
+          "meaning": "Privacy and claim boundaries are visible before any camera access is requested.",
+          "requireTexts": [
+            "Dance the Sign phrase with your camera.",
+            "no video or pose data leaves your browser",
+            "not a score, a grade, or a judgment"
+          ],
+          "forbidTexts": ["Owner access key", "Service token"]
+        }
+      ],
+      "agentGuidance": "Camera-dependent surface; without a camera the page stays honestly in its intro/permission states. Do not attempt to fake readiness — the Start-the-phrase gate is measurement-driven."
+    },
+    {
       "id": "stitch-studio",
       "route": "/edit.html",
-      "landmark": { "testid": "stitch-studio" },
+      "landmark": {
+        "testid": "stitch-studio"
+      },
       "description": "Interactive beat-grid stitch editor over the committed Sign case: deterministic Remotion preview of the frozen plan, wavesurfer timeline with beat-snapped cut boundaries, and a local rule-grounded edit agent whose patch cards mutate the plan only on accept. Fully client-side; the hash-verified render stays in the studio pipeline.",
       "controls": [
-        { "id": "edit-agent-input", "role": "textbox", "name": "Ask the edit agent" },
+        {
+          "id": "edit-agent-input",
+          "role": "textbox",
+          "name": "Ask the edit agent"
+        },
         {
           "id": "edit-suggestion-cuts",
           "role": "button",
@@ -125,7 +221,10 @@
           "name": "Undo last patch",
           "gated": "disabled until a patch or timeline drag has been applied"
         },
-        { "id": "beat-timeline", "css": "[aria-label='Beat-aligned edit timeline']" },
+        {
+          "id": "beat-timeline",
+          "css": "[aria-label='Beat-aligned edit timeline']"
+        },
         {
           "id": "edit-overlays",
           "role": "button",
@@ -162,7 +261,9 @@
     {
       "id": "workspace",
       "route": "/studio.html",
-      "landmark": { "testid": "app-shell" },
+      "landmark": {
+        "testid": "app-shell"
+      },
       "description": "Owner calibration workspace plus the public frame-by-frame proof inspector.",
       "controls": [
         {
@@ -258,7 +359,11 @@
           "css": "#rights",
           "label": "I have permission to privately analyze this reference and my upload."
         },
-        { "id": "judge", "role": "button", "name": "Judge choreography" },
+        {
+          "id": "judge",
+          "role": "button",
+          "name": "Judge choreography"
+        },
         {
           "id": "coach-input",
           "role": "textbox",

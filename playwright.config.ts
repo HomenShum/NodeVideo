@@ -31,6 +31,11 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     trace: 'on-first-retry',
     video: 'retain-on-failure',
+    launchOptions: {
+      // Fake camera for the practice-room spec: permission auto-granted and a
+      // synthetic feed is supplied, so the on-device pose path runs in CI.
+      args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'],
+    },
   },
   projects: [
     {
