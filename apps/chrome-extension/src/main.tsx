@@ -20,6 +20,7 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { AlertCircle, ChevronDown, Film, Play, Upload } from 'lucide-react';
 import { StrictMode, useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import sampleVerdict from '../../../.ui/fixtures/job-verdict-completed-full.json';
 
 type Artifact = { name: string; contentType: string; url: string };
 type Moment = { referenceTime: number; attemptTime: number; severity: number };
@@ -64,6 +65,7 @@ const extensionApi = (globalThis as { chrome?: ExtensionApi }).chrome?.tabs?.que
 
 function CoachPanel() {
   const preview = useMemo(() => new URLSearchParams(location.search), []);
+  const demoMode = !extensionApi && preview.get('demo') !== null;
   const [reference, setReference] = useState({ url: '', title: 'Open a YouTube dance video' });
   const [attempt, setAttempt] = useState<File | null>(null);
   const [referenceFile, setReferenceFile] = useState<File | null>(null);
@@ -142,6 +144,10 @@ function CoachPanel() {
     if (!extensionApi && previewJob && typeof saved.token === 'string') {
       await refreshJob(previewJob, String(saved.endpoint), saved.token);
     }
+    // Demo mode: render a bundled sample verdict so a first-time visitor can
+    // see what a result looks like without running the worker. No analysis
+    // runs; the banner below says so.
+    if (!extensionApi && preview.get('demo') !== null) setJob(sampleVerdict as unknown as Job);
   }
 
   async function refreshJob(id: string, base = endpoint, bearer = token) {
@@ -158,7 +164,13 @@ function CoachPanel() {
       if (['completed', 'abstained'].includes(value.status)) setBusy(false);
     } catch (cause) {
       setBusy(false);
-      setError(cause instanceof Error ? cause.message : 'Could not reach the local worker.');
+      setError(
+        cause instanceof TypeError
+          ? `Could not reach the worker at ${base}. From the NodeVideo repo, run: npm run coach:sidecar — then paste the token it prints.`
+          : cause instanceof Error
+            ? cause.message
+            : 'Could not reach the local worker.',
+      );
     }
   }
 
@@ -457,6 +469,15 @@ function CoachPanel() {
         </Alert>
       )}
 
+      {demoMode && job && (
+        <Alert className="lg:col-start-1">
+          <AlertCircle aria-hidden="true" />
+          <AlertTitle>Sample verdict</AlertTitle>
+          <AlertDescription>
+            Bundled example data — no analysis ran. Start the local worker to judge your own take.
+          </AlertDescription>
+        </Alert>
+      )}
       {verdict && (
         <Card className="lg:col-start-1">
           <CardHeader>

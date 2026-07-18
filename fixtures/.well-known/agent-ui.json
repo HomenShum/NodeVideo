@@ -27,6 +27,13 @@
       "controls": [
         { "id": "open-coach", "role": "link", "name": "Open the coach" },
         { "id": "see-comparison", "role": "link", "name": "See a verified comparison" },
+        {
+          "id": "sample-verdict",
+          "role": "link",
+          "name": "Preview a sample verdict — no setup needed",
+          "meaning": "Zero-setup first action: opens the coach with a bundled sample verdict (demo mode, honestly labeled)."
+        },
+        { "id": "open-edit-studio", "role": "link", "name": "Open the edit studio" },
         { "id": "proof-studio-nav", "role": "link", "name": "Proof studio" },
         { "id": "agent-contract-nav", "role": "link", "name": "Agent contract" }
       ],
@@ -160,6 +167,12 @@
       ],
       "agentGuidance": "All processing is laptop-local via the token-gated sidecar; nothing uploads to a cloud. Never bypass the consent checkbox on a user's behalf.",
       "states": [
+        {
+          "id": "demo-sample-verdict",
+          "query": "?demo=verdict-completed-full",
+          "meaning": "Zero-setup demo: a bundled sample verdict renders with an explicit banner that no analysis ran. Never presented as a real result.",
+          "requireTexts": ["Sample verdict", "no analysis ran"]
+        },
         {
           "id": "verdict-completed-full",
           "fixture": ".ui/fixtures/job-verdict-completed-full.json",

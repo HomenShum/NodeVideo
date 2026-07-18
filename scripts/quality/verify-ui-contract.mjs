@@ -188,7 +188,7 @@ try {
       const statePage = await browser.newPage({ viewport: { width: 420, height: 900 } });
       const stateQuery = state.fixture
         ? `?job=${state.id}&token=contract-state-check&endpoint=${encodeURIComponent(`http://127.0.0.1:${mockPort}`)}`
-        : '';
+        : (state.query ?? '');
       await statePage.goto(`${base}${surface.route}${stateQuery}`, { waitUntil: 'networkidle' });
       for (const text of state.requireTexts ?? []) {
         (await statePage

@@ -165,6 +165,12 @@ function Landing() {
               See a verified comparison
             </a>
           </div>
+          <a
+            className="inline-block text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
+            href="/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+          >
+            Preview a sample verdict — no setup needed
+          </a>
           <div
             aria-label={`Count ${count} of 8 at ${TEMPO_BPM} beats per minute`}
             className="flex items-baseline gap-3 font-mono text-sm text-muted-foreground"
@@ -182,6 +188,48 @@ function Landing() {
           <p className="absolute bottom-3 left-4 font-mono text-[11px] text-muted-foreground">
             real pose track · verified public case
           </p>
+        </div>
+      </section>
+
+      <section className="space-y-4 border-t border-border py-12">
+        <h2 className="font-heading text-xl font-medium">Two ways to use NodeVideo today</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="space-y-2 rounded-2xl border border-border bg-card p-5">
+            <h3 className="font-heading font-medium">Coach a take</h3>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Upload your dance take against the dancer you are studying and get relative motion
+              signals with the moments to review.
+            </p>
+            <a
+              className="inline-flex items-center text-sm font-medium text-foreground underline underline-offset-4"
+              href="/apps/chrome-extension/sidepanel.html"
+            >
+              Open the coach
+            </a>
+          </div>
+          <div className="space-y-2 rounded-2xl border border-border bg-card p-5">
+            <h3 className="font-heading font-medium">Cut takes into an edit</h3>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              The original NodeVideo: raw takes plus a song become a planned, text-overlaid final
+              cut — every boundary hash-verified and inspectable.
+            </p>
+            <a
+              className="inline-flex items-center text-sm font-medium text-foreground underline underline-offset-4"
+              href="/studio.html"
+            >
+              Open the edit studio
+            </a>
+          </div>
+          <div className="space-y-2 rounded-2xl border border-border bg-card p-5">
+            <h3 className="font-heading font-medium">Practice live</h3>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              In progress: a camera practice room — countdown, section retries, and honest per-count
+              feedback while you dance.
+            </p>
+            <span className="inline-flex items-center font-mono text-xs text-muted-foreground">
+              in development
+            </span>
+          </div>
         </div>
       </section>
 
