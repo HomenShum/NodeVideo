@@ -29,6 +29,10 @@ const poseCacheRoot = resolve(root, '.qa/cache/private-pose');
 const analysisMediaCacheRoot = resolve(root, '.qa/cache/private-analysis-media');
 const jobs = new Map();
 const maxUpload = 700 * 1024 * 1024;
+// The coach chat body is a tiny JSON envelope ({ jobId, message }); anything
+// larger is abuse. Bound it like every other in-memory buffer in this file so
+// a token-holding agent loop cannot OOM the worker mid-analysis.
+const maxChatBody = 64 * 1024;
 // Bound the in-memory job registry and the number of concurrently running
 // jobs. Each job spawns yt-dlp + ffmpeg + Python, so an unbounded registry or
 // unbounded concurrency exhausts memory/CPU under an agent loop.
@@ -75,7 +79,7 @@ const server = createServer(async (request, response) => {
     }
     if (!authorized(request)) return json(response, 401, { error: 'invalid_token' });
     if (request.method === 'POST' && request.url === '/v1/coach/chat')
-      return coachChat(request, response);
+      return await coachChat(request, response);
     if (request.method === 'POST' && request.url === '/v1/jobs')
       return createJob(request, response);
     const jobMatch = request.url?.match(/^\/v1\/jobs\/([a-z0-9-]+)$/);
@@ -92,6 +96,11 @@ const server = createServer(async (request, response) => {
       return serveArtifact(response, artifactMatch[1], artifactMatch[2]);
     return json(response, 404, { error: 'not_found' });
   } catch (error) {
+    // A handler that already committed its response headers (e.g. an SSE
+    // stream) cannot be answered with json() — that throws
+    // ERR_HTTP_HEADERS_SENT and would surface as an unhandled rejection.
+    // Tear the socket down instead; the stream handler owns in-band errors.
+    if (response.headersSent) return response.destroy();
     return json(response, 400, {
       error: error instanceof Error ? error.message : 'request_failed',
     });
@@ -110,8 +119,27 @@ server.listen(port, host, () => {
 // involved; when an LLM (Eve) is connected it streams over this same event
 // contract. Events: reasoning | tool | text | proposal | done.
 async function coachChat(request, response) {
+  // Bound the body: reject oversized or headerless requests up front (fail
+  // closed like createJob), then cap cumulatively inside the read loop so a
+  // chunked-transfer body cannot bypass the content-length check.
+  const declared = Number(request.headers['content-length'] ?? 0);
+  if (!(declared > 0) || declared > maxChatBody)
+    return json(response, 413, { error: 'chat_body_too_large' });
   const parts = [];
-  for await (const part of request) parts.push(part);
+  let received = 0;
+  try {
+    for await (const part of request) {
+      received += part.length;
+      if (received > maxChatBody) {
+        request.destroy();
+        return json(response, 413, { error: 'chat_body_too_large' });
+      }
+      parts.push(part);
+    }
+  } catch {
+    // Client aborted mid-body; the socket is gone, nothing to answer.
+    return response.destroyed ? undefined : response.destroy();
+  }
   let body = {};
   try {
     body = JSON.parse(Buffer.concat(parts).toString('utf8'));
@@ -119,123 +147,141 @@ async function coachChat(request, response) {
     return json(response, 400, { error: 'invalid_json' });
   }
   const message = String(body.message ?? '').slice(0, 2000);
-  const job = jobs.get(String(body.jobId ?? ''));
+  const jobId = String(body.jobId ?? '');
+  const job = jobs.get(jobId);
+  // A supplied-but-unknown job id (typo, or evicted/trimmed after a restart)
+  // is a not-found, not a "you never ran a comparison" — mirror the GET route
+  // so an agent client can tell the two apart before we commit to SSE.
+  if (jobId && !job) return json(response, 404, { error: 'job_not_found' });
+
   response.writeHead(200, {
     'content-type': 'text/event-stream',
     'cache-control': 'no-cache',
   });
-  const send = (event) => response.write(`data: ${JSON.stringify(event)}\n\n`);
+  const send = (event) => {
+    if (response.writableEnded || response.destroyed) return;
+    response.write(`data: ${JSON.stringify(event)}\n\n`);
+  };
   const say = (text) => {
     for (const word of text.split(/(?<= )/)) send({ type: 'text', delta: word });
   };
-  const verdict = job?.verdict;
-  const wants = (pattern) => pattern.test(message);
 
-  if (!verdict) {
-    say(
-      'I coach from evidence, so I need a completed comparison first. Upload your take, run Judge choreography, then ask me anything about the result.',
-    );
-    send({ type: 'done' });
-    return response.end();
-  }
+  // Everything past the SSE header runs inside a boundary: a throw here must
+  // become an in-band error event, never an unhandled rejection that crashes
+  // the worker and takes every running job down with it.
+  try {
+    const verdict = job?.verdict;
+    const wants = (pattern) => pattern.test(message);
 
-  const scores = Object.entries(verdict.scores ?? {}).filter(([, v]) => typeof v === 'number');
-  const unmeasured = verdict.unmeasurableScores ?? [];
-  const timing = verdict.measurements?.medianTimingErrorMs;
-
-  if (wants(/segment|window|where.*(practice|start)|propose/i)) {
-    send({
-      type: 'reasoning',
-      delta:
-        'The judge already located your take inside the reference; reusing that window keeps the next run comparable. ',
-    });
-    const window = verdict.measurements?.referenceWindow;
-    send({
-      type: 'tool',
-      name: 'locate_reference_window',
-      input: { jobId: job.id },
-      output: window ?? { error: 'window_not_measured' },
-    });
-    if (window) {
-      const start = Math.round(window.startSeconds * 10) / 10;
-      const end = Math.round(window.endSeconds * 10) / 10;
+    if (!verdict) {
       say(
-        `Your take matched the reference between ${start}s and ${end}s. Locking that segment focuses the next comparison on exactly the choreography you practiced.`,
+        'I coach from evidence, so I need a completed comparison first. Upload your take, run Judge choreography, then ask me anything about the result.',
       );
+    } else if (wants(/segment|window|where.*(practice|start)|propose/i)) {
+      const window = verdict.measurements?.referenceWindow;
+      const hasWindow =
+        window && Number.isFinite(window.startSeconds) && Number.isFinite(window.endSeconds);
       send({
-        type: 'proposal',
-        proposal: {
-          kind: 'reference-segment',
-          startSeconds: start,
-          endSeconds: end,
-          rationale: 'Matched window from the last comparison',
+        type: 'reasoning',
+        delta: hasWindow
+          ? 'The judge located your take inside the reference; reusing that window keeps the next run comparable. '
+          : 'Checking whether the last verdict measured a matched window to reuse. ',
+      });
+      send({
+        type: 'tool',
+        name: 'locate_reference_window',
+        input: { jobId: job.id },
+        output: hasWindow ? window : { error: 'window_not_measured' },
+      });
+      if (hasWindow) {
+        const start = Math.round(window.startSeconds * 10) / 10;
+        const end = Math.round(window.endSeconds * 10) / 10;
+        say(
+          `Your take matched the reference between ${start}s and ${end}s. Locking that segment focuses the next comparison on exactly the choreography you practiced.`,
+        );
+        send({
+          type: 'proposal',
+          proposal: {
+            kind: 'reference-segment',
+            startSeconds: start,
+            endSeconds: end,
+            rationale: 'Matched window from the last comparison',
+          },
+        });
+      } else {
+        say(
+          'The last run did not measure a reference window, so I have no segment to propose. Run a comparison first.',
+        );
+      }
+    } else if (wants(/moment|review|worst|timestamp/i)) {
+      // Only rank moments whose timestamps are actually numbers, so a legacy
+      // or partially-written verdict cannot throw on .toFixed below.
+      const moments = [...(verdict.criticalMoments ?? [])]
+        .filter((m) => Number.isFinite(m?.referenceTime) && Number.isFinite(m?.attemptTime))
+        .sort((a, b) => b.severity - a.severity)
+        .slice(0, 3);
+      send({
+        type: 'reasoning',
+        delta: `Ranking ${moments.length} flagged moments by severity. `,
+      });
+      send({
+        type: 'tool',
+        name: 'list_critical_moments',
+        input: { jobId: job.id, top: 3 },
+        output: moments,
+      });
+      if (moments.length === 0) {
+        say('No moments crossed the review threshold in this comparison.');
+      } else {
+        const worst = moments[0];
+        say(
+          `${moments.length} moments are worth reviewing. The largest difference is at ${worst.referenceTime.toFixed(1)}s in the reference (${worst.attemptTime.toFixed(1)}s in your take) — scrub the comparison video there and watch both dancers on the same count.`,
+        );
+      }
+    } else {
+      const scores = Object.entries(verdict.scores ?? {}).filter(([, v]) => typeof v === 'number');
+      const unmeasured = verdict.unmeasurableScores ?? [];
+      const timing = verdict.measurements?.medianTimingErrorMs;
+      const ranked = [...scores].sort((a, b) => a[1] - b[1]);
+      send({
+        type: 'reasoning',
+        delta: `Measured signals ranked: ${ranked.map(([k, v]) => `${k} ${v}`).join(', ')}. ${timing != null ? `Median timing offset ${timing}ms. ` : ''}${unmeasured.length ? `Unmeasured: ${unmeasured.join(', ')} — I will not invent those. ` : ''}`,
+      });
+      send({
+        type: 'tool',
+        name: 'get_verdict',
+        input: { jobId: job.id },
+        output: {
+          scores: verdict.scores,
+          unmeasurableScores: unmeasured,
+          confidence: verdict.confidence,
         },
       });
-    } else {
-      say(
-        'The last run did not measure a reference window, so I have no segment to propose. Run a comparison first.',
-      );
+      if (ranked.length === 0) {
+        say(
+          'This verdict has no measurable scores — the evidence was too thin to coach from. Try a clearer recording.',
+        );
+      } else {
+        const [weakestName] = ranked[0];
+        const advice = {
+          timing: `your landings drift from the reference count${timing != null ? ` by about ${timing}ms at the median` : ''} — practice with the music at half speed and land the hits on the count`,
+          form: 'your joint angles differ most from the reference — pick the worst moment below and match the exact shape at the hit',
+          path: 'your body travels differently across the floor — walk the pattern without arms first',
+          dynamics:
+            'your accents are softer or sharper than the reference — exaggerate the pops, relax the transitions',
+          formation:
+            'spacing relative to the team drifts — anchor to the dancer next to you at each landmark',
+        };
+        say(
+          `These are relative signals, not grades. The furthest signal from the reference is ${weakestName}: ${advice[weakestName] ?? 'review the flagged moments below'}. Ask "propose a practice segment" and I will lock the matched window for your next run.`,
+        );
+      }
     }
-  } else if (wants(/moment|review|worst|timestamp/i)) {
-    const moments = [...(verdict.criticalMoments ?? [])]
-      .sort((a, b) => b.severity - a.severity)
-      .slice(0, 3);
-    send({
-      type: 'reasoning',
-      delta: `Ranking ${verdict.criticalMoments?.length ?? 0} flagged moments by severity. `,
-    });
-    send({
-      type: 'tool',
-      name: 'list_critical_moments',
-      input: { jobId: job.id, top: 3 },
-      output: moments,
-    });
-    if (moments.length === 0) {
-      say('No moments crossed the review threshold in this comparison.');
-    } else {
-      const worst = moments[0];
-      say(
-        `${moments.length} moments are worth reviewing. The largest difference is at ${worst.referenceTime.toFixed(1)}s in the reference (${worst.attemptTime.toFixed(1)}s in your take) — scrub the comparison video there and watch both dancers on the same count.`,
-      );
-    }
-  } else {
-    const ranked = [...scores].sort((a, b) => a[1] - b[1]);
-    send({
-      type: 'reasoning',
-      delta: `Measured signals ranked: ${ranked.map(([k, v]) => `${k} ${v}`).join(', ')}. ${timing != null ? `Median timing offset ${timing}ms. ` : ''}${unmeasured.length ? `Unmeasured: ${unmeasured.join(', ')} — I will not invent those. ` : ''}`,
-    });
-    send({
-      type: 'tool',
-      name: 'get_verdict',
-      input: { jobId: job.id },
-      output: {
-        scores: verdict.scores,
-        unmeasurableScores: unmeasured,
-        confidence: verdict.confidence,
-      },
-    });
-    if (ranked.length === 0) {
-      say(
-        'This verdict has no measurable scores — the evidence was too thin to coach from. Try a clearer recording.',
-      );
-    } else {
-      const [weakestName] = ranked[0];
-      const advice = {
-        timing: `your landings drift from the reference count${timing != null ? ` by about ${timing}ms at the median` : ''} — practice with the music at half speed and land the hits on the count`,
-        form: 'your joint angles differ most from the reference — pick the worst moment below and match the exact shape at the hit',
-        path: 'your body travels differently across the floor — walk the pattern without arms first',
-        dynamics:
-          'your accents are softer or sharper than the reference — exaggerate the pops, relax the transitions',
-        formation:
-          'spacing relative to the team drifts — anchor to the dancer next to you at each landmark',
-      };
-      say(
-        `These are relative signals, not grades. The furthest signal from the reference is ${weakestName}: ${advice[weakestName] ?? 'review the flagged moments below'}. Ask "propose a practice segment" and I will lock the matched window for your next run.`,
-      );
-    }
+  } catch {
+    send({ type: 'error', error: 'coach_reply_failed' });
   }
   send({ type: 'done' });
-  return response.end();
+  if (!response.writableEnded) response.end();
 }
 
 async function createJob(request, response) {

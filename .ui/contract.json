@@ -192,15 +192,26 @@
           "id": "coach-input",
           "role": "textbox",
           "name": "Ask the coach about your comparison",
-          "meaning": "Streaming thread to the rule-grounded local coach (SSE events: reasoning, tool, text, proposal, done). Replies are computed from the stored verdict on the local worker; no cloud model. Proposals render inline and are accepted in place."
+          "meaning": "Streaming thread to the rule-grounded local coach (SSE events: reasoning, tool, text, proposal, error, done). Replies are computed from the stored verdict on the local worker; no cloud model. Proposals render inline and are accepted in place. During a reply the textbox is disabled and the submit button becomes a stop control."
         },
-        { "id": "coach-suggestion-scores", "role": "button", "name": "Why these scores?" },
-        { "id": "coach-suggestion-review", "role": "button", "name": "What should I review?" },
+        {
+          "id": "coach-suggestion-scores",
+          "role": "button",
+          "name": "Why these scores?",
+          "state": "present only before the first message in the thread; afterward type the same phrase into coach-input"
+        },
+        {
+          "id": "coach-suggestion-review",
+          "role": "button",
+          "name": "What should I review?",
+          "state": "present only before the first message in the thread; afterward type the same phrase into coach-input"
+        },
         {
           "id": "coach-suggestion-segment",
           "role": "button",
           "name": "Propose a practice segment",
-          "meaning": "Streams an inline reference-segment proposal; 'Use this segment' fills the segment inputs in place."
+          "state": "present only before the first message in the thread; afterward type the same phrase into coach-input",
+          "meaning": "Streams an inline reference-segment proposal WHEN the last completed verdict measured a matched window; 'Use this segment' fills the segment inputs in place. With no completed verdict, or a verdict without a measured window, it streams a text explanation and no proposal event."
         }
       ],
       "gates": [

@@ -86,6 +86,7 @@ type ChatTurn = {
   tools: Array<{ name: string; input: unknown; output: unknown }>;
   proposal?: ChatProposal;
   streaming?: boolean;
+  error?: string;
 };
 type ExtensionApi = {
   tabs: { query(options: object): Promise<Array<{ url?: string; title?: string }>> };
@@ -119,6 +120,7 @@ function CoachPanel() {
   const [comparisonUrl, setComparisonUrl] = useState('');
   const [thread, setThread] = useState<ChatTurn[]>([]);
   const [chatBusy, setChatBusy] = useState(false);
+  const chatAbortRef = useRef<AbortController | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const patchLastTurn = (change: (turn: ChatTurn) => ChatTurn) => {
@@ -126,6 +128,10 @@ function CoachPanel() {
       current.map((turn, i) => (i === current.length - 1 ? change(turn) : turn)),
     );
   };
+
+  function stopCoach() {
+    chatAbortRef.current?.abort('user');
+  }
 
   async function askCoach(text: string) {
     if (chatBusy || !text.trim()) return;
@@ -136,44 +142,109 @@ function CoachPanel() {
       { id: `${id}-u`, role: 'user', text, reasoning: '', tools: [] },
       { id: `${id}-a`, role: 'assistant', text: '', reasoning: '', tools: [], streaming: true },
     ]);
+    // Budget the stream so a hung worker can never brick the panel: abort on an
+    // inter-event idle timeout or an overall ceiling, and let the user stop it.
+    const controller = new AbortController();
+    chatAbortRef.current = controller;
+    let idleTimer = window.setTimeout(() => controller.abort('idle'), 20_000);
+    const totalTimer = window.setTimeout(() => controller.abort('timeout'), 90_000);
+    const resetIdle = () => {
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => controller.abort('idle'), 20_000);
+    };
+    let sawDone = false;
     try {
       const base = endpoint.replace(/\/$/, '');
       const response = await fetch(`${base}/v1/coach/chat`, {
         method: 'POST',
         headers: { ...authorization(token), 'content-type': 'application/json' },
         body: JSON.stringify({ jobId: job?.id ?? '', message: text }),
+        signal: controller.signal,
       });
-      if (!response.ok || !response.body) throw new Error('coach_unreachable');
+      if (!response.ok || !response.body) {
+        // Read the worker's structured error so a bad token or missing job is
+        // named honestly instead of collapsed into "not reachable".
+        const detail = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(humanError(detail?.error ?? 'coach_unreachable'));
+      }
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let buffered = '';
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
+        resetIdle();
         buffered += decoder.decode(value, { stream: true });
         const lines = buffered.split('\n\n');
         buffered = lines.pop() ?? '';
         for (const line of lines) {
           if (!line.startsWith('data: ')) continue;
-          const event = JSON.parse(line.slice(6));
-          if (event.type === 'text') patchLastTurn((t) => ({ ...t, text: t.text + event.delta }));
-          if (event.type === 'reasoning')
+          let event: {
+            type?: string;
+            delta?: unknown;
+            proposal?: ChatProposal;
+            name?: string;
+            input?: unknown;
+            output?: unknown;
+            error?: string;
+          };
+          // One malformed line must not kill the whole stream.
+          try {
+            event = JSON.parse(line.slice(6));
+          } catch {
+            continue;
+          }
+          if (event.type === 'text' && typeof event.delta === 'string')
+            patchLastTurn((t) => ({ ...t, text: t.text + event.delta }));
+          if (event.type === 'reasoning' && typeof event.delta === 'string')
             patchLastTurn((t) => ({ ...t, reasoning: t.reasoning + event.delta }));
-          if (event.type === 'tool') patchLastTurn((t) => ({ ...t, tools: [...t.tools, event] }));
-          if (event.type === 'proposal') patchLastTurn((t) => ({ ...t, proposal: event.proposal }));
+          if (event.type === 'tool')
+            patchLastTurn((t) => ({
+              ...t,
+              tools: [
+                ...t.tools,
+                { name: event.name ?? 'tool', input: event.input, output: event.output },
+              ],
+            }));
+          if (event.type === 'proposal' && event.proposal)
+            patchLastTurn((t) => ({ ...t, proposal: event.proposal }));
+          if (event.type === 'error')
+            patchLastTurn((t) => ({
+              ...t,
+              error: humanError(event.error ?? 'coach_reply_failed'),
+            }));
+          if (event.type === 'done') sawDone = true;
         }
       }
-      patchLastTurn((t) => ({ ...t, streaming: false }));
-    } catch {
+      // The worker sends {done} on every complete reply. Its absence means the
+      // stream was cut short — never present a truncated answer as finished.
       patchLastTurn((t) => ({
         ...t,
         streaming: false,
-        text:
-          t.text ||
-          'The local coach is not reachable. Start the worker (npm run coach:sidecar) and check the token under Segment, team, and connection.',
+        error: sawDone ? t.error : (t.error ?? 'Reply interrupted — the coach stream ended early.'),
       }));
+    } catch (cause) {
+      const reason = controller.signal.aborted ? controller.signal.reason : '';
+      const message =
+        reason === 'user'
+          ? 'Stopped.'
+          : reason === 'idle' || reason === 'timeout'
+            ? 'The coach stopped responding. Check that the worker is running.'
+            : cause instanceof Error && cause.message
+              ? cause.message
+              : 'The local coach is not reachable. Start the worker (npm run coach:sidecar) and check the token under Segment, team, and connection.';
+      patchLastTurn((t) => ({
+        ...t,
+        streaming: false,
+        error: t.text ? message : undefined,
+        text: t.text || message,
+      }));
+    } finally {
+      window.clearTimeout(idleTimer);
+      window.clearTimeout(totalTimer);
+      chatAbortRef.current = null;
+      setChatBusy(false);
     }
-    setChatBusy(false);
   }
 
   function acceptProposal(turnId: string, proposal: ChatProposal) {
@@ -740,7 +811,16 @@ function CoachPanel() {
                     <MessageContent className="w-full space-y-2">
                       {turn.reasoning && (
                         <Reasoning isStreaming={turn.streaming}>
-                          <ReasoningTrigger />
+                          {/* Honest label: this is a rule trace computed from
+                              the stored verdict, not a model thinking. */}
+                          <ReasoningTrigger>
+                            <ChevronDown aria-hidden="true" className="size-4" />
+                            <span>
+                              {turn.streaming
+                                ? 'Reading your verdict…'
+                                : 'Rule trace — how this was computed from your verdict'}
+                            </span>
+                          </ReasoningTrigger>
                           <ReasoningContent>{turn.reasoning}</ReasoningContent>
                         </Reasoning>
                       )}
@@ -758,6 +838,12 @@ function CoachPanel() {
                         </Tool>
                       ))}
                       {turn.text && <MessageResponse>{turn.text}</MessageResponse>}
+                      {turn.error && (
+                        <p className="flex items-center gap-1.5 text-xs text-destructive">
+                          <AlertCircle aria-hidden="true" className="size-3.5" />
+                          {turn.error}
+                        </p>
+                      )}
                       {turn.proposal && (
                         <div className="rounded-lg border border-border bg-card p-3">
                           <p className="text-sm font-medium">
@@ -799,11 +885,17 @@ function CoachPanel() {
             <PromptInputBody>
               <PromptInputTextarea
                 aria-label="Ask the coach about your comparison"
-                placeholder="Ask the coach about your comparison"
+                disabled={chatBusy}
+                placeholder={
+                  chatBusy ? 'The coach is replying…' : 'Ask the coach about your comparison'
+                }
               />
             </PromptInputBody>
             <PromptInputFooter>
-              <PromptInputSubmit status={chatBusy ? 'streaming' : undefined} />
+              {/* During a stream the button is a real stop control (onStop
+                  aborts the fetch); the textarea is disabled so no draft can
+                  be silently lost to the busy guard. */}
+              <PromptInputSubmit onStop={stopCoach} status={chatBusy ? 'streaming' : undefined} />
             </PromptInputFooter>
           </PromptInput>
         </CardContent>
@@ -841,6 +933,9 @@ function humanError(code = '') {
     (
       {
         invalid_token: 'The local service token is incorrect.',
+        job_not_found: 'That comparison is no longer in the worker. Run Judge choreography again.',
+        chat_body_too_large: 'That message is too long for the coach.',
+        coach_reply_failed: 'The coach could not complete this reply from the stored verdict.',
         rights_confirmation_required: 'Confirm that you have permission to analyze both videos.',
         upload_too_large: 'The video is larger than the 700 MB local limit.',
         invalid_reference_segment: 'Enter a valid reference segment no longer than 90 seconds.',
