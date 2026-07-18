@@ -25,6 +25,7 @@ export default defineConfig({
         index: path.resolve(__dirname, 'index.html'),
         studio: path.resolve(__dirname, 'studio.html'),
         collab: path.resolve(__dirname, 'collab.html'),
+        edit: path.resolve(__dirname, 'edit.html'),
         'chrome-extension-sidepanel': path.resolve(
           __dirname,
           'apps/chrome-extension/sidepanel.html',

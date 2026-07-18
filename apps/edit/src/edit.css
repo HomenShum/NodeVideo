@@ -1,0 +1,8 @@
+@import "../../../src/styles.css";
+@source ".";
+
+/* Wavesurfer regions carry lane identity: take A cuts render in brand lime,
+   take B cuts in neutral; downbeat markers are hairlines. */
+.stitch-region-a > ::part(region) {
+  outline: 1px solid color-mix(in oklab, var(--color-brand) 60%, transparent);
+}
