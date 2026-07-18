@@ -3,7 +3,7 @@ import { expect, test } from 'playwright/test';
 
 test('hash-verifies and synchronizes the frame inspector', async ({ page }) => {
   const productionPreview = Boolean(process.env.NODEVIDEO_URL || process.env.CI);
-  await page.goto('/');
+  await page.goto('/studio.html');
   const inspector = page.getByTestId('integrated-frame-inspector');
   await inspector.getByRole('button', { name: /inspect the calibration cut/i }).click();
 

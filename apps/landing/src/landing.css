@@ -1,0 +1,27 @@
+@import "../../../src/styles.css";
+@source ".";
+
+/* The page keeps count: every animated element pulses through this one
+   variable, driven by the same clock as the count ticker. Nothing on the
+   page moves off the beat. */
+:root {
+  --count-pulse: 0;
+}
+
+.on-count {
+  transform: scale(calc(1 + 0.014 * var(--count-pulse)));
+  transition: transform 90ms ease-out;
+}
+
+.count-cell[data-live="true"] {
+  color: var(--color-brand);
+  transform: translateY(calc(-2px * var(--count-pulse)));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .on-count,
+  .count-cell[data-live="true"] {
+    transform: none;
+    transition: none;
+  }
+}

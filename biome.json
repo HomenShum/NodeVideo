@@ -12,6 +12,7 @@
       "test-results",
       ".qa/cache",
       ".qa/evidence",
+      ".qa/media",
       ".qa/models",
       ".vercel",
       "fixtures/media/tutorial-compare-v1",

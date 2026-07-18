@@ -1,0 +1,29 @@
+{
+  "id": "verdict-completed-partial",
+  "status": "completed",
+  "stage": "completed",
+  "progress": 100,
+  "artifacts": {},
+  "verdict": {
+    "schemaVersion": "nodevideo.choreography-verdict.v1",
+    "status": "completed",
+    "confidence": 0.61,
+    "limitations": ["dynamics_unmeasurable"],
+    "mirrorApplied": false,
+    "observableMotionOnly": true,
+    "scoreInterpretation": "relative-motion-signal-not-calibrated-pass-fail",
+    "scores": { "form": 55.8, "timing": 68.2, "path": 60.4 },
+    "unmeasurableScores": ["dynamics"],
+    "overall": 61.3,
+    "measurements": {
+      "comparisonMode": "solo-focal-performer",
+      "medianTimingErrorMs": 214,
+      "referencePeopleUsed": [0]
+    },
+    "criticalMoments": [],
+    "scoreBoundaries": {
+      "judged": ["2D pose form", "motion timing", "body path"],
+      "notJudged": ["artistry", "musicality", "expression", "confidence", "creator taste", "safety"]
+    }
+  }
+}

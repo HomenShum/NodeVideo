@@ -66,6 +66,7 @@ function CoachPanel() {
   const preview = useMemo(() => new URLSearchParams(location.search), []);
   const [reference, setReference] = useState({ url: '', title: 'Open a YouTube dance video' });
   const [attempt, setAttempt] = useState<File | null>(null);
+  const [referenceFile, setReferenceFile] = useState<File | null>(null);
   const [endpoint, setEndpoint] = useState('http://127.0.0.1:4319');
   const [token, setToken] = useState('');
   const [people, setPeople] = useState(10);
@@ -77,6 +78,24 @@ function CoachPanel() {
   const [busy, setBusy] = useState(false);
   const [comparisonUrl, setComparisonUrl] = useState('');
   const videoRef = useRef<HTMLVideoElement>(null);
+  const referencePreviewUrl = useMemo(
+    () => (referenceFile ? URL.createObjectURL(referenceFile) : ''),
+    [referenceFile],
+  );
+  const attemptPreviewUrl = useMemo(() => (attempt ? URL.createObjectURL(attempt) : ''), [attempt]);
+  const youTubeId = reference.url.match(/[?&]v=([\w-]{11})/)?.[1] ?? '';
+  useEffect(
+    () => () => {
+      if (referencePreviewUrl) URL.revokeObjectURL(referencePreviewUrl);
+    },
+    [referencePreviewUrl],
+  );
+  useEffect(
+    () => () => {
+      if (attemptPreviewUrl) URL.revokeObjectURL(attemptPreviewUrl);
+    },
+    [attemptPreviewUrl],
+  );
 
   useEffect(() => {
     void initialize();
@@ -111,7 +130,11 @@ function CoachPanel() {
     });
     const saved = extensionApi
       ? await extensionApi.storage.local.get(['endpoint', 'token', 'people'])
-      : { endpoint: 'http://127.0.0.1:4319', token: preview.get('token') ?? '', people: 10 };
+      : {
+          endpoint: preview.get('endpoint') ?? 'http://127.0.0.1:4319',
+          token: preview.get('token') ?? '',
+          people: 10,
+        };
     if (typeof saved.endpoint === 'string') setEndpoint(saved.endpoint);
     if (typeof saved.token === 'string') setToken(saved.token);
     if (typeof saved.people === 'number') setPeople(saved.people);
@@ -127,6 +150,7 @@ function CoachPanel() {
       const value = (await response.json()) as Job & { error?: string };
       if (!response.ok) throw new Error(humanError(value.error));
       setJob(value);
+      setError('');
       if (value.status === 'failed') {
         setBusy(false);
         setError(value.error ? humanError(value.error) : 'The comparison worker failed.');
@@ -141,8 +165,10 @@ function CoachPanel() {
   async function submit(event: React.FormEvent) {
     event.preventDefault();
     setError('');
-    if (!reference.url)
-      return setError('Open the reference choreography on a YouTube watch page first.');
+    if (!reference.url && !referenceFile)
+      return setError(
+        'Open the reference choreography on a YouTube watch page, or upload the reference video file.',
+      );
     if (!attempt) return setError('Choose your dance video.');
     if (!token.trim()) return setError('Paste the token printed by the local NodeVideo worker.');
     if (!rights) return setError('Confirm that you have permission to analyze both videos.');
@@ -165,7 +191,8 @@ function CoachPanel() {
     if (extensionApi) await extensionApi.storage.local.set({ endpoint: base, token, people });
     const body = new FormData();
     body.set('attempt', attempt);
-    body.set('referenceUrl', reference.url);
+    if (referenceFile) body.set('reference', referenceFile);
+    else body.set('referenceUrl', reference.url);
     body.set('rightsConfirmed', 'true');
     body.set('people', String(people));
     if (hasReferenceStart) {
@@ -216,8 +243,8 @@ function CoachPanel() {
 
   const verdict = job?.verdict;
   return (
-    <main className="mx-auto min-h-svh max-w-lg space-y-4 bg-background p-3 text-foreground sm:p-4">
-      <header className="flex items-center gap-2 py-1">
+    <main className="mx-auto min-h-svh max-w-lg space-y-4 bg-background p-3 text-foreground sm:p-4 lg:grid lg:max-w-6xl lg:grid-cols-2 lg:items-start lg:gap-x-6 lg:gap-y-4 lg:space-y-0">
+      <header className="flex items-center gap-2 py-1 lg:col-span-2">
         <Item className="p-0">
           <ItemMedia
             className="size-9 rounded-lg bg-primary text-primary-foreground"
@@ -232,21 +259,59 @@ function CoachPanel() {
         </Item>
       </header>
 
-      <Card size="sm">
+      <Card className="lg:col-start-1" size="sm">
         <CardHeader>
           <Badge className="mb-1" variant="outline">
             Reference on this page
           </Badge>
           <CardTitle>
-            <h1>{reference.title}</h1>
+            <h1>{referenceFile ? referenceFile.name : reference.title}</h1>
           </CardTitle>
           <CardDescription className="break-all">
-            {reference.url || 'This panel reads only the active YouTube watch URL.'}
+            {referenceFile
+              ? 'Uploaded reference file · used instead of the page URL'
+              : reference.url || 'This panel reads only the active YouTube watch URL.'}
           </CardDescription>
         </CardHeader>
+        {(referencePreviewUrl || youTubeId) && (
+          <CardContent>
+            {referencePreviewUrl ? (
+              <video
+                aria-label="Reference video preview"
+                className="w-full rounded-lg"
+                controls
+                muted
+                playsInline
+                preload="metadata"
+                src={referencePreviewUrl}
+              />
+            ) : (
+              <iframe
+                allow="encrypted-media; picture-in-picture"
+                allowFullScreen
+                className="aspect-video w-full rounded-lg border-0"
+                src={`https://www.youtube-nocookie.com/embed/${youTubeId}`}
+                title="Reference choreography preview"
+              />
+            )}
+          </CardContent>
+        )}
       </Card>
 
-      <form className="space-y-4" onSubmit={submit}>
+      <form className="space-y-4 lg:col-start-2 lg:row-span-4 lg:row-start-2" onSubmit={submit}>
+        <Field>
+          <FieldLabel htmlFor="reference-file">Reference video file (optional)</FieldLabel>
+          <Input
+            id="reference-file"
+            type="file"
+            accept="video/mp4,video/quicktime,video/*"
+            onChange={(event) => setReferenceFile(event.target.files?.[0] ?? null)}
+          />
+          <FieldDescription>
+            For references that are not on YouTube (a saved reel, a studio recording). Overrides the
+            page URL; analyzed privately on this laptop like everything else.
+          </FieldDescription>
+        </Field>
         <Field>
           <FieldLabel htmlFor="attempt">Your dance take</FieldLabel>
           <Input
@@ -258,6 +323,17 @@ function CoachPanel() {
           <FieldDescription>
             MP4 or MOV · processed on this laptop{attempt ? ` · ${formatBytes(attempt.size)}` : ''}
           </FieldDescription>
+          {attemptPreviewUrl && (
+            <video
+              aria-label="Your dance take preview"
+              className="w-full rounded-lg"
+              controls
+              muted
+              playsInline
+              preload="metadata"
+              src={attemptPreviewUrl}
+            />
+          )}
         </Field>
 
         <Collapsible>
@@ -279,6 +355,7 @@ function CoachPanel() {
                         inputMode="decimal"
                         min={0}
                         placeholder="Start seconds"
+                        step="any"
                         type="number"
                         value={referenceStart}
                         onChange={(event) => setReferenceStart(event.target.value)}
@@ -288,6 +365,7 @@ function CoachPanel() {
                         inputMode="decimal"
                         min={0}
                         placeholder="End seconds"
+                        step="any"
                         type="number"
                         value={referenceEnd}
                         onChange={(event) => setReferenceEnd(event.target.value)}
@@ -358,7 +436,7 @@ function CoachPanel() {
       </form>
 
       {job && (
-        <Card size="sm">
+        <Card className="lg:col-start-1" size="sm">
           <CardHeader>
             <CardTitle>{label(job.stage)}</CardTitle>
             <CardAction>{job.progress}%</CardAction>
@@ -372,7 +450,7 @@ function CoachPanel() {
         </Card>
       )}
       {error && (
-        <Alert variant="destructive">
+        <Alert className="lg:col-start-1" variant="destructive">
           <AlertCircle aria-hidden="true" />
           <AlertTitle>Could not complete the comparison</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
@@ -380,7 +458,7 @@ function CoachPanel() {
       )}
 
       {verdict && (
-        <Card>
+        <Card className="lg:col-start-1">
           <CardHeader>
             <Badge variant="outline">Relative motion comparison</Badge>
             <CardTitle className="text-2xl">

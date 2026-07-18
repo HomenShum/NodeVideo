@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "demo": "npm run dev",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && node scripts/quality/stamp-contract-build.mjs",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
@@ -17,6 +17,7 @@
     "test:e2e": "playwright test",
     "capability:validate": "node scripts/quality/validate-capability-pack.mjs",
     "check:bloat": "node scripts/quality/check-repo-bloat.mjs",
+    "check:contract": "node scripts/quality/verify-ui-contract.mjs",
     "doctor": "npm run capability:validate && npm run grounding:doctor && npm run worker:verify && npm run worker:song:verify",
     "grounding:doctor": "node scripts/quality/grounding-doctor.mjs",
     "grounding:sidecar": "node --env-file-if-exists=.env scripts/grounding/locate-anything-sidecar.mjs",
@@ -68,7 +69,7 @@
     "ui:policy": "node scripts/quality/check-ui-policy.mjs",
     "ui:budget": "node scripts/quality/check-ui-budget.mjs",
     "check:ui": "npm run ui:policy && npm run ui:budget",
-    "check": "npm run lint && npm run typecheck && npm run test && npm run check:ui && npm run capability:validate && npm run grounding:doctor && npm run grounding:proof:verify && npm run worker:verify && npm run worker:song:verify && npm run proof:song:real:verify && npm run worker:authorized:verify && npm run build",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run check:ui && npm run capability:validate && npm run grounding:doctor && npm run grounding:proof:verify && npm run worker:verify && npm run worker:song:verify && npm run proof:song:real:verify && npm run worker:authorized:verify && npm run build && npm run check:contract",
     "qa": "npm run check && npm run proof:synthetic && npm run test:e2e"
   },
   "dependencies": {

@@ -14,6 +14,10 @@ const root = resolve(import.meta.dirname, '../..');
 const host = process.env.NODEVIDEO_COACH_HOST ?? '127.0.0.1';
 const port = Number(process.env.NODEVIDEO_COACH_PORT ?? 4319);
 const token = process.env.NODEVIDEO_COACH_TOKEN ?? randomBytes(18).toString('base64url');
+// The deployed web copy of the panel may also talk to this local worker; the
+// page is HTTPS and 127.0.0.1 is a trustworthy origin, but Chrome's private
+// network access check requires the preflight opt-in header below.
+const webOrigin = process.env.NODEVIDEO_COACH_WEB_ORIGIN ?? 'https://nodevideo-pi.vercel.app';
 const python = process.env.NODEVIDEO_PYTHON ?? 'python';
 const model = resolve(
   process.env.NODEVIDEO_POSE_MODEL ?? join(root, '.qa/models/pose_landmarker_full.task'),
@@ -56,7 +60,11 @@ const server = createServer(async (request, response) => {
   response.setHeader('vary', 'origin');
   response.setHeader('access-control-allow-headers', 'authorization,content-type');
   response.setHeader('access-control-allow-methods', 'GET,POST,OPTIONS');
-  if (request.method === 'OPTIONS') return response.writeHead(204).end();
+  if (request.method === 'OPTIONS') {
+    if (request.headers['access-control-request-private-network'] === 'true')
+      response.setHeader('access-control-allow-private-network', 'true');
+    return response.writeHead(204).end();
+  }
   try {
     if (request.method === 'GET' && request.url === '/health') {
       return json(response, 200, {
@@ -511,7 +519,8 @@ function authorized(request) {
 function isAllowedOrigin(origin) {
   return (
     origin.startsWith('chrome-extension://') ||
-    /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+    /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin) ||
+    origin === webOrigin
   );
 }
 function validYouTubeUrl(value) {
