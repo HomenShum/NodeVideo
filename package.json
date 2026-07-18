@@ -78,6 +78,7 @@
     "@fontsource-variable/geist": "^5.2.9",
     "@gradio/client": "2.3.1",
     "@radix-ui/react-use-controllable-state": "^1.2.3",
+    "@remotion/player": "^4.0.491",
     "@streamdown/cjk": "^1.0.3",
     "@streamdown/code": "^1.1.1",
     "@streamdown/math": "^1.0.2",
@@ -93,10 +94,12 @@
     "radix-ui": "^1.6.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "remotion": "^4.0.491",
     "shiki": "^4.3.1",
     "streamdown": "^2.5.0",
     "tailwind-merge": "^3.6.0",
-    "use-stick-to-bottom": "^1.1.6"
+    "use-stick-to-bottom": "^1.1.6",
+    "wavesurfer.js": "^7.12.11"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",

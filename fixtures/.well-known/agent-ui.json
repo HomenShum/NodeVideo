@@ -33,7 +33,13 @@
           "name": "Preview a sample verdict — no setup needed",
           "meaning": "Zero-setup first action: opens the coach with a bundled sample verdict (demo mode, honestly labeled)."
         },
-        { "id": "open-edit-studio", "role": "link", "name": "Open the edit studio" },
+        {
+          "id": "open-stitch-studio",
+          "role": "link",
+          "name": "Open the stitch studio",
+          "meaning": "Interactive beat-grid editor at /edit.html"
+        },
+        { "id": "proof-console", "role": "link", "name": "Proof console" },
         { "id": "proof-studio-nav", "role": "link", "name": "Proof studio" },
         { "id": "agent-contract-nav", "role": "link", "name": "Agent contract" }
       ],
@@ -87,6 +93,49 @@
         }
       ],
       "agentGuidance": "Fully client-side surface. Do not look for a job API here; there is none. Export produces WebM via MediaRecorder."
+    },
+    {
+      "id": "stitch-studio",
+      "route": "/edit.html",
+      "landmark": { "testid": "stitch-studio" },
+      "description": "Interactive beat-grid stitch editor over the committed Sign case: deterministic Remotion preview of the frozen plan, wavesurfer timeline with beat-snapped cut boundaries, and a local rule-grounded edit agent whose patch cards mutate the plan only on accept. Fully client-side; the hash-verified render stays in the studio pipeline.",
+      "controls": [
+        { "id": "edit-agent-input", "role": "textbox", "name": "Ask the edit agent" },
+        {
+          "id": "edit-suggestion-cuts",
+          "role": "button",
+          "name": "Show the cuts",
+          "state": "present only before the first agent message"
+        },
+        {
+          "id": "edit-suggestion-swap",
+          "role": "button",
+          "name": "Swap 2",
+          "state": "present only before the first agent message"
+        },
+        {
+          "id": "edit-suggestion-tighten",
+          "role": "button",
+          "name": "Tighten 1 by 1 beat",
+          "state": "present only before the first agent message"
+        },
+        {
+          "id": "undo-patch",
+          "role": "button",
+          "name": "Undo last patch",
+          "gated": "disabled until a patch or timeline drag has been applied"
+        },
+        { "id": "beat-timeline", "css": "[aria-label='Beat-aligned edit timeline']" }
+      ],
+      "states": [
+        {
+          "id": "stitch-first-run",
+          "meaning": "Honest boundaries visible before any interaction: local-only agent, no uploads, and the waveform's provenance (take A audio, not the undistributed Sign master).",
+          "requireTexts": ["Edit the Sign cut, on the beat.", "No cloud model", "Nothing uploads."],
+          "forbidTexts": ["Owner access key", "Service token"]
+        }
+      ],
+      "agentGuidance": "Patches apply only via the Apply patch button; dragging a cut edge on the timeline snaps to the plan's beat grid and is equivalent to an accepted nudge patch. Undo reverts the last applied change."
     },
     {
       "id": "workspace",

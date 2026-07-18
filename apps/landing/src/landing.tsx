@@ -226,12 +226,20 @@ function Landing() {
               The original NodeVideo: raw takes plus a song become a planned, text-overlaid final
               cut — every boundary hash-verified and inspectable.
             </p>
-            <a
-              className="inline-flex items-center text-sm font-medium text-foreground underline underline-offset-4"
-              href="/studio.html"
-            >
-              Open the edit studio
-            </a>
+            <div className="flex flex-wrap gap-x-4">
+              <a
+                className="inline-flex items-center text-sm font-medium text-foreground underline underline-offset-4"
+                href="/edit.html"
+              >
+                Open the stitch studio
+              </a>
+              <a
+                className="inline-flex items-center text-sm font-medium text-muted-foreground underline underline-offset-4"
+                href="/studio.html"
+              >
+                Proof console
+              </a>
+            </div>
           </div>
           <div className="space-y-2 rounded-2xl border border-border bg-card p-5">
             <h3 className="font-heading font-medium">Practice live</h3>
