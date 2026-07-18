@@ -136,6 +136,17 @@
           "id": "clip-order",
           "css": "[aria-label='Clip order']",
           "meaning": "Drag-to-reorder clip chips (dnd-kit; keyboard: Enter picks up, arrows move, Enter drops). Reordering re-lays the timeline contiguously; each clip keeps its own source frames."
+        },
+        {
+          "id": "worker-endpoint",
+          "css": "#worker-endpoint",
+          "state": "inside the collapsed 'Connect a model (local worker)' disclosure",
+          "meaning": "Optional model bridge: the local worker's /v1/edit/agent streams a real Claude model (claude-opus-4-8) over the same reasoning|tool|text|proposal|done contract, executing the same plan tools server-side on a working copy. With no Anthropic credentials on the worker it returns model_not_configured and the panel stays on local rules — a model run is never faked. The agent-card badge states which mode is active."
+        },
+        {
+          "id": "worker-token",
+          "css": "#worker-token",
+          "state": "inside the collapsed 'Connect a model (local worker)' disclosure"
         }
       ],
       "states": [

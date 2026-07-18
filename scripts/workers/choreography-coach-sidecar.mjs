@@ -10,6 +10,7 @@ import { Readable } from 'node:stream';
 import { promisify } from 'node:util';
 
 const exec = promisify(execFile);
+const { modelConfigured, runEditAgent } = await import('./edit-agent.mjs');
 const root = resolve(import.meta.dirname, '../..');
 const host = process.env.NODEVIDEO_COACH_HOST ?? '127.0.0.1';
 const port = Number(process.env.NODEVIDEO_COACH_PORT ?? 4319);
@@ -29,6 +30,8 @@ const poseCacheRoot = resolve(root, '.qa/cache/private-pose');
 const analysisMediaCacheRoot = resolve(root, '.qa/cache/private-analysis-media');
 const jobs = new Map();
 const maxUpload = 700 * 1024 * 1024;
+// The edit-agent body carries a full edit plan (~100KB with beat grids).
+const maxEditAgentBody = 512 * 1024;
 // The coach chat body is a tiny JSON envelope ({ jobId, message }); anything
 // larger is abuse. Bound it like every other in-memory buffer in this file so
 // a token-holding agent loop cannot OOM the worker mid-analysis.
@@ -80,6 +83,8 @@ const server = createServer(async (request, response) => {
     if (!authorized(request)) return json(response, 401, { error: 'invalid_token' });
     if (request.method === 'POST' && request.url === '/v1/coach/chat')
       return await coachChat(request, response);
+    if (request.method === 'POST' && request.url === '/v1/edit/agent')
+      return await editAgentRoute(request, response);
     if (request.method === 'POST' && request.url === '/v1/jobs')
       return createJob(request, response);
     const jobMatch = request.url?.match(/^\/v1\/jobs\/([a-z0-9-]+)$/);
@@ -279,6 +284,62 @@ async function coachChat(request, response) {
     }
   } catch {
     send({ type: 'error', error: 'coach_reply_failed' });
+  }
+  send({ type: 'done' });
+  if (!response.writableEnded) response.end();
+}
+
+// Model-backed edit agent bridge (see edit-agent.mjs). Honest about absence:
+// with no Anthropic credentials configured this returns 503 and the studio
+// stays on its local rule agent — a model is never faked.
+async function editAgentRoute(request, response) {
+  if (!modelConfigured()) return json(response, 503, { error: 'model_not_configured' });
+  const declared = Number(request.headers['content-length'] ?? 0);
+  if (!(declared > 0) || declared > maxEditAgentBody)
+    return json(response, 413, { error: 'edit_agent_body_too_large' });
+  const parts = [];
+  let received = 0;
+  try {
+    for await (const part of request) {
+      received += part.length;
+      if (received > maxEditAgentBody) {
+        request.destroy();
+        return json(response, 413, { error: 'edit_agent_body_too_large' });
+      }
+      parts.push(part);
+    }
+  } catch {
+    return response.destroyed ? undefined : response.destroy();
+  }
+  let body = {};
+  try {
+    body = JSON.parse(Buffer.concat(parts).toString('utf8'));
+  } catch {
+    return json(response, 400, { error: 'invalid_json' });
+  }
+  if (!body.plan?.tracks || !body.plan?.beatGrid || typeof body.message !== 'string')
+    return json(response, 422, { error: 'plan_and_message_required' });
+
+  response.writeHead(200, {
+    'content-type': 'text/event-stream',
+    'cache-control': 'no-cache',
+  });
+  const send = (event) => {
+    if (response.writableEnded || response.destroyed) return;
+    response.write(`data: ${JSON.stringify(event)}\n\n`);
+  };
+  try {
+    await runEditAgent({
+      plan: body.plan,
+      message: body.message,
+      history: Array.isArray(body.history) ? body.history.slice(-12) : [],
+      send,
+    });
+  } catch (error) {
+    send({
+      type: 'error',
+      error: error?.status === 401 ? 'model_auth_failed' : 'edit_agent_failed',
+    });
   }
   send({ type: 'done' });
   if (!response.writableEnded) response.end();

@@ -71,9 +71,13 @@ type Plan = {
   tracks: Array<{ id: string; kind: string; clips: Array<SourceClip & OverlayClip> }>;
 };
 type PlanPatch = {
-  kind: 'swap-source' | 'nudge-boundary';
-  clipIndex: number;
+  kind: 'swap-source' | 'nudge-boundary' | 'reorder-clips' | 'set-overlay-text';
+  clipIndex?: number;
   beats?: number;
+  fromIndex?: number;
+  toIndex?: number;
+  overlayId?: string;
+  text?: string;
   summary: string;
   before: string;
   after: string;
@@ -83,6 +87,7 @@ type AgentTurn = {
   id: string;
   role: 'user' | 'assistant';
   text: string;
+  reasoning?: string;
   steps: Array<{ name: string; input: unknown; output: unknown }>;
   patch?: PlanPatch;
 };
@@ -113,9 +118,19 @@ function assetOffsets(plan: Plan) {
 }
 
 function applyPatch(plan: Plan, patch: PlanPatch): Plan {
+  if (patch.kind === 'reorder-clips') {
+    return typeof patch.fromIndex === 'number' && typeof patch.toIndex === 'number'
+      ? withClipOrder(plan, patch.fromIndex, patch.toIndex)
+      : plan;
+  }
+  if (patch.kind === 'set-overlay-text') {
+    return patch.overlayId && patch.text
+      ? withOverlayText(plan, patch.overlayId, patch.text)
+      : plan;
+  }
   const next: Plan = JSON.parse(JSON.stringify(plan));
   const clips = videoClips(next);
-  const clip = clips[patch.clipIndex];
+  const clip = clips[patch.clipIndex ?? -1];
   if (!clip) return plan;
   if (patch.kind === 'swap-source') {
     const other = clip.assetId === 'asset.take-a' ? 'asset.take-b' : 'asset.take-a';
@@ -278,6 +293,18 @@ function StitchStudio() {
   const [plan, setPlan] = useState<Plan | null>(null);
   const [history, setHistory] = useState<Plan[]>([]);
   const [thread, setThread] = useState<AgentTurn[]>([]);
+  const [agentBusy, setAgentBusy] = useState(false);
+  const [workerEndpoint, setWorkerEndpoint] = useState(
+    () => localStorage.getItem('nv-edit-worker-endpoint') ?? 'http://127.0.0.1:4319',
+  );
+  const [workerToken, setWorkerToken] = useState(
+    () => localStorage.getItem('nv-edit-worker-token') ?? '',
+  );
+  const modelConnected = workerToken.trim().length > 0;
+  useEffect(() => {
+    localStorage.setItem('nv-edit-worker-endpoint', workerEndpoint);
+    localStorage.setItem('nv-edit-worker-token', workerToken);
+  }, [workerEndpoint, workerToken]);
   const [overlayEdit, setOverlayEdit] = useState(false);
   const [editFrame, setEditFrame] = useState(0);
   const [selectedOverlay, setSelectedOverlay] = useState<string | null>(null);
@@ -405,6 +432,146 @@ function StitchStudio() {
       }
       return h.slice(0, -1);
     });
+  }
+
+  function describeModelPatch(patch: PlanPatch, current: Plan): PlanPatch {
+    const clips = videoClips(current);
+    const lane = (c?: Required<SourceClip>) => (c?.assetId === 'asset.take-a' ? 'A' : 'B');
+    if (patch.kind === 'swap-source')
+      return {
+        ...patch,
+        summary: `Swap clip #${patch.clipIndex} to take ${lane(clips[patch.clipIndex ?? -1]) === 'A' ? 'B' : 'A'}`,
+        before: `clip #${patch.clipIndex} plays take ${lane(clips[patch.clipIndex ?? -1])}`,
+        after: 'same timeline range, source re-aligned to the other take',
+      };
+    if (patch.kind === 'nudge-boundary')
+      return {
+        ...patch,
+        summary: `Move the cut after clip #${patch.clipIndex} by ${patch.beats} beat${Math.abs(patch.beats ?? 0) === 1 ? '' : 's'}`,
+        before: `boundary at ${((clips[patch.clipIndex ?? -1]?.timelineRange.endFrameExclusive ?? 0) / current.frameRate).toFixed(1)}s`,
+        after: 'neighbor absorbs the change; timeline stays contiguous',
+      };
+    if (patch.kind === 'reorder-clips')
+      return {
+        ...patch,
+        summary: `Move clip #${patch.fromIndex} to position ${patch.toIndex}`,
+        before: 'current clip order',
+        after: 'timeline re-laid contiguously; sources unchanged',
+      };
+    return {
+      ...patch,
+      summary: `Rewrite overlay text to "${patch.text}"`,
+      before: 'current lyric text',
+      after: `"${patch.text}"`,
+    };
+  }
+
+  // Model-backed agent path: streams from the local worker's /v1/edit/agent
+  // (a real Claude model with the same tools). Falls back to the local rules
+  // with an honest note when the worker or model is unavailable.
+  async function askModel(text: string) {
+    if (!plan || agentBusy) return;
+    setAgentBusy(true);
+    const id = String(Date.now());
+    const turn: AgentTurn = { id: `${id}-a`, role: 'assistant', text: '', steps: [] };
+    setThread((current) => [...current, { id: `${id}-u`, role: 'user', text, steps: [] }, turn]);
+    const patchTurn = (change: (t: AgentTurn) => AgentTurn) =>
+      setThread((current) => current.map((t) => (t.id === turn.id ? change(t) : t)));
+    const controller = new AbortController();
+    const idle = () => window.setTimeout(() => controller.abort('idle'), 30_000);
+    let idleTimer = idle();
+    const totalTimer = window.setTimeout(() => controller.abort('timeout'), 180_000);
+    let sawDone = false;
+    try {
+      const response = await fetch(`${workerEndpoint.replace(/\/$/, '')}/v1/edit/agent`, {
+        method: 'POST',
+        headers: { authorization: `Bearer ${workerToken}`, 'content-type': 'application/json' },
+        body: JSON.stringify({
+          plan,
+          message: text,
+          history: thread
+            .filter((t) => t.text)
+            .slice(-8)
+            .map((t) => ({ role: t.role, text: t.text })),
+        }),
+        signal: controller.signal,
+      });
+      if (!response.ok || !response.body) {
+        const detail = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(detail?.error ?? 'worker_unreachable');
+      }
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffered = '';
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        window.clearTimeout(idleTimer);
+        idleTimer = idle();
+        buffered += decoder.decode(value, { stream: true });
+        const lines = buffered.split('\n\n');
+        buffered = lines.pop() ?? '';
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          let event: {
+            type?: string;
+            delta?: unknown;
+            name?: string;
+            input?: unknown;
+            output?: unknown;
+            proposal?: Partial<PlanPatch>;
+            error?: string;
+          };
+          try {
+            event = JSON.parse(line.slice(6));
+          } catch {
+            continue;
+          }
+          if (event.type === 'text' && typeof event.delta === 'string')
+            patchTurn((t) => ({ ...t, text: t.text + event.delta }));
+          if (event.type === 'reasoning' && typeof event.delta === 'string')
+            patchTurn((t) => ({ ...t, reasoning: (t.reasoning ?? '') + event.delta }));
+          if (event.type === 'tool')
+            patchTurn((t) => ({
+              ...t,
+              steps: [
+                ...t.steps,
+                { name: event.name ?? 'tool', input: event.input, output: event.output },
+              ],
+            }));
+          if (event.type === 'proposal' && event.proposal && plan)
+            patchTurn((t) => ({
+              ...t,
+              patch: describeModelPatch(
+                { summary: '', before: '', after: '', ...event.proposal } as PlanPatch,
+                planRef.current ?? plan,
+              ),
+            }));
+          if (event.type === 'error')
+            patchTurn((t) => ({
+              ...t,
+              text: t.text || `The model could not complete this: ${event.error}.`,
+            }));
+          if (event.type === 'done') sawDone = true;
+        }
+      }
+      if (!sawDone)
+        patchTurn((t) => ({
+          ...t,
+          text: `${t.text}\n\n(Reply interrupted — stream ended early.)`,
+        }));
+    } catch (cause) {
+      const message =
+        cause instanceof Error && cause.message === 'model_not_configured'
+          ? 'The worker has no model credentials configured — using the local rule agent instead.'
+          : 'The model worker is not reachable — using the local rule agent instead.';
+      patchTurn((t) => ({ ...t, text: message }));
+      askAgent(text);
+    } finally {
+      window.clearTimeout(idleTimer);
+      window.clearTimeout(totalTimer);
+      setAgentBusy(false);
+    }
   }
 
   // Local rule-grounded edit agent: every step is a real operation on the
@@ -672,13 +839,48 @@ function StitchStudio() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Edit agent</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              Edit agent
+              <Badge variant={modelConnected ? 'default' : 'outline'}>
+                {modelConnected ? 'Model via worker' : 'Local rules'}
+              </Badge>
+            </CardTitle>
             <CardDescription>
-              Rule-grounded and local — every step is a real operation on the plan in this tab;
-              patches change the timeline only when you accept them. No cloud model.
+              {modelConnected
+                ? 'Streams a real model from your local worker. Every tool call lands as a patch card; nothing changes until you apply it.'
+                : 'Rule-grounded and local — every step is a real operation on the plan in this tab; patches change the timeline only when you accept them. No cloud model.'}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
+            <details className="rounded-lg border border-border p-2 text-sm">
+              <summary className="cursor-pointer text-muted-foreground">
+                Connect a model (local worker)
+              </summary>
+              <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                <Field>
+                  <FieldLabel htmlFor="worker-endpoint">Worker endpoint</FieldLabel>
+                  <Input
+                    id="worker-endpoint"
+                    onChange={(event) => setWorkerEndpoint(event.target.value)}
+                    value={workerEndpoint}
+                  />
+                </Field>
+                <Field>
+                  <FieldLabel htmlFor="worker-token">Worker token</FieldLabel>
+                  <Input
+                    id="worker-token"
+                    onChange={(event) => setWorkerToken(event.target.value)}
+                    placeholder="Printed when the worker starts"
+                    value={workerToken}
+                  />
+                </Field>
+              </div>
+              <p className="mt-2 text-xs text-muted-foreground">
+                Start it with npm run coach:sidecar. With Anthropic credentials in its environment
+                the agent uses a real model; without them it reports so and this panel stays on
+                local rules.
+              </p>
+            </details>
             <Conversation className="max-h-80 rounded-lg border border-border">
               <ConversationContent className="space-y-3">
                 {thread.length === 0 && (
@@ -734,11 +936,19 @@ function StitchStudio() {
             {thread.length === 0 && (
               <Suggestions className="w-full flex-wrap">
                 {['Show the cuts', 'Swap 2', 'Tighten 1 by 1 beat'].map((s) => (
-                  <Suggestion key={s} onClick={() => askAgent(s)} suggestion={s} />
+                  <Suggestion
+                    key={s}
+                    onClick={() => (modelConnected ? void askModel(s) : askAgent(s))}
+                    suggestion={s}
+                  />
                 ))}
               </Suggestions>
             )}
-            <PromptInput onSubmit={({ text }) => askAgent(text ?? '')}>
+            <PromptInput
+              onSubmit={({ text }) =>
+                modelConnected ? void askModel(text ?? '') : askAgent(text ?? '')
+              }
+            >
               <PromptInputBody>
                 <PromptInputTextarea
                   aria-label="Ask the edit agent"
