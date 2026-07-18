@@ -192,8 +192,21 @@ function Landing() {
       </section>
 
       <section className="space-y-4 border-t border-border py-12">
-        <h2 className="font-heading text-xl font-medium">Two ways to use NodeVideo today</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <h2 className="font-heading text-xl font-medium">Three ways to use NodeVideo today</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="space-y-2 rounded-2xl border border-border bg-card p-5">
+            <h3 className="font-heading font-medium">Make a collab edit</h3>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Put your take next to the original — side by side or top and bottom — line up the
+              first landing, and export. Entirely in your browser, nothing uploads.
+            </p>
+            <a
+              className="inline-flex items-center text-sm font-medium text-foreground underline underline-offset-4"
+              href="/collab.html"
+            >
+              Open the collab editor
+            </a>
+          </div>
           <div className="space-y-2 rounded-2xl border border-border bg-card p-5">
             <h3 className="font-heading font-medium">Coach a take</h3>
             <p className="text-sm leading-relaxed text-muted-foreground">

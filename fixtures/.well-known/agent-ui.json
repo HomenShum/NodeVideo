@@ -52,6 +52,43 @@
       "agentGuidance": "Public surface; follow the links. The count ticker and skeleton replay real verified case data — they are presentation, not live analysis."
     },
     {
+      "id": "collab-editor",
+      "route": "/collab.html",
+      "landmark": { "testid": "collab-editor" },
+      "description": "In-browser collab editor: reference + take composited side-by-side or top-and-bottom, aligned by nudge, exported as WebM. No worker, no upload — both files stay in the tab.",
+      "controls": [
+        { "id": "reference-video", "css": "#reference-video", "label": "Reference video" },
+        { "id": "take-video", "css": "#take-video", "label": "Your take" },
+        { "id": "layout-side-by-side", "role": "button", "name": "Side by side" },
+        { "id": "layout-top-bottom", "role": "button", "name": "Top and bottom" },
+        {
+          "id": "play-preview",
+          "role": "button",
+          "name": "Play preview",
+          "gated": "disabled until both files are chosen"
+        },
+        {
+          "id": "export",
+          "role": "button",
+          "name": "Export collab video",
+          "gated": "disabled until both files are chosen; records in real time"
+        }
+      ],
+      "states": [
+        {
+          "id": "collab-first-run",
+          "meaning": "Immediate usability with honest boundaries: local-only processing and the rights note are visible before any file is chosen.",
+          "requireTexts": [
+            "Dance next to the original.",
+            "nothing ever leaves your browser",
+            "only export collabs you have permission to make"
+          ],
+          "forbidTexts": ["Service token", "Owner access key"]
+        }
+      ],
+      "agentGuidance": "Fully client-side surface. Do not look for a job API here; there is none. Export produces WebM via MediaRecorder."
+    },
+    {
       "id": "workspace",
       "route": "/studio.html",
       "landmark": { "testid": "app-shell" },
