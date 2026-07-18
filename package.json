@@ -75,6 +75,9 @@
   "dependencies": {
     "@assistant-ui/react-o11y": "0.0.25",
     "@assistant-ui/store": "0.2.19",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@fontsource-variable/geist": "^5.2.9",
     "@gradio/client": "2.3.1",
     "@radix-ui/react-use-controllable-state": "^1.2.3",
@@ -94,6 +97,7 @@
     "radix-ui": "^1.6.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-moveable": "^0.56.0",
     "remotion": "^4.0.491",
     "shiki": "^4.3.1",
     "streamdown": "^2.5.0",

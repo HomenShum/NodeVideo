@@ -19,9 +19,29 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Player } from '@remotion/player';
+import { Field, FieldLabel } from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
+import {
+  DndContext,
+  type DragEndEvent,
+  KeyboardSensor,
+  PointerSensor,
+  closestCenter,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  SortableContext,
+  arrayMove,
+  horizontalListSortingStrategy,
+  sortableKeyboardCoordinates,
+  useSortable,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { Player, type PlayerRef } from '@remotion/player';
 import { StrictMode, useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import Moveable from 'react-moveable';
 import { AbsoluteFill, Sequence, Video } from 'remotion';
 import WaveSurfer from 'wavesurfer.js';
 import RegionsPlugin from 'wavesurfer.js/dist/plugins/regions.esm.js';
@@ -126,6 +146,53 @@ function applyPatch(plan: Plan, patch: PlanPatch): Plan {
   return next;
 }
 
+// Direct-manipulation mutators: every gesture routes through pushPlan, so a
+// drag is an applied, undoable patch — the same contract the agent uses.
+function withOverlayBox(
+  plan: Plan,
+  overlayId: string,
+  box: { x: number; y: number; width: number },
+): Plan {
+  const next: Plan = JSON.parse(JSON.stringify(plan));
+  const clip = overlayClips(next).find((c) => c.id === overlayId);
+  if (!clip?.box) return plan;
+  clip.box.x = Math.min(Math.max(box.x, 0), 1 - clip.box.width);
+  clip.box.y = Math.min(Math.max(box.y, 0), 0.95);
+  clip.box.width = Math.min(Math.max(box.width, 0.1), 1);
+  return next;
+}
+
+function withOverlayText(plan: Plan, overlayId: string, text: string): Plan {
+  const next: Plan = JSON.parse(JSON.stringify(plan));
+  const clip = overlayClips(next).find((c) => c.id === overlayId);
+  if (!clip || !text.trim()) return plan;
+  clip.text = text.slice(0, 80);
+  return next;
+}
+
+function withClipOrder(plan: Plan, fromIndex: number, toIndex: number): Plan {
+  const next: Plan = JSON.parse(JSON.stringify(plan));
+  const track = next.tracks.find((t) => t.kind === 'video');
+  if (!track) return plan;
+  const reordered = arrayMove(track.clips, fromIndex, toIndex);
+  // Re-lay the timeline contiguously; each clip keeps its duration and its
+  // own source frames, so reordering never invents footage.
+  let cursor = 0;
+  for (const clip of reordered) {
+    const duration = clip.timelineRange.endFrameExclusive - clip.timelineRange.startFrame;
+    clip.timelineRange = { startFrame: cursor, endFrameExclusive: cursor + duration };
+    cursor += duration;
+  }
+  track.clips = reordered;
+  return next;
+}
+
+function overlaysAtFrame(plan: Plan, frame: number) {
+  return overlayClips(plan).filter(
+    (c) => c.timelineRange.startFrame <= frame && frame < c.timelineRange.endFrameExclusive,
+  );
+}
+
 // ---------- deterministic preview (Remotion) ----------
 
 function PlanComposition({ plan }: { plan: Plan }) {
@@ -173,12 +240,54 @@ function PlanComposition({ plan }: { plan: Plan }) {
   );
 }
 
+function ClipChip({
+  clip,
+  index,
+  plan,
+}: { clip: Required<SourceClip>; index: number; plan: Plan }) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id: clip.id,
+  });
+  const seconds = (frame: number) => (frame / plan.frameRate).toFixed(1);
+  const lane = clip.assetId === 'asset.take-a' ? 'A' : 'B';
+  return (
+    <button
+      aria-label={`Clip ${index} take ${lane}`}
+      className={`inline-flex shrink-0 items-center gap-1.5 rounded-lg border px-2.5 py-1.5 font-mono text-xs ${
+        lane === 'A'
+          ? 'border-brand/60 bg-brand/10 text-foreground'
+          : 'border-border bg-card text-muted-foreground'
+      } ${isDragging ? 'opacity-60' : ''}`}
+      ref={setNodeRef}
+      style={{ transform: CSS.Transform.toString(transform), transition }}
+      type="button"
+      {...attributes}
+      {...listeners}
+    >
+      <span className="font-semibold">{lane}</span>
+      <span>
+        {seconds(clip.timelineRange.startFrame)}–{seconds(clip.timelineRange.endFrameExclusive)}s
+      </span>
+    </button>
+  );
+}
+
 // ---------- the studio ----------
 
 function StitchStudio() {
   const [plan, setPlan] = useState<Plan | null>(null);
   const [history, setHistory] = useState<Plan[]>([]);
   const [thread, setThread] = useState<AgentTurn[]>([]);
+  const [overlayEdit, setOverlayEdit] = useState(false);
+  const [editFrame, setEditFrame] = useState(0);
+  const [selectedOverlay, setSelectedOverlay] = useState<string | null>(null);
+  const playerRef = useRef<PlayerRef>(null);
+  const previewWrapRef = useRef<HTMLDivElement>(null);
+  const overlayNodeRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const dndSensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  );
   const waveRef = useRef<HTMLDivElement>(null);
   const surferRef = useRef<WaveSurfer | null>(null);
   const regionsRef = useRef<ReturnType<typeof RegionsPlugin.create> | null>(null);
@@ -369,6 +478,53 @@ function StitchStudio() {
     );
   }
 
+  function toggleOverlayEdit() {
+    if (!plan) return;
+    if (overlayEdit) {
+      setOverlayEdit(false);
+      setSelectedOverlay(null);
+      return;
+    }
+    let frame = playerRef.current?.getCurrentFrame() ?? 0;
+    if (overlaysAtFrame(plan, frame).length === 0) {
+      frame = overlayClips(plan)[0]?.timelineRange.startFrame ?? 0;
+      playerRef.current?.seekTo(frame);
+    }
+    playerRef.current?.pause();
+    setEditFrame(frame);
+    setOverlayEdit(true);
+  }
+
+  function commitOverlayGeometry(overlayId: string) {
+    const node = overlayNodeRefs.current[overlayId];
+    const wrap = previewWrapRef.current;
+    const current = planRef.current;
+    if (!node || !wrap || !current) return;
+    const wrapRect = wrap.getBoundingClientRect();
+    const rect = node.getBoundingClientRect();
+    node.style.transform = '';
+    pushPlan(
+      withOverlayBox(current, overlayId, {
+        x: (rect.left - wrapRect.left) / wrapRect.width,
+        y: (rect.top - wrapRect.top) / wrapRect.height,
+        width: rect.width / wrapRect.width,
+      }),
+    );
+  }
+
+  function reorderClips(event: DragEndEvent) {
+    const current = planRef.current;
+    if (!current || !event.over || event.active.id === event.over.id) return;
+    const ids = videoClips(current).map((c) => c.id);
+    const from = ids.indexOf(String(event.active.id));
+    const to = ids.indexOf(String(event.over.id));
+    if (from < 0 || to < 0) return;
+    pushPlan(withClipOrder(current, from, to));
+  }
+
+  const activeOverlays = plan && overlayEdit ? overlaysAtFrame(plan, editFrame) : [];
+  const selectedNode = selectedOverlay ? overlayNodeRefs.current[selectedOverlay] : null;
+  const selectedClip = plan ? overlayClips(plan).find((c) => c.id === selectedOverlay) : undefined;
   const composition = useMemo(() => plan && <PlanComposition plan={plan} />, [plan]);
   return (
     <main className="mx-auto min-h-svh max-w-7xl space-y-4 p-4 sm:p-6" data-testid="stitch-studio">
@@ -400,21 +556,114 @@ function StitchStudio() {
               lyric overlays; music and final grading render in the studio pipeline.
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-3">
             {plan && composition ? (
-              <div className="mx-auto max-w-70" data-testid="plan-preview">
-                <Player
-                  acknowledgeRemotionLicense
-                  component={PlanComposition}
-                  compositionHeight={plan.canvas.height}
-                  compositionWidth={plan.canvas.width}
-                  controls
-                  durationInFrames={plan.durationFrames}
-                  fps={plan.frameRate}
-                  inputProps={{ plan }}
-                  style={{ width: '100%', aspectRatio: '9 / 16' }}
-                />
-              </div>
+              <>
+                <div className="flex items-center justify-between gap-2">
+                  <Button
+                    aria-pressed={overlayEdit}
+                    onClick={toggleOverlayEdit}
+                    size="sm"
+                    type="button"
+                    variant={overlayEdit ? 'default' : 'outline'}
+                  >
+                    {overlayEdit ? 'Done editing overlays' : 'Edit overlays'}
+                  </Button>
+                  {overlayEdit && (
+                    <span className="text-xs text-muted-foreground">
+                      Drag or resize the lyric on the paused frame; edits apply instantly and undo
+                      works.
+                    </span>
+                  )}
+                </div>
+                <div
+                  className={`relative mx-auto ${overlayEdit ? 'max-w-105' : 'max-w-70'}`}
+                  data-testid="plan-preview"
+                >
+                  <Player
+                    acknowledgeRemotionLicense
+                    component={PlanComposition}
+                    compositionHeight={plan.canvas.height}
+                    compositionWidth={plan.canvas.width}
+                    controls={!overlayEdit}
+                    durationInFrames={plan.durationFrames}
+                    fps={plan.frameRate}
+                    inputProps={{ plan }}
+                    ref={playerRef}
+                    style={{ width: '100%', aspectRatio: '9 / 16' }}
+                  />
+                  {overlayEdit && (
+                    <div className="absolute inset-0" ref={previewWrapRef}>
+                      {activeOverlays.map((overlay) => (
+                        <div
+                          data-testid="overlay-box"
+                          key={overlay.id}
+                          onPointerDown={() => setSelectedOverlay(overlay.id)}
+                          ref={(node) => {
+                            overlayNodeRefs.current[overlay.id] = node;
+                          }}
+                          style={{
+                            position: 'absolute',
+                            left: `${(overlay.box?.x ?? 0.1) * 100}%`,
+                            top: `${(overlay.box?.y ?? 0.8) * 100}%`,
+                            width: `${(overlay.box?.width ?? 0.8) * 100}%`,
+                            textAlign: 'center',
+                            color: 'white',
+                            fontWeight: 700,
+                            fontSize: `${42 * ((previewWrapRef.current?.clientWidth ?? 420) / (plan.canvas.width || 720))}px`,
+                            textShadow: '0 2px 12px rgba(0,0,0,0.8)',
+                            cursor: 'move',
+                            outline:
+                              selectedOverlay === overlay.id
+                                ? '1px dashed rgba(207,255,74,0.9)'
+                                : '1px dashed rgba(238,240,232,0.35)',
+                          }}
+                        >
+                          {overlay.text}
+                        </div>
+                      ))}
+                      {selectedNode && (
+                        <Moveable
+                          draggable
+                          onDrag={(e) => {
+                            e.target.style.transform = e.transform;
+                          }}
+                          onDragEnd={() =>
+                            selectedOverlay && commitOverlayGeometry(selectedOverlay)
+                          }
+                          onResize={(e) => {
+                            e.target.style.width = `${e.width}px`;
+                            e.target.style.transform = e.transform;
+                          }}
+                          onResizeEnd={() =>
+                            selectedOverlay && commitOverlayGeometry(selectedOverlay)
+                          }
+                          renderDirections={['w', 'e']}
+                          resizable
+                          target={selectedNode}
+                        />
+                      )}
+                    </div>
+                  )}
+                </div>
+                {overlayEdit && selectedClip && (
+                  <Field>
+                    <FieldLabel htmlFor="overlay-text">Overlay text</FieldLabel>
+                    <Input
+                      id="overlay-text"
+                      key={selectedClip.id}
+                      defaultValue={selectedClip.text}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' && plan && selectedOverlay) {
+                          pushPlan(
+                            withOverlayText(plan, selectedOverlay, event.currentTarget.value),
+                          );
+                        }
+                      }}
+                    />
+                  </Field>
+                )}
+              </>
             ) : (
               <p className="text-sm text-muted-foreground">Loading the frozen edit plan…</p>
             )}
@@ -513,7 +762,31 @@ function StitchStudio() {
             plan's beat grid.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-3">
+          {plan && (
+            <fieldset
+              aria-label="Clip order"
+              className="flex flex-wrap items-center gap-2 border-0 p-0"
+            >
+              <DndContext
+                collisionDetection={closestCenter}
+                onDragEnd={reorderClips}
+                sensors={dndSensors}
+              >
+                <SortableContext
+                  items={videoClips(plan).map((c) => c.id)}
+                  strategy={horizontalListSortingStrategy}
+                >
+                  {videoClips(plan).map((clip, index) => (
+                    <ClipChip clip={clip} index={index} key={clip.id} plan={plan} />
+                  ))}
+                </SortableContext>
+              </DndContext>
+              <span className="text-xs text-muted-foreground">
+                drag a chip (or Space + arrows) to reorder the cuts
+              </span>
+            </fieldset>
+          )}
           <div aria-label="Beat-aligned edit timeline" ref={waveRef} role="region" />
         </CardContent>
       </Card>
