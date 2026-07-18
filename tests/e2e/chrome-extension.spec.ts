@@ -25,8 +25,6 @@ test('extension first run is accessible and does not overflow', async ({ page })
   // The reference embed is YouTube's own document; its player internals are
   // outside our claim boundary (and fail axe on Google's HTML). Audit
   // everything we author; skip only the third-party frame contents.
-  const accessibility = await new AxeBuilder({ page })
-    .exclude('iframe[src*="youtube"]')
-    .analyze();
+  const accessibility = await new AxeBuilder({ page }).exclude('iframe[src*="youtube"]').analyze();
   expect(accessibility.violations).toEqual([]);
 });
