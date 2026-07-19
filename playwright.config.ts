@@ -28,6 +28,9 @@ export default defineConfig({
     locale: 'en-US',
     timezoneId: 'America/Los_Angeles',
     colorScheme: 'light',
+    // Steady-state colors for Axe: on slow runners the audit otherwise samples
+    // buttons mid color-transition and flags blended, transient contrast.
+    contextOptions: { reducedMotion: 'reduce' },
     screenshot: 'only-on-failure',
     trace: 'on-first-retry',
     video: 'retain-on-failure',

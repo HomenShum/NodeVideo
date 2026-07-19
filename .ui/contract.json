@@ -237,15 +237,27 @@
           "meaning": "Drag-to-reorder clip chips (dnd-kit; keyboard: Enter picks up, arrows move, Enter drops). Reordering re-lays the timeline contiguously; each clip keeps its own source frames."
         },
         {
+          "id": "byok-key",
+          "css": "#byok-key",
+          "state": "inside the collapsed 'Connect a model' disclosure",
+          "meaning": "Session-only OpenRouter API key: stored in sessionStorage, sent only to openrouter.ai directly from this browser, never to a NodeVideo server; cleared when the tab closes. A non-empty key switches the edit agent to the in-browser model loop."
+        },
+        {
+          "id": "byok-model",
+          "css": "#byok-model",
+          "state": "inside the collapsed 'Connect a model' disclosure",
+          "meaning": "OpenRouter model slug for the in-browser agent (default anthropic/claude-opus-4-8)."
+        },
+        {
           "id": "worker-endpoint",
           "css": "#worker-endpoint",
-          "state": "inside the collapsed 'Connect a model (local worker)' disclosure",
-          "meaning": "Optional model bridge: the local worker's /v1/edit/agent streams a real Claude model (claude-opus-4-8) over the same reasoning|tool|text|proposal|done contract, executing the same plan tools server-side on a working copy. With no Anthropic credentials on the worker it returns model_not_configured and the panel stays on local rules — a model run is never faked. The agent-card badge states which mode is active."
+          "state": "inside the nested 'Or use a local worker instead' disclosure under 'Connect a model'",
+          "meaning": "Optional model bridge, two honest paths: (1) in-browser — a session-only OpenRouter key runs the tool-calling loop entirely in the tab against the same plan tools; (2) local worker — /v1/edit/agent streams a real Claude model over the reasoning|tool|text|proposal|done contract; without credentials it returns model_not_configured. With neither, the panel stays on local rules — a model run is never faked. The agent-card badge states which mode is active (Model in browser | Model via worker | Local rules)."
         },
         {
           "id": "worker-token",
           "css": "#worker-token",
-          "state": "inside the collapsed 'Connect a model (local worker)' disclosure"
+          "state": "inside the nested 'Or use a local worker instead' disclosure under 'Connect a model'"
         }
       ],
       "states": [
