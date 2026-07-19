@@ -45,6 +45,14 @@ import Moveable from 'react-moveable';
 import { AbsoluteFill, Sequence, Video } from 'remotion';
 import WaveSurfer from 'wavesurfer.js';
 import RegionsPlugin from 'wavesurfer.js/dist/plugins/regions.esm.js';
+import {
+  DEFAULT_MODEL,
+  maskKey,
+  readByokKey,
+  readByokModel,
+  writeByokKey,
+  writeByokModel,
+} from './byok';
 
 // ---------- plan model (the committed, hash-verified Sign case) ----------
 
@@ -300,11 +308,22 @@ function StitchStudio() {
   const [workerToken, setWorkerToken] = useState(
     () => localStorage.getItem('nv-edit-worker-token') ?? '',
   );
-  const modelConnected = workerToken.trim().length > 0;
+  // Session-only BYOK key: sessionStorage (cleared on tab close), sent only to
+  // OpenRouter from this browser, never to a NodeVideo server.
+  const [byokKey, setByokKey] = useState(readByokKey);
+  const [byokModel, setByokModel] = useState(readByokModel);
+  const modelMode: 'browser' | 'worker' | 'local' = byokKey.trim()
+    ? 'browser'
+    : workerToken.trim()
+      ? 'worker'
+      : 'local';
+  const modelConnected = modelMode !== 'local';
   useEffect(() => {
     localStorage.setItem('nv-edit-worker-endpoint', workerEndpoint);
     localStorage.setItem('nv-edit-worker-token', workerToken);
   }, [workerEndpoint, workerToken]);
+  useEffect(() => writeByokKey(byokKey), [byokKey]);
+  useEffect(() => writeByokModel(byokModel), [byokModel]);
   const [overlayEdit, setOverlayEdit] = useState(false);
   const [editFrame, setEditFrame] = useState(0);
   const [selectedOverlay, setSelectedOverlay] = useState<string | null>(null);
@@ -574,6 +593,80 @@ function StitchStudio() {
     }
   }
 
+  // In-browser model agent: runs the OpenAI-compatible tool loop entirely in
+  // this tab against OpenRouter with the user's session key — no server. Same
+  // event shapes as the worker path, so the thread rendering is shared.
+  async function askBrowserModel(text: string) {
+    if (!plan || agentBusy || !text.trim()) return;
+    setAgentBusy(true);
+    const id = String(Date.now());
+    const turn: AgentTurn = { id: `${id}-a`, role: 'assistant', text: '', steps: [] };
+    setThread((current) => [...current, { id: `${id}-u`, role: 'user', text, steps: [] }, turn]);
+    const patchTurn = (change: (t: AgentTurn) => AgentTurn) =>
+      setThread((current) => current.map((t) => (t.id === turn.id ? change(t) : t)));
+    const controller = new AbortController();
+    const budget = window.setTimeout(() => controller.abort('timeout'), 180_000);
+    try {
+      const { runBrowserAgent } = await import('./browser-agent');
+      await runBrowserAgent({
+        plan,
+        message: text,
+        history: thread
+          .filter((t) => t.text)
+          .slice(-8)
+          .map((t) => ({ role: t.role, text: t.text })),
+        apiKey: byokKey,
+        model: byokModel,
+        signal: controller.signal,
+        emit: (event) => {
+          if (event.type === 'text') patchTurn((t) => ({ ...t, text: t.text + event.delta }));
+          if (event.type === 'reasoning')
+            patchTurn((t) => ({ ...t, reasoning: (t.reasoning ?? '') + event.delta }));
+          if (event.type === 'tool')
+            patchTurn((t) => ({
+              ...t,
+              steps: [...t.steps, { name: event.name, input: event.input, output: event.output }],
+            }));
+          if (event.type === 'proposal')
+            patchTurn((t) => ({
+              ...t,
+              patch: describeModelPatch(
+                { summary: '', before: '', after: '', ...event.proposal } as PlanPatch,
+                planRef.current ?? plan,
+              ),
+            }));
+          if (event.type === 'error')
+            patchTurn((t) => ({
+              ...t,
+              text:
+                t.text ||
+                (event.error === 'model_auth_failed'
+                  ? 'OpenRouter rejected the key — check it under Connect a model.'
+                  : `The model could not complete this: ${event.error}.`),
+            }));
+        },
+      });
+    } catch (cause) {
+      patchTurn((t) => ({
+        ...t,
+        text:
+          t.text ||
+          (cause instanceof Error && cause.name === 'AbortError'
+            ? 'The model timed out.'
+            : 'Could not reach OpenRouter from the browser.'),
+      }));
+    } finally {
+      window.clearTimeout(budget);
+      setAgentBusy(false);
+    }
+  }
+
+  const dispatchAgent = (text: string) => {
+    if (byokKey.trim()) return void askBrowserModel(text);
+    if (workerToken.trim()) return void askModel(text);
+    return askAgent(text);
+  };
+
   // Local rule-grounded edit agent: every step is a real operation on the
   // loaded plan in this tab; patches apply only when accepted. No cloud model.
   function askAgent(text: string) {
@@ -842,44 +935,77 @@ function StitchStudio() {
             <CardTitle className="flex items-center gap-2">
               Edit agent
               <Badge variant={modelConnected ? 'default' : 'outline'}>
-                {modelConnected ? 'Model via worker' : 'Local rules'}
+                {modelMode === 'browser'
+                  ? 'Model in browser'
+                  : modelMode === 'worker'
+                    ? 'Model via worker'
+                    : 'Local rules'}
               </Badge>
             </CardTitle>
             <CardDescription>
-              {modelConnected
-                ? 'Streams a real model from your local worker. Every tool call lands as a patch card; nothing changes until you apply it.'
-                : 'Rule-grounded and local — every step is a real operation on the plan in this tab; patches change the timeline only when you accept them. No cloud model.'}
+              {modelMode === 'browser'
+                ? 'A real model runs in this tab against OpenRouter with your session key. Every tool call is a patch card; nothing changes until you apply it.'
+                : modelMode === 'worker'
+                  ? 'Streams a real model from your local worker. Every tool call lands as a patch card; nothing changes until you apply it.'
+                  : 'Rule-grounded and local — every step is a real operation on the plan in this tab; patches change the timeline only when you accept them. No cloud model.'}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             <details className="rounded-lg border border-border p-2 text-sm">
               <summary className="cursor-pointer text-muted-foreground">
-                Connect a model (local worker)
+                Connect a model — key stays in this browser ({maskKey(byokKey)})
               </summary>
               <div className="mt-2 grid gap-2 sm:grid-cols-2">
                 <Field>
-                  <FieldLabel htmlFor="worker-endpoint">Worker endpoint</FieldLabel>
+                  <FieldLabel htmlFor="byok-key">OpenRouter API key</FieldLabel>
                   <Input
-                    id="worker-endpoint"
-                    onChange={(event) => setWorkerEndpoint(event.target.value)}
-                    value={workerEndpoint}
+                    autoComplete="off"
+                    id="byok-key"
+                    onChange={(event) => setByokKey(event.target.value)}
+                    placeholder="sk-or-..."
+                    type="password"
+                    value={byokKey}
                   />
                 </Field>
                 <Field>
-                  <FieldLabel htmlFor="worker-token">Worker token</FieldLabel>
+                  <FieldLabel htmlFor="byok-model">Model</FieldLabel>
                   <Input
-                    id="worker-token"
-                    onChange={(event) => setWorkerToken(event.target.value)}
-                    placeholder="Printed when the worker starts"
-                    value={workerToken}
+                    id="byok-model"
+                    onChange={(event) => setByokModel(event.target.value)}
+                    placeholder={DEFAULT_MODEL}
+                    value={byokModel}
                   />
                 </Field>
               </div>
               <p className="mt-2 text-xs text-muted-foreground">
-                Start it with npm run coach:sidecar. With Anthropic credentials in its environment
-                the agent uses a real model; without them it reports so and this panel stays on
-                local rules.
+                Session-only: the key lives in this tab, is sent only to OpenRouter directly from
+                your browser, and never reaches a NodeVideo server. It clears when you close the
+                tab. No key → the panel uses the local rule agent.
               </p>
+              <details className="mt-2">
+                <summary className="cursor-pointer text-xs text-muted-foreground">
+                  Or use a local worker instead
+                </summary>
+                <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                  <Field>
+                    <FieldLabel htmlFor="worker-endpoint">Worker endpoint</FieldLabel>
+                    <Input
+                      id="worker-endpoint"
+                      onChange={(event) => setWorkerEndpoint(event.target.value)}
+                      value={workerEndpoint}
+                    />
+                  </Field>
+                  <Field>
+                    <FieldLabel htmlFor="worker-token">Worker token</FieldLabel>
+                    <Input
+                      id="worker-token"
+                      onChange={(event) => setWorkerToken(event.target.value)}
+                      placeholder="Printed when the worker starts"
+                      value={workerToken}
+                    />
+                  </Field>
+                </div>
+              </details>
             </details>
             <Conversation className="max-h-80 rounded-lg border border-border">
               <ConversationContent className="space-y-3">
@@ -936,19 +1062,11 @@ function StitchStudio() {
             {thread.length === 0 && (
               <Suggestions className="w-full flex-wrap">
                 {['Show the cuts', 'Swap 2', 'Tighten 1 by 1 beat'].map((s) => (
-                  <Suggestion
-                    key={s}
-                    onClick={() => (modelConnected ? void askModel(s) : askAgent(s))}
-                    suggestion={s}
-                  />
+                  <Suggestion key={s} onClick={() => dispatchAgent(s)} suggestion={s} />
                 ))}
               </Suggestions>
             )}
-            <PromptInput
-              onSubmit={({ text }) =>
-                modelConnected ? void askModel(text ?? '') : askAgent(text ?? '')
-              }
-            >
+            <PromptInput onSubmit={({ text }) => dispatchAgent(text ?? '')}>
               <PromptInputBody>
                 <PromptInputTextarea
                   aria-label="Ask the edit agent"

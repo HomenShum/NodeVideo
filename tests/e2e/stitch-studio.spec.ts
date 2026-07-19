@@ -81,3 +81,66 @@ test('stitch studio loads the frozen plan and the edit agent applies a patch', a
     .analyze();
   expect(accessibility.violations).toEqual([]);
 });
+
+test('in-browser BYOK agent runs the tool loop against a mocked OpenRouter', async ({ page }) => {
+  // Deterministic provider: first call returns a swap tool call, second call
+  // returns closing prose. The loop, tool execution, and patch card are real.
+  let calls = 0;
+  await page.route('https://openrouter.ai/api/v1/chat/completions', async (route) => {
+    calls += 1;
+    const body =
+      calls === 1
+        ? {
+            choices: [
+              {
+                message: {
+                  content: null,
+                  tool_calls: [
+                    {
+                      id: 'call_1',
+                      type: 'function',
+                      function: { name: 'swap_clip_source', arguments: '{"clipIndex":1}' },
+                    },
+                  ],
+                },
+              },
+            ],
+          }
+        : {
+            choices: [
+              {
+                message: {
+                  content: 'Swapped clip 1 to the other take — apply the patch to make it real.',
+                },
+              },
+            ],
+          };
+    await route.fulfill({ json: body });
+  });
+
+  await page.goto('/edit.html');
+  await expect(page.getByText('107.7 bpm')).toBeVisible({ timeout: 15_000 });
+
+  // Enter a session key: badge flips to the in-browser mode, honestly labeled.
+  await page.getByText('Connect a model — key stays in this browser').click();
+  await page.getByLabel('OpenRouter API key').fill('sk-or-test-not-a-real-key');
+  await expect(page.getByText('Model in browser')).toBeVisible();
+
+  await page.getByLabel('Ask the edit agent').fill('swap clip 1 to the other take');
+  await page.keyboard.press('Enter');
+
+  // The tool call is rendered, the prose lands, and the proposal is a real
+  // applyable patch — same contract as the local rules and the worker.
+  await expect(page.getByText('swap_clip_source')).toBeVisible();
+  await expect(page.getByText('apply the patch to make it real')).toBeVisible();
+  const apply = page.getByRole('button', { name: 'Apply patch' });
+  await expect(apply).toBeVisible();
+  await apply.click();
+  await expect(page.getByRole('button', { name: 'Patch applied' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Undo last patch' })).toBeEnabled();
+  expect(calls).toBe(2);
+
+  // The key never persists past the session store: reload in a fresh context
+  // is out of scope here, but the input must be masked in the DOM.
+  await expect(page.getByLabel('OpenRouter API key')).toHaveAttribute('type', 'password');
+});
