@@ -6,3 +6,15 @@
 .stitch-region-a > ::part(region) {
   outline: 1px solid color-mix(in oklab, var(--color-brand) 60%, transparent);
 }
+
+/* Reduced motion is steady-state: no color/transform transitions mid-audit,
+   and users who ask for less motion get exactly that. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
