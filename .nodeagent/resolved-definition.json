@@ -1,0 +1,138 @@
+{
+  "application": {
+    "id": "nodevideo-eve-control-plane",
+    "name": "NodeVideo Eve Control Plane",
+    "purpose": "Orchestrate source-only, approval-gated video planning and frozen evaluation through NodeVideo's existing Eve agent, typed control APIs, capability pack, and fixed media workers."
+  },
+  "backend": {
+    "adapter": "nodevideo-control-api",
+    "config": {
+      "generationUrlRef": "NODEVIDEO_GENERATION_CONTROL_URL",
+      "evaluationUrlRef": "NODEVIDEO_EVALUATION_CONTROL_URL",
+      "implementationSource": "./apps/eve-agent/agent/lib/control-api.ts"
+    }
+  },
+  "configHash": "e1ee1155566d2d66e9cc007cb6d1755af6decf7929c86b1eeb4cfb04bbb2fa90",
+  "contracts": {
+    "event": "nodeagent.event/v1",
+    "trace": "nodeagent.trace/v1"
+  },
+  "discovered": {
+    "evals": [
+      "evals/nodevideo-eve-isolation.json",
+      "evals/nodevideo-eve-live-approvals.json",
+      "packs/attention-overlays/evals/contract-v1.json",
+      "packs/creator-taste-audit/evals/replay-v1.json",
+      "packs/embodied-grounding/evals/replay-v1.json",
+      "packs/reference-reconstruct/evals/authorized-real-v1.json",
+      "packs/reference-reconstruct/evals/authorized-real-v2-ground-truth.json",
+      "packs/song-conditioned-auto-edit/evals/replay-v1.json",
+      "packs/tutorial-compare/evals/public-worker-v1.json"
+    ],
+    "integrations": [],
+    "packs": [
+      "packs/song-conditioned-auto-edit/pack.yaml"
+    ],
+    "policies": [],
+    "skills": [
+      "apps/eve-agent/agent/skills/mismatch-investigation/SKILL.md",
+      "apps/eve-agent/agent/skills/music-handoff/SKILL.md",
+      "apps/eve-agent/agent/skills/rights-and-provenance/SKILL.md",
+      "apps/eve-agent/agent/skills/source-only-proof/SKILL.md"
+    ],
+    "subagents": [
+      "apps/eve-agent/agent/subagents/choreography_interpreter/agent.ts",
+      "apps/eve-agent/agent/subagents/edit_planner/agent.ts",
+      "apps/eve-agent/agent/subagents/proof_critic/agent.ts"
+    ],
+    "tools": [
+      "apps/eve-agent/agent/subagents/choreography_interpreter/tools/bash.ts",
+      "apps/eve-agent/agent/subagents/choreography_interpreter/tools/glob.ts",
+      "apps/eve-agent/agent/subagents/choreography_interpreter/tools/grep.ts",
+      "apps/eve-agent/agent/subagents/choreography_interpreter/tools/read_file.ts",
+      "apps/eve-agent/agent/subagents/choreography_interpreter/tools/web_fetch.ts",
+      "apps/eve-agent/agent/subagents/choreography_interpreter/tools/web_search.ts",
+      "apps/eve-agent/agent/subagents/choreography_interpreter/tools/write_file.ts",
+      "apps/eve-agent/agent/subagents/edit_planner/tools/bash.ts",
+      "apps/eve-agent/agent/subagents/edit_planner/tools/glob.ts",
+      "apps/eve-agent/agent/subagents/edit_planner/tools/grep.ts",
+      "apps/eve-agent/agent/subagents/edit_planner/tools/read_file.ts",
+      "apps/eve-agent/agent/subagents/edit_planner/tools/web_fetch.ts",
+      "apps/eve-agent/agent/subagents/edit_planner/tools/web_search.ts",
+      "apps/eve-agent/agent/subagents/edit_planner/tools/write_file.ts",
+      "apps/eve-agent/agent/subagents/proof_critic/tools/bash.ts",
+      "apps/eve-agent/agent/subagents/proof_critic/tools/evaluate_frozen_edit.ts",
+      "apps/eve-agent/agent/subagents/proof_critic/tools/glob.ts",
+      "apps/eve-agent/agent/subagents/proof_critic/tools/grep.ts",
+      "apps/eve-agent/agent/subagents/proof_critic/tools/read_file.ts",
+      "apps/eve-agent/agent/subagents/proof_critic/tools/web_fetch.ts",
+      "apps/eve-agent/agent/subagents/proof_critic/tools/web_search.ts",
+      "apps/eve-agent/agent/subagents/proof_critic/tools/write_file.ts",
+      "apps/eve-agent/agent/tools/agent.ts",
+      "apps/eve-agent/agent/tools/approve_render.ts",
+      "apps/eve-agent/agent/tools/bash.ts",
+      "apps/eve-agent/agent/tools/cancel_job.ts",
+      "apps/eve-agent/agent/tools/create_source_only_case.ts",
+      "apps/eve-agent/agent/tools/dispatch_generation.ts",
+      "apps/eve-agent/agent/tools/freeze_plan.ts",
+      "apps/eve-agent/agent/tools/get_generation_status.ts",
+      "apps/eve-agent/agent/tools/glob.ts",
+      "apps/eve-agent/agent/tools/grep.ts",
+      "apps/eve-agent/agent/tools/inspect_capabilities.ts",
+      "apps/eve-agent/agent/tools/prepare_source_only_job.ts",
+      "apps/eve-agent/agent/tools/read_file.ts",
+      "apps/eve-agent/agent/tools/read_job.ts",
+      "apps/eve-agent/agent/tools/retry_stage.ts",
+      "apps/eve-agent/agent/tools/start_job.ts",
+      "apps/eve-agent/agent/tools/unseal_evaluation.ts",
+      "apps/eve-agent/agent/tools/web_fetch.ts",
+      "apps/eve-agent/agent/tools/web_search.ts",
+      "apps/eve-agent/agent/tools/write_file.ts",
+      "packs/attention-overlays/tools/registry.json",
+      "packs/choreography-coach/tools/registry.json",
+      "packs/creator-taste-audit/tools/registry.json",
+      "packs/embodied-grounding/tools/registry.json",
+      "packs/reference-reconstruct/tools/registry.json",
+      "packs/song-conditioned-auto-edit/tools/registry.json",
+      "packs/tutorial-compare/tools/registry.json"
+    ]
+  },
+  "fileCount": 217,
+  "manifestDigest": "e3cc1b7978ab447ed1a3363be3305c720882eea77b2e70e5c4bdd9cb1e0c4582",
+  "orchestration": {
+    "planner": "eve-filesystem-subagents",
+    "implementationSources": [
+      "./apps/eve-agent/agent/agent.ts",
+      "./apps/eve-agent/agent/subagents",
+      "./apps/eve-agent/agent/tools"
+    ],
+    "authority": "existing-eve-runtime",
+    "migrationMode": "mapping-only"
+  },
+  "policies": {
+    "enforcement": "eve-authored-least-privilege",
+    "sources": [
+      "./apps/eve-agent/agent/instructions.md",
+      "./apps/eve-agent/scripts/verify-isolation.mjs",
+      "./apps/eve-agent/agent/lib/contracts.ts"
+    ]
+  },
+  "provider": {
+    "adapter": "eve-vercel-ai-gateway",
+    "model": {
+      "provider": "openai",
+      "id": "gpt-5.4-mini"
+    },
+    "package": null
+  },
+  "runtime": {
+    "engine": "eve",
+    "profile": "brownfield-control-plane"
+  },
+  "schemaVersion": "nodeagent.resolved/v1",
+  "secretRefs": [
+    "AI_GATEWAY_API_KEY",
+    "NODEVIDEO_EVALUATION_CONTROL_TOKEN",
+    "NODEVIDEO_GENERATION_CONTROL_TOKEN"
+  ]
+}

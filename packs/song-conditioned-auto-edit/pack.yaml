@@ -1,0 +1,59 @@
+# Canonical NodeAgent metadata for the existing NodeVideo capability pack.
+# manifest.json remains the application-owned runtime contract.
+schemaVersion: nodeagent.pack/v1
+id: nodevideo-song-conditioned-auto-edit
+version: 0.1.0
+name: Song-Conditioned Choreography Auto Edit
+description: >-
+  Maps the existing source-only choreography planning, fixed rendering, freeze,
+  and held-out evaluation boundary into the NodeAgent application contract.
+
+skill: ./skill.md
+prompts:
+  - ../../apps/eve-agent/agent/instructions.md
+  - ../../apps/eve-agent/agent/subagents/choreography_interpreter/instructions.md
+  - ../../apps/eve-agent/agent/subagents/edit_planner/instructions.md
+  - ../../apps/eve-agent/agent/subagents/proof_critic/instructions.md
+
+artifacts:
+  - choreography_analysis
+  - take_candidate_matrix
+  - caption_layout
+  - attention_choreography
+  - edit_plan
+  - rendered_edit
+  - generation_read_log
+  - choreography_freeze
+
+tools:
+  - media.probe
+  - song.map
+  - choreography.analyze
+  - grounding.locate
+  - choreography.align-takes
+  - choreography.build-candidates
+  - captions.layout
+  - edit.optimize
+  - edit.validate
+  - render.edit-plan
+  - generation.freeze
+  - result.validate
+
+validators:
+  - edit.validate
+  - result.validate
+
+renderers:
+  - nodevideo.edit-plan-renderer
+
+fixtures:
+  - ../../fixtures/media/song-conditioned-auto-edit-v1/manifest.json
+
+evals:
+  - ./evals/replay-v1.json
+
+permissions:
+  generationTargetAccess: denied
+  evaluationRequiresFreeze: true
+  applicationWriteAuthority: validated-existing-workers-only
+  runtimeImplementation: existing-eve-control-plane

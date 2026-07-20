@@ -1,0 +1,7 @@
+{
+  "required": [
+    "nodevideo-eve-isolation",
+    "nodevideo-eve-live-approvals"
+  ],
+  "schemaVersion": "nodeagent.evaluation-plan/v1"
+}

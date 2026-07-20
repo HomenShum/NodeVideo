@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "nodeagent.evaluation-binding/v1",
+  "id": "nodevideo-eve-isolation",
+  "status": "existing-local-structure-check",
+  "command": "npm --prefix apps/eve-agent run test:structure",
+  "sources": [
+    "apps/eve-agent/scripts/verify-isolation.mjs",
+    "apps/eve-agent/agent/lib/contracts.ts",
+    "apps/eve-agent/agent/tools/dispatch_generation.ts",
+    "apps/eve-agent/agent/subagents/proof_critic/tools/evaluate_frozen_edit.ts"
+  ]
+}

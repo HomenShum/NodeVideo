@@ -1,0 +1,1090 @@
+{
+  "files": [
+    {
+      "bytes": 143,
+      "digest": "b8279d0b8fc323a71e56fa8dc37b2f1563f49e42158f6a4e66cd47cb67f166e8",
+      "path": "apps/eve-agent/agent/agent.ts"
+    },
+    {
+      "bytes": 312,
+      "digest": "8523021d23cdc558db2c76888ef8050d3c1794029357a403eb067752c8aa5190",
+      "path": "apps/eve-agent/agent/channels/eve.ts"
+    },
+    {
+      "bytes": 989,
+      "digest": "4ae05a4501822a6cbe2abbf47a67f5cf6e1f5c72e43d2095cb235b543bef0fc6",
+      "path": "apps/eve-agent/agent/instructions.md"
+    },
+    {
+      "bytes": 1035,
+      "digest": "49718673ccb8dee5758588ee3b46c4fe4dce2001abfa747af4e6c74e51620834",
+      "path": "apps/eve-agent/agent/lib/canonical.test.ts"
+    },
+    {
+      "bytes": 1159,
+      "digest": "20cf6db873a7e387fa23415aae5097a611bdaa9739d4681961fad86a1472183b",
+      "path": "apps/eve-agent/agent/lib/canonical.ts"
+    },
+    {
+      "bytes": 4951,
+      "digest": "2333f4f79dd25227affb9f865043a51b812ace33bc19e826b85f36afafcf4490",
+      "path": "apps/eve-agent/agent/lib/contracts.ts"
+    },
+    {
+      "bytes": 2459,
+      "digest": "e2d766d1c78f2e980e5b353232c17c8a574fd9506c69b13438ddd0b025bb2052",
+      "path": "apps/eve-agent/agent/lib/control-api.ts"
+    },
+    {
+      "bytes": 174,
+      "digest": "9b6f1a11ee686fe9d2ae3029d8fdc346d5325d24cafd5dc609fd7c0d4c952a36",
+      "path": "apps/eve-agent/agent/sandbox/sandbox.ts"
+    },
+    {
+      "bytes": 615,
+      "digest": "13e9757ab33e0c77d2423c84a0bfcedd9c299bb34736b84c88d8ce9624f30c84",
+      "path": "apps/eve-agent/agent/skills/mismatch-investigation/SKILL.md"
+    },
+    {
+      "bytes": 547,
+      "digest": "486f80be22f9fdcd6c0a3e59dc845553df80f6404757ab7821feee80086f2e99",
+      "path": "apps/eve-agent/agent/skills/music-handoff/SKILL.md"
+    },
+    {
+      "bytes": 556,
+      "digest": "324fe66bb54b5411bd8c2dcb48f0e92891dad78518fda7566b41abc174199951",
+      "path": "apps/eve-agent/agent/skills/rights-and-provenance/SKILL.md"
+    },
+    {
+      "bytes": 842,
+      "digest": "015ce5aa3827188a07c2081c6d5aec365829f3ef5921aec6898c3c8d721cf6f8",
+      "path": "apps/eve-agent/agent/skills/source-only-proof/SKILL.md"
+    },
+    {
+      "bytes": 264,
+      "digest": "6ef3710a4b420ba565dda9000baf1888148c170d19f254c7182aed6060af70a7",
+      "path": "apps/eve-agent/agent/subagents/choreography_interpreter/agent.ts"
+    },
+    {
+      "bytes": 404,
+      "digest": "6529c180708426a1045d4160159205006710195e66a6a56ca2650f60f2e3e22d",
+      "path": "apps/eve-agent/agent/subagents/choreography_interpreter/instructions.md"
+    },
+    {
+      "bytes": 166,
+      "digest": "d2074cab1b4bef3f6d4f5efcb7c30113a9e44c533b36d8412593a06972d9785f",
+      "path": "apps/eve-agent/agent/subagents/choreography_interpreter/sandbox/sandbox.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/choreography_interpreter/tools/bash.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/choreography_interpreter/tools/glob.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/choreography_interpreter/tools/grep.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/choreography_interpreter/tools/read_file.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/choreography_interpreter/tools/web_fetch.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/choreography_interpreter/tools/web_search.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/choreography_interpreter/tools/write_file.ts"
+    },
+    {
+      "bytes": 257,
+      "digest": "7ab05462c3a0feacbcf8b7dc8bb254d90e681fc6b9b373f81555fb3bd9be004a",
+      "path": "apps/eve-agent/agent/subagents/edit_planner/agent.ts"
+    },
+    {
+      "bytes": 396,
+      "digest": "cb598e64672d168d006c8e49adc2c8670f19ec39dc628a00bdd278511dbeecf0",
+      "path": "apps/eve-agent/agent/subagents/edit_planner/instructions.md"
+    },
+    {
+      "bytes": 166,
+      "digest": "d2074cab1b4bef3f6d4f5efcb7c30113a9e44c533b36d8412593a06972d9785f",
+      "path": "apps/eve-agent/agent/subagents/edit_planner/sandbox/sandbox.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/edit_planner/tools/bash.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/edit_planner/tools/glob.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/edit_planner/tools/grep.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/edit_planner/tools/read_file.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/edit_planner/tools/web_fetch.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/edit_planner/tools/web_search.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/edit_planner/tools/write_file.ts"
+    },
+    {
+      "bytes": 250,
+      "digest": "819963879f103135f53d10e9e864779b91e5a3c9263fdcd3bb67552aa39820e4",
+      "path": "apps/eve-agent/agent/subagents/proof_critic/agent.ts"
+    },
+    {
+      "bytes": 388,
+      "digest": "cf40003b430c27c44ca818203cfa84fe20af3199149c67f723a7178b1d88ee36",
+      "path": "apps/eve-agent/agent/subagents/proof_critic/instructions.md"
+    },
+    {
+      "bytes": 166,
+      "digest": "d2074cab1b4bef3f6d4f5efcb7c30113a9e44c533b36d8412593a06972d9785f",
+      "path": "apps/eve-agent/agent/subagents/proof_critic/sandbox/sandbox.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/proof_critic/tools/bash.ts"
+    },
+    {
+      "bytes": 1194,
+      "digest": "30b28ad1e8d9020e15ac4f7c80a710dccd88319afa50b2dedd640e16e73d0a96",
+      "path": "apps/eve-agent/agent/subagents/proof_critic/tools/evaluate_frozen_edit.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/proof_critic/tools/glob.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/proof_critic/tools/grep.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/proof_critic/tools/read_file.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/proof_critic/tools/web_fetch.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/proof_critic/tools/web_search.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/subagents/proof_critic/tools/write_file.ts"
+    },
+    {
+      "bytes": 555,
+      "digest": "67ab7280eab2f735d2d9d1e910d5453f8771377b40c10d6e1134bc4c6f5d6cdb",
+      "path": "apps/eve-agent/agent/tools/agent.ts"
+    },
+    {
+      "bytes": 680,
+      "digest": "29e41925cdc426000442567b44b82348160d405a457608bcc433d0f80dea493c",
+      "path": "apps/eve-agent/agent/tools/approve_render.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/tools/bash.ts"
+    },
+    {
+      "bytes": 665,
+      "digest": "01476c0e78791ef7f7b1057cc64c5445c000583418da391c83a1ddfaeffeec96",
+      "path": "apps/eve-agent/agent/tools/cancel_job.ts"
+    },
+    {
+      "bytes": 832,
+      "digest": "2cbb9d7c47f8dde3c90bfb03efea15fd55365b083dc429c2055d99881fcd4a54",
+      "path": "apps/eve-agent/agent/tools/create_source_only_case.ts"
+    },
+    {
+      "bytes": 1319,
+      "digest": "da1d0d6e6507e39d651cf08aa3f51b36269abf1622fdfd1fa4ef973631b2159a",
+      "path": "apps/eve-agent/agent/tools/dispatch_generation.ts"
+    },
+    {
+      "bytes": 828,
+      "digest": "8241d03154b7aea34097ba3131c81aeaeae93a77a273bf13d28c6452bad8d662",
+      "path": "apps/eve-agent/agent/tools/freeze_plan.ts"
+    },
+    {
+      "bytes": 1086,
+      "digest": "1a38a1174a27d674063d23b602f5f622f08b3da5d9f7cefbfb6a90015ae6e681",
+      "path": "apps/eve-agent/agent/tools/get_generation_status.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/tools/glob.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/tools/grep.ts"
+    },
+    {
+      "bytes": 726,
+      "digest": "1bae9e939d35abad0193ba59f72d7c2ffb988409e12db40fedcaf61b3bbdd8ee",
+      "path": "apps/eve-agent/agent/tools/inspect_capabilities.ts"
+    },
+    {
+      "bytes": 1269,
+      "digest": "f6e87de51280ce351fca985fb1f4839e0420cdbefc872d642f63c06e72090939",
+      "path": "apps/eve-agent/agent/tools/prepare_source_only_job.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/tools/read_file.ts"
+    },
+    {
+      "bytes": 571,
+      "digest": "6a3c803c95f7496fc2c735ab5b814cd263385ddfb08859847686cbab635e109b",
+      "path": "apps/eve-agent/agent/tools/read_job.ts"
+    },
+    {
+      "bytes": 683,
+      "digest": "eca46ced598492f34ea33e53436538343a93409b6587cc4463ef5578a8fe04e4",
+      "path": "apps/eve-agent/agent/tools/retry_stage.ts"
+    },
+    {
+      "bytes": 739,
+      "digest": "8e266c9ee7f7ba1440776768c485616f4c5f76ceb17621875ae9705508a55a28",
+      "path": "apps/eve-agent/agent/tools/start_job.ts"
+    },
+    {
+      "bytes": 744,
+      "digest": "521edec94a5f7e39f26b5e80407bc7a3c3f44897333cd276879b5a63050872c1",
+      "path": "apps/eve-agent/agent/tools/unseal_evaluation.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/tools/web_fetch.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/tools/web_search.ts"
+    },
+    {
+      "bytes": 71,
+      "digest": "f25f2616fe8ea8b280c699abbe5f43d492bc251c0c8fcb9e2c6d572c3bb64618",
+      "path": "apps/eve-agent/agent/tools/write_file.ts"
+    },
+    {
+      "bytes": 454,
+      "digest": "bcd9ee98e903ff3168933d58d1dbd0228453ce764402104b84de4fa42c5d2603",
+      "path": "evals/nodevideo-eve-isolation.json"
+    },
+    {
+      "bytes": 402,
+      "digest": "bbf2e22a41b88a5fe46ecbf6c85f4c2bad45ff029a849b19d1ed5f6f80dab012",
+      "path": "evals/nodevideo-eve-live-approvals.json"
+    },
+    {
+      "bytes": 21536,
+      "digest": "fb3402f6af00f480929a8cf4083a785cda9f8e582671e72d524586fb98dc7831",
+      "path": "fixtures/.well-known/agent-ui.json"
+    },
+    {
+      "bytes": 1812,
+      "digest": "16f2e29c6d5b77bdfec072429d54f6256ee8f60b632f0b480d1df61b8705ce2e",
+      "path": "fixtures/media/authorized-real-v1/adjudication-v2.json"
+    },
+    {
+      "bytes": 4697,
+      "digest": "deca5ac8f08ba9502bbeae379f1db1ba1b895f1a1b96513ddcc3e528ed7c170b",
+      "path": "fixtures/media/authorized-real-v1/case-manifest.json"
+    },
+    {
+      "bytes": 398525,
+      "digest": "bcf651be748cb47cb98fa4acd42955a0df2e57dcc0adf3466e8ba2de3573d561",
+      "path": "fixtures/media/authorized-real-v1/comparison-difference.mp4"
+    },
+    {
+      "bytes": 63098,
+      "digest": "65d00ce9ec2a3328a1acce7980730c63588523a25005ed3fa33e16ccd9d1d810",
+      "path": "fixtures/media/authorized-real-v1/comparison-poster.jpg"
+    },
+    {
+      "bytes": 2782853,
+      "digest": "2669b5a7fc8155c181c951935bf711ee8974fbddce046b09092f17e1a1bebe21",
+      "path": "fixtures/media/authorized-real-v1/comparison-side-by-side.mp4"
+    },
+    {
+      "bytes": 21210,
+      "digest": "a75edd1f68c43be36413e6b059f43ac054aef9cfbdef8ec9434a6431c90f9af4",
+      "path": "fixtures/media/authorized-real-v1/receipt.json"
+    },
+    {
+      "bytes": 11188268,
+      "digest": "45e39d1970782a2c2eeefebeb4c7c222770201a0b91732f655b748f215f63b28",
+      "path": "fixtures/media/authorized-real-v1/reconstruction.mp4"
+    },
+    {
+      "bytes": 17250,
+      "digest": "c79729aa5cac1e1239792ac3be76731685fe3c6c077d4dd510024340d2510442",
+      "path": "fixtures/media/authorized-real-v1/result.json"
+    },
+    {
+      "bytes": 2848396,
+      "digest": "634bfb9b539c85ef105e93c047267612817a6c4da4a0f830b38be21e3f31b428",
+      "path": "fixtures/media/authorized-real-v1/source-a-web.mp4"
+    },
+    {
+      "bytes": 3806933,
+      "digest": "11ec849d6e99d6aee1f7b3ba8de7a4d248a808062b237889c0baa67498d5bc6a",
+      "path": "fixtures/media/authorized-real-v1/source-b-web.mp4"
+    },
+    {
+      "bytes": 2055560,
+      "digest": "9431a1d9cfce0216bf6f3e93d36e2fd5b7cbbc8c81a202eaf1686b009999a35d",
+      "path": "fixtures/media/authorized-real-v1/target-web.mp4"
+    },
+    {
+      "bytes": 1233,
+      "digest": "fb8e0a33a365a1f45dba6a333aee44a32e6a6afaeebda17063cdee7efac711fd",
+      "path": "fixtures/media/authorized-real-v2/agent-review.json"
+    },
+    {
+      "bytes": 56613,
+      "digest": "c37ca4fc94dd7fad5d52186e7a7a9b8338aa7546c80b4bf5089facad48723c97",
+      "path": "fixtures/media/authorized-real-v2/analysis-evidence.json"
+    },
+    {
+      "bytes": 11680892,
+      "digest": "e8c7155ffd5f11d9ae6a96d28c073241e55a5509c3ac7a6fcdee66ba6e726eb8",
+      "path": "fixtures/media/authorized-real-v2/corrected.mp4"
+    },
+    {
+      "bytes": 627,
+      "digest": "6e920e3085181229f6ba64f6390c05af9bf0e434fa6376df5aa30d11da750a51",
+      "path": "fixtures/media/authorized-real-v2/critic-report.json"
+    },
+    {
+      "bytes": 25738,
+      "digest": "fa61f5dd4f9ce0e69254c5b09794c3eb155caa06b43543906685351aee3495ee",
+      "path": "fixtures/media/authorized-real-v2/edit-plan.json"
+    },
+    {
+      "bytes": 161052,
+      "digest": "d368bff446a2881a711492ae2f5554358e938354c0050edf9799019d9991efdf",
+      "path": "fixtures/media/authorized-real-v2/edit-plan.otio"
+    },
+    {
+      "bytes": 26981,
+      "digest": "5ef030641aa6fb4b6f89f3c109c987cd5de84e945c820226865c3e42c58ea8dd",
+      "path": "fixtures/media/authorized-real-v2/edit-understanding.json"
+    },
+    {
+      "bytes": 36119,
+      "digest": "6c98b78b5d807fc266887edde7e8d0167fcf3834488ad369a94fd117dd8b805a",
+      "path": "fixtures/media/authorized-real-v2/event-score-report.json"
+    },
+    {
+      "bytes": 9102,
+      "digest": "04f02098045273f5acf587bbbe177cd25664d474c68e32691b4ab8de45060cd2",
+      "path": "fixtures/media/authorized-real-v2/manifest.json"
+    },
+    {
+      "bytes": 12009,
+      "digest": "eabcc75e68709b163e4c38b3e548a9e932ee06e80e3d22b56b3c7af3ca231ea5",
+      "path": "fixtures/media/authorized-real-v2/receipt.json"
+    },
+    {
+      "bytes": 10903,
+      "digest": "d3d83fe4c6bd924708b760cc292797c107c93aa2b6c5396ebbd14c5f1489b98e",
+      "path": "fixtures/media/authorized-real-v2/render-metrics.json"
+    },
+    {
+      "bytes": 5016827,
+      "digest": "3a89d14a5c414e7a3d28e4d3f4a40aa0aaf92d9edeb978243214ab59995c0919",
+      "path": "fixtures/media/authorized-real-v2/side-by-side.mp4"
+    },
+    {
+      "bytes": 1186034,
+      "digest": "8b87b291e87e743c63d898323e4797ab9d5b563a24d384d188081d91d4bdf688",
+      "path": "fixtures/media/authorized-real-v2/target-guided-grade-v1.cube"
+    },
+    {
+      "bytes": 7585,
+      "digest": "c85cd4da1984084bbfc69ac9feaebb8ab30e21f1e4866b51c923b0659ffec547",
+      "path": "fixtures/media/blind-source-only-pilot-01/edit-plan.json"
+    },
+    {
+      "bytes": 1807,
+      "digest": "cb393601e02293e2e3ba4950031a691d2e8d1b53d59f6b303cdaaf38d02b8303",
+      "path": "fixtures/media/blind-source-only-pilot-01/freeze.json"
+    },
+    {
+      "bytes": 2359203,
+      "digest": "48d537fa2baab540b9d46b4c40da99278907d68debc8d00ef1c105842697a221",
+      "path": "fixtures/media/blind-source-only-pilot-01/held-out-comparison.mp4"
+    },
+    {
+      "bytes": 2725,
+      "digest": "ff4d0cf35883f42d0b7e99d3aa8484ca90c47b30f72a892248c046ef1a4f1b03",
+      "path": "fixtures/media/blind-source-only-pilot-01/held-out-evaluation.json"
+    },
+    {
+      "bytes": 6726,
+      "digest": "bad6578386c2e9dff1cf6eacbbb3973d67c462c6b8422f0d810168912c192953",
+      "path": "fixtures/media/blind-source-only-pilot-01/manifest.json"
+    },
+    {
+      "bytes": 5534,
+      "digest": "9f016a249fe30b7072ffc6e6661cf15905e34b52357be3179955df704c0271f0",
+      "path": "fixtures/media/blind-source-only-pilot-01/music-handoff.json"
+    },
+    {
+      "bytes": 2568,
+      "digest": "344c45ee61dc66b97012b0bbdaf4f70b172b5b79747c87a9d4f1e56f5227cbb9",
+      "path": "fixtures/media/blind-source-only-pilot-01/rationale.md"
+    },
+    {
+      "bytes": 21809,
+      "digest": "626e8613d3b3d358d60097eaf150eecde71c4d55cf4c67f67c1e1cf8db8100b0",
+      "path": "fixtures/media/blind-source-only-pilot-01/read-log.json"
+    },
+    {
+      "bytes": 672,
+      "digest": "264369bdd7c0045a85fd93c444a1c544b04423d9f3f4b99bc176e07cc923ea8b",
+      "path": "fixtures/media/blind-source-only-pilot-01/redaction-receipt.json"
+    },
+    {
+      "bytes": 6486343,
+      "digest": "0e0916567a38340002806e172b30a14e5dd4fb23f945b7ae5bcb3a94479f0ff2",
+      "path": "fixtures/media/blind-source-only-pilot-01/source-only-preview.mp4"
+    },
+    {
+      "bytes": 72856,
+      "digest": "00f47b663f6471ceb9f54c6e2c39e209613fb9eac2d7459db74098cf905081a6",
+      "path": "fixtures/media/integrated-source-only-v1/analysis.json"
+    },
+    {
+      "bytes": 13652,
+      "digest": "45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07",
+      "path": "fixtures/media/integrated-source-only-v1/edit-plan.json"
+    },
+    {
+      "bytes": 901,
+      "digest": "6d0305e3cf8e741592d5143faba7cdf6613a57cb6bf9f709b28bf383b90e655e",
+      "path": "fixtures/media/integrated-source-only-v1/freeze-receipt.json"
+    },
+    {
+      "bytes": 7205,
+      "digest": "8c76857975bcc2fd67272aaf93ec1d5c456b993434e3b64f0b082fa397b362cc",
+      "path": "fixtures/media/integrated-source-only-v1/manifest.json"
+    },
+    {
+      "bytes": 3959868,
+      "digest": "74deecdbd0513062bebc9759739763882f1462d8545778d5bf1fd51bc31f9ae8",
+      "path": "fixtures/media/integrated-source-only-v1/pose-tracks.json"
+    },
+    {
+      "bytes": 4659,
+      "digest": "478b438025fbded59c408551a7fe3ff2f5a94b81644f3c4feaf574c22fc8d45e",
+      "path": "fixtures/media/integrated-source-only-v1/post-freeze-evaluation.json"
+    },
+    {
+      "bytes": 11767433,
+      "digest": "062f0621402b51e6ce22179c10505e73311276e066fd8f315b1855a9c398647a",
+      "path": "fixtures/media/integrated-source-only-v1/preview-silent.mp4"
+    },
+    {
+      "bytes": 2741,
+      "digest": "79a3540461dc265a6cb2bc20aa74e1b3dd2d10280b2d932fa09dea5fd7f89f7c",
+      "path": "fixtures/media/integrated-source-only-v1/reference-performer-selection.json"
+    },
+    {
+      "bytes": 612299,
+      "digest": "8532f336972db2639af03df2c761e034a96aaa241525df805b83b40573fc447d",
+      "path": "fixtures/media/locate-anything-live-v1/annotated.png"
+    },
+    {
+      "bytes": 915,
+      "digest": "3a8b6113b264822812c8545e606f1ac5b7c711c552bb9ba92e0e9c83e1e57ae7",
+      "path": "fixtures/media/locate-anything-live-v1/caption-safety.json"
+    },
+    {
+      "bytes": 106377,
+      "digest": "f93aaa33b5d98e4f5007da8ea10441c976670bc7218528333ec2874c6394fc12",
+      "path": "fixtures/media/locate-anything-live-v1/input-frame.jpg"
+    },
+    {
+      "bytes": 748,
+      "digest": "d8f8c5f579aa1072da961852af20dc6beb88597c9a9fa78ba80f1d61cdfecef5",
+      "path": "fixtures/media/locate-anything-live-v1/locate-result.json"
+    },
+    {
+      "bytes": 1070,
+      "digest": "5165304664d0a53f03c098a7b53e5584210e402262a927a5a8b2bbb34ad33b7a",
+      "path": "fixtures/media/locate-anything-live-v1/manifest.json"
+    },
+    {
+      "bytes": 904,
+      "digest": "c7a82a4aacc55b1b1baafa1505ca0956b6f0287eaabef97bac1e589518ae4728",
+      "path": "fixtures/media/locate-anything-live-v1/runtime-receipt.json"
+    },
+    {
+      "bytes": 485755,
+      "digest": "157b6a8d9257043e4fba50914fa4521058129439ef67acb6b91640982fb20e5a",
+      "path": "fixtures/media/nodevideo-proof-v1.mp4"
+    },
+    {
+      "bytes": 5850,
+      "digest": "a8009179a92daa38d2af515a677ed42d5832c48865df9b3638d86e6465a3543e",
+      "path": "fixtures/media/nodevideo-proof-v1.proof.json"
+    },
+    {
+      "bytes": 1036,
+      "digest": "48b02f04c12d9f6e343d478d837db362a958e3f0f36fe7a7d2d4b91d75a5615c",
+      "path": "fixtures/media/README.md"
+    },
+    {
+      "bytes": 1279,
+      "digest": "050c9b33a18e19b98e37070429a8f5b6113e89199c5798a91184dbae41f61e51",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/choreography-freeze.json"
+    },
+    {
+      "bytes": 25232,
+      "digest": "92f9e6d828e62e7f60d16dcb054a6a3e00fe41db1d2d863f4ce6e188773b2c21",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/chosen-song.m4a"
+    },
+    {
+      "bytes": 91215,
+      "digest": "2676bae057e6642f89f429d04a7bb442d4626a9deab43ee4e14337315192b1e8",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/creator-take-a.mp4"
+    },
+    {
+      "bytes": 103510,
+      "digest": "8ada43b35b9f46f0bbde0661a7602a5b67ae20fae218fa747afc99babe6b0983",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/creator-take-b.mp4"
+    },
+    {
+      "bytes": 5443,
+      "digest": "5e6900d65aff4a6dba55538fe6139eab0defaa6268e596a4acc48575f92d205c",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/edit-plan.json"
+    },
+    {
+      "bytes": 1056,
+      "digest": "f932259e06ec59479ef0d459c63066d5141d8ce6d92967db91a150bb797a79eb",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/evaluator-report.json"
+    },
+    {
+      "bytes": 1250,
+      "digest": "8c448d1fc592658795ac5f4e0e752dc7daf5a3a47970a748aad0a1139c638955",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/freeze-receipt.json"
+    },
+    {
+      "bytes": 919,
+      "digest": "24e07609065a9b5a94751a30f6840a2c2874e050a4e17be75d4230228c909796",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/generation-read-log.json"
+    },
+    {
+      "bytes": 569,
+      "digest": "68513ed19c7dd978d9b0e39a1d16d26409ced0988b702b299db050cc78452139",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/grounding-receipt.json"
+    },
+    {
+      "bytes": 4125,
+      "digest": "ae91d3f427b016f6cd15a08ff5e20c9028150b3545eddc90e9dcf0a35b09047c",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/manifest.json"
+    },
+    {
+      "bytes": 71931,
+      "digest": "9cce01af82855387be580c5868f01a5c2ce405f129af04731e80168b48a4ee18",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/original-choreography-reference.mp4"
+    },
+    {
+      "bytes": 136027,
+      "digest": "f596fe24cac4e05686c4ddd1bfbe9d341a732d9b1729c456d538dc3ffc545158",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/preview.mp4"
+    },
+    {
+      "bytes": 3187,
+      "digest": "087010c55876c3194ef13de75f8c91db6cfb59e42dd1743ccd452e23e2feec0f",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/song-conditioned-plan.json"
+    },
+    {
+      "bytes": 445,
+      "digest": "106a9f13b9b9298b6b9300c0f6280676dc92833bf8f3b929f1cfae8d3e223117",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/timed-text.json"
+    },
+    {
+      "bytes": 13751,
+      "digest": "9e8062543e52e1bb1aca8f35993ef6a7898a40b0bbbf3e18747b10e751c92b1f",
+      "path": "fixtures/media/song-conditioned-auto-edit-v1/understanding.json"
+    },
+    {
+      "bytes": 12101,
+      "digest": "097f3a393a9f83cf6c88a26d454ad08e98a12236ad8517996351af3b5387cd00",
+      "path": "fixtures/media/song-conditioned-real-calibration-v1/analysis.json"
+    },
+    {
+      "bytes": 479,
+      "digest": "fdce1848589c89d24cab185d634a754b02a40705a063d338c4cecd052bc64c0f",
+      "path": "fixtures/media/song-conditioned-real-calibration-v1/derivation-receipt.json"
+    },
+    {
+      "bytes": 7940,
+      "digest": "b6f75bce5b16fc9ac7c38a3ea43d2646d1c228376b1beff29393f784fc6761be",
+      "path": "fixtures/media/song-conditioned-real-calibration-v1/edit-plan.json"
+    },
+    {
+      "bytes": 945,
+      "digest": "7d30ac335c10420fa03b134324e60c10db6d35c035181c0dec97912af3b8a474",
+      "path": "fixtures/media/song-conditioned-real-calibration-v1/freeze-receipt.json"
+    },
+    {
+      "bytes": 3599,
+      "digest": "bbe6d8b55105f3d2b547bf73687c4c7217b590636b8b22a96a67c1576cb7e9cb",
+      "path": "fixtures/media/song-conditioned-real-calibration-v1/generation-manifest.json"
+    },
+    {
+      "bytes": 4660,
+      "digest": "7f149bae3e6378f8adeca65fd97699fecdb839eb840b56f7c16c29760db48133",
+      "path": "fixtures/media/song-conditioned-real-calibration-v1/manifest.json"
+    },
+    {
+      "bytes": 5404101,
+      "digest": "4be7c3081cfe3244198e7ae163f4213e201bf6a1786606882670f1cc2b7399c2",
+      "path": "fixtures/media/song-conditioned-real-calibration-v1/picture-only-preview.mp4"
+    },
+    {
+      "bytes": 2799,
+      "digest": "ea5ab5a32051a497f52a45d4a9704216946acda2148ee9240099c76ad722d10f",
+      "path": "fixtures/media/song-conditioned-real-calibration-v1/post-freeze-evaluation.json"
+    },
+    {
+      "bytes": 71717,
+      "digest": "6b92ffc541fb3aa84d5d28f56213fd332586bd6be22c27362838d6db9dc65c64",
+      "path": "fixtures/media/tutorial-compare-v1/attempt-normalized.mp4"
+    },
+    {
+      "bytes": 134883,
+      "digest": "a8e160d9c321f10884a83131c9d446520ebe593ff413a77e718dc27479f9641a",
+      "path": "fixtures/media/tutorial-compare-v1/comparison-difference.mp4"
+    },
+    {
+      "bytes": 115683,
+      "digest": "981b75cd23b370e1e7990429ecbb76ebf59c29c0840505689b98342787d95052",
+      "path": "fixtures/media/tutorial-compare-v1/comparison-side-by-side.mp4"
+    },
+    {
+      "bytes": 88837,
+      "digest": "7ef58fcbba7fe34536bfbf49408860b8fa9e27a62f3d1586be0509c32739046d",
+      "path": "fixtures/media/tutorial-compare-v1/critical-moments.jpg"
+    },
+    {
+      "bytes": 30459,
+      "digest": "13bb40a4a160858c1c7aa77d49ef64aca5ececd83cad7eac528b40f7bda8e24f",
+      "path": "fixtures/media/tutorial-compare-v1/receipt.json"
+    },
+    {
+      "bytes": 70778,
+      "digest": "55d63410004603b7882e64ee3975c99960215f15ad10c0111c2709dd02820bec",
+      "path": "fixtures/media/tutorial-compare-v1/reference-normalized.mp4"
+    },
+    {
+      "bytes": 28494,
+      "digest": "42adabbe23c69de04be3b60523d4f05a05ee92af818850c00d441b0951081bc4",
+      "path": "fixtures/media/tutorial-compare-v1/result.json"
+    },
+    {
+      "bytes": 74619,
+      "digest": "43d98a58c97ee9171adba5cf9a91280c7f32574b289712504726235ede975c76",
+      "path": "fixtures/media/tutorial-compare-v1/source-attempt.mp4"
+    },
+    {
+      "bytes": 73788,
+      "digest": "f688ed399936e3ca531d2261ed82eb6b57844fa2d0ca012134efba48acee1f06",
+      "path": "fixtures/media/tutorial-compare-v1/source-reference.mp4"
+    },
+    {
+      "bytes": 5777746,
+      "digest": "59929e1d1ee95287735ddd833b19cf4ac46d29bc7afddbbf6753c459690d574a",
+      "path": "fixtures/models/pose_landmarker_lite.task"
+    },
+    {
+      "bytes": 122119,
+      "digest": "312b53f808fa725134469868ef422119157aba6739444ec75fe7fee7ea35537e",
+      "path": "fixtures/proof/locateanything-side-by-side.jpg"
+    },
+    {
+      "bytes": 380140,
+      "digest": "0db8855280b5cea7216512d7545d4afc0e9288b9600a0293397f45ff14fd62a6",
+      "path": "fixtures/proof/nodevideo-live-pipeline.gif"
+    },
+    {
+      "bytes": 1001,
+      "digest": "e6115af21908563d5c7ed7b09431750399c71d8f473c83026fb8432cdfac5a44",
+      "path": "packs/attention-overlays/evals/contract-v1.json"
+    },
+    {
+      "bytes": 1958,
+      "digest": "ffc3bcf77abab72646cc8882f25961385cbce5965cdc686df0d7b98ef41e6f73",
+      "path": "packs/attention-overlays/input.schema.json"
+    },
+    {
+      "bytes": 2192,
+      "digest": "3edc3700054dbde5e166b2740f99cf784688782183de55e82e37864cab155099",
+      "path": "packs/attention-overlays/manifest.json"
+    },
+    {
+      "bytes": 1045,
+      "digest": "e0668009d9b2f33d77a9d6dab33f2e64c54f090a741b6bf6307171796ca8278e",
+      "path": "packs/attention-overlays/output.schema.json"
+    },
+    {
+      "bytes": 1130,
+      "digest": "4320a2ad3875eb4024e688af4b1c15d302b0dd14e7803a44d9e9088d4d35e798",
+      "path": "packs/attention-overlays/skill.md"
+    },
+    {
+      "bytes": 1721,
+      "digest": "474029a30551aab6b9308db8546a8725d00262ae74bbc564a6a5408b9b61fea9",
+      "path": "packs/attention-overlays/tools/registry.json"
+    },
+    {
+      "bytes": 1803,
+      "digest": "df89d3a97471fff7dbda8adb02babbaf36e45337f6bcd4fce70cb980bf24d6a9",
+      "path": "packs/choreography-coach/calibration-manifest.schema.json"
+    },
+    {
+      "bytes": 1459,
+      "digest": "8a30885fd90c2f623909920555f900da02a63d39474691b2eab9afdcfcf6c43f",
+      "path": "packs/choreography-coach/calibration-report.schema.json"
+    },
+    {
+      "bytes": 2305,
+      "digest": "a5c3bb6cf5dd9ec670360993d28631267c6493a56c33b5868d949fd80d6813e6",
+      "path": "packs/choreography-coach/input.schema.json"
+    },
+    {
+      "bytes": 1602,
+      "digest": "cd67007175fc3a172e167d3785499fa332ed564e8e8f110dde7c3aa0ea222486",
+      "path": "packs/choreography-coach/manifest.json"
+    },
+    {
+      "bytes": 2720,
+      "digest": "faee3007a7ba5566c7c0492a42e6a265df3f7f92edf6778fc94ca606154e369e",
+      "path": "packs/choreography-coach/output.schema.json"
+    },
+    {
+      "bytes": 1842,
+      "digest": "b7efd69078fd418d191e2ad2acad9fb700ae326a0269eb811f53e1696e1f70e0",
+      "path": "packs/choreography-coach/skill.md"
+    },
+    {
+      "bytes": 837,
+      "digest": "6fa95db98d77940ed1de552a4efe5422d4cb9f18a786cfec3df4787208d6d2ae",
+      "path": "packs/choreography-coach/tools/registry.json"
+    },
+    {
+      "bytes": 722,
+      "digest": "89c529dbf22769e51243b82f222c01c71efa09951a577b19b88add342720d254",
+      "path": "packs/creator-taste-audit/evals/replay-v1.json"
+    },
+    {
+      "bytes": 1551,
+      "digest": "8e820e7fbdf3eac58150de356a8f60c07b3e7fb55e105647d2da1294a7295c09",
+      "path": "packs/creator-taste-audit/input.schema.json"
+    },
+    {
+      "bytes": 2797,
+      "digest": "20158cc13504374173258d9a8de711513268f4ef5bcda97060e524bd7ba4dfca",
+      "path": "packs/creator-taste-audit/manifest.json"
+    },
+    {
+      "bytes": 10867,
+      "digest": "9b6722a3ee63390b99b9976d7d549b902c0dfd15bc85b5743d272356801bac9d",
+      "path": "packs/creator-taste-audit/output.schema.json"
+    },
+    {
+      "bytes": 830,
+      "digest": "491a4f2638bf3664acc5f5bb00bd98f28c3156d119870fad3d534b6bba7871ec",
+      "path": "packs/creator-taste-audit/README.md"
+    },
+    {
+      "bytes": 2020,
+      "digest": "74a12c940f42f7df61e4313e265060523dc124415822a9892b56d2aa67a1715e",
+      "path": "packs/creator-taste-audit/skill.md"
+    },
+    {
+      "bytes": 5299,
+      "digest": "96520c1f0298126718f1c79c9035e9ee32f8fd1e6e5e73df4df675dcbadf90d3",
+      "path": "packs/creator-taste-audit/tools/registry.json"
+    },
+    {
+      "bytes": 65532,
+      "digest": "786b83d6b721df0400f1d4837fcd5a04ae801a3db3f592d46f07796c744d059b",
+      "path": "packs/edit-plan-renderer/assets/Geist-Variable-Latin.ttf"
+    },
+    {
+      "bytes": 4382,
+      "digest": "bee248cc4636059a46b54c17bf0990304412c7cf800747b2bc3aa890aa344243",
+      "path": "packs/edit-plan-renderer/assets/OFL.txt"
+    },
+    {
+      "bytes": 681,
+      "digest": "97e15d5f50b6690f7aab9d6b61fd205a3c202ff4d19edba34fb93ef836ffa735",
+      "path": "packs/edit-plan-renderer/assets/README.md"
+    },
+    {
+      "bytes": 3967,
+      "digest": "22fdd8ecc4ac05c360805cc674a47af1118fa971431a18d7122339f3c03d0d4b",
+      "path": "packs/embodied-grounding/evals/replay-v1.json"
+    },
+    {
+      "bytes": 1957,
+      "digest": "546a033e30b70c5b86401c09d2aac9fb2834263574b41e6e9b4af0b6fdd6bb13",
+      "path": "packs/embodied-grounding/input.schema.json"
+    },
+    {
+      "bytes": 2135,
+      "digest": "18ff82a6c6d8f8f04a3f6ea7997a0e8cf5fc2131d83b82996529404b5d7cf097",
+      "path": "packs/embodied-grounding/manifest.json"
+    },
+    {
+      "bytes": 8271,
+      "digest": "af7453561d7520f16b542fa59b55c99630022c8bc1395e6f1c221603ceea6c36",
+      "path": "packs/embodied-grounding/output.schema.json"
+    },
+    {
+      "bytes": 4773,
+      "digest": "4a2aa483f42350f2844f661543c47568f8996210c5296531b399e4f9261278fc",
+      "path": "packs/embodied-grounding/README.md"
+    },
+    {
+      "bytes": 3509,
+      "digest": "af18ba14921cd577b3ddc458e0f10d68f799d32fedc6366aaa9d2f41e5af8e45",
+      "path": "packs/embodied-grounding/skill.md"
+    },
+    {
+      "bytes": 7167,
+      "digest": "df7b9aee2f3b4be65fda0d6e499a1ee2df2df2303b7aa07726a35111907c13b3",
+      "path": "packs/embodied-grounding/tools/registry.json"
+    },
+    {
+      "bytes": 28924,
+      "digest": "b9cb205833f4c1940648bd93c516e4859e1b9337aa9fccf9220880a11e678823",
+      "path": "packs/reference-reconstruct/assets/end-card-brand.png"
+    },
+    {
+      "bytes": 915,
+      "digest": "ba06228c529238c49726ddbff1c894c0d7abca68891731df397d645ff7b05f52",
+      "path": "packs/reference-reconstruct/assets/end-card-brand.svg"
+    },
+    {
+      "bytes": 4794,
+      "digest": "8c2cb5a10f3ff132fe1fed5f9f357ca6b439a5499527614ac472d5a661e59b33",
+      "path": "packs/reference-reconstruct/assets/end-card-dim.png"
+    },
+    {
+      "bytes": 29669,
+      "digest": "b6d2fa0131531009fdc2f852add13af2d0ead4c9f2b0ed2d27518844f897f56d",
+      "path": "packs/reference-reconstruct/assets/end-card-overlay.png"
+    },
+    {
+      "bytes": 1153,
+      "digest": "73d9a5d3b43e33286129ed59d536ca392cce5b1c30170b9859a2d7c27b654e25",
+      "path": "packs/reference-reconstruct/assets/end-card-overlay.svg"
+    },
+    {
+      "bytes": 17895,
+      "digest": "84dcfa4d3824a782efab26640b2d45009bc5973d99d8a2ceafb6b7c10f1804bf",
+      "path": "packs/reference-reconstruct/assets/outro-caption.png"
+    },
+    {
+      "bytes": 822,
+      "digest": "bd63eca7a48c0192843b42ac3ded888fb59ad6be0d79aa628a9641e004c9bf0a",
+      "path": "packs/reference-reconstruct/assets/outro-caption.svg"
+    },
+    {
+      "bytes": 15962,
+      "digest": "aeb1c2a0a4b4e5e995fddd3bbfae644cfdf4bb7b4a94f533bde90c71de915f68",
+      "path": "packs/reference-reconstruct/assets/social-watermark-left.png"
+    },
+    {
+      "bytes": 585,
+      "digest": "05a92a99b8a7e299bd4cc7bd804a504e0172720f6f9159cce4b070565d2292d5",
+      "path": "packs/reference-reconstruct/assets/social-watermark-left.svg"
+    },
+    {
+      "bytes": 11105,
+      "digest": "06f02a4a4789514e538ba63432286157926ac77e8b01d3bfc9dcc92121aa56d3",
+      "path": "packs/reference-reconstruct/assets/social-watermark.png"
+    },
+    {
+      "bytes": 587,
+      "digest": "b67caa85587bc2c84656543bec40ab828f4089f02c76ec99d16660831ac1541c",
+      "path": "packs/reference-reconstruct/assets/social-watermark.svg"
+    },
+    {
+      "bytes": 1186034,
+      "digest": "8b87b291e87e743c63d898323e4797ab9d5b563a24d384d188081d91d4bdf688",
+      "path": "packs/reference-reconstruct/assets/target-guided-grade-v1.cube"
+    },
+    {
+      "bytes": 7625,
+      "digest": "54e9c1fc8ffd0e78b89e8619cecb7c8863dc6ae9c2865592cf0206214c352721",
+      "path": "packs/reference-reconstruct/evals/authorized-real-v1.json"
+    },
+    {
+      "bytes": 6626,
+      "digest": "0b93f911e23f9443d799f6580766a49b539c9d2556b35a7a79c70bcbbf744b91",
+      "path": "packs/reference-reconstruct/evals/authorized-real-v2-ground-truth.json"
+    },
+    {
+      "bytes": 5912,
+      "digest": "5b3da08ed09724a978491477d9d9fb33c5cf0487d457e7c59836d0d48761fca4",
+      "path": "packs/reference-reconstruct/input.schema.json"
+    },
+    {
+      "bytes": 2303,
+      "digest": "4f246b663243aa084df29bf16ce8773e7df394e3c5cdba546d649ddfa3873ab3",
+      "path": "packs/reference-reconstruct/manifest.json"
+    },
+    {
+      "bytes": 9411,
+      "digest": "55896d1714782c410cdf1a154367e7061b72bfdc00b5302d40d4e01b56de4d88",
+      "path": "packs/reference-reconstruct/output.schema.json"
+    },
+    {
+      "bytes": 4097,
+      "digest": "e22b3f5436cdc1c86f7c70cef358a6b440909b6fa4639e885d0f12675da42778",
+      "path": "packs/reference-reconstruct/README.md"
+    },
+    {
+      "bytes": 3365,
+      "digest": "777e4562b7101552ab4ea3e88edc32dea4367b8cdbe98996ecd5c567cf238c00",
+      "path": "packs/reference-reconstruct/skill.md"
+    },
+    {
+      "bytes": 7025,
+      "digest": "cbdc448b582f75e71d7ce2afd00ed7381f373f82b991e46ad09b8ef789375fdd",
+      "path": "packs/reference-reconstruct/tools/registry.json"
+    },
+    {
+      "bytes": 13760,
+      "digest": "96baa481bfaac8edaf351120c06bc244fd0bcb7bbe2f02597198e2a7f9acd9d6",
+      "path": "packs/song-conditioned-auto-edit/evals/replay-v1.json"
+    },
+    {
+      "bytes": 15298,
+      "digest": "48c94e11f578d0389817b804adae21fc2506dee97c8aa2c09148d4fb3170c795",
+      "path": "packs/song-conditioned-auto-edit/input.schema.json"
+    },
+    {
+      "bytes": 3103,
+      "digest": "070435e00ea2aa7d7b44ec1f3bb7f19ab169482923e2b45408cf3827b5047161",
+      "path": "packs/song-conditioned-auto-edit/manifest.json"
+    },
+    {
+      "bytes": 26358,
+      "digest": "eb84ba82ad26173b5ddacd947f18211b6e640505dc2da98c4ebd7c94c3ea293f",
+      "path": "packs/song-conditioned-auto-edit/output.schema.json"
+    },
+    {
+      "bytes": 1602,
+      "digest": "de3597ab0adddce05989b41ee25dc59bceb061648a61debc63d1ac60b6c3ec27",
+      "path": "packs/song-conditioned-auto-edit/pack.yaml"
+    },
+    {
+      "bytes": 5940,
+      "digest": "b13c715811e79e2e5417f17222894267e613bcb542a5402b84bca3e7866389c9",
+      "path": "packs/song-conditioned-auto-edit/README.md"
+    },
+    {
+      "bytes": 4582,
+      "digest": "3ae5ff553e82a0ccd45b9349cffa65d569299a56e53a46b094388e99aaadd570",
+      "path": "packs/song-conditioned-auto-edit/skill.md"
+    },
+    {
+      "bytes": 14251,
+      "digest": "102ad30d831fe290e076a7b5d33637f8b9420d0c1fcbd5243581e0e245cc6664",
+      "path": "packs/song-conditioned-auto-edit/tools/registry.json"
+    },
+    {
+      "bytes": 4587,
+      "digest": "4b17d5662cb53e7225a484d51a66563ef3dc7403dced6761230a4beb53e21e3f",
+      "path": "packs/tutorial-compare/evals/public-worker-v1.json"
+    },
+    {
+      "bytes": 6908,
+      "digest": "af386036f243ccc52b5d802149e1656843e92296f1293621a25630651831b9c9",
+      "path": "packs/tutorial-compare/input.schema.json"
+    },
+    {
+      "bytes": 1869,
+      "digest": "32abbeeb11829bc0d032c6e35c8d7be9c59e89ee68866d8720e9734d87e2b195",
+      "path": "packs/tutorial-compare/manifest.json"
+    },
+    {
+      "bytes": 22744,
+      "digest": "3359dacdd326a822d29551bfc5b3675af65ebc24cb13db7cddab319bceebeb7b",
+      "path": "packs/tutorial-compare/output.schema.json"
+    },
+    {
+      "bytes": 4595,
+      "digest": "8743022f0251fb37d6a6ab50ec2aff0a248ccb63e2aceb7226af407fe8b9866d",
+      "path": "packs/tutorial-compare/README.md"
+    },
+    {
+      "bytes": 2975,
+      "digest": "d8176f9b62bb387dfc2786e81b9452dda874a8c16b01bae5d66ae0a32ca0e2fb",
+      "path": "packs/tutorial-compare/skill.md"
+    },
+    {
+      "bytes": 5995,
+      "digest": "5a993db3c35e61c1bc1ece84385e79cd0c6cf673c8486c1b9a718a039abf03c1",
+      "path": "packs/tutorial-compare/tools/registry.json"
+    }
+  ],
+  "schemaVersion": "nodeagent.discovery/v1"
+}

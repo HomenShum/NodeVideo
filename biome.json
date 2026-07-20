@@ -4,6 +4,7 @@
     "ignore": [
       "dist",
       "node_modules",
+      ".nodeagent",
       "apps/eve-agent/.eve",
       "apps/eve-agent/.output",
       "apps/eve-agent/.nitro",
