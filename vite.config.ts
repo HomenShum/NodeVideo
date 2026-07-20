@@ -1,3 +1,5 @@
+import { createReadStream, existsSync } from 'node:fs';
+import type { ServerResponse } from 'node:http';
 import path from 'node:path';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
@@ -28,6 +30,109 @@ function mediapipeWasm(): Plugin {
   };
 }
 
+const isolatedEditorPages = new Set([
+  '/edit',
+  '/edit/',
+  '/edit.html',
+  '/collab',
+  '/collab/',
+  '/collab.html',
+]);
+
+function requestPath(url: string | undefined): string {
+  try {
+    return new URL(url ?? '/', 'http://nodevideo.local').pathname;
+  } catch {
+    return '/';
+  }
+}
+
+function applyBrowserFfmpegHeaders(pathname: string, response: ServerResponse): void {
+  if (isolatedEditorPages.has(pathname)) {
+    response.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+    response.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+  }
+  const ffmpegClassWorker = pathname === '/node_modules/@ffmpeg/ffmpeg/dist/esm/worker.js';
+  if (pathname.startsWith('/ffmpeg/0.12.10/') || ffmpegClassWorker) {
+    response.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+    response.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
+    if (!ffmpegClassWorker) {
+      response.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    }
+  }
+}
+
+// ffmpeg.wasm needs same-origin core assets and cross-origin isolation for its
+// pthread build. Isolation stays route-scoped because other surfaces embed
+// third-party media. Production copies the same allowlisted files into dist.
+function browserFfmpegAssets(): Plugin {
+  const root = path.resolve(__dirname);
+  const files = new Map<string, { file: string; contentType: string }>([
+    [
+      '/ffmpeg/0.12.10/st/ffmpeg-core.js',
+      {
+        file: path.join(root, 'node_modules/@ffmpeg/core/dist/esm/ffmpeg-core.js'),
+        contentType: 'text/javascript; charset=utf-8',
+      },
+    ],
+    [
+      '/ffmpeg/0.12.10/st/ffmpeg-core.wasm',
+      {
+        file: path.join(root, 'node_modules/@ffmpeg/core/dist/esm/ffmpeg-core.wasm'),
+        contentType: 'application/wasm',
+      },
+    ],
+    [
+      '/ffmpeg/0.12.10/mt/ffmpeg-core.js',
+      {
+        file: path.join(root, 'node_modules/@ffmpeg/core-mt/dist/esm/ffmpeg-core.js'),
+        contentType: 'text/javascript; charset=utf-8',
+      },
+    ],
+    [
+      '/ffmpeg/0.12.10/mt/ffmpeg-core.wasm',
+      {
+        file: path.join(root, 'node_modules/@ffmpeg/core-mt/dist/esm/ffmpeg-core.wasm'),
+        contentType: 'application/wasm',
+      },
+    ],
+    [
+      '/ffmpeg/0.12.10/mt/ffmpeg-core.worker.js',
+      {
+        file: path.join(root, 'node_modules/@ffmpeg/core-mt/dist/esm/ffmpeg-core.worker.js'),
+        contentType: 'text/javascript; charset=utf-8',
+      },
+    ],
+    [
+      '/ffmpeg/0.12.10/Geist-Variable-Latin.ttf',
+      {
+        file: path.join(root, 'packs/edit-plan-renderer/assets/Geist-Variable-Latin.ttf'),
+        contentType: 'font/ttf',
+      },
+    ],
+  ]);
+
+  return {
+    name: 'nodevideo-browser-ffmpeg-assets',
+    configureServer(server) {
+      server.middlewares.use((request, response, next) => {
+        const pathname = requestPath(request.url);
+        applyBrowserFfmpegHeaders(pathname, response);
+        const asset = files.get(pathname);
+        if (!asset || !existsSync(asset.file)) return next();
+        response.setHeader('Content-Type', asset.contentType);
+        createReadStream(asset.file).on('error', next).pipe(response);
+      });
+    },
+    configurePreviewServer(server) {
+      server.middlewares.use((request, response, next) => {
+        applyBrowserFfmpegHeaders(requestPath(request.url), response);
+        next();
+      });
+    },
+  };
+}
+
 const privatePreview =
   process.env.NODEVIDEO_LOCAL_PREVIEW ??
   path.resolve(
@@ -36,8 +141,24 @@ const privatePreview =
   );
 
 export default defineConfig({
-  plugins: [localPrivatePreview(privatePreview), react(), tailwindcss(), mediapipeWasm()],
+  plugins: [
+    localPrivatePreview(privatePreview),
+    browserFfmpegAssets(),
+    react(),
+    tailwindcss(),
+    mediapipeWasm(),
+  ],
   publicDir: 'fixtures',
+  worker: {
+    format: 'es',
+    rollupOptions: {
+      output: {
+        // The ffmpeg class worker must live under the versioned route whose
+        // production COEP/CORP policy keeps it cross-origin isolated.
+        entryFileNames: 'ffmpeg/0.12.10/[name]-[hash].js',
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

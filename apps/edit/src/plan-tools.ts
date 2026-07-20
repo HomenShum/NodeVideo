@@ -5,6 +5,8 @@
 
 export type FrameRange = { startFrame: number; endFrameExclusive: number };
 export type Plan = {
+  id?: string;
+  version?: number;
   frameRate: number;
   durationFrames: number;
   canvas: { width: number; height: number };
@@ -17,8 +19,18 @@ export type Plan = {
       kind: string;
       assetId?: string;
       text?: string;
+      templateId?: string;
+      animation?: 'fade' | 'pop' | 'slide-up' | string;
       timelineRange: FrameRange;
       sourceRange?: FrameRange;
+      sourceFrame?: number;
+      playbackRate?: number;
+      fit?: 'fit' | 'fill' | 'crop';
+      cropKeyframes?: Array<{
+        timelineFrame?: number;
+        box: { x: number; y: number; width: number; height: number };
+      }>;
+      grade?: { kind: string; artifactId?: string };
       box?: { x: number; y: number; width: number; height: number };
     }>;
   }>;

@@ -21,6 +21,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
+import { Progress } from '@/components/ui/progress';
+import type { BrowserFfmpegProgress } from '@/lib/browser-ffmpeg';
 import {
   DndContext,
   type DragEndEvent,
@@ -39,12 +41,17 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Player, type PlayerRef } from '@remotion/player';
+import { Download, X } from 'lucide-react';
 import { StrictMode, useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import Moveable from 'react-moveable';
-import { AbsoluteFill, Sequence, Video } from 'remotion';
 import WaveSurfer from 'wavesurfer.js';
 import RegionsPlugin from 'wavesurfer.js/dist/plugins/regions.esm.js';
+import {
+  cancelBrowserEditExport,
+  disposeBrowserEditExporter,
+  exportBrowserEditPlan,
+} from './browser-export';
 import {
   DEFAULT_MODEL,
   maskKey,
@@ -53,30 +60,17 @@ import {
   writeByokKey,
   writeByokModel,
 } from './byok';
+import { EDIT_ASSET_URLS, PlanComposition } from './plan-composition';
+import type { FrameRange, Plan } from './plan-tools';
 
 // ---------- plan model (the committed, hash-verified Sign case) ----------
 
-type FrameRange = { startFrame: number; endFrameExclusive: number };
 type SourceClip = {
   id: string;
   kind: string;
   assetId?: string;
   timelineRange: FrameRange;
   sourceRange?: FrameRange;
-};
-type OverlayClip = {
-  id: string;
-  kind: string;
-  text?: string;
-  timelineRange: FrameRange;
-  box?: { x: number; y: number; width: number; height: number };
-};
-type Plan = {
-  frameRate: number;
-  durationFrames: number;
-  canvas: { width: number; height: number };
-  beatGrid: { bpm: number; beatsMs: number[]; downbeatsMs: number[] };
-  tracks: Array<{ id: string; kind: string; clips: Array<SourceClip & OverlayClip> }>;
 };
 type PlanPatch = {
   kind: 'swap-source' | 'nudge-boundary' | 'reorder-clips' | 'set-overlay-text';
@@ -99,13 +93,18 @@ type AgentTurn = {
   steps: Array<{ name: string; input: unknown; output: unknown }>;
   patch?: PlanPatch;
 };
-
-const PLAN_URL = '/media/integrated-source-only-v1/edit-plan.json';
-const ASSETS: Record<string, string> = {
-  'asset.take-a': '/media/authorized-real-v1/source-a-web.mp4',
-  'asset.take-b': '/media/authorized-real-v1/source-b-web.mp4',
+type BrowserExportState = {
+  status: 'idle' | 'running' | 'ready' | 'cancelled' | 'error';
+  ratio: number;
+  phase?: BrowserFfmpegProgress['phase'];
+  coreKind?: BrowserFfmpegProgress['coreKind'];
+  url?: string;
+  bytes?: number;
+  fileName?: string;
+  message?: string;
 };
 
+const PLAN_URL = '/media/integrated-source-only-v1/edit-plan.json';
 const videoClips = (plan: Plan) =>
   (plan.tracks.find((t) => t.kind === 'video')?.clips ?? []).filter(
     (c) => c.kind === 'source' && c.assetId && c.sourceRange,
@@ -179,9 +178,10 @@ function withOverlayBox(
   const next: Plan = JSON.parse(JSON.stringify(plan));
   const clip = overlayClips(next).find((c) => c.id === overlayId);
   if (!clip?.box) return plan;
-  clip.box.x = Math.min(Math.max(box.x, 0), 1 - clip.box.width);
-  clip.box.y = Math.min(Math.max(box.y, 0), 0.95);
-  clip.box.width = Math.min(Math.max(box.width, 0.1), 1);
+  const width = Math.min(Math.max(box.width, 0.1), 1);
+  clip.box.width = width;
+  clip.box.x = Math.min(Math.max(box.x, 0), 1 - width);
+  clip.box.y = Math.min(Math.max(box.y, 0), 1 - clip.box.height);
   return next;
 }
 
@@ -213,53 +213,6 @@ function withClipOrder(plan: Plan, fromIndex: number, toIndex: number): Plan {
 function overlaysAtFrame(plan: Plan, frame: number) {
   return overlayClips(plan).filter(
     (c) => c.timelineRange.startFrame <= frame && frame < c.timelineRange.endFrameExclusive,
-  );
-}
-
-// ---------- deterministic preview (Remotion) ----------
-
-function PlanComposition({ plan }: { plan: Plan }) {
-  return (
-    <AbsoluteFill style={{ backgroundColor: '#0c0e0a' }}>
-      {videoClips(plan).map((clip) => (
-        <Sequence
-          durationInFrames={clip.timelineRange.endFrameExclusive - clip.timelineRange.startFrame}
-          from={clip.timelineRange.startFrame}
-          key={clip.id}
-        >
-          <Video
-            muted
-            src={ASSETS[clip.assetId]}
-            startFrom={clip.sourceRange.startFrame}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
-        </Sequence>
-      ))}
-      {overlayClips(plan).map((clip) => (
-        <Sequence
-          durationInFrames={clip.timelineRange.endFrameExclusive - clip.timelineRange.startFrame}
-          from={clip.timelineRange.startFrame}
-          key={clip.id}
-        >
-          <div
-            style={{
-              position: 'absolute',
-              left: `${(clip.box?.x ?? 0.1) * 100}%`,
-              top: `${(clip.box?.y ?? 0.8) * 100}%`,
-              width: `${(clip.box?.width ?? 0.8) * 100}%`,
-              textAlign: 'center',
-              color: 'white',
-              fontFamily: 'Geist Variable, system-ui, sans-serif',
-              fontWeight: 700,
-              fontSize: 42,
-              textShadow: '0 2px 12px rgba(0,0,0,0.8)',
-            }}
-          >
-            {clip.text}
-          </div>
-        </Sequence>
-      ))}
-    </AbsoluteFill>
   );
 }
 
@@ -297,6 +250,20 @@ function ClipChip({
   );
 }
 
+function exportPhaseLabel(phase?: BrowserFfmpegProgress['phase']) {
+  if (phase === 'loading-core') return 'Loading media and the local video engine';
+  if (phase === 'writing-inputs') return 'Preparing the two takes';
+  if (phase === 'rendering') return 'Encoding the accepted cut';
+  if (phase === 'reading-output') return 'Finalizing the MP4';
+  if (phase === 'complete') return 'MP4 ready';
+  return 'Starting local export';
+}
+
+function formatFileSize(bytes = 0) {
+  if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
 // ---------- the studio ----------
 
 function StitchStudio() {
@@ -304,6 +271,10 @@ function StitchStudio() {
   const [history, setHistory] = useState<Plan[]>([]);
   const [thread, setThread] = useState<AgentTurn[]>([]);
   const [agentBusy, setAgentBusy] = useState(false);
+  const [browserExport, setBrowserExport] = useState<BrowserExportState>({
+    status: 'idle',
+    ratio: 0,
+  });
   const [workerEndpoint, setWorkerEndpoint] = useState(
     () => localStorage.getItem('nv-edit-worker-endpoint') ?? 'http://127.0.0.1:4319',
   );
@@ -330,6 +301,8 @@ function StitchStudio() {
   const [editFrame, setEditFrame] = useState(0);
   const [selectedOverlay, setSelectedOverlay] = useState<string | null>(null);
   const playerRef = useRef<PlayerRef>(null);
+  const exportAbortRef = useRef<AbortController | null>(null);
+  const exportUrlRef = useRef('');
   const previewWrapRef = useRef<HTMLDivElement>(null);
   const overlayNodeRefs = useRef<Record<string, HTMLDivElement | null>>({});
   // A small drag threshold keeps taps as taps: a plain click on a chip seeks
@@ -355,6 +328,14 @@ function StitchStudio() {
       .then((r) => r.json())
       .then(setPlan);
   }, []);
+  useEffect(
+    () => () => {
+      exportAbortRef.current?.abort();
+      disposeBrowserEditExporter();
+      if (exportUrlRef.current) URL.revokeObjectURL(exportUrlRef.current);
+    },
+    [],
+  );
 
   // Waveform of take A's own audio (the Sign master is not distributed);
   // the beat grid comes from the frozen plan and drives all snapping. The
@@ -375,7 +356,7 @@ function StitchStudio() {
     if (!waveRef.current || !planLoaded || surferRef.current) return;
     const surfer = WaveSurfer.create({
       container: waveRef.current,
-      url: ASSETS['asset.take-a'],
+      url: EDIT_ASSET_URLS['asset.take-a'],
       height: 88,
       waveColor: '#3a4034',
       progressColor: '#cfff4a',
@@ -470,6 +451,76 @@ function StitchStudio() {
       }
       return h.slice(0, -1);
     });
+  }
+
+  async function startBrowserExport() {
+    const current = planRef.current;
+    if (!current || browserExport.status === 'running') return;
+    playerRef.current?.pause();
+    exportAbortRef.current?.abort();
+    const controller = new AbortController();
+    exportAbortRef.current = controller;
+    if (exportUrlRef.current) {
+      URL.revokeObjectURL(exportUrlRef.current);
+      exportUrlRef.current = '';
+    }
+    setBrowserExport({ status: 'running', ratio: 0.01, phase: 'loading-core' });
+    try {
+      const snapshot = structuredClone(current);
+      const fileName = 'nodevideo-sign-edit.mp4';
+      const result = await exportBrowserEditPlan(snapshot, {
+        fileName,
+        signal: controller.signal,
+        onProgress: (progress) =>
+          setBrowserExport((state) =>
+            state.status === 'running'
+              ? {
+                  status: 'running',
+                  ratio: progress.ratio,
+                  phase: progress.phase,
+                  coreKind: progress.coreKind,
+                }
+              : state,
+          ),
+      });
+      const url = URL.createObjectURL(result.blob);
+      exportUrlRef.current = url;
+      setBrowserExport({
+        status: 'ready',
+        ratio: 1,
+        phase: 'complete',
+        coreKind: result.coreKind,
+        url,
+        bytes: result.bytes.byteLength,
+        fileName: result.fileName,
+        message: 'Silent MP4 ready. The download has started.',
+      });
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = result.fileName;
+      document.body.append(anchor);
+      anchor.click();
+      anchor.remove();
+    } catch (cause) {
+      const cancelled =
+        controller.signal.aborted || (cause instanceof DOMException && cause.name === 'AbortError');
+      setBrowserExport({
+        status: cancelled ? 'cancelled' : 'error',
+        ratio: 0,
+        message: cancelled
+          ? 'Export cancelled. No partial file was downloaded.'
+          : cause instanceof Error
+            ? cause.message
+            : 'The browser could not export this cut.',
+      });
+    } finally {
+      if (exportAbortRef.current === controller) exportAbortRef.current = null;
+    }
+  }
+
+  function cancelBrowserExport() {
+    exportAbortRef.current?.abort();
+    cancelBrowserEditExport();
   }
 
   function describeModelPatch(patch: PlanPatch, current: Plan): PlanPatch {
@@ -807,7 +858,7 @@ function StitchStudio() {
   const composition = useMemo(() => plan && <PlanComposition plan={plan} />, [plan]);
   return (
     <main
-      className="mx-auto min-h-svh max-w-7xl space-y-4 p-4 pb-32 sm:p-6 lg:pb-6"
+      className="stitch-studio-shell mx-auto min-h-svh max-w-7xl space-y-4 p-4 pb-32 sm:p-6 lg:pb-6"
       data-testid="stitch-studio"
     >
       <header className="flex flex-wrap items-center justify-between gap-2">
@@ -819,15 +870,83 @@ function StitchStudio() {
             Edit the Sign cut, on the beat.
           </h1>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-end gap-2">
           <Badge variant="outline">
             {plan ? `${plan.beatGrid.bpm.toFixed(1)} bpm` : 'loading plan'}
           </Badge>
           <Button disabled={history.length === 0} onClick={undo} size="sm" variant="outline">
             Undo last patch
           </Button>
+          <Button
+            aria-describedby="browser-export-boundary"
+            disabled={!plan || browserExport.status === 'running'}
+            onClick={() => void startBrowserExport()}
+            size="sm"
+            type="button"
+          >
+            <Download aria-hidden="true" />
+            {browserExport.status === 'running' ? 'Exporting…' : 'Export silent MP4'}
+          </Button>
         </div>
       </header>
+
+      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
+        <p id="browser-export-boundary">
+          Local H.264 export matches this accepted cut; the private song master is omitted.
+        </p>
+        <p>Nothing uploads.</p>
+      </div>
+
+      {browserExport.status !== 'idle' && (
+        <section
+          aria-live="polite"
+          className="rounded-xl border border-border bg-card px-3 py-2"
+          data-testid="browser-export-status"
+        >
+          {browserExport.status === 'running' ? (
+            <div className="flex items-center gap-3">
+              <div className="min-w-0 flex-1 space-y-1.5">
+                <div className="flex items-center justify-between gap-3 text-xs">
+                  <span>{exportPhaseLabel(browserExport.phase)}</span>
+                  <span className="font-mono">{Math.round(browserExport.ratio * 100)}%</span>
+                </div>
+                <Progress
+                  aria-label="MP4 export progress"
+                  aria-valuenow={Math.round(browserExport.ratio * 100)}
+                  value={Math.round(browserExport.ratio * 100)}
+                />
+              </div>
+              <Button
+                aria-label="Cancel MP4 export"
+                onClick={cancelBrowserExport}
+                size="icon-sm"
+                type="button"
+                variant="outline"
+              >
+                <X aria-hidden="true" />
+              </Button>
+            </div>
+          ) : (
+            <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
+              <p className={browserExport.status === 'error' ? 'text-destructive' : ''}>
+                {browserExport.message}
+                {browserExport.status === 'ready' && browserExport.bytes
+                  ? ` ${formatFileSize(browserExport.bytes)} · ${
+                      browserExport.coreKind === 'multi-thread' ? 'multi-core' : 'single-core'
+                    } local encode.`
+                  : ''}
+              </p>
+              {browserExport.status === 'ready' && browserExport.url && (
+                <Button asChild size="sm" variant="outline">
+                  <a download={browserExport.fileName} href={browserExport.url}>
+                    <Download aria-hidden="true" /> Download again
+                  </a>
+                </Button>
+              )}
+            </div>
+          )}
+        </section>
+      )}
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,0.45fr)]">
         <Card>
@@ -1087,7 +1206,7 @@ function StitchStudio() {
             {/* On phones the ask bar pins to the bottom edge — always under
                 the thumb, CapCut-style; the page bottom padding keeps content
                 clear of it. */}
-            <div className="max-lg:fixed max-lg:inset-x-3 max-lg:bottom-3 max-lg:z-40 max-lg:rounded-xl max-lg:border max-lg:border-border max-lg:bg-background/95 max-lg:shadow-lg max-lg:backdrop-blur">
+            <div className="thumb-agent-bar max-lg:fixed max-lg:inset-x-3 max-lg:z-40 max-lg:rounded-xl max-lg:border max-lg:border-border max-lg:bg-background/95 max-lg:shadow-lg max-lg:backdrop-blur">
               <PromptInput onSubmit={({ text }) => dispatchAgent(text ?? '')}>
                 <PromptInputBody>
                   <PromptInputTextarea
@@ -1149,8 +1268,8 @@ function StitchStudio() {
       </Card>
 
       <footer className="text-xs text-muted-foreground">
-        Edits here are proposals on the loaded plan; the hash-verified render remains the studio
-        pipeline's job. Nothing uploads.
+        The browser MP4 is a silent convenience export from the accepted plan. The rights-cleared,
+        hash-verified master remains the studio pipeline's job. Media never leaves this tab.
       </footer>
     </main>
   );
