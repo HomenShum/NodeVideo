@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "nodeagent.evaluation-binding/v1",
+  "id": "nodevideo-eve-live-approvals",
+  "status": "live-provider-and-control-api-required",
+  "command": "npm --prefix apps/eve-agent run eval",
+  "sources": [
+    "apps/eve-agent/evals/evals.config.ts",
+    "apps/eve-agent/evals/isolation/reject-target-in-generation.eval.ts",
+    "apps/eve-agent/evals/approvals/dispatch-parks.eval.ts"
+  ]
+}

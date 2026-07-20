@@ -1,0 +1,65 @@
+# Brownfield application map for the existing Eve control plane. This manifest
+# is descriptive only: Eve remains the runtime and NodeVideo retains all worker,
+# ledger, approval, and artifact authority.
+schemaVersion: nodeagent.application/v1
+
+application:
+  id: nodevideo-eve-control-plane
+  name: NodeVideo Eve Control Plane
+  purpose: >-
+    Orchestrate source-only, approval-gated video planning and frozen evaluation
+    through NodeVideo's existing Eve agent, typed control APIs, capability pack,
+    and fixed media workers.
+
+authoring:
+  directory: ./apps/eve-agent/agent
+
+runtime:
+  engine: eve
+  profile: brownfield-control-plane
+
+provider:
+  adapter: eve-vercel-ai-gateway
+  model:
+    provider: openai
+    id: gpt-5.4-mini
+  secretRef: AI_GATEWAY_API_KEY
+
+backend:
+  adapter: nodevideo-control-api
+  config:
+    generationUrlRef: NODEVIDEO_GENERATION_CONTROL_URL
+    evaluationUrlRef: NODEVIDEO_EVALUATION_CONTROL_URL
+    implementationSource: ./apps/eve-agent/agent/lib/control-api.ts
+
+orchestration:
+  planner: eve-filesystem-subagents
+  implementationSources:
+    - ./apps/eve-agent/agent/agent.ts
+    - ./apps/eve-agent/agent/subagents
+    - ./apps/eve-agent/agent/tools
+  authority: existing-eve-runtime
+  migrationMode: mapping-only
+
+packs:
+  - ./packs/song-conditioned-auto-edit/pack.yaml
+
+policies:
+  enforcement: eve-authored-least-privilege
+  sources:
+    - ./apps/eve-agent/agent/instructions.md
+    - ./apps/eve-agent/scripts/verify-isolation.mjs
+    - ./apps/eve-agent/agent/lib/contracts.ts
+
+evaluations:
+  required:
+    - nodevideo-eve-isolation
+    - nodevideo-eve-live-approvals
+
+contracts:
+  event: nodeagent.event/v1
+  trace: nodeagent.trace/v1
+
+secrets:
+  - envRef: NODEVIDEO_GENERATION_CONTROL_TOKEN
+  - envRef: NODEVIDEO_EVALUATION_CONTROL_TOKEN

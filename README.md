@@ -302,6 +302,8 @@ arbitrary Tailwind dimensions, extra authored stylesheets, and custom media quer
 - [`docs/song-conditioned-pipeline.md`](docs/song-conditioned-pipeline.md) - detailed workflow and
   proof ledger.
 - [`docs/architecture.md`](docs/architecture.md) - system responsibility and evidence boundaries.
+- [`docs/NODEKIT_EVE_BROWNFIELD_MAP.md`](docs/NODEKIT_EVE_BROWNFIELD_MAP.md) - mapping from
+  the existing Eve control plane into the canonical NodeAgent application contract.
 - [`fixtures/media/blind-source-only-pilot-01/`](fixtures/media/blind-source-only-pilot-01/) - earlier
   blind exploration retained as secondary evidence, not the primary product contract.
 

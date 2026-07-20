@@ -16,6 +16,7 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "capability:validate": "node scripts/quality/validate-capability-pack.mjs",
+    "nodeagent:validate": "node scripts/quality/validate-nodeagent-map.mjs",
     "check:bloat": "node scripts/quality/check-repo-bloat.mjs",
     "check:contract": "node scripts/quality/verify-ui-contract.mjs",
     "doctor": "npm run capability:validate && npm run grounding:doctor && npm run worker:verify && npm run worker:song:verify",
@@ -69,7 +70,7 @@
     "ui:policy": "node scripts/quality/check-ui-policy.mjs",
     "ui:budget": "node scripts/quality/check-ui-budget.mjs",
     "check:ui": "npm run ui:policy && npm run ui:budget",
-    "check": "npm run lint && npm run typecheck && npm run test && npm run check:ui && npm run capability:validate && npm run grounding:doctor && npm run grounding:proof:verify && npm run worker:verify && npm run worker:song:verify && npm run proof:song:real:verify && npm run worker:authorized:verify && npm run build && npm run check:contract",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run check:ui && npm run capability:validate && npm run nodeagent:validate && npm run grounding:doctor && npm run grounding:proof:verify && npm run worker:verify && npm run worker:song:verify && npm run proof:song:real:verify && npm run worker:authorized:verify && npm run build && npm run check:contract",
     "qa": "npm run check && npm run proof:synthetic && npm run test:e2e"
   },
   "dependencies": {
