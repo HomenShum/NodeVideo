@@ -85,7 +85,7 @@
       "landmark": {
         "testid": "collab-editor"
       },
-      "description": "In-browser collab editor: reference + take composited side-by-side or top-and-bottom, aligned by nudge, exported as WebM. No worker, no upload — both files stay in the tab.",
+      "description": "In-browser collab editor: reference + take composited side-by-side or top-and-bottom, aligned by nudge or canvas drag, exported as WebM. No worker, no upload — both files stay in the tab. Export fails closed if the tab is hidden or either compositor pump stalls.",
       "controls": [
         {
           "id": "reference-video",
@@ -119,7 +119,13 @@
           "id": "export",
           "role": "button",
           "name": "Export collab video",
-          "gated": "disabled until both files are chosen; records in real time"
+          "gated": "disabled until both files are chosen; records in real time only while the tab remains visible"
+        },
+        {
+          "id": "cancel-collab-export",
+          "role": "button",
+          "name": "Cancel export",
+          "deferredResolution": "replaces Export collab video only while MediaRecorder is active; cancellation discards every partial chunk and downloads nothing"
         },
         {
           "id": "preview-scrub",
@@ -139,7 +145,7 @@
           "forbidTexts": ["Service token", "Owner access key"]
         }
       ],
-      "agentGuidance": "Fully client-side surface. Do not look for a job API here; there is none. Export produces WebM via MediaRecorder."
+      "agentGuidance": "Fully client-side surface. Do not look for a job API here; there is none. Export produces WebM via MediaRecorder. Keep the tab visible: requestAnimationFrame is backed by an independent timer canvas pump, while visibility loss or a stall in both pumps cancels and discards the partial file."
     },
     {
       "id": "practice-room",
@@ -197,8 +203,26 @@
       "landmark": {
         "testid": "stitch-studio"
       },
-      "description": "Interactive beat-grid stitch editor over the committed Sign case: deterministic Remotion preview of the frozen plan, wavesurfer timeline with beat-snapped cut boundaries, and a local rule-grounded edit agent whose patch cards mutate the plan only on accept. Fully client-side; the hash-verified render stays in the studio pipeline.",
+      "description": "Interactive beat-grid stitch editor over the committed Sign case: deterministic full-plan Remotion preview, wavesurfer timeline with beat-snapped cut boundaries, a local rule-grounded edit agent whose patch cards mutate the plan only on accept, and a cancellable in-browser H.264 MP4 export of the accepted plan. Fully client-side; the private song master is omitted and the rights-cleared hash-verified render stays in the studio pipeline.",
       "controls": [
+        {
+          "id": "browser-export",
+          "role": "button",
+          "name": "Export silent MP4",
+          "gated": "disabled until the plan has loaded and while an export is already running",
+          "meaning": "Snapshots the currently accepted plan, then fetches the two same-origin authorized proxies and runs the pinned self-hosted ffmpeg.wasm core entirely in this tab. The output is silent because the private song master is not distributed. Progress is visible, cancellation terminates the worker, and no media uploads."
+        },
+        {
+          "id": "cancel-browser-export",
+          "role": "button",
+          "name": "Cancel MP4 export",
+          "deferredResolution": "exists only while a local MP4 export is active; cancellation terminates the worker and downloads no partial file"
+        },
+        {
+          "id": "browser-export-progress",
+          "css": "[aria-label='MP4 export progress']",
+          "deferredResolution": "exists only while a local MP4 export is active and reports the current encode percentage"
+        },
         {
           "id": "edit-agent-input",
           "role": "textbox",
@@ -271,12 +295,12 @@
       "states": [
         {
           "id": "stitch-first-run",
-          "meaning": "Honest boundaries visible before any interaction: local-only agent, no uploads, and the waveform's provenance (take A audio, not the undistributed Sign master).",
+          "meaning": "Honest boundaries visible before any interaction: local-only agent, local silent MP4 export, no uploads, and the waveform's provenance (take A audio, not the undistributed Sign master).",
           "requireTexts": ["Edit the Sign cut, on the beat.", "No cloud model", "Nothing uploads."],
           "forbidTexts": ["Owner access key", "Service token"]
         }
       ],
-      "agentGuidance": "Patches apply only via the Apply patch button; dragging a cut edge on the timeline snaps to the plan's beat grid and is equivalent to an accepted nudge patch. Undo reverts the last applied change."
+      "agentGuidance": "Patches apply only via the Apply patch button; dragging a cut edge on the timeline snaps to the plan's beat grid and is equivalent to an accepted nudge patch. Undo reverts the last applied change. Export silent MP4 snapshots the accepted plan at click time and renders its source, black, freeze, fit/fill, and timed text-animation semantics locally; do not describe it as the rights-cleared master because audio is intentionally omitted."
     },
     {
       "id": "workspace",

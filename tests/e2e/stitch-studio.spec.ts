@@ -1,5 +1,65 @@
+import { readFileSync } from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from 'playwright/test';
+
+const committedEditPlan = JSON.parse(
+  readFileSync(
+    new URL('../../fixtures/media/integrated-source-only-v1/edit-plan.json', import.meta.url),
+    'utf8',
+  ),
+) as {
+  canvas: { width: number; height: number };
+  durationFrames: number;
+  tracks: Array<{ id: string; kind: string; role?: string; clips: Array<Record<string, unknown>> }>;
+  audio: { routing: Array<Record<string, unknown>>; events: Array<Record<string, unknown>> };
+};
+
+function quickBrowserExportPlan() {
+  const plan = structuredClone(committedEditPlan);
+  plan.canvas = { width: 180, height: 320 };
+  plan.durationFrames = 30;
+  const video = plan.tracks.find((track) => track.kind === 'video' && track.role === 'primary');
+  if (!video) throw new Error('committed plan is missing its primary video track');
+  video.clips = [
+    {
+      ...video.clips[0],
+      timelineRange: { startFrame: 0, endFrameExclusive: 30 },
+      // Keep the real-codec smoke fast: seeking through 15 seconds of source
+      // inside ffmpeg.wasm would test decoder throughput, not export wiring.
+      sourceRange: { startFrame: 0, endFrameExclusive: 30 },
+    },
+  ];
+  const overlay = plan.tracks.find((track) => track.kind === 'overlay');
+  if (!overlay) throw new Error('committed plan is missing its overlay track');
+  overlay.clips = [
+    {
+      ...overlay.clips[0],
+      timelineRange: { startFrame: 0, endFrameExclusive: 30 },
+    },
+  ];
+  plan.tracks = plan.tracks.filter((track) => track.kind !== 'audio');
+  plan.audio = {
+    routing: [
+      {
+        id: 'route.mute.asset.take-a',
+        sourceKind: 'asset-audio',
+        sourceId: 'asset.take-a',
+        bus: 'program',
+        muted: true,
+        gainDb: 0,
+      },
+    ],
+    events: [
+      {
+        id: 'event.silence',
+        kind: 'silence',
+        targetStartMs: 0,
+        targetEndMs: 1000,
+      },
+    ],
+  };
+  return plan;
+}
 
 test('stitch studio loads the frozen plan and the edit agent applies a patch', async ({ page }) => {
   await page.goto('/edit.html');
@@ -9,9 +69,11 @@ test('stitch studio loads the frozen plan and the edit agent applies a patch', a
   ).toBeVisible();
   await expect(page.getByText('No cloud model')).toBeVisible();
   await expect(page.getByText('Nothing uploads.')).toBeVisible();
+  await expect(page.getByText('the private song master is omitted')).toBeVisible();
 
   // The frozen plan loads and the bpm badge reflects its beat grid.
   await expect(page.getByText('107.7 bpm')).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByRole('button', { name: 'Export silent MP4' })).toBeEnabled();
 
   // Undo is honestly disabled before any patch exists.
   const undo = page.getByRole('button', { name: 'Undo last patch' });
@@ -94,6 +156,67 @@ test('stitch studio loads the frozen plan and the edit agent applies a patch', a
     .exclude('[data-testid="plan-preview"]')
     .analyze();
   expect(accessibility.violations).toEqual([]);
+});
+
+test('browser exporter produces a real local H.264 MP4 download', async ({ page }, testInfo) => {
+  test.skip(
+    testInfo.project.name !== 'desktop-chromium',
+    'One real WASM encode covers the shared browser exporter without multiplying CI time.',
+  );
+  test.setTimeout(240_000);
+
+  await page.route('**/media/integrated-source-only-v1/edit-plan.json', async (route) => {
+    await route.fulfill({ json: quickBrowserExportPlan() });
+  });
+  await page.goto('/edit.html');
+  await expect(page.getByText('107.7 bpm')).toBeVisible({ timeout: 15_000 });
+  expect(await page.evaluate(() => crossOriginIsolated)).toBe(true);
+
+  const wasm = await page.request.get('/ffmpeg/0.12.10/mt/ffmpeg-core.wasm');
+  expect(wasm.ok()).toBe(true);
+  expect(wasm.headers()['content-type']).toContain('application/wasm');
+
+  const downloads: string[] = [];
+  page.on('download', (download) => downloads.push(download.suggestedFilename()));
+
+  // Cancellation must tear down an active WASM job without emitting a partial
+  // file, and the same UI must be immediately reusable for a clean retry.
+  await page.getByRole('button', { name: 'Export silent MP4' }).click();
+  await expect(page.getByLabel('MP4 export progress')).toBeVisible();
+  await page.getByRole('button', { name: 'Cancel MP4 export' }).click();
+  await expect(page.getByTestId('browser-export-status')).toContainText(
+    'Export cancelled. No partial file was downloaded.',
+  );
+  expect(downloads).toEqual([]);
+
+  const downloadStarted = page
+    .waitForEvent('download', { timeout: 220_000 })
+    .catch((error: unknown) => (error instanceof Error ? error : new Error(String(error))));
+  await page.getByRole('button', { name: 'Export silent MP4' }).click();
+  await expect(page.getByLabel('MP4 export progress')).toBeVisible();
+  const terminalStatus = await page.waitForFunction(
+    () => {
+      const status = document.querySelector('[data-testid="browser-export-status"]');
+      if (!status || status.querySelector('[role="progressbar"]')) return null;
+      return status.textContent?.trim() || null;
+    },
+    undefined,
+    { timeout: 220_000 },
+  );
+  expect(await terminalStatus.jsonValue()).toContain('Silent MP4 ready');
+  const download = await downloadStarted;
+  if (download instanceof Error) throw download;
+  expect(download.suggestedFilename()).toBe('nodevideo-sign-edit.mp4');
+  expect(downloads).toEqual(['nodevideo-sign-edit.mp4']);
+
+  const downloadPath = await download.path();
+  expect(downloadPath).not.toBeNull();
+  if (!downloadPath) throw new Error('Playwright did not retain the downloaded MP4');
+  const bytes = readFileSync(downloadPath);
+  expect(bytes.byteLength).toBeGreaterThan(1_000);
+  expect(bytes.subarray(4, 8).toString('ascii')).toBe('ftyp');
+  await expect(page.getByTestId('browser-export-status')).toContainText('Silent MP4 ready');
+  await expect(page.getByRole('link', { name: 'Download again' })).toBeVisible();
 });
 
 test('in-browser BYOK agent runs the tool loop against a mocked OpenRouter', async ({ page }) => {
