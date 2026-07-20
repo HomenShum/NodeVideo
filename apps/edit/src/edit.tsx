@@ -267,7 +267,8 @@ function ClipChip({
   clip,
   index,
   plan,
-}: { clip: Required<SourceClip>; index: number; plan: Plan }) {
+  onSeek,
+}: { clip: Required<SourceClip>; index: number; plan: Plan; onSeek: (frame: number) => void }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: clip.id,
   });
@@ -276,6 +277,7 @@ function ClipChip({
   return (
     <button
       aria-label={`Clip ${index} take ${lane}`}
+      onClick={() => onSeek(clip.timelineRange.startFrame)}
       className={`inline-flex shrink-0 items-center gap-1.5 rounded-lg border px-2.5 py-1.5 font-mono text-xs ${
         lane === 'A'
           ? 'border-brand/60 bg-brand/10 text-foreground'
@@ -330,10 +332,17 @@ function StitchStudio() {
   const playerRef = useRef<PlayerRef>(null);
   const previewWrapRef = useRef<HTMLDivElement>(null);
   const overlayNodeRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  // A small drag threshold keeps taps as taps: a plain click on a chip seeks
+  // the player to that clip; moving past 6px starts the reorder drag instead.
   const dndSensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   );
+  const seekToFrame = (frame: number) => {
+    playerRef.current?.pause();
+    playerRef.current?.seekTo(frame);
+  };
+  const planPreviewRef = useRef<HTMLDivElement>(null);
   const waveRef = useRef<HTMLDivElement>(null);
   const surferRef = useRef<WaveSurfer | null>(null);
   const regionsRef = useRef<ReturnType<typeof RegionsPlugin.create> | null>(null);
@@ -352,6 +361,16 @@ function StitchStudio() {
   // surfer is created once when the plan first loads (patches update regions
   // via syncRegions, never by rebuilding the waveform).
   const planLoaded = plan !== null;
+  // Mirror the player's frame onto the preview wrapper so seeks are
+  // observable state (tests and agents read it), not invisible side effects.
+  useEffect(() => {
+    const player = playerRef.current;
+    if (!planLoaded || !player) return;
+    const onFrame = (event: { detail: { frame: number } }) =>
+      planPreviewRef.current?.setAttribute('data-frame', String(event.detail.frame));
+    player.addEventListener('frameupdate', onFrame);
+    return () => player.removeEventListener('frameupdate', onFrame);
+  }, [planLoaded]);
   useEffect(() => {
     if (!waveRef.current || !planLoaded || surferRef.current) return;
     const surfer = WaveSurfer.create({
@@ -787,7 +806,10 @@ function StitchStudio() {
   const selectedClip = plan ? overlayClips(plan).find((c) => c.id === selectedOverlay) : undefined;
   const composition = useMemo(() => plan && <PlanComposition plan={plan} />, [plan]);
   return (
-    <main className="mx-auto min-h-svh max-w-7xl space-y-4 p-4 sm:p-6" data-testid="stitch-studio">
+    <main
+      className="mx-auto min-h-svh max-w-7xl space-y-4 p-4 pb-32 sm:p-6 lg:pb-6"
+      data-testid="stitch-studio"
+    >
       <header className="flex flex-wrap items-center justify-between gap-2">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -818,6 +840,7 @@ function StitchStudio() {
                 <div
                   className={`relative mx-auto ${overlayEdit ? 'max-w-105' : 'max-w-70'}`}
                   data-testid="plan-preview"
+                  ref={planPreviewRef}
                 >
                   <Player
                     acknowledgeRemotionLicense
@@ -1061,17 +1084,22 @@ function StitchStudio() {
                 ))}
               </Suggestions>
             )}
-            <PromptInput onSubmit={({ text }) => dispatchAgent(text ?? '')}>
-              <PromptInputBody>
-                <PromptInputTextarea
-                  aria-label="Ask the edit agent"
-                  placeholder="Ask the edit agent — swap 2, tighten 1 by 1 beat…"
-                />
-              </PromptInputBody>
-              <PromptInputFooter>
-                <PromptInputSubmit />
-              </PromptInputFooter>
-            </PromptInput>
+            {/* On phones the ask bar pins to the bottom edge — always under
+                the thumb, CapCut-style; the page bottom padding keeps content
+                clear of it. */}
+            <div className="max-lg:fixed max-lg:inset-x-3 max-lg:bottom-3 max-lg:z-40 max-lg:rounded-xl max-lg:border max-lg:border-border max-lg:bg-background/95 max-lg:shadow-lg max-lg:backdrop-blur">
+              <PromptInput onSubmit={({ text }) => dispatchAgent(text ?? '')}>
+                <PromptInputBody>
+                  <PromptInputTextarea
+                    aria-label="Ask the edit agent"
+                    placeholder="Ask the edit agent — swap 2, tighten 1 by 1 beat…"
+                  />
+                </PromptInputBody>
+                <PromptInputFooter>
+                  <PromptInputSubmit />
+                </PromptInputFooter>
+              </PromptInput>
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -1101,7 +1129,13 @@ function StitchStudio() {
                   strategy={horizontalListSortingStrategy}
                 >
                   {videoClips(plan).map((clip, index) => (
-                    <ClipChip clip={clip} index={index} key={clip.id} plan={plan} />
+                    <ClipChip
+                      clip={clip}
+                      index={index}
+                      key={clip.id}
+                      onSeek={seekToFrame}
+                      plan={plan}
+                    />
                   ))}
                 </SortableContext>
               </DndContext>

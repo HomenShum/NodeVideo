@@ -142,6 +142,7 @@ function CollabEditor() {
   const referenceRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const recorderRef = useRef<MediaRecorder | null>(null);
+  const dragStateRef = useRef<{ x: number; offset: number } | null>(null);
 
   useEffect(() => () => void (takeUrl && URL.revokeObjectURL(takeUrl)), [takeUrl]);
   useEffect(() => () => void (referenceUrl && URL.revokeObjectURL(referenceUrl)), [referenceUrl]);
@@ -328,17 +329,33 @@ function CollabEditor() {
               Reference −0.1s
             </Button>
             <span className="font-mono text-xs text-muted-foreground">
-              {(offsetMs / 1000).toFixed(1)}s
+              {(offsetMs / 1000).toFixed(2)}s
             </span>
             <Button onClick={() => nudge(100)} size="sm" type="button" variant="outline">
               Reference +0.1s
             </Button>
           </div>
 
+          {/* Dragging the preview sideways scrubs the reference offset — the
+              tactile version of the nudge buttons (which remain the keyboard
+              and screen-reader path). 4ms per pixel; same ±10s clamp. */}
           <canvas
-            aria-label="Collab preview"
-            className="w-full rounded-xl border border-border bg-black"
+            aria-label="Collab preview — drag sideways to nudge the reference"
+            className="w-full cursor-ew-resize touch-pan-y rounded-xl border border-border bg-black"
             height={layout === 'side-by-side' ? 720 : 1280}
+            onPointerDown={(event) => {
+              event.currentTarget.setPointerCapture(event.pointerId);
+              dragStateRef.current = { x: event.clientX, offset: offsetMs };
+            }}
+            onPointerMove={(event) => {
+              const start = dragStateRef.current;
+              if (!start) return;
+              const next = start.offset + Math.round((event.clientX - start.x) * 4);
+              setOffsetMs(Math.max(-10_000, Math.min(10_000, Math.round(next / 20) * 20)));
+            }}
+            onPointerUp={() => {
+              dragStateRef.current = null;
+            }}
             ref={canvasRef}
             role="img"
             width={layout === 'side-by-side' ? 1280 : 720}
