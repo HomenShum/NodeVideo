@@ -48,6 +48,20 @@ test('stitch studio loads the frozen plan and the edit agent applies a patch', a
   await undo.click();
   await page.getByRole('button', { name: 'Done editing overlays' }).click();
 
+  // Tap-to-seek: a plain click on a chip (below the 6px drag threshold) jumps
+  // the player to that clip's first frame — observable via data-frame.
+  await page.getByRole('button', { name: 'Clip 1 take B' }).click();
+  await expect(page.getByTestId('plan-preview')).toHaveAttribute('data-frame', /^[1-9]\d*$/);
+
+  // On phone-width viewports the ask bar pins to the bottom edge — reachable
+  // without scrolling, always under the thumb.
+  const viewport = page.viewportSize();
+  if (viewport && viewport.width < 1024) {
+    const box = await page.getByLabel('Ask the edit agent').boundingBox();
+    expect(box).not.toBeNull();
+    if (box) expect(box.y + box.height).toBeLessThanOrEqual(viewport.height);
+  }
+
   // Clip reordering via keyboard (dnd-kit): pick up the first chip, move it
   // one slot right, drop — the strip re-lays contiguously and undo reverts.
   const firstChip = page.getByRole('button', { name: 'Clip 0 take A' });

@@ -39,6 +39,23 @@ test('collab editor is immediately usable, honest, and does not overflow', async
   await expect(topBottom).toHaveAttribute('aria-pressed', 'true');
   await expect(sideBySide).toHaveAttribute('aria-pressed', 'false');
 
+  // Direct manipulation: dragging the preview sideways scrubs the reference
+  // offset (4ms/px), the tactile twin of the nudge buttons.
+  const canvas = page.getByRole('img', { name: /drag sideways to nudge/ });
+  await canvas.scrollIntoViewIfNeeded();
+  const canvasBox = await canvas.boundingBox();
+  expect(canvasBox).not.toBeNull();
+  if (canvasBox) {
+    // Drag near the canvas top: in top-bottom layout the canvas can be taller
+    // than the viewport, putting its midpoint outside the clickable area.
+    const y = canvasBox.y + Math.min(60, canvasBox.height / 4);
+    await page.mouse.move(canvasBox.x + canvasBox.width / 2, y);
+    await page.mouse.down();
+    await page.mouse.move(canvasBox.x + canvasBox.width / 2 + 100, y, { steps: 5 });
+    await page.mouse.up();
+  }
+  await expect(page.getByText('0.40s')).toBeVisible();
+
   const geometry = await page.evaluate(() => ({
     viewport: window.innerWidth,
     document: document.documentElement.scrollWidth,

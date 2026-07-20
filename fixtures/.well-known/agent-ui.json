@@ -120,6 +120,11 @@
           "role": "button",
           "name": "Export collab video",
           "gated": "disabled until both files are chosen; records in real time"
+        },
+        {
+          "id": "preview-scrub",
+          "css": "canvas[aria-label*=\"drag sideways\"]",
+          "meaning": "Dragging the preview canvas sideways scrubs the reference offset at 4ms per pixel with the same ±10s clamp; the nudge buttons remain the keyboard and screen-reader path. The offset readout updates live."
         }
       ],
       "states": [
@@ -197,7 +202,8 @@
         {
           "id": "edit-agent-input",
           "role": "textbox",
-          "name": "Ask the edit agent"
+          "name": "Ask the edit agent",
+          "meaning": "On viewports under 1024px this input pins to the bottom of the screen (thumb reach); same control, same behavior."
         },
         {
           "id": "edit-suggestion-cuts",
@@ -236,7 +242,7 @@
         {
           "id": "clip-order",
           "css": "[aria-label='Clip order']",
-          "meaning": "Drag-to-reorder clip chips (dnd-kit; keyboard: Enter picks up, arrows move, Enter drops). Reordering re-lays the timeline contiguously; each clip keeps its own source frames."
+          "meaning": "Drag-to-reorder clip chips (dnd-kit; keyboard: Enter picks up, arrows move, Enter drops). Reordering re-lays the timeline contiguously; each clip keeps its own source frames. A plain tap on a chip (under the 6px drag threshold) seeks the preview player to that clip; the current frame is mirrored on the preview wrapper as data-frame."
         },
         {
           "id": "byok-key",
