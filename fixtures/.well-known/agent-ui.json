@@ -35,7 +35,7 @@
         {
           "id": "see-comparison",
           "role": "link",
-          "name": "See a verified comparison"
+          "name": "Watch a real comparison"
         },
         {
           "id": "sample-verdict",
@@ -57,12 +57,12 @@
         {
           "id": "proof-studio-nav",
           "role": "link",
-          "name": "Proof studio"
+          "name": "Studio"
         },
         {
           "id": "agent-contract-nav",
           "role": "link",
-          "name": "Agent contract"
+          "name": "For agents"
         }
       ],
       "states": [

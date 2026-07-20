@@ -160,8 +160,8 @@ function CollabEditor() {
           Dance next to the original.
         </h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Load the reference video and your take, line them up, and export a side-by-side or
-          top-and-bottom collab. Both videos stay in this tab — nothing ever leaves your browser.
+          Pick two videos, line them up, export the collab. Both stay in this tab — nothing ever
+          leaves your browser.
         </p>
       </header>
 
@@ -175,8 +175,9 @@ function CollabEditor() {
             type="file"
           />
           <FieldDescription>
-            A saved copy of the original (YouTube and Instagram pages cannot be captured directly —
-            use your downloaded file).
+            {referenceFile
+              ? `Loaded: ${referenceFile.name}`
+              : 'A saved copy of the original — YouTube and Instagram pages cannot be captured directly.'}
           </FieldDescription>
         </Field>
         <Field>
@@ -187,7 +188,9 @@ function CollabEditor() {
             onChange={(event) => setTakeFile(event.target.files?.[0] ?? null)}
             type="file"
           />
-          <FieldDescription>Your camera recording. Its length drives the export.</FieldDescription>
+          <FieldDescription>
+            {takeFile ? `Loaded: ${takeFile.name}` : 'Your camera recording drives the length.'}
+          </FieldDescription>
         </Field>
       </div>
 

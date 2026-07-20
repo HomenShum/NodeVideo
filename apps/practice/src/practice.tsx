@@ -259,33 +259,26 @@ function PracticeRoom() {
           Dance the Sign phrase with your camera.
         </h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          The reference skeleton is real pose data from the verified Sign case; the beat clock is
-          its measured {TEMPO_BPM} bpm grid. Pose tracking runs on this device — no video or pose
-          data leaves your browser, and nothing is recorded.
+          Pose tracking runs on this device — no video or pose data leaves your browser, and nothing
+          is recorded.
         </p>
       </header>
 
       {mode === 'intro' && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Before you start</CardTitle>
-            <CardDescription>
-              You need about two meters of space and your whole body in frame. Feedback is a
-              relative similarity signal against the reference skeleton — it is not a score, a
-              grade, or a judgment of your dancing.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <Button onClick={() => void startCamera()} type="button">
-              Start camera
-            </Button>
-            {status && <p className="text-sm text-destructive">{status}</p>}
-            <p className="text-xs text-muted-foreground">
-              Play the song yourself if you want music — the Sign master is not distributed with
-              this page, so the phrase runs on a silent beat clock.
-            </p>
-          </CardContent>
-        </Card>
+        <div className="space-y-3">
+          <Button onClick={() => void startCamera()} size="lg" type="button">
+            Start camera
+          </Button>
+          {status && <p className="text-sm text-destructive">{status}</p>}
+          <p className="max-w-2xl text-xs text-muted-foreground">
+            Room to move, whole body in frame. Feedback compares you to the reference skeleton beat
+            by beat — it is not a score, a grade, or a judgment of your dancing.
+          </p>
+          <p className="max-w-2xl text-xs text-muted-foreground">
+            No music plays here — the phrase runs on a silent beat clock at {TEMPO_BPM} bpm. Put the
+            song on yourself if you want it.
+          </p>
+        </div>
       )}
 
       {mode !== 'intro' && (
