@@ -40,7 +40,11 @@
       "apps/eve-agent/agent/skills/rights-and-provenance/SKILL.md",
       "apps/eve-agent/agent/skills/source-only-proof/SKILL.md"
     ],
-    "subagents": [],
+    "subagents": [
+      "apps/eve-agent/agent/subagents/choreography_interpreter/agent.ts",
+      "apps/eve-agent/agent/subagents/edit_planner/agent.ts",
+      "apps/eve-agent/agent/subagents/proof_critic/agent.ts"
+    ],
     "tools": [
       "apps/eve-agent/agent/subagents/choreography_interpreter/tools/bash.ts",
       "apps/eve-agent/agent/subagents/choreography_interpreter/tools/glob.ts",
