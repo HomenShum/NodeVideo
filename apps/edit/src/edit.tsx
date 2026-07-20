@@ -811,31 +811,10 @@ function StitchStudio() {
         <Card>
           <CardHeader>
             <CardTitle>Deterministic preview</CardTitle>
-            <CardDescription>
-              The frozen plan rendered live by Remotion from the public web takes — same clips, same
-              lyric overlays; music and final grading render in the studio pipeline.
-            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {plan && composition ? (
               <>
-                <div className="flex items-center justify-between gap-2">
-                  <Button
-                    aria-pressed={overlayEdit}
-                    onClick={toggleOverlayEdit}
-                    size="sm"
-                    type="button"
-                    variant={overlayEdit ? 'default' : 'outline'}
-                  >
-                    {overlayEdit ? 'Done editing overlays' : 'Edit overlays'}
-                  </Button>
-                  {overlayEdit && (
-                    <span className="text-xs text-muted-foreground">
-                      Drag or resize the lyric on the paused frame; edits apply instantly and undo
-                      works.
-                    </span>
-                  )}
-                </div>
                 <div
                   className={`relative mx-auto ${overlayEdit ? 'max-w-105' : 'max-w-70'}`}
                   data-testid="plan-preview"
@@ -905,6 +884,22 @@ function StitchStudio() {
                       )}
                     </div>
                   )}
+                </div>
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <Button
+                    aria-pressed={overlayEdit}
+                    onClick={toggleOverlayEdit}
+                    size="sm"
+                    type="button"
+                    variant={overlayEdit ? 'default' : 'outline'}
+                  >
+                    {overlayEdit ? 'Done editing overlays' : 'Edit overlays'}
+                  </Button>
+                  <span className="text-xs text-muted-foreground">
+                    {overlayEdit
+                      ? 'Drag or resize the lyric on the paused frame; edits apply instantly and undo works.'
+                      : 'Live render of the two takes — music and final grading land in the studio render.'}
+                  </span>
                 </div>
                 {overlayEdit && selectedClip && (
                   <Field>

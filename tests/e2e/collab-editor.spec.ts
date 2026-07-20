@@ -11,6 +11,25 @@ test('collab editor is immediately usable, honest, and does not overflow', async
   // Both actions stay gated until the two files exist — no fake readiness.
   await expect(page.getByRole('button', { name: 'Play preview' })).toBeDisabled();
   await expect(page.getByRole('button', { name: 'Export collab video' })).toBeDisabled();
+  await expect(page.getByText('Drop a video here, or tap to browse').first()).toBeVisible();
+
+  // Real intake: choosing files renders a decoded thumbnail frame with the
+  // file's name and duration, and arms both gated actions.
+  await page
+    .locator('#reference-video')
+    .setInputFiles('fixtures/media/authorized-real-v1/source-a-web.mp4');
+  await page
+    .locator('#take-video')
+    .setInputFiles('fixtures/media/authorized-real-v1/source-b-web.mp4');
+  await expect(page.getByAltText('First frames of source-a-web.mp4')).toBeVisible({
+    timeout: 15_000,
+  });
+  await expect(page.getByAltText('First frames of source-b-web.mp4')).toBeVisible({
+    timeout: 15_000,
+  });
+  await expect(page.getByText('tap or drop to replace').first()).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Play preview' })).toBeEnabled();
+  await expect(page.getByRole('button', { name: 'Export collab video' })).toBeEnabled();
 
   // Layout toggle reflects pressed state for keyboard and agent users.
   const sideBySide = page.getByRole('button', { name: 'Side by side' });

@@ -130,10 +130,10 @@ function Landing() {
         </div>
         <nav className="flex items-center gap-4 text-sm text-muted-foreground">
           <a className="hover:text-foreground" href="/studio.html">
-            Proof studio
+            Studio
           </a>
           <a className="hover:text-foreground" href="/.well-known/agent-ui.json">
-            Agent contract
+            For agents
           </a>
         </nav>
       </header>
@@ -162,7 +162,7 @@ function Landing() {
               className="inline-flex h-11 items-center rounded-xl border border-border px-6 font-medium text-foreground"
               href="/studio.html"
             >
-              See a verified comparison
+              Watch a real comparison
             </a>
           </div>
           <a

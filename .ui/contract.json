@@ -35,7 +35,7 @@
         {
           "id": "see-comparison",
           "role": "link",
-          "name": "See a verified comparison"
+          "name": "Watch a real comparison"
         },
         {
           "id": "sample-verdict",
@@ -57,12 +57,12 @@
         {
           "id": "proof-studio-nav",
           "role": "link",
-          "name": "Proof studio"
+          "name": "Studio"
         },
         {
           "id": "agent-contract-nav",
           "role": "link",
-          "name": "Agent contract"
+          "name": "For agents"
         }
       ],
       "states": [
@@ -90,12 +90,14 @@
         {
           "id": "reference-video",
           "css": "#reference-video",
-          "label": "Reference video"
+          "label": "Reference video",
+          "meaning": "Drag-and-drop slot or native file input (the visually hidden input is the real control). On selection a frame is decoded locally into a thumbnail with the file name and duration — a real confirmation, not an icon. Nothing uploads."
         },
         {
           "id": "take-video",
           "css": "#take-video",
-          "label": "Your take"
+          "label": "Your take",
+          "meaning": "Same drop-or-browse intake as reference-video; the take drives export length. Thumbnail is decoded locally; nothing uploads."
         },
         {
           "id": "layout-side-by-side",

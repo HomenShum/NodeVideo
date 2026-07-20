@@ -2,13 +2,125 @@ import './collab.css';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
+import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { AlertCircle, Columns2, Download, Pause, Play, Rows2 } from 'lucide-react';
 import { StrictMode, useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
 type Layout = 'side-by-side' | 'top-bottom';
+
+// Drag-and-drop intake slot. The native file input stays (labeled, focusable,
+// contract-resolvable) — the label is the drop target and click target, so
+// keyboard and screen-reader flows are the browser's own. The thumbnail is a
+// real decoded frame from the chosen file, drawn locally; nothing uploads.
+function DropSlot({
+  id,
+  label,
+  hint,
+  file,
+  onFile,
+}: {
+  id: string;
+  label: string;
+  hint: string;
+  file: File | null;
+  onFile: (file: File | null) => void;
+}) {
+  const [dragging, setDragging] = useState(false);
+  const [thumb, setThumb] = useState('');
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    setThumb('');
+    setSeconds(0);
+    if (!file) return;
+    let cancelled = false;
+    const url = URL.createObjectURL(file);
+    const video = document.createElement('video');
+    video.muted = true;
+    video.src = url;
+    video.addEventListener(
+      'loadeddata',
+      () => {
+        video.currentTime = Math.min(0.5, (video.duration || 1) / 2);
+      },
+      { once: true },
+    );
+    video.addEventListener(
+      'seeked',
+      () => {
+        if (cancelled) return;
+        const canvas = document.createElement('canvas');
+        canvas.width = 320;
+        canvas.height = Math.round((320 * video.videoHeight) / (video.videoWidth || 320)) || 180;
+        canvas.getContext('2d')?.drawImage(video, 0, 0, canvas.width, canvas.height);
+        setThumb(canvas.toDataURL('image/jpeg', 0.7));
+        setSeconds(video.duration || 0);
+      },
+      { once: true },
+    );
+    return () => {
+      cancelled = true;
+      URL.revokeObjectURL(url);
+    };
+  }, [file]);
+
+  const duration = seconds
+    ? `${Math.floor(seconds / 60)}:${String(Math.round(seconds % 60)).padStart(2, '0')}`
+    : '';
+  return (
+    <Field>
+      <FieldLabel htmlFor={id}>{label}</FieldLabel>
+      <label
+        className={`block cursor-pointer rounded-xl border border-dashed p-3 transition-colors ${
+          dragging ? 'border-brand bg-brand/5' : 'border-border hover:border-foreground/40'
+        }`}
+        htmlFor={id}
+        onDragLeave={() => setDragging(false)}
+        onDragOver={(event) => {
+          event.preventDefault();
+          setDragging(true);
+        }}
+        onDrop={(event) => {
+          event.preventDefault();
+          setDragging(false);
+          const dropped = event.dataTransfer.files?.[0];
+          if (dropped?.type.startsWith('video/')) onFile(dropped);
+        }}
+      >
+        {file && thumb ? (
+          <span className="flex items-center gap-3">
+            <img
+              alt={`First frames of ${file.name}`}
+              className="h-16 w-28 rounded-lg object-cover"
+              src={thumb}
+            />
+            <span className="min-w-0 text-sm">
+              <span className="block truncate">{file.name}</span>
+              <span className="text-xs text-muted-foreground">
+                {duration && `${duration} · `}tap or drop to replace
+              </span>
+            </span>
+          </span>
+        ) : (
+          <span className="flex min-h-16 flex-col justify-center gap-1 text-sm">
+            <span>{file ? file.name : 'Drop a video here, or tap to browse'}</span>
+            <span className="text-xs text-muted-foreground">{hint}</span>
+          </span>
+        )}
+      </label>
+      <span className="sr-only">
+        <Input
+          accept="video/mp4,video/quicktime,video/webm"
+          id={id}
+          onChange={(event) => onFile(event.target.files?.[0] ?? null)}
+          type="file"
+        />
+      </span>
+    </Field>
+  );
+}
 
 // Everything on this page happens in the browser: decode, composite, record.
 // No worker, no upload, no account. Export is WebM (what MediaRecorder can
@@ -160,35 +272,26 @@ function CollabEditor() {
           Dance next to the original.
         </h1>
         <p className="max-w-2xl text-sm text-muted-foreground">
-          Load the reference video and your take, line them up, and export a side-by-side or
-          top-and-bottom collab. Both videos stay in this tab — nothing ever leaves your browser.
+          Pick two videos, line them up, export the collab. Both stay in this tab — nothing ever
+          leaves your browser.
         </p>
       </header>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field>
-          <FieldLabel htmlFor="reference-video">Reference video</FieldLabel>
-          <Input
-            accept="video/mp4,video/quicktime,video/webm"
-            id="reference-video"
-            onChange={(event) => setReferenceFile(event.target.files?.[0] ?? null)}
-            type="file"
-          />
-          <FieldDescription>
-            A saved copy of the original (YouTube and Instagram pages cannot be captured directly —
-            use your downloaded file).
-          </FieldDescription>
-        </Field>
-        <Field>
-          <FieldLabel htmlFor="take-video">Your take</FieldLabel>
-          <Input
-            accept="video/mp4,video/quicktime,video/webm"
-            id="take-video"
-            onChange={(event) => setTakeFile(event.target.files?.[0] ?? null)}
-            type="file"
-          />
-          <FieldDescription>Your camera recording. Its length drives the export.</FieldDescription>
-        </Field>
+        <DropSlot
+          file={referenceFile}
+          hint="A saved copy of the original — YouTube and Instagram pages cannot be captured directly."
+          id="reference-video"
+          label="Reference video"
+          onFile={setReferenceFile}
+        />
+        <DropSlot
+          file={takeFile}
+          hint="Your camera recording drives the length."
+          id="take-video"
+          label="Your take"
+          onFile={setTakeFile}
+        />
       </div>
 
       <Card>
