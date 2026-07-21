@@ -1,0 +1,33 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.local-media-intelligence",
+  "version": "0.1.0",
+  "implementationStatus": "local-worker-connected",
+  "title": "Local media intelligence",
+  "description": "Uses FFprobe, FFmpeg, Whisper, PySceneDetect, and OpenCV to produce a content-addressed MediaIndex without media egress.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": ["media/local-video"],
+  "outputs": ["media/index"],
+  "tools": [
+    "media.probe",
+    "speech.transcribe",
+    "speech.detect-silence",
+    "video.detect-shots",
+    "video.detect-subjects",
+    "media.index-compose"
+  ],
+  "permissions": ["read_local_media", "write_derived_metadata"],
+  "uiRenderers": ["MediaIndexInspector"],
+  "evalSuite": "evals/contract-v1.json",
+  "validation": { "status": "passed", "profile": "synthetic-no-egress-v1" },
+  "execution": {
+    "kind": "python-local-worker",
+    "modelRequired": false,
+    "applicationWriteAuthority": "derived-index-only"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nodevideo.higgsfield-generation.output.v1",
+  "type": "object",
+  "required": ["job", "receipt"],
+  "properties": {
+    "job": { "type": "object" },
+    "receipt": { "type": "object", "required": ["schemaVersion", "id", "output", "rights"] }
+  },
+  "additionalProperties": false
+}

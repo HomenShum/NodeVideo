@@ -91,9 +91,9 @@ function TextOverlay({ clip, plan }: { clip: PlanClip; plan: Plan }) {
   );
 }
 
-function VideoLayer({ clip }: { clip: PlanClip }) {
+function VideoLayer({ clip, assetUrls }: { clip: PlanClip; assetUrls: Record<string, string> }) {
   const duration = clip.timelineRange.endFrameExclusive - clip.timelineRange.startFrame;
-  const src = clip.assetId ? EDIT_ASSET_URLS[clip.assetId] : undefined;
+  const src = clip.assetId ? assetUrls[clip.assetId] : undefined;
   const objectFit = clip.fit === 'fit' ? 'contain' : 'cover';
 
   if (clip.kind === 'black') {
@@ -130,7 +130,13 @@ function VideoLayer({ clip }: { clip: PlanClip }) {
   );
 }
 
-export function PlanComposition({ plan }: { plan: Plan }) {
+export function PlanComposition({
+  plan,
+  assetUrls = EDIT_ASSET_URLS,
+}: {
+  plan: Plan;
+  assetUrls?: Record<string, string>;
+}) {
   const video = plan.tracks.find((track) => track.kind === 'video');
   const overlays = plan.tracks
     .filter((track) => track.kind === 'overlay')
@@ -140,7 +146,7 @@ export function PlanComposition({ plan }: { plan: Plan }) {
   return (
     <AbsoluteFill style={{ backgroundColor: '#0c0e0a' }}>
       {video?.clips.map((clip) => (
-        <VideoLayer clip={clip} key={clip.id} />
+        <VideoLayer assetUrls={assetUrls} clip={clip} key={clip.id} />
       ))}
       {overlays.map((clip) => (
         <Sequence

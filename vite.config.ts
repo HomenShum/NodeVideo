@@ -34,6 +34,9 @@ const isolatedEditorPages = new Set([
   '/edit',
   '/edit/',
   '/edit.html',
+  '/creator',
+  '/creator/',
+  '/creator.html',
   '/collab',
   '/collab/',
   '/collab.html',
@@ -171,6 +174,7 @@ export default defineConfig({
         studio: path.resolve(__dirname, 'studio.html'),
         collab: path.resolve(__dirname, 'collab.html'),
         edit: path.resolve(__dirname, 'edit.html'),
+        creator: path.resolve(__dirname, 'creator.html'),
         practice: path.resolve(__dirname, 'practice.html'),
         'chrome-extension-sidepanel': path.resolve(
           __dirname,

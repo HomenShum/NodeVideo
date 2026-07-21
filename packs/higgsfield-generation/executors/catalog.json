@@ -1,0 +1,29 @@
+{
+  "schema": "nodevideo.executor-catalog.v1",
+  "executors": [
+    {
+      "id": "executor.higgsfield-video",
+      "runtime": "api",
+      "capabilities": ["video.generate", "video.transform", "reference.analyze", "video.upscale"],
+      "privacy": { "sendsMediaOffDevice": true },
+      "commercialUse": true,
+      "promotionPricing": "unverified-until-entitlement-snapshot"
+    },
+    {
+      "id": "executor.higgsfield-image",
+      "runtime": "api",
+      "capabilities": ["image.generate", "image.edit", "image.upscale", "background.remove"],
+      "privacy": { "sendsMediaOffDevice": true },
+      "commercialUse": true,
+      "promotionPricing": "unverified-until-entitlement-snapshot"
+    },
+    {
+      "id": "executor.higgsfield-replay",
+      "runtime": "local-worker",
+      "capabilities": ["video.generate", "image.generate", "reference.analyze"],
+      "privacy": { "sendsMediaOffDevice": false },
+      "commercialUse": true,
+      "promotionPricing": "fixture"
+    }
+  ]
+}

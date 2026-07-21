@@ -11,6 +11,7 @@
       "playwright-report",
       "test-results",
       ".qa/cache",
+      ".qa/creator-build",
       ".qa/evidence",
       ".qa/media",
       ".qa/models",

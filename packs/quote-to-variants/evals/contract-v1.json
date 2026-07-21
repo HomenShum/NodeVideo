@@ -1,0 +1,15 @@
+{
+  "schema": "nodevideo.eval-suite.v1",
+  "id": "quote-to-variants-contract-v1",
+  "cases": [
+    { "id": "shared-analysis", "assertions": ["all variants reference one media index"] },
+    {
+      "id": "self-contained-quote",
+      "assertions": ["selected quote has exact source range and evidence"]
+    },
+    {
+      "id": "duration-fanout",
+      "assertions": ["each requested output has one plan and independent review state"]
+    }
+  ]
+}

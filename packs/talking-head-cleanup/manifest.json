@@ -1,0 +1,31 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.talking-head-cleanup",
+  "version": "0.1.0",
+  "implementationStatus": "deterministic-contract-validated",
+  "title": "Talking-head cleanup",
+  "description": "Produces reviewable silence, filler, and retake removals while preserving word and sentence boundaries.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": ["media/index", "edit/intent"],
+  "outputs": ["edit/cleanup-candidates", "edit/plan-proposal"],
+  "tools": [
+    "speech.find-pauses",
+    "speech.find-fillers",
+    "edit.propose-cleanup",
+    "speech-continuity.validate"
+  ],
+  "permissions": ["read_derived_media_index", "propose_edit_plan"],
+  "uiRenderers": ["TranscriptCleanupReview", "SpeechContinuityReport"],
+  "evalSuite": "evals/contract-v1.json",
+  "validation": { "status": "passed", "profile": "synthetic-founder-contract-v1" },
+  "execution": {
+    "kind": "recipe-stage-graph",
+    "modelRequired": false,
+    "applicationWriteAuthority": "reviewed-edit-plan"
+  }
+}
