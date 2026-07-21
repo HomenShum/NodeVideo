@@ -144,6 +144,14 @@ const privatePreview =
   );
 
 export default defineConfig({
+  define: {
+    'import.meta.env.VITE_VERCEL_GIT_COMMIT_SHA': JSON.stringify(
+      process.env.VERCEL_GIT_COMMIT_SHA ?? process.env.GITHUB_SHA ?? '',
+    ),
+  },
+  optimizeDeps: {
+    include: ['convex/react'],
+  },
   plugins: [
     localPrivatePreview(privatePreview),
     browserFfmpegAssets(),

@@ -36,8 +36,9 @@ export type CreatorWriteScope = 'selected-variant' | 'campaign-variants';
 export type CreatorAgentRequest = {
   route: CreatorExecutionRoute;
   scope: CreatorWriteScope;
+  externalConsent: boolean;
 };
-type ChatMessage = {
+export type ChatMessage = {
   id: string;
   role: 'user' | 'assistant';
   text: string;
@@ -49,29 +50,27 @@ export type CreatorAgentReply = {
   tools: Array<{ name: string; detail: string }>;
   meta?: string;
 };
-type DetailView = 'chat' | 'proposal' | 'proof';
-
-const INITIAL_MESSAGE: ChatMessage = {
-  id: 'welcome',
-  role: 'assistant',
-  text: 'Tell me what you want to make. I can inspect the source once, propose cuts and variants, route each stage to the cheapest capable executor, and keep every change reviewable.',
-  createdAt: 0,
+export type ExecutorProposalView = {
+  id: string;
+  provider: string;
+  capability: string;
+  status: string;
+  quoteDigest: string;
+  job: string;
+  durationSeconds: number;
+  mediaLeavingDevice: string[];
+  estimatedCredits: number;
+  currentBalanceCredits: number;
+  outputUse: string;
+  canonicalVideoAffected: boolean;
 };
+type DetailView = 'chat' | 'proposal' | 'proof';
 
 const QUICK_ACTIONS = [
   'Remove silences and fillers without changing meaning',
   'Find the golden quote and make three formats',
   'Turn this into a founder launch video',
 ];
-
-function loadMessages(): ChatMessage[] {
-  try {
-    const parsed = JSON.parse(localStorage.getItem('nodevideo.creator.chat.v1') ?? '[]');
-    return Array.isArray(parsed) && parsed.length ? parsed.slice(-40) : [INITIAL_MESSAGE];
-  } catch {
-    return [INITIAL_MESSAGE];
-  }
-}
 
 export function CreatorAgentPanel(props: {
   sourceName?: string;
@@ -82,6 +81,12 @@ export function CreatorAgentPanel(props: {
   suggestedPrompt: string;
   transcript: string;
   exportRatio: number;
+  messages: ChatMessage[];
+  caseflowReady: boolean;
+  runStatus?: string;
+  proposalDigest?: string;
+  proposalStatus?: string;
+  executorProposal?: ExecutorProposalView;
   onPreset: (preset: CreatorPreset) => void;
   onTranscript: (transcript: string) => void;
   onSend: (message: string, request: CreatorAgentRequest) => Promise<CreatorAgentReply>;
@@ -91,13 +96,16 @@ export function CreatorAgentPanel(props: {
   onExport: () => void;
   onDownloadPlan: () => void;
   onDownloadReceipt: () => void;
+  onApproveExecutor: () => void;
+  onDeclineExecutor: () => void;
+  onUseLocalExecutor: () => void;
 }) {
-  const [messages, setMessages] = useState<ChatMessage[]>(loadMessages);
   const [draft, setDraft] = useState(props.suggestedPrompt);
   const [working, setWorking] = useState(false);
   const [activity, setActivity] = useState<CreatorAgentReply['tools']>([]);
   const [route, setRoute] = useState<CreatorExecutionRoute>('auto');
   const [scope, setScope] = useState<CreatorWriteScope>('selected-variant');
+  const [externalConsent, setExternalConsent] = useState(false);
   const [detailView, setDetailView] = useState<DetailView>('chat');
   const feedRef = useRef<HTMLDivElement>(null);
   const pendingApprovals =
@@ -107,53 +115,48 @@ export function CreatorAgentPanel(props: {
     (variant) => variant.id === props.selected?.id,
   )?.status;
   const isRejected = selectedStatus === 'rejected';
+  const proposalReady = props.proposalStatus === 'pending';
 
   useEffect(() => {
-    localStorage.setItem('nodevideo.creator.chat.v1', JSON.stringify(messages.slice(-40)));
+    if (props.messages.length === 0) return;
     const feed = feedRef.current;
     if (feed) feed.scrollTop = feed.scrollHeight;
-  }, [messages]);
+  }, [props.messages]);
 
   useEffect(() => setDraft(props.suggestedPrompt), [props.suggestedPrompt]);
 
   const send = async (value = draft) => {
     const text = value.trim();
     if (!text || working) return;
+    if (route === 'openrouter-free' && !externalConsent) {
+      setActivity([
+        {
+          name: 'Consent required',
+          detail:
+            'No external request was sent. Confirm the disclosed prompt and transcript egress first.',
+        },
+      ]);
+      return;
+    }
     setDetailView('chat');
     setDraft('');
     setWorking(true);
     setActivity([{ name: 'Understanding request', detail: 'Reading source and campaign context' }]);
-    setMessages((current) => [
-      ...current,
-      { id: `user:${Date.now()}`, role: 'user', text, createdAt: Date.now() },
-    ]);
     try {
-      const reply = await props.onSend(text, { route, scope });
+      const reply = await props.onSend(text, { route, scope, externalConsent });
       setActivity(reply.tools);
-      setMessages((current) => [
-        ...current,
-        {
-          id: `assistant:${Date.now()}`,
-          role: 'assistant',
-          text: reply.text,
-          createdAt: Date.now(),
-          meta: reply.meta,
-        },
-      ]);
     } catch (error) {
-      setMessages((current) => [
-        ...current,
+      setActivity([
         {
-          id: `assistant:${Date.now()}`,
-          role: 'assistant',
-          text:
+          name: 'Run failed',
+          detail:
             error instanceof Error
               ? error.message
               : 'The request failed before a proposal was created.',
-          createdAt: Date.now(),
         },
       ]);
     } finally {
+      if (route === 'openrouter-free') setExternalConsent(false);
       setWorking(false);
     }
   };
@@ -218,7 +221,7 @@ export function CreatorAgentPanel(props: {
             className="min-h-0 flex-1 space-y-5 overflow-y-auto px-4 py-5"
             aria-live="polite"
           >
-            {messages.map((message) => (
+            {props.messages.map((message) => (
               <article
                 className={`flex gap-3 ${message.role === 'user' ? 'flex-row-reverse' : ''}`}
                 key={message.id}
@@ -299,7 +302,11 @@ export function CreatorAgentPanel(props: {
                   </Badge>
                 </div>
                 <div className="mt-3 grid grid-cols-3 gap-2">
-                  <Button size="sm" onClick={props.onApprove} disabled={isApproved}>
+                  <Button
+                    size="sm"
+                    onClick={props.onApprove}
+                    disabled={isApproved || isRejected || !proposalReady}
+                  >
                     Accept
                   </Button>
                   <Button
@@ -314,6 +321,78 @@ export function CreatorAgentPanel(props: {
                     Review
                   </Button>
                 </div>
+                {props.proposalDigest && (
+                  <p className="mt-2 truncate font-mono text-[10px] text-muted-foreground">
+                    digest {props.proposalDigest}
+                  </p>
+                )}
+              </div>
+            )}
+            {props.executorProposal && (
+              <div
+                className="ml-10 rounded-xl border border-amber-500/40 bg-amber-500/5 p-3"
+                data-testid="executor-proposal-card"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <div>
+                    <p className="text-sm font-medium">Specialist executor proposal</p>
+                    <p className="text-xs text-muted-foreground">
+                      {props.executorProposal.provider} · {props.executorProposal.job}
+                    </p>
+                  </div>
+                  <Badge variant="outline">
+                    {props.executorProposal.status.replaceAll('_', ' ')}
+                  </Badge>
+                </div>
+                <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-xs">
+                  <dt className="text-muted-foreground">Duration</dt>
+                  <dd>{props.executorProposal.durationSeconds}s</dd>
+                  <dt className="text-muted-foreground">Media egress</dt>
+                  <dd>{props.executorProposal.mediaLeavingDevice.join(', ') || 'none'}</dd>
+                  <dt className="text-muted-foreground">Exact quote</dt>
+                  <dd>{props.executorProposal.estimatedCredits} credits</dd>
+                  <dt className="text-muted-foreground">Balance</dt>
+                  <dd>{props.executorProposal.currentBalanceCredits} credits</dd>
+                  <dt className="text-muted-foreground">Output use</dt>
+                  <dd>{props.executorProposal.outputUse}</dd>
+                  <dt className="text-muted-foreground">Canonical affected</dt>
+                  <dd>{props.executorProposal.canonicalVideoAffected ? 'yes' : 'no'}</dd>
+                </dl>
+                <p className="mt-2 truncate font-mono text-[10px] text-muted-foreground">
+                  quote {props.executorProposal.quoteDigest}
+                </p>
+                <div className="mt-3 grid grid-cols-3 gap-2">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={props.onDeclineExecutor}
+                    disabled={props.executorProposal.status === 'cancelled'}
+                  >
+                    Decline
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={props.onUseLocalExecutor}
+                    disabled={props.executorProposal.status === 'cancelled'}
+                  >
+                    Use local alternative
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={props.onApproveExecutor}
+                    disabled={
+                      props.executorProposal.status === 'approved' ||
+                      props.executorProposal.status === 'submitted'
+                    }
+                  >
+                    Approve exact {props.executorProposal.estimatedCredits} credits
+                  </Button>
+                </div>
+                <p className="mt-2 text-[10px] text-muted-foreground">
+                  Approval permits only this quote. It does not submit a paid job. Any quote change
+                  invalidates it.
+                </p>
               </div>
             )}
           </div>
@@ -386,7 +465,7 @@ export function CreatorAgentPanel(props: {
                 <Button
                   size="icon-sm"
                   aria-label="Send message"
-                  disabled={!draft.trim() || working}
+                  disabled={!draft.trim() || working || !props.caseflowReady}
                   onClick={() => void send()}
                 >
                   <Send className="size-4" />
@@ -396,9 +475,25 @@ export function CreatorAgentPanel(props: {
             <div className="mt-2 flex items-center gap-1 text-[10px] text-muted-foreground">
               <Paperclip className="size-3" />
               {props.sourceName ? 'Source read context attached' : 'Attach from source vault'}
+              {!props.caseflowReady && ' · connecting durable case'}
               {route === 'openrouter-free' && ' · prompt and transcript context leave this device'}
               {route === 'higgsfield' && ' · cost and egress approval required before execution'}
             </div>
+            {route === 'openrouter-free' && (
+              <label className="mt-2 flex items-start gap-2 rounded-lg border p-2 text-[11px] text-muted-foreground">
+                <input
+                  type="checkbox"
+                  checked={externalConsent}
+                  onChange={(event) => setExternalConsent(event.target.checked)}
+                  className="mt-0.5 size-4"
+                  aria-label="Consent to send prompt and transcript context to OpenRouter"
+                />
+                <span>
+                  Send this prompt, bounded transcript context, and source metadata to OpenRouter.
+                  Raw media is not uploaded. Consent resets after this action.
+                </span>
+              </label>
+            )}
             <details className="mt-2 text-xs text-muted-foreground">
               <summary className="cursor-pointer py-1">Workflow and transcript context</summary>
               <div className="mt-2 space-y-3 rounded-lg border p-3">
@@ -467,7 +562,7 @@ export function CreatorAgentPanel(props: {
                 variant="secondary"
                 className="w-full"
                 onClick={props.onApprove}
-                disabled={isApproved}
+                disabled={isApproved || isRejected || !proposalReady}
               >
                 Approve exact variant
               </Button>
@@ -502,6 +597,12 @@ export function CreatorAgentPanel(props: {
           <p className="mt-1 text-sm text-muted-foreground">
             Source lineage, routed executors, approval state, and explicit limitations.
           </p>
+          {props.runStatus && (
+            <div className="mt-4 rounded-lg border p-3 text-xs">
+              <span className="text-muted-foreground">Durable run</span>{' '}
+              <strong>{props.runStatus}</strong>
+            </div>
+          )}
           <div className="my-4 space-y-2">
             {props.result?.compiledRecipe.stages.map((stage) => (
               <div className="rounded-lg border p-3" key={stage.compiledId}>

@@ -17,6 +17,8 @@ import {
 import { useState } from 'react';
 import { CreatorAgentPanel } from './creator-agent-panel';
 import type { CreatorAgentReply, CreatorAgentRequest } from './creator-agent-panel';
+import type { ExecutorProposalView } from './creator-agent-panel';
+import type { ChatMessage } from './creator-agent-panel';
 import type { CreatorPreset, runCreatorPipeline } from './creator-pipeline';
 import { PlanComposition } from './plan-composition';
 
@@ -151,6 +153,14 @@ export function CreatorWorkspace(props: {
   status: string;
   exportRatio: number;
   version: number;
+  caseTitle: string;
+  runStage: string;
+  caseStatus: string;
+  messages: ChatMessage[];
+  caseflowReady: boolean;
+  proposalDigest?: string;
+  proposalStatus?: string;
+  executorProposal?: ExecutorProposalView;
   assetUrls: Record<string, string>;
   onUpload: (file?: File) => void;
   onLoadDemo: () => void;
@@ -165,6 +175,9 @@ export function CreatorWorkspace(props: {
   onExport: () => void;
   onDownloadPlan: () => void;
   onDownloadReceipt: () => void;
+  onApproveExecutor: () => void;
+  onDeclineExecutor: () => void;
+  onUseLocalExecutor: () => void;
 }) {
   const [centerView, setCenterView] = useState<CenterView>('canvas');
 
@@ -192,7 +205,7 @@ export function CreatorWorkspace(props: {
               <ShieldCheck className="size-3" /> local by default
             </Badge>
             <Badge variant="secondary">
-              <Sparkles className="size-3" /> Higgsfield connected
+              <Sparkles className="size-3" /> Higgsfield adapter available · execution gated
             </Badge>
           </div>
         </div>
@@ -220,6 +233,53 @@ export function CreatorWorkspace(props: {
 
         <div className="grid gap-5 xl:grid-cols-[300px_minmax(0,1fr)_380px]">
           <aside className="space-y-4" aria-label="Source and template vault">
+            <Card data-testid="caseflow-progress">
+              <CardHeader>
+                <CardTitle>{props.caseTitle}</CardTitle>
+                <CardDescription>Guided founder launch · {props.caseStatus}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {[
+                  ['intake', 'Add source and destinations'],
+                  ['planning', 'Review creative direction'],
+                  ['review', 'Approve exact rough cut'],
+                  ['execution', 'Render and compare outputs'],
+                  ['receipt', 'Export and keep proof'],
+                ].map(([stage, label], index) => {
+                  const stages = ['intake', 'planning', 'review', 'execution', 'receipt'];
+                  const current = Math.max(0, stages.indexOf(props.runStage));
+                  return (
+                    <div className="flex items-center gap-3 text-xs" key={stage}>
+                      <span
+                        className={`grid size-6 shrink-0 place-items-center rounded-full border ${index <= current ? 'border-brand bg-brand/15 text-brand' : 'text-muted-foreground'}`}
+                      >
+                        {index < current ? <Check className="size-3" /> : index + 1}
+                      </span>
+                      <span className={index === current ? 'font-medium' : 'text-muted-foreground'}>
+                        {label}
+                      </span>
+                    </div>
+                  );
+                })}
+                <div className="rounded-lg bg-brand/10 p-3 text-xs" data-testid="current-action">
+                  <strong>Current action</strong>
+                  <p className="mt-1 text-muted-foreground">
+                    {props.runStage === 'intake'
+                      ? 'Add a product recording or use the rights-cleared demo.'
+                      : props.runStage === 'planning'
+                        ? 'Ask NodeAgent for a source-grounded launch direction.'
+                        : props.runStage === 'review'
+                          ? 'Inspect and approve or reject the exact proposal digest.'
+                          : props.runStage === 'execution'
+                            ? 'Render the approved variant locally or review a specialist quote.'
+                            : 'Download the output and consumer receipt.'}
+                  </p>
+                </div>
+                <p className="text-[11px] text-muted-foreground">
+                  Outputs: 16:9 walkthrough · 9:16 short · 1:1 LinkedIn cut
+                </p>
+              </CardContent>
+            </Card>
             <Card>
               <CardHeader>
                 <CardTitle>
@@ -407,6 +467,12 @@ export function CreatorWorkspace(props: {
             suggestedPrompt={props.prompt}
             transcript={props.transcript}
             exportRatio={props.exportRatio}
+            messages={props.messages}
+            caseflowReady={props.caseflowReady}
+            runStatus={`${props.caseStatus} · ${props.runStage}`}
+            proposalDigest={props.proposalDigest}
+            proposalStatus={props.proposalStatus}
+            executorProposal={props.executorProposal}
             onPreset={props.onPreset}
             onTranscript={props.onTranscript}
             onSend={props.onAgentSend}
@@ -416,7 +482,24 @@ export function CreatorWorkspace(props: {
             onExport={props.onExport}
             onDownloadPlan={props.onDownloadPlan}
             onDownloadReceipt={props.onDownloadReceipt}
+            onApproveExecutor={props.onApproveExecutor}
+            onDeclineExecutor={props.onDeclineExecutor}
+            onUseLocalExecutor={props.onUseLocalExecutor}
           />
+        </div>
+        <div
+          className="sticky bottom-3 z-20 mt-4 flex flex-wrap items-center justify-between gap-2 rounded-xl border bg-card/95 px-4 py-3 text-xs shadow-lg backdrop-blur"
+          data-testid="caseflow-activity-strip"
+        >
+          <span>
+            Current execution · <strong>{props.runStage}</strong> · canonical version{' '}
+            {props.version}
+          </span>
+          <span className="font-mono text-muted-foreground">
+            {props.proposalDigest
+              ? `proposal ${props.proposalDigest.slice(0, 18)}…`
+              : 'no proposal yet'}
+          </span>
         </div>
       </div>
     </main>
