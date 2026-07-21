@@ -6,6 +6,7 @@ import { expect, test } from 'playwright/test';
 import { api } from '../../convex/_generated/api';
 
 function convexUrl() {
+  if (process.env.NODEVIDEO_CONVEX_URL) return process.env.NODEVIDEO_CONVEX_URL;
   const match = /^VITE_CONVEX_URL=(.+)$/mu.exec(readFileSync('.env.local', 'utf8'));
   if (!match?.[1]) throw new Error('VITE_CONVEX_URL is required for Caseflow tests.');
   return match[1].trim();
@@ -188,7 +189,10 @@ test('live OpenRouter free planner resolves a model before deterministic compila
     .fill(
       'Create a 30-second founder launch cut around the strongest source-grounded quote. Preserve meaning and identify the exact human review points.',
     );
-  await page.getByRole('button', { name: 'Send message' }).click();
+  await page.getByRole('checkbox', { name: /Consent to send prompt/u }).check();
+  const sendButton = page.getByRole('button', { name: 'Send message' });
+  await expect(sendButton).toBeEnabled({ timeout: 30_000 });
+  await sendButton.click();
   await expect(page.getByText(/planned · openrouter\/free →/u)).toBeVisible({ timeout: 45_000 });
   await expect(page.getByText(/resolved in .*\$0\.00/u)).toBeVisible();
   await expect(page.getByTestId('agent-proposal-card')).toBeVisible();
