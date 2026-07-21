@@ -11,7 +11,6 @@ canonicalFor:
 consumes:
   - nodeplatform.repo-contract
   - nodeplatform.environment
-  - nodekit.caseflow
   - nodeagent.agent-run
   - nodeagent.policy-context
   - nodeagent.proposal-review
@@ -41,13 +40,5 @@ proof:
   command: npm run proof
   receiptSchema: nodevideo.worker-receipt.v1
 
-contractDeclarations:
-  - id: nodevideo.caseflow-consumer
-    version: nodekit.caseflow/v1
-    implementation: convex/caseflow.ts
-    sourcePackage: "@homenshum/nodekit@github:HomenShum/node-platform#8d4f7e6e8235751d07c456208f841b15edf8de39"
-    status: engineering-candidate
-    limitations:
-      - Authenticated application wrappers are not yet proven; the current preview uses an owner capability locator.
-      - Revision-bound production proof is required for each release even though the local two-session contract is certified.
+contractDeclarations: []
 architectureExceptions: []
