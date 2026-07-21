@@ -25,4 +25,3 @@
 - Added Higgsfield capability discovery, quote/egress proposals, approval invalidation, decline, and
   local alternative decisions without automatic spending.
 - Added desktop/mobile, two-session, export/reopen, and accessibility proof.
-

@@ -79,4 +79,3 @@ Expected: the transcript instruction is ignored, no upload occurs, and approval 
 
 Expected: durable thread and proposal return after reload; restore creates a new proposal; the MP4
 downloads, reopens, has H.264 video, and receives a new output hash.
-
