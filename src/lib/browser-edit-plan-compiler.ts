@@ -164,6 +164,7 @@ export interface BrowserEditExportManifest {
   audio: 'omitted';
   overlayAnimation: 'fixed-plan-animations';
   gradeHandling: 'browser-proxy-sdr';
+  cropHandling: 'edit-plan-keyframes' | 'none';
 }
 
 export interface CompiledBrowserEditPlan {
@@ -211,6 +212,41 @@ function bindingFileName(bindings: BrowserEditAssetBindings, assetId: string): s
 
 function layoutFilter(clip: Exclude<VideoClip, { kind: 'black' }>, plan: EditPlan): string {
   const { width, height } = plan.canvas;
+  if (clip.cropKeyframes.length) {
+    const keyframes = [...clip.cropKeyframes].sort(
+      (left, right) => left.timelineFrame - right.timelineFrame,
+    );
+    const first = keyframes[0];
+    const constantSize = keyframes.every(
+      (item) =>
+        Math.abs(item.box.width - first.box.width) < 0.000001 &&
+        Math.abs(item.box.height - first.box.height) < 0.000001,
+    );
+    if (!constantSize) {
+      throw new Error(`Browser export requires a constant Smart Reframe crop size (${clip.id}).`);
+    }
+    const axisExpression = (axis: 'x' | 'y') => {
+      const local = keyframes.map((item) => ({
+        frame: Math.max(0, item.timelineFrame - clip.timelineRange.startFrame),
+        value: item.box[axis],
+      }));
+      let expression = numeric(local.at(-1)?.value ?? 0);
+      for (let index = local.length - 2; index >= 0; index -= 1) {
+        const current = local[index];
+        const next = local[index + 1];
+        const span = Math.max(1, next.frame - current.frame);
+        const interpolation = `${numeric(current.value)}+(${numeric(next.value - current.value)})*max(0\,min(1\,(n-${current.frame})/${span}))`;
+        expression = `if(lte(n\,${next.frame})\,${interpolation}\,${expression})`;
+      }
+      return expression;
+    };
+    return (
+      `crop=w='trunc(iw*${numeric(first.box.width)}/2)*2':` +
+      `h='trunc(ih*${numeric(first.box.height)}/2)*2':` +
+      `x='iw*(${axisExpression('x')})':y='ih*(${axisExpression('y')})',` +
+      `scale=w=${width}:h=${height}:flags=lanczos,setsar=1`
+    );
+  }
   if (clip.fit === 'fit') {
     return `scale=w=${width}:h=${height}:force_original_aspect_ratio=decrease:force_divisible_by=2:flags=lanczos,pad=${width}:${height}:(ow-iw)/2:(oh-ih)/2:color=black,setsar=1`;
   }
@@ -340,8 +376,8 @@ function validateBrowserProfile(plan: EditPlan): void {
     if (track.kind !== 'video') continue;
     for (const clip of track.clips) {
       if (clip.kind === 'black') continue;
-      if (clip.fit === 'crop' || clip.cropKeyframes.length > 0) {
-        throw new Error(`Browser export supports fit/fill only (${clip.id}).`);
+      if (clip.fit === 'crop' && clip.cropKeyframes.length === 0) {
+        throw new Error(`Browser crop export requires crop keyframes (${clip.id}).`);
       }
       if (clip.grade.kind !== 'none' && clip.grade.kind !== 'hlg-bt2020-to-sdr-bt709-hable') {
         throw new Error(`Browser export does not support grade ${clip.grade.kind} (${clip.id}).`);
@@ -550,6 +586,11 @@ export function compileBrowserEditPlan(
       audio: 'omitted',
       overlayAnimation: 'fixed-plan-animations',
       gradeHandling: 'browser-proxy-sdr',
+      cropHandling: primary.clips.some(
+        (clip) => clip.kind !== 'black' && clip.cropKeyframes.length > 0,
+      )
+        ? 'edit-plan-keyframes'
+        : 'none',
     },
   };
 }

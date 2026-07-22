@@ -34,6 +34,9 @@ const isolatedEditorPages = new Set([
   '/edit',
   '/edit/',
   '/edit.html',
+  '/creator',
+  '/creator/',
+  '/creator.html',
   '/collab',
   '/collab/',
   '/collab.html',
@@ -117,6 +120,10 @@ function browserFfmpegAssets(): Plugin {
     configureServer(server) {
       server.middlewares.use((request, response, next) => {
         const pathname = requestPath(request.url);
+        if (/^\/creator\/runs\/[^/]+\/proof\/?$/u.test(pathname)) {
+          request.url = '/creator.html';
+        }
+        if (pathname === '/atlas' || pathname === '/atlas/') request.url = '/atlas.html';
         applyBrowserFfmpegHeaders(pathname, response);
         const asset = files.get(pathname);
         if (!asset || !existsSync(asset.file)) return next();
@@ -126,7 +133,12 @@ function browserFfmpegAssets(): Plugin {
     },
     configurePreviewServer(server) {
       server.middlewares.use((request, response, next) => {
-        applyBrowserFfmpegHeaders(requestPath(request.url), response);
+        const pathname = requestPath(request.url);
+        if (/^\/creator\/runs\/[^/]+\/proof\/?$/u.test(pathname)) {
+          request.url = '/creator.html';
+        }
+        if (pathname === '/atlas' || pathname === '/atlas/') request.url = '/atlas.html';
+        applyBrowserFfmpegHeaders(pathname, response);
         next();
       });
     },
@@ -141,6 +153,14 @@ const privatePreview =
   );
 
 export default defineConfig({
+  define: {
+    'import.meta.env.VITE_VERCEL_GIT_COMMIT_SHA': JSON.stringify(
+      process.env.VERCEL_GIT_COMMIT_SHA ?? process.env.GITHUB_SHA ?? '',
+    ),
+  },
+  optimizeDeps: {
+    include: ['convex/react'],
+  },
   plugins: [
     localPrivatePreview(privatePreview),
     browserFfmpegAssets(),
@@ -171,6 +191,8 @@ export default defineConfig({
         studio: path.resolve(__dirname, 'studio.html'),
         collab: path.resolve(__dirname, 'collab.html'),
         edit: path.resolve(__dirname, 'edit.html'),
+        creator: path.resolve(__dirname, 'creator.html'),
+        atlas: path.resolve(__dirname, 'atlas.html'),
         practice: path.resolve(__dirname, 'practice.html'),
         'chrome-extension-sidepanel': path.resolve(
           __dirname,
@@ -189,6 +211,6 @@ export default defineConfig({
   },
   test: {
     environment: 'node',
-    exclude: ['tests/e2e/**', '**/node_modules/**', '**/dist/**'],
+    exclude: ['tests/e2e/**', '.qa/cache/**', '**/node_modules/**', '**/dist/**'],
   },
 });

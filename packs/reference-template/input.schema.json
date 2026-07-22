@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["referenceMediaIndexId", "rights", "sourceRefs"],
+  "properties": {
+    "referenceMediaIndexId": { "type": "string" },
+    "rights": { "enum": ["private-reference", "licensed", "public-domain", "structural-study"] },
+    "sourceRefs": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+  },
+  "additionalProperties": false
+}

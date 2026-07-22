@@ -1,0 +1,58 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.smart-reframe",
+  "version": "0.1.0",
+  "implementationStatus": "local-browser-and-contract-validated",
+  "title": "Smart Reframe",
+  "description": "Tracks one user-selected person locally and compiles smooth, reviewable crop paths for vertical, square, and landscape outputs.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": ["video/authorized", "video/subject-selection", "video/framing-intent"],
+  "outputs": [
+    "video/subject-track",
+    "video/reframe-plan",
+    "video/reframe-critic",
+    "video/edit-plan"
+  ],
+  "tools": [
+    "subject.detect",
+    "subject.select",
+    "subject.track",
+    "action-envelope.build",
+    "reframe.plan",
+    "reframe.smooth",
+    "reframe.validate",
+    "edit.set_crop_keyframes",
+    "render.preview"
+  ],
+  "permissions": ["read_authorized_video", "write_private_derived_artifacts"],
+  "uiRenderers": ["SmartReframeControls", "CropPathOverlay", "ReframeTimeline"],
+  "evalSuite": "evals/contract-v1.json",
+  "validation": {
+    "profile": "local-browser-single-person-v1",
+    "status": "passed",
+    "proof": {
+      "unit": "../../src/lib/smart-reframe.test.ts",
+      "browser": "../../tests/e2e/creator-pipeline.spec.ts",
+      "exportCompiler": "../../tests/unit/browser-edit-plan-compiler.test.ts"
+    },
+    "excludes": [
+      "group-identity-production-proof",
+      "object-and-animal-tracking",
+      "live-camera-auto-framing",
+      "generalized-sports-policy-validation"
+    ]
+  },
+  "execution": {
+    "kind": "local-pose-track-to-edit-plan-transform",
+    "modelRequired": false,
+    "applicationWriteAuthority": "proposal-validation-approval-apply",
+    "rawMediaEgress": "none",
+    "derivedFrameEgress": "none",
+    "previewExportPlanParity": "shared-edit-plan-crop-keyframes"
+  }
+}

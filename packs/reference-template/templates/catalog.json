@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "nodevideo.template-catalog.v1",
+  "templates": [
+    {
+      "schemaVersion": "nodevideo.template-spec.v1",
+      "id": "template.founder-launch-demo",
+      "version": "1.0.0",
+      "title": "Accelerator-style founder launch (structural study)",
+      "provenance": {
+        "sourceRefs": ["creator-supplied authorized reference set"],
+        "rights": "structural-study",
+        "redistributionAllowed": false,
+        "derivedAt": "2026-07-21T00:00:00.000Z"
+      },
+      "format": { "aspectRatios": ["16:9", "9:16", "1:1"], "durationRangeSeconds": [5, 180] },
+      "narrative": [
+        { "role": "hook", "targetDurationRatio": 0.2, "required": true },
+        { "role": "demo", "targetDurationRatio": 0.6, "required": true },
+        { "role": "cta", "targetDurationRatio": 0.2, "required": true }
+      ],
+      "visualGrammar": {
+        "shotLengthRangeMs": [1200, 8000],
+        "captionStyleId": "text.creator-title",
+        "transitionTechniqueIds": ["transition.hard-cut", "transition.crossfade"],
+        "framingRules": [
+          "keep the founder visible",
+          "prefer product evidence over decorative B-roll"
+        ]
+      },
+      "audioGrammar": {
+        "pausePolicy": "natural",
+        "musicPolicy": "optional-rights-cleared",
+        "loudnessTargetLufs": -14
+      },
+      "brandPolicy": { "structuralInspirationOnly": true, "copyBrandAssets": false },
+      "evaluatorIds": ["eval.source-lineage", "eval.story-completeness", "eval.export-reopen"]
+    },
+    {
+      "schemaVersion": "nodevideo.template-spec.v1",
+      "id": "template.podcast-golden-quote",
+      "version": "1.0.0",
+      "title": "Podcast golden quote",
+      "provenance": {
+        "sourceRefs": ["creator-supplied authorized reference set"],
+        "rights": "structural-study",
+        "redistributionAllowed": false,
+        "derivedAt": "2026-07-21T00:00:00.000Z"
+      },
+      "format": { "aspectRatios": ["9:16", "1:1"], "durationRangeSeconds": [8, 90] },
+      "narrative": [
+        { "role": "hook", "targetDurationRatio": 0.25, "required": true },
+        { "role": "quote", "targetDurationRatio": 0.6, "required": true },
+        { "role": "cta", "targetDurationRatio": 0.15, "required": false }
+      ],
+      "visualGrammar": {
+        "shotLengthRangeMs": [1500, 12000],
+        "captionStyleId": "text.creator-commentary",
+        "transitionTechniqueIds": ["transition.hard-cut"],
+        "framingRules": ["preserve eye line", "keep captions clear of the face"]
+      },
+      "audioGrammar": {
+        "pausePolicy": "natural",
+        "musicPolicy": "none-unless-authorized",
+        "loudnessTargetLufs": -16
+      },
+      "brandPolicy": { "structuralInspirationOnly": true, "copyBrandAssets": false },
+      "evaluatorIds": ["eval.quote-source-match", "eval.caption-clearance", "eval.export-reopen"]
+    },
+    {
+      "schemaVersion": "nodevideo.template-spec.v1",
+      "id": "template.product-feature-proof",
+      "version": "1.0.0",
+      "title": "Product feature proof",
+      "provenance": {
+        "sourceRefs": ["creator-supplied authorized reference set"],
+        "rights": "structural-study",
+        "redistributionAllowed": false,
+        "derivedAt": "2026-07-21T00:00:00.000Z"
+      },
+      "format": { "aspectRatios": ["16:9", "9:16"], "durationRangeSeconds": [10, 120] },
+      "narrative": [
+        { "role": "problem", "targetDurationRatio": 0.2, "required": true },
+        { "role": "demo", "targetDurationRatio": 0.55, "required": true },
+        { "role": "proof", "targetDurationRatio": 0.15, "required": true },
+        { "role": "cta", "targetDurationRatio": 0.1, "required": true }
+      ],
+      "visualGrammar": {
+        "shotLengthRangeMs": [800, 6000],
+        "captionStyleId": "text.creator-title",
+        "transitionTechniqueIds": ["transition.hard-cut", "transition.match-action"],
+        "framingRules": [
+          "show the exact product state claimed",
+          "do not cover controls with captions"
+        ]
+      },
+      "audioGrammar": {
+        "pausePolicy": "tight",
+        "musicPolicy": "optional-rights-cleared",
+        "loudnessTargetLufs": -14
+      },
+      "brandPolicy": { "structuralInspirationOnly": true, "copyBrandAssets": false },
+      "evaluatorIds": ["eval.claim-to-frame", "eval.ui-legibility", "eval.export-reopen"]
+    }
+  ]
+}

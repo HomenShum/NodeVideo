@@ -1,0 +1,26 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.quote-to-variants",
+  "version": "0.1.0",
+  "implementationStatus": "deterministic-contract-validated",
+  "title": "Quote to variants",
+  "description": "Selects an evidence-linked golden quote and compiles related duration and aspect-ratio variants.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": ["media/index", "edit/intent"],
+  "outputs": ["story/golden-quote", "edit/variant-set"],
+  "tools": ["quotes.rank", "story.build", "variants.plan", "variants.validate"],
+  "permissions": ["read_derived_media_index", "propose_variant_plans"],
+  "uiRenderers": ["GoldenQuoteReview", "VariantComparison"],
+  "evalSuite": "evals/contract-v1.json",
+  "validation": { "status": "passed", "profile": "synthetic-founder-contract-v1" },
+  "execution": {
+    "kind": "shared-analysis-fanout",
+    "modelRequired": false,
+    "applicationWriteAuthority": "reviewed-variant-set"
+  }
+}

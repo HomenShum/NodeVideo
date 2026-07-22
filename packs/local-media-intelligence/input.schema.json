@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nodevideo.local-media-intelligence.input.v1",
+  "type": "object",
+  "required": ["sourcePath", "transcription"],
+  "properties": {
+    "sourcePath": { "type": "string", "minLength": 1 },
+    "transcription": { "enum": ["none", "tiny", "base", "small", "medium", "large"] },
+    "language": { "type": "string" }
+  },
+  "additionalProperties": false
+}

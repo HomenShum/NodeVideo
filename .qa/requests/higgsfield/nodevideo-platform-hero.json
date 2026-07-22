@@ -1,0 +1,22 @@
+{
+  "jobType": "seedance_2_0",
+  "prompt": "A clean cinematic macro shot of a luminous modular video-editing timeline assembling itself from source clips into three aspect-ratio variants, dark studio background, chartreuse interface accents, no people, no logos, no text, smooth controlled camera move",
+  "parameters": {
+    "aspect-ratio": "16:9",
+    "bitrate-mode": "standard",
+    "duration": 5,
+    "generate-audio": false,
+    "genre": "auto",
+    "mode": "fast",
+    "resolution": "480p"
+  },
+  "recipeId": "recipe.nodevideo-platform-hero.v1",
+  "referenceAssetIds": [],
+  "intendedUses": ["private-interface-evaluation"],
+  "rights": {
+    "sourceAssetsOwned": true,
+    "mediaEgressApproved": true,
+    "syntheticPeopleOnly": true,
+    "providerTermsSnapshot": "higgsfield-cli-1.1.19-2026-07-21"
+  }
+}

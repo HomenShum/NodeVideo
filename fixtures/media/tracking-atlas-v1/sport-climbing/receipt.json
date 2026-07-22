@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+  "id": "atlas:sport-climbing",
+  "packId": "sport-climbing",
+  "source": {
+    "videoId": "Ra81aQVXqe8",
+    "url": "https://www.youtube.com/watch?v=Ra81aQVXqe8",
+    "title": "Rock Climbing - Free Stock Creative Commons Video",
+    "uploader": "Freestocks",
+    "license": "Creative Commons Attribution license (reuse allowed)",
+    "sourceSha256": "sha256:19aa73bdacb65c7009c7cee482fdbb77917aba770de568c6c52a5b476d61753f",
+    "retrievedAt": "2026-07-22T03:10:28.312247+00:00"
+  },
+  "execution": {
+    "detector": "ultralytics/yolo11n-coco",
+    "tracker": "temporal-envelope-hold-v1",
+    "policy": "climbing-route",
+    "frameCount": 149,
+    "analyzedFrames": 149,
+    "latencyMs": 16281,
+    "costUsd": 0
+  },
+  "evaluation": {
+    "tier": "rights-cleared-fixture",
+    "detectionCoverage": 0.3289,
+    "targetCoverage": 1.0,
+    "lowConfidenceHoldRate": 0.6711,
+    "trackSwitchCount": 0,
+    "manualCorrections": 0,
+    "previewExportParity": true,
+    "verdict": "pass",
+    "limitations": [
+      "Creative Commons stock fixture; not creator-held-out media.",
+      "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model.",
+      "More than one quarter of frames use a low-confidence hold or wide fallback.",
+      "The climber is small in frame; route and hold detection are not implemented in this baseline."
+    ]
+  },
+  "outputs": {
+    "beforeImage": "fixtures/media/tracking-atlas-v1/sport-climbing/before.jpg",
+    "afterImage": "fixtures/media/tracking-atlas-v1/sport-climbing/after.jpg",
+    "comparisonVideo": "fixtures/media/tracking-atlas-v1/sport-climbing/comparison.mp4",
+    "analysisVideo": "fixtures/media/tracking-atlas-v1/sport-climbing/analysis.mp4",
+    "receipt": "fixtures/media/tracking-atlas-v1/sport-climbing/receipt.json",
+    "sha256": {
+      "beforeImage": "sha256:fa9bc9c6d9295377461b05dad14b8223b250d10510def8d45426bbf8e995a47a",
+      "afterImage": "sha256:7096ac2bfc98df605c5718ab1ceea39fb7de95853e20a7a17e4980569efb9c1f",
+      "comparisonVideo": "sha256:f00426bc9a289a02e2be14f74193d6975c4ffe7eed77d6c22dc24597a3573fba",
+      "analysisVideo": "sha256:2e8f3fe4348394710921a60f9b3078b3b266234b41982e2c2e069663ffffc74f"
+    }
+  },
+  "observations": [
+    {
+      "timelineFrame": 0,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.2737296521663666,
+      "envelope": [
+        0.2421875,
+        0.5861111111111111,
+        0.2765625,
+        0.65
+      ],
+      "fallback": "none",
+      "crop": [
+        0.1015625,
+        0.0,
+        0.4171875,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 10,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.24288848750000003,
+        0.5861111111111111,
+        0.2767931250000001,
+        0.6490900000000002
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.1015625,
+        0.0,
+        0.4171875,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 20,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.24288848750000003,
+        0.5861111111111111,
+        0.2767931250000001,
+        0.6490900000000002
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.1015625,
+        0.0,
+        0.4171875,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 30,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.2761341631412506,
+      "envelope": [
+        0.24290283882969965,
+        0.5826275896380874,
+        0.27344400610528774,
+        0.6478398354201838
+      ],
+      "fallback": "none",
+      "crop": [
+        0.1,
+        0.0,
+        0.415625,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 40,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.2979346811771393,
+      "envelope": [
+        0.243633559364918,
+        0.5795941525610608,
+        0.2700818028970504,
+        0.6473071119404096
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0984375,
+        0.0,
+        0.4140625,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 50,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.24372619789402217,
+        0.5781490703686918,
+        0.27392453969649716,
+        0.649172889677965
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.1,
+        0.0,
+        0.415625,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 60,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.1690593957901001,
+      "envelope": [
+        0.24374117561096198,
+        0.5761674858547147,
+        0.2746012840157116,
+        0.6496933572488998
+      ],
+      "fallback": "none",
+      "crop": [
+        0.1,
+        0.0,
+        0.415625,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 70,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.24374780020802625,
+        0.5752910372606739,
+        0.2749006058982339,
+        0.6499235584174959
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.1,
+        0.0,
+        0.415625,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 80,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.2449926533223698,
+        0.5750594921155936,
+        0.27497968244554716,
+        0.6499843742637905
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.1015625,
+        0.0,
+        0.4171875,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 90,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.2449926533223698,
+        0.5750594921155936,
+        0.27497968244554716,
+        0.6499843742637905
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.1015625,
+        0.0,
+        0.4171875,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 100,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.2449926533223698,
+        0.5750594921155936,
+        0.27497968244554716,
+        0.6499843742637905
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.1015625,
+        0.0,
+        0.4171875,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 110,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.2449926533223698,
+        0.5750594921155936,
+        0.27497968244554716,
+        0.6499843742637905
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.1015625,
+        0.0,
+        0.4171875,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 120,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.2449926533223698,
+        0.5750594921155936,
+        0.27497968244554716,
+        0.6499843742637905
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.1015625,
+        0.0,
+        0.4171875,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 130,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.2449926533223698,
+        0.5750594921155936,
+        0.27497968244554716,
+        0.6499843742637905
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.1015625,
+        0.0,
+        0.4171875,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 140,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.2449926533223698,
+        0.5750594921155936,
+        0.27497968244554716,
+        0.6499843742637905
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.1015625,
+        0.0,
+        0.4171875,
+        1.0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "nodevideo.eval-suite.v1",
+  "id": "reference-template-contract-v1",
+  "cases": [
+    {
+      "id": "structural-only",
+      "assertions": ["template contains no source media or brand asset IDs"]
+    },
+    {
+      "id": "provenance",
+      "assertions": ["source references, rights class, and derivation time are retained"]
+    },
+    { "id": "unsupported-copy", "assertions": ["asset-copy request fails closed"] }
+  ]
+}

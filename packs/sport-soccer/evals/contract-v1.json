@@ -1,0 +1,17 @@
+{
+  "schema": "nodevideo.capability-eval.v1",
+  "pack": "nodevideo.sport-soccer@0.1.0",
+  "profile": "sport-soccer-cc-fixture-v1",
+  "cases": [
+    {
+      "id": "O1x9Nrp5TTU",
+      "status": "passed",
+      "proof": "fixtures/media/tracking-atlas-v1/sport-soccer/receipt.json"
+    },
+    {
+      "id": "sport-soccer-held-out",
+      "status": "planned"
+    }
+  ],
+  "claimBoundary": "The passing claim covers the named rights-cleared Creative Commons fixture and common contract only. Creator-held-out generalization remains a promotion gate."
+}

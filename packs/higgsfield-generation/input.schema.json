@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nodevideo.higgsfield-generation.input.v1",
+  "type": "object",
+  "required": ["jobType", "prompt", "parameters", "rights"],
+  "properties": {
+    "jobType": { "type": "string", "pattern": "^[A-Za-z0-9:_-]+$" },
+    "prompt": { "type": "string", "minLength": 1, "maxLength": 20000 },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": { "type": ["string", "number", "boolean"] }
+    },
+    "references": {
+      "type": "object",
+      "properties": {
+        "images": { "type": "array", "items": { "type": "string" } },
+        "videos": { "type": "array", "items": { "type": "string" } },
+        "audio": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "rights": {
+      "type": "object",
+      "required": ["sourceAssetsOwned", "mediaEgressApproved"],
+      "properties": {
+        "sourceAssetsOwned": { "type": "boolean" },
+        "mediaEgressApproved": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.quote-to-variants@0.1.0",
+  "tools": [
+    { "id": "quotes.rank", "accepts": ["media/index"], "produces": ["story/ranked-quotes"] },
+    { "id": "story.build", "accepts": ["story/ranked-quotes"], "produces": ["story/graph"] },
+    {
+      "id": "variants.plan",
+      "accepts": ["story/graph", "edit/intent"],
+      "produces": ["edit/variant-set"]
+    },
+    {
+      "id": "variants.validate",
+      "accepts": ["edit/variant-set"],
+      "produces": ["validation/variant-set"]
+    }
+  ]
+}

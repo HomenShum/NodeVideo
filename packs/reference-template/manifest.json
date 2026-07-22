@@ -1,0 +1,32 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.reference-template",
+  "version": "0.1.0",
+  "implementationStatus": "deterministic-contract-validated",
+  "title": "Reference template",
+  "description": "Extracts structural narrative and editing grammar from an authorized reference without copying protected assets.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json",
+    "templateCatalog": "templates/catalog.json"
+  },
+  "inputs": ["media/reference-index", "reference/rights-attestation"],
+  "outputs": ["template/spec", "template/provenance-receipt"],
+  "tools": [
+    "reference.analyze-structure",
+    "template.derive",
+    "template.rights-validate",
+    "template.validate"
+  ],
+  "permissions": ["read_authorized_reference", "write_structural_template"],
+  "uiRenderers": ["TemplateGrammarView", "ReferenceProvenanceCard"],
+  "evalSuite": "evals/contract-v1.json",
+  "validation": { "status": "passed", "profile": "structural-non-copying-contract-v1" },
+  "execution": {
+    "kind": "reference-to-structural-template",
+    "modelRequired": false,
+    "applicationWriteAuthority": "reviewed-template-spec"
+  }
+}

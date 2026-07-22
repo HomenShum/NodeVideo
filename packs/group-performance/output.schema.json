@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["trackId", "actionEnvelopeId", "reframePlanId", "criticVerdict"],
+  "properties": {
+    "trackId": {
+      "type": "string"
+    },
+    "actionEnvelopeId": {
+      "type": "string"
+    },
+    "reframePlanId": {
+      "type": "string"
+    },
+    "criticVerdict": {
+      "enum": ["pass", "review", "fail"]
+    }
+  },
+  "additionalProperties": false
+}

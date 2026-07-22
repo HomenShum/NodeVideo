@@ -1,0 +1,42 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.local-media-intelligence@0.1.0",
+  "tools": [
+    {
+      "id": "media.probe",
+      "accepts": ["media/local-video"],
+      "produces": ["media/technical-metadata"]
+    },
+    {
+      "id": "speech.transcribe",
+      "accepts": ["media/local-video"],
+      "produces": ["speech/timestamped-words"]
+    },
+    {
+      "id": "speech.detect-silence",
+      "accepts": ["media/local-video"],
+      "produces": ["speech/silence-regions"]
+    },
+    {
+      "id": "video.detect-shots",
+      "accepts": ["media/local-video"],
+      "produces": ["video/shot-boundaries"]
+    },
+    {
+      "id": "video.detect-subjects",
+      "accepts": ["media/local-video"],
+      "produces": ["video/subject-tracks"]
+    },
+    {
+      "id": "media.index-compose",
+      "accepts": [
+        "media/technical-metadata",
+        "speech/timestamped-words",
+        "speech/silence-regions",
+        "video/shot-boundaries",
+        "video/subject-tracks"
+      ],
+      "produces": ["media/index"]
+    }
+  ]
+}

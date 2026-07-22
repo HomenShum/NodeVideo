@@ -1,0 +1,11 @@
+{
+  "schema": "nodevideo.eval-suite.v1",
+  "id": "local-media-intelligence-contract-v1",
+  "cases": [
+    { "id": "content-hash-stable", "expected": "pass" },
+    { "id": "silence-ranges-bounded", "expected": "pass" },
+    { "id": "shots-cover-source", "expected": "pass" },
+    { "id": "disabled-transcription-is-explicit", "expected": "pass" },
+    { "id": "no-media-egress", "expected": "pass" }
+  ]
+}
