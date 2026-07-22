@@ -79,6 +79,7 @@ const report = {
 };
 const outputRoot = resolve(benchmarkRoot, 'results');
 await mkdir(outputRoot, { recursive: true });
+await writeJson(resolve(outputRoot, 'public-claim.json'), claim);
 await writeJson(resolve(outputRoot, 'public-report.json'), report);
 const rows = [
   ['classification', 'numerator', 'denominator', 'rate'],
@@ -95,7 +96,11 @@ await writeFile(
 );
 console.log(
   JSON.stringify(
-    { report: resolve(outputRoot, 'public-report.json'), statement: claim.statement },
+    {
+      claim: resolve(outputRoot, 'public-claim.json'),
+      report: resolve(outputRoot, 'public-report.json'),
+      statement: claim.statement,
+    },
     null,
     2,
   ),

@@ -2,12 +2,12 @@
   "schemaVersion": "nodevideo.creatorbench-public-report/v1",
   "benchmarkVersion": "creatorbench-v1",
   "status": "evaluated",
-  "generatedAt": "2026-07-22T04:52:43.280Z",
+  "generatedAt": "2026-07-22T05:06:41.442Z",
   "claim": {
     "schemaVersion": "nodevideo.creatorbench-public-claim/v1",
     "benchmarkVersion": "creatorbench-v1",
     "freezeReceiptId": "creatorbench-freeze:df154733d015490fbb3b512c",
-    "generatedAt": "2026-07-22T04:52:43.280Z",
+    "generatedAt": "2026-07-22T05:06:41.442Z",
     "population": {
       "split": "private-heldout",
       "instanceCount": 8,

@@ -7,6 +7,7 @@ const paths = [
   'benchmarks/creatorbench-v1/catalog/public-splits.json',
   'benchmarks/creatorbench-v1/catalog/public-instances.json',
   'benchmarks/creatorbench-v1/results/public-evaluation.json',
+  'benchmarks/creatorbench-v1/results/public-claim.json',
   'benchmarks/creatorbench-v1/results/public-report.json',
 ];
 const forbidden = [

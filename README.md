@@ -137,6 +137,9 @@ Acquisition is fail-honest: the target remains 250 rights-cleared clips, 75 crea
 the receipt publishes the achieved population and gap; it does not prefill the claim. See the
 [governance contract](docs/benchmarks/CREATORBENCH_V1_GOVERNANCE.md), [sealed evaluation
 boundary](docs/benchmarks/SEALED_EVALUATION.md), and [end-to-end benchmark prompts](docs/testing/CREATORBENCH_E2E_TEST_PROMPTS.md).
+The report command also emits the standalone machine-readable
+`benchmarks/creatorbench-v1/results/public-claim.json`; it is derived from the frozen held-out
+results and is scanned alongside the public report for private locators and hidden targets.
 
 ### Music rights modes
 

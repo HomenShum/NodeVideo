@@ -37,7 +37,7 @@ function creatorbenchPublicEvidence(): Plugin {
       const sourceDir = path.resolve(__dirname, 'benchmarks/creatorbench-v1/results');
       const outputDir = path.resolve(__dirname, 'dist/benchmarks/creatorbench-v1/results');
       mkdirSync(outputDir, { recursive: true });
-      for (const name of ['public-report.json', 'public-report.csv']) {
+      for (const name of ['public-claim.json', 'public-report.json', 'public-report.csv']) {
         const source = path.join(sourceDir, name);
         if (existsSync(source)) copyFileSync(source, path.join(outputDir, name));
       }
