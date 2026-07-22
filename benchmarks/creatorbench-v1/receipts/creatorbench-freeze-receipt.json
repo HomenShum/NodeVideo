@@ -1,14 +1,14 @@
 {
   "schemaVersion": "nodevideo.creatorbench-freeze/v1",
-  "id": "creatorbench-freeze:de6fbc1b1a4d8575bd6cc206",
+  "id": "creatorbench-freeze:733e4618972ad304388a811f",
   "benchmarkVersion": "creatorbench-v1",
-  "frozenAt": "2026-07-22T05:22:46.430Z",
-  "sourceCommitSha": "a546c191580782e7ded32151e70eee93f8b4d621",
+  "frozenAt": "2026-07-22T05:25:38.991Z",
+  "sourceCommitSha": "bb9c7ca337f4f993750517141dd34aed2e4d02d4",
   "configHash": "sha256:20929e9cc64c3bf88a6018bede9a4ee81d0e2375d1c9c593c4db32174fe1872c",
   "capabilityManifestHash": "sha256:164094f6341a7788eb95b045d8960093ecdac5e6c374f17837c4168277ff32f0",
   "routerPolicyHash": "sha256:266bd6b36cfa2e11fd62299bdf37823c4f532a88106661f8ae9aaa19d37a1437",
   "thresholdPolicyHash": "sha256:5338c6b661fe925a617b21c98a9601ea79cfc3b07e1bee18d431c1181577387d",
-  "benchmarkManifestHash": "sha256:0c1c339b2bb550dc19829445a901269830063de2724eb2a44b781ff702f04319",
+  "benchmarkManifestHash": "sha256:57720bff7ba12a245a43b8074566fb38a4bfa54e2f1f6d68848aa9b4b2d48047",
   "evaluatorVersion": "creatorbench-evaluator-v1",
   "evaluatorHash": "sha256:20edee497866d1d445c9eaf64833083ad6465ef66e34469c1fa89f6cf6a4370c",
   "modelVersions": [
@@ -19,7 +19,7 @@
     "executor-catalog-v1"
   ],
   "privateSplit": {
-    "catalogHash": "sha256:4a9dfe112ca2993ae47695d2457184e819ec4ff0c1ee6f1047ad24d82fdec1ce",
+    "catalogHash": "sha256:dfd128742ae21712864f6e713214e02d03c107c108593986486d6c10a892f34a",
     "mediaStoredOutsideRepository": true,
     "developmentCredentialsDenied": true
   }

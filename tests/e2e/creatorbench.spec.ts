@@ -141,6 +141,31 @@ async function mockReport(page: Page) {
 }
 
 test.describe('CreatorBench public evidence and reviewer UI', () => {
+  test('loads the real render pilot with three reopened formats and a blind review queue', async ({
+    page,
+  }) => {
+    await page.goto('/creatorbench');
+    await expect(page.getByLabel('Dataset coverage')).toContainText('15');
+    await expect(page.getByText('36/36')).toBeVisible();
+
+    const reviewButton = page.getByRole('button', { name: 'Review lab' }).first();
+    await reviewButton.scrollIntoViewIfNeeded();
+    await reviewButton.click();
+    const review = page.getByTestId('review-lab');
+    await expect(review).toContainText(/case 1 of 12/iu);
+    await expect(review).toContainText('Additional requested formats');
+    await expect(review).not.toContainText('Deterministic center-crop baseline');
+    await expect(review.locator('img')).toHaveCount(4);
+    expect(
+      await review.locator('img').evaluateAll((images) =>
+        images.every((image) => image instanceof HTMLImageElement && image.naturalWidth > 0),
+      ),
+    ).toBe(true);
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1),
+    ).toBe(true);
+  });
+
   test('renders exact samples, rates, intervals, subgroups, routes, failures, and freeze receipt', async ({
     page,
   }) => {

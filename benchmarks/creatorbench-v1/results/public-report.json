@@ -2,18 +2,18 @@
   "schemaVersion": "nodevideo.creatorbench-public-report/v1",
   "benchmarkVersion": "creatorbench-v1",
   "status": "evaluated",
-  "generatedAt": "2026-07-22T05:23:07.623Z",
+  "generatedAt": "2026-07-22T05:34:38.930Z",
   "claim": {
     "schemaVersion": "nodevideo.creatorbench-public-claim/v1",
     "benchmarkVersion": "creatorbench-v1",
-    "freezeReceiptId": "creatorbench-freeze:de6fbc1b1a4d8575bd6cc206",
-    "generatedAt": "2026-07-22T05:23:07.623Z",
+    "freezeReceiptId": "creatorbench-freeze:733e4618972ad304388a811f",
+    "generatedAt": "2026-07-22T05:34:38.930Z",
     "population": {
       "split": "private-heldout",
       "instanceCount": 24,
       "sourceCount": 3,
-      "creatorDisjointSourceCount": 1,
-      "domainCount": 1,
+      "creatorDisjointSourceCount": 3,
+      "domainCount": 3,
       "workflowCount": 8
     },
     "outcomes": {
@@ -28,14 +28,14 @@
         "rate": 0
       },
       "review_required": {
-        "numerator": 15,
+        "numerator": 12,
         "denominator": 24,
-        "rate": 0.625
+        "rate": 0.5
       },
       "safely_abstained": {
-        "numerator": 9,
+        "numerator": 12,
         "denominator": 24,
-        "rate": 0.375
+        "rate": 0.5
       },
       "unsupported": {
         "numerator": 0,
@@ -53,7 +53,7 @@
         "rate": 0
       }
     },
-    "statement": "On creatorbench-v1, covering 24 private held-out workflow instances from 1 creator-disjoint sources across 8 workflows, NodeVideo produced a usable first-pass result automatically in 0.0%, after bounded assistance in 0.0%, and safely abstained in 37.5%. Silent failures occurred in 0.0%.",
+    "statement": "On creatorbench-v1, covering 24 private held-out workflow instances from 3 creator-disjoint sources across 8 workflows, NodeVideo produced a usable first-pass result automatically in 0.0%, after bounded assistance in 0.0%, and safely abstained in 50.0%. Silent failures occurred in 0.0%.",
     "limitations": [
       "No result is classified usable until a rendered artifact is blindly reviewed by a human.",
       "This baseline measures request ingestion, rights validation, route eligibility, and honest non-success states—not editing quality."
@@ -79,21 +79,21 @@
       }
     },
     "review_required": {
-      "numerator": 15,
+      "numerator": 12,
       "denominator": 24,
-      "rate": 0.625,
+      "rate": 0.5,
       "confidenceInterval": {
-        "lower": 0.4270996244267427,
-        "upper": 0.7884063244045122
+        "lower": 0.31427425819573357,
+        "upper": 0.6857257418042665
       }
     },
     "safely_abstained": {
-      "numerator": 9,
+      "numerator": 12,
       "denominator": 24,
-      "rate": 0.375,
+      "rate": 0.5,
       "confidenceInterval": {
-        "lower": 0.21159367559548778,
-        "upper": 0.5729003755732572
+        "lower": 0.31427425819573357,
+        "upper": 0.6857257418042665
       }
     },
     "unsupported": {
@@ -160,9 +160,9 @@
       "median": null
     },
     "exportReopen": {
-      "numerator": 0,
-      "denominator": 24,
-      "rate": 0
+      "numerator": 36,
+      "denominator": 36,
+      "rate": 1
     },
     "reviewerAgreement": null
   },
@@ -171,69 +171,209 @@
     {
       "kind": "domain",
       "id": "animals",
-      "count": 24,
+      "count": 8,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 24,
+          "denominator": 8,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 1.1962983316807505e-17,
-            "upper": 0.1379762046749802
+            "lower": 0,
+            "upper": 0.32440756488388023
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 24,
+          "denominator": 8,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 1.1962983316807505e-17,
-            "upper": 0.1379762046749802
+            "lower": 0,
+            "upper": 0.32440756488388023
           }
         },
         "review_required": {
-          "numerator": 15,
-          "denominator": 24,
+          "numerator": 5,
+          "denominator": 8,
           "rate": 0.625,
           "confidenceInterval": {
-            "lower": 0.4270996244267427,
-            "upper": 0.7884063244045122
+            "lower": 0.3057423946026273,
+            "upper": 0.8631557141764027
           }
         },
         "safely_abstained": {
-          "numerator": 9,
-          "denominator": 24,
+          "numerator": 3,
+          "denominator": 8,
           "rate": 0.375,
           "confidenceInterval": {
-            "lower": 0.21159367559548778,
-            "upper": 0.5729003755732572
+            "lower": 0.13684428582359737,
+            "upper": 0.6942576053973727
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 24,
+          "denominator": 8,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 1.1962983316807505e-17,
-            "upper": 0.1379762046749802
+            "lower": 0,
+            "upper": 0.32440756488388023
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 24,
+          "denominator": 8,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 1.1962983316807505e-17,
-            "upper": 0.1379762046749802
+            "lower": 0,
+            "upper": 0.32440756488388023
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 24,
+          "denominator": 8,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 1.1962983316807505e-17,
-            "upper": 0.1379762046749802
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "dance",
+      "count": 8,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        },
+        "review_required": {
+          "numerator": 5,
+          "denominator": 8,
+          "rate": 0.625,
+          "confidenceInterval": {
+            "lower": 0.3057423946026273,
+            "upper": 0.8631557141764027
+          }
+        },
+        "safely_abstained": {
+          "numerator": 3,
+          "denominator": 8,
+          "rate": 0.375,
+          "confidenceInterval": {
+            "lower": 0.13684428582359737,
+            "upper": 0.6942576053973727
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "public-speech",
+      "count": 8,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        },
+        "review_required": {
+          "numerator": 2,
+          "denominator": 8,
+          "rate": 0.25,
+          "confidenceInterval": {
+            "lower": 0.07147921275210901,
+            "upper": 0.5907245696898311
+          }
+        },
+        "safely_abstained": {
+          "numerator": 6,
+          "denominator": 8,
+          "rate": 0.75,
+          "confidenceInterval": {
+            "lower": 0.40927543031016894,
+            "upper": 0.928520787247891
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
           }
         }
       }
@@ -262,21 +402,21 @@
           }
         },
         "review_required": {
-          "numerator": 3,
+          "numerator": 2,
           "denominator": 3,
-          "rate": 1,
+          "rate": 0.6666666666666666,
           "confidenceInterval": {
-            "lower": 0.4385029682449545,
-            "upper": 1
+            "lower": 0.20765960080204768,
+            "upper": 0.9385080552796037
           }
         },
         "safely_abstained": {
-          "numerator": 0,
+          "numerator": 1,
           "denominator": 3,
-          "rate": 0,
+          "rate": 0.3333333333333333,
           "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
+            "lower": 0.061491944720396215,
+            "upper": 0.7923403991979523
           }
         },
         "unsupported": {
@@ -402,21 +542,21 @@
           }
         },
         "review_required": {
-          "numerator": 3,
+          "numerator": 2,
           "denominator": 3,
-          "rate": 1,
+          "rate": 0.6666666666666666,
           "confidenceInterval": {
-            "lower": 0.4385029682449545,
-            "upper": 1
+            "lower": 0.20765960080204768,
+            "upper": 0.9385080552796037
           }
         },
         "safely_abstained": {
-          "numerator": 0,
+          "numerator": 1,
           "denominator": 3,
-          "rate": 0,
+          "rate": 0.3333333333333333,
           "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
+            "lower": 0.061491944720396215,
+            "upper": 0.7923403991979523
           }
         },
         "unsupported": {
@@ -682,21 +822,21 @@
           }
         },
         "review_required": {
-          "numerator": 3,
+          "numerator": 2,
           "denominator": 3,
-          "rate": 1,
+          "rate": 0.6666666666666666,
           "confidenceInterval": {
-            "lower": 0.4385029682449545,
-            "upper": 1
+            "lower": 0.20765960080204768,
+            "upper": 0.9385080552796037
           }
         },
         "safely_abstained": {
-          "numerator": 0,
+          "numerator": 1,
           "denominator": 3,
-          "rate": 0,
+          "rate": 0.3333333333333333,
           "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
+            "lower": 0.061491944720396215,
+            "upper": 0.7923403991979523
           }
         },
         "unsupported": {
@@ -801,13 +941,13 @@
   ],
   "routes": [
     {
-      "executorId": "executor.opencv-subject-tracker",
-      "count": 9,
+      "executorId": "none",
+      "count": 12,
       "dispositions": {
         "automatic": 0,
-        "assisted": 9,
+        "assisted": 0,
         "review": 0,
-        "abstain": 0
+        "abstain": 12
       }
     },
     {
@@ -821,16 +961,6 @@
       }
     },
     {
-      "executorId": "none",
-      "count": 9,
-      "dispositions": {
-        "automatic": 0,
-        "assisted": 0,
-        "review": 0,
-        "abstain": 9
-      }
-    },
-    {
       "executorId": "executor.ffmpeg-edit-plan",
       "count": 3,
       "dispositions": {
@@ -839,20 +969,377 @@
         "review": 3,
         "abstain": 0
       }
+    },
+    {
+      "executorId": "executor.opencv-subject-tracker",
+      "count": 6,
+      "dispositions": {
+        "automatic": 0,
+        "assisted": 6,
+        "review": 0,
+        "abstain": 0
+      }
     }
   ],
   "representativeFailures": [],
   "freezeReceipt": {
-    "receiptId": "creatorbench-freeze:de6fbc1b1a4d8575bd6cc206",
-    "frozenAt": "2026-07-22T05:22:46.430Z",
-    "sourceCommit": "a546c191580782e7ded32151e70eee93f8b4d621",
+    "receiptId": "creatorbench-freeze:733e4618972ad304388a811f",
+    "frozenAt": "2026-07-22T05:25:38.991Z",
+    "sourceCommit": "bb9c7ca337f4f993750517141dd34aed2e4d02d4",
     "configHash": "sha256:20929e9cc64c3bf88a6018bede9a4ee81d0e2375d1c9c593c4db32174fe1872c",
-    "manifestHash": "sha256:0c1c339b2bb550dc19829445a901269830063de2724eb2a44b781ff702f04319",
+    "manifestHash": "sha256:57720bff7ba12a245a43b8074566fb38a4bfa54e2f1f6d68848aa9b4b2d48047",
     "evaluatorVersion": "creatorbench-evaluator-v1",
     "thresholdPolicy": "sha256:5338c6b661fe925a617b21c98a9601ea79cfc3b07e1bee18d431c1181577387d",
     "status": "verified"
   },
-  "reviewCases": [],
+  "publicRenderPilot": {
+    "scope": {
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "splitClasses": [
+        "development",
+        "public-test",
+        "adversarial"
+      ],
+      "sourceCount": 12,
+      "outputCount": 12,
+      "artifactCount": 36
+    },
+    "metrics": {
+      "latencyMs": {
+        "p50": 1339,
+        "p95": 1530
+      },
+      "costUsd": {
+        "total": 0,
+        "perOutput": 0
+      },
+      "exportReopen": {
+        "numerator": 36,
+        "denominator": 36,
+        "rate": 1
+      }
+    },
+    "limitations": [
+      "This is a deterministic center-crop baseline for one workflow, not a subject-aware reframe claim.",
+      "The public review queue is blind to machine findings until a judgment is recorded.",
+      "No pilot result is counted as usable before human review."
+    ]
+  },
+  "reviewCases": [
+    {
+      "id": "instance:cb-0001-b0952255:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "CC BY 3.0 · Wikimania 2016 - How to make a short documentary with a smartphone.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0004-7bfc3a17:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "CC BY 3.0 · Reviewing The Age of Disclosure – Amazon Prime’s New UFO Documentary.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0009-beb98f01:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/5c2318cf7148893c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/5c2318cf7148893c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "CC BY 3.0 · McKinley's Late Grandmother is an Inspiration.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0040-591140b7:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "CC BY 3.0 · Demonstration of a 2-step.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0006-493a02f5:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/92e67347e253173c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/92e67347e253173c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/92e67347e253173c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/92e67347e253173c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · How NASA Data Helps Study Animals on the Move",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0007-bd64b3cf:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/88a72a383a42a1f3-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/88a72a383a42a1f3-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/88a72a383a42a1f3-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/88a72a383a42a1f3-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Hubble Celebrates World Wildlife Day",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0009-4f1d6956:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Vegetation Index Anomalies and Rift Valley fever (RVF) outbreaks in South Africa region: 2008-2011",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0010-565d0079:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/f72743c59803c8df-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/f72743c59803c8df-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/f72743c59803c8df-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/f72743c59803c8df-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Precipitation Anomaly and Rift Valley fever (RVF) outbreaks in South Africa: 2008-2011",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0011-85b2e35f:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · ENSO Teleconnections and Rift Valley fever (RVF) Outbreaks",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0013-e3145068:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Eclipse Poems",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0014-a6e58d23:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/392ce4566b4a627c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/392ce4566b4a627c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/392ce4566b4a627c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/392ce4566b4a627c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Hubble Archive - Servicing Mission 4, STS-125",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0015-0a22e6b8:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/2248624bdd122e08-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/2248624bdd122e08-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/2248624bdd122e08-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/2248624bdd122e08-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Getting SET - The Mission to Protect Satellites from Radiation",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    }
+  ],
   "publicSourceCount": 12,
   "downloads": {
     "json": "/benchmarks/creatorbench-v1/results/public-report.json",

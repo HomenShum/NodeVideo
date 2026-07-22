@@ -1039,6 +1039,47 @@ label:has(input:focus-visible) {
   font-size: 10px;
   text-transform: uppercase;
 }
+.cb-review-format-outputs {
+  display: grid;
+  gap: 8px;
+}
+.cb-review-format-outputs h3 {
+  margin: 0;
+  color: var(--cb-muted);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.cb-review-format-outputs > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.cb-review-format-outputs figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--cb-line);
+  border-radius: 13px;
+  background: #090b09;
+}
+.cb-review-format-outputs img,
+.cb-review-format-outputs figure > div {
+  display: flex;
+  width: 100%;
+  height: 190px;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  color: #8e988d;
+}
+.cb-review-format-outputs figcaption {
+  padding: 9px 11px;
+  background: var(--cb-panel);
+  color: var(--cb-muted);
+  font-size: 10px;
+  text-transform: uppercase;
+}
 .cb-variant-choice {
   display: flex;
   align-items: center;

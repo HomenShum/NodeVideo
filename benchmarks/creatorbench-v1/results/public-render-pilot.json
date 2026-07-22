@@ -1,0 +1,1157 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-render-pilot/v1",
+  "benchmarkVersion": "creatorbench-v1",
+  "generatedAt": "2026-07-22T05:34:38.026Z",
+  "scope": {
+    "workflow": "smart-reframe",
+    "executorVersion": "local-ffmpeg-center-reframe-v1",
+    "splitClasses": [
+      "development",
+      "public-test",
+      "adversarial"
+    ],
+    "sourceCount": 12,
+    "outputCount": 12,
+    "artifactCount": 36
+  },
+  "metrics": {
+    "latencyMs": {
+      "p50": 1339,
+      "p95": 1530
+    },
+    "costUsd": {
+      "total": 0,
+      "perOutput": 0
+    },
+    "exportReopen": {
+      "numerator": 36,
+      "denominator": 36,
+      "rate": 1
+    }
+  },
+  "limitations": [
+    "This is a deterministic center-crop baseline for one workflow, not a subject-aware reframe claim.",
+    "The public review queue is blind to machine findings until a judgment is recorded.",
+    "No pilot result is counted as usable before human review."
+  ],
+  "reviewCases": [
+    {
+      "id": "instance:cb-0001-b0952255:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "CC BY 3.0 · Wikimania 2016 - How to make a short documentary with a smartphone.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0004-7bfc3a17:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "CC BY 3.0 · Reviewing The Age of Disclosure – Amazon Prime’s New UFO Documentary.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0009-beb98f01:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/5c2318cf7148893c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/5c2318cf7148893c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "CC BY 3.0 · McKinley's Late Grandmother is an Inspiration.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0040-591140b7:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "CC BY 3.0 · Demonstration of a 2-step.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0006-493a02f5:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/92e67347e253173c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/92e67347e253173c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/92e67347e253173c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/92e67347e253173c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · How NASA Data Helps Study Animals on the Move",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0007-bd64b3cf:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/88a72a383a42a1f3-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/88a72a383a42a1f3-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/88a72a383a42a1f3-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/88a72a383a42a1f3-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Hubble Celebrates World Wildlife Day",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0009-4f1d6956:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Vegetation Index Anomalies and Rift Valley fever (RVF) outbreaks in South Africa region: 2008-2011",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0010-565d0079:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/f72743c59803c8df-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/f72743c59803c8df-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/f72743c59803c8df-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/f72743c59803c8df-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Precipitation Anomaly and Rift Valley fever (RVF) outbreaks in South Africa: 2008-2011",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0011-85b2e35f:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · ENSO Teleconnections and Rift Valley fever (RVF) Outbreaks",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0013-e3145068:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Eclipse Poems",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0014-a6e58d23:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/392ce4566b4a627c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/392ce4566b4a627c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/392ce4566b4a627c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/392ce4566b4a627c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Hubble Archive - Servicing Mission 4, STS-125",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0015-0a22e6b8:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/2248624bdd122e08-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/2248624bdd122e08-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/2248624bdd122e08-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/2248624bdd122e08-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Getting SET - The Mission to Protect Satellites from Radiation",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    }
+  ],
+  "results": [
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:2d744e4b2294f6cf",
+      "instanceId": "instance:cb-0001-b0952255:smart-reframe",
+      "resultId": "result:instance:cb-0001-b0952255:smart-reframe",
+      "split": "development",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:b6feddb00b6c94ca342f4ae1590814d30481e196387a37cee24dbfe03599a2e8",
+          "sha256": "sha256:b6feddb00b6c94ca342f4ae1590814d30481e196387a37cee24dbfe03599a2e8",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:874e44a67d79495b5c278d6bf520cab1fdf6672df1137ba35aca851cbe303665",
+          "sha256": "sha256:874e44a67d79495b5c278d6bf520cab1fdf6672df1137ba35aca851cbe303665",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:4aef2089058099c88948d6f3cd86e11db2c336f1b3ea01f303a17313704df187",
+          "sha256": "sha256:4aef2089058099c88948d6f3cd86e11db2c336f1b3ea01f303a17313704df187",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T05:34:22.202Z",
+      "completedAt": "2026-07-22T05:34:23.421Z",
+      "latencyMs": 1218,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "publicSourceLabel": "CC BY 3.0 · Wikimania 2016 - How to make a short documentary with a smartphone.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:fdcb712bc07d6d12",
+      "instanceId": "instance:cb-0004-7bfc3a17:smart-reframe",
+      "resultId": "result:instance:cb-0004-7bfc3a17:smart-reframe",
+      "split": "public-test",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:f7b1f9266e7dee72d750f056bc466281828d6d2ec1d4c97d91cadb5c5b6ed5c7",
+          "sha256": "sha256:f7b1f9266e7dee72d750f056bc466281828d6d2ec1d4c97d91cadb5c5b6ed5c7",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:7093012e4bb4a6738be8b540d014d353221d5462068c3d7c398e6754c3b0d8ad",
+          "sha256": "sha256:7093012e4bb4a6738be8b540d014d353221d5462068c3d7c398e6754c3b0d8ad",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:0e3ba09431740b8856683c2ba40fff0f767c36602bce2c14b538be0c9bf1d0c9",
+          "sha256": "sha256:0e3ba09431740b8856683c2ba40fff0f767c36602bce2c14b538be0c9bf1d0c9",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T05:34:23.421Z",
+      "completedAt": "2026-07-22T05:34:24.951Z",
+      "latencyMs": 1530,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "publicSourceLabel": "CC BY 3.0 · Reviewing The Age of Disclosure – Amazon Prime’s New UFO Documentary.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:5c2318cf7148893c",
+      "instanceId": "instance:cb-0009-beb98f01:smart-reframe",
+      "resultId": "result:instance:cb-0009-beb98f01:smart-reframe",
+      "split": "public-test",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:4f3241dfc3ce7d4618041ad88881cc570b2d44669921cb7710cbc8a04074f5b5",
+          "sha256": "sha256:4f3241dfc3ce7d4618041ad88881cc570b2d44669921cb7710cbc8a04074f5b5",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:a9446279aeea28bba3bde8c95d4070c931cff1e1a3d73349e385c67ab6bb22f7",
+          "sha256": "sha256:a9446279aeea28bba3bde8c95d4070c931cff1e1a3d73349e385c67ab6bb22f7",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:8a53b49161d23319ff3c1780e590e568fb0afbba35f9975ba1efada8ffc687d2",
+          "sha256": "sha256:8a53b49161d23319ff3c1780e590e568fb0afbba35f9975ba1efada8ffc687d2",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T05:34:24.951Z",
+      "completedAt": "2026-07-22T05:34:26.326Z",
+      "latencyMs": 1375,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/5c2318cf7148893c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/5c2318cf7148893c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "publicSourceLabel": "CC BY 3.0 · McKinley's Late Grandmother is an Inspiration.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:adc5fb398b6c51dd",
+      "instanceId": "instance:cb-0040-591140b7:smart-reframe",
+      "resultId": "result:instance:cb-0040-591140b7:smart-reframe",
+      "split": "public-test",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:f8c09abcfdf7db3b581ce780cfda9e4e38f8f41f2022467b14bedab14ea18cf8",
+          "sha256": "sha256:f8c09abcfdf7db3b581ce780cfda9e4e38f8f41f2022467b14bedab14ea18cf8",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:682d8aca65bb9e3f1566e3d58e0f37080d88ea4db307d112961063ba6270fe77",
+          "sha256": "sha256:682d8aca65bb9e3f1566e3d58e0f37080d88ea4db307d112961063ba6270fe77",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:1f87f7fec59a00eb07004201482bf2b00b6e6bec5b7adca35957c63b86a08090",
+          "sha256": "sha256:1f87f7fec59a00eb07004201482bf2b00b6e6bec5b7adca35957c63b86a08090",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T05:34:26.326Z",
+      "completedAt": "2026-07-22T05:34:27.466Z",
+      "latencyMs": 1140,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "publicSourceLabel": "CC BY 3.0 · Demonstration of a 2-step.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:92e67347e253173c",
+      "instanceId": "instance:cb-0006-493a02f5:smart-reframe",
+      "resultId": "result:instance:cb-0006-493a02f5:smart-reframe",
+      "split": "development",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:4349a775d15cd82c244ec7c649db2c6475c40991d294b56f7b9cee87afc22c3f",
+          "sha256": "sha256:4349a775d15cd82c244ec7c649db2c6475c40991d294b56f7b9cee87afc22c3f",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/92e67347e253173c-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:80fb57b1c4fe6efaa610dee381ecbd9f06d3a027731e1671589f4205c04bb29d",
+          "sha256": "sha256:80fb57b1c4fe6efaa610dee381ecbd9f06d3a027731e1671589f4205c04bb29d",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/92e67347e253173c-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:907d48cc847a7b56094ebf95523cbd4bcd43c203eebbe4295f3714696f982d7e",
+          "sha256": "sha256:907d48cc847a7b56094ebf95523cbd4bcd43c203eebbe4295f3714696f982d7e",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/92e67347e253173c-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T05:34:27.467Z",
+      "completedAt": "2026-07-22T05:34:28.986Z",
+      "latencyMs": 1519,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/92e67347e253173c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/92e67347e253173c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/92e67347e253173c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/92e67347e253173c-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "publicSourceLabel": "NASA SVS public domain · How NASA Data Helps Study Animals on the Move",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:88a72a383a42a1f3",
+      "instanceId": "instance:cb-0007-bd64b3cf:smart-reframe",
+      "resultId": "result:instance:cb-0007-bd64b3cf:smart-reframe",
+      "split": "adversarial",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:7003b4dabcf726bc360ec027318dddeb9057b148d372c0175046cd85abda7ae9",
+          "sha256": "sha256:7003b4dabcf726bc360ec027318dddeb9057b148d372c0175046cd85abda7ae9",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/88a72a383a42a1f3-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:fa91c5e22621656c570426ecb909c644384650558009dcabeec63503f35ce2da",
+          "sha256": "sha256:fa91c5e22621656c570426ecb909c644384650558009dcabeec63503f35ce2da",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/88a72a383a42a1f3-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:54fe9f6878454b9b183ea2dc9bbd83247df2d574a8481befbbc852fee0bf2815",
+          "sha256": "sha256:54fe9f6878454b9b183ea2dc9bbd83247df2d574a8481befbbc852fee0bf2815",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/88a72a383a42a1f3-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T05:34:28.986Z",
+      "completedAt": "2026-07-22T05:34:30.336Z",
+      "latencyMs": 1351,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/88a72a383a42a1f3-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/88a72a383a42a1f3-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/88a72a383a42a1f3-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/88a72a383a42a1f3-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "publicSourceLabel": "NASA SVS public domain · Hubble Celebrates World Wildlife Day",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:dbdf164d2f66a3c2",
+      "instanceId": "instance:cb-0009-4f1d6956:smart-reframe",
+      "resultId": "result:instance:cb-0009-4f1d6956:smart-reframe",
+      "split": "development",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:6fb19ee9bebe1d3b297fca46e1748a29802cac13e9b740436e26289e19d513d2",
+          "sha256": "sha256:6fb19ee9bebe1d3b297fca46e1748a29802cac13e9b740436e26289e19d513d2",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:401dca3e71eb87033fb31466e7132f9ce5563a11e02b964affa03fdb6308f438",
+          "sha256": "sha256:401dca3e71eb87033fb31466e7132f9ce5563a11e02b964affa03fdb6308f438",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:95c428e1acd91d9a45b73280018cfc39fed8df77abed9bd0a21fc71684f7bacd",
+          "sha256": "sha256:95c428e1acd91d9a45b73280018cfc39fed8df77abed9bd0a21fc71684f7bacd",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T05:34:30.337Z",
+      "completedAt": "2026-07-22T05:34:31.558Z",
+      "latencyMs": 1222,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "publicSourceLabel": "NASA SVS public domain · Vegetation Index Anomalies and Rift Valley fever (RVF) outbreaks in South Africa region: 2008-2011",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:f72743c59803c8df",
+      "instanceId": "instance:cb-0010-565d0079:smart-reframe",
+      "resultId": "result:instance:cb-0010-565d0079:smart-reframe",
+      "split": "development",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:00af70a806da914fe9d61053383e6168bdb7de7b97ed08ffccef5bd9e5a979ab",
+          "sha256": "sha256:00af70a806da914fe9d61053383e6168bdb7de7b97ed08ffccef5bd9e5a979ab",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/f72743c59803c8df-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:56c49e455c6b79fb5b40676df658f3c46f32ab4f827de3c3ae14e909d2ffb3b3",
+          "sha256": "sha256:56c49e455c6b79fb5b40676df658f3c46f32ab4f827de3c3ae14e909d2ffb3b3",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/f72743c59803c8df-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:f1b1935815032297ec9200fdb0abe344fa0ab0e09867b80132a846f2fc2df8d2",
+          "sha256": "sha256:f1b1935815032297ec9200fdb0abe344fa0ab0e09867b80132a846f2fc2df8d2",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/f72743c59803c8df-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T05:34:31.558Z",
+      "completedAt": "2026-07-22T05:34:32.805Z",
+      "latencyMs": 1247,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/f72743c59803c8df-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/f72743c59803c8df-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/f72743c59803c8df-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/f72743c59803c8df-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "publicSourceLabel": "NASA SVS public domain · Precipitation Anomaly and Rift Valley fever (RVF) outbreaks in South Africa: 2008-2011",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:06fb82c9a0c22c71",
+      "instanceId": "instance:cb-0011-85b2e35f:smart-reframe",
+      "resultId": "result:instance:cb-0011-85b2e35f:smart-reframe",
+      "split": "development",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:b8d9e1feea01b7faa283a3273b27fc5d2e5ae022bd3e8e9122b42320bdf038de",
+          "sha256": "sha256:b8d9e1feea01b7faa283a3273b27fc5d2e5ae022bd3e8e9122b42320bdf038de",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:55b2ed68c3f7127e084ce8f79f9d0bcbecc38c9b43ab55e8164c36cb93546c44",
+          "sha256": "sha256:55b2ed68c3f7127e084ce8f79f9d0bcbecc38c9b43ab55e8164c36cb93546c44",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:4aca27c4b83fcb1ef75a3ae3d51eec29469e53c2d120b3f6c7c2419dcb292696",
+          "sha256": "sha256:4aca27c4b83fcb1ef75a3ae3d51eec29469e53c2d120b3f6c7c2419dcb292696",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T05:34:32.805Z",
+      "completedAt": "2026-07-22T05:34:33.951Z",
+      "latencyMs": 1146,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "publicSourceLabel": "NASA SVS public domain · ENSO Teleconnections and Rift Valley fever (RVF) Outbreaks",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:8ff6a3b8ee9f7f56",
+      "instanceId": "instance:cb-0013-e3145068:smart-reframe",
+      "resultId": "result:instance:cb-0013-e3145068:smart-reframe",
+      "split": "development",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:f73ee719311b1d13a2fccac8aaf254199e6cb20bc9c1238690048b0ae20180a0",
+          "sha256": "sha256:f73ee719311b1d13a2fccac8aaf254199e6cb20bc9c1238690048b0ae20180a0",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:e8333f14e96a68b267b1b80c008e592299c9bff829441ea8d853d8dd067e2346",
+          "sha256": "sha256:e8333f14e96a68b267b1b80c008e592299c9bff829441ea8d853d8dd067e2346",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:128445d190ac0d5af11a9fc33b085039f054c4d01799548035ebcf1137ea5819",
+          "sha256": "sha256:128445d190ac0d5af11a9fc33b085039f054c4d01799548035ebcf1137ea5819",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T05:34:33.952Z",
+      "completedAt": "2026-07-22T05:34:35.207Z",
+      "latencyMs": 1256,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "publicSourceLabel": "NASA SVS public domain · Eclipse Poems",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:392ce4566b4a627c",
+      "instanceId": "instance:cb-0014-a6e58d23:smart-reframe",
+      "resultId": "result:instance:cb-0014-a6e58d23:smart-reframe",
+      "split": "development",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:a868764b9edf8cb031c7c1cc8ca3eceb73b82202e0bf717c154111176dd4f3c1",
+          "sha256": "sha256:a868764b9edf8cb031c7c1cc8ca3eceb73b82202e0bf717c154111176dd4f3c1",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/392ce4566b4a627c-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:73555d20fe1194aeebaafe2d5505bbabacf866a97412e4ae2c1c3b9736f861e7",
+          "sha256": "sha256:73555d20fe1194aeebaafe2d5505bbabacf866a97412e4ae2c1c3b9736f861e7",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/392ce4566b4a627c-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:5b6beb4f93c6a8b220c4d1e9b384159ab31b2b316da556bfd8eb036001410a93",
+          "sha256": "sha256:5b6beb4f93c6a8b220c4d1e9b384159ab31b2b316da556bfd8eb036001410a93",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/392ce4566b4a627c-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T05:34:35.207Z",
+      "completedAt": "2026-07-22T05:34:36.546Z",
+      "latencyMs": 1339,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/392ce4566b4a627c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/392ce4566b4a627c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/392ce4566b4a627c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/392ce4566b4a627c-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "publicSourceLabel": "NASA SVS public domain · Hubble Archive - Servicing Mission 4, STS-125",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:2248624bdd122e08",
+      "instanceId": "instance:cb-0015-0a22e6b8:smart-reframe",
+      "resultId": "result:instance:cb-0015-0a22e6b8:smart-reframe",
+      "split": "adversarial",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:80b9dd8cbb1dcdc54f1e9fd4d9e7a10b2ffe57357bf754c07c01da86e8808c98",
+          "sha256": "sha256:80b9dd8cbb1dcdc54f1e9fd4d9e7a10b2ffe57357bf754c07c01da86e8808c98",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/2248624bdd122e08-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:5d8361ed3367ba26019a184aa267141808bd5963ee9c211fb29b54b325b2fc97",
+          "sha256": "sha256:5d8361ed3367ba26019a184aa267141808bd5963ee9c211fb29b54b325b2fc97",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/2248624bdd122e08-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:8ee421fbc6ee0f34f45a520578a4db9a692a79df533376ff989c2227ddd7ccda",
+          "sha256": "sha256:8ee421fbc6ee0f34f45a520578a4db9a692a79df533376ff989c2227ddd7ccda",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/2248624bdd122e08-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T05:34:36.546Z",
+      "completedAt": "2026-07-22T05:34:38.026Z",
+      "latencyMs": 1479,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/2248624bdd122e08-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/2248624bdd122e08-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/2248624bdd122e08-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/2248624bdd122e08-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "publicSourceLabel": "NASA SVS public domain · Getting SET - The Mission to Protect Satellites from Radiation",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    }
+  ]
+}

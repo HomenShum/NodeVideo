@@ -92,6 +92,7 @@ type ReviewCase = {
   request?: string;
   sourcePoster?: string;
   outputPoster?: string;
+  outputs?: Array<{ id: string; label: string; poster: string }>;
   variantAPoster?: string;
   variantBPoster?: string;
   publicSourceLabel?: string;
@@ -852,6 +853,25 @@ function ReviewLab({ cases }: { cases: ReviewCase[] }) {
           <figcaption>After · candidate</figcaption>
         </figure>
       </section>
+      {reviewCase.outputs?.length ? (
+        <section className="cb-review-format-outputs" aria-label="Additional requested formats">
+          <h3>Additional requested formats</h3>
+          <div>
+            {reviewCase.outputs.map((output) => (
+              <figure key={output.id}>
+                {publicAsset(output.poster) ? (
+                  <img src={publicAsset(output.poster)} alt={`${output.label} candidate frame`} />
+                ) : (
+                  <div>
+                    <Film /> Output preview withheld
+                  </div>
+                )}
+                <figcaption>{output.label} candidate</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : null}
       {(reviewCase.variantAPoster || reviewCase.variantBPoster) && (
         <fieldset className="cb-variant-choice">
           <legend>Blind A/B preference</legend>

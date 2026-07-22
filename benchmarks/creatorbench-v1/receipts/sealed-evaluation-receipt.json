@@ -1,12 +1,12 @@
 {
   "schemaVersion": "nodevideo.creatorbench-sealed-evaluation-receipt/v1",
   "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T05:23:03.934Z",
+  "generatedAt": "2026-07-22T05:25:48.468Z",
   "population": {
     "instanceCount": 24,
     "sourceCount": 3,
-    "creatorCount": 1,
-    "domainCount": 1,
+    "creatorCount": 3,
+    "domainCount": 3,
     "workflowCount": 8
   },
   "outcomes": {
@@ -29,21 +29,21 @@
       }
     },
     "review_required": {
-      "numerator": 15,
+      "numerator": 12,
       "denominator": 24,
-      "rate": 0.625,
+      "rate": 0.5,
       "confidenceInterval": {
-        "lower": 0.4270996244267427,
-        "upper": 0.7884063244045122
+        "lower": 0.31427425819573357,
+        "upper": 0.6857257418042665
       }
     },
     "safely_abstained": {
-      "numerator": 9,
+      "numerator": 12,
       "denominator": 24,
-      "rate": 0.375,
+      "rate": 0.5,
       "confidenceInterval": {
-        "lower": 0.21159367559548778,
-        "upper": 0.5729003755732572
+        "lower": 0.31427425819573357,
+        "upper": 0.6857257418042665
       }
     },
     "unsupported": {
@@ -74,6 +74,6 @@
       }
     }
   },
-  "resultsSha256": "sha256:73341230db5a3d6d0de1853eb9408f551fae15eff16a10605815a5c675a7204f",
+  "resultsSha256": "sha256:fa3e1136dbbd4f1f5e38c50480fba6871d14edc76dc36b7df1cb7c3333efaec3",
   "privateMediaExposed": false
 }

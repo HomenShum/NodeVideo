@@ -27,6 +27,7 @@
     "creatorbench:dedupe": "node scripts/benchmarks/deduplicate-creatorbench.mjs",
     "creatorbench:validate": "node scripts/benchmarks/validate-creatorbench.mjs",
     "creatorbench:evaluate": "node scripts/benchmarks/evaluate-creatorbench.mjs",
+    "creatorbench:render:pilot": "node scripts/benchmarks/render-creatorbench-pilot.mjs",
     "creatorbench:public": "npm run creatorbench:manifests && npm run creatorbench:dedupe && npm run creatorbench:validate && npm run creatorbench:evaluate",
     "creatorbench:evaluate:sealed": "node scripts/benchmarks/evaluate-creatorbench.mjs --sealed",
     "creatorbench:freeze": "node scripts/benchmarks/freeze-creatorbench.mjs",

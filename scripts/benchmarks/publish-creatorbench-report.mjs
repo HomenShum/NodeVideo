@@ -26,6 +26,9 @@ const claim = derivePublicClaim({
 await vite.close();
 const publicSources = await readJson(resolve(benchmarkRoot, 'catalog/public-sources.json'));
 const acquisition = await readJson(resolve(benchmarkRoot, 'receipts/acquisition-receipt.json'));
+const renderPilot = await readJson(
+  resolve(benchmarkRoot, 'results/public-render-pilot.json'),
+).catch(() => undefined);
 const report = {
   schemaVersion: 'nodevideo.creatorbench-public-report/v1',
   benchmarkVersion: claim.benchmarkVersion,
@@ -52,7 +55,11 @@ const report = {
     latencyMs: { p50: 0, p95: 0 },
     costUsd: { perUsableOutput: null },
     correctionTimeSeconds: { median: null },
-    exportReopen: { numerator: 0, denominator: sealed.results.length, rate: 0 },
+    exportReopen: renderPilot?.metrics?.exportReopen ?? {
+      numerator: 0,
+      denominator: 0,
+      rate: null,
+    },
     reviewerAgreement: null,
   },
   missingDataTreatment:
@@ -70,7 +77,14 @@ const report = {
     thresholdPolicy: freeze.thresholdPolicyHash,
     status: 'verified',
   },
-  reviewCases: [],
+  publicRenderPilot: renderPilot
+    ? {
+        scope: renderPilot.scope,
+        metrics: renderPilot.metrics,
+        limitations: renderPilot.limitations,
+      }
+    : null,
+  reviewCases: renderPilot?.reviewCases ?? [],
   publicSourceCount: publicSources.records.length,
   downloads: {
     json: '/benchmarks/creatorbench-v1/results/public-report.json',
