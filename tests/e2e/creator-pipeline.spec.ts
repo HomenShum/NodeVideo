@@ -19,13 +19,12 @@ test('creator pipeline compiles one source into reviewable variants', async ({
   page.on('pageerror', (error) => pageErrors.push(error.message));
   await page.goto('/creator.html');
 
-  const creatorCsp = await page
-    .locator('html')
-    .evaluate(() =>
-      fetch(location.href, { method: 'HEAD' }).then((response) =>
-        response.headers.get('content-security-policy'),
-      ),
-    );
+  const deploymentConfig = JSON.parse(readFileSync('vercel.json', 'utf8')) as {
+    headers: Array<{ source: string; headers: Array<{ key: string; value: string }> }>;
+  };
+  const creatorCsp = deploymentConfig.headers
+    .find(({ source }) => source === '/creator(\\.html)?')
+    ?.headers.find(({ key }) => key === 'Content-Security-Policy')?.value;
   expect(creatorCsp).toContain('https://*.convex.cloud');
   expect(creatorCsp).toContain('wss://*.convex.cloud');
 
