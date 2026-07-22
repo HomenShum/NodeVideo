@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nodevideo.creatorbench-acquisition-receipt.v1",
   "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T05:21:30.283Z",
+  "generatedAt": "2026-07-22T05:24:56.777Z",
   "requestedClips": 15,
   "acquiredClips": 15,
   "publicCatalogRecords": 12,
@@ -33,8 +33,8 @@
     "wikimedia": 5,
     "nasa-svs": 10
   },
-  "privateCatalogSha256": "sha256:4a9dfe112ca2993ae47695d2457184e819ec4ff0c1ee6f1047ad24d82fdec1ce",
-  "publicCatalogSha256": "sha256:b5d59556f0d22b735bce46f9fd9fb57989a5d6686009662e6486670600da6354",
+  "privateCatalogSha256": "sha256:dfd128742ae21712864f6e713214e02d03c107c108593986486d6c10a892f34a",
+  "publicCatalogSha256": "sha256:34575d2e004a946c683da425c5c0e9b7e9fe4aa34927b62fcee81ebe639e06af",
   "cacheRootClass": ".qa/evidence/creatorbench-v1/media",
   "acquisitionGap": 0,
   "failureCount": 0,

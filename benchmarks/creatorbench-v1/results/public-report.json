@@ -2,16 +2,16 @@
   "schemaVersion": "nodevideo.creatorbench-public-report/v1",
   "benchmarkVersion": "creatorbench-v1",
   "status": "evaluated",
-  "generatedAt": "2026-07-22T05:06:41.442Z",
+  "generatedAt": "2026-07-22T05:23:07.623Z",
   "claim": {
     "schemaVersion": "nodevideo.creatorbench-public-claim/v1",
     "benchmarkVersion": "creatorbench-v1",
-    "freezeReceiptId": "creatorbench-freeze:df154733d015490fbb3b512c",
-    "generatedAt": "2026-07-22T05:06:41.442Z",
+    "freezeReceiptId": "creatorbench-freeze:de6fbc1b1a4d8575bd6cc206",
+    "generatedAt": "2026-07-22T05:23:07.623Z",
     "population": {
       "split": "private-heldout",
-      "instanceCount": 8,
-      "sourceCount": 1,
+      "instanceCount": 24,
+      "sourceCount": 3,
       "creatorDisjointSourceCount": 1,
       "domainCount": 1,
       "workflowCount": 8
@@ -19,41 +19,41 @@
     "outcomes": {
       "automatic_usable": {
         "numerator": 0,
-        "denominator": 8,
+        "denominator": 24,
         "rate": 0
       },
       "assisted_usable": {
         "numerator": 0,
-        "denominator": 8,
+        "denominator": 24,
         "rate": 0
       },
       "review_required": {
-        "numerator": 2,
-        "denominator": 8,
-        "rate": 0.25
+        "numerator": 15,
+        "denominator": 24,
+        "rate": 0.625
       },
       "safely_abstained": {
-        "numerator": 6,
-        "denominator": 8,
-        "rate": 0.75
+        "numerator": 9,
+        "denominator": 24,
+        "rate": 0.375
       },
       "unsupported": {
         "numerator": 0,
-        "denominator": 8,
+        "denominator": 24,
         "rate": 0
       },
       "technical_failure": {
         "numerator": 0,
-        "denominator": 8,
+        "denominator": 24,
         "rate": 0
       },
       "silent_failure": {
         "numerator": 0,
-        "denominator": 8,
+        "denominator": 24,
         "rate": 0
       }
     },
-    "statement": "On creatorbench-v1, covering 8 private held-out workflow instances from 1 creator-disjoint sources across 8 workflows, NodeVideo produced a usable first-pass result automatically in 0.0%, after bounded assistance in 0.0%, and safely abstained in 75.0%. Silent failures occurred in 0.0%.",
+    "statement": "On creatorbench-v1, covering 24 private held-out workflow instances from 1 creator-disjoint sources across 8 workflows, NodeVideo produced a usable first-pass result automatically in 0.0%, after bounded assistance in 0.0%, and safely abstained in 37.5%. Silent failures occurred in 0.0%.",
     "limitations": [
       "No result is classified usable until a rendered artifact is blindly reviewed by a human.",
       "This baseline measures request ingestion, rights validation, route eligibility, and honest non-success states—not editing quality."
@@ -62,88 +62,87 @@
   "outcomes": {
     "automatic_usable": {
       "numerator": 0,
-      "denominator": 8,
+      "denominator": 24,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 0,
-        "upper": 0.32440756488388023
+        "lower": 1.1962983316807505e-17,
+        "upper": 0.1379762046749802
       }
     },
     "assisted_usable": {
       "numerator": 0,
-      "denominator": 8,
+      "denominator": 24,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 0,
-        "upper": 0.32440756488388023
+        "lower": 1.1962983316807505e-17,
+        "upper": 0.1379762046749802
       }
     },
     "review_required": {
-      "numerator": 2,
-      "denominator": 8,
-      "rate": 0.25,
+      "numerator": 15,
+      "denominator": 24,
+      "rate": 0.625,
       "confidenceInterval": {
-        "lower": 0.07147921275210901,
-        "upper": 0.5907245696898311
+        "lower": 0.4270996244267427,
+        "upper": 0.7884063244045122
       }
     },
     "safely_abstained": {
-      "numerator": 6,
-      "denominator": 8,
-      "rate": 0.75,
+      "numerator": 9,
+      "denominator": 24,
+      "rate": 0.375,
       "confidenceInterval": {
-        "lower": 0.40927543031016894,
-        "upper": 0.928520787247891
+        "lower": 0.21159367559548778,
+        "upper": 0.5729003755732572
       }
     },
     "unsupported": {
       "numerator": 0,
-      "denominator": 8,
+      "denominator": 24,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 0,
-        "upper": 0.32440756488388023
+        "lower": 1.1962983316807505e-17,
+        "upper": 0.1379762046749802
       }
     },
     "technical_failure": {
       "numerator": 0,
-      "denominator": 8,
+      "denominator": 24,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 0,
-        "upper": 0.32440756488388023
+        "lower": 1.1962983316807505e-17,
+        "upper": 0.1379762046749802
       }
     },
     "silent_failure": {
       "numerator": 0,
-      "denominator": 8,
+      "denominator": 24,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 0,
-        "upper": 0.32440756488388023
+        "lower": 1.1962983316807505e-17,
+        "upper": 0.1379762046749802
       }
     }
   },
   "dataset": {
-    "clips": 5,
-    "creators": 5,
-    "domains": 4,
+    "clips": 15,
+    "creators": 13,
+    "domains": 8,
     "workflows": 8,
-    "instances": 8,
+    "instances": 24,
     "splits": {
-      "development": 2,
-      "public-test": 1,
-      "private-heldout": 1,
-      "adversarial": 1
+      "development": 7,
+      "public-test": 3,
+      "private-heldout": 3,
+      "adversarial": 2
     },
     "licenseCounts": {
       "CC BY 3.0": 4,
-      "CC BY 4.0": 1
+      "CC BY 4.0": 1,
+      "NASA SVS public domain": 10
     },
-    "acquisitionGap": 245,
-    "acquisitionFailureCategories": {
-      "cache-not-acquired": 285
-    }
+    "acquisitionGap": 0,
+    "acquisitionFailureCategories": {}
   },
   "counts": {
     "reviewedInstances": 0,
@@ -162,7 +161,7 @@
     },
     "exportReopen": {
       "numerator": 0,
-      "denominator": 8,
+      "denominator": 24,
       "rate": 0
     },
     "reviewerAgreement": null
@@ -171,70 +170,70 @@
   "subgroups": [
     {
       "kind": "domain",
-      "id": "public-speech",
-      "count": 8,
+      "id": "animals",
+      "count": 24,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 24,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.32440756488388023
+            "lower": 1.1962983316807505e-17,
+            "upper": 0.1379762046749802
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 24,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.32440756488388023
+            "lower": 1.1962983316807505e-17,
+            "upper": 0.1379762046749802
           }
         },
         "review_required": {
-          "numerator": 2,
-          "denominator": 8,
-          "rate": 0.25,
+          "numerator": 15,
+          "denominator": 24,
+          "rate": 0.625,
           "confidenceInterval": {
-            "lower": 0.07147921275210901,
-            "upper": 0.5907245696898311
+            "lower": 0.4270996244267427,
+            "upper": 0.7884063244045122
           }
         },
         "safely_abstained": {
-          "numerator": 6,
-          "denominator": 8,
-          "rate": 0.75,
+          "numerator": 9,
+          "denominator": 24,
+          "rate": 0.375,
           "confidenceInterval": {
-            "lower": 0.40927543031016894,
-            "upper": 0.928520787247891
+            "lower": 0.21159367559548778,
+            "upper": 0.5729003755732572
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 24,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.32440756488388023
+            "lower": 1.1962983316807505e-17,
+            "upper": 0.1379762046749802
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 24,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.32440756488388023
+            "lower": 1.1962983316807505e-17,
+            "upper": 0.1379762046749802
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 24,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.32440756488388023
+            "lower": 1.1962983316807505e-17,
+            "upper": 0.1379762046749802
           }
         }
       }
@@ -242,69 +241,69 @@
     {
       "kind": "workflow",
       "id": "action-subject-following",
-      "count": 1,
+      "count": 3,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "review_required": {
-          "numerator": 0,
-          "denominator": 1,
-          "rate": 0,
+          "numerator": 3,
+          "denominator": 3,
+          "rate": 1,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 0.4385029682449545,
+            "upper": 1
           }
         },
         "safely_abstained": {
-          "numerator": 1,
-          "denominator": 1,
-          "rate": 1,
+          "numerator": 0,
+          "denominator": 3,
+          "rate": 0,
           "confidenceInterval": {
-            "lower": 0.20654931437723742,
-            "upper": 1
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         }
       }
@@ -312,69 +311,69 @@
     {
       "kind": "workflow",
       "id": "captioned-multi-format",
-      "count": 1,
+      "count": 3,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "review_required": {
-          "numerator": 1,
-          "denominator": 1,
+          "numerator": 3,
+          "denominator": 3,
           "rate": 1,
           "confidenceInterval": {
-            "lower": 0.20654931437723742,
+            "lower": 0.4385029682449545,
             "upper": 1
           }
         },
         "safely_abstained": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         }
       }
@@ -382,69 +381,69 @@
     {
       "kind": "workflow",
       "id": "dance-choreography",
-      "count": 1,
+      "count": 3,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "review_required": {
-          "numerator": 0,
-          "denominator": 1,
-          "rate": 0,
+          "numerator": 3,
+          "denominator": 3,
+          "rate": 1,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 0.4385029682449545,
+            "upper": 1
           }
         },
         "safely_abstained": {
-          "numerator": 1,
-          "denominator": 1,
-          "rate": 1,
+          "numerator": 0,
+          "denominator": 3,
+          "rate": 0,
           "confidenceInterval": {
-            "lower": 0.20654931437723742,
-            "upper": 1
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         }
       }
@@ -452,69 +451,69 @@
     {
       "kind": "workflow",
       "id": "founder-product-launch",
-      "count": 1,
+      "count": 3,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "review_required": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "safely_abstained": {
-          "numerator": 1,
-          "denominator": 1,
+          "numerator": 3,
+          "denominator": 3,
           "rate": 1,
           "confidenceInterval": {
-            "lower": 0.20654931437723742,
+            "lower": 0.4385029682449545,
             "upper": 1
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         }
       }
@@ -522,69 +521,69 @@
     {
       "kind": "workflow",
       "id": "golden-quote-variants",
-      "count": 1,
+      "count": 3,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "review_required": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "safely_abstained": {
-          "numerator": 1,
-          "denominator": 1,
+          "numerator": 3,
+          "denominator": 3,
           "rate": 1,
           "confidenceInterval": {
-            "lower": 0.20654931437723742,
+            "lower": 0.4385029682449545,
             "upper": 1
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         }
       }
@@ -592,69 +591,69 @@
     {
       "kind": "workflow",
       "id": "reference-template",
-      "count": 1,
+      "count": 3,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "review_required": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "safely_abstained": {
-          "numerator": 1,
-          "denominator": 1,
+          "numerator": 3,
+          "denominator": 3,
           "rate": 1,
           "confidenceInterval": {
-            "lower": 0.20654931437723742,
+            "lower": 0.4385029682449545,
             "upper": 1
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         }
       }
@@ -662,69 +661,69 @@
     {
       "kind": "workflow",
       "id": "smart-reframe",
-      "count": 1,
+      "count": 3,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "review_required": {
-          "numerator": 0,
-          "denominator": 1,
-          "rate": 0,
+          "numerator": 3,
+          "denominator": 3,
+          "rate": 1,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 0.4385029682449545,
+            "upper": 1
           }
         },
         "safely_abstained": {
-          "numerator": 1,
-          "denominator": 1,
-          "rate": 1,
+          "numerator": 0,
+          "denominator": 3,
+          "rate": 0,
           "confidenceInterval": {
-            "lower": 0.20654931437723742,
-            "upper": 1
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         }
       }
@@ -732,69 +731,69 @@
     {
       "kind": "workflow",
       "id": "talking-head-cleanup",
-      "count": 1,
+      "count": 3,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "review_required": {
-          "numerator": 1,
-          "denominator": 1,
+          "numerator": 3,
+          "denominator": 3,
           "rate": 1,
           "confidenceInterval": {
-            "lower": 0.20654931437723742,
+            "lower": 0.4385029682449545,
             "upper": 1
           }
         },
         "safely_abstained": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 1,
+          "denominator": 3,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.7934506856227626
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
           }
         }
       }
@@ -802,49 +801,59 @@
   ],
   "routes": [
     {
-      "executorId": "none",
-      "count": 6,
+      "executorId": "executor.opencv-subject-tracker",
+      "count": 9,
       "dispositions": {
         "automatic": 0,
-        "assisted": 0,
+        "assisted": 9,
         "review": 0,
-        "abstain": 6
-      }
-    },
-    {
-      "executorId": "executor.ffmpeg-silencedetect",
-      "count": 1,
-      "dispositions": {
-        "automatic": 0,
-        "assisted": 0,
-        "review": 1,
         "abstain": 0
       }
     },
     {
-      "executorId": "executor.ffmpeg-edit-plan",
-      "count": 1,
+      "executorId": "executor.ffmpeg-silencedetect",
+      "count": 3,
       "dispositions": {
         "automatic": 0,
         "assisted": 0,
-        "review": 1,
+        "review": 3,
+        "abstain": 0
+      }
+    },
+    {
+      "executorId": "none",
+      "count": 9,
+      "dispositions": {
+        "automatic": 0,
+        "assisted": 0,
+        "review": 0,
+        "abstain": 9
+      }
+    },
+    {
+      "executorId": "executor.ffmpeg-edit-plan",
+      "count": 3,
+      "dispositions": {
+        "automatic": 0,
+        "assisted": 0,
+        "review": 3,
         "abstain": 0
       }
     }
   ],
   "representativeFailures": [],
   "freezeReceipt": {
-    "receiptId": "creatorbench-freeze:df154733d015490fbb3b512c",
-    "frozenAt": "2026-07-22T04:52:23.759Z",
-    "sourceCommit": "46b0a0d2b8e211dde6d4b48a6df3095c19c057b3",
-    "configHash": "sha256:0716c7a6af3b4fef970668b9de5ff209bc40052bf4d96c483ed9dd32c26eb73f",
-    "manifestHash": "sha256:f6002b333fd36bce3ac1d6f985dbf15285cf47f0789f0447ab9a9ab0dc44a8d6",
+    "receiptId": "creatorbench-freeze:de6fbc1b1a4d8575bd6cc206",
+    "frozenAt": "2026-07-22T05:22:46.430Z",
+    "sourceCommit": "a546c191580782e7ded32151e70eee93f8b4d621",
+    "configHash": "sha256:20929e9cc64c3bf88a6018bede9a4ee81d0e2375d1c9c593c4db32174fe1872c",
+    "manifestHash": "sha256:0c1c339b2bb550dc19829445a901269830063de2724eb2a44b781ff702f04319",
     "evaluatorVersion": "creatorbench-evaluator-v1",
     "thresholdPolicy": "sha256:5338c6b661fe925a617b21c98a9601ea79cfc3b07e1bee18d431c1181577387d",
     "status": "verified"
   },
   "reviewCases": [],
-  "publicSourceCount": 4,
+  "publicSourceCount": 12,
   "downloads": {
     "json": "/benchmarks/creatorbench-v1/results/public-report.json",
     "csv": "/benchmarks/creatorbench-v1/results/public-report.csv"

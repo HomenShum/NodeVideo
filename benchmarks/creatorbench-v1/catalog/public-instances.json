@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nodevideo.creatorbench-instance-manifest.v1",
   "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T05:21:39.119Z",
+  "generatedAt": "2026-07-22T05:24:57.161Z",
   "instances": [
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -16,7 +16,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0001-b0952255:smart-reframe",
-        "createdAt": "2026-07-22T05:21:39.117Z",
+        "createdAt": "2026-07-22T05:24:57.159Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0001-b0952255",
@@ -74,7 +74,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.117Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -89,7 +89,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0001-b0952255:talking-head-cleanup",
-        "createdAt": "2026-07-22T05:21:39.117Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0001-b0952255",
@@ -147,7 +147,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.117Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -162,7 +162,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0001-b0952255:golden-quote-variants",
-        "createdAt": "2026-07-22T05:21:39.117Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0001-b0952255",
@@ -222,7 +222,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.117Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -237,7 +237,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0001-b0952255:reference-template",
-        "createdAt": "2026-07-22T05:21:39.117Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0001-b0952255",
@@ -299,7 +299,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.117Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -314,7 +314,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0001-b0952255:dance-choreography",
-        "createdAt": "2026-07-22T05:21:39.117Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0001-b0952255",
@@ -372,7 +372,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.117Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -387,7 +387,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0001-b0952255:captioned-multi-format",
-        "createdAt": "2026-07-22T05:21:39.117Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0001-b0952255",
@@ -445,7 +445,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.117Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -460,7 +460,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0001-b0952255:founder-product-launch",
-        "createdAt": "2026-07-22T05:21:39.117Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0001-b0952255",
@@ -518,7 +518,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.117Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -533,7 +533,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0001-b0952255:action-subject-following",
-        "createdAt": "2026-07-22T05:21:39.117Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0001-b0952255",
@@ -591,7 +591,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.117Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -602,11 +602,11 @@
       ],
       "domain": "general-documentary",
       "workflow": "smart-reframe",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0004-7bfc3a17:smart-reframe",
-        "createdAt": "2026-07-22T05:21:39.117Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0004-7bfc3a17",
@@ -664,7 +664,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -675,11 +675,11 @@
       ],
       "domain": "general-documentary",
       "workflow": "talking-head-cleanup",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0004-7bfc3a17:talking-head-cleanup",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0004-7bfc3a17",
@@ -737,7 +737,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -748,11 +748,11 @@
       ],
       "domain": "general-documentary",
       "workflow": "golden-quote-variants",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0004-7bfc3a17:golden-quote-variants",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0004-7bfc3a17",
@@ -812,7 +812,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -823,11 +823,11 @@
       ],
       "domain": "general-documentary",
       "workflow": "reference-template",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0004-7bfc3a17:reference-template",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0004-7bfc3a17",
@@ -889,7 +889,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -900,11 +900,11 @@
       ],
       "domain": "general-documentary",
       "workflow": "dance-choreography",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0004-7bfc3a17:dance-choreography",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0004-7bfc3a17",
@@ -962,7 +962,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -973,11 +973,11 @@
       ],
       "domain": "general-documentary",
       "workflow": "captioned-multi-format",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0004-7bfc3a17:captioned-multi-format",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0004-7bfc3a17",
@@ -1035,7 +1035,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -1046,11 +1046,11 @@
       ],
       "domain": "general-documentary",
       "workflow": "founder-product-launch",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0004-7bfc3a17:founder-product-launch",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0004-7bfc3a17",
@@ -1108,7 +1108,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -1119,11 +1119,11 @@
       ],
       "domain": "general-documentary",
       "workflow": "action-subject-following",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0004-7bfc3a17:action-subject-following",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0004-7bfc3a17",
@@ -1181,7 +1181,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -1192,11 +1192,11 @@
       ],
       "domain": "field-sports",
       "workflow": "smart-reframe",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0009-beb98f01:smart-reframe",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0009-beb98f01",
@@ -1254,7 +1254,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -1265,11 +1265,11 @@
       ],
       "domain": "field-sports",
       "workflow": "talking-head-cleanup",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0009-beb98f01:talking-head-cleanup",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0009-beb98f01",
@@ -1327,7 +1327,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -1338,11 +1338,11 @@
       ],
       "domain": "field-sports",
       "workflow": "golden-quote-variants",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0009-beb98f01:golden-quote-variants",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0009-beb98f01",
@@ -1402,7 +1402,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -1413,11 +1413,11 @@
       ],
       "domain": "field-sports",
       "workflow": "reference-template",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0009-beb98f01:reference-template",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0009-beb98f01",
@@ -1479,7 +1479,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -1490,11 +1490,11 @@
       ],
       "domain": "field-sports",
       "workflow": "dance-choreography",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0009-beb98f01:dance-choreography",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0009-beb98f01",
@@ -1552,7 +1552,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -1563,11 +1563,11 @@
       ],
       "domain": "field-sports",
       "workflow": "captioned-multi-format",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0009-beb98f01:captioned-multi-format",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0009-beb98f01",
@@ -1625,7 +1625,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -1636,11 +1636,11 @@
       ],
       "domain": "field-sports",
       "workflow": "founder-product-launch",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0009-beb98f01:founder-product-launch",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0009-beb98f01",
@@ -1698,7 +1698,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -1709,11 +1709,11 @@
       ],
       "domain": "field-sports",
       "workflow": "action-subject-following",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0009-beb98f01:action-subject-following",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0009-beb98f01",
@@ -1771,613 +1771,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0038-2d983118:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0038-2d983118"
-      ],
-      "domain": "public-speech",
-      "workflow": "smart-reframe",
-      "split": "adversarial",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0038-2d983118:smart-reframe",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0038-2d983118",
-            "role": "primary",
-            "sha256": "sha256:18732f603394b9a4efd4b59e6bfee19efcf4a75662d843a3da3e02e68397463f",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "cc-by",
-          "ownerOrLicensorId": "creator:5950882e8658b7c2",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "smart-reframe",
-          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [
-        "Target leaves and re-enters after occlusion; retain identity or request assistance."
-      ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0038-2d983118:talking-head-cleanup",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0038-2d983118"
-      ],
-      "domain": "public-speech",
-      "workflow": "talking-head-cleanup",
-      "split": "adversarial",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0038-2d983118:talking-head-cleanup",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0038-2d983118",
-            "role": "primary",
-            "sha256": "sha256:18732f603394b9a4efd4b59e6bfee19efcf4a75662d843a3da3e02e68397463f",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "cc-by",
-          "ownerOrLicensorId": "creator:5950882e8658b7c2",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "talking-head-cleanup",
-          "instruction": "Remove only accidental silence and review filler edits without truncating speech or intentional pauses. Two similar subjects cross; do not silently switch identity.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [
-        "Two similar subjects cross; do not silently switch identity."
-      ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0038-2d983118:golden-quote-variants",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0038-2d983118"
-      ],
-      "domain": "public-speech",
-      "workflow": "golden-quote-variants",
-      "split": "adversarial",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0038-2d983118:golden-quote-variants",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0038-2d983118",
-            "role": "primary",
-            "sha256": "sha256:18732f603394b9a4efd4b59e6bfee19efcf4a75662d843a3da3e02e68397463f",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            15000,
-            30000,
-            60000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "cc-by",
-          "ownerOrLicensorId": "creator:5950882e8658b7c2",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "golden-quote-variants",
-          "instruction": "Find a source-grounded quote and propose 15-, 30-, and 60-second variants with exact lineage. Rapid camera movement and low confidence; hold safely or abstain.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [
-        "Rapid camera movement and low confidence; hold safely or abstain."
-      ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0038-2d983118:reference-template",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0038-2d983118"
-      ],
-      "domain": "public-speech",
-      "workflow": "reference-template",
-      "split": "adversarial",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0038-2d983118:reference-template",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0038-2d983118",
-            "role": "primary",
-            "sha256": "sha256:18732f603394b9a4efd4b59e6bfee19efcf4a75662d843a3da3e02e68397463f",
-            "locatorClass": "public-url"
-          }
-        ],
-        "reference": {
-          "artifactId": "template:creatorbench-permitted-structure-v1",
-          "permittedUse": "structural-inspiration"
-        },
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "cc-by",
-          "ownerOrLicensorId": "creator:5950882e8658b7c2",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "reference-template",
-          "instruction": "Apply a permitted structural template without copying protected footage, branding, music, or scripts. Selected object changes orientation; preserve the selected instance.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [
-        "Selected object changes orientation; preserve the selected instance."
-      ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0038-2d983118:dance-choreography",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0038-2d983118"
-      ],
-      "domain": "public-speech",
-      "workflow": "dance-choreography",
-      "split": "adversarial",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0038-2d983118:dance-choreography",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0038-2d983118",
-            "role": "primary",
-            "sha256": "sha256:18732f603394b9a4efd4b59e6bfee19efcf4a75662d843a3da3e02e68397463f",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "cc-by",
-          "ownerOrLicensorId": "creator:5950882e8658b7c2",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "dance-choreography",
-          "instruction": "Preserve movement phrases and compile reviewable cut and alignment proposals. Input may have poor audio or a corrupt tail; report the exact degraded state.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [
-        "Input may have poor audio or a corrupt tail; report the exact degraded state."
-      ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0038-2d983118:captioned-multi-format",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0038-2d983118"
-      ],
-      "domain": "public-speech",
-      "workflow": "captioned-multi-format",
-      "split": "adversarial",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0038-2d983118:captioned-multi-format",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0038-2d983118",
-            "role": "primary",
-            "sha256": "sha256:18732f603394b9a4efd4b59e6bfee19efcf4a75662d843a3da3e02e68397463f",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "cc-by",
-          "ownerOrLicensorId": "creator:5950882e8658b7c2",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "captioned-multi-format",
-          "instruction": "Produce captioned horizontal, vertical, and square variants with safe caption placement. Target leaves and re-enters after occlusion; retain identity or request assistance.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [
-        "Target leaves and re-enters after occlusion; retain identity or request assistance."
-      ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0038-2d983118:founder-product-launch",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0038-2d983118"
-      ],
-      "domain": "public-speech",
-      "workflow": "founder-product-launch",
-      "split": "adversarial",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0038-2d983118:founder-product-launch",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0038-2d983118",
-            "role": "primary",
-            "sha256": "sha256:18732f603394b9a4efd4b59e6bfee19efcf4a75662d843a3da3e02e68397463f",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "cc-by",
-          "ownerOrLicensorId": "creator:5950882e8658b7c2",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "founder-product-launch",
-          "instruction": "Build hook, problem, product, demonstration, evidence, and CTA variants without inventing claims. Two similar subjects cross; do not silently switch identity.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [
-        "Two similar subjects cross; do not silently switch identity."
-      ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0038-2d983118:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0038-2d983118"
-      ],
-      "domain": "public-speech",
-      "workflow": "action-subject-following",
-      "split": "adversarial",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0038-2d983118:action-subject-following",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0038-2d983118",
-            "role": "primary",
-            "sha256": "sha256:18732f603394b9a4efd4b59e6bfee19efcf4a75662d843a3da3e02e68397463f",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "cc-by",
-          "ownerOrLicensorId": "creator:5950882e8658b7c2",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "action-subject-following",
-          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty. Rapid camera movement and low confidence; hold safely or abstain.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [
-        "Rapid camera movement and low confidence; hold safely or abstain."
-      ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -2388,11 +1782,11 @@
       ],
       "domain": "tutorial",
       "workflow": "smart-reframe",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0040-591140b7:smart-reframe",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0040-591140b7",
@@ -2450,7 +1844,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -2461,11 +1855,11 @@
       ],
       "domain": "tutorial",
       "workflow": "talking-head-cleanup",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0040-591140b7:talking-head-cleanup",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0040-591140b7",
@@ -2523,7 +1917,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -2534,11 +1928,11 @@
       ],
       "domain": "tutorial",
       "workflow": "golden-quote-variants",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0040-591140b7:golden-quote-variants",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0040-591140b7",
@@ -2598,7 +1992,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -2609,11 +2003,11 @@
       ],
       "domain": "tutorial",
       "workflow": "reference-template",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0040-591140b7:reference-template",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0040-591140b7",
@@ -2675,7 +2069,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -2686,11 +2080,11 @@
       ],
       "domain": "tutorial",
       "workflow": "dance-choreography",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0040-591140b7:dance-choreography",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0040-591140b7",
@@ -2748,7 +2142,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -2759,11 +2153,11 @@
       ],
       "domain": "tutorial",
       "workflow": "captioned-multi-format",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0040-591140b7:captioned-multi-format",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0040-591140b7",
@@ -2821,7 +2215,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -2832,11 +2226,11 @@
       ],
       "domain": "tutorial",
       "workflow": "founder-product-launch",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0040-591140b7:founder-product-launch",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0040-591140b7",
@@ -2894,7 +2288,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -2905,11 +2299,11 @@
       ],
       "domain": "tutorial",
       "workflow": "action-subject-following",
-      "split": "development",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0040-591140b7:action-subject-following",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0040-591140b7",
@@ -2967,7 +2361,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -2982,7 +2376,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0006-493a02f5:smart-reframe",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0006-493a02f5",
@@ -3040,7 +2434,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -3055,7 +2449,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0006-493a02f5:talking-head-cleanup",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0006-493a02f5",
@@ -3113,7 +2507,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -3128,7 +2522,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0006-493a02f5:golden-quote-variants",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0006-493a02f5",
@@ -3188,7 +2582,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -3203,7 +2597,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0006-493a02f5:reference-template",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0006-493a02f5",
@@ -3265,7 +2659,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -3280,7 +2674,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0006-493a02f5:dance-choreography",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0006-493a02f5",
@@ -3338,7 +2732,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -3353,7 +2747,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0006-493a02f5:captioned-multi-format",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0006-493a02f5",
@@ -3411,7 +2805,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -3426,7 +2820,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0006-493a02f5:founder-product-launch",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0006-493a02f5",
@@ -3484,7 +2878,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -3499,7 +2893,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0006-493a02f5:action-subject-following",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0006-493a02f5",
@@ -3557,7 +2951,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -3568,1196 +2962,16 @@
       ],
       "domain": "animals",
       "workflow": "smart-reframe",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0007-bd64b3cf:smart-reframe",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0007-bd64b3cf",
-            "role": "primary",
-            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:3a778ba870437925",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "smart-reframe",
-          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0007-bd64b3cf:talking-head-cleanup",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0007-bd64b3cf"
-      ],
-      "domain": "animals",
-      "workflow": "talking-head-cleanup",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0007-bd64b3cf:talking-head-cleanup",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0007-bd64b3cf",
-            "role": "primary",
-            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:3a778ba870437925",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "talking-head-cleanup",
-          "instruction": "Remove only accidental silence and review filler edits without truncating speech or intentional pauses.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0007-bd64b3cf:golden-quote-variants",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0007-bd64b3cf"
-      ],
-      "domain": "animals",
-      "workflow": "golden-quote-variants",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0007-bd64b3cf:golden-quote-variants",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0007-bd64b3cf",
-            "role": "primary",
-            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            15000,
-            30000,
-            60000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:3a778ba870437925",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "golden-quote-variants",
-          "instruction": "Find a source-grounded quote and propose 15-, 30-, and 60-second variants with exact lineage.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0007-bd64b3cf:reference-template",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0007-bd64b3cf"
-      ],
-      "domain": "animals",
-      "workflow": "reference-template",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0007-bd64b3cf:reference-template",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0007-bd64b3cf",
-            "role": "primary",
-            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
-            "locatorClass": "public-url"
-          }
-        ],
-        "reference": {
-          "artifactId": "template:creatorbench-permitted-structure-v1",
-          "permittedUse": "structural-inspiration"
-        },
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:3a778ba870437925",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "reference-template",
-          "instruction": "Apply a permitted structural template without copying protected footage, branding, music, or scripts.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0007-bd64b3cf:dance-choreography",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0007-bd64b3cf"
-      ],
-      "domain": "animals",
-      "workflow": "dance-choreography",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0007-bd64b3cf:dance-choreography",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0007-bd64b3cf",
-            "role": "primary",
-            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:3a778ba870437925",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "dance-choreography",
-          "instruction": "Preserve movement phrases and compile reviewable cut and alignment proposals.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0007-bd64b3cf:captioned-multi-format",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0007-bd64b3cf"
-      ],
-      "domain": "animals",
-      "workflow": "captioned-multi-format",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0007-bd64b3cf:captioned-multi-format",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0007-bd64b3cf",
-            "role": "primary",
-            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:3a778ba870437925",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "captioned-multi-format",
-          "instruction": "Produce captioned horizontal, vertical, and square variants with safe caption placement.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0007-bd64b3cf:founder-product-launch",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0007-bd64b3cf"
-      ],
-      "domain": "animals",
-      "workflow": "founder-product-launch",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0007-bd64b3cf:founder-product-launch",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0007-bd64b3cf",
-            "role": "primary",
-            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:3a778ba870437925",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "founder-product-launch",
-          "instruction": "Build hook, problem, product, demonstration, evidence, and CTA variants without inventing claims.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0007-bd64b3cf:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0007-bd64b3cf"
-      ],
-      "domain": "animals",
-      "workflow": "action-subject-following",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0007-bd64b3cf:action-subject-following",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0007-bd64b3cf",
-            "role": "primary",
-            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:3a778ba870437925",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "action-subject-following",
-          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0008-b952fc45:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0008-b952fc45"
-      ],
-      "domain": "animals",
-      "workflow": "smart-reframe",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0008-b952fc45:smart-reframe",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0008-b952fc45",
-            "role": "primary",
-            "sha256": "sha256:c1f1441d3fb89865153977e05f489f59a2db24038782918313fbb1f847c1183a",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:ecc7d269554788ad",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "smart-reframe",
-          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0008-b952fc45:talking-head-cleanup",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0008-b952fc45"
-      ],
-      "domain": "animals",
-      "workflow": "talking-head-cleanup",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0008-b952fc45:talking-head-cleanup",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0008-b952fc45",
-            "role": "primary",
-            "sha256": "sha256:c1f1441d3fb89865153977e05f489f59a2db24038782918313fbb1f847c1183a",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:ecc7d269554788ad",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "talking-head-cleanup",
-          "instruction": "Remove only accidental silence and review filler edits without truncating speech or intentional pauses.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0008-b952fc45:golden-quote-variants",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0008-b952fc45"
-      ],
-      "domain": "animals",
-      "workflow": "golden-quote-variants",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0008-b952fc45:golden-quote-variants",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0008-b952fc45",
-            "role": "primary",
-            "sha256": "sha256:c1f1441d3fb89865153977e05f489f59a2db24038782918313fbb1f847c1183a",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            15000,
-            30000,
-            60000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:ecc7d269554788ad",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "golden-quote-variants",
-          "instruction": "Find a source-grounded quote and propose 15-, 30-, and 60-second variants with exact lineage.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0008-b952fc45:reference-template",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0008-b952fc45"
-      ],
-      "domain": "animals",
-      "workflow": "reference-template",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0008-b952fc45:reference-template",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0008-b952fc45",
-            "role": "primary",
-            "sha256": "sha256:c1f1441d3fb89865153977e05f489f59a2db24038782918313fbb1f847c1183a",
-            "locatorClass": "public-url"
-          }
-        ],
-        "reference": {
-          "artifactId": "template:creatorbench-permitted-structure-v1",
-          "permittedUse": "structural-inspiration"
-        },
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:ecc7d269554788ad",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "reference-template",
-          "instruction": "Apply a permitted structural template without copying protected footage, branding, music, or scripts.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0008-b952fc45:dance-choreography",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0008-b952fc45"
-      ],
-      "domain": "animals",
-      "workflow": "dance-choreography",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0008-b952fc45:dance-choreography",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0008-b952fc45",
-            "role": "primary",
-            "sha256": "sha256:c1f1441d3fb89865153977e05f489f59a2db24038782918313fbb1f847c1183a",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:ecc7d269554788ad",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "dance-choreography",
-          "instruction": "Preserve movement phrases and compile reviewable cut and alignment proposals.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0008-b952fc45:captioned-multi-format",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0008-b952fc45"
-      ],
-      "domain": "animals",
-      "workflow": "captioned-multi-format",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0008-b952fc45:captioned-multi-format",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0008-b952fc45",
-            "role": "primary",
-            "sha256": "sha256:c1f1441d3fb89865153977e05f489f59a2db24038782918313fbb1f847c1183a",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:ecc7d269554788ad",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "captioned-multi-format",
-          "instruction": "Produce captioned horizontal, vertical, and square variants with safe caption placement.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0008-b952fc45:founder-product-launch",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0008-b952fc45"
-      ],
-      "domain": "animals",
-      "workflow": "founder-product-launch",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0008-b952fc45:founder-product-launch",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0008-b952fc45",
-            "role": "primary",
-            "sha256": "sha256:c1f1441d3fb89865153977e05f489f59a2db24038782918313fbb1f847c1183a",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:ecc7d269554788ad",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "founder-product-launch",
-          "instruction": "Build hook, problem, product, demonstration, evidence, and CTA variants without inventing claims.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0008-b952fc45:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0008-b952fc45"
-      ],
-      "domain": "animals",
-      "workflow": "action-subject-following",
-      "split": "public-test",
-      "request": {
-        "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0008-b952fc45:action-subject-following",
-        "createdAt": "2026-07-22T05:21:39.118Z",
-        "sourceAssets": [
-          {
-            "artifactId": "cb-0008-b952fc45",
-            "role": "primary",
-            "sha256": "sha256:c1f1441d3fb89865153977e05f489f59a2db24038782918313fbb1f847c1183a",
-            "locatorClass": "public-url"
-          }
-        ],
-        "output": {
-          "destinations": [
-            "review"
-          ],
-          "targetDurationsMs": [
-            30000
-          ],
-          "aspectRatios": [
-            "16:9",
-            "9:16",
-            "1:1"
-          ]
-        },
-        "constraints": {
-          "privacy": "public",
-          "localOnly": false,
-          "maxCostUsd": 0,
-          "maxLatencyMs": 120000,
-          "permittedExecutors": [],
-          "prohibitedExecutors": [],
-          "mediaEgress": "prohibited"
-        },
-        "rights": {
-          "status": "public-domain",
-          "ownerOrLicensorId": "creator:ecc7d269554788ad",
-          "permittedDerivativeUse": true,
-          "permittedModelProcessing": true
-        },
-        "intent": {
-          "workflow": "action-subject-following",
-          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty.",
-          "preserve": [
-            "source meaning",
-            "selected subject",
-            "rights lineage"
-          ],
-          "avoid": [
-            "silent subject switches",
-            "unsupported claims",
-            "unapproved egress"
-          ]
-        },
-        "requiredHumanApprovalPoints": [
-          "before-render",
-          "before-canonical-apply",
-          "before-publish"
-        ]
-      },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0012-87d1ef2a:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
-      "sourceIds": [
-        "cb-0012-87d1ef2a"
-      ],
-      "domain": "dance",
-      "workflow": "smart-reframe",
       "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0012-87d1ef2a:smart-reframe",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "id": "request:cb-0007-bd64b3cf:smart-reframe",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
-            "artifactId": "cb-0012-87d1ef2a",
+            "artifactId": "cb-0007-bd64b3cf",
             "role": "primary",
-            "sha256": "sha256:8dbc30222ccacfed62b772c236339f1109093c75a8b143205db7d91a4cd01404",
+            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
             "locatorClass": "public-url"
           }
         ],
@@ -4785,7 +2999,7 @@
         },
         "rights": {
           "status": "public-domain",
-          "ownerOrLicensorId": "creator:2ae86c237ab39041",
+          "ownerOrLicensorId": "creator:3a778ba870437925",
           "permittedDerivativeUse": true,
           "permittedModelProcessing": true
         },
@@ -4812,27 +3026,27 @@
       "adversarialConditions": [
         "Target leaves and re-enters after occlusion; retain identity or request assistance."
       ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0012-87d1ef2a:talking-head-cleanup",
+      "id": "instance:cb-0007-bd64b3cf:talking-head-cleanup",
       "benchmarkVersion": "creatorbench-v1",
       "sourceIds": [
-        "cb-0012-87d1ef2a"
+        "cb-0007-bd64b3cf"
       ],
-      "domain": "dance",
+      "domain": "animals",
       "workflow": "talking-head-cleanup",
       "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0012-87d1ef2a:talking-head-cleanup",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "id": "request:cb-0007-bd64b3cf:talking-head-cleanup",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
-            "artifactId": "cb-0012-87d1ef2a",
+            "artifactId": "cb-0007-bd64b3cf",
             "role": "primary",
-            "sha256": "sha256:8dbc30222ccacfed62b772c236339f1109093c75a8b143205db7d91a4cd01404",
+            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
             "locatorClass": "public-url"
           }
         ],
@@ -4860,7 +3074,7 @@
         },
         "rights": {
           "status": "public-domain",
-          "ownerOrLicensorId": "creator:2ae86c237ab39041",
+          "ownerOrLicensorId": "creator:3a778ba870437925",
           "permittedDerivativeUse": true,
           "permittedModelProcessing": true
         },
@@ -4887,27 +3101,27 @@
       "adversarialConditions": [
         "Two similar subjects cross; do not silently switch identity."
       ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0012-87d1ef2a:golden-quote-variants",
+      "id": "instance:cb-0007-bd64b3cf:golden-quote-variants",
       "benchmarkVersion": "creatorbench-v1",
       "sourceIds": [
-        "cb-0012-87d1ef2a"
+        "cb-0007-bd64b3cf"
       ],
-      "domain": "dance",
+      "domain": "animals",
       "workflow": "golden-quote-variants",
       "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0012-87d1ef2a:golden-quote-variants",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "id": "request:cb-0007-bd64b3cf:golden-quote-variants",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
-            "artifactId": "cb-0012-87d1ef2a",
+            "artifactId": "cb-0007-bd64b3cf",
             "role": "primary",
-            "sha256": "sha256:8dbc30222ccacfed62b772c236339f1109093c75a8b143205db7d91a4cd01404",
+            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
             "locatorClass": "public-url"
           }
         ],
@@ -4937,7 +3151,7 @@
         },
         "rights": {
           "status": "public-domain",
-          "ownerOrLicensorId": "creator:2ae86c237ab39041",
+          "ownerOrLicensorId": "creator:3a778ba870437925",
           "permittedDerivativeUse": true,
           "permittedModelProcessing": true
         },
@@ -4964,27 +3178,27 @@
       "adversarialConditions": [
         "Rapid camera movement and low confidence; hold safely or abstain."
       ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0012-87d1ef2a:reference-template",
+      "id": "instance:cb-0007-bd64b3cf:reference-template",
       "benchmarkVersion": "creatorbench-v1",
       "sourceIds": [
-        "cb-0012-87d1ef2a"
+        "cb-0007-bd64b3cf"
       ],
-      "domain": "dance",
+      "domain": "animals",
       "workflow": "reference-template",
       "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0012-87d1ef2a:reference-template",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "id": "request:cb-0007-bd64b3cf:reference-template",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
-            "artifactId": "cb-0012-87d1ef2a",
+            "artifactId": "cb-0007-bd64b3cf",
             "role": "primary",
-            "sha256": "sha256:8dbc30222ccacfed62b772c236339f1109093c75a8b143205db7d91a4cd01404",
+            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
             "locatorClass": "public-url"
           }
         ],
@@ -5016,7 +3230,7 @@
         },
         "rights": {
           "status": "public-domain",
-          "ownerOrLicensorId": "creator:2ae86c237ab39041",
+          "ownerOrLicensorId": "creator:3a778ba870437925",
           "permittedDerivativeUse": true,
           "permittedModelProcessing": true
         },
@@ -5043,27 +3257,27 @@
       "adversarialConditions": [
         "Selected object changes orientation; preserve the selected instance."
       ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0012-87d1ef2a:dance-choreography",
+      "id": "instance:cb-0007-bd64b3cf:dance-choreography",
       "benchmarkVersion": "creatorbench-v1",
       "sourceIds": [
-        "cb-0012-87d1ef2a"
+        "cb-0007-bd64b3cf"
       ],
-      "domain": "dance",
+      "domain": "animals",
       "workflow": "dance-choreography",
       "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0012-87d1ef2a:dance-choreography",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "id": "request:cb-0007-bd64b3cf:dance-choreography",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
-            "artifactId": "cb-0012-87d1ef2a",
+            "artifactId": "cb-0007-bd64b3cf",
             "role": "primary",
-            "sha256": "sha256:8dbc30222ccacfed62b772c236339f1109093c75a8b143205db7d91a4cd01404",
+            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
             "locatorClass": "public-url"
           }
         ],
@@ -5091,7 +3305,7 @@
         },
         "rights": {
           "status": "public-domain",
-          "ownerOrLicensorId": "creator:2ae86c237ab39041",
+          "ownerOrLicensorId": "creator:3a778ba870437925",
           "permittedDerivativeUse": true,
           "permittedModelProcessing": true
         },
@@ -5118,27 +3332,27 @@
       "adversarialConditions": [
         "Input may have poor audio or a corrupt tail; report the exact degraded state."
       ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0012-87d1ef2a:captioned-multi-format",
+      "id": "instance:cb-0007-bd64b3cf:captioned-multi-format",
       "benchmarkVersion": "creatorbench-v1",
       "sourceIds": [
-        "cb-0012-87d1ef2a"
+        "cb-0007-bd64b3cf"
       ],
-      "domain": "dance",
+      "domain": "animals",
       "workflow": "captioned-multi-format",
       "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0012-87d1ef2a:captioned-multi-format",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "id": "request:cb-0007-bd64b3cf:captioned-multi-format",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
-            "artifactId": "cb-0012-87d1ef2a",
+            "artifactId": "cb-0007-bd64b3cf",
             "role": "primary",
-            "sha256": "sha256:8dbc30222ccacfed62b772c236339f1109093c75a8b143205db7d91a4cd01404",
+            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
             "locatorClass": "public-url"
           }
         ],
@@ -5166,7 +3380,7 @@
         },
         "rights": {
           "status": "public-domain",
-          "ownerOrLicensorId": "creator:2ae86c237ab39041",
+          "ownerOrLicensorId": "creator:3a778ba870437925",
           "permittedDerivativeUse": true,
           "permittedModelProcessing": true
         },
@@ -5193,27 +3407,27 @@
       "adversarialConditions": [
         "Target leaves and re-enters after occlusion; retain identity or request assistance."
       ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0012-87d1ef2a:founder-product-launch",
+      "id": "instance:cb-0007-bd64b3cf:founder-product-launch",
       "benchmarkVersion": "creatorbench-v1",
       "sourceIds": [
-        "cb-0012-87d1ef2a"
+        "cb-0007-bd64b3cf"
       ],
-      "domain": "dance",
+      "domain": "animals",
       "workflow": "founder-product-launch",
       "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0012-87d1ef2a:founder-product-launch",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "id": "request:cb-0007-bd64b3cf:founder-product-launch",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
-            "artifactId": "cb-0012-87d1ef2a",
+            "artifactId": "cb-0007-bd64b3cf",
             "role": "primary",
-            "sha256": "sha256:8dbc30222ccacfed62b772c236339f1109093c75a8b143205db7d91a4cd01404",
+            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
             "locatorClass": "public-url"
           }
         ],
@@ -5241,7 +3455,7 @@
         },
         "rights": {
           "status": "public-domain",
-          "ownerOrLicensorId": "creator:2ae86c237ab39041",
+          "ownerOrLicensorId": "creator:3a778ba870437925",
           "permittedDerivativeUse": true,
           "permittedModelProcessing": true
         },
@@ -5268,27 +3482,27 @@
       "adversarialConditions": [
         "Two similar subjects cross; do not silently switch identity."
       ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
-      "id": "instance:cb-0012-87d1ef2a:action-subject-following",
+      "id": "instance:cb-0007-bd64b3cf:action-subject-following",
       "benchmarkVersion": "creatorbench-v1",
       "sourceIds": [
-        "cb-0012-87d1ef2a"
+        "cb-0007-bd64b3cf"
       ],
-      "domain": "dance",
+      "domain": "animals",
       "workflow": "action-subject-following",
       "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
-        "id": "request:cb-0012-87d1ef2a:action-subject-following",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "id": "request:cb-0007-bd64b3cf:action-subject-following",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
-            "artifactId": "cb-0012-87d1ef2a",
+            "artifactId": "cb-0007-bd64b3cf",
             "role": "primary",
-            "sha256": "sha256:8dbc30222ccacfed62b772c236339f1109093c75a8b143205db7d91a4cd01404",
+            "sha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
             "locatorClass": "public-url"
           }
         ],
@@ -5316,7 +3530,7 @@
         },
         "rights": {
           "status": "public-domain",
-          "ownerOrLicensorId": "creator:2ae86c237ab39041",
+          "ownerOrLicensorId": "creator:3a778ba870437925",
           "permittedDerivativeUse": true,
           "permittedModelProcessing": true
         },
@@ -5343,7 +3557,1777 @@
       "adversarialConditions": [
         "Rapid camera movement and low confidence; hold safely or abstain."
       ],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0009-4f1d6956:smart-reframe",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0009-4f1d6956"
+      ],
+      "domain": "animals",
+      "workflow": "smart-reframe",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0009-4f1d6956:smart-reframe",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0009-4f1d6956",
+            "role": "primary",
+            "sha256": "sha256:409a4945a94e0a1158498fd2eeac42c1eae37d1d269255564edb4ff0e3e027b6",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "smart-reframe",
+          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0009-4f1d6956:talking-head-cleanup",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0009-4f1d6956"
+      ],
+      "domain": "animals",
+      "workflow": "talking-head-cleanup",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0009-4f1d6956:talking-head-cleanup",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0009-4f1d6956",
+            "role": "primary",
+            "sha256": "sha256:409a4945a94e0a1158498fd2eeac42c1eae37d1d269255564edb4ff0e3e027b6",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "talking-head-cleanup",
+          "instruction": "Remove only accidental silence and review filler edits without truncating speech or intentional pauses.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0009-4f1d6956:golden-quote-variants",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0009-4f1d6956"
+      ],
+      "domain": "animals",
+      "workflow": "golden-quote-variants",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0009-4f1d6956:golden-quote-variants",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0009-4f1d6956",
+            "role": "primary",
+            "sha256": "sha256:409a4945a94e0a1158498fd2eeac42c1eae37d1d269255564edb4ff0e3e027b6",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            15000,
+            30000,
+            60000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "golden-quote-variants",
+          "instruction": "Find a source-grounded quote and propose 15-, 30-, and 60-second variants with exact lineage.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0009-4f1d6956:reference-template",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0009-4f1d6956"
+      ],
+      "domain": "animals",
+      "workflow": "reference-template",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0009-4f1d6956:reference-template",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0009-4f1d6956",
+            "role": "primary",
+            "sha256": "sha256:409a4945a94e0a1158498fd2eeac42c1eae37d1d269255564edb4ff0e3e027b6",
+            "locatorClass": "public-url"
+          }
+        ],
+        "reference": {
+          "artifactId": "template:creatorbench-permitted-structure-v1",
+          "permittedUse": "structural-inspiration"
+        },
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "reference-template",
+          "instruction": "Apply a permitted structural template without copying protected footage, branding, music, or scripts.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0009-4f1d6956:dance-choreography",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0009-4f1d6956"
+      ],
+      "domain": "animals",
+      "workflow": "dance-choreography",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0009-4f1d6956:dance-choreography",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0009-4f1d6956",
+            "role": "primary",
+            "sha256": "sha256:409a4945a94e0a1158498fd2eeac42c1eae37d1d269255564edb4ff0e3e027b6",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "dance-choreography",
+          "instruction": "Preserve movement phrases and compile reviewable cut and alignment proposals.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0009-4f1d6956:captioned-multi-format",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0009-4f1d6956"
+      ],
+      "domain": "animals",
+      "workflow": "captioned-multi-format",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0009-4f1d6956:captioned-multi-format",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0009-4f1d6956",
+            "role": "primary",
+            "sha256": "sha256:409a4945a94e0a1158498fd2eeac42c1eae37d1d269255564edb4ff0e3e027b6",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "captioned-multi-format",
+          "instruction": "Produce captioned horizontal, vertical, and square variants with safe caption placement.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0009-4f1d6956:founder-product-launch",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0009-4f1d6956"
+      ],
+      "domain": "animals",
+      "workflow": "founder-product-launch",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0009-4f1d6956:founder-product-launch",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0009-4f1d6956",
+            "role": "primary",
+            "sha256": "sha256:409a4945a94e0a1158498fd2eeac42c1eae37d1d269255564edb4ff0e3e027b6",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "founder-product-launch",
+          "instruction": "Build hook, problem, product, demonstration, evidence, and CTA variants without inventing claims.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0009-4f1d6956:action-subject-following",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0009-4f1d6956"
+      ],
+      "domain": "animals",
+      "workflow": "action-subject-following",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0009-4f1d6956:action-subject-following",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0009-4f1d6956",
+            "role": "primary",
+            "sha256": "sha256:409a4945a94e0a1158498fd2eeac42c1eae37d1d269255564edb4ff0e3e027b6",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "action-subject-following",
+          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0010-565d0079:smart-reframe",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0010-565d0079"
+      ],
+      "domain": "animals",
+      "workflow": "smart-reframe",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0010-565d0079:smart-reframe",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0010-565d0079",
+            "role": "primary",
+            "sha256": "sha256:76eab30d7b9218406e73dc647512f37badb826dd3b71fdd3d9c49ef6841789b3",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "smart-reframe",
+          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0010-565d0079:talking-head-cleanup",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0010-565d0079"
+      ],
+      "domain": "animals",
+      "workflow": "talking-head-cleanup",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0010-565d0079:talking-head-cleanup",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0010-565d0079",
+            "role": "primary",
+            "sha256": "sha256:76eab30d7b9218406e73dc647512f37badb826dd3b71fdd3d9c49ef6841789b3",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "talking-head-cleanup",
+          "instruction": "Remove only accidental silence and review filler edits without truncating speech or intentional pauses.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0010-565d0079:golden-quote-variants",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0010-565d0079"
+      ],
+      "domain": "animals",
+      "workflow": "golden-quote-variants",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0010-565d0079:golden-quote-variants",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0010-565d0079",
+            "role": "primary",
+            "sha256": "sha256:76eab30d7b9218406e73dc647512f37badb826dd3b71fdd3d9c49ef6841789b3",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            15000,
+            30000,
+            60000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "golden-quote-variants",
+          "instruction": "Find a source-grounded quote and propose 15-, 30-, and 60-second variants with exact lineage.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0010-565d0079:reference-template",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0010-565d0079"
+      ],
+      "domain": "animals",
+      "workflow": "reference-template",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0010-565d0079:reference-template",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0010-565d0079",
+            "role": "primary",
+            "sha256": "sha256:76eab30d7b9218406e73dc647512f37badb826dd3b71fdd3d9c49ef6841789b3",
+            "locatorClass": "public-url"
+          }
+        ],
+        "reference": {
+          "artifactId": "template:creatorbench-permitted-structure-v1",
+          "permittedUse": "structural-inspiration"
+        },
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "reference-template",
+          "instruction": "Apply a permitted structural template without copying protected footage, branding, music, or scripts.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0010-565d0079:dance-choreography",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0010-565d0079"
+      ],
+      "domain": "animals",
+      "workflow": "dance-choreography",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0010-565d0079:dance-choreography",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0010-565d0079",
+            "role": "primary",
+            "sha256": "sha256:76eab30d7b9218406e73dc647512f37badb826dd3b71fdd3d9c49ef6841789b3",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "dance-choreography",
+          "instruction": "Preserve movement phrases and compile reviewable cut and alignment proposals.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0010-565d0079:captioned-multi-format",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0010-565d0079"
+      ],
+      "domain": "animals",
+      "workflow": "captioned-multi-format",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0010-565d0079:captioned-multi-format",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0010-565d0079",
+            "role": "primary",
+            "sha256": "sha256:76eab30d7b9218406e73dc647512f37badb826dd3b71fdd3d9c49ef6841789b3",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "captioned-multi-format",
+          "instruction": "Produce captioned horizontal, vertical, and square variants with safe caption placement.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0010-565d0079:founder-product-launch",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0010-565d0079"
+      ],
+      "domain": "animals",
+      "workflow": "founder-product-launch",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0010-565d0079:founder-product-launch",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0010-565d0079",
+            "role": "primary",
+            "sha256": "sha256:76eab30d7b9218406e73dc647512f37badb826dd3b71fdd3d9c49ef6841789b3",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "founder-product-launch",
+          "instruction": "Build hook, problem, product, demonstration, evidence, and CTA variants without inventing claims.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0010-565d0079:action-subject-following",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0010-565d0079"
+      ],
+      "domain": "animals",
+      "workflow": "action-subject-following",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0010-565d0079:action-subject-following",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0010-565d0079",
+            "role": "primary",
+            "sha256": "sha256:76eab30d7b9218406e73dc647512f37badb826dd3b71fdd3d9c49ef6841789b3",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "action-subject-following",
+          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0011-85b2e35f:smart-reframe",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0011-85b2e35f"
+      ],
+      "domain": "animals",
+      "workflow": "smart-reframe",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0011-85b2e35f:smart-reframe",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0011-85b2e35f",
+            "role": "primary",
+            "sha256": "sha256:863682d65e72353b154ad93e2284a387b1b645f8577db5ba218d3585a8c0b42f",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "smart-reframe",
+          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0011-85b2e35f:talking-head-cleanup",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0011-85b2e35f"
+      ],
+      "domain": "animals",
+      "workflow": "talking-head-cleanup",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0011-85b2e35f:talking-head-cleanup",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0011-85b2e35f",
+            "role": "primary",
+            "sha256": "sha256:863682d65e72353b154ad93e2284a387b1b645f8577db5ba218d3585a8c0b42f",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "talking-head-cleanup",
+          "instruction": "Remove only accidental silence and review filler edits without truncating speech or intentional pauses.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0011-85b2e35f:golden-quote-variants",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0011-85b2e35f"
+      ],
+      "domain": "animals",
+      "workflow": "golden-quote-variants",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0011-85b2e35f:golden-quote-variants",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0011-85b2e35f",
+            "role": "primary",
+            "sha256": "sha256:863682d65e72353b154ad93e2284a387b1b645f8577db5ba218d3585a8c0b42f",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            15000,
+            30000,
+            60000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "golden-quote-variants",
+          "instruction": "Find a source-grounded quote and propose 15-, 30-, and 60-second variants with exact lineage.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0011-85b2e35f:reference-template",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0011-85b2e35f"
+      ],
+      "domain": "animals",
+      "workflow": "reference-template",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0011-85b2e35f:reference-template",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0011-85b2e35f",
+            "role": "primary",
+            "sha256": "sha256:863682d65e72353b154ad93e2284a387b1b645f8577db5ba218d3585a8c0b42f",
+            "locatorClass": "public-url"
+          }
+        ],
+        "reference": {
+          "artifactId": "template:creatorbench-permitted-structure-v1",
+          "permittedUse": "structural-inspiration"
+        },
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "reference-template",
+          "instruction": "Apply a permitted structural template without copying protected footage, branding, music, or scripts.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0011-85b2e35f:dance-choreography",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0011-85b2e35f"
+      ],
+      "domain": "animals",
+      "workflow": "dance-choreography",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0011-85b2e35f:dance-choreography",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0011-85b2e35f",
+            "role": "primary",
+            "sha256": "sha256:863682d65e72353b154ad93e2284a387b1b645f8577db5ba218d3585a8c0b42f",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "dance-choreography",
+          "instruction": "Preserve movement phrases and compile reviewable cut and alignment proposals.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0011-85b2e35f:captioned-multi-format",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0011-85b2e35f"
+      ],
+      "domain": "animals",
+      "workflow": "captioned-multi-format",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0011-85b2e35f:captioned-multi-format",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0011-85b2e35f",
+            "role": "primary",
+            "sha256": "sha256:863682d65e72353b154ad93e2284a387b1b645f8577db5ba218d3585a8c0b42f",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "captioned-multi-format",
+          "instruction": "Produce captioned horizontal, vertical, and square variants with safe caption placement.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0011-85b2e35f:founder-product-launch",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0011-85b2e35f"
+      ],
+      "domain": "animals",
+      "workflow": "founder-product-launch",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0011-85b2e35f:founder-product-launch",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0011-85b2e35f",
+            "role": "primary",
+            "sha256": "sha256:863682d65e72353b154ad93e2284a387b1b645f8577db5ba218d3585a8c0b42f",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "founder-product-launch",
+          "instruction": "Build hook, problem, product, demonstration, evidence, and CTA variants without inventing claims.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0011-85b2e35f:action-subject-following",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": [
+        "cb-0011-85b2e35f"
+      ],
+      "domain": "animals",
+      "workflow": "action-subject-following",
+      "split": "development",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0011-85b2e35f:action-subject-following",
+        "createdAt": "2026-07-22T05:24:57.160Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0011-85b2e35f",
+            "role": "primary",
+            "sha256": "sha256:863682d65e72353b154ad93e2284a387b1b645f8577db5ba218d3585a8c0b42f",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "public-domain",
+          "ownerOrLicensorId": "creator:66bc3c372077e54b",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "action-subject-following",
+          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -5358,7 +5342,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0013-e3145068:smart-reframe",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0013-e3145068",
@@ -5416,7 +5400,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -5431,7 +5415,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0013-e3145068:talking-head-cleanup",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0013-e3145068",
@@ -5489,7 +5473,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -5504,7 +5488,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0013-e3145068:golden-quote-variants",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0013-e3145068",
@@ -5564,7 +5548,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -5579,7 +5563,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0013-e3145068:reference-template",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0013-e3145068",
@@ -5641,7 +5625,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -5656,7 +5640,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0013-e3145068:dance-choreography",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0013-e3145068",
@@ -5714,7 +5698,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -5729,7 +5713,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0013-e3145068:captioned-multi-format",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0013-e3145068",
@@ -5787,7 +5771,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -5802,7 +5786,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0013-e3145068:founder-product-launch",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0013-e3145068",
@@ -5860,7 +5844,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -5875,7 +5859,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0013-e3145068:action-subject-following",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0013-e3145068",
@@ -5933,7 +5917,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -5948,7 +5932,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0014-a6e58d23:smart-reframe",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0014-a6e58d23",
@@ -6006,7 +5990,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6021,7 +6005,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0014-a6e58d23:talking-head-cleanup",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0014-a6e58d23",
@@ -6079,7 +6063,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6094,7 +6078,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0014-a6e58d23:golden-quote-variants",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0014-a6e58d23",
@@ -6154,7 +6138,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6169,7 +6153,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0014-a6e58d23:reference-template",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0014-a6e58d23",
@@ -6231,7 +6215,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6246,7 +6230,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0014-a6e58d23:dance-choreography",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0014-a6e58d23",
@@ -6304,7 +6288,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6319,7 +6303,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0014-a6e58d23:captioned-multi-format",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.160Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0014-a6e58d23",
@@ -6377,7 +6361,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.160Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6392,7 +6376,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0014-a6e58d23:founder-product-launch",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.161Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0014-a6e58d23",
@@ -6450,7 +6434,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.161Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6465,7 +6449,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0014-a6e58d23:action-subject-following",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.161Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0014-a6e58d23",
@@ -6523,7 +6507,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "createdAt": "2026-07-22T05:24:57.161Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6534,11 +6518,11 @@
       ],
       "domain": "science-demonstration",
       "workflow": "smart-reframe",
-      "split": "public-test",
+      "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0015-0a22e6b8:smart-reframe",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.161Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0015-0a22e6b8",
@@ -6577,7 +6561,7 @@
         },
         "intent": {
           "workflow": "smart-reframe",
-          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
           "preserve": [
             "source meaning",
             "selected subject",
@@ -6595,8 +6579,10 @@
           "before-publish"
         ]
       },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "adversarialConditions": [
+        "Target leaves and re-enters after occlusion; retain identity or request assistance."
+      ],
+      "createdAt": "2026-07-22T05:24:57.161Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6607,11 +6593,11 @@
       ],
       "domain": "science-demonstration",
       "workflow": "talking-head-cleanup",
-      "split": "public-test",
+      "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0015-0a22e6b8:talking-head-cleanup",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.161Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0015-0a22e6b8",
@@ -6650,7 +6636,7 @@
         },
         "intent": {
           "workflow": "talking-head-cleanup",
-          "instruction": "Remove only accidental silence and review filler edits without truncating speech or intentional pauses.",
+          "instruction": "Remove only accidental silence and review filler edits without truncating speech or intentional pauses. Two similar subjects cross; do not silently switch identity.",
           "preserve": [
             "source meaning",
             "selected subject",
@@ -6668,8 +6654,10 @@
           "before-publish"
         ]
       },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "adversarialConditions": [
+        "Two similar subjects cross; do not silently switch identity."
+      ],
+      "createdAt": "2026-07-22T05:24:57.161Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6680,11 +6668,11 @@
       ],
       "domain": "science-demonstration",
       "workflow": "golden-quote-variants",
-      "split": "public-test",
+      "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0015-0a22e6b8:golden-quote-variants",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.161Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0015-0a22e6b8",
@@ -6725,7 +6713,7 @@
         },
         "intent": {
           "workflow": "golden-quote-variants",
-          "instruction": "Find a source-grounded quote and propose 15-, 30-, and 60-second variants with exact lineage.",
+          "instruction": "Find a source-grounded quote and propose 15-, 30-, and 60-second variants with exact lineage. Rapid camera movement and low confidence; hold safely or abstain.",
           "preserve": [
             "source meaning",
             "selected subject",
@@ -6743,8 +6731,10 @@
           "before-publish"
         ]
       },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "adversarialConditions": [
+        "Rapid camera movement and low confidence; hold safely or abstain."
+      ],
+      "createdAt": "2026-07-22T05:24:57.161Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6755,11 +6745,11 @@
       ],
       "domain": "science-demonstration",
       "workflow": "reference-template",
-      "split": "public-test",
+      "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0015-0a22e6b8:reference-template",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.161Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0015-0a22e6b8",
@@ -6802,7 +6792,7 @@
         },
         "intent": {
           "workflow": "reference-template",
-          "instruction": "Apply a permitted structural template without copying protected footage, branding, music, or scripts.",
+          "instruction": "Apply a permitted structural template without copying protected footage, branding, music, or scripts. Selected object changes orientation; preserve the selected instance.",
           "preserve": [
             "source meaning",
             "selected subject",
@@ -6820,8 +6810,10 @@
           "before-publish"
         ]
       },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "adversarialConditions": [
+        "Selected object changes orientation; preserve the selected instance."
+      ],
+      "createdAt": "2026-07-22T05:24:57.161Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6832,11 +6824,11 @@
       ],
       "domain": "science-demonstration",
       "workflow": "dance-choreography",
-      "split": "public-test",
+      "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0015-0a22e6b8:dance-choreography",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.161Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0015-0a22e6b8",
@@ -6875,7 +6867,7 @@
         },
         "intent": {
           "workflow": "dance-choreography",
-          "instruction": "Preserve movement phrases and compile reviewable cut and alignment proposals.",
+          "instruction": "Preserve movement phrases and compile reviewable cut and alignment proposals. Input may have poor audio or a corrupt tail; report the exact degraded state.",
           "preserve": [
             "source meaning",
             "selected subject",
@@ -6893,8 +6885,10 @@
           "before-publish"
         ]
       },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "adversarialConditions": [
+        "Input may have poor audio or a corrupt tail; report the exact degraded state."
+      ],
+      "createdAt": "2026-07-22T05:24:57.161Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6905,11 +6899,11 @@
       ],
       "domain": "science-demonstration",
       "workflow": "captioned-multi-format",
-      "split": "public-test",
+      "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0015-0a22e6b8:captioned-multi-format",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.161Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0015-0a22e6b8",
@@ -6948,7 +6942,7 @@
         },
         "intent": {
           "workflow": "captioned-multi-format",
-          "instruction": "Produce captioned horizontal, vertical, and square variants with safe caption placement.",
+          "instruction": "Produce captioned horizontal, vertical, and square variants with safe caption placement. Target leaves and re-enters after occlusion; retain identity or request assistance.",
           "preserve": [
             "source meaning",
             "selected subject",
@@ -6966,8 +6960,10 @@
           "before-publish"
         ]
       },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "adversarialConditions": [
+        "Target leaves and re-enters after occlusion; retain identity or request assistance."
+      ],
+      "createdAt": "2026-07-22T05:24:57.161Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -6978,11 +6974,11 @@
       ],
       "domain": "science-demonstration",
       "workflow": "founder-product-launch",
-      "split": "public-test",
+      "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0015-0a22e6b8:founder-product-launch",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.161Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0015-0a22e6b8",
@@ -7021,7 +7017,7 @@
         },
         "intent": {
           "workflow": "founder-product-launch",
-          "instruction": "Build hook, problem, product, demonstration, evidence, and CTA variants without inventing claims.",
+          "instruction": "Build hook, problem, product, demonstration, evidence, and CTA variants without inventing claims. Two similar subjects cross; do not silently switch identity.",
           "preserve": [
             "source meaning",
             "selected subject",
@@ -7039,8 +7035,10 @@
           "before-publish"
         ]
       },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "adversarialConditions": [
+        "Two similar subjects cross; do not silently switch identity."
+      ],
+      "createdAt": "2026-07-22T05:24:57.161Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
@@ -7051,11 +7049,11 @@
       ],
       "domain": "science-demonstration",
       "workflow": "action-subject-following",
-      "split": "public-test",
+      "split": "adversarial",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0015-0a22e6b8:action-subject-following",
-        "createdAt": "2026-07-22T05:21:39.118Z",
+        "createdAt": "2026-07-22T05:24:57.161Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0015-0a22e6b8",
@@ -7094,7 +7092,7 @@
         },
         "intent": {
           "workflow": "action-subject-following",
-          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty.",
+          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty. Rapid camera movement and low confidence; hold safely or abstain.",
           "preserve": [
             "source meaning",
             "selected subject",
@@ -7112,8 +7110,10 @@
           "before-publish"
         ]
       },
-      "adversarialConditions": [],
-      "createdAt": "2026-07-22T05:21:39.118Z"
+      "adversarialConditions": [
+        "Rapid camera movement and low confidence; hold safely or abstain."
+      ],
+      "createdAt": "2026-07-22T05:24:57.161Z"
     }
   ]
 }

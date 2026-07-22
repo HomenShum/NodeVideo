@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nodevideo.creatorbench-source-catalog.v1",
   "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T05:21:30.279Z",
+  "generatedAt": "2026-07-22T05:24:56.773Z",
   "records": [
     {
       "schemaVersion": "nodevideo.creatorbench-source/v1",
@@ -70,7 +70,7 @@
         "codec": "h264",
         "hasAudio": true
       },
-      "split": "development",
+      "split": "public-test",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review."
       ]
@@ -106,43 +106,7 @@
         "codec": "h264",
         "hasAudio": true
       },
-      "split": "development",
-      "knownLimitations": [
-        "Six-second normalized derivative; source semantics require human review."
-      ]
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-source/v1",
-      "id": "cb-0038-2d983118",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AArtist%E2%80%99s_impression_of_the_black_hole_inside_NGC_300_X-1_(ESO_1004c).webm",
-      "creatorOwnerId": "creator:5950882e8658b7c2",
-      "relatedSourceGroupId": "commons:22965577",
-      "title": "Artist’s impression of the black hole inside NGC 300 X-1 (ESO 1004c).webm",
-      "rights": {
-        "status": "cc-by",
-        "licenseName": "CC BY 4.0",
-        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-        "attribution": "ESO/L. Calçada",
-        "permittedBenchmarkUses": [
-          "analysis",
-          "derivatives",
-          "human-review",
-          "publication"
-        ],
-        "permittedRedistribution": true
-      },
-      "privacy": "public",
-      "acquiredAt": "2026-07-22T04:48:24.726Z",
-      "sourceSha256": "sha256:18732f603394b9a4efd4b59e6bfee19efcf4a75662d843a3da3e02e68397463f",
-      "durationMs": 6000,
-      "media": {
-        "width": 426,
-        "height": 240,
-        "fps": 25,
-        "codec": "h264",
-        "hasAudio": false
-      },
-      "split": "adversarial",
+      "split": "public-test",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review."
       ]
@@ -178,7 +142,7 @@
         "codec": "h264",
         "hasAudio": false
       },
-      "split": "development",
+      "split": "public-test",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review."
       ]
@@ -253,7 +217,7 @@
         "codec": "h264",
         "hasAudio": false
       },
-      "split": "public-test",
+      "split": "adversarial",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -263,16 +227,16 @@
     },
     {
       "schemaVersion": "nodevideo.creatorbench-source/v1",
-      "id": "cb-0008-b952fc45",
-      "sourceUrl": "https://svs.gsfc.nasa.gov/13585/",
-      "creatorOwnerId": "creator:ecc7d269554788ad",
-      "relatedSourceGroupId": "nasa-svs:13585",
-      "title": "Bird's-eye View of Biodiversity with Landsat",
+      "id": "cb-0009-4f1d6956",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/4782/",
+      "creatorOwnerId": "creator:66bc3c372077e54b",
+      "relatedSourceGroupId": "nasa-svs:4782",
+      "title": "Vegetation Index Anomalies and Rift Valley fever (RVF) outbreaks in South Africa region: 2008-2011",
       "rights": {
         "status": "public-domain",
         "licenseName": "NASA SVS public domain",
         "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
-        "attribution": "NASA Scientific Visualization Studio; Matthew R. Radcliff, Sofie L. Bates, Sofie L. Bates, Matthew R. Radcliff",
+        "attribution": "NASA Scientific Visualization Studio; Helen-Nicole Kostis, Greg Shirah",
         "permittedBenchmarkUses": [
           "analysis",
           "derivatives",
@@ -282,56 +246,95 @@
         "permittedRedistribution": true
       },
       "privacy": "public",
-      "acquiredAt": "2026-07-22T05:21:05.460Z",
-      "sourceSha256": "sha256:c1f1441d3fb89865153977e05f489f59a2db24038782918313fbb1f847c1183a",
-      "durationMs": 6006,
-      "media": {
-        "width": 640,
-        "height": 360,
-        "fps": 29.97002997002997,
-        "codec": "h264",
-        "hasAudio": false
-      },
-      "split": "public-test",
-      "knownLimitations": [
-        "Six-second normalized derivative; source semantics require human review.",
-        "NASA SVS states its visual content is public domain unless otherwise noted.",
-        "Audio is removed because some SVS items contain separately licensed music.",
-        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
-      ]
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-source/v1",
-      "id": "cb-0012-87d1ef2a",
-      "sourceUrl": "https://svs.gsfc.nasa.gov/14639/",
-      "creatorOwnerId": "creator:2ae86c237ab39041",
-      "relatedSourceGroupId": "nasa-svs:14639",
-      "title": "Helio Big Year: How Sonifications Connect to Performance Art",
-      "rights": {
-        "status": "public-domain",
-        "licenseName": "NASA SVS public domain",
-        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
-        "attribution": "NASA Scientific Visualization Studio; Joy Ng",
-        "permittedBenchmarkUses": [
-          "analysis",
-          "derivatives",
-          "human-review",
-          "publication"
-        ],
-        "permittedRedistribution": true
-      },
-      "privacy": "public",
-      "acquiredAt": "2026-07-22T05:21:17.801Z",
-      "sourceSha256": "sha256:8dbc30222ccacfed62b772c236339f1109093c75a8b143205db7d91a4cd01404",
+      "acquiredAt": "2026-07-22T05:21:06.321Z",
+      "sourceSha256": "sha256:409a4945a94e0a1158498fd2eeac42c1eae37d1d269255564edb4ff0e3e027b6",
       "durationMs": 6000,
       "media": {
         "width": 640,
-        "height": 1138,
+        "height": 360,
         "fps": 30,
         "codec": "h264",
         "hasAudio": false
       },
-      "split": "adversarial",
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0010-565d0079",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/4783/",
+      "creatorOwnerId": "creator:66bc3c372077e54b",
+      "relatedSourceGroupId": "nasa-svs:4783",
+      "title": "Precipitation Anomaly and Rift Valley fever (RVF) outbreaks in South Africa: 2008-2011",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Helen-Nicole Kostis, Greg Shirah",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:21:11.499Z",
+      "sourceSha256": "sha256:76eab30d7b9218406e73dc647512f37badb826dd3b71fdd3d9c49ef6841789b3",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0011-85b2e35f",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/4784/",
+      "creatorOwnerId": "creator:66bc3c372077e54b",
+      "relatedSourceGroupId": "nasa-svs:4784",
+      "title": "ENSO Teleconnections and Rift Valley fever (RVF) Outbreaks",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Helen-Nicole Kostis, Greg Shirah",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:21:12.619Z",
+      "sourceSha256": "sha256:863682d65e72353b154ad93e2284a387b1b645f8577db5ba218d3585a8c0b42f",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "split": "development",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -448,7 +451,7 @@
         "codec": "h264",
         "hasAudio": false
       },
-      "split": "public-test",
+      "split": "adversarial",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",

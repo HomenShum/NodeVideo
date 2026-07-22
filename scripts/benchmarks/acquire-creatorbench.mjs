@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, unlink, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { promisify } from 'node:util';
+import { assignCreatorDisjointSplits } from './creatorbench-splits.mjs';
 import { collectNasaSvsCandidates } from './sources/nasa-svs.mjs';
 
 const execFileAsync = promisify(execFile);
@@ -463,36 +464,6 @@ async function acquireClip(candidate, index) {
   };
 }
 
-function balancedCreatorSplits(records) {
-  const groups = new Map();
-  for (const record of records)
-    groups.set(record.creatorId, [...(groups.get(record.creatorId) ?? []), record]);
-  const ordered = [...groups.entries()].sort(
-    ([left], [right]) => stableNumber(left) - stableNumber(right),
-  );
-  const desired = {
-    'private-heldout': Math.ceil(
-      (records.length * config.splitPercentages['private-heldout']) / 100,
-    ),
-    adversarial: Math.ceil((records.length * config.splitPercentages.adversarial) / 100),
-    'public-test': Math.ceil((records.length * config.splitPercentages['public-test']) / 100),
-  };
-  const counts = { development: 0, 'public-test': 0, 'private-heldout': 0, adversarial: 0 };
-  const assignment = new Map();
-  for (const split of ['private-heldout', 'adversarial', 'public-test']) {
-    while (counts[split] < desired[split] && ordered.length) {
-      const [creatorId, creatorRecords] = ordered.shift();
-      assignment.set(creatorId, split);
-      counts[split] += creatorRecords.length;
-    }
-  }
-  for (const [creatorId, creatorRecords] of ordered) {
-    assignment.set(creatorId, 'development');
-    counts.development += creatorRecords.length;
-  }
-  return assignment;
-}
-
 async function mapLimit(items, limit, fn) {
   const results = new Array(items.length);
   let cursor = 0;
@@ -566,7 +537,11 @@ const acquired = await mapLimit(
   (candidate, index) => acquireClip(candidate, reusableExisting.length + index),
 );
 const selectedRaw = [...reusableExisting, ...acquired].slice(0, target);
-const creatorSplits = balancedCreatorSplits(selectedRaw);
+const creatorSplits = assignCreatorDisjointSplits(
+  selectedRaw,
+  config.splitPercentages,
+  stableNumber,
+);
 const selected = selectedRaw.map((record) => ({
   ...record,
   split: creatorSplits.get(record.creatorId),
