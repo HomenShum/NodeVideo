@@ -10,6 +10,8 @@
 
 import type * as artifacts from "../artifacts.js";
 import type * as caseflow from "../caseflow.js";
+import type * as creatorbenchReview from "../creatorbenchReview.js";
+import type * as creatorbenchReviewLifecycle from "../creatorbenchReviewLifecycle.js";
 import type * as http from "../http.js";
 import type * as jobs from "../jobs.js";
 import type * as lib_durability from "../lib/durability.js";
@@ -28,6 +30,8 @@ import type {
 declare const fullApi: ApiFromModules<{
   artifacts: typeof artifacts;
   caseflow: typeof caseflow;
+  creatorbenchReview: typeof creatorbenchReview;
+  creatorbenchReviewLifecycle: typeof creatorbenchReviewLifecycle;
   http: typeof http;
   jobs: typeof jobs;
   "lib/durability": typeof lib_durability;
