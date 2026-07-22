@@ -252,6 +252,7 @@ function CreatorPipeline() {
           outputTokens?: number;
           latencyMs?: number;
           costUsd?: number;
+          schemaRepaired?: boolean;
           error?: string;
         };
         const operations = payload.plan?.operations?.flatMap((operation) =>
@@ -277,6 +278,7 @@ function CreatorPipeline() {
           outputTokens: payload.outputTokens ?? 0,
           latencyMs: payload.latencyMs ?? 0,
           costUsd: payload.costUsd ?? 0,
+          schemaRepaired: payload.schemaRepaired ?? false,
           operations,
         };
       } catch (error) {
@@ -367,7 +369,7 @@ function CreatorPipeline() {
             {
               name: 'Free model router',
               detail: planner
-                ? `${planner.model} resolved in ${planner.latencyMs} ms · ${planner.inputTokens} → ${planner.outputTokens} tokens · $0.00`
+                ? `${planner.model} resolved in ${planner.latencyMs} ms · ${planner.inputTokens} → ${planner.outputTokens} tokens · $0.00${planner.schemaRepaired ? ' · allowlist schema repaired' : ''}`
                 : `Deterministic fallback · ${plannerFailure}`,
             },
           ]

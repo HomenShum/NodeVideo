@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { parseBody, parsePlannerOutput } from './creator-agent';
+import { parseBody, parsePlannerOutput, repairPlannerOutput } from './creator-agent';
 
 describe('creator free-route boundary', () => {
   test('accepts only bounded typed planning operations', () => {
@@ -64,5 +64,23 @@ describe('creator free-route boundary', () => {
         )}`,
       ),
     ).toMatchObject({ operations: [{ kind: 'compose_variants' }] });
+  });
+
+  test('repairs a schema-violating model plan into allowlisted operations', () => {
+    expect(
+      repairPlannerOutput(
+        JSON.stringify({
+          summary: 'Find the strongest quote and make short and long versions.',
+          operations: [{ kind: 'invented_cut', reason: 'not allowed' }],
+        }),
+        'Create quote variants while preserving meaning.',
+      ),
+    ).toMatchObject({
+      operations: [
+        { kind: 'extract_quote' },
+        { kind: 'compose_variants' },
+        { kind: 'preserve_meaning' },
+      ],
+    });
   });
 });

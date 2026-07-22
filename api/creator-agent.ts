@@ -71,6 +71,55 @@ export function parsePlannerOutput(value: string) {
   return null;
 }
 
+export function repairPlannerOutput(value: string, request: string) {
+  const summaryMatch = /"summary"\s*:\s*"((?:\\.|[^"\\])*)"/iu.exec(value);
+  if (!summaryMatch) return null;
+  let summary = '';
+  try {
+    summary = JSON.parse(`"${summaryMatch[1]}"`) as string;
+  } catch {
+    return null;
+  }
+  if (summary.trim().length < 8) return null;
+  const intent = `${request} ${summary}`.toLowerCase();
+  const operations: Array<{ kind: string; reason: string }> = [];
+  if (/silence|pause|dead air/u.test(intent)) {
+    operations.push({
+      kind: 'remove_silence',
+      reason: 'Remove only timing gaps requested by the user and retain uncertain cuts for review.',
+    });
+  }
+  if (/filler|\bum\b|\buh\b/u.test(intent)) {
+    operations.push({
+      kind: 'review_fillers',
+      reason: 'Flag filler candidates for review before any meaning-sensitive removal.',
+    });
+  }
+  if (/quote|hook|highlight/u.test(intent)) {
+    operations.push({
+      kind: 'extract_quote',
+      reason: 'Locate the requested source-grounded quote without inventing transcript content.',
+    });
+  }
+  if (/variant|version|format|aspect|short|long/u.test(intent)) {
+    operations.push({
+      kind: 'compose_variants',
+      reason: 'Compile only the requested delivery variants from the shared source index.',
+    });
+  }
+  if (/transition|fade|crossfade/u.test(intent)) {
+    operations.push({
+      kind: 'add_transitions',
+      reason: 'Treat transitions as reviewable timeline operations rather than applied effects.',
+    });
+  }
+  operations.push({
+    kind: 'preserve_meaning',
+    reason: 'Keep speaker meaning authoritative and escalate uncertain edits for human review.',
+  });
+  return { summary: summary.trim().slice(0, 800), operations: operations.slice(0, 8) };
+}
+
 function validatePlannerCandidate(candidate: unknown) {
   if (!candidate || typeof candidate !== 'object') return null;
   const record = candidate as Record<string, unknown>;
@@ -148,11 +197,11 @@ export default async function handler(request: ApiRequest, response: ApiResponse
         },
         body: JSON.stringify({
           model: 'openai/gpt-oss-20b:free',
-            models: [
-              'google/gemma-4-26b-a4b-it:free',
-              'nvidia/nemotron-nano-9b-v2:free',
-              'openrouter/free',
-            ],
+          models: [
+            'google/gemma-4-26b-a4b-it:free',
+            'nvidia/nemotron-nano-9b-v2:free',
+            'openrouter/free',
+          ],
           provider: { require_parameters: true },
           response_format: {
             type: 'json_schema',
@@ -226,7 +275,8 @@ export default async function handler(request: ApiRequest, response: ApiResponse
         usage?: { prompt_tokens?: number; completion_tokens?: number };
       };
       const text = payload.choices?.[0]?.message?.content?.trim();
-      const plan = text ? parsePlannerOutput(text) : null;
+      const parsedPlan = text ? parsePlannerOutput(text) : null;
+      const plan = parsedPlan ?? (text ? repairPlannerOutput(text, body.request) : null);
       if (!upstream.ok || !text || !payload.model || !plan) {
         lastError =
           payload.error?.message ??
@@ -244,6 +294,7 @@ export default async function handler(request: ApiRequest, response: ApiResponse
         latencyMs: Date.now() - startedAt,
         costUsd: 0,
         attempts: attempt,
+        schemaRepaired: !parsedPlan,
       });
       return;
     } catch (error) {
