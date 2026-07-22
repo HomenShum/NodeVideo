@@ -359,6 +359,28 @@ describe('CreatorBench governance contracts', () => {
     ).toThrow(/exactly one/u);
   });
 
+  it('does not claim usability or silent-failure performance without human review', () => {
+    const unreviewedResult: CreatorBenchResult = {
+      ...result,
+      classification: 'review_required',
+      systemDeclaredSuccess: false,
+      review: undefined,
+    };
+    const claim = derivePublicClaim({
+      benchmarkVersion: 'CreatorBench v1',
+      freeze,
+      generatedAt: '2026-07-21T12:01:00.000Z',
+      instances: [instance],
+      sources: [source],
+      results: [unreviewedResult],
+      limitations: [],
+    });
+    expect(claim.statement).toContain('routed 100.0% to human review');
+    expect(claim.statement).toContain('No automatic or assisted usability claim is made');
+    expect(claim.statement).toContain('silent-failure incidence remains unverified');
+    expect(claim.statement).not.toContain('produced a usable first-pass result');
+  });
+
   it('ships schema IDs aligned with the TypeScript contracts', () => {
     const schemaDirectory = 'benchmarks/creatorbench-v1/schemas';
     const schemas = [

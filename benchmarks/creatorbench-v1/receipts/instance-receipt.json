@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nodevideo.creatorbench-instance-receipt.v1",
-  "benchmarkVersion": "creatorbench-v1.3",
-  "generatedAt": "2026-07-22T09:20:28.197Z",
+  "benchmarkVersion": "creatorbench-v1.4",
+  "generatedAt": "2026-07-22T09:34:54.657Z",
   "sourceCount": 250,
   "instanceCount": 6128,
   "workflowCount": 8,
@@ -22,6 +22,6 @@
     "private-heldout": 1392,
     "adversarial": 688
   },
-  "publicManifestSha256": "sha256:33fd635582570a4308113c620edd326003147ad401cbe7c5c8871a1bf81d6d03",
-  "privateManifestSha256": "sha256:39525c65cf2fee343854a61b88c404a3cc2ef596217e8ba8c20b75b5829b896c"
+  "publicManifestSha256": "sha256:67fe5da12c19cdfa148fae305c77c7db2e2e1de3ae7498ae6d98433c25b56064",
+  "privateManifestSha256": "sha256:84717e1c1c0a9afde91779f33f5afde241cd0f94a6b4de06820c7d708498dba9"
 }

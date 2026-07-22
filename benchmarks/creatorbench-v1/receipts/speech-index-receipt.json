@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nodevideo.creatorbench-speech-index-receipt/v1",
-  "benchmarkVersion": "creatorbench-v1.3",
-  "generatedAt": "2026-07-22T09:21:19.231Z",
+  "benchmarkVersion": "creatorbench-v1.4",
+  "generatedAt": "2026-07-22T09:36:06.208Z",
   "sourceCount": 134,
   "indexedCount": 92,
   "missingTranscriptCount": 42,

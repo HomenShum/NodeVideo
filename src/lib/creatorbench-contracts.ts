@@ -654,6 +654,7 @@ export function derivePublicClaim(args: {
   ) as CreatorBenchPublicClaim['outcomes'];
   const automatic = percentage(outcomes.automatic_usable.rate);
   const assisted = percentage(outcomes.assisted_usable.rate);
+  const reviewRequired = percentage(outcomes.review_required.rate);
   const abstained = percentage(outcomes.safely_abstained.rate);
   const silent = percentage(outcomes.silent_failure.rate);
   const humanReviewedCount = results.filter((result) => result.review).length;
@@ -674,11 +675,10 @@ export function derivePublicClaim(args: {
       workflowCount: workflows.size,
     },
     outcomes,
-    statement: `On ${args.benchmarkVersion}, covering ${instances.length} private held-out workflow instances from ${creators.size} creator-disjoint sources across ${workflows.size} workflows, NodeVideo produced a usable first-pass result automatically in ${automatic}, after bounded assistance in ${assisted}, and safely abstained in ${abstained}. ${
+    statement:
       humanReviewedCount === results.length
-        ? `Silent failures occurred in ${silent}.`
-        : `${outcomes.silent_failure.numerator} instances were classified as silent failures, but editing-quality silent-failure incidence remains unverified because only ${humanReviewedCount}/${results.length} results have human review.`
-    }`,
+        ? `On ${args.benchmarkVersion}, covering ${instances.length} private held-out workflow instances from ${creators.size} creator-disjoint sources across ${workflows.size} workflows, NodeVideo produced a usable first-pass result automatically in ${automatic}, after bounded assistance in ${assisted}, and safely abstained in ${abstained}. Silent failures occurred in ${silent}.`
+        : `On ${args.benchmarkVersion}, covering ${instances.length} private held-out workflow instances from ${creators.size} creator-disjoint sources across ${workflows.size} workflows, NodeVideo routed ${reviewRequired} to human review and safely abstained in ${abstained}. No automatic or assisted usability claim is made because only ${humanReviewedCount}/${results.length} results have human review. Editing-quality silent-failure incidence remains unverified.`,
     limitations: [
       ...new Set([
         ...args.limitations,
