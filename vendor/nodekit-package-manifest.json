@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-07-22T10:42:44.815Z",
+  "package": {
+    "bytes": 223062,
+    "filename": "homenshum-nodekit-0.2.1.tgz",
+    "integrity": "sha512-LmVzyV9gKwW8gVPAIDyyzATIJVBZzPYKipR0eET64FMQy5MJltVY7paME88WW+EF3ekG9J381fjUtMWDlythEA==",
+    "name": "@homenshum/nodekit",
+    "sha1": "f344f6786cd5a00af4fa0370d0df2debec4aa670",
+    "sha256": "8d6088579e17894cb09c62796707d7d63f8d040ed40955a9366e4c78c6d2075e",
+    "shasum": "f344f6786cd5a00af4fa0370d0df2debec4aa670",
+    "version": "0.2.1"
+  },
+  "schemaVersion": "nodevideo.nodekit-package-candidate/v1",
+  "source": {
+    "commit": "4407b70c616c89b022e0d3d36ba02f00519b1688",
+    "distributableSourceHash": "ae96ea8e2a8b882e44d41e47991aaac2fcf8ce1fbadf44ec53ce6997cbbb7c87",
+    "workingTreeClean": false
+  },
+  "manifestHash": "10de3c97b75209a96ff129d119fb03ccc871f165f0029582eae179db4a810809"
+}

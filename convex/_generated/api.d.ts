@@ -9,8 +9,6 @@
  */
 
 import type * as artifacts from "../artifacts.js";
-import type * as caseflowRuntime from "../caseflowRuntime.js";
-import type * as caseflowValidators from "../caseflowValidators.js";
 import type * as http from "../http.js";
 import type * as jobs from "../jobs.js";
 import type * as lib_durability from "../lib/durability.js";
@@ -29,8 +27,6 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   artifacts: typeof artifacts;
-  caseflowRuntime: typeof caseflowRuntime;
-  caseflowValidators: typeof caseflowValidators;
   http: typeof http;
   jobs: typeof jobs;
   "lib/durability": typeof lib_durability;

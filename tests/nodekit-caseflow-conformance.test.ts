@@ -1,301 +1,323 @@
-import {
-  type CaseflowRuntime,
-  type NodeKitActor,
-  type NodeKitArtifact,
-  type NodeKitCaseflowSnapshot,
-  type NodeKitException,
-  type NodeKitProposal,
-  contentHash,
-  runCaseflowConformance,
-  runtimeProfiles,
-} from '@homenshum/nodekit/caseflow';
+import { contentHash } from '@homenshum/nodekit/caseflow';
+import { register } from '@homenshum/nodekit/test';
 import { convexTest } from 'convex-test';
 import { describe, expect, it } from 'vitest';
-import { api, internal } from '../convex/_generated/api';
-import type { Id } from '../convex/_generated/dataModel';
+import { api } from '../convex/_generated/api';
 import schema from '../convex/schema';
-import verdict from '../fixtures/proof/nodekit-caseflow-consumer-verdict.json';
-import consumerPackage from '../package.json';
 
-const modules = import.meta.glob('../convex/**/*.ts');
+const modules = import.meta.glob(['../convex/**/*.ts', '!../convex/convex.config.ts']);
 
-function caseflowRuntime(t: ReturnType<typeof convexTest>): CaseflowRuntime {
-  return {
-    capabilities: runtimeProfiles.convex,
-    completeRun: (args) => t.mutation(internal.caseflowRuntime.completeRun, args),
-    createArtifact: async <T>(args: {
-      actor?: NodeKitActor;
-      caseId: string;
-      content: T;
-      kind?: string;
-      runId: string;
-      title?: string;
-    }) => (await t.mutation(internal.caseflowRuntime.createArtifact, args)) as NodeKitArtifact<T>,
-    createCase: (args) => t.mutation(internal.caseflowRuntime.createCase, args),
-    createProposal: async <T>(args: {
-      actor?: NodeKitActor;
-      artifactId: string;
-      baseVersion: number;
-      patch: T;
-      rationale?: string;
-    }) => (await t.mutation(internal.caseflowRuntime.createProposal, args)) as NodeKitProposal<T>,
-    decideProposal: (args) => t.mutation(internal.caseflowRuntime.decideProposal, args),
-    enterStage: (args) => t.mutation(internal.caseflowRuntime.enterStage, args),
-    raiseException: async <T>(args: {
-      actor?: NodeKitActor;
-      code?: string;
-      message?: string;
-      preservedState?: T;
-      runId: string;
-    }) => (await t.mutation(internal.caseflowRuntime.raiseException, args)) as NodeKitException<T>,
-    resolveException: (args) => t.mutation(internal.caseflowRuntime.resolveException, args),
-    snapshot: async () =>
-      (await t.query(internal.caseflowRuntime.snapshot, {})) as NodeKitCaseflowSnapshot,
-    startRun: (args) => t.mutation(internal.caseflowRuntime.startRun, args),
+function testRuntime() {
+  const t = convexTest(schema, modules);
+  register(t, 'nodekitCaseflow');
+  return t;
+}
+
+async function createProjectRun(
+  t: ReturnType<typeof testRuntime>,
+  owner: ReturnType<ReturnType<typeof testRuntime>['withIdentity']>,
+  suffix: string,
+) {
+  const { projectId } = await owner.mutation(api.nodeVideoCaseflow.createProject, {
+    title: `NodeVideo private project ${suffix}`,
+  });
+  const request = {
+    idempotencyKey: `source-only-edit-${suffix}`,
+    input: {
+      brief: 'Build a phrase-aligned, source-only creator edit with review before freeze.',
+      referenceAssetSha256: 'a'.repeat(64),
+      sourceAssetSha256: 'b'.repeat(64),
+    },
+    primaryJob: 'Produce one reviewed and frozen NodeVideo edit plan',
+    projectId,
+    title: `Creator edit ${suffix}`,
   };
+  const started = await owner.mutation(api.nodeVideoCaseflow.startProjectCaseflow, request);
+  return { projectId, request, started };
 }
 
-async function createBoundedRun(runtime: ReturnType<typeof caseflowRuntime>) {
-  const work = await runtime.createCase({
-    primaryJob: 'Produce one reviewed NodeVideo artifact',
-    title: 'NodeVideo Caseflow test',
-  });
-  const run = await runtime.startRun({
-    caseId: work.caseId,
-    stages: [
-      { id: 'working', label: 'Prepare', owner: 'worker' },
-      { id: 'review', label: 'Review', owner: 'user' },
-      { id: 'complete', label: 'Complete', owner: 'system' },
-    ],
-  });
-  return { run, work };
-}
-
-describe('NodeKit Caseflow Convex consumer', () => {
-  it('passes the packaged conformance suite against durable Convex state', async () => {
-    const t = convexTest(schema, modules);
-    const verdict = await runCaseflowConformance(() => caseflowRuntime(t));
-
-    expect(verdict.passed).toBe(true);
-    expect(verdict.capabilityNegotiation).toMatchObject({ passed: true, provider: 'convex' });
-    expect(verdict.assertions).toEqual({
-      activeRunStartIsIdempotent: true,
-      canonicalVersionAdvancedOnce: true,
-      contentAddressedReceipt: true,
-      exceptionStatePreserved: true,
-      nextActionOwnerExplicit: true,
-      oneAuthoritativeCase: true,
-      repeatedCompletionIsIdempotent: true,
-      repeatedDecisionIsIdempotent: true,
-      staleProposalFailedClosed: true,
-    });
-
-    const snapshot = await t.query(internal.caseflowRuntime.snapshot, {});
-    expect(snapshot.cases).toHaveLength(1);
-    expect(snapshot.approvals).toHaveLength(2);
-    expect(snapshot.artifacts[0].versions).toHaveLength(2);
-    expect(snapshot.receipts).toHaveLength(1);
-  });
-
-  it('resolves project scope from auth and denies cross-owner access', async () => {
-    const t = convexTest(schema, modules);
+describe('NodeVideo consumes the packed NodeKit Convex component', () => {
+  it('registers the installed component and keeps auth and project scope in the host', async () => {
+    const t = testRuntime();
     const ownerA = t.withIdentity({ issuer: 'https://auth.nodevideo.test', subject: 'owner-a' });
     const ownerB = t.withIdentity({ issuer: 'https://auth.nodevideo.test', subject: 'owner-b' });
-    const { projectId } = await ownerA.mutation(api.nodeVideoCaseflow.createProject, {
-      title: 'Owner A private project',
-    });
-    const request = {
-      idempotencyKey: 'upload-001',
-      input: { brief: 'Cut on phrase boundaries', sourceAssetIds: ['source-a', 'source-b'] },
-      primaryJob: 'Render a source-only edit for review',
-      projectId,
-      title: 'Private creator edit',
-    };
+    const { projectId, request, started } = await createProjectRun(t, ownerA, 'owner-boundary');
 
     await expect(t.mutation(api.nodeVideoCaseflow.startProjectCaseflow, request)).rejects.toThrow(
       'authentication_required',
     );
-    const first = await ownerA.mutation(api.nodeVideoCaseflow.startProjectCaseflow, request);
     const repeated = await ownerA.mutation(api.nodeVideoCaseflow.startProjectCaseflow, request);
-    expect(repeated).toEqual({ ...first, reused: true });
+    expect(repeated).toEqual({ ...started, reused: true });
     await expect(
       ownerA.mutation(api.nodeVideoCaseflow.startProjectCaseflow, {
         ...request,
-        input: { brief: 'Different request' },
+        input: { brief: 'A different input under the same key' },
       }),
     ).rejects.toThrow('idempotency_key_reused_with_different_input');
     await expect(
       ownerB.query(api.nodeVideoCaseflow.readProjectCaseflow, {
-        caseId: first.caseId,
+        caseId: started.caseId,
         projectId,
       }),
     ).rejects.toThrow('project_not_found_or_forbidden');
-
-    const internalRuntime = caseflowRuntime(t);
-    const artifact = await internalRuntime.createArtifact({
-      caseId: first.caseId,
-      content: { status: 'draft' },
-      runId: first.runId,
-      title: 'Owner-scoped edit plan',
-    });
-    const proposal = await internalRuntime.createProposal({
-      artifactId: artifact.artifactId,
-      baseVersion: 1,
-      patch: { status: 'reviewed' },
-    });
-    await expect(
-      ownerB.mutation(api.nodeVideoCaseflow.decideProjectProposal, {
-        decision: 'accepted',
-        projectId,
-        proposalId: proposal.proposalId as Id<'caseflowProposals'>,
-      }),
-    ).rejects.toThrow('project_not_found_or_forbidden');
-    const ownerDecision = await ownerA.mutation(api.nodeVideoCaseflow.decideProjectProposal, {
-      decision: 'accepted',
-      projectId,
-      proposalId: proposal.proposalId as Id<'caseflowProposals'>,
-    });
-    expect(ownerDecision).toMatchObject({ reused: false });
 
     const snapshot = await ownerA.query(api.nodeVideoCaseflow.readProjectCaseflow, {
-      caseId: first.caseId,
+      caseId: started.caseId,
       projectId,
     });
-    expect(snapshot.binding.requestHash).toMatch(/^[a-f0-9]{64}$/u);
-    expect(snapshot.component.externalRefs.map((reference) => reference.kind).sort()).toEqual([
-      'source-only-case',
-      'source-only-job',
-    ]);
+    expect(snapshot.component.case.caseId).toMatch(/^case_/u);
+    expect(snapshot.component.run.runId).toMatch(/^run_/u);
+    expect(snapshot.component.run.stages).toHaveLength(19);
+    expect(snapshot.component.run.stages.map((stage: { id: string }) => stage.id)).toContain(
+      'render_preview',
+    );
+    expect(snapshot.component.receipt).toBeNull();
     expect(snapshot.domain.case.projectId).toBe(projectId);
-    expect(snapshot.domain.job._id).toBe(first.jobId);
+    expect(snapshot.domain.job._id).toBe(started.jobId);
     expect(snapshot.domain.stages).toHaveLength(19);
-    expect(snapshot.domain.events.map((event) => event.kind)).toContain('job.created');
+    expect(snapshot.domain.events.map((event: { kind: string }) => event.kind)).toContain(
+      'job.created',
+    );
   });
 
-  it('applies one same-base proposal and fails the stale proposal closed', async () => {
-    const t = convexTest(schema, modules);
-    const runtime = caseflowRuntime(t);
-    const { run, work } = await createBoundedRun(runtime);
-    const artifact = await runtime.createArtifact({
-      caseId: work.caseId,
-      content: { value: 1 },
-      runId: run.runId,
-      title: 'Edit plan',
+  it('executes a NodeVideo artifact lifecycle with retry, conflict, recovery, and receipt proof', async () => {
+    const t = testRuntime();
+    const owner = t.withIdentity({ issuer: 'https://auth.nodevideo.test', subject: 'creator' });
+    const stranger = t.withIdentity({ issuer: 'https://auth.nodevideo.test', subject: 'stranger' });
+    const { projectId, started } = await createProjectRun(t, owner, 'material-lifecycle');
+
+    const entered = await owner.mutation(api.nodeVideoCaseflow.enterProjectStage, {
+      caseId: started.caseId,
+      idempotencyKey: 'stage-render-preview',
+      nextAction: 'Inspect the phrase-aligned render preview',
+      nextActionOwner: 'user',
+      projectId,
+      stageId: 'render_preview',
     });
-    const accepted = await runtime.createProposal({
+    const enteredRetry = await owner.mutation(api.nodeVideoCaseflow.enterProjectStage, {
+      caseId: started.caseId,
+      idempotencyKey: ' stage-render-preview ',
+      nextAction: 'Inspect the phrase-aligned render preview',
+      nextActionOwner: 'user',
+      projectId,
+      stageId: 'render_preview',
+    });
+    expect(enteredRetry).toEqual(entered);
+
+    const artifactRequest = {
+      caseId: started.caseId,
+      content: {
+        durationMs: 31_240,
+        frozen: false,
+        output: { mimeType: 'video/mp4', sha256: 'c'.repeat(64) },
+        schemaVersion: 'nodevideo.edit-plan/v1',
+        timeline: [
+          { endMs: 4_000, sourceAssetSha256: 'b'.repeat(64), startMs: 0 },
+          { endMs: 8_500, sourceAssetSha256: 'b'.repeat(64), startMs: 4_000 },
+        ],
+      },
+      idempotencyKey: 'render-plan-v1',
+      kind: 'nodevideo-edit-plan',
+      projectId,
+      title: 'Phrase-aligned source-only edit plan',
+    };
+    const artifact = await owner.mutation(
+      api.nodeVideoCaseflow.publishProjectArtifact,
+      artifactRequest,
+    );
+    const artifactRetry = await owner.mutation(api.nodeVideoCaseflow.publishProjectArtifact, {
+      ...artifactRequest,
+      idempotencyKey: ' render-plan-v1 ',
+    });
+    expect(artifactRetry.artifactId).toBe(artifact.artifactId);
+    expect(artifact.versions[0].contentHash).toBe(contentHash(artifactRequest.content));
+
+    const accepted = await owner.mutation(api.nodeVideoCaseflow.proposeProjectArtifact, {
       artifactId: artifact.artifactId,
       baseVersion: 1,
-      patch: { value: 2 },
+      idempotencyKey: 'freeze-approved-plan',
+      patch: { ...artifactRequest.content, frozen: true, reviewDecision: 'approved' },
+      projectId,
+      rationale: 'Creator approved the source-only timing and crop decisions.',
     });
-    const stale = await runtime.createProposal({
+    const acceptedRetry = await owner.mutation(api.nodeVideoCaseflow.proposeProjectArtifact, {
       artifactId: artifact.artifactId,
       baseVersion: 1,
-      patch: { value: 99 },
+      idempotencyKey: ' freeze-approved-plan ',
+      patch: { ...artifactRequest.content, frozen: true, reviewDecision: 'approved' },
+      projectId,
+      rationale: 'Creator approved the source-only timing and crop decisions.',
+    });
+    expect(acceptedRetry.proposalId).toBe(accepted.proposalId);
+    const stale = await owner.mutation(api.nodeVideoCaseflow.proposeProjectArtifact, {
+      artifactId: artifact.artifactId,
+      baseVersion: 1,
+      idempotencyKey: 'alternate-cut-v1',
+      patch: { ...artifactRequest.content, frozen: true, reviewDecision: 'alternate' },
+      projectId,
+      rationale: 'Alternative cut raced with the approved edit.',
     });
 
-    const first = await runtime.decideProposal({
+    await expect(
+      stranger.mutation(api.nodeVideoCaseflow.decideProjectProposal, {
+        decision: 'accepted',
+        projectId,
+        proposalId: accepted.proposalId,
+      }),
+    ).rejects.toThrow('project_not_found_or_forbidden');
+    const firstDecision = await owner.mutation(api.nodeVideoCaseflow.decideProjectProposal, {
+      comment: 'Freeze this exact cut.',
       decision: 'accepted',
+      projectId,
       proposalId: accepted.proposalId,
     });
-    const repeated = await runtime.decideProposal({
+    const repeatedDecision = await owner.mutation(api.nodeVideoCaseflow.decideProjectProposal, {
+      comment: 'Freeze this exact cut.',
       decision: 'accepted',
+      projectId,
       proposalId: accepted.proposalId,
     });
-    const conflicted = await runtime.decideProposal({
+    expect(repeatedDecision.reused).toBe(true);
+    expect(repeatedDecision.approval.approvalId).toBe(firstDecision.approval.approvalId);
+    const staleDecision = await owner.mutation(api.nodeVideoCaseflow.decideProjectProposal, {
       decision: 'accepted',
+      projectId,
       proposalId: stale.proposalId,
     });
+    expect(staleDecision.proposal.status).toBe('conflicted');
+    expect(staleDecision.artifact.canonicalVersion).toBe(2);
 
-    expect(first.reused).toBe(false);
-    expect(repeated).toMatchObject({ reused: true });
-    expect(repeated.approval.approvalId).toBe(first.approval.approvalId);
-    expect(conflicted.proposal.status).toBe('conflicted');
-    expect(conflicted.artifact.canonicalVersion).toBe(2);
-    expect(conflicted.artifact.versions.at(-1)?.content).toEqual({ value: 2 });
+    const exceptionRequest = {
+      caseId: started.caseId,
+      code: 'render_worker_interrupted',
+      idempotencyKey: 'checkpoint-after-frame-412',
+      message: 'The render worker stopped after writing a durable media checkpoint.',
+      preservedState: {
+        checkpointSha256: 'd'.repeat(64),
+        completedFrames: 412,
+        frozenArtifactVersion: 2,
+      },
+      projectId,
+    };
+    const raised = await owner.mutation(
+      api.nodeVideoCaseflow.raiseProjectException,
+      exceptionRequest,
+    );
+    const raisedRetry = await owner.mutation(api.nodeVideoCaseflow.raiseProjectException, {
+      ...exceptionRequest,
+      idempotencyKey: ' checkpoint-after-frame-412 ',
+    });
+    expect(raisedRetry.exceptionId).toBe(raised.exceptionId);
     await expect(
-      runtime.decideProposal({ decision: 'rejected', proposalId: accepted.proposalId }),
-    ).rejects.toThrow('proposal is already accepted');
-  });
+      owner.mutation(api.nodeVideoCaseflow.publishProjectArtifact, {
+        ...artifactRequest,
+        idempotencyKey: 'blocked-write',
+      }),
+    ).rejects.toThrow('run is not active: blocked');
 
-  it('recovers an exception and resumes after constructing a fresh adapter', async () => {
-    const t = convexTest(schema, modules);
-    const firstRuntime = caseflowRuntime(t);
-    const { run } = await createBoundedRun(firstRuntime);
-    const raised = await firstRuntime.raiseException({
-      code: 'worker_interrupted',
-      message: 'The render worker stopped after a durable checkpoint.',
-      preservedState: { completedFrames: 120, checkpoint: 'sha256:checkpoint' },
-      runId: run.runId,
+    const blocked = await owner.query(api.nodeVideoCaseflow.readProjectCaseflow, {
+      caseId: started.caseId,
+      projectId,
     });
-    await expect(firstRuntime.completeRun({ runId: run.runId })).rejects.toThrow(
-      'run has unresolved exceptions',
-    );
-
-    const reloadedRuntime = caseflowRuntime(t);
-    const blocked = await reloadedRuntime.snapshot();
-    expect(blocked.runs[0]).toMatchObject({ nextActionOwner: 'user', status: 'blocked' });
-    expect(blocked.exceptions[0].preservedState).toEqual({
-      checkpoint: 'sha256:checkpoint',
-      completedFrames: 120,
-    });
-    const recovered = await reloadedRuntime.resolveException({
+    expect(blocked.component.run).toMatchObject({ nextActionOwner: 'user', status: 'blocked' });
+    const recovered = await owner.mutation(api.nodeVideoCaseflow.resolveProjectException, {
       exceptionId: raised.exceptionId,
-      nextAction: 'Resume from checkpoint',
+      nextAction: 'Resume rendering from the verified checkpoint',
       nextActionOwner: 'worker',
-      resolution: 'A replacement worker claimed the durable checkpoint.',
+      projectId,
+      resolution: 'Replacement worker verified and claimed the checkpoint.',
     });
-    expect(recovered.run).toMatchObject({
-      nextAction: 'Resume from checkpoint',
-      nextActionOwner: 'worker',
-      status: 'active',
-    });
-    await reloadedRuntime.enterStage({ runId: run.runId, stageId: 'complete' });
-    const completed = await reloadedRuntime.completeRun({ runId: run.runId });
-    expect(completed.run.status).toBe('completed');
-  });
+    expect(recovered.run).toMatchObject({ nextActionOwner: 'worker', status: 'active' });
 
-  it('keeps one stable content-addressed receipt and detects stored tampering', async () => {
-    const t = convexTest(schema, modules);
-    const runtime = caseflowRuntime(t);
-    const { run, work } = await createBoundedRun(runtime);
-    await runtime.createArtifact({
-      caseId: work.caseId,
-      content: { export: 'nodevideo-final.mp4', sha256: 'a'.repeat(64) },
-      kind: 'render-receipt',
-      runId: run.runId,
-      title: 'Render receipt',
+    await owner.mutation(api.nodeVideoCaseflow.enterProjectStage, {
+      caseId: started.caseId,
+      idempotencyKey: 'stage-freeze',
+      projectId,
+      stageId: 'freeze',
     });
-    const completed = await runtime.completeRun({ runId: run.runId });
-    const repeated = await runtime.completeRun({ runId: run.runId });
-    const { receiptHash, receiptId, ...receiptBody } = completed.receipt;
+    const completed = await owner.mutation(api.nodeVideoCaseflow.completeProjectRun, {
+      caseId: started.caseId,
+      projectId,
+    });
+    const repeatedCompletion = await owner.mutation(api.nodeVideoCaseflow.completeProjectRun, {
+      caseId: started.caseId,
+      projectId,
+    });
+    expect(repeatedCompletion.reused).toBe(true);
+    expect(repeatedCompletion.receipt).toEqual(completed.receipt);
 
+    const { receiptHash, receiptId: _receiptId, ...receiptBody } = completed.receipt;
     expect(receiptHash).toBe(contentHash(receiptBody));
-    expect(repeated).toMatchObject({ reused: true });
-    expect(repeated.receipt).toEqual(completed.receipt);
-    const snapshot = await runtime.snapshot();
-    expect(snapshot.receipts).toHaveLength(1);
-
-    await t.run(async (ctx) => {
-      await ctx.db.patch(receiptId as Id<'caseflowReceipts'>, { receiptHash: '0'.repeat(64) });
+    expect(completed.receipt).toMatchObject({
+      caseId: started.caseId,
+      runId: started.runId,
+      schemaVersion: 'nodekit.receipt/v2',
+      status: 'completed',
     });
-    await expect(runtime.completeRun({ runId: run.runId })).rejects.toThrow(
-      'receipt_hash_mismatch',
+    expect(completed.receipt.artifactBindings).toContainEqual(
+      expect.objectContaining({
+        artifactId: artifact.artifactId,
+        canonicalVersion: 2,
+        contentHash: firstDecision.artifact.versions.at(-1)?.contentHash,
+      }),
+    );
+    expect(completed.receipt.approvalBindings).toContainEqual(
+      expect.objectContaining({ approvalId: firstDecision.approval.approvalId }),
+    );
+    expect(completed.receipt.proposalBindings).toContainEqual(
+      expect.objectContaining({ proposalId: stale.proposalId, status: 'conflicted' }),
     );
   });
 
-  it('keeps the local consumer verdict immutable and tied to the pinned source', () => {
-    const { evidenceHash, ...body } = verdict;
-    expect(evidenceHash).toBe(contentHash(body));
-    expect(verdict.status).toBe('passed');
-    expect(verdict.consumer.commit).toBe('5562337b69ffd022642012d593470d8c417748f2');
-    expect(verdict.nodekit.sourceHash).toBe(
-      '0ced0adf6e0f719be9a5fabefd69754a79102f39b6b6a54b20daeb60ceba7c0b',
-    );
-    expect(consumerPackage.dependencies['@homenshum/nodekit']).toContain(verdict.nodekit.commit);
-    expect(verdict.commands.every((command) => command.passed)).toBe(true);
-    const { deployed, published, ...behaviorAssertions } = verdict.assertions;
-    expect(Object.values(behaviorAssertions).every(Boolean)).toBe(true);
-    expect(deployed).toBe(false);
-    expect(published).toBe(false);
+  it('terminates interrupted video work explicitly and idempotently', async () => {
+    const t = testRuntime();
+    const owner = t.withIdentity({ issuer: 'https://auth.nodevideo.test', subject: 'operator' });
+
+    const cancelled = await createProjectRun(t, owner, 'cancelled');
+    const firstCancel = await owner.mutation(api.nodeVideoCaseflow.cancelProjectRun, {
+      caseId: cancelled.started.caseId,
+      projectId: cancelled.projectId,
+      reason: 'Creator withdrew the source assets.',
+    });
+    const cancelRetry = await owner.mutation(api.nodeVideoCaseflow.cancelProjectRun, {
+      caseId: cancelled.started.caseId,
+      projectId: cancelled.projectId,
+      reason: 'Creator withdrew the source assets.',
+    });
+    expect(firstCancel.receipt.status).toBe('cancelled');
+    expect(cancelRetry.reused).toBe(true);
+    expect(cancelRetry.receipt).toEqual(firstCancel.receipt);
+
+    const failed = await createProjectRun(t, owner, 'failed-safely');
+    const partial = await owner.mutation(api.nodeVideoCaseflow.publishProjectArtifact, {
+      caseId: failed.started.caseId,
+      content: { checkpointSha256: 'e'.repeat(64), completedFrames: 91 },
+      idempotencyKey: 'partial-render-checkpoint',
+      kind: 'render-checkpoint',
+      projectId: failed.projectId,
+      title: 'Preserved render checkpoint',
+    });
+    await owner.mutation(api.nodeVideoCaseflow.raiseProjectException, {
+      caseId: failed.started.caseId,
+      code: 'codec_unavailable',
+      idempotencyKey: 'codec-failure',
+      message: 'The required codec is unavailable, but the checkpoint is valid.',
+      preservedState: { artifactId: partial.artifactId },
+      projectId: failed.projectId,
+    });
+    const firstFailure = await owner.mutation(api.nodeVideoCaseflow.failProjectRunSafely, {
+      caseId: failed.started.caseId,
+      projectId: failed.projectId,
+      reason: 'Codec remained unavailable after bounded retries.',
+    });
+    const failureRetry = await owner.mutation(api.nodeVideoCaseflow.failProjectRunSafely, {
+      caseId: failed.started.caseId,
+      projectId: failed.projectId,
+      reason: 'Codec remained unavailable after bounded retries.',
+    });
+    expect(firstFailure.receipt.status).toBe('failed_safely');
+    expect(firstFailure.receipt.artifactIds).toContain(partial.artifactId);
+    expect(failureRetry.reused).toBe(true);
+    expect(failureRetry.receipt).toEqual(firstFailure.receipt);
   });
 });
