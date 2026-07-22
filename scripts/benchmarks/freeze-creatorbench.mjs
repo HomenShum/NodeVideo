@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { readFile, readdir } from 'node:fs/promises';
+import { access, readFile, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { createServer } from 'vite';
 import {
@@ -30,7 +30,12 @@ const configFiles = [
 ];
 const packManifests = [];
 for (const pack of await readdir(resolve(root, 'packs'), { withFileTypes: true })) {
-  if (pack.isDirectory()) packManifests.push(`packs/${pack.name}/manifest.json`);
+  const manifestPath = `packs/${pack.name}/manifest.json`;
+  if (pack.isDirectory()) {
+    await access(resolve(root, manifestPath))
+      .then(() => packManifests.push(manifestPath))
+      .catch(() => undefined);
+  }
 }
 const publicManifest = await readJson(resolve(benchmarkRoot, 'catalog/public-instances.json'));
 const privateManifest = await readJson(resolve(evidenceRoot, 'private-heldout-instances.json'));
