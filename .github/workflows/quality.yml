@@ -87,6 +87,8 @@ jobs:
     timeout-minutes: 20
     env:
       CI: 'true'
+      VITE_CONVEX_URL: ${{ vars.NODEVIDEO_CONVEX_URL }}
+      NODEVIDEO_CONVEX_URL: ${{ vars.NODEVIDEO_CONVEX_URL }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
