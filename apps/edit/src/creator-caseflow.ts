@@ -62,7 +62,7 @@ function saveLocator(locator: Locator) {
   history.replaceState(null, '', url);
 }
 
-export function useCreatorCaseflow() {
+export function useCreatorCaseflow(initialize = true) {
   const [locator, setLocator] = useState<Locator | null>(readLocator);
   const [initializationError, setInitializationError] = useState('');
   const createCampaign = useMutation(api.caseflow.createCampaign);
@@ -80,7 +80,7 @@ export function useCreatorCaseflow() {
   );
 
   useEffect(() => {
-    if (locator) return;
+    if (locator || !initialize) return;
     let cancelled = false;
     const ownerKey = crypto.randomUUID();
     const idempotencyKey = `founder-launch:${ownerKey}`;
@@ -106,7 +106,7 @@ export function useCreatorCaseflow() {
     return () => {
       cancelled = true;
     };
-  }, [createCampaign, locator]);
+  }, [createCampaign, initialize, locator]);
 
   const appendMessage = useCallback(
     async (

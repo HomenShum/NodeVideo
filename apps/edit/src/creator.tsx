@@ -13,7 +13,8 @@ import {
   runCreatorPipeline,
   sha256,
 } from './creator-pipeline';
-import { CreatorWorkspace } from './creator-workspace';
+import { CreatorRunInspector } from './creator-run-inspector';
+import { CreatorStart, CreatorWorkspace } from './creator-workspace';
 
 type SourceState = {
   name: string;
@@ -60,7 +61,9 @@ function downloadJson(value: unknown, name: string) {
 }
 
 function CreatorPipeline() {
-  const caseflow = useCreatorCaseflow();
+  const [creationStarted, setCreationStarted] = useState(false);
+  const inspectorMode = /^\/creator\/runs\/[^/]+\/proof\/?$/u.test(location.pathname);
+  const caseflow = useCreatorCaseflow(creationStarted || inspectorMode);
   const [source, setSource] = useState<SourceState | null>(null);
   const [sourceDigest, setSourceDigest] = useState('');
   const [transcript, setTranscript] = useState(DEMO_TRANSCRIPT);
@@ -627,7 +630,10 @@ function CreatorPipeline() {
     downloadJson(
       {
         schemaVersion: 'nodevideo.creator-run-receipt.v1',
-        status: approved.has(selected.id) ? 'accepted' : 'awaiting-review',
+        status:
+          approved.has(selected.id) || caseflow.latestProposal?.status === 'approved'
+            ? 'accepted'
+            : 'awaiting-review',
         projectVersion: version,
         mediaIndex: result.mediaIndex,
         intent: result.intent,
@@ -700,8 +706,26 @@ function CreatorPipeline() {
     }
   };
 
+  if (!inspectorMode && !creationStarted && !caseflow.locator) {
+    return (
+      <CreatorStart
+        prompt={prompt}
+        source={source}
+        preset={preset}
+        status={status}
+        onPrompt={setPrompt}
+        onPreset={setPreset}
+        onUpload={(file) => void onUpload(file)}
+        onLoadDemo={() => void loadDemo()}
+        onStart={() => setCreationStarted(true)}
+      />
+    );
+  }
+
+  const Workspace = inspectorMode ? CreatorRunInspector : CreatorWorkspace;
+
   return (
-    <CreatorWorkspace
+    <Workspace
       source={source}
       transcript={transcript}
       prompt={prompt}

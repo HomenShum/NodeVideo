@@ -120,6 +120,9 @@ function browserFfmpegAssets(): Plugin {
     configureServer(server) {
       server.middlewares.use((request, response, next) => {
         const pathname = requestPath(request.url);
+        if (/^\/creator\/runs\/[^/]+\/proof\/?$/u.test(pathname)) {
+          request.url = '/creator.html';
+        }
         applyBrowserFfmpegHeaders(pathname, response);
         const asset = files.get(pathname);
         if (!asset || !existsSync(asset.file)) return next();
@@ -129,7 +132,11 @@ function browserFfmpegAssets(): Plugin {
     },
     configurePreviewServer(server) {
       server.middlewares.use((request, response, next) => {
-        applyBrowserFfmpegHeaders(requestPath(request.url), response);
+        const pathname = requestPath(request.url);
+        if (/^\/creator\/runs\/[^/]+\/proof\/?$/u.test(pathname)) {
+          request.url = '/creator.html';
+        }
+        applyBrowserFfmpegHeaders(pathname, response);
         next();
       });
     },

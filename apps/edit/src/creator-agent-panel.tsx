@@ -72,6 +72,11 @@ const QUICK_ACTIONS = [
   'Turn this into a founder launch video',
 ];
 
+function formatTime(ms: number) {
+  const seconds = ms / 1_000;
+  return `00:${seconds.toFixed(1).padStart(4, '0')}`;
+}
+
 export function CreatorAgentPanel(props: {
   sourceName?: string;
   selected?: FounderVariant;
@@ -99,6 +104,7 @@ export function CreatorAgentPanel(props: {
   onApproveExecutor: () => void;
   onDeclineExecutor: () => void;
   onUseLocalExecutor: () => void;
+  requestedView?: 'chat' | 'proposal';
 }) {
   const [draft, setDraft] = useState(props.suggestedPrompt);
   const [working, setWorking] = useState(false);
@@ -116,6 +122,7 @@ export function CreatorAgentPanel(props: {
   )?.status;
   const isRejected = selectedStatus === 'rejected';
   const proposalReady = props.proposalStatus === 'pending';
+  const onInspectorPage = /^\/creator\/runs\/[^/]+\/proof\/?$/u.test(location.pathname);
 
   useEffect(() => {
     if (props.messages.length === 0) return;
@@ -124,6 +131,10 @@ export function CreatorAgentPanel(props: {
   }, [props.messages]);
 
   useEffect(() => setDraft(props.suggestedPrompt), [props.suggestedPrompt]);
+
+  useEffect(() => {
+    if (props.requestedView) setDetailView(props.requestedView);
+  }, [props.requestedView]);
 
   const send = async (value = draft) => {
     const text = value.trim();
@@ -188,10 +199,18 @@ export function CreatorAgentPanel(props: {
           <Button
             size="sm"
             variant={detailView === 'proof' ? 'secondary' : 'ghost'}
-            onClick={() => setDetailView('proof')}
+            onClick={() => {
+              if (onInspectorPage) {
+                setDetailView('proof');
+                return;
+              }
+              const target = new URL(location.href);
+              target.pathname = '/creator/runs/current/proof';
+              location.assign(target);
+            }}
             disabled={!props.result}
           >
-            Proof
+            {onInspectorPage ? 'Proof' : 'Run Inspector'}
           </Button>
         </div>
       </header>
@@ -444,23 +463,32 @@ export function CreatorAgentPanel(props: {
                       <SelectItem value="campaign-variants">All variants</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Select
-                    value={route}
-                    onValueChange={(value) => setRoute(value as CreatorExecutionRoute)}
-                  >
-                    <SelectTrigger
-                      className="h-7 w-[126px] text-[10px]"
-                      aria-label="Executor route"
-                    >
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="auto">Auto · local first</SelectItem>
-                      <SelectItem value="local">Local only</SelectItem>
-                      <SelectItem value="openrouter-free">OpenRouter Free · external</SelectItem>
-                      <SelectItem value="higgsfield">Higgsfield · gated</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <details className="relative text-[10px]">
+                    <summary className="flex h-7 cursor-pointer items-center rounded-md border px-2 text-muted-foreground">
+                      Routing
+                    </summary>
+                    <div className="absolute bottom-9 left-0 z-30 rounded-lg border bg-popover p-2 shadow-xl">
+                      <Select
+                        value={route}
+                        onValueChange={(value) => setRoute(value as CreatorExecutionRoute)}
+                      >
+                        <SelectTrigger
+                          className="h-8 w-[180px] text-[10px]"
+                          aria-label="Executor route"
+                        >
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="auto">Auto · local first</SelectItem>
+                          <SelectItem value="local">Local only</SelectItem>
+                          <SelectItem value="openrouter-free">
+                            OpenRouter Free · external
+                          </SelectItem>
+                          <SelectItem value="higgsfield">Higgsfield · gated</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </details>
                 </div>
                 <Button
                   size="icon-sm"
@@ -554,12 +582,30 @@ export function CreatorAgentPanel(props: {
                 </Badge>
               </div>
               <ul className="space-y-2 rounded-lg border p-3 text-sm text-muted-foreground">
+                {props.selected.semanticPlan.operations.map((operation) => {
+                  const range =
+                    'sourceStartMs' in operation
+                      ? `${formatTime(operation.sourceStartMs)}–${formatTime(operation.sourceEndMs)}`
+                      : 'startMs' in operation
+                        ? `${formatTime(operation.startMs)}–${formatTime(operation.endMs)}`
+                        : `at ${formatTime(operation.atMs)}`;
+                  return (
+                    <li className="grid grid-cols-[72px_1fr] gap-2" key={operation.id}>
+                      <span className="font-mono text-[11px]">{range}</span>
+                      <span>
+                        <b className="text-foreground">{operation.kind}</b>
+                        {'reason' in operation ? ` · ${operation.reason}` : ''}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+              <ul className="space-y-2 rounded-lg border p-3 text-sm text-muted-foreground">
                 {props.selected.rationale.map((item) => (
                   <li key={item}>• {item}</li>
                 ))}
               </ul>
               <Button
-                variant="secondary"
                 className="w-full"
                 onClick={props.onApprove}
                 disabled={isApproved || isRejected || !proposalReady}
@@ -572,6 +618,7 @@ export function CreatorAgentPanel(props: {
                 </Button>
               )}
               <Button
+                variant="outline"
                 className="w-full"
                 disabled={!isApproved || props.exportRatio > 0}
                 onClick={props.onExport}

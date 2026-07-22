@@ -37,6 +37,17 @@
       ]
     },
     {
+      "source": "/creator/runs/:runId/proof",
+      "headers": [
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
+        { "key": "Cross-Origin-Embedder-Policy", "value": "require-corp" },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' blob: https://*.convex.cloud wss://*.convex.cloud; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+        }
+      ]
+    },
+    {
       "source": "/collab",
       "headers": [
         { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
@@ -85,5 +96,9 @@
       ]
     }
   ],
-  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/creator/runs/:runId/proof", "destination": "/creator.html" },
+    { "source": "/creator", "destination": "/creator.html" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
 }
