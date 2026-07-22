@@ -1,0 +1,33 @@
+apiVersion: nodeagent.dev/v1
+kind: CapabilityPack
+metadata:
+  name: smart-reframe
+  version: 0.1.0
+spec:
+  privacy: local-first
+  artifacts:
+    - SubjectTrack
+    - FramingIntent
+    - ReframePlan
+    - ReframeCritic
+  tools:
+    - subject.detect
+    - subject.select
+    - subject.track
+    - reframe.plan
+    - reframe.smooth
+    - reframe.validate
+    - edit.set_crop_keyframes
+    - render.preview
+  templates:
+    - full-body-safe
+    - performance-dynamic
+    - group-formation
+    - speaker
+  evals:
+    - dance-solo
+    - dance-group
+    - climbing
+    - workout
+    - speaker
+

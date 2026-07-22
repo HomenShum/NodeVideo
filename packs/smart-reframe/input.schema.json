@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["assetId", "subjectTrackId", "aspectRatio", "policy", "motionPreset"],
+  "properties": {
+    "assetId": { "type": "string" },
+    "subjectTrackId": { "type": "string" },
+    "aspectRatio": { "type": "string" },
+    "policy": {
+      "enum": [
+        "full-body-safe",
+        "performance-dynamic",
+        "group-formation",
+        "speaker",
+        "object-demo",
+        "custom"
+      ]
+    },
+    "motionPreset": { "enum": ["stable", "smooth", "responsive", "cinematic", "full-body-safe"] }
+  },
+  "additionalProperties": false
+}

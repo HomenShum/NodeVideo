@@ -11,6 +11,7 @@ import {
   validateMediaIndex,
 } from './media-orchestration-contracts.ts';
 import { createVariantSet } from './recipe-compiler.ts';
+import { type ReframePlan, compileReframeIntoEditPlan } from './smart-reframe.ts';
 
 export type FounderVariant = {
   id: string;
@@ -125,6 +126,7 @@ function rendererPlan(input: {
 export function compileFounderVariants(
   mediaIndex: MediaIndex,
   intent: EditIntent,
+  reframePlans: ReframePlan[] = [],
 ): { variants: FounderVariant[]; variantSet: VariantSet } {
   validateMediaIndex(mediaIndex);
   validateEditIntent(intent);
@@ -136,9 +138,12 @@ export function compileFounderVariants(
   const cleanRanges = retainedRanges(mediaIndex.technical.durationMs, approvedRemovals);
   const quote = rankGoldenQuotes(mediaIndex)[0];
   const variants = intent.outputs.map<FounderVariant>((output) => {
+    const reframePlan = reframePlans.find(
+      (candidate) => candidate.intent.aspectRatio === output.aspectRatio,
+    );
     const desiredMs = (output.durationSeconds ?? mediaIndex.technical.durationMs / 1_000) * 1_000;
     const range =
-      quote && output.purpose !== 'clean-master'
+      quote && output.purpose !== 'clean-master' && !output.id.startsWith('reframe-')
         ? [{ startMs: quote.startMs, endMs: Math.min(quote.endMs, quote.startMs + desiredMs) }]
         : cleanRanges;
     const operations: EditPlanV2['operations'] = [
@@ -199,7 +204,12 @@ export function compileFounderVariants(
       id: `variant:${intent.id}:${output.id}`,
       title: output.id.replaceAll('-', ' '),
       output,
-      rendererPlan: rendererPlan({ mediaIndex, output, ranges: range, headline }),
+      rendererPlan: reframePlan
+        ? compileReframeIntoEditPlan(
+            rendererPlan({ mediaIndex, output, ranges: range, headline }),
+            reframePlan,
+          )
+        : rendererPlan({ mediaIndex, output, ranges: range, headline }),
       semanticPlan,
       rationale: [
         `${cleanup.length} cleanup candidates; ${approvedRemovals.length} deterministic silence cuts applied`,
@@ -209,6 +219,13 @@ export function compileFounderVariants(
         output.templateId
           ? `Structural template ${output.templateId}; no brand assets copied`
           : 'No reference template applied',
+        ...(reframePlan
+          ? [
+              `Subject ${reframePlan.sourceTrackId} stays identity-locked across ${reframePlan.cropKeyframes.length} crop keyframes`,
+              `${reframePlan.trackingLossRanges.length} low-confidence ranges hold the previous crop`,
+              `${reframePlan.manualOverrides.length} manual crop overrides take precedence`,
+            ]
+          : []),
       ],
     };
   });

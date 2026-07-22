@@ -1,0 +1,5 @@
+policy: speaker
+motionPreset: smooth
+movementMargin: 0.06
+allowBodyClipping: true
+anchor: rule-of-thirds-left

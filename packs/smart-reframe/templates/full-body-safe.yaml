@@ -1,0 +1,5 @@
+policy: full-body-safe
+motionPreset: full-body-safe
+movementMargin: 0.08
+allowBodyClipping: false
+anchor: center

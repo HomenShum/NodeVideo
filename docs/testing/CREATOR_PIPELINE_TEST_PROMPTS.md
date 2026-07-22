@@ -142,3 +142,47 @@ Start an approved remote generation, simulate a lost client connection after the
 ```text
 Turn these owned product images into an interactive 3D showcase only if a commercially approved local or hosted executor is available. Otherwise produce a capability-gap report naming GPU, model, license, and validation requirements. Any GLB or Gaussian-splat output must have a hash, viewer fallback, source lineage, safety review, and public-rights receipt before it enters the showcase catalog.
 ```
+
+## 19. Smart Reframe — full-body performance
+
+```text
+Track the primary performer locally and make 9:16, 1:1, and 16:9 versions from one shared subject track. Keep the full body and movement envelope visible, use smooth camera motion, hold the last trustworthy crop during occlusion, and show the crop path before approval. Do not upload frames.
+```
+
+Expected: local pose tracking, explicit subject selection, one cached `SubjectTrack`, three typed `ReframePlan` artifacts, critic coverage, crop-path timeline, and local preview/export geometry from the same keyframes.
+
+## 20. Smart Reframe — speaker composition
+
+```text
+Create a 9:16 speaker crop. Keep the selected speaker near the left third with useful look room, avoid cutting hands when gestures enter frame, use the stable motion preset, and flag every low-confidence range for review.
+```
+
+## 21. Smart Reframe — manual correction precedence
+
+```text
+Generate the vertical crop path, then let me drag the crop at the first incorrect moment. Preserve my manual keyframe exactly, re-run the critic, and compile a fresh proposal without changing the original source.
+```
+
+Expected: the manual keyframe appears as a locked marker and wins over regenerated coordinates at that frame.
+
+## 22. Smart Reframe — identity-switch adversarial test
+
+```text
+Two people cross paths. Follow only the person I select. If identity confidence becomes weak, hold or widen instead of switching to the other person. Report identity continuity and any unresolved ranges.
+```
+
+## 23. Smart Reframe — no stable subject
+
+```text
+Make a vertical subject-following cut even if no person can be detected reliably.
+```
+
+Expected: fail closed with `no-subject`, retain the uncropped source, and offer manual framing rather than inventing a track.
+
+## 24. Smart Reframe — privacy boundary
+
+```text
+Use the cheapest available reframe executor, but do not send raw media or derived frames off this device. If the local tracker cannot meet the request, stop with the exact capability gap.
+```
+
+Expected: MediaPipe and deterministic planning remain local; a remote specialist is not silently substituted.

@@ -246,6 +246,48 @@ test('creator pipeline exposes cleanup and quote workflows', async ({ page }) =>
   await expect(stage.getByRole('tab', { name: /long cut/u })).toBeVisible();
 });
 
+test('Smart Reframe detects locally, reuses one track, and proposes three crop plans', async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop-chromium', 'Focused local vision proof.');
+  test.setTimeout(120_000);
+  await startCreatorWithDemo(page, 'Smart Reframe');
+
+  await expect(page.getByRole('region', { name: 'Smart Reframe controls' })).toBeVisible();
+  await page.getByRole('button', { name: 'Detect subjects locally' }).click();
+  await expect(page.getByRole('button', { name: /Person 1/u })).toBeVisible({ timeout: 90_000 });
+  await page.getByRole('button', { name: 'Generate crop path' }).click();
+  await expect(page.getByText(/Crop paths generated for 9:16, 1:1, 16:9/u)).toBeVisible();
+  await page.getByRole('button', { name: 'Edit crop path' }).click();
+  await page.locator('.smart-crop-scrubber input').fill('30');
+  const cropFrame = page.getByRole('button', { name: 'Drag crop frame' });
+  const cropBox = await cropFrame.boundingBox();
+  if (!cropBox) throw new Error('Editable crop frame is missing.');
+  await page.mouse.move(cropBox.x + cropBox.width / 2, cropBox.y + cropBox.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(cropBox.x + cropBox.width / 2 + 8, cropBox.y + cropBox.height / 2);
+  await page.mouse.up();
+  await expect(page.getByText(/Manual crop keyframe saved with precedence/u)).toBeVisible();
+  await page.getByRole('button', { name: 'Edit crop path' }).click();
+
+  await page.getByRole('button', { name: 'Send message' }).click();
+  await expect(page.getByText(/3 variants compiled from one shared MediaIndex/u)).toBeVisible();
+  const stage = page.getByRole('region', { name: 'Artifact stage' });
+  await expect(stage.getByRole('tab', { name: /reframe square/u })).toBeVisible();
+  await expect(stage.getByRole('tab', { name: /reframe landscape/u })).toBeVisible();
+  await expect(page.getByTestId('agent-tool-activity')).toContainText('Local subject tracker');
+  await expect(page.getByTestId('agent-tool-activity')).toContainText('no frame egress');
+  await expect(page.getByTestId('agent-tool-activity')).toContainText('1 manual overrides');
+  await expect(page.getByTestId('artifact-timeline')).toContainText('crop path');
+
+  const evidenceDir = '.qa/evidence/smart-reframe';
+  mkdirSync(evidenceDir, { recursive: true });
+  await page.screenshot({
+    path: `${evidenceDir}/${testInfo.project.name}-proposal.png`,
+    fullPage: true,
+  });
+});
+
 test('agent rail gates cloud execution and supports inline proposal decisions', async ({
   page,
 }, testInfo) => {

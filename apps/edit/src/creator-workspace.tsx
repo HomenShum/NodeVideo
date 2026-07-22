@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import type { FounderVariant } from '@/lib/founder-variant-compiler';
+import type { FramingPolicy, ReframePlan } from '@/lib/smart-reframe';
 import { Player } from '@remotion/player';
 import {
   Check,
@@ -16,7 +17,7 @@ import {
   Sparkles,
   Upload,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { CreatorAgentPanel } from './creator-agent-panel';
 import type {
   ChatMessage,
@@ -26,8 +27,13 @@ import type {
 } from './creator-agent-panel';
 import type { CreatorPreset, runCreatorPipeline } from './creator-pipeline';
 import { PlanComposition } from './plan-composition';
+import {
+  CropPathOverlay,
+  SmartReframeControls,
+  type SmartReframeView,
+} from './smart-reframe-controls';
 
-type SourceView = { name: string; durationMs: number; width: number; height: number };
+type SourceView = { name: string; url: string; durationMs: number; width: number; height: number };
 type CreatorResult = ReturnType<typeof runCreatorPipeline>;
 type MobileSurface = 'canvas' | 'agent' | 'review' | 'sources';
 
@@ -57,6 +63,13 @@ const TEMPLATES: Array<{
     detail: 'Hook, product evidence, and call to action',
     request:
       'Create a founder launch story with a clear hook, product evidence, and call to action. Produce landscape and vertical variants without copying brand assets.',
+  },
+  {
+    id: 'reframe',
+    title: 'Smart Reframe',
+    detail: 'Follow a subject across 9:16, square, and landscape',
+    request:
+      'Make vertical, square, and landscape versions. Follow the selected person, keep the full body visible, hold through low-confidence ranges, and show the crop path before approval.',
   },
 ];
 
@@ -165,7 +178,7 @@ export function CreatorStart(props: {
   );
 }
 
-function Timeline({ variant }: { variant?: FounderVariant }) {
+function Timeline({ variant, reframe }: { variant?: FounderVariant; reframe?: ReframePlan }) {
   if (!variant) {
     return (
       <div className="creator-timeline-empty">
@@ -207,6 +220,30 @@ function Timeline({ variant }: { variant?: FounderVariant }) {
           </div>
         </div>
       ))}
+      {reframe && (
+        <div className="creator-track smart-reframe-track">
+          <div>
+            <b>camera</b>
+            <span>crop path</span>
+          </div>
+          <div className="creator-track-lane">
+            {reframe.cropKeyframes.map((keyframe) => (
+              <i
+                key={keyframe.timelineFrame}
+                className={
+                  reframe.manualOverrides.some(
+                    (item) => item.timelineFrame === keyframe.timelineFrame,
+                  )
+                    ? 'is-manual'
+                    : ''
+                }
+                style={{ left: `${(keyframe.timelineFrame / Math.max(1, durationFrames)) * 100}%` }}
+                title={`Crop keyframe ${keyframe.timelineFrame}`}
+              />
+            ))}
+          </div>
+        </div>
+      )}
       <div className="creator-audio-route">
         <CircleDot className="size-3" /> source program · 0 dB · unmuted
       </div>
@@ -233,6 +270,7 @@ export function CreatorWorkspace(props: {
   proposalDigest?: string;
   proposalStatus?: string;
   executorProposal?: ExecutorProposalView;
+  smartReframe: SmartReframeView;
   assetUrls: Record<string, string>;
   onUpload: (file?: File) => void;
   onLoadDemo: () => void;
@@ -250,13 +288,30 @@ export function CreatorWorkspace(props: {
   onApproveExecutor: () => void;
   onDeclineExecutor: () => void;
   onUseLocalExecutor: () => void;
+  onAnalyzeSubjects: () => void;
+  onSelectSubject: (id: string) => void;
+  onReframePolicy: (policy: FramingPolicy) => void;
+  onReframeMotion: (motion: ReframePlan['intent']['motionPreset']) => void;
+  onPlanReframe: () => void;
+  onManualCrop: (
+    aspectRatio: string,
+    box: { x: number; y: number; width: number; height: number },
+    frame: number,
+  ) => void;
 }) {
   const [mobileSurface, setMobileSurface] = useState<MobileSurface>('canvas');
+  const [editingCrop, setEditingCrop] = useState(false);
+  const [editFrame, setEditFrame] = useState(0);
+  const reframeVideoRef = useRef<HTMLVideoElement>(null);
   const stageIndex = Math.max(
     0,
     STAGES.findIndex(([stage]) => stage === props.runStage),
   );
   const canonical = props.approved.has(props.selected?.id ?? '');
+  const selectedReframe = props.smartReframe.plans.find(
+    (plan) => plan.intent.aspectRatio === props.selected?.output.aspectRatio,
+  );
+  const activeReframe = selectedReframe ?? props.smartReframe.plans[0];
 
   return (
     <main className="creator-shell bg-background">
@@ -346,7 +401,10 @@ export function CreatorWorkspace(props: {
           </section>
         </aside>
 
-        <section className="creator-artifact-stage" aria-label="Artifact stage">
+        <section
+          className={`creator-artifact-stage ${props.preset === 'reframe' ? 'has-smart-reframe' : ''}`}
+          aria-label="Artifact stage"
+        >
           <div className="creator-artifact-header">
             <div>
               <p className="creator-eyebrow">Primary video artifact</p>
@@ -371,8 +429,21 @@ export function CreatorWorkspace(props: {
               )) ?? <Badge variant="outline">No variants yet</Badge>}
             </div>
           </div>
+          {props.preset === 'reframe' && (
+            <SmartReframeControls
+              view={props.smartReframe}
+              selectedAspectRatio={props.selected?.output.aspectRatio}
+              editingCrop={editingCrop}
+              onAnalyze={props.onAnalyzeSubjects}
+              onSelectTrack={props.onSelectSubject}
+              onPolicy={props.onReframePolicy}
+              onMotion={props.onReframeMotion}
+              onPlan={props.onPlanReframe}
+              onToggleEdit={() => setEditingCrop((current) => !current)}
+            />
+          )}
           <div className="creator-video-canvas" data-testid="video-canvas">
-            {props.source && props.selected ? (
+            {props.source && props.selected && !editingCrop ? (
               <Player
                 component={PlanComposition}
                 inputProps={{ plan: props.selected.rendererPlan, assetUrls: props.assetUrls }}
@@ -384,6 +455,39 @@ export function CreatorWorkspace(props: {
                 acknowledgeRemotionLicense
                 style={{ width: '100%', height: '100%' }}
               />
+            ) : props.source && props.preset === 'reframe' ? (
+              <div className="smart-reframe-source-preview">
+                <video ref={reframeVideoRef} src={props.source.url} controls muted playsInline />
+                <CropPathOverlay
+                  plan={activeReframe}
+                  frame={editFrame}
+                  editable={editingCrop}
+                  onCommit={(box, frame) =>
+                    props.onManualCrop(activeReframe?.intent.aspectRatio ?? '9:16', box, frame)
+                  }
+                />
+                {editingCrop && activeReframe && (
+                  <label className="smart-crop-scrubber">
+                    <span>Crop keyframe · frame {editFrame}</span>
+                    <input
+                      type="range"
+                      min={0}
+                      max={Math.max(
+                        0,
+                        (props.selected?.rendererPlan.durationFrames ??
+                          Math.round((props.source?.durationMs ?? 1) * 0.03)) - 1,
+                      )}
+                      value={editFrame}
+                      onChange={(event) => {
+                        const frame = Number(event.target.value);
+                        setEditFrame(frame);
+                        if (reframeVideoRef.current)
+                          reframeVideoRef.current.currentTime = frame / 30;
+                      }}
+                    />
+                  </label>
+                )}
+              </div>
             ) : (
               <div className="creator-canvas-empty">
                 <Play className="size-7" />
@@ -392,7 +496,7 @@ export function CreatorWorkspace(props: {
               </div>
             )}
           </div>
-          <Timeline variant={props.selected} />
+          <Timeline variant={props.selected} reframe={selectedReframe} />
         </section>
 
         <div className="creator-agent-rail">

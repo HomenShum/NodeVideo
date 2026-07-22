@@ -1,0 +1,83 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.smart-reframe@0.1.0",
+  "implementationStatus": "local-browser-and-contract-validated",
+  "tools": [
+    {
+      "id": "subject.detect",
+      "stage": "understanding-video",
+      "dependsOn": [],
+      "accepts": ["video/authorized"],
+      "produces": ["video/pose-observations"]
+    },
+    {
+      "id": "subject.select",
+      "stage": "selecting-subject",
+      "dependsOn": ["subject.detect"],
+      "accepts": ["video/pose-observations"],
+      "produces": ["video/subject-selection"]
+    },
+    {
+      "id": "subject.track",
+      "stage": "tracking-subject",
+      "dependsOn": ["subject.select"],
+      "accepts": ["video/pose-observations", "video/subject-selection"],
+      "produces": ["video/subject-track"]
+    },
+    {
+      "id": "action-envelope.build",
+      "stage": "understanding-action",
+      "dependsOn": ["subject.track"],
+      "accepts": ["video/subject-track"],
+      "produces": ["video/action-envelope"]
+    },
+    {
+      "id": "reframe.plan",
+      "stage": "planning-camera",
+      "dependsOn": ["action-envelope.build"],
+      "accepts": ["video/subject-track", "video/action-envelope", "video/framing-intent"],
+      "produces": ["video/reframe-plan"]
+    },
+    {
+      "id": "reframe.smooth",
+      "stage": "planning-camera",
+      "dependsOn": ["reframe.plan"],
+      "accepts": ["video/reframe-plan"],
+      "produces": ["video/reframe-plan"]
+    },
+    {
+      "id": "reframe.validate",
+      "stage": "evaluating-plan",
+      "dependsOn": ["reframe.smooth"],
+      "accepts": ["video/subject-track", "video/reframe-plan"],
+      "produces": ["video/reframe-critic"]
+    },
+    {
+      "id": "edit.set_crop_keyframes",
+      "stage": "compiling-edit",
+      "dependsOn": ["reframe.validate"],
+      "accepts": ["video/reframe-plan", "video/edit-plan"],
+      "produces": ["video/edit-plan"]
+    },
+    {
+      "id": "render.preview",
+      "stage": "rendering-preview",
+      "dependsOn": ["edit.set_crop_keyframes"],
+      "accepts": ["video/edit-plan"],
+      "produces": ["video/local-preview"]
+    }
+  ],
+  "semanticValidators": [
+    {
+      "id": "smart-reframe.identity-and-coverage",
+      "rules": [
+        "never silently switch the selected subject identity",
+        "hold the previous trustworthy crop during low-confidence observations",
+        "manual crop keyframes override generated keyframes",
+        "reuse one cached subject track across destination aspect ratios",
+        "preview and export consume the same edit-plan crop keyframes",
+        "keep raw media and derived frames local"
+      ]
+    }
+  ]
+}

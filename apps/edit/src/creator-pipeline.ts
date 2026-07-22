@@ -12,6 +12,7 @@ import {
 } from '@/lib/media-orchestration-contracts';
 import { EDIT_RECIPE_SCHEMA, type EditRecipe } from '@/lib/media-orchestration-contracts';
 import { compileRecipe } from '@/lib/recipe-compiler';
+import type { ReframePlan } from '@/lib/smart-reframe';
 
 export const DEMO_SOURCE_URL = '/media/authorized-real-v1/source-a-web.mp4';
 
@@ -129,7 +130,7 @@ const EXECUTORS: ExecutorDefinition[] = [
   },
 ];
 
-export type CreatorPreset = 'cleanup' | 'variants' | 'founder';
+export type CreatorPreset = 'cleanup' | 'variants' | 'founder' | 'reframe';
 
 export function outputsForPreset(preset: CreatorPreset): OutputIntent[] {
   if (preset === 'cleanup')
@@ -153,6 +154,12 @@ export function outputsForPreset(preset: CreatorPreset): OutputIntent[] {
         platform: 'linkedin',
       },
       { id: 'long-cut', purpose: 'long-form', aspectRatio: '16:9', platform: 'youtube' },
+    ];
+  if (preset === 'reframe')
+    return [
+      { id: 'reframe-vertical', purpose: 'custom', aspectRatio: '9:16', platform: 'instagram' },
+      { id: 'reframe-square', purpose: 'custom', aspectRatio: '1:1', platform: 'linkedin' },
+      { id: 'reframe-landscape', purpose: 'custom', aspectRatio: '16:9', platform: 'youtube' },
     ];
   return [
     {
@@ -257,6 +264,7 @@ export function runCreatorPipeline(input: {
   mediaIndex: MediaIndex;
   preset: CreatorPreset;
   prompt: string;
+  reframePlans?: ReframePlan[];
 }) {
   const intent: EditIntent = {
     schemaVersion: EDIT_INTENT_SCHEMA,
@@ -292,6 +300,7 @@ export function runCreatorPipeline(input: {
     mediaIndex: input.mediaIndex,
     intent,
     compiledRecipe,
-    ...compileFounderVariants(input.mediaIndex, intent),
+    ...compileFounderVariants(input.mediaIndex, intent, input.reframePlans),
+    reframePlans: input.reframePlans ?? [],
   };
 }

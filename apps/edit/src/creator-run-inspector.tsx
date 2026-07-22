@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import type { FounderVariant } from '@/lib/founder-variant-compiler';
+import type { FramingPolicy, ReframePlan } from '@/lib/smart-reframe';
 import { Player } from '@remotion/player';
 import {
   Check,
@@ -21,9 +22,11 @@ import type { ExecutorProposalView } from './creator-agent-panel';
 import type { ChatMessage } from './creator-agent-panel';
 import type { CreatorPreset, runCreatorPipeline } from './creator-pipeline';
 import { PlanComposition } from './plan-composition';
+import type { SmartReframeView } from './smart-reframe-controls';
 
 type SourceView = {
   name: string;
+  url: string;
   durationMs: number;
   width: number;
   height: number;
@@ -58,6 +61,13 @@ const TEMPLATES: Array<{
     detail: 'Hook, product evidence, call to action',
     request:
       'Create a founder launch story with a clear hook, product evidence, and call to action. Produce landscape and vertical variants without copying brand assets.',
+  },
+  {
+    id: 'reframe',
+    title: 'Smart Reframe',
+    detail: 'Local subject tracking and reviewable crop paths',
+    request:
+      'Make vertical, square, and landscape versions. Follow the selected person, keep the full body visible, hold through low-confidence ranges, and show the crop path before approval.',
   },
 ];
 
@@ -161,6 +171,7 @@ export function CreatorRunInspector(props: {
   proposalDigest?: string;
   proposalStatus?: string;
   executorProposal?: ExecutorProposalView;
+  smartReframe: SmartReframeView;
   assetUrls: Record<string, string>;
   onUpload: (file?: File) => void;
   onLoadDemo: () => void;
@@ -178,6 +189,16 @@ export function CreatorRunInspector(props: {
   onApproveExecutor: () => void;
   onDeclineExecutor: () => void;
   onUseLocalExecutor: () => void;
+  onAnalyzeSubjects: () => void;
+  onSelectSubject: (id: string) => void;
+  onReframePolicy: (policy: FramingPolicy) => void;
+  onReframeMotion: (motion: ReframePlan['intent']['motionPreset']) => void;
+  onPlanReframe: () => void;
+  onManualCrop: (
+    aspectRatio: string,
+    box: { x: number; y: number; width: number; height: number },
+    frame: number,
+  ) => void;
 }) {
   const [centerView, setCenterView] = useState<CenterView>('canvas');
 
@@ -453,6 +474,51 @@ export function CreatorRunInspector(props: {
                       </div>
                     </div>
                   ))}
+                </CardContent>
+              </Card>
+            )}
+            {props.preset === 'reframe' && (
+              <Card size="sm" data-testid="smart-reframe-proof">
+                <CardHeader>
+                  <CardTitle>Smart Reframe proof</CardTitle>
+                  <CardDescription>
+                    Local MediaPipe pose tracking · no raw-frame egress · preview and export share
+                    the compiled crop plan.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="grid gap-3 text-xs md:grid-cols-4">
+                  <div>
+                    <strong>{props.smartReframe.tracks.length}</strong>
+                    <span className="block text-muted-foreground">subject tracks</span>
+                  </div>
+                  <div>
+                    <strong>
+                      {props.smartReframe.plans.reduce(
+                        (sum, plan) => sum + plan.cropKeyframes.length,
+                        0,
+                      )}
+                    </strong>
+                    <span className="block text-muted-foreground">crop keyframes</span>
+                  </div>
+                  <div>
+                    <strong>
+                      {props.smartReframe.plans.reduce(
+                        (sum, plan) => sum + plan.manualOverrides.length,
+                        0,
+                      )}
+                    </strong>
+                    <span className="block text-muted-foreground">manual locks</span>
+                  </div>
+                  <div>
+                    <strong>
+                      {Object.values(props.smartReframe.critics).every(
+                        (critic) => critic.verdict !== 'fail',
+                      )
+                        ? 'bounded'
+                        : 'review'}
+                    </strong>
+                    <span className="block text-muted-foreground">critic verdict</span>
+                  </div>
                 </CardContent>
               </Card>
             )}

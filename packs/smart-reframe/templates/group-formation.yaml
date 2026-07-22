@@ -1,0 +1,5 @@
+policy: group-formation
+motionPreset: stable
+movementMargin: 0.1
+allowBodyClipping: false
+anchor: center

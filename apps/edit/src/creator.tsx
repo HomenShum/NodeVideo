@@ -1,8 +1,18 @@
 import './edit.css';
+import {
+  type FramingPolicy,
+  type ReframeCritic,
+  type ReframePlan,
+  type SubjectTrack,
+  addManualCropOverride,
+  planSmartReframe,
+  validateSmartReframe,
+} from '@/lib/smart-reframe';
 import { ConvexProvider, ConvexReactClient } from 'convex/react';
 import { StrictMode, useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { exportBrowserEditPlan } from './browser-export';
+import { trackLocalPoseSubjects } from './browser-subject-tracker';
 import type { CreatorAgentRequest } from './creator-agent-panel';
 import type { PlanningReceipt } from './creator-caseflow';
 import { useCreatorCaseflow } from './creator-caseflow';
@@ -10,6 +20,7 @@ import {
   type CreatorPreset,
   DEMO_SOURCE_URL,
   createLocalMediaIndex,
+  outputsForPreset,
   runCreatorPipeline,
   sha256,
 } from './creator-pipeline';
@@ -77,6 +88,17 @@ function CreatorPipeline() {
   const [status, setStatus] = useState('Load a source to begin.');
   const [exportRatio, setExportRatio] = useState(0);
   const [version, setVersion] = useState(1);
+  const [subjectTracks, setSubjectTracks] = useState<SubjectTrack[]>([]);
+  const [selectedTrackId, setSelectedTrackId] = useState<string>();
+  const [reframePlans, setReframePlans] = useState<ReframePlan[]>([]);
+  const [reframeCritics, setReframeCritics] = useState<Record<string, ReframeCritic>>({});
+  const [reframeStatus, setReframeStatus] = useState<
+    'idle' | 'analyzing' | 'ready' | 'no-subject' | 'planned' | 'failed'
+  >('idle');
+  const [reframeProgress, setReframeProgress] = useState(0);
+  const [framingPolicy, setFramingPolicy] = useState<FramingPolicy>('full-body-safe');
+  const [reframeMotion, setReframeMotion] =
+    useState<ReframePlan['intent']['motionPreset']>('full-body-safe');
   const sourceUrlRef = useRef('');
   const selected =
     result?.variants.find((variant) => variant.id === selectedId) ?? result?.variants[0];
@@ -147,6 +169,12 @@ function CreatorPipeline() {
     if (!response.ok) throw new Error('The bundled demo source is unavailable.');
     const blob = await response.blob();
     const inspected = await inspectVideo(blob, DEMO_SOURCE_URL, 'nodevideo-demo.mp4');
+    setResult(null);
+    setSubjectTracks([]);
+    setSelectedTrackId(undefined);
+    setReframePlans([]);
+    setReframeCritics({});
+    setReframeStatus('idle');
     setSource(inspected);
     setTranscript(DEMO_TRANSCRIPT);
     const digest = await sha256(blob);
@@ -160,6 +188,11 @@ function CreatorPipeline() {
     const url = URL.createObjectURL(file);
     sourceUrlRef.current = url;
     setResult(null);
+    setSubjectTracks([]);
+    setSelectedTrackId(undefined);
+    setReframePlans([]);
+    setReframeCritics({});
+    setReframeStatus('idle');
     const inspected = await inspectVideo(file, url, file.name);
     setSource(inspected);
     const digest = await sha256(file);
@@ -181,7 +214,12 @@ function CreatorPipeline() {
       height: source.height,
       transcript,
     });
-    const next = runCreatorPipeline({ mediaIndex, preset, prompt: request });
+    const next = runCreatorPipeline({
+      mediaIndex,
+      preset,
+      prompt: request,
+      reframePlans: preset === 'reframe' ? reframePlans : undefined,
+    });
     setResult(next);
     setSelectedId(next.variants[0]?.id ?? '');
     setApproved(new Set());
@@ -189,6 +227,89 @@ function CreatorPipeline() {
       `${next.variants.length} variants compiled from one shared MediaIndex. Review before export.`,
     );
     return next;
+  };
+
+  const analyzeSubjects = async () => {
+    if (!source) return;
+    setReframeStatus('analyzing');
+    setReframeProgress(0);
+    setStatus('Detecting and tracking subjects locally. No frames leave this browser.');
+    try {
+      const tracks = await trackLocalPoseSubjects({
+        url: source.url,
+        assetId: 'asset.creator-source',
+        durationMs: source.durationMs,
+        frameRate: 30,
+        onProgress: setReframeProgress,
+      });
+      setSubjectTracks(tracks);
+      setSelectedTrackId(tracks[0]?.id);
+      setReframeStatus(tracks.length ? 'ready' : 'no-subject');
+      setStatus(
+        tracks.length
+          ? `${tracks.length} subject track${tracks.length === 1 ? '' : 's'} found locally. Select the intended subject, then generate the crop path.`
+          : 'No stable person track was found. Use another source or retain the uncropped master.',
+      );
+    } catch (error) {
+      setReframeStatus('failed');
+      setStatus(error instanceof Error ? error.message : 'Local subject tracking failed.');
+    }
+  };
+
+  const buildReframePlans = () => {
+    if (!source) return;
+    const track = subjectTracks.find((item) => item.id === selectedTrackId);
+    if (!track) {
+      setStatus('Detect and select a subject before generating a crop path.');
+      return;
+    }
+    const plans = outputsForPreset('reframe').map((output) =>
+      planSmartReframe({
+        track,
+        source,
+        intent: {
+          subjectTrackIds: [track.id],
+          aspectRatio: output.aspectRatio,
+          policy: framingPolicy,
+          anchor: 'center',
+          movementMargin: framingPolicy === 'full-body-safe' ? 0.18 : 0.1,
+          allowBodyClipping: false,
+          motionPreset: reframeMotion,
+        },
+      }),
+    );
+    setReframePlans(plans);
+    setReframeCritics(
+      Object.fromEntries(plans.map((plan) => [plan.id, validateSmartReframe(track, plan)])),
+    );
+    setReframeStatus('planned');
+    setStatus(
+      `Crop paths generated for ${plans.map((plan) => plan.intent.aspectRatio).join(', ')} from one cached subject track. Review or drag a manual keyframe before asking NodeAgent to propose the variants.`,
+    );
+  };
+
+  const applyManualCrop = (
+    aspectRatio: string,
+    box: { x: number; y: number; width: number; height: number },
+    frame: number,
+  ) => {
+    const track = subjectTracks.find((item) => item.id === selectedTrackId);
+    if (!track) return;
+    setReframePlans((current) => {
+      const plans = current.map((plan) =>
+        plan.intent.aspectRatio === aspectRatio
+          ? addManualCropOverride(plan, { timelineFrame: frame, box })
+          : plan,
+      );
+      setReframeCritics(
+        Object.fromEntries(plans.map((plan) => [plan.id, validateSmartReframe(track, plan)])),
+      );
+      return plans;
+    });
+    setResult(null);
+    setStatus(
+      'Manual crop keyframe saved with precedence. Ask NodeAgent to compile a fresh proposal.',
+    );
   };
 
   const sendAgentRequest = async (message: string, request: CreatorAgentRequest) => {
@@ -208,6 +329,15 @@ function CreatorPipeline() {
         text: 'Attach a source from the vault first. I will keep it local while indexing and will show any proposed external executor before media leaves the device.',
         tools: [],
         meta: 'blocked · no source · no executor started',
+      };
+      await caseflow.appendMessage('assistant', blocked.text, { meta: blocked.meta });
+      return blocked;
+    }
+    if (preset === 'reframe' && !reframePlans.length) {
+      const blocked = {
+        text: 'Smart Reframe needs a selected subject and a generated crop path before I can create a trustworthy proposal. Run local subject detection, select the intended person, and generate the path first.',
+        tools: [],
+        meta: 'blocked · missing reframe plan · zero external requests',
       };
       await caseflow.appendMessage('assistant', blocked.text, { meta: blocked.meta });
       return blocked;
@@ -364,6 +494,18 @@ function CreatorPipeline() {
     const tools = [
       { name: 'Media index', detail: 'Source metadata and transcript context indexed locally' },
       { name: 'Story planner', detail: 'Source-grounded quote and edit intent compiled' },
+      ...(preset === 'reframe'
+        ? [
+            {
+              name: 'Local subject tracker',
+              detail: `${selectedTrackId} · ${subjectTracks.find((track) => track.id === selectedTrackId)?.observations.length ?? 0} sampled observations · no frame egress`,
+            },
+            {
+              name: 'Smart Reframe planner',
+              detail: `${reframePlans.length} aspect-ratio paths · ${reframePlans.reduce((sum, plan) => sum + plan.cropKeyframes.length, 0)} crop keyframes · ${reframePlans.reduce((sum, plan) => sum + plan.manualOverrides.length, 0)} manual overrides`,
+            },
+          ]
+        : []),
       ...(request.route === 'openrouter-free'
         ? [
             {
@@ -769,6 +911,16 @@ function CreatorPipeline() {
       proposalDigest={caseflow.latestProposal?.payloadDigest}
       proposalStatus={caseflow.latestProposal?.status}
       executorProposal={executorProposal}
+      smartReframe={{
+        tracks: subjectTracks,
+        selectedTrackId,
+        plans: reframePlans,
+        critics: reframeCritics,
+        status: reframeStatus,
+        progress: reframeProgress,
+        policy: framingPolicy,
+        motionPreset: reframeMotion,
+      }}
       assetUrls={assetUrls}
       onUpload={(file) => void onUpload(file)}
       onLoadDemo={() => void loadDemo()}
@@ -786,6 +938,31 @@ function CreatorPipeline() {
       onApproveExecutor={() => void approveExecutor()}
       onDeclineExecutor={() => void chooseExecutorAlternative('decline')}
       onUseLocalExecutor={() => void chooseExecutorAlternative('local_alternative')}
+      onAnalyzeSubjects={() => void analyzeSubjects()}
+      onSelectSubject={(id) => {
+        setSelectedTrackId(id);
+        setReframePlans([]);
+        setReframeCritics({});
+        setResult(null);
+        setReframeStatus('ready');
+        setStatus('Subject changed. Generate fresh crop paths before creating a proposal.');
+      }}
+      onReframePolicy={(policy) => {
+        setFramingPolicy(policy);
+        setReframePlans([]);
+        setReframeCritics({});
+        setResult(null);
+        setReframeStatus(subjectTracks.length ? 'ready' : 'idle');
+      }}
+      onReframeMotion={(motion) => {
+        setReframeMotion(motion);
+        setReframePlans([]);
+        setReframeCritics({});
+        setResult(null);
+        setReframeStatus(subjectTracks.length ? 'ready' : 'idle');
+      }}
+      onPlanReframe={buildReframePlans}
+      onManualCrop={applyManualCrop}
     />
   );
 }
