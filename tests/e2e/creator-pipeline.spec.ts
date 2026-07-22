@@ -295,6 +295,7 @@ test('agent rail gates cloud execution and supports inline proposal decisions', 
 test('live OpenRouter free planner resolves a model before deterministic compilation', async ({
   page,
 }) => {
+  test.setTimeout(120_000);
   test.skip(
     process.env.NODEVIDEO_LIVE_FREE_ROUTER !== '1',
     'Live free-router proof is opt-in and runs only against the configured production endpoint.',
