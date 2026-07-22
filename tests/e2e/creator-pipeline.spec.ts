@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import AxeBuilder from '@axe-core/playwright';
 import { ConvexHttpClient } from 'convex/browser';
@@ -7,9 +7,9 @@ import { api } from '../../convex/_generated/api';
 
 function convexUrl() {
   if (process.env.NODEVIDEO_CONVEX_URL) return process.env.NODEVIDEO_CONVEX_URL;
+  if (!existsSync('.env.local')) return null;
   const match = /^VITE_CONVEX_URL=(.+)$/mu.exec(readFileSync('.env.local', 'utf8'));
-  if (!match?.[1]) throw new Error('VITE_CONVEX_URL is required for Caseflow tests.');
-  return match[1].trim();
+  return match?.[1]?.trim() || null;
 }
 
 test('creator pipeline compiles one source into reviewable variants', async ({
@@ -228,6 +228,12 @@ test('two sessions react to the same Caseflow and stale approval fails closed', 
   browser,
 }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop-chromium', 'One two-session proof is sufficient.');
+  const backendUrl = convexUrl();
+  test.skip(
+    !backendUrl,
+    'Caseflow proof requires NODEVIDEO_CONVEX_URL or a local VITE_CONVEX_URL.',
+  );
+  if (!backendUrl) return;
   const baseURL = testInfo.project.use.baseURL as string;
   const contextA = await browser.newContext({ baseURL });
   const pageA = await contextA.newPage();
@@ -242,7 +248,7 @@ test('two sessions react to the same Caseflow and stale approval fails closed', 
       'null',
   );
   expect(locator?.caseId).toBeTruthy();
-  const client = new ConvexHttpClient(convexUrl());
+  const client = new ConvexHttpClient(backendUrl);
   const initial = await client.query(api.caseflow.getCampaign, {
     caseId: locator.caseId,
     ownerKey: locator.ownerKey,
