@@ -6,13 +6,14 @@
     "commit": "5cc61578b3c1bd5b5c8195b83347b91f8b83242b",
     "packageIntegrity": "sha512-3U0vlV6CMycTP1GtFKePMGisGKgEbaxti2svMLXDBmFumdQXmLuc7QUTNlxIUmVT1fFeJecHTriMsg5QHiy7LA==",
     "packageSpec": "https://github.com/HomenShum/node-platform/archive/5cc61578b3c1bd5b5c8195b83347b91f8b83242b.tar.gz",
+    "sourceHash": "0ced0adf6e0f719be9a5fabefd69754a79102f39b6b6a54b20daeb60ceba7c0b",
     "supportedImport": "@homenshum/nodekit/caseflow"
   },
   "consumer": {
     "repository": "https://github.com/HomenShum/NodeVideo.git",
     "branch": "codex/nodekit-caseflow-consumer",
     "baseCommit": "7a741cb606ac64a05bb1eb5ed57429082b97ed5e",
-    "commit": "WORKTREE_COMMIT_PENDING",
+    "commit": "5562337b69ffd022642012d593470d8c417748f2",
     "sourcePaths": [
       "convex/caseflowRuntime.ts",
       "convex/caseflowValidators.ts",
@@ -79,5 +80,5 @@
     "deployed": false,
     "published": false
   },
-  "evidenceHash": "e0ed069af7d147e3a532c7ba90cceff7d1a1c0a47a6a3d68b30f078b1246730b"
+  "evidenceHash": "8916850351238b8ba2fd74b9cd88a25c72bb39de13dbdced65dacb31d5fab9ad"
 }

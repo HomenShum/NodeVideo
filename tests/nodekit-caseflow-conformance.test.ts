@@ -287,7 +287,10 @@ describe('NodeKit Caseflow Convex consumer', () => {
     const { evidenceHash, ...body } = verdict;
     expect(evidenceHash).toBe(contentHash(body));
     expect(verdict.status).toBe('passed');
-    expect(verdict.consumer.commit).toBe('WORKTREE_COMMIT_PENDING');
+    expect(verdict.consumer.commit).toBe('5562337b69ffd022642012d593470d8c417748f2');
+    expect(verdict.nodekit.sourceHash).toBe(
+      '0ced0adf6e0f719be9a5fabefd69754a79102f39b6b6a54b20daeb60ceba7c0b',
+    );
     expect(consumerPackage.dependencies['@homenshum/nodekit']).toContain(verdict.nodekit.commit);
     expect(verdict.commands.every((command) => command.passed)).toBe(true);
     const { deployed, published, ...behaviorAssertions } = verdict.assertions;
