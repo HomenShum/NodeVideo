@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, unlink, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { promisify } from 'node:util';
+import { collectNasaSvsCandidates } from './sources/nasa-svs.mjs';
 
 const execFileAsync = promisify(execFile);
 const root = resolve(import.meta.dirname, '..', '..');
@@ -18,6 +19,16 @@ const target = Number(
 const downloadMedia = !process.argv.includes('--metadata-only');
 const overwrite = process.argv.includes('--overwrite');
 const cachedOnly = process.argv.includes('--cached-only');
+const discoverOnly = process.argv.includes('--discover-only');
+const providers = new Set(
+  (
+    process.argv.find((arg) => arg.startsWith('--providers='))?.split('=')[1] ??
+    'wikimedia,nasa-svs'
+  )
+    .split(',')
+    .map((provider) => provider.trim())
+    .filter(Boolean),
+);
 const acquisitionFailures = [];
 
 const sha256 = (value) => createHash('sha256').update(value).digest('hex');
@@ -131,10 +142,10 @@ function candidateFromPage(page, domain) {
   };
 }
 
-async function collectCandidates() {
+async function collectWikimediaCandidates(desiredTarget) {
   const bySource = new Map();
   const creatorCounts = new Map();
-  const perDomainTarget = Math.ceil((target * 1.35) / config.domains.length);
+  const perDomainTarget = Math.max(1, Math.ceil((desiredTarget * 1.35) / config.domains.length));
   for (const domain of config.domains) {
     let offset;
     let accepted = 0;
@@ -166,9 +177,9 @@ async function collectCandidates() {
     ['general-education', 'educational video'],
   ];
   for (const [id, query] of fallbackQueries) {
-    if (bySource.size >= target + 40) break;
+    if (bySource.size >= desiredTarget + 40) break;
     let offset;
-    for (let pageIndex = 0; pageIndex < 8 && bySource.size < target + 40; pageIndex += 1) {
+    for (let pageIndex = 0; pageIndex < 8 && bySource.size < desiredTarget + 40; pageIndex += 1) {
       const payload = await wikimediaSearch(query, offset);
       for (const page of Object.values(payload.query?.pages ?? {})) {
         const candidate = candidateFromPage(page, { id, query });
@@ -188,7 +199,72 @@ async function collectCandidates() {
       stableNumber(`${left.domain}:${left.sourceUrl}`) -
       stableNumber(`${right.domain}:${right.sourceUrl}`),
   );
-  return candidates.slice(0, Math.min(candidates.length, target + 40));
+  return candidates.slice(0, Math.min(candidates.length, desiredTarget + 40));
+}
+
+async function readExistingVault() {
+  try {
+    const vault = JSON.parse(
+      await readFile(resolve(evidenceRoot, 'acquisition-vault.json'), 'utf8'),
+    );
+    const records = Array.isArray(vault.records) ? vault.records : [];
+    const valid = [];
+    for (const record of records) {
+      try {
+        const bytes = await readFile(resolve(mediaRoot, record.localCacheKey));
+        if (bytes.length > 0) valid.push(record);
+      } catch {
+        // A stale vault locator is not a usable cached acquisition.
+      }
+    }
+    return valid;
+  } catch {
+    return [];
+  }
+}
+
+function enforceCreatorLimit(candidates, seedRecords = []) {
+  const counts = new Map();
+  for (const record of seedRecords) {
+    counts.set(record.creatorId, (counts.get(record.creatorId) ?? 0) + 1);
+  }
+  return candidates.filter((candidate) => {
+    const count = counts.get(candidate.creatorId) ?? 0;
+    if (count >= config.maximumClipsPerCreator) return false;
+    counts.set(candidate.creatorId, count + 1);
+    return true;
+  });
+}
+
+async function collectCandidates(desiredTarget, existingRecords) {
+  const collected = [];
+  if (providers.has('nasa-svs')) {
+    collected.push(
+      ...(await collectNasaSvsCandidates({
+        domains: config.domains,
+        target: desiredTarget + 20,
+        maximumClipsPerCreator: config.maximumClipsPerCreator,
+      })),
+    );
+  }
+  if (providers.has('wikimedia')) {
+    collected.push(...(await collectWikimediaCandidates(desiredTarget + 20)));
+  }
+  const existingLocators = new Set(
+    existingRecords.flatMap((record) => [record.sourceUrl, record.mediaUrl]).filter(Boolean),
+  );
+  const unique = new Map();
+  for (const candidate of collected) {
+    if (
+      existingLocators.has(candidate.sourceUrl) ||
+      existingLocators.has(candidate.sourcePage) ||
+      unique.has(candidate.sourceUrl)
+    ) {
+      continue;
+    }
+    unique.set(candidate.sourceUrl, candidate);
+  }
+  return enforceCreatorLimit([...unique.values()], existingRecords);
 }
 
 function run(command, args, options = {}) {
@@ -243,6 +319,9 @@ async function acquireClip(candidate, index) {
           throw new Error('Media host remained rate-limited after bounded retries.');
         await wait(Math.min(55_000, Math.max(2_500, retryAfterMs)));
       }
+      const audioArguments = candidate.stripAudio
+        ? ['-an']
+        : ['-map', '0:a:0?', '-c:a', 'aac', '-b:a', '64k'];
       await run('ffmpeg', [
         '-y',
         '-hide_banner',
@@ -264,8 +343,7 @@ async function acquireClip(candidate, index) {
         String(config.clipDurationSeconds),
         '-map',
         '0:v:0',
-        '-map',
-        '0:a:0?',
+        ...audioArguments,
         '-vf',
         'scale=min(640\\,iw):-2:force_original_aspect_ratio=decrease',
         '-c:v',
@@ -276,10 +354,6 @@ async function acquireClip(candidate, index) {
         '28',
         '-pix_fmt',
         'yuv420p',
-        '-c:a',
-        'aac',
-        '-b:a',
-        '64k',
         '-movflags',
         '+faststart',
         path,
@@ -354,7 +428,8 @@ async function acquireClip(candidate, index) {
     id,
     title: candidate.title,
     domain: candidate.domain,
-    sourceLocatorClass: 'wikimedia-commons-public',
+    sourceProvider: candidate.sourceProvider ?? 'wikimedia',
+    sourceLocatorClass: candidate.sourceLocatorClass ?? 'wikimedia-commons-public',
     sourceUrl: candidate.sourcePage,
     mediaUrl: candidate.sourceUrl,
     creatorId: candidate.creatorId,
@@ -378,7 +453,10 @@ async function acquireClip(candidate, index) {
     permittedBenchmarkUses: candidate.permittedBenchmarkUses,
     permittedRedistribution: candidate.permittedRedistribution,
     relatedSourceGroup: candidate.relatedSourceGroup,
-    knownLimitations: ['Six-second normalized derivative; source semantics require human review.'],
+    knownLimitations: [
+      'Six-second normalized derivative; source semantics require human review.',
+      ...(candidate.knownLimitations ?? []),
+    ],
     visualPerceptualHash,
     audioFingerprint,
     localCacheKey: `${id}.mp4`,
@@ -453,14 +531,41 @@ async function mapLimit(items, limit, fn) {
   return results.filter(Boolean);
 }
 
-const candidates = await collectCandidates();
-if (candidates.length < target) {
+const existingRecords = overwrite ? [] : await readExistingVault();
+const reusableExisting = existingRecords.slice(0, target);
+const requiredNew = Math.max(0, target - reusableExisting.length);
+const candidates = await collectCandidates(requiredNew, reusableExisting);
+if (discoverOnly) {
+  console.log(
+    JSON.stringify(
+      {
+        requestedTotal: target,
+        reusableCached: reusableExisting.length,
+        discoveredNew: candidates.length,
+        providers: [...providers],
+        providerCounts: Object.fromEntries(
+          Object.entries(
+            Object.groupBy(candidates, (candidate) => candidate.sourceProvider ?? 'wikimedia'),
+          ).map(([provider, records]) => [provider, records.length]),
+        ),
+      },
+      null,
+      2,
+    ),
+  );
+  process.exit(0);
+}
+if (reusableExisting.length + candidates.length < target) {
   throw new Error(
-    `Only ${candidates.length} rights-cleared candidates found; target is ${target}.`,
+    `Only ${reusableExisting.length + candidates.length} rights-cleared cached or discovered candidates found; target is ${target}.`,
   );
 }
-const acquired = await mapLimit(candidates, downloadMedia ? 1 : 12, acquireClip);
-const selectedRaw = acquired.slice(0, target);
+const acquired = await mapLimit(
+  candidates.slice(0, requiredNew + 40),
+  downloadMedia ? 2 : 12,
+  (candidate, index) => acquireClip(candidate, reusableExisting.length + index),
+);
+const selectedRaw = [...reusableExisting, ...acquired].slice(0, target);
 const creatorSplits = balancedCreatorSplits(selectedRaw);
 const selected = selectedRaw.map((record) => ({
   ...record,
@@ -468,7 +573,7 @@ const selected = selectedRaw.map((record) => ({
 }));
 const rightsStatus = (license) => {
   if (license === 'CC0') return 'cc0';
-  if (license === 'Public domain') return 'public-domain';
+  if (/public domain/iu.test(license)) return 'public-domain';
   return 'cc-by';
 };
 const frameRate = (value) => {
@@ -584,6 +689,11 @@ const receipt = {
   licenseCounts: Object.fromEntries(
     Object.entries(Object.groupBy(selected, (record) => record.license)).map(
       ([license, records]) => [license, records.length],
+    ),
+  ),
+  providerCounts: Object.fromEntries(
+    Object.entries(Object.groupBy(selected, (record) => record.sourceProvider ?? 'wikimedia')).map(
+      ([provider, records]) => [provider, records.length],
     ),
   ),
   privateCatalogSha256: `sha256:${sha256(JSON.stringify(privateCatalog))}`,

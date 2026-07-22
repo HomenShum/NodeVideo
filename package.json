@@ -22,6 +22,7 @@
     "creator:dev": "vite --open /creator.html",
     "creatorbench:dev": "vite --open /creatorbench",
     "creatorbench:acquire": "node scripts/benchmarks/acquire-creatorbench.mjs --download",
+    "creatorbench:discover": "node scripts/benchmarks/acquire-creatorbench.mjs --discover-only",
     "creatorbench:manifests": "node scripts/benchmarks/build-creatorbench-manifests.mjs",
     "creatorbench:dedupe": "node scripts/benchmarks/deduplicate-creatorbench.mjs",
     "creatorbench:validate": "node scripts/benchmarks/validate-creatorbench.mjs",

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nodevideo.creatorbench-source-catalog.v1",
   "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T04:48:24.960Z",
+  "generatedAt": "2026-07-22T05:21:30.279Z",
   "records": [
     {
       "schemaVersion": "nodevideo.creatorbench-source/v1",
@@ -70,7 +70,7 @@
         "codec": "h264",
         "hasAudio": true
       },
-      "split": "adversarial",
+      "split": "development",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review."
       ]
@@ -106,7 +106,43 @@
         "codec": "h264",
         "hasAudio": true
       },
-      "split": "public-test",
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0038-2d983118",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AArtist%E2%80%99s_impression_of_the_black_hole_inside_NGC_300_X-1_(ESO_1004c).webm",
+      "creatorOwnerId": "creator:5950882e8658b7c2",
+      "relatedSourceGroupId": "commons:22965577",
+      "title": "Artist’s impression of the black hole inside NGC 300 X-1 (ESO 1004c).webm",
+      "rights": {
+        "status": "cc-by",
+        "licenseName": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+        "attribution": "ESO/L. Calçada",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T04:48:24.726Z",
+      "sourceSha256": "sha256:18732f603394b9a4efd4b59e6bfee19efcf4a75662d843a3da3e02e68397463f",
+      "durationMs": 6000,
+      "media": {
+        "width": 426,
+        "height": 240,
+        "fps": 25,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "split": "adversarial",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review."
       ]
@@ -145,6 +181,279 @@
       "split": "development",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0006-493a02f5",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/13756/",
+      "creatorOwnerId": "creator:d9f58daadbea890e",
+      "relatedSourceGroupId": "nasa-svs:13756",
+      "title": "How NASA Data Helps Study Animals on the Move",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Ryan Fitzgibbons, Greg Shirah",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:20:59.958Z",
+      "sourceSha256": "sha256:75d60778a62b21c597e76419026d716490f086f374729c2438bbaa66ee1f27e8",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0007-bd64b3cf",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/13823/",
+      "creatorOwnerId": "creator:3a778ba870437925",
+      "relatedSourceGroupId": "nasa-svs:13823",
+      "title": "Hubble Celebrates World Wildlife Day",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Paul R. Morris",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:20:59.952Z",
+      "sourceSha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 640,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0008-b952fc45",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/13585/",
+      "creatorOwnerId": "creator:ecc7d269554788ad",
+      "relatedSourceGroupId": "nasa-svs:13585",
+      "title": "Bird's-eye View of Biodiversity with Landsat",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Matthew R. Radcliff, Sofie L. Bates, Sofie L. Bates, Matthew R. Radcliff",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:21:05.460Z",
+      "sourceSha256": "sha256:c1f1441d3fb89865153977e05f489f59a2db24038782918313fbb1f847c1183a",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0012-87d1ef2a",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14639/",
+      "creatorOwnerId": "creator:2ae86c237ab39041",
+      "relatedSourceGroupId": "nasa-svs:14639",
+      "title": "Helio Big Year: How Sonifications Connect to Performance Art",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Joy Ng",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:21:17.801Z",
+      "sourceSha256": "sha256:8dbc30222ccacfed62b772c236339f1109093c75a8b143205db7d91a4cd01404",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 1138,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0013-e3145068",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14624/",
+      "creatorOwnerId": "creator:e76a80cbb86cf643",
+      "relatedSourceGroupId": "nasa-svs:14624",
+      "title": "Eclipse Poems",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:21:16.889Z",
+      "sourceSha256": "sha256:db42ec9dda0b99c8d8da2a88fecd73610596e5c8cb6deb6392cc9e7253a558d3",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0014-a6e58d23",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/13160/",
+      "creatorOwnerId": "creator:8978cb73dcd12ef0",
+      "relatedSourceGroupId": "nasa-svs:13160",
+      "title": "Hubble Archive - Servicing Mission 4, STS-125",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Katrina Jackson",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:21:22.034Z",
+      "sourceSha256": "sha256:3b2e062b6a35457d8979cd6dae2a608e1d98e36b3a0acc04d378647b2bbde4c7",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 59.94005994005994,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0015-0a22e6b8",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/12589/",
+      "creatorOwnerId": "creator:8e58ef5e5db943c8",
+      "relatedSourceGroupId": "nasa-svs:12589",
+      "title": "Getting SET - The Mission to Protect Satellites from Radiation",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Genna Duberstein, Rob Andreoli, John Caldwell, Walt Feimer, Brian Monroe, Adriana Manrique Gutierrez, Chris Smith, Jonathan North",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:21:25.126Z",
+      "sourceSha256": "sha256:36ee3a58ef994246c2d1f74c547d08ba606ac7c008ada128686db0debdb7d01a",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
       ]
     }
   ]
