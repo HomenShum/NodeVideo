@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-sealed-evaluation-receipt/v1",
+  "benchmarkVersion": "creatorbench-v1.4",
+  "generatedAt": "2026-07-22T09:45:41.463Z",
+  "population": {
+    "instanceCount": 1392,
+    "sourceCount": 50,
+    "creatorCount": 50,
+    "domainCount": 14,
+    "workflowCount": 6
+  },
+  "outcomes": {
+    "automatic_usable": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.002752073880897378
+      }
+    },
+    "assisted_usable": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.002752073880897378
+      }
+    },
+    "review_required": {
+      "numerator": 688,
+      "denominator": 1392,
+      "rate": 0.4942528735632184,
+      "confidenceInterval": {
+        "lower": 0.46804031192049717,
+        "upper": 0.5204970682390534
+      }
+    },
+    "safely_abstained": {
+      "numerator": 704,
+      "denominator": 1392,
+      "rate": 0.5057471264367817,
+      "confidenceInterval": {
+        "lower": 0.47950293176094666,
+        "upper": 0.531959688079503
+      }
+    },
+    "unsupported": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.002752073880897378
+      }
+    },
+    "technical_failure": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.002752073880897378
+      }
+    },
+    "silent_failure": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.002752073880897378
+      }
+    }
+  },
+  "resultsSha256": "sha256:a42b2a7fe076afafa392167095455a509c64d5072ab32c8bcde8fc6bf298dd58",
+  "privateMediaExposed": false
+}
