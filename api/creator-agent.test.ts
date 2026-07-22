@@ -31,4 +31,20 @@ describe('creator free-route boundary', () => {
     ).toBeNull();
     expect(parseBody({ request: 'x'.repeat(4_001) })).toBeNull();
   });
+
+  test('accepts a typed object wrapped by a free model reasoning envelope', () => {
+    expect(
+      parsePlannerOutput(
+        `<think>Choose only source-grounded operations.</think>\n\`\`\`json\n${JSON.stringify({
+          summary: 'Preserve meaning.',
+          operations: [
+            {
+              kind: 'preserve_meaning',
+              reason: 'Flag uncertain cuts for an exact human review.',
+            },
+          ],
+        })}\n\`\`\``,
+      ),
+    ).toMatchObject({ operations: [{ kind: 'preserve_meaning' }] });
+  });
 });

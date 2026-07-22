@@ -28,13 +28,17 @@ const PLANNER_OPERATIONS = new Set([
 export function parsePlannerOutput(value: string) {
   let candidate: unknown;
   try {
-    candidate = JSON.parse(value.replace(/^```json\s*|\s*```$/gu, ''));
+    const unfenced = value.replace(/^```(?:json)?\s*|\s*```$/giu, '').trim();
+    const objectStart = unfenced.indexOf('{');
+    const objectEnd = unfenced.lastIndexOf('}');
+    if (objectStart < 0 || objectEnd <= objectStart) return null;
+    candidate = JSON.parse(unfenced.slice(objectStart, objectEnd + 1));
   } catch {
     return null;
   }
   if (!candidate || typeof candidate !== 'object') return null;
   const record = candidate as Record<string, unknown>;
-  if (typeof record.summary !== 'string' || record.summary.trim().length < 20) return null;
+  if (typeof record.summary !== 'string' || record.summary.trim().length < 8) return null;
   if (
     !Array.isArray(record.operations) ||
     record.operations.length < 1 ||
