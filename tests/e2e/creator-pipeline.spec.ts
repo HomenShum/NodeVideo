@@ -7,6 +7,12 @@ import { api } from '../../convex/_generated/api';
 
 function convexUrl() {
   if (process.env.NODEVIDEO_CONVEX_URL) return process.env.NODEVIDEO_CONVEX_URL;
+  if (
+    process.env.NODEVIDEO_URL &&
+    !/^https?:\/\/(?:127\.0\.0\.1|localhost)/u.test(process.env.NODEVIDEO_URL)
+  ) {
+    return null;
+  }
   if (!existsSync('.env.local')) return null;
   const match = /^VITE_CONVEX_URL=(.+)$/mu.exec(readFileSync('.env.local', 'utf8'));
   return match?.[1]?.trim() || null;
@@ -307,7 +313,7 @@ test('live OpenRouter free planner resolves a model before deterministic compila
   const sendButton = page.getByRole('button', { name: 'Send message' });
   await expect(sendButton).toBeEnabled({ timeout: 30_000 });
   await sendButton.click();
-  await expect(page.getByText(/planned · openrouter\/free →/u)).toBeVisible({ timeout: 45_000 });
+  await expect(page.getByText(/planned · openrouter\/free →/u)).toBeVisible({ timeout: 90_000 });
   await expect(page.getByTestId('agent-proposal-card')).toBeVisible();
   await expect(page.getByText('Project v1')).toHaveText('Project v1');
 });
