@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-sealed-evaluation-receipt/v1",
+  "benchmarkVersion": "creatorbench-v1",
+  "generatedAt": "2026-07-22T04:52:38.496Z",
+  "population": {
+    "instanceCount": 8,
+    "sourceCount": 1,
+    "creatorCount": 1,
+    "domainCount": 1,
+    "workflowCount": 8
+  },
+  "outcomes": {
+    "automatic_usable": {
+      "numerator": 0,
+      "denominator": 8,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.32440756488388023
+      }
+    },
+    "assisted_usable": {
+      "numerator": 0,
+      "denominator": 8,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.32440756488388023
+      }
+    },
+    "review_required": {
+      "numerator": 2,
+      "denominator": 8,
+      "rate": 0.25,
+      "confidenceInterval": {
+        "lower": 0.07147921275210901,
+        "upper": 0.5907245696898311
+      }
+    },
+    "safely_abstained": {
+      "numerator": 6,
+      "denominator": 8,
+      "rate": 0.75,
+      "confidenceInterval": {
+        "lower": 0.40927543031016894,
+        "upper": 0.928520787247891
+      }
+    },
+    "unsupported": {
+      "numerator": 0,
+      "denominator": 8,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.32440756488388023
+      }
+    },
+    "technical_failure": {
+      "numerator": 0,
+      "denominator": 8,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.32440756488388023
+      }
+    },
+    "silent_failure": {
+      "numerator": 0,
+      "denominator": 8,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.32440756488388023
+      }
+    }
+  },
+  "resultsSha256": "sha256:8dfa25a4dc30af3b269404fa4ef0b59669362aa6fb91b273310afd53725ce88f",
+  "privateMediaExposed": false
+}

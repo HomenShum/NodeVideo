@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-freeze/v1",
+  "id": "creatorbench-freeze:df154733d015490fbb3b512c",
+  "benchmarkVersion": "creatorbench-v1",
+  "frozenAt": "2026-07-22T04:52:23.759Z",
+  "sourceCommitSha": "46b0a0d2b8e211dde6d4b48a6df3095c19c057b3",
+  "configHash": "sha256:0716c7a6af3b4fef970668b9de5ff209bc40052bf4d96c483ed9dd32c26eb73f",
+  "capabilityManifestHash": "sha256:164094f6341a7788eb95b045d8960093ecdac5e6c374f17837c4168277ff32f0",
+  "routerPolicyHash": "sha256:266bd6b36cfa2e11fd62299bdf37823c4f532a88106661f8ae9aaa19d37a1437",
+  "thresholdPolicyHash": "sha256:5338c6b661fe925a617b21c98a9601ea79cfc3b07e1bee18d431c1181577387d",
+  "benchmarkManifestHash": "sha256:f6002b333fd36bce3ac1d6f985dbf15285cf47f0789f0447ab9a9ab0dc44a8d6",
+  "evaluatorVersion": "creatorbench-evaluator-v1",
+  "evaluatorHash": "sha256:20edee497866d1d445c9eaf64833083ad6465ef66e34469c1fa89f6cf6a4370c",
+  "modelVersions": [
+    "none:routing-baseline"
+  ],
+  "executorVersions": [
+    "adaptive-executor-router-v1",
+    "executor-catalog-v1"
+  ],
+  "privateSplit": {
+    "catalogHash": "sha256:98322d4b236306f6918f2749eb6ded1291b1b5b46a5c4974870ecc3f3165932e",
+    "mediaStoredOutsideRepository": true,
+    "developmentCredentialsDenied": true
+  }
+}
