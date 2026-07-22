@@ -148,6 +148,14 @@ test.describe('CreatorBench public evidence and reviewer UI', () => {
     await expect(page.getByLabel('Dataset coverage')).toContainText('111');
     await expect(page.getByText('264/264')).toBeVisible();
 
+    const coverageButton = page.getByRole('button', { name: 'Coverage' }).first();
+    await coverageButton.scrollIntoViewIfNeeded();
+    await coverageButton.click();
+    const coverage = page.getByTestId('coverage-view');
+    await expect(coverage).toContainText('2 / 8 workflows');
+    await expect(coverage).toContainText('workflow · smart reframe');
+    await expect(coverage).not.toContainText('Unnamed subgroup');
+
     const reviewButton = page.getByRole('button', { name: 'Review lab' }).first();
     await reviewButton.scrollIntoViewIfNeeded();
     await reviewButton.click();

@@ -291,6 +291,29 @@ function normalizePublicReport(input: RawPublicReport): PublicReport {
   for (const [key, value] of Object.entries(sourceOutcomes)) {
     normalizedOutcomes[aliases[key] ?? key] = value;
   }
+  const rawSubgroups = (input.subgroups ?? input.subgroupPerformance ?? []) as Array<
+    Subgroup & {
+      kind?: string;
+      count?: number;
+      outcomes?: Record<string, Metric | number | undefined>;
+    }
+  >;
+  const normalizedSubgroups = rawSubgroups.map((group) => ({
+    ...group,
+    label:
+      group.label ??
+      (group.kind && group.id
+        ? `${group.kind.replaceAll('-', ' ')} · ${group.id.replaceAll('-', ' ')}`
+        : group.id),
+    total: group.total ?? group.count,
+    domain: group.domain ?? (group.kind === 'domain' ? group.id : undefined),
+    workflow: group.workflow ?? (group.kind === 'workflow' ? group.id : undefined),
+    automaticUsable: group.automaticUsable ?? group.outcomes?.automatic_usable,
+    assistedUsable: group.assistedUsable ?? group.outcomes?.assisted_usable,
+    reviewRequired: group.reviewRequired ?? group.outcomes?.review_required,
+    safelyAbstained: group.safelyAbstained ?? group.outcomes?.safely_abstained,
+    silentFailure: group.silentFailure ?? group.outcomes?.silent_failure,
+  }));
   const rawFreeze = input.freezeReceipt as
     | (NonNullable<PublicReport['freezeReceipt']> & {
         id?: string;
@@ -316,6 +339,7 @@ function normalizePublicReport(input: RawPublicReport): PublicReport {
       splits: input.counts?.splits ?? dataset?.splits,
     },
     outcomes: normalizedOutcomes,
+    subgroupPerformance: normalizedSubgroups,
     knownWeaknesses: input.knownWeaknesses ?? input.weaknesses ?? claim?.limitations ?? [],
     p50LatencyMs: finite(input.p50LatencyMs ?? input.metrics?.latencyMs?.p50),
     p95LatencyMs: finite(input.p95LatencyMs ?? input.metrics?.latencyMs?.p95),
