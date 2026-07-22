@@ -2,12 +2,12 @@
   "schemaVersion": "nodevideo.creatorbench-public-report/v1",
   "benchmarkVersion": "creatorbench-v1",
   "status": "evaluated",
-  "generatedAt": "2026-07-22T05:34:38.930Z",
+  "generatedAt": "2026-07-22T05:42:08.023Z",
   "claim": {
     "schemaVersion": "nodevideo.creatorbench-public-claim/v1",
     "benchmarkVersion": "creatorbench-v1",
     "freezeReceiptId": "creatorbench-freeze:733e4618972ad304388a811f",
-    "generatedAt": "2026-07-22T05:34:38.930Z",
+    "generatedAt": "2026-07-22T05:42:08.023Z",
     "population": {
       "split": "private-heldout",
       "instanceCount": 24,
@@ -1007,8 +1007,8 @@
     },
     "metrics": {
       "latencyMs": {
-        "p50": 1339,
-        "p95": 1530
+        "p50": 1334,
+        "p95": 1536
       },
       "costUsd": {
         "total": 0,

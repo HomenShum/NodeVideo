@@ -1,7 +1,8 @@
 {
   "schemaVersion": "nodevideo.creatorbench-render-pilot/v1",
   "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T05:34:38.026Z",
+  "generatedAt": "2026-07-22T05:42:07.101Z",
+  "sourceCommitSha": "13e8c4dad998449468f6f355a9581365c1d344ea",
   "scope": {
     "workflow": "smart-reframe",
     "executorVersion": "local-ffmpeg-center-reframe-v1",
@@ -16,8 +17,8 @@
   },
   "metrics": {
     "latencyMs": {
-      "p50": 1339,
-      "p95": 1530
+      "p50": 1334,
+      "p95": 1536
     },
     "costUsd": {
       "total": 0,
@@ -386,9 +387,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T05:34:22.202Z",
-      "completedAt": "2026-07-22T05:34:23.421Z",
-      "latencyMs": 1218,
+      "startedAt": "2026-07-22T05:41:51.196Z",
+      "completedAt": "2026-07-22T05:41:52.442Z",
+      "latencyMs": 1245,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -453,9 +454,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T05:34:23.421Z",
-      "completedAt": "2026-07-22T05:34:24.951Z",
-      "latencyMs": 1530,
+      "startedAt": "2026-07-22T05:41:52.443Z",
+      "completedAt": "2026-07-22T05:41:53.942Z",
+      "latencyMs": 1499,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -520,9 +521,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T05:34:24.951Z",
-      "completedAt": "2026-07-22T05:34:26.326Z",
-      "latencyMs": 1375,
+      "startedAt": "2026-07-22T05:41:53.942Z",
+      "completedAt": "2026-07-22T05:41:55.333Z",
+      "latencyMs": 1391,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -587,9 +588,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T05:34:26.326Z",
-      "completedAt": "2026-07-22T05:34:27.466Z",
-      "latencyMs": 1140,
+      "startedAt": "2026-07-22T05:41:55.334Z",
+      "completedAt": "2026-07-22T05:41:56.422Z",
+      "latencyMs": 1088,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -654,9 +655,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T05:34:27.467Z",
-      "completedAt": "2026-07-22T05:34:28.986Z",
-      "latencyMs": 1519,
+      "startedAt": "2026-07-22T05:41:56.422Z",
+      "completedAt": "2026-07-22T05:41:57.958Z",
+      "latencyMs": 1536,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -721,9 +722,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T05:34:28.986Z",
-      "completedAt": "2026-07-22T05:34:30.336Z",
-      "latencyMs": 1351,
+      "startedAt": "2026-07-22T05:41:57.959Z",
+      "completedAt": "2026-07-22T05:41:59.293Z",
+      "latencyMs": 1334,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -788,9 +789,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T05:34:30.337Z",
-      "completedAt": "2026-07-22T05:34:31.558Z",
-      "latencyMs": 1222,
+      "startedAt": "2026-07-22T05:41:59.293Z",
+      "completedAt": "2026-07-22T05:42:00.507Z",
+      "latencyMs": 1214,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -855,9 +856,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T05:34:31.558Z",
-      "completedAt": "2026-07-22T05:34:32.805Z",
-      "latencyMs": 1247,
+      "startedAt": "2026-07-22T05:42:00.508Z",
+      "completedAt": "2026-07-22T05:42:01.721Z",
+      "latencyMs": 1214,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -922,9 +923,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T05:34:32.805Z",
-      "completedAt": "2026-07-22T05:34:33.951Z",
-      "latencyMs": 1146,
+      "startedAt": "2026-07-22T05:42:01.721Z",
+      "completedAt": "2026-07-22T05:42:02.984Z",
+      "latencyMs": 1262,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -989,9 +990,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T05:34:33.952Z",
-      "completedAt": "2026-07-22T05:34:35.207Z",
-      "latencyMs": 1256,
+      "startedAt": "2026-07-22T05:42:02.984Z",
+      "completedAt": "2026-07-22T05:42:04.276Z",
+      "latencyMs": 1292,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -1056,9 +1057,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T05:34:35.207Z",
-      "completedAt": "2026-07-22T05:34:36.546Z",
-      "latencyMs": 1339,
+      "startedAt": "2026-07-22T05:42:04.276Z",
+      "completedAt": "2026-07-22T05:42:05.612Z",
+      "latencyMs": 1336,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -1123,9 +1124,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T05:34:36.546Z",
-      "completedAt": "2026-07-22T05:34:38.026Z",
-      "latencyMs": 1479,
+      "startedAt": "2026-07-22T05:42:05.612Z",
+      "completedAt": "2026-07-22T05:42:07.057Z",
+      "latencyMs": 1445,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
