@@ -83,7 +83,7 @@ if (dirtySource.length !== 0) {
 
 await mkdir(proofDirectory, { recursive: true });
 const commandResults = [];
-for (const [label, executable, args] of commands) {
+async function executeCommand([label, executable, args]) {
   const packageManagerCli = path.join(
     path.dirname(process.execPath),
     'node_modules',
@@ -122,6 +122,11 @@ for (const [label, executable, args] of commands) {
   if (result.status !== 0) {
     throw new Error(`${label} failed; inspect ${relativeLogPath}`);
   }
+  return commandResults.at(-1);
+}
+
+for (const command of commands) {
+  await executeCommand(command);
 }
 
 const packageJson = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
@@ -181,6 +186,7 @@ const verdictBody = {
     cancelAndFailSafeExplicit: true,
     deployed: false,
     exceptionRecoveryPreservesCheckpoint: true,
+    fullRegressionSuite: false,
     hostOwnedAuthAndScope: true,
     idempotentRetries: true,
     localComponentRuntime: true,
@@ -228,4 +234,13 @@ const verdictBody = {
 };
 const verdict = { ...verdictBody, evidenceHash: contentHash(verdictBody) };
 await writeFile(verdictPath, `${JSON.stringify(verdict, null, 2)}\n`, 'utf8');
-process.stdout.write(`${JSON.stringify(verdict, null, 2)}\n`);
+
+// The full suite includes the verdict verifier. Run it against the valid
+// preliminary receipt, then bind its complete log into the final receipt.
+const regression = await executeCommand(['npm test', 'npm', ['test']]);
+evidence.push({ path: regression.evidencePath, sha256: regression.evidenceSha256 });
+verdictBody.assertions.fullRegressionSuite = true;
+verdictBody.generatedAt = new Date().toISOString();
+const finalVerdict = { ...verdictBody, evidenceHash: contentHash(verdictBody) };
+await writeFile(verdictPath, `${JSON.stringify(finalVerdict, null, 2)}\n`, 'utf8');
+process.stdout.write(`${JSON.stringify(finalVerdict, null, 2)}\n`);

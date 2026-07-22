@@ -68,13 +68,13 @@ Commit the package, lockfile, wrapper, tests, and proof scripts. Then run:
 ```powershell
 npm run proof:nodekit-consumer
 npx vitest run tests/nodekit-caseflow-proof.test.ts --reporter=verbose
-npm test
 ```
 
 The proof command starts with `npm ci`, then runs lint, application typecheck, Convex function
-typecheck, the focused component consumer suite, and the production build. It stores complete logs
-and writes `fixtures/proof/nodekit-caseflow-consumer-verdict.json`. The verdict hashes every source,
-package, manifest, and command-log evidence file; the proof test recomputes all nested hashes and
+typecheck, the focused component consumer suite, the production build, and the full regression
+suite. It stores complete logs and writes
+`fixtures/proof/nodekit-caseflow-consumer-verdict.json`. The verdict hashes every source, package,
+manifest, and command-log evidence file; the final proof test recomputes all nested hashes and
 rejects missing, duplicate, absolute, escaping, symlinked, or tampered evidence.
 
 ## Honest boundary
