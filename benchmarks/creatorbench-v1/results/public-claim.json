@@ -1,8 +1,8 @@
 {
   "schemaVersion": "nodevideo.creatorbench-public-claim/v1",
-  "benchmarkVersion": "creatorbench-v1",
-  "freezeReceiptId": "creatorbench-freeze:37b596c88293fbab06b9d9fb",
-  "generatedAt": "2026-07-22T06:45:25.439Z",
+  "benchmarkVersion": "creatorbench-v1.1",
+  "freezeReceiptId": "creatorbench-freeze:cee36176239ad1af8fd97ded",
+  "generatedAt": "2026-07-22T06:58:28.855Z",
   "population": {
     "split": "private-heldout",
     "instanceCount": 46,
@@ -48,7 +48,7 @@
       "rate": 0
     }
   },
-  "statement": "On creatorbench-v1, covering 46 private held-out workflow instances from 23 creator-disjoint sources across 2 workflows, NodeVideo produced a usable first-pass result automatically in 0.0%, after bounded assistance in 0.0%, and safely abstained in 73.9%. Silent failures occurred in 0.0%.",
+  "statement": "On creatorbench-v1.1, covering 46 private held-out workflow instances from 23 creator-disjoint sources across 2 workflows, NodeVideo produced a usable first-pass result automatically in 0.0%, after bounded assistance in 0.0%, and safely abstained in 73.9%. Silent failures occurred in 0.0%.",
   "limitations": [
     "No result is classified usable until a rendered artifact is blindly reviewed by a human.",
     "This baseline measures request ingestion, rights validation, route eligibility, and honest non-success states—not editing quality."

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "nodevideo.creatorbench-render-pilot/v1",
-  "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T06:17:48.299Z",
-  "sourceCommitSha": "a42851e1a60e8d5847287fba2277985e6a678ea7",
+  "benchmarkVersion": "creatorbench-v1.1",
+  "generatedAt": "2026-07-22T06:58:19.270Z",
+  "sourceCommitSha": "3856157155ad46e04de0221df25ab6cc22087888",
   "scope": {
     "workflow": "smart-reframe",
     "executorVersion": "local-ffmpeg-center-reframe-v1",
@@ -11,22 +11,22 @@
       "public-test",
       "adversarial"
     ],
-    "sourceCount": 88,
-    "outputCount": 88,
-    "artifactCount": 264
+    "sourceCount": 89,
+    "outputCount": 89,
+    "artifactCount": 267
   },
   "metrics": {
     "latencyMs": {
-      "p50": 1347,
-      "p95": 1603
+      "p50": 1648,
+      "p95": 2709
     },
     "costUsd": {
       "total": 0,
       "perOutput": 0
     },
     "exportReopen": {
-      "numerator": 264,
-      "denominator": 264,
+      "numerator": 267,
+      "denominator": 267,
       "rate": 1
     }
   },
@@ -37,7 +37,37 @@
   ],
   "reviewCases": [
     {
+      "id": "instance:cb-0009-beb98f01:smart-reframe",
+      "resultId": "result:instance:cb-0009-beb98f01:smart-reframe",
+      "split": "adversarial",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/5c2318cf7148893c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/5c2318cf7148893c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "CC BY 3.0 · McKinley's Late Grandmother is an Inspiration.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
       "id": "instance:cb-0006-493a02f5:smart-reframe",
+      "resultId": "result:instance:cb-0006-493a02f5:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/92e67347e253173c-source.jpg",
@@ -64,6 +94,8 @@
     },
     {
       "id": "instance:cb-0008-b952fc45:smart-reframe",
+      "resultId": "result:instance:cb-0008-b952fc45:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/dd96975fb13c2a24-source.jpg",
@@ -90,6 +122,8 @@
     },
     {
       "id": "instance:cb-0009-4f1d6956:smart-reframe",
+      "resultId": "result:instance:cb-0009-4f1d6956:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-source.jpg",
@@ -116,6 +150,8 @@
     },
     {
       "id": "instance:cb-0010-565d0079:smart-reframe",
+      "resultId": "result:instance:cb-0010-565d0079:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/f72743c59803c8df-source.jpg",
@@ -142,6 +178,8 @@
     },
     {
       "id": "instance:cb-0011-85b2e35f:smart-reframe",
+      "resultId": "result:instance:cb-0011-85b2e35f:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-source.jpg",
@@ -168,6 +206,8 @@
     },
     {
       "id": "instance:cb-0012-87d1ef2a:smart-reframe",
+      "resultId": "result:instance:cb-0012-87d1ef2a:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/de898fddf7eee928-source.jpg",
@@ -194,6 +234,8 @@
     },
     {
       "id": "instance:cb-0015-0a22e6b8:smart-reframe",
+      "resultId": "result:instance:cb-0015-0a22e6b8:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/2248624bdd122e08-source.jpg",
@@ -220,6 +262,8 @@
     },
     {
       "id": "instance:cb-0016-4bbd64b0:smart-reframe",
+      "resultId": "result:instance:cb-0016-4bbd64b0:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/b60900db8a4391ce-source.jpg",
@@ -246,6 +290,8 @@
     },
     {
       "id": "instance:cb-0017-cc8702fa:smart-reframe",
+      "resultId": "result:instance:cb-0017-cc8702fa:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/607a5e5c5264206e-source.jpg",
@@ -272,6 +318,8 @@
     },
     {
       "id": "instance:cb-0018-0932f238:smart-reframe",
+      "resultId": "result:instance:cb-0018-0932f238:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/5edd490583c79b85-source.jpg",
@@ -298,6 +346,8 @@
     },
     {
       "id": "instance:cb-0019-9e58ef72:smart-reframe",
+      "resultId": "result:instance:cb-0019-9e58ef72:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/7eda2c9921df3ed2-source.jpg",
@@ -324,6 +374,8 @@
     },
     {
       "id": "instance:cb-0020-8804a7db:smart-reframe",
+      "resultId": "result:instance:cb-0020-8804a7db:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/a591bc89a3a79d91-source.jpg",
@@ -350,6 +402,8 @@
     },
     {
       "id": "instance:cb-0021-31f5bb01:smart-reframe",
+      "resultId": "result:instance:cb-0021-31f5bb01:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/5c6aa590be006ee6-source.jpg",
@@ -376,6 +430,8 @@
     },
     {
       "id": "instance:cb-0022-b933f478:smart-reframe",
+      "resultId": "result:instance:cb-0022-b933f478:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/4c40cc1e9a41427c-source.jpg",
@@ -402,6 +458,8 @@
     },
     {
       "id": "instance:cb-0023-cf31f183:smart-reframe",
+      "resultId": "result:instance:cb-0023-cf31f183:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/e758d53cbfd7840f-source.jpg",
@@ -428,6 +486,8 @@
     },
     {
       "id": "instance:cb-0024-85653153:smart-reframe",
+      "resultId": "result:instance:cb-0024-85653153:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/d005c778c7b4f12a-source.jpg",
@@ -454,6 +514,8 @@
     },
     {
       "id": "instance:cb-0025-36d4e43b:smart-reframe",
+      "resultId": "result:instance:cb-0025-36d4e43b:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/3876defedf8bb361-source.jpg",
@@ -480,6 +542,8 @@
     },
     {
       "id": "instance:cb-0026-7c1b2383:smart-reframe",
+      "resultId": "result:instance:cb-0026-7c1b2383:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/90c5f36261b220d4-source.jpg",
@@ -506,6 +570,8 @@
     },
     {
       "id": "instance:cb-0027-0cc0ba2b:smart-reframe",
+      "resultId": "result:instance:cb-0027-0cc0ba2b:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/a69203b73fb4f965-source.jpg",
@@ -532,6 +598,8 @@
     },
     {
       "id": "instance:cb-0028-fd71efcf:smart-reframe",
+      "resultId": "result:instance:cb-0028-fd71efcf:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/ce7e45a6459b0695-source.jpg",
@@ -558,6 +626,8 @@
     },
     {
       "id": "instance:cb-0029-ceb75f1d:smart-reframe",
+      "resultId": "result:instance:cb-0029-ceb75f1d:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/7b57e6014fdbdde8-source.jpg",
@@ -584,6 +654,8 @@
     },
     {
       "id": "instance:cb-0030-f6dba17c:smart-reframe",
+      "resultId": "result:instance:cb-0030-f6dba17c:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/719621e2ce5cda9c-source.jpg",
@@ -610,6 +682,8 @@
     },
     {
       "id": "instance:cb-0031-6f0b437d:smart-reframe",
+      "resultId": "result:instance:cb-0031-6f0b437d:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/28dfe7b0ae311cc5-source.jpg",
@@ -636,6 +710,8 @@
     },
     {
       "id": "instance:cb-0032-2ce7cec5:smart-reframe",
+      "resultId": "result:instance:cb-0032-2ce7cec5:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/134b650f30ac240d-source.jpg",
@@ -662,6 +738,8 @@
     },
     {
       "id": "instance:cb-0033-b4a20a60:smart-reframe",
+      "resultId": "result:instance:cb-0033-b4a20a60:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/0ad77535381aa70e-source.jpg",
@@ -688,6 +766,8 @@
     },
     {
       "id": "instance:cb-0034-16ed90ac:smart-reframe",
+      "resultId": "result:instance:cb-0034-16ed90ac:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/28940ce0a23ec858-source.jpg",
@@ -714,6 +794,8 @@
     },
     {
       "id": "instance:cb-0036-60582816:smart-reframe",
+      "resultId": "result:instance:cb-0036-60582816:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/8aa3c555ec48fe4d-source.jpg",
@@ -740,6 +822,8 @@
     },
     {
       "id": "instance:cb-0037-acd7511c:smart-reframe",
+      "resultId": "result:instance:cb-0037-acd7511c:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/fa6953fb76e914b0-source.jpg",
@@ -766,6 +850,8 @@
     },
     {
       "id": "instance:cb-0038-6a3339c2:smart-reframe",
+      "resultId": "result:instance:cb-0038-6a3339c2:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/884fe887246f6aab-source.jpg",
@@ -792,6 +878,8 @@
     },
     {
       "id": "instance:cb-0039-884266ba:smart-reframe",
+      "resultId": "result:instance:cb-0039-884266ba:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/8acbfd2ae05f1f00-source.jpg",
@@ -818,8 +906,10 @@
     },
     {
       "id": "instance:cb-0040-51f4ed21:smart-reframe",
+      "resultId": "result:instance:cb-0040-51f4ed21:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
-      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/c169161926759ff1-source.jpg",
       "outputPoster": "/media/creatorbench-v1/public/c169161926759ff1-9x16.jpg",
       "outputs": [
@@ -844,6 +934,8 @@
     },
     {
       "id": "instance:cb-0042-e291b18d:smart-reframe",
+      "resultId": "result:instance:cb-0042-e291b18d:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/ed768df53a63dc44-source.jpg",
@@ -870,6 +962,8 @@
     },
     {
       "id": "instance:cb-0043-b1d571bb:smart-reframe",
+      "resultId": "result:instance:cb-0043-b1d571bb:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/ff03628b7c32cb13-source.jpg",
@@ -896,6 +990,8 @@
     },
     {
       "id": "instance:cb-0044-ee96dc05:smart-reframe",
+      "resultId": "result:instance:cb-0044-ee96dc05:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/b4b1189c4a20a321-source.jpg",
@@ -922,6 +1018,8 @@
     },
     {
       "id": "instance:cb-0045-c0fdc2d9:smart-reframe",
+      "resultId": "result:instance:cb-0045-c0fdc2d9:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/fa4c3387aa2a950e-source.jpg",
@@ -948,6 +1046,8 @@
     },
     {
       "id": "instance:cb-0046-482f5e97:smart-reframe",
+      "resultId": "result:instance:cb-0046-482f5e97:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/77307f12a48f650c-source.jpg",
@@ -974,6 +1074,8 @@
     },
     {
       "id": "instance:cb-0047-1aa70c3c:smart-reframe",
+      "resultId": "result:instance:cb-0047-1aa70c3c:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/0d1ba59c63caa5dc-source.jpg",
@@ -1000,6 +1102,8 @@
     },
     {
       "id": "instance:cb-0050-44f3a3ff:smart-reframe",
+      "resultId": "result:instance:cb-0050-44f3a3ff:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/25a4ed9f65e67200-source.jpg",
@@ -1026,6 +1130,8 @@
     },
     {
       "id": "instance:cb-0051-4bcd095f:smart-reframe",
+      "resultId": "result:instance:cb-0051-4bcd095f:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/8c1109ecf73c4375-source.jpg",
@@ -1052,6 +1158,8 @@
     },
     {
       "id": "instance:cb-0052-eb5546f0:smart-reframe",
+      "resultId": "result:instance:cb-0052-eb5546f0:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/e93e636e349320bf-source.jpg",
@@ -1078,6 +1186,8 @@
     },
     {
       "id": "instance:cb-0053-adc83a29:smart-reframe",
+      "resultId": "result:instance:cb-0053-adc83a29:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/849998005f389269-source.jpg",
@@ -1104,6 +1214,8 @@
     },
     {
       "id": "instance:cb-0054-e3b9440b:smart-reframe",
+      "resultId": "result:instance:cb-0054-e3b9440b:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/d3c107658325efb2-source.jpg",
@@ -1130,6 +1242,8 @@
     },
     {
       "id": "instance:cb-0056-ae949169:smart-reframe",
+      "resultId": "result:instance:cb-0056-ae949169:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/0e7ca4e4f5b26c39-source.jpg",
@@ -1156,6 +1270,8 @@
     },
     {
       "id": "instance:cb-0057-1d87ea0e:smart-reframe",
+      "resultId": "result:instance:cb-0057-1d87ea0e:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/e430da52d52b0fde-source.jpg",
@@ -1182,6 +1298,8 @@
     },
     {
       "id": "instance:cb-0058-ca9b5d55:smart-reframe",
+      "resultId": "result:instance:cb-0058-ca9b5d55:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/a2928d85c045c0ae-source.jpg",
@@ -1208,6 +1326,8 @@
     },
     {
       "id": "instance:cb-0059-c3b960e2:smart-reframe",
+      "resultId": "result:instance:cb-0059-c3b960e2:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/e09c298c2543dca7-source.jpg",
@@ -1234,6 +1354,8 @@
     },
     {
       "id": "instance:cb-0060-4ef7b32c:smart-reframe",
+      "resultId": "result:instance:cb-0060-4ef7b32c:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/9766b987799404b7-source.jpg",
@@ -1260,6 +1382,8 @@
     },
     {
       "id": "instance:cb-0061-68183569:smart-reframe",
+      "resultId": "result:instance:cb-0061-68183569:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/efb86e0d520a6814-source.jpg",
@@ -1286,6 +1410,8 @@
     },
     {
       "id": "instance:cb-0062-7554e85b:smart-reframe",
+      "resultId": "result:instance:cb-0062-7554e85b:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/22389b748d245802-source.jpg",
@@ -1312,8 +1438,10 @@
     },
     {
       "id": "instance:cb-0063-b55329da:smart-reframe",
+      "resultId": "result:instance:cb-0063-b55329da:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
-      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/5485f73ab5276b2e-source.jpg",
       "outputPoster": "/media/creatorbench-v1/public/5485f73ab5276b2e-9x16.jpg",
       "outputs": [
@@ -1338,6 +1466,8 @@
     },
     {
       "id": "instance:cb-0066-9e65c59b:smart-reframe",
+      "resultId": "result:instance:cb-0066-9e65c59b:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/29a8ac42889fc760-source.jpg",
@@ -1364,6 +1494,8 @@
     },
     {
       "id": "instance:cb-0068-020c2a0a:smart-reframe",
+      "resultId": "result:instance:cb-0068-020c2a0a:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/47fdd277e3c562c4-source.jpg",
@@ -1390,6 +1522,8 @@
     },
     {
       "id": "instance:cb-0069-e0f2d14d:smart-reframe",
+      "resultId": "result:instance:cb-0069-e0f2d14d:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/c788c06c9b9586f0-source.jpg",
@@ -1416,6 +1550,8 @@
     },
     {
       "id": "instance:cb-0071-21cbaa5c:smart-reframe",
+      "resultId": "result:instance:cb-0071-21cbaa5c:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/826002db00ad8c64-source.jpg",
@@ -1442,6 +1578,8 @@
     },
     {
       "id": "instance:cb-0072-4ed91916:smart-reframe",
+      "resultId": "result:instance:cb-0072-4ed91916:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/7961561ccf254435-source.jpg",
@@ -1468,6 +1606,8 @@
     },
     {
       "id": "instance:cb-0073-001f1f6b:smart-reframe",
+      "resultId": "result:instance:cb-0073-001f1f6b:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/18a017153e0411c2-source.jpg",
@@ -1494,6 +1634,8 @@
     },
     {
       "id": "instance:cb-0074-57484d54:smart-reframe",
+      "resultId": "result:instance:cb-0074-57484d54:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/86371ef8bf267dfa-source.jpg",
@@ -1520,6 +1662,8 @@
     },
     {
       "id": "instance:cb-0075-cafd8dd1:smart-reframe",
+      "resultId": "result:instance:cb-0075-cafd8dd1:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/9beed89a18a17d7c-source.jpg",
@@ -1546,6 +1690,8 @@
     },
     {
       "id": "instance:cb-0077-76d6a7e7:smart-reframe",
+      "resultId": "result:instance:cb-0077-76d6a7e7:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/38f102ccdbb5c5e8-source.jpg",
@@ -1572,6 +1718,8 @@
     },
     {
       "id": "instance:cb-0078-5dcaeb49:smart-reframe",
+      "resultId": "result:instance:cb-0078-5dcaeb49:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/9faf06d82b44f3ec-source.jpg",
@@ -1598,6 +1746,8 @@
     },
     {
       "id": "instance:cb-0079-b3bf6506:smart-reframe",
+      "resultId": "result:instance:cb-0079-b3bf6506:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/9a7f99f850840750-source.jpg",
@@ -1624,6 +1774,8 @@
     },
     {
       "id": "instance:cb-0080-3073e3ec:smart-reframe",
+      "resultId": "result:instance:cb-0080-3073e3ec:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/41dceb0e5730740f-source.jpg",
@@ -1650,6 +1802,8 @@
     },
     {
       "id": "instance:cb-0081-5a513c7a:smart-reframe",
+      "resultId": "result:instance:cb-0081-5a513c7a:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/6ed46b2c9b633502-source.jpg",
@@ -1676,6 +1830,8 @@
     },
     {
       "id": "instance:cb-0082-0a72ef24:smart-reframe",
+      "resultId": "result:instance:cb-0082-0a72ef24:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/385d33ad787f6ede-source.jpg",
@@ -1702,6 +1858,8 @@
     },
     {
       "id": "instance:cb-0083-20fd73aa:smart-reframe",
+      "resultId": "result:instance:cb-0083-20fd73aa:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/b22b01731c78d9f6-source.jpg",
@@ -1728,6 +1886,8 @@
     },
     {
       "id": "instance:cb-0084-5ce9e814:smart-reframe",
+      "resultId": "result:instance:cb-0084-5ce9e814:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/fdc287691012f2f6-source.jpg",
@@ -1754,6 +1914,8 @@
     },
     {
       "id": "instance:cb-0085-7768f9ac:smart-reframe",
+      "resultId": "result:instance:cb-0085-7768f9ac:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/ff55768c7e658012-source.jpg",
@@ -1780,6 +1942,8 @@
     },
     {
       "id": "instance:cb-0086-85a79a17:smart-reframe",
+      "resultId": "result:instance:cb-0086-85a79a17:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/4b02ea604c878a76-source.jpg",
@@ -1806,6 +1970,8 @@
     },
     {
       "id": "instance:cb-0088-9b30a3c3:smart-reframe",
+      "resultId": "result:instance:cb-0088-9b30a3c3:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/66a4bddf8a7b1e81-source.jpg",
@@ -1832,6 +1998,8 @@
     },
     {
       "id": "instance:cb-0089-a5140cae:smart-reframe",
+      "resultId": "result:instance:cb-0089-a5140cae:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/fc617a3f1fb38b7b-source.jpg",
@@ -1858,6 +2026,8 @@
     },
     {
       "id": "instance:cb-0090-8d000e84:smart-reframe",
+      "resultId": "result:instance:cb-0090-8d000e84:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/67b35a974192506b-source.jpg",
@@ -1884,6 +2054,8 @@
     },
     {
       "id": "instance:cb-0092-75e3169a:smart-reframe",
+      "resultId": "result:instance:cb-0092-75e3169a:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/6c2dba0ce1f9a0a1-source.jpg",
@@ -1910,6 +2082,8 @@
     },
     {
       "id": "instance:cb-0093-454e2d61:smart-reframe",
+      "resultId": "result:instance:cb-0093-454e2d61:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/8cc0f2f9c63f3841-source.jpg",
@@ -1936,6 +2110,8 @@
     },
     {
       "id": "instance:cb-0094-ac666c8f:smart-reframe",
+      "resultId": "result:instance:cb-0094-ac666c8f:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/720dbcc7cf0ebb78-source.jpg",
@@ -1962,6 +2138,8 @@
     },
     {
       "id": "instance:cb-0096-bbc6d99c:smart-reframe",
+      "resultId": "result:instance:cb-0096-bbc6d99c:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/cc1a66d10266c416-source.jpg",
@@ -1988,6 +2166,8 @@
     },
     {
       "id": "instance:cb-0097-b78025cb:smart-reframe",
+      "resultId": "result:instance:cb-0097-b78025cb:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/269f34134de192b5-source.jpg",
@@ -2014,6 +2194,8 @@
     },
     {
       "id": "instance:cb-0098-98ab8feb:smart-reframe",
+      "resultId": "result:instance:cb-0098-98ab8feb:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/45274a975c5e2469-source.jpg",
@@ -2040,6 +2222,8 @@
     },
     {
       "id": "instance:cb-0100-dcd76e76:smart-reframe",
+      "resultId": "result:instance:cb-0100-dcd76e76:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/be561790609acd6a-source.jpg",
@@ -2066,6 +2250,8 @@
     },
     {
       "id": "instance:cb-0101-28404cbc:smart-reframe",
+      "resultId": "result:instance:cb-0101-28404cbc:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/160646dfd994d434-source.jpg",
@@ -2092,6 +2278,8 @@
     },
     {
       "id": "instance:cb-0102-0024dcf8:smart-reframe",
+      "resultId": "result:instance:cb-0102-0024dcf8:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/3d9cbf1f656be538-source.jpg",
@@ -2118,6 +2306,8 @@
     },
     {
       "id": "instance:cb-0106-fd128f45:smart-reframe",
+      "resultId": "result:instance:cb-0106-fd128f45:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/eb20f7e8a605f987-source.jpg",
@@ -2144,6 +2334,8 @@
     },
     {
       "id": "instance:cb-0107-06e107d2:smart-reframe",
+      "resultId": "result:instance:cb-0107-06e107d2:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/f59823ead25cf0f5-source.jpg",
@@ -2170,6 +2362,8 @@
     },
     {
       "id": "instance:cb-0108-0f94ea96:smart-reframe",
+      "resultId": "result:instance:cb-0108-0f94ea96:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/c3214032165b0c12-source.jpg",
@@ -2196,6 +2390,8 @@
     },
     {
       "id": "instance:cb-0109-9955efd2:smart-reframe",
+      "resultId": "result:instance:cb-0109-9955efd2:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/cf1b488de7e58f97-source.jpg",
@@ -2222,6 +2418,8 @@
     },
     {
       "id": "instance:cb-0110-c17e1c3f:smart-reframe",
+      "resultId": "result:instance:cb-0110-c17e1c3f:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/6961a9ff264731ab-source.jpg",
@@ -2248,6 +2446,8 @@
     },
     {
       "id": "instance:cb-0111-1460dea9:smart-reframe",
+      "resultId": "result:instance:cb-0111-1460dea9:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/4a4977fab05fc064-source.jpg",
@@ -2274,6 +2474,8 @@
     },
     {
       "id": "instance:cb-0112-c462e74c:smart-reframe",
+      "resultId": "result:instance:cb-0112-c462e74c:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/b8aa7c59c6e187f0-source.jpg",
@@ -2300,6 +2502,8 @@
     },
     {
       "id": "instance:cb-0111-c8656e5e:smart-reframe",
+      "resultId": "result:instance:cb-0111-c8656e5e:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/6aa3c797799dde50-source.jpg",
@@ -2326,6 +2530,73 @@
     }
   ],
   "results": [
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:5c2318cf7148893c",
+      "instanceId": "instance:cb-0009-beb98f01:smart-reframe",
+      "resultId": "result:instance:cb-0009-beb98f01:smart-reframe",
+      "split": "adversarial",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:4f3241dfc3ce7d4618041ad88881cc570b2d44669921cb7710cbc8a04074f5b5",
+          "sha256": "sha256:4f3241dfc3ce7d4618041ad88881cc570b2d44669921cb7710cbc8a04074f5b5",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:a9446279aeea28bba3bde8c95d4070c931cff1e1a3d73349e385c67ab6bb22f7",
+          "sha256": "sha256:a9446279aeea28bba3bde8c95d4070c931cff1e1a3d73349e385c67ab6bb22f7",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:8a53b49161d23319ff3c1780e590e568fb0afbba35f9975ba1efada8ffc687d2",
+          "sha256": "sha256:8a53b49161d23319ff3c1780e590e568fb0afbba35f9975ba1efada8ffc687d2",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T06:55:42.336Z",
+      "completedAt": "2026-07-22T06:55:46.501Z",
+      "latencyMs": 4164,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/5c2318cf7148893c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/5c2318cf7148893c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "publicSourceLabel": "CC BY 3.0 · McKinley's Late Grandmother is an Inspiration.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
     {
       "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
       "id": "render-pilot:92e67347e253173c",
@@ -2363,9 +2634,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:15:50.628Z",
-      "completedAt": "2026-07-22T06:15:52.016Z",
-      "latencyMs": 1387,
+      "startedAt": "2026-07-22T06:55:46.502Z",
+      "completedAt": "2026-07-22T06:55:48.256Z",
+      "latencyMs": 1754,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -2430,9 +2701,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:15:52.016Z",
-      "completedAt": "2026-07-22T06:15:53.136Z",
-      "latencyMs": 1120,
+      "startedAt": "2026-07-22T06:55:48.256Z",
+      "completedAt": "2026-07-22T06:55:49.713Z",
+      "latencyMs": 1457,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -2465,7 +2736,7 @@
       "id": "render-pilot:dbdf164d2f66a3c2",
       "instanceId": "instance:cb-0009-4f1d6956:smart-reframe",
       "resultId": "result:instance:cb-0009-4f1d6956:smart-reframe",
-      "split": "public-test",
+      "split": "development",
       "workflow": "smart-reframe",
       "executorVersion": "local-ffmpeg-center-reframe-v1",
       "outputArtifacts": [
@@ -2497,9 +2768,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:15:53.136Z",
-      "completedAt": "2026-07-22T06:15:54.355Z",
-      "latencyMs": 1218,
+      "startedAt": "2026-07-22T06:55:49.713Z",
+      "completedAt": "2026-07-22T06:55:51.761Z",
+      "latencyMs": 2047,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -2532,7 +2803,7 @@
       "id": "render-pilot:f72743c59803c8df",
       "instanceId": "instance:cb-0010-565d0079:smart-reframe",
       "resultId": "result:instance:cb-0010-565d0079:smart-reframe",
-      "split": "public-test",
+      "split": "development",
       "workflow": "smart-reframe",
       "executorVersion": "local-ffmpeg-center-reframe-v1",
       "outputArtifacts": [
@@ -2564,9 +2835,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:15:54.355Z",
-      "completedAt": "2026-07-22T06:15:55.539Z",
-      "latencyMs": 1184,
+      "startedAt": "2026-07-22T06:55:51.761Z",
+      "completedAt": "2026-07-22T06:55:53.261Z",
+      "latencyMs": 1500,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -2599,7 +2870,7 @@
       "id": "render-pilot:06fb82c9a0c22c71",
       "instanceId": "instance:cb-0011-85b2e35f:smart-reframe",
       "resultId": "result:instance:cb-0011-85b2e35f:smart-reframe",
-      "split": "public-test",
+      "split": "development",
       "workflow": "smart-reframe",
       "executorVersion": "local-ffmpeg-center-reframe-v1",
       "outputArtifacts": [
@@ -2631,9 +2902,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:15:55.539Z",
-      "completedAt": "2026-07-22T06:15:56.664Z",
-      "latencyMs": 1125,
+      "startedAt": "2026-07-22T06:55:53.261Z",
+      "completedAt": "2026-07-22T06:55:54.696Z",
+      "latencyMs": 1435,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -2698,9 +2969,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:15:56.664Z",
-      "completedAt": "2026-07-22T06:15:58.208Z",
-      "latencyMs": 1544,
+      "startedAt": "2026-07-22T06:55:54.696Z",
+      "completedAt": "2026-07-22T06:55:56.862Z",
+      "latencyMs": 2166,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -2765,9 +3036,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:15:58.208Z",
-      "completedAt": "2026-07-22T06:15:59.701Z",
-      "latencyMs": 1492,
+      "startedAt": "2026-07-22T06:55:56.862Z",
+      "completedAt": "2026-07-22T06:55:58.675Z",
+      "latencyMs": 1814,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -2832,9 +3103,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:15:59.701Z",
-      "completedAt": "2026-07-22T06:16:00.907Z",
-      "latencyMs": 1206,
+      "startedAt": "2026-07-22T06:55:58.675Z",
+      "completedAt": "2026-07-22T06:56:00.242Z",
+      "latencyMs": 1567,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -2899,9 +3170,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:00.907Z",
-      "completedAt": "2026-07-22T06:16:01.842Z",
-      "latencyMs": 935,
+      "startedAt": "2026-07-22T06:56:00.243Z",
+      "completedAt": "2026-07-22T06:56:01.363Z",
+      "latencyMs": 1121,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -2966,9 +3237,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:01.842Z",
-      "completedAt": "2026-07-22T06:16:03.306Z",
-      "latencyMs": 1464,
+      "startedAt": "2026-07-22T06:56:01.363Z",
+      "completedAt": "2026-07-22T06:56:03.309Z",
+      "latencyMs": 1945,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3033,9 +3304,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:03.306Z",
-      "completedAt": "2026-07-22T06:16:04.663Z",
-      "latencyMs": 1356,
+      "startedAt": "2026-07-22T06:56:03.309Z",
+      "completedAt": "2026-07-22T06:56:04.982Z",
+      "latencyMs": 1673,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3100,9 +3371,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:04.663Z",
-      "completedAt": "2026-07-22T06:16:05.930Z",
-      "latencyMs": 1267,
+      "startedAt": "2026-07-22T06:56:04.982Z",
+      "completedAt": "2026-07-22T06:56:06.589Z",
+      "latencyMs": 1607,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3167,9 +3438,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:05.930Z",
-      "completedAt": "2026-07-22T06:16:07.072Z",
-      "latencyMs": 1143,
+      "startedAt": "2026-07-22T06:56:06.589Z",
+      "completedAt": "2026-07-22T06:56:08.070Z",
+      "latencyMs": 1480,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3234,9 +3505,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:07.072Z",
-      "completedAt": "2026-07-22T06:16:08.307Z",
-      "latencyMs": 1235,
+      "startedAt": "2026-07-22T06:56:08.070Z",
+      "completedAt": "2026-07-22T06:56:09.554Z",
+      "latencyMs": 1484,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3301,9 +3572,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:08.307Z",
-      "completedAt": "2026-07-22T06:16:09.575Z",
-      "latencyMs": 1268,
+      "startedAt": "2026-07-22T06:56:09.554Z",
+      "completedAt": "2026-07-22T06:56:11.101Z",
+      "latencyMs": 1547,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3368,9 +3639,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:09.576Z",
-      "completedAt": "2026-07-22T06:16:10.698Z",
-      "latencyMs": 1122,
+      "startedAt": "2026-07-22T06:56:11.101Z",
+      "completedAt": "2026-07-22T06:56:12.487Z",
+      "latencyMs": 1386,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3435,9 +3706,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:10.698Z",
-      "completedAt": "2026-07-22T06:16:11.842Z",
-      "latencyMs": 1143,
+      "startedAt": "2026-07-22T06:56:12.487Z",
+      "completedAt": "2026-07-22T06:56:13.963Z",
+      "latencyMs": 1475,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3502,9 +3773,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:11.842Z",
-      "completedAt": "2026-07-22T06:16:13.057Z",
-      "latencyMs": 1215,
+      "startedAt": "2026-07-22T06:56:13.963Z",
+      "completedAt": "2026-07-22T06:56:15.380Z",
+      "latencyMs": 1417,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3569,9 +3840,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:13.057Z",
-      "completedAt": "2026-07-22T06:16:14.151Z",
-      "latencyMs": 1094,
+      "startedAt": "2026-07-22T06:56:15.380Z",
+      "completedAt": "2026-07-22T06:56:16.756Z",
+      "latencyMs": 1376,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3636,9 +3907,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:14.151Z",
-      "completedAt": "2026-07-22T06:16:15.213Z",
-      "latencyMs": 1062,
+      "startedAt": "2026-07-22T06:56:16.756Z",
+      "completedAt": "2026-07-22T06:56:18.038Z",
+      "latencyMs": 1281,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3703,9 +3974,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:15.213Z",
-      "completedAt": "2026-07-22T06:16:16.570Z",
-      "latencyMs": 1356,
+      "startedAt": "2026-07-22T06:56:18.038Z",
+      "completedAt": "2026-07-22T06:56:19.583Z",
+      "latencyMs": 1546,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3770,9 +4041,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:16.570Z",
-      "completedAt": "2026-07-22T06:16:18.026Z",
-      "latencyMs": 1456,
+      "startedAt": "2026-07-22T06:56:19.584Z",
+      "completedAt": "2026-07-22T06:56:21.269Z",
+      "latencyMs": 1685,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3837,9 +4108,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:18.026Z",
-      "completedAt": "2026-07-22T06:16:19.302Z",
-      "latencyMs": 1276,
+      "startedAt": "2026-07-22T06:56:21.269Z",
+      "completedAt": "2026-07-22T06:56:22.999Z",
+      "latencyMs": 1730,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3904,9 +4175,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:19.302Z",
-      "completedAt": "2026-07-22T06:16:20.668Z",
-      "latencyMs": 1366,
+      "startedAt": "2026-07-22T06:56:23.000Z",
+      "completedAt": "2026-07-22T06:56:24.686Z",
+      "latencyMs": 1686,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3971,9 +4242,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:20.668Z",
-      "completedAt": "2026-07-22T06:16:21.878Z",
-      "latencyMs": 1209,
+      "startedAt": "2026-07-22T06:56:24.686Z",
+      "completedAt": "2026-07-22T06:56:26.160Z",
+      "latencyMs": 1474,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4038,9 +4309,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:21.878Z",
-      "completedAt": "2026-07-22T06:16:23.225Z",
-      "latencyMs": 1347,
+      "startedAt": "2026-07-22T06:56:26.160Z",
+      "completedAt": "2026-07-22T06:56:28.606Z",
+      "latencyMs": 2445,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4105,9 +4376,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:23.225Z",
-      "completedAt": "2026-07-22T06:16:24.466Z",
-      "latencyMs": 1242,
+      "startedAt": "2026-07-22T06:56:28.606Z",
+      "completedAt": "2026-07-22T06:56:31.433Z",
+      "latencyMs": 2827,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4172,9 +4443,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:24.466Z",
-      "completedAt": "2026-07-22T06:16:25.837Z",
-      "latencyMs": 1371,
+      "startedAt": "2026-07-22T06:56:31.433Z",
+      "completedAt": "2026-07-22T06:56:34.284Z",
+      "latencyMs": 2852,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4239,9 +4510,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:25.838Z",
-      "completedAt": "2026-07-22T06:16:27.270Z",
-      "latencyMs": 1433,
+      "startedAt": "2026-07-22T06:56:34.285Z",
+      "completedAt": "2026-07-22T06:56:36.993Z",
+      "latencyMs": 2709,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4306,9 +4577,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:27.270Z",
-      "completedAt": "2026-07-22T06:16:28.802Z",
-      "latencyMs": 1532,
+      "startedAt": "2026-07-22T06:56:36.994Z",
+      "completedAt": "2026-07-22T06:56:39.339Z",
+      "latencyMs": 2345,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4341,7 +4612,7 @@
       "id": "render-pilot:c169161926759ff1",
       "instanceId": "instance:cb-0040-51f4ed21:smart-reframe",
       "resultId": "result:instance:cb-0040-51f4ed21:smart-reframe",
-      "split": "adversarial",
+      "split": "public-test",
       "workflow": "smart-reframe",
       "executorVersion": "local-ffmpeg-center-reframe-v1",
       "outputArtifacts": [
@@ -4373,9 +4644,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:28.802Z",
-      "completedAt": "2026-07-22T06:16:30.443Z",
-      "latencyMs": 1640,
+      "startedAt": "2026-07-22T06:56:39.339Z",
+      "completedAt": "2026-07-22T06:56:41.566Z",
+      "latencyMs": 2227,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4394,7 +4665,7 @@
           "poster": "/media/creatorbench-v1/public/c169161926759ff1-1x1.jpg"
         }
       ],
-      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "publicSourceLabel": "NASA SVS public domain · Arctic Sea Ice Maximum 2026",
       "route": "local-ffmpeg-center-reframe-v1",
       "machineFindings": [
@@ -4440,9 +4711,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:30.443Z",
-      "completedAt": "2026-07-22T06:16:32.046Z",
-      "latencyMs": 1603,
+      "startedAt": "2026-07-22T06:56:41.566Z",
+      "completedAt": "2026-07-22T06:56:44.232Z",
+      "latencyMs": 2665,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4507,9 +4778,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:32.046Z",
-      "completedAt": "2026-07-22T06:16:33.802Z",
-      "latencyMs": 1755,
+      "startedAt": "2026-07-22T06:56:44.232Z",
+      "completedAt": "2026-07-22T06:56:46.794Z",
+      "latencyMs": 2562,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4574,9 +4845,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:33.802Z",
-      "completedAt": "2026-07-22T06:16:35.341Z",
-      "latencyMs": 1539,
+      "startedAt": "2026-07-22T06:56:46.795Z",
+      "completedAt": "2026-07-22T06:56:49.915Z",
+      "latencyMs": 3121,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4641,9 +4912,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:35.341Z",
-      "completedAt": "2026-07-22T06:16:36.670Z",
-      "latencyMs": 1330,
+      "startedAt": "2026-07-22T06:56:49.915Z",
+      "completedAt": "2026-07-22T06:56:51.781Z",
+      "latencyMs": 1865,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4708,9 +4979,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:36.670Z",
-      "completedAt": "2026-07-22T06:16:37.994Z",
-      "latencyMs": 1324,
+      "startedAt": "2026-07-22T06:56:51.781Z",
+      "completedAt": "2026-07-22T06:56:53.565Z",
+      "latencyMs": 1785,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4775,9 +5046,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:37.994Z",
-      "completedAt": "2026-07-22T06:16:39.373Z",
-      "latencyMs": 1379,
+      "startedAt": "2026-07-22T06:56:53.565Z",
+      "completedAt": "2026-07-22T06:56:55.182Z",
+      "latencyMs": 1617,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4842,9 +5113,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:39.373Z",
-      "completedAt": "2026-07-22T06:16:40.677Z",
-      "latencyMs": 1304,
+      "startedAt": "2026-07-22T06:56:55.182Z",
+      "completedAt": "2026-07-22T06:56:56.729Z",
+      "latencyMs": 1546,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4909,9 +5180,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:40.677Z",
-      "completedAt": "2026-07-22T06:16:41.902Z",
-      "latencyMs": 1225,
+      "startedAt": "2026-07-22T06:56:56.729Z",
+      "completedAt": "2026-07-22T06:56:58.236Z",
+      "latencyMs": 1507,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4976,9 +5247,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:41.902Z",
-      "completedAt": "2026-07-22T06:16:43.218Z",
-      "latencyMs": 1316,
+      "startedAt": "2026-07-22T06:56:58.236Z",
+      "completedAt": "2026-07-22T06:56:59.945Z",
+      "latencyMs": 1710,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5043,9 +5314,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:43.218Z",
-      "completedAt": "2026-07-22T06:16:44.645Z",
-      "latencyMs": 1427,
+      "startedAt": "2026-07-22T06:56:59.946Z",
+      "completedAt": "2026-07-22T06:57:01.858Z",
+      "latencyMs": 1912,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5110,9 +5381,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:44.645Z",
-      "completedAt": "2026-07-22T06:16:46.130Z",
-      "latencyMs": 1485,
+      "startedAt": "2026-07-22T06:57:01.858Z",
+      "completedAt": "2026-07-22T06:57:03.694Z",
+      "latencyMs": 1836,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5177,9 +5448,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:46.130Z",
-      "completedAt": "2026-07-22T06:16:47.440Z",
-      "latencyMs": 1310,
+      "startedAt": "2026-07-22T06:57:03.694Z",
+      "completedAt": "2026-07-22T06:57:05.396Z",
+      "latencyMs": 1702,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5244,9 +5515,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:47.440Z",
-      "completedAt": "2026-07-22T06:16:48.926Z",
-      "latencyMs": 1486,
+      "startedAt": "2026-07-22T06:57:05.396Z",
+      "completedAt": "2026-07-22T06:57:07.259Z",
+      "latencyMs": 1863,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5311,9 +5582,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:48.926Z",
-      "completedAt": "2026-07-22T06:16:50.193Z",
-      "latencyMs": 1267,
+      "startedAt": "2026-07-22T06:57:07.259Z",
+      "completedAt": "2026-07-22T06:57:08.785Z",
+      "latencyMs": 1526,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5378,9 +5649,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:50.193Z",
-      "completedAt": "2026-07-22T06:16:51.500Z",
-      "latencyMs": 1307,
+      "startedAt": "2026-07-22T06:57:08.785Z",
+      "completedAt": "2026-07-22T06:57:10.371Z",
+      "latencyMs": 1586,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5445,9 +5716,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:51.500Z",
-      "completedAt": "2026-07-22T06:16:52.756Z",
-      "latencyMs": 1256,
+      "startedAt": "2026-07-22T06:57:10.371Z",
+      "completedAt": "2026-07-22T06:57:12.031Z",
+      "latencyMs": 1660,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5512,9 +5783,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:52.756Z",
-      "completedAt": "2026-07-22T06:16:54.097Z",
-      "latencyMs": 1341,
+      "startedAt": "2026-07-22T06:57:12.031Z",
+      "completedAt": "2026-07-22T06:57:13.528Z",
+      "latencyMs": 1497,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5579,9 +5850,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:54.098Z",
-      "completedAt": "2026-07-22T06:16:55.573Z",
-      "latencyMs": 1475,
+      "startedAt": "2026-07-22T06:57:13.528Z",
+      "completedAt": "2026-07-22T06:57:15.222Z",
+      "latencyMs": 1694,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5614,7 +5885,7 @@
       "id": "render-pilot:5485f73ab5276b2e",
       "instanceId": "instance:cb-0063-b55329da:smart-reframe",
       "resultId": "result:instance:cb-0063-b55329da:smart-reframe",
-      "split": "adversarial",
+      "split": "public-test",
       "workflow": "smart-reframe",
       "executorVersion": "local-ffmpeg-center-reframe-v1",
       "outputArtifacts": [
@@ -5646,9 +5917,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:55.573Z",
-      "completedAt": "2026-07-22T06:16:57.224Z",
-      "latencyMs": 1651,
+      "startedAt": "2026-07-22T06:57:15.222Z",
+      "completedAt": "2026-07-22T06:57:17.009Z",
+      "latencyMs": 1787,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5667,7 +5938,7 @@
           "poster": "/media/creatorbench-v1/public/5485f73ab5276b2e-1x1.jpg"
         }
       ],
-      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "publicSourceLabel": "NASA SVS public domain · Arctic Sea Ice Minimum 2025",
       "route": "local-ffmpeg-center-reframe-v1",
       "machineFindings": [
@@ -5713,9 +5984,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:57.224Z",
-      "completedAt": "2026-07-22T06:16:58.339Z",
-      "latencyMs": 1116,
+      "startedAt": "2026-07-22T06:57:17.009Z",
+      "completedAt": "2026-07-22T06:57:18.269Z",
+      "latencyMs": 1260,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5780,9 +6051,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:58.340Z",
-      "completedAt": "2026-07-22T06:16:59.386Z",
-      "latencyMs": 1046,
+      "startedAt": "2026-07-22T06:57:18.269Z",
+      "completedAt": "2026-07-22T06:57:19.496Z",
+      "latencyMs": 1227,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5847,9 +6118,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:16:59.386Z",
-      "completedAt": "2026-07-22T06:17:00.792Z",
-      "latencyMs": 1406,
+      "startedAt": "2026-07-22T06:57:19.496Z",
+      "completedAt": "2026-07-22T06:57:21.014Z",
+      "latencyMs": 1518,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5914,9 +6185,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:00.792Z",
-      "completedAt": "2026-07-22T06:17:02.046Z",
-      "latencyMs": 1253,
+      "startedAt": "2026-07-22T06:57:21.014Z",
+      "completedAt": "2026-07-22T06:57:22.296Z",
+      "latencyMs": 1281,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5981,9 +6252,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:02.046Z",
-      "completedAt": "2026-07-22T06:17:03.194Z",
-      "latencyMs": 1148,
+      "startedAt": "2026-07-22T06:57:22.296Z",
+      "completedAt": "2026-07-22T06:57:23.611Z",
+      "latencyMs": 1316,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6048,9 +6319,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:03.194Z",
-      "completedAt": "2026-07-22T06:17:04.709Z",
-      "latencyMs": 1514,
+      "startedAt": "2026-07-22T06:57:23.612Z",
+      "completedAt": "2026-07-22T06:57:25.351Z",
+      "latencyMs": 1739,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6115,9 +6386,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:04.709Z",
-      "completedAt": "2026-07-22T06:17:06.421Z",
-      "latencyMs": 1713,
+      "startedAt": "2026-07-22T06:57:25.351Z",
+      "completedAt": "2026-07-22T06:57:27.096Z",
+      "latencyMs": 1745,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6182,9 +6453,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:06.421Z",
-      "completedAt": "2026-07-22T06:17:07.670Z",
-      "latencyMs": 1249,
+      "startedAt": "2026-07-22T06:57:27.096Z",
+      "completedAt": "2026-07-22T06:57:28.506Z",
+      "latencyMs": 1410,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6249,9 +6520,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:07.670Z",
-      "completedAt": "2026-07-22T06:17:09.049Z",
-      "latencyMs": 1378,
+      "startedAt": "2026-07-22T06:57:28.506Z",
+      "completedAt": "2026-07-22T06:57:30.035Z",
+      "latencyMs": 1529,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6316,9 +6587,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:09.049Z",
-      "completedAt": "2026-07-22T06:17:10.170Z",
-      "latencyMs": 1121,
+      "startedAt": "2026-07-22T06:57:30.035Z",
+      "completedAt": "2026-07-22T06:57:31.321Z",
+      "latencyMs": 1286,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6383,9 +6654,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:10.170Z",
-      "completedAt": "2026-07-22T06:17:11.549Z",
-      "latencyMs": 1379,
+      "startedAt": "2026-07-22T06:57:31.321Z",
+      "completedAt": "2026-07-22T06:57:32.941Z",
+      "latencyMs": 1620,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6450,9 +6721,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:11.549Z",
-      "completedAt": "2026-07-22T06:17:12.777Z",
-      "latencyMs": 1228,
+      "startedAt": "2026-07-22T06:57:32.941Z",
+      "completedAt": "2026-07-22T06:57:34.303Z",
+      "latencyMs": 1362,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6517,9 +6788,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:12.777Z",
-      "completedAt": "2026-07-22T06:17:14.316Z",
-      "latencyMs": 1538,
+      "startedAt": "2026-07-22T06:57:34.303Z",
+      "completedAt": "2026-07-22T06:57:35.971Z",
+      "latencyMs": 1668,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6584,9 +6855,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:14.316Z",
-      "completedAt": "2026-07-22T06:17:15.726Z",
-      "latencyMs": 1411,
+      "startedAt": "2026-07-22T06:57:35.971Z",
+      "completedAt": "2026-07-22T06:57:37.608Z",
+      "latencyMs": 1637,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6651,9 +6922,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:15.726Z",
-      "completedAt": "2026-07-22T06:17:17.183Z",
-      "latencyMs": 1456,
+      "startedAt": "2026-07-22T06:57:37.608Z",
+      "completedAt": "2026-07-22T06:57:39.203Z",
+      "latencyMs": 1595,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6718,9 +6989,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:17.183Z",
-      "completedAt": "2026-07-22T06:17:18.596Z",
-      "latencyMs": 1413,
+      "startedAt": "2026-07-22T06:57:39.203Z",
+      "completedAt": "2026-07-22T06:57:40.733Z",
+      "latencyMs": 1530,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6785,9 +7056,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:18.596Z",
-      "completedAt": "2026-07-22T06:17:19.829Z",
-      "latencyMs": 1233,
+      "startedAt": "2026-07-22T06:57:40.733Z",
+      "completedAt": "2026-07-22T06:57:42.173Z",
+      "latencyMs": 1440,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6852,9 +7123,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:19.830Z",
-      "completedAt": "2026-07-22T06:17:21.126Z",
-      "latencyMs": 1296,
+      "startedAt": "2026-07-22T06:57:42.173Z",
+      "completedAt": "2026-07-22T06:57:43.787Z",
+      "latencyMs": 1614,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6919,9 +7190,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:21.126Z",
-      "completedAt": "2026-07-22T06:17:22.697Z",
-      "latencyMs": 1571,
+      "startedAt": "2026-07-22T06:57:43.787Z",
+      "completedAt": "2026-07-22T06:57:45.647Z",
+      "latencyMs": 1860,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6986,9 +7257,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:22.697Z",
-      "completedAt": "2026-07-22T06:17:24.079Z",
-      "latencyMs": 1382,
+      "startedAt": "2026-07-22T06:57:45.647Z",
+      "completedAt": "2026-07-22T06:57:47.307Z",
+      "latencyMs": 1660,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7053,9 +7324,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:24.079Z",
-      "completedAt": "2026-07-22T06:17:25.436Z",
-      "latencyMs": 1357,
+      "startedAt": "2026-07-22T06:57:47.308Z",
+      "completedAt": "2026-07-22T06:57:48.889Z",
+      "latencyMs": 1582,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7120,9 +7391,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:25.436Z",
-      "completedAt": "2026-07-22T06:17:26.589Z",
-      "latencyMs": 1152,
+      "startedAt": "2026-07-22T06:57:48.890Z",
+      "completedAt": "2026-07-22T06:57:50.317Z",
+      "latencyMs": 1427,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7187,9 +7458,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:26.589Z",
-      "completedAt": "2026-07-22T06:17:27.805Z",
-      "latencyMs": 1216,
+      "startedAt": "2026-07-22T06:57:50.317Z",
+      "completedAt": "2026-07-22T06:57:51.938Z",
+      "latencyMs": 1620,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7254,9 +7525,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:27.805Z",
-      "completedAt": "2026-07-22T06:17:29.344Z",
-      "latencyMs": 1539,
+      "startedAt": "2026-07-22T06:57:51.938Z",
+      "completedAt": "2026-07-22T06:57:53.890Z",
+      "latencyMs": 1952,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7321,9 +7592,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:29.344Z",
-      "completedAt": "2026-07-22T06:17:30.593Z",
-      "latencyMs": 1249,
+      "startedAt": "2026-07-22T06:57:53.890Z",
+      "completedAt": "2026-07-22T06:57:55.674Z",
+      "latencyMs": 1784,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7388,9 +7659,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:30.593Z",
-      "completedAt": "2026-07-22T06:17:32.016Z",
-      "latencyMs": 1422,
+      "startedAt": "2026-07-22T06:57:55.674Z",
+      "completedAt": "2026-07-22T06:57:57.476Z",
+      "latencyMs": 1802,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7455,9 +7726,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:32.016Z",
-      "completedAt": "2026-07-22T06:17:33.547Z",
-      "latencyMs": 1532,
+      "startedAt": "2026-07-22T06:57:57.476Z",
+      "completedAt": "2026-07-22T06:57:59.105Z",
+      "latencyMs": 1629,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7522,9 +7793,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:33.547Z",
-      "completedAt": "2026-07-22T06:17:34.877Z",
-      "latencyMs": 1330,
+      "startedAt": "2026-07-22T06:57:59.105Z",
+      "completedAt": "2026-07-22T06:58:00.753Z",
+      "latencyMs": 1648,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7589,9 +7860,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:34.877Z",
-      "completedAt": "2026-07-22T06:17:36.283Z",
-      "latencyMs": 1406,
+      "startedAt": "2026-07-22T06:58:00.753Z",
+      "completedAt": "2026-07-22T06:58:02.857Z",
+      "latencyMs": 2104,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7656,9 +7927,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:36.283Z",
-      "completedAt": "2026-07-22T06:17:37.718Z",
-      "latencyMs": 1435,
+      "startedAt": "2026-07-22T06:58:02.857Z",
+      "completedAt": "2026-07-22T06:58:05.025Z",
+      "latencyMs": 2168,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7723,9 +7994,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:37.718Z",
-      "completedAt": "2026-07-22T06:17:38.973Z",
-      "latencyMs": 1255,
+      "startedAt": "2026-07-22T06:58:05.025Z",
+      "completedAt": "2026-07-22T06:58:06.622Z",
+      "latencyMs": 1597,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7790,9 +8061,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:38.973Z",
-      "completedAt": "2026-07-22T06:17:40.435Z",
-      "latencyMs": 1462,
+      "startedAt": "2026-07-22T06:58:06.622Z",
+      "completedAt": "2026-07-22T06:58:08.420Z",
+      "latencyMs": 1798,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7857,9 +8128,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:40.435Z",
-      "completedAt": "2026-07-22T06:17:41.785Z",
-      "latencyMs": 1350,
+      "startedAt": "2026-07-22T06:58:08.420Z",
+      "completedAt": "2026-07-22T06:58:10.205Z",
+      "latencyMs": 1785,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7924,9 +8195,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:41.785Z",
-      "completedAt": "2026-07-22T06:17:42.961Z",
-      "latencyMs": 1176,
+      "startedAt": "2026-07-22T06:58:10.205Z",
+      "completedAt": "2026-07-22T06:58:11.657Z",
+      "latencyMs": 1451,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7991,9 +8262,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:42.961Z",
-      "completedAt": "2026-07-22T06:17:44.378Z",
-      "latencyMs": 1417,
+      "startedAt": "2026-07-22T06:58:11.657Z",
+      "completedAt": "2026-07-22T06:58:13.518Z",
+      "latencyMs": 1861,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8058,9 +8329,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:44.378Z",
-      "completedAt": "2026-07-22T06:17:45.726Z",
-      "latencyMs": 1348,
+      "startedAt": "2026-07-22T06:58:13.518Z",
+      "completedAt": "2026-07-22T06:58:15.337Z",
+      "latencyMs": 1819,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8125,9 +8396,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:45.726Z",
-      "completedAt": "2026-07-22T06:17:46.871Z",
-      "latencyMs": 1145,
+      "startedAt": "2026-07-22T06:58:15.338Z",
+      "completedAt": "2026-07-22T06:58:16.976Z",
+      "latencyMs": 1638,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8192,9 +8463,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T06:17:46.871Z",
-      "completedAt": "2026-07-22T06:17:48.255Z",
-      "latencyMs": 1384,
+      "startedAt": "2026-07-22T06:58:16.976Z",
+      "completedAt": "2026-07-22T06:58:19.205Z",
+      "latencyMs": 2229,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,

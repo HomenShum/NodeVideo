@@ -1,77 +1,77 @@
 {
   "schemaVersion": "nodevideo.creatorbench-evaluation/v1",
-  "benchmarkVersion": "creatorbench-v1",
+  "benchmarkVersion": "creatorbench-v1.1",
   "evaluationMode": "public-routing-and-ingestion",
-  "generatedAt": "2026-07-22T06:15:21.975Z",
+  "generatedAt": "2026-07-22T06:55:28.978Z",
   "population": {
-    "instanceCount": 176,
-    "sourceCount": 88,
-    "creatorCount": 45,
-    "domainCount": 9,
+    "instanceCount": 178,
+    "sourceCount": 89,
+    "creatorCount": 46,
+    "domainCount": 10,
     "workflowCount": 2
   },
   "outcomes": {
     "automatic_usable": {
       "numerator": 0,
-      "denominator": 176,
+      "denominator": 178,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 0,
-        "upper": 0.021360251667687728
+        "lower": 1.6980768892112046e-18,
+        "upper": 0.021125318976251826
       }
     },
     "assisted_usable": {
       "numerator": 0,
-      "denominator": 176,
+      "denominator": 178,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 0,
-        "upper": 0.021360251667687728
+        "lower": 1.6980768892112046e-18,
+        "upper": 0.021125318976251826
       }
     },
     "review_required": {
-      "numerator": 22,
-      "denominator": 176,
-      "rate": 0.125,
+      "numerator": 24,
+      "denominator": 178,
+      "rate": 0.1348314606741573,
       "confidenceInterval": {
-        "lower": 0.08401581779070533,
-        "upper": 0.1820043709600605
+        "lower": 0.09230812874130456,
+        "upper": 0.19278339635371075
       }
     },
     "safely_abstained": {
       "numerator": 154,
-      "denominator": 176,
-      "rate": 0.875,
+      "denominator": 178,
+      "rate": 0.8651685393258427,
       "confidenceInterval": {
-        "lower": 0.8179956290399395,
-        "upper": 0.9159841822092947
+        "lower": 0.8072166036462892,
+        "upper": 0.9076918712586953
       }
     },
     "unsupported": {
       "numerator": 0,
-      "denominator": 176,
+      "denominator": 178,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 0,
-        "upper": 0.021360251667687728
+        "lower": 1.6980768892112046e-18,
+        "upper": 0.021125318976251826
       }
     },
     "technical_failure": {
       "numerator": 0,
-      "denominator": 176,
+      "denominator": 178,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 0,
-        "upper": 0.021360251667687728
+        "lower": 1.6980768892112046e-18,
+        "upper": 0.021125318976251826
       }
     },
     "silent_failure": {
       "numerator": 0,
-      "denominator": 176,
+      "denominator": 178,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 0,
-        "upper": 0.021360251667687728
+        "lower": 1.6980768892112046e-18,
+        "upper": 0.021125318976251826
       }
     }
   },
@@ -352,6 +352,76 @@
           "confidenceInterval": {
             "lower": 2.1025014877572554e-17,
             "upper": 0.24249400665524087
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "field-sports",
+      "count": 2,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "review_required": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.3423802275066531,
+            "upper": 1
+          }
+        },
+        "safely_abstained": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
           }
         }
       }
@@ -709,69 +779,69 @@
     {
       "kind": "workflow",
       "id": "action-subject-following",
-      "count": 88,
+      "count": 89,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 88,
+          "denominator": 89,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.0418270666648922
+            "lower": 3.3258932232013273e-18,
+            "upper": 0.04137654523625251
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 88,
+          "denominator": 89,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.0418270666648922
+            "lower": 3.3258932232013273e-18,
+            "upper": 0.04137654523625251
           }
         },
         "review_required": {
-          "numerator": 11,
-          "denominator": 88,
-          "rate": 0.125,
+          "numerator": 12,
+          "denominator": 89,
+          "rate": 0.1348314606741573,
           "confidenceInterval": {
-            "lower": 0.07125274152192246,
-            "upper": 0.2101175584767467
+            "lower": 0.07884271200737802,
+            "upper": 0.22103903451348053
           }
         },
         "safely_abstained": {
           "numerator": 77,
-          "denominator": 88,
-          "rate": 0.875,
+          "denominator": 89,
+          "rate": 0.8651685393258427,
           "confidenceInterval": {
-            "lower": 0.7898824415232533,
-            "upper": 0.9287472584780775
+            "lower": 0.7789609654865195,
+            "upper": 0.921157287992622
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 88,
+          "denominator": 89,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.0418270666648922
+            "lower": 3.3258932232013273e-18,
+            "upper": 0.04137654523625251
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 88,
+          "denominator": 89,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.0418270666648922
+            "lower": 3.3258932232013273e-18,
+            "upper": 0.04137654523625251
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 88,
+          "denominator": 89,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.0418270666648922
+            "lower": 3.3258932232013273e-18,
+            "upper": 0.04137654523625251
           }
         }
       }
@@ -779,69 +849,69 @@
     {
       "kind": "workflow",
       "id": "smart-reframe",
-      "count": 88,
+      "count": 89,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 88,
+          "denominator": 89,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.0418270666648922
+            "lower": 3.3258932232013273e-18,
+            "upper": 0.04137654523625251
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 88,
+          "denominator": 89,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.0418270666648922
+            "lower": 3.3258932232013273e-18,
+            "upper": 0.04137654523625251
           }
         },
         "review_required": {
-          "numerator": 11,
-          "denominator": 88,
-          "rate": 0.125,
+          "numerator": 12,
+          "denominator": 89,
+          "rate": 0.1348314606741573,
           "confidenceInterval": {
-            "lower": 0.07125274152192246,
-            "upper": 0.2101175584767467
+            "lower": 0.07884271200737802,
+            "upper": 0.22103903451348053
           }
         },
         "safely_abstained": {
           "numerator": 77,
-          "denominator": 88,
-          "rate": 0.875,
+          "denominator": 89,
+          "rate": 0.8651685393258427,
           "confidenceInterval": {
-            "lower": 0.7898824415232533,
-            "upper": 0.9287472584780775
+            "lower": 0.7789609654865195,
+            "upper": 0.921157287992622
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 88,
+          "denominator": 89,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.0418270666648922
+            "lower": 3.3258932232013273e-18,
+            "upper": 0.04137654523625251
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 88,
+          "denominator": 89,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.0418270666648922
+            "lower": 3.3258932232013273e-18,
+            "upper": 0.04137654523625251
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 88,
+          "denominator": 89,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 0,
-            "upper": 0.0418270666648922
+            "lower": 3.3258932232013273e-18,
+            "upper": 0.04137654523625251
           }
         }
       }
@@ -850,10 +920,10 @@
   "routeDistribution": [
     {
       "executorId": "executor.opencv-subject-tracker",
-      "count": 22,
+      "count": 24,
       "dispositions": {
         "automatic": 0,
-        "assisted": 22,
+        "assisted": 24,
         "review": 0,
         "abstain": 0
       }
@@ -873,5 +943,5 @@
     "No result is classified usable until a rendered artifact is blindly reviewed by a human.",
     "This baseline measures request ingestion, rights validation, route eligibility, and honest non-success states—not editing quality."
   ],
-  "resultsSha256": "sha256:b5053390082a9c957abc7c69d35e92107a1e32c1bed9a36dcf8050c63c69943d"
+  "resultsSha256": "sha256:ed3e1743d5111c8fcd04307257aa0efb9e18d3f7d99ebc4f50fbf0817c9f77a8"
 }

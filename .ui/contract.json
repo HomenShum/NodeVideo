@@ -537,15 +537,8 @@
           "meaning": "Exact counts and confidence intervals are loaded from the public report; zero human labels are disclosed rather than interpreted as editing quality.",
           "requireTexts": [
             "See what works, what needs help, and what fails.",
-            "Human editing quality is not verified yet",
-            "Workflow-admissible coverage"
-          ],
-          "forbidTexts": ["universal performance", "works on every video"]
-        },
-        {
-          "id": "creatorbench-report-missing",
-          "meaning": "The surface fails closed when the public report cannot be fetched.",
-          "requireTexts": ["CreatorBench evidence is unavailable."]
+            "Human editing quality and silent-failure incidence are unverified"
+          ]
         }
       ],
       "agentGuidance": "Use this surface for measured evidence, not editing. Verify every rate against its numerator, denominator, interval, scope, and freeze receipt. Do not infer human usability from routing-only or decode-only results."

@@ -121,11 +121,11 @@ route-disposition,private-heldout routing evaluation,executor,executor.opencv-su
 route-disposition,private-heldout routing evaluation,executor,executor.opencv-subject-tracker,assisted,12,12,1,,
 route-disposition,private-heldout routing evaluation,executor,executor.opencv-subject-tracker,review,0,12,0,,
 route-disposition,private-heldout routing evaluation,executor,executor.opencv-subject-tracker,abstain,0,12,0,,
-metric,public deterministic center-crop render pilot; not private-heldout editing quality,,,export_reopen,264,264,1,,
-target-gap,creatorbench-v1 hard target,,,clips,,250,,139,remaining
-target-gap,creatorbench-v1 hard target,,,creators,,75,,7,remaining
+metric,public deterministic center-crop render pilot; not private-heldout editing quality,,,export_reopen,267,267,1,,
+target-gap,creatorbench-v1 hard target,,,clips,,250,,138,remaining
+target-gap,creatorbench-v1 hard target,,,creators,,75,,6,remaining
 target-gap,creatorbench-v1 hard target,,,domains,,15,,1,remaining
 target-gap,creatorbench-v1 hard target,,,workflows,,8,,6,remaining
-target-gap,creatorbench-v1 hard target,,,instances,,2000,,1778,remaining
+target-gap,creatorbench-v1 hard target,,,instances,,2000,,1776,remaining
 limitation,public claim,,,,,,,No result is classified usable until a rendered artifact is blindly reviewed by a human.,
 limitation,public claim,,,,,,,"This baseline measures request ingestion, rights validation, route eligibility, and honest non-success states—not editing quality.",

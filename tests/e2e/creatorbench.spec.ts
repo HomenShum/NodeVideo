@@ -147,11 +147,11 @@ test.describe('CreatorBench public evidence and reviewer UI', () => {
   }) => {
     await page.goto('/creatorbench');
     const dataset = page.getByLabel('Dataset coverage');
-    await expect(dataset).toContainText('111');
-    await expect(dataset).toContainText('222');
+    await expect(dataset).toContainText('112');
+    await expect(dataset).toContainText('224');
     await expect(dataset).toContainText('Private held-out population');
     await expect(dataset).toContainText('46');
-    await expect(page.getByText('264/264')).toBeVisible();
+    await expect(page.getByText('267/267')).toBeVisible();
     await expect(page.getByText(/Public deterministic center-crop render pilot/i)).toBeVisible();
     await expect(page.getByTestId('unverified-quality')).toContainText(
       'Human editing quality and silent-failure incidence are unverified',
@@ -169,7 +169,7 @@ test.describe('CreatorBench public evidence and reviewer UI', () => {
     await reviewButton.scrollIntoViewIfNeeded();
     await reviewButton.click();
     const review = page.getByTestId('review-lab');
-    await expect(review).toContainText(/case 1 of 88/iu);
+    await expect(review).toContainText(/case 1 of 89/iu);
     await expect(review).toContainText('Additional requested formats');
     await expect(review).not.toContainText('Deterministic center-crop baseline');
     await expect(review.locator('img')).toHaveCount(4);

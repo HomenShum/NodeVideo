@@ -1,13 +1,13 @@
 {
   "schemaVersion": "nodevideo.creatorbench-public-report/v1",
-  "benchmarkVersion": "creatorbench-v1",
+  "benchmarkVersion": "creatorbench-v1.1",
   "status": "evaluated",
-  "generatedAt": "2026-07-22T06:45:25.439Z",
+  "generatedAt": "2026-07-22T06:58:28.855Z",
   "claim": {
     "schemaVersion": "nodevideo.creatorbench-public-claim/v1",
-    "benchmarkVersion": "creatorbench-v1",
-    "freezeReceiptId": "creatorbench-freeze:37b596c88293fbab06b9d9fb",
-    "generatedAt": "2026-07-22T06:45:25.439Z",
+    "benchmarkVersion": "creatorbench-v1.1",
+    "freezeReceiptId": "creatorbench-freeze:cee36176239ad1af8fd97ded",
+    "generatedAt": "2026-07-22T06:58:28.855Z",
     "population": {
       "split": "private-heldout",
       "instanceCount": 46,
@@ -53,7 +53,7 @@
         "rate": 0
       }
     },
-    "statement": "On creatorbench-v1, covering 46 private held-out workflow instances from 23 creator-disjoint sources across 2 workflows, NodeVideo produced a usable first-pass result automatically in 0.0%, after bounded assistance in 0.0%, and safely abstained in 73.9%. Silent failures occurred in 0.0%.",
+    "statement": "On creatorbench-v1.1, covering 46 private held-out workflow instances from 23 creator-disjoint sources across 2 workflows, NodeVideo produced a usable first-pass result automatically in 0.0%, after bounded assistance in 0.0%, and safely abstained in 73.9%. Silent failures occurred in 0.0%.",
     "limitations": [
       "No result is classified usable until a rendered artifact is blindly reviewed by a human.",
       "This baseline measures request ingestion, rights validation, route eligibility, and honest non-success states—not editing quality."
@@ -125,27 +125,27 @@
     }
   },
   "dataset": {
-    "clips": 111,
-    "creators": 68,
+    "clips": 112,
+    "creators": 69,
     "domains": 14,
     "workflows": 2,
-    "instances": 222,
+    "instances": 224,
     "privateHeldoutInstances": 46,
     "splits": {
-      "development": 51,
-      "public-test": 24,
+      "development": 54,
+      "public-test": 23,
       "private-heldout": 23,
-      "adversarial": 13
+      "adversarial": 12
     },
     "licenseCounts": {
-      "CC BY 3.0": 4,
+      "CC BY 3.0": 5,
       "CC BY 4.0": 1,
       "NASA SVS public domain": 106
     },
     "acquisitionRun": {
-      "requestedClips": 112,
-      "acquiredClips": 111,
-      "normalizationGap": 1
+      "requestedClips": 125,
+      "acquiredClips": 112,
+      "normalizationGap": 13
     },
     "hardTargets": {
       "clips": 250,
@@ -155,14 +155,15 @@
       "instances": 2000
     },
     "targetGaps": {
-      "clips": 139,
-      "creators": 7,
+      "clips": 138,
+      "creators": 6,
       "domains": 1,
       "workflows": 6,
-      "instances": 1778
+      "instances": 1776
     },
     "acquisitionFailureCategories": {
-      "source-http": 1
+      "source-http": 7,
+      "source-host-rate-limit": 46
     }
   },
   "counts": {
@@ -181,7 +182,7 @@
       "founder-product-launch"
     ],
     "corpusTierCounts": {
-      "motion-short": 111
+      "motion-short": 112
     }
   },
   "metrics": {
@@ -197,8 +198,8 @@
       "median": null
     },
     "exportReopen": {
-      "numerator": 264,
-      "denominator": 264,
+      "numerator": 267,
+      "denominator": 267,
       "rate": 1
     },
     "exportReopenScope": "public deterministic center-crop render pilot; not private-heldout editing quality",
@@ -1281,13 +1282,13 @@
   ],
   "representativeFailures": [],
   "freezeReceipt": {
-    "receiptId": "creatorbench-freeze:37b596c88293fbab06b9d9fb",
-    "frozenAt": "2026-07-22T06:15:17.730Z",
-    "sourceCommit": "a42851e1a60e8d5847287fba2277985e6a678ea7",
-    "configHash": "sha256:20929e9cc64c3bf88a6018bede9a4ee81d0e2375d1c9c593c4db32174fe1872c",
-    "manifestHash": "sha256:2fdb4411debf43016843251b8ad471709e74d63ba53c4c667d2c69cd24a46623",
+    "receiptId": "creatorbench-freeze:cee36176239ad1af8fd97ded",
+    "frozenAt": "2026-07-22T06:55:20.368Z",
+    "sourceCommit": "3856157155ad46e04de0221df25ab6cc22087888",
+    "configHash": "sha256:55c39e8477a17780f00d9608e6c79ab0cff57a3b24568f8154c48b8e674e33d3",
+    "manifestHash": "sha256:ca01d7148916b991006c4892f05b33733a060ebc00afe0a0959c517a0a04ab43",
     "evaluatorVersion": "creatorbench-evaluator-v1",
-    "thresholdPolicy": "sha256:5338c6b661fe925a617b21c98a9601ea79cfc3b07e1bee18d431c1181577387d",
+    "thresholdPolicy": "sha256:b111f36e85097fa2341efea33364976efe9060690a75371877b5f5c64b7ec95c",
     "status": "verified"
   },
   "publicRenderPilot": {
@@ -1299,22 +1300,22 @@
         "public-test",
         "adversarial"
       ],
-      "sourceCount": 88,
-      "outputCount": 88,
-      "artifactCount": 264
+      "sourceCount": 89,
+      "outputCount": 89,
+      "artifactCount": 267
     },
     "metrics": {
       "latencyMs": {
-        "p50": 1347,
-        "p95": 1603
+        "p50": 1648,
+        "p95": 2709
       },
       "costUsd": {
         "total": 0,
         "perOutput": 0
       },
       "exportReopen": {
-        "numerator": 264,
-        "denominator": 264,
+        "numerator": 267,
+        "denominator": 267,
         "rate": 1
       }
     },
@@ -1326,7 +1327,37 @@
   },
   "reviewCases": [
     {
+      "id": "instance:cb-0009-beb98f01:smart-reframe",
+      "resultId": "result:instance:cb-0009-beb98f01:smart-reframe",
+      "split": "adversarial",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/5c2318cf7148893c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/5c2318cf7148893c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "CC BY 3.0 · McKinley's Late Grandmother is an Inspiration.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
       "id": "instance:cb-0006-493a02f5:smart-reframe",
+      "resultId": "result:instance:cb-0006-493a02f5:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/92e67347e253173c-source.jpg",
@@ -1353,6 +1384,8 @@
     },
     {
       "id": "instance:cb-0008-b952fc45:smart-reframe",
+      "resultId": "result:instance:cb-0008-b952fc45:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/dd96975fb13c2a24-source.jpg",
@@ -1379,6 +1412,8 @@
     },
     {
       "id": "instance:cb-0009-4f1d6956:smart-reframe",
+      "resultId": "result:instance:cb-0009-4f1d6956:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/dbdf164d2f66a3c2-source.jpg",
@@ -1405,6 +1440,8 @@
     },
     {
       "id": "instance:cb-0010-565d0079:smart-reframe",
+      "resultId": "result:instance:cb-0010-565d0079:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/f72743c59803c8df-source.jpg",
@@ -1431,6 +1468,8 @@
     },
     {
       "id": "instance:cb-0011-85b2e35f:smart-reframe",
+      "resultId": "result:instance:cb-0011-85b2e35f:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/06fb82c9a0c22c71-source.jpg",
@@ -1457,6 +1496,8 @@
     },
     {
       "id": "instance:cb-0012-87d1ef2a:smart-reframe",
+      "resultId": "result:instance:cb-0012-87d1ef2a:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/de898fddf7eee928-source.jpg",
@@ -1483,6 +1524,8 @@
     },
     {
       "id": "instance:cb-0015-0a22e6b8:smart-reframe",
+      "resultId": "result:instance:cb-0015-0a22e6b8:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/2248624bdd122e08-source.jpg",
@@ -1509,6 +1552,8 @@
     },
     {
       "id": "instance:cb-0016-4bbd64b0:smart-reframe",
+      "resultId": "result:instance:cb-0016-4bbd64b0:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/b60900db8a4391ce-source.jpg",
@@ -1535,6 +1580,8 @@
     },
     {
       "id": "instance:cb-0017-cc8702fa:smart-reframe",
+      "resultId": "result:instance:cb-0017-cc8702fa:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/607a5e5c5264206e-source.jpg",
@@ -1561,6 +1608,8 @@
     },
     {
       "id": "instance:cb-0018-0932f238:smart-reframe",
+      "resultId": "result:instance:cb-0018-0932f238:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/5edd490583c79b85-source.jpg",
@@ -1587,6 +1636,8 @@
     },
     {
       "id": "instance:cb-0019-9e58ef72:smart-reframe",
+      "resultId": "result:instance:cb-0019-9e58ef72:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/7eda2c9921df3ed2-source.jpg",
@@ -1613,6 +1664,8 @@
     },
     {
       "id": "instance:cb-0020-8804a7db:smart-reframe",
+      "resultId": "result:instance:cb-0020-8804a7db:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/a591bc89a3a79d91-source.jpg",
@@ -1639,6 +1692,8 @@
     },
     {
       "id": "instance:cb-0021-31f5bb01:smart-reframe",
+      "resultId": "result:instance:cb-0021-31f5bb01:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/5c6aa590be006ee6-source.jpg",
@@ -1665,6 +1720,8 @@
     },
     {
       "id": "instance:cb-0022-b933f478:smart-reframe",
+      "resultId": "result:instance:cb-0022-b933f478:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/4c40cc1e9a41427c-source.jpg",
@@ -1691,6 +1748,8 @@
     },
     {
       "id": "instance:cb-0023-cf31f183:smart-reframe",
+      "resultId": "result:instance:cb-0023-cf31f183:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/e758d53cbfd7840f-source.jpg",
@@ -1717,6 +1776,8 @@
     },
     {
       "id": "instance:cb-0024-85653153:smart-reframe",
+      "resultId": "result:instance:cb-0024-85653153:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/d005c778c7b4f12a-source.jpg",
@@ -1743,6 +1804,8 @@
     },
     {
       "id": "instance:cb-0025-36d4e43b:smart-reframe",
+      "resultId": "result:instance:cb-0025-36d4e43b:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/3876defedf8bb361-source.jpg",
@@ -1769,6 +1832,8 @@
     },
     {
       "id": "instance:cb-0026-7c1b2383:smart-reframe",
+      "resultId": "result:instance:cb-0026-7c1b2383:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/90c5f36261b220d4-source.jpg",
@@ -1795,6 +1860,8 @@
     },
     {
       "id": "instance:cb-0027-0cc0ba2b:smart-reframe",
+      "resultId": "result:instance:cb-0027-0cc0ba2b:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/a69203b73fb4f965-source.jpg",
@@ -1821,6 +1888,8 @@
     },
     {
       "id": "instance:cb-0028-fd71efcf:smart-reframe",
+      "resultId": "result:instance:cb-0028-fd71efcf:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/ce7e45a6459b0695-source.jpg",
@@ -1847,6 +1916,8 @@
     },
     {
       "id": "instance:cb-0029-ceb75f1d:smart-reframe",
+      "resultId": "result:instance:cb-0029-ceb75f1d:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/7b57e6014fdbdde8-source.jpg",
@@ -1873,6 +1944,8 @@
     },
     {
       "id": "instance:cb-0030-f6dba17c:smart-reframe",
+      "resultId": "result:instance:cb-0030-f6dba17c:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/719621e2ce5cda9c-source.jpg",
@@ -1899,6 +1972,8 @@
     },
     {
       "id": "instance:cb-0031-6f0b437d:smart-reframe",
+      "resultId": "result:instance:cb-0031-6f0b437d:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/28dfe7b0ae311cc5-source.jpg",
@@ -1925,6 +2000,8 @@
     },
     {
       "id": "instance:cb-0032-2ce7cec5:smart-reframe",
+      "resultId": "result:instance:cb-0032-2ce7cec5:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/134b650f30ac240d-source.jpg",
@@ -1951,6 +2028,8 @@
     },
     {
       "id": "instance:cb-0033-b4a20a60:smart-reframe",
+      "resultId": "result:instance:cb-0033-b4a20a60:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/0ad77535381aa70e-source.jpg",
@@ -1977,6 +2056,8 @@
     },
     {
       "id": "instance:cb-0034-16ed90ac:smart-reframe",
+      "resultId": "result:instance:cb-0034-16ed90ac:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/28940ce0a23ec858-source.jpg",
@@ -2003,6 +2084,8 @@
     },
     {
       "id": "instance:cb-0036-60582816:smart-reframe",
+      "resultId": "result:instance:cb-0036-60582816:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/8aa3c555ec48fe4d-source.jpg",
@@ -2029,6 +2112,8 @@
     },
     {
       "id": "instance:cb-0037-acd7511c:smart-reframe",
+      "resultId": "result:instance:cb-0037-acd7511c:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/fa6953fb76e914b0-source.jpg",
@@ -2055,6 +2140,8 @@
     },
     {
       "id": "instance:cb-0038-6a3339c2:smart-reframe",
+      "resultId": "result:instance:cb-0038-6a3339c2:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/884fe887246f6aab-source.jpg",
@@ -2081,6 +2168,8 @@
     },
     {
       "id": "instance:cb-0039-884266ba:smart-reframe",
+      "resultId": "result:instance:cb-0039-884266ba:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/8acbfd2ae05f1f00-source.jpg",
@@ -2107,8 +2196,10 @@
     },
     {
       "id": "instance:cb-0040-51f4ed21:smart-reframe",
+      "resultId": "result:instance:cb-0040-51f4ed21:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
-      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/c169161926759ff1-source.jpg",
       "outputPoster": "/media/creatorbench-v1/public/c169161926759ff1-9x16.jpg",
       "outputs": [
@@ -2133,6 +2224,8 @@
     },
     {
       "id": "instance:cb-0042-e291b18d:smart-reframe",
+      "resultId": "result:instance:cb-0042-e291b18d:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/ed768df53a63dc44-source.jpg",
@@ -2159,6 +2252,8 @@
     },
     {
       "id": "instance:cb-0043-b1d571bb:smart-reframe",
+      "resultId": "result:instance:cb-0043-b1d571bb:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/ff03628b7c32cb13-source.jpg",
@@ -2185,6 +2280,8 @@
     },
     {
       "id": "instance:cb-0044-ee96dc05:smart-reframe",
+      "resultId": "result:instance:cb-0044-ee96dc05:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/b4b1189c4a20a321-source.jpg",
@@ -2211,6 +2308,8 @@
     },
     {
       "id": "instance:cb-0045-c0fdc2d9:smart-reframe",
+      "resultId": "result:instance:cb-0045-c0fdc2d9:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/fa4c3387aa2a950e-source.jpg",
@@ -2237,6 +2336,8 @@
     },
     {
       "id": "instance:cb-0046-482f5e97:smart-reframe",
+      "resultId": "result:instance:cb-0046-482f5e97:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/77307f12a48f650c-source.jpg",
@@ -2263,6 +2364,8 @@
     },
     {
       "id": "instance:cb-0047-1aa70c3c:smart-reframe",
+      "resultId": "result:instance:cb-0047-1aa70c3c:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/0d1ba59c63caa5dc-source.jpg",
@@ -2289,6 +2392,8 @@
     },
     {
       "id": "instance:cb-0050-44f3a3ff:smart-reframe",
+      "resultId": "result:instance:cb-0050-44f3a3ff:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/25a4ed9f65e67200-source.jpg",
@@ -2315,6 +2420,8 @@
     },
     {
       "id": "instance:cb-0051-4bcd095f:smart-reframe",
+      "resultId": "result:instance:cb-0051-4bcd095f:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/8c1109ecf73c4375-source.jpg",
@@ -2341,6 +2448,8 @@
     },
     {
       "id": "instance:cb-0052-eb5546f0:smart-reframe",
+      "resultId": "result:instance:cb-0052-eb5546f0:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/e93e636e349320bf-source.jpg",
@@ -2367,6 +2476,8 @@
     },
     {
       "id": "instance:cb-0053-adc83a29:smart-reframe",
+      "resultId": "result:instance:cb-0053-adc83a29:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/849998005f389269-source.jpg",
@@ -2393,6 +2504,8 @@
     },
     {
       "id": "instance:cb-0054-e3b9440b:smart-reframe",
+      "resultId": "result:instance:cb-0054-e3b9440b:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/d3c107658325efb2-source.jpg",
@@ -2419,6 +2532,8 @@
     },
     {
       "id": "instance:cb-0056-ae949169:smart-reframe",
+      "resultId": "result:instance:cb-0056-ae949169:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/0e7ca4e4f5b26c39-source.jpg",
@@ -2445,6 +2560,8 @@
     },
     {
       "id": "instance:cb-0057-1d87ea0e:smart-reframe",
+      "resultId": "result:instance:cb-0057-1d87ea0e:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/e430da52d52b0fde-source.jpg",
@@ -2471,6 +2588,8 @@
     },
     {
       "id": "instance:cb-0058-ca9b5d55:smart-reframe",
+      "resultId": "result:instance:cb-0058-ca9b5d55:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/a2928d85c045c0ae-source.jpg",
@@ -2497,6 +2616,8 @@
     },
     {
       "id": "instance:cb-0059-c3b960e2:smart-reframe",
+      "resultId": "result:instance:cb-0059-c3b960e2:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/e09c298c2543dca7-source.jpg",
@@ -2523,6 +2644,8 @@
     },
     {
       "id": "instance:cb-0060-4ef7b32c:smart-reframe",
+      "resultId": "result:instance:cb-0060-4ef7b32c:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/9766b987799404b7-source.jpg",
@@ -2549,6 +2672,8 @@
     },
     {
       "id": "instance:cb-0061-68183569:smart-reframe",
+      "resultId": "result:instance:cb-0061-68183569:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/efb86e0d520a6814-source.jpg",
@@ -2575,6 +2700,8 @@
     },
     {
       "id": "instance:cb-0062-7554e85b:smart-reframe",
+      "resultId": "result:instance:cb-0062-7554e85b:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/22389b748d245802-source.jpg",
@@ -2601,8 +2728,10 @@
     },
     {
       "id": "instance:cb-0063-b55329da:smart-reframe",
+      "resultId": "result:instance:cb-0063-b55329da:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
-      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/5485f73ab5276b2e-source.jpg",
       "outputPoster": "/media/creatorbench-v1/public/5485f73ab5276b2e-9x16.jpg",
       "outputs": [
@@ -2627,6 +2756,8 @@
     },
     {
       "id": "instance:cb-0066-9e65c59b:smart-reframe",
+      "resultId": "result:instance:cb-0066-9e65c59b:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/29a8ac42889fc760-source.jpg",
@@ -2653,6 +2784,8 @@
     },
     {
       "id": "instance:cb-0068-020c2a0a:smart-reframe",
+      "resultId": "result:instance:cb-0068-020c2a0a:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/47fdd277e3c562c4-source.jpg",
@@ -2679,6 +2812,8 @@
     },
     {
       "id": "instance:cb-0069-e0f2d14d:smart-reframe",
+      "resultId": "result:instance:cb-0069-e0f2d14d:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/c788c06c9b9586f0-source.jpg",
@@ -2705,6 +2840,8 @@
     },
     {
       "id": "instance:cb-0071-21cbaa5c:smart-reframe",
+      "resultId": "result:instance:cb-0071-21cbaa5c:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/826002db00ad8c64-source.jpg",
@@ -2731,6 +2868,8 @@
     },
     {
       "id": "instance:cb-0072-4ed91916:smart-reframe",
+      "resultId": "result:instance:cb-0072-4ed91916:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/7961561ccf254435-source.jpg",
@@ -2757,6 +2896,8 @@
     },
     {
       "id": "instance:cb-0073-001f1f6b:smart-reframe",
+      "resultId": "result:instance:cb-0073-001f1f6b:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/18a017153e0411c2-source.jpg",
@@ -2783,6 +2924,8 @@
     },
     {
       "id": "instance:cb-0074-57484d54:smart-reframe",
+      "resultId": "result:instance:cb-0074-57484d54:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/86371ef8bf267dfa-source.jpg",
@@ -2809,6 +2952,8 @@
     },
     {
       "id": "instance:cb-0075-cafd8dd1:smart-reframe",
+      "resultId": "result:instance:cb-0075-cafd8dd1:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/9beed89a18a17d7c-source.jpg",
@@ -2835,6 +2980,8 @@
     },
     {
       "id": "instance:cb-0077-76d6a7e7:smart-reframe",
+      "resultId": "result:instance:cb-0077-76d6a7e7:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/38f102ccdbb5c5e8-source.jpg",
@@ -2861,6 +3008,8 @@
     },
     {
       "id": "instance:cb-0078-5dcaeb49:smart-reframe",
+      "resultId": "result:instance:cb-0078-5dcaeb49:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/9faf06d82b44f3ec-source.jpg",
@@ -2887,6 +3036,8 @@
     },
     {
       "id": "instance:cb-0079-b3bf6506:smart-reframe",
+      "resultId": "result:instance:cb-0079-b3bf6506:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/9a7f99f850840750-source.jpg",
@@ -2913,6 +3064,8 @@
     },
     {
       "id": "instance:cb-0080-3073e3ec:smart-reframe",
+      "resultId": "result:instance:cb-0080-3073e3ec:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/41dceb0e5730740f-source.jpg",
@@ -2939,6 +3092,8 @@
     },
     {
       "id": "instance:cb-0081-5a513c7a:smart-reframe",
+      "resultId": "result:instance:cb-0081-5a513c7a:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/6ed46b2c9b633502-source.jpg",
@@ -2965,6 +3120,8 @@
     },
     {
       "id": "instance:cb-0082-0a72ef24:smart-reframe",
+      "resultId": "result:instance:cb-0082-0a72ef24:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/385d33ad787f6ede-source.jpg",
@@ -2991,6 +3148,8 @@
     },
     {
       "id": "instance:cb-0083-20fd73aa:smart-reframe",
+      "resultId": "result:instance:cb-0083-20fd73aa:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/b22b01731c78d9f6-source.jpg",
@@ -3017,6 +3176,8 @@
     },
     {
       "id": "instance:cb-0084-5ce9e814:smart-reframe",
+      "resultId": "result:instance:cb-0084-5ce9e814:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/fdc287691012f2f6-source.jpg",
@@ -3043,6 +3204,8 @@
     },
     {
       "id": "instance:cb-0085-7768f9ac:smart-reframe",
+      "resultId": "result:instance:cb-0085-7768f9ac:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/ff55768c7e658012-source.jpg",
@@ -3069,6 +3232,8 @@
     },
     {
       "id": "instance:cb-0086-85a79a17:smart-reframe",
+      "resultId": "result:instance:cb-0086-85a79a17:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/4b02ea604c878a76-source.jpg",
@@ -3095,6 +3260,8 @@
     },
     {
       "id": "instance:cb-0088-9b30a3c3:smart-reframe",
+      "resultId": "result:instance:cb-0088-9b30a3c3:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/66a4bddf8a7b1e81-source.jpg",
@@ -3121,6 +3288,8 @@
     },
     {
       "id": "instance:cb-0089-a5140cae:smart-reframe",
+      "resultId": "result:instance:cb-0089-a5140cae:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/fc617a3f1fb38b7b-source.jpg",
@@ -3147,6 +3316,8 @@
     },
     {
       "id": "instance:cb-0090-8d000e84:smart-reframe",
+      "resultId": "result:instance:cb-0090-8d000e84:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/67b35a974192506b-source.jpg",
@@ -3173,6 +3344,8 @@
     },
     {
       "id": "instance:cb-0092-75e3169a:smart-reframe",
+      "resultId": "result:instance:cb-0092-75e3169a:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/6c2dba0ce1f9a0a1-source.jpg",
@@ -3199,6 +3372,8 @@
     },
     {
       "id": "instance:cb-0093-454e2d61:smart-reframe",
+      "resultId": "result:instance:cb-0093-454e2d61:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/8cc0f2f9c63f3841-source.jpg",
@@ -3225,6 +3400,8 @@
     },
     {
       "id": "instance:cb-0094-ac666c8f:smart-reframe",
+      "resultId": "result:instance:cb-0094-ac666c8f:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/720dbcc7cf0ebb78-source.jpg",
@@ -3251,6 +3428,8 @@
     },
     {
       "id": "instance:cb-0096-bbc6d99c:smart-reframe",
+      "resultId": "result:instance:cb-0096-bbc6d99c:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/cc1a66d10266c416-source.jpg",
@@ -3277,6 +3456,8 @@
     },
     {
       "id": "instance:cb-0097-b78025cb:smart-reframe",
+      "resultId": "result:instance:cb-0097-b78025cb:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/269f34134de192b5-source.jpg",
@@ -3303,6 +3484,8 @@
     },
     {
       "id": "instance:cb-0098-98ab8feb:smart-reframe",
+      "resultId": "result:instance:cb-0098-98ab8feb:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/45274a975c5e2469-source.jpg",
@@ -3329,6 +3512,8 @@
     },
     {
       "id": "instance:cb-0100-dcd76e76:smart-reframe",
+      "resultId": "result:instance:cb-0100-dcd76e76:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/be561790609acd6a-source.jpg",
@@ -3355,6 +3540,8 @@
     },
     {
       "id": "instance:cb-0101-28404cbc:smart-reframe",
+      "resultId": "result:instance:cb-0101-28404cbc:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/160646dfd994d434-source.jpg",
@@ -3381,6 +3568,8 @@
     },
     {
       "id": "instance:cb-0102-0024dcf8:smart-reframe",
+      "resultId": "result:instance:cb-0102-0024dcf8:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/3d9cbf1f656be538-source.jpg",
@@ -3407,6 +3596,8 @@
     },
     {
       "id": "instance:cb-0106-fd128f45:smart-reframe",
+      "resultId": "result:instance:cb-0106-fd128f45:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/eb20f7e8a605f987-source.jpg",
@@ -3433,6 +3624,8 @@
     },
     {
       "id": "instance:cb-0107-06e107d2:smart-reframe",
+      "resultId": "result:instance:cb-0107-06e107d2:smart-reframe",
+      "split": "public-test",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/f59823ead25cf0f5-source.jpg",
@@ -3459,6 +3652,8 @@
     },
     {
       "id": "instance:cb-0108-0f94ea96:smart-reframe",
+      "resultId": "result:instance:cb-0108-0f94ea96:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/c3214032165b0c12-source.jpg",
@@ -3485,6 +3680,8 @@
     },
     {
       "id": "instance:cb-0109-9955efd2:smart-reframe",
+      "resultId": "result:instance:cb-0109-9955efd2:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/cf1b488de7e58f97-source.jpg",
@@ -3511,6 +3708,8 @@
     },
     {
       "id": "instance:cb-0110-c17e1c3f:smart-reframe",
+      "resultId": "result:instance:cb-0110-c17e1c3f:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/6961a9ff264731ab-source.jpg",
@@ -3537,6 +3736,8 @@
     },
     {
       "id": "instance:cb-0111-1460dea9:smart-reframe",
+      "resultId": "result:instance:cb-0111-1460dea9:smart-reframe",
+      "split": "adversarial",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
       "sourcePoster": "/media/creatorbench-v1/public/4a4977fab05fc064-source.jpg",
@@ -3563,6 +3764,8 @@
     },
     {
       "id": "instance:cb-0112-c462e74c:smart-reframe",
+      "resultId": "result:instance:cb-0112-c462e74c:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/b8aa7c59c6e187f0-source.jpg",
@@ -3589,6 +3792,8 @@
     },
     {
       "id": "instance:cb-0111-c8656e5e:smart-reframe",
+      "resultId": "result:instance:cb-0111-c8656e5e:smart-reframe",
+      "split": "development",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/6aa3c797799dde50-source.jpg",
@@ -3614,7 +3819,7 @@
       ]
     }
   ],
-  "publicSourceCount": 88,
+  "publicSourceCount": 89,
   "downloads": {
     "json": "/benchmarks/creatorbench-v1/results/public-report.json",
     "csv": "/benchmarks/creatorbench-v1/results/public-report.csv"
