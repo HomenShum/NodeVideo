@@ -89,4 +89,23 @@ describe('founder variant compiler', () => {
     const retained = short.semanticPlan.operations.find((operation) => operation.kind === 'retain');
     expect(retained).toMatchObject({ sourceStartMs: 11_000, sourceEndMs: 18_000 });
   });
+
+  it('suppresses automatic cleanup that would erase the complete source', () => {
+    const allSilence: MediaIndex = {
+      ...index,
+      speech: {
+        words: [],
+        fillers: [],
+        silenceRegions: [{ startMs: 0, endMs: 30_000 }],
+      },
+    };
+    const clean = compileFounderVariants(allSilence, intent).variants[0];
+    expect(clean.rendererPlan.durationFrames).toBe(30 * 30);
+    expect(clean.semanticPlan.operations).not.toContainEqual(
+      expect.objectContaining({ kind: 'remove' }),
+    );
+    expect(clean.rationale).toContain(
+      'Automatic cleanup was suppressed because it would remove the entire source.',
+    );
+  });
 });

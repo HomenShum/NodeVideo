@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-routing-policy.v1",
+  "benchmarkVersion": "creatorbench-v1.4",
+  "minimumSamplesForPromotion": 30,
+  "usableRateLowerBound": 0.8,
+  "maximumSilentFailureUpperBound": 0.01,
+  "confidenceLevel": 0.95,
+  "requireCommercialUse": true,
+  "failClosedOnUnknownLicense": true,
+  "privateMediaEgressDefault": "prohibited",
+  "resultClasses": [
+    "automatic_usable",
+    "assisted_usable",
+    "review_required",
+    "safely_abstained",
+    "unsupported",
+    "technical_failure",
+    "silent_failure"
+  ]
+}

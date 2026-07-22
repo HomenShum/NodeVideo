@@ -35,6 +35,24 @@ const receipt = {
   sourceCommit: commit,
   stampedBy: 'scripts/quality/stamp-contract-build.mjs',
 };
+const creatorBenchReportPath = join(
+  root,
+  'dist',
+  'benchmarks',
+  'creatorbench-v1',
+  'results',
+  'public-report.json',
+);
+if (existsSync(creatorBenchReportPath)) {
+  const publicReportBytes = readFileSync(creatorBenchReportPath);
+  const publicReport = JSON.parse(publicReportBytes.toString('utf8'));
+  receipt.creatorBench = {
+    benchmarkVersion: publicReport.benchmarkVersion ?? 'unknown',
+    freezeReceiptId: publicReport.freezeReceipt?.receiptId ?? 'unknown',
+    publicReportSha256: createHash('sha256').update(publicReportBytes).digest('hex'),
+    publicReportPath: '/benchmarks/creatorbench-v1/results/public-report.json',
+  };
+}
 const out = join(root, 'dist', '.well-known', 'agent-ui.build.json');
 writeFileSync(out, `${JSON.stringify(receipt, null, 2)}\n`);
 console.log(

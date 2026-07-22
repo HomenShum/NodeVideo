@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nodevideo.creatorbench-source/v1",
+  "title": "CreatorBench source record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "creatorOwnerId",
+    "relatedSourceGroupId",
+    "title",
+    "rights",
+    "privacy",
+    "acquiredAt",
+    "sourceSha256",
+    "durationMs",
+    "media",
+    "corpusTier",
+    "admissibleWorkflows",
+    "admissibilityNotes",
+    "split",
+    "knownLimitations"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "nodevideo.creatorbench-source/v1" },
+    "id": { "type": "string", "minLength": 1 },
+    "sourceUrl": { "type": "string", "format": "uri" },
+    "privateLocatorClass": { "enum": ["encrypted-evaluator-vault", "owner-controlled-vault"] },
+    "creatorOwnerId": { "type": "string", "minLength": 1 },
+    "relatedSourceGroupId": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "licenseName",
+        "attribution",
+        "permittedBenchmarkUses",
+        "permittedRedistribution"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "cc0",
+            "public-domain",
+            "cc-by",
+            "owner-consented",
+            "generated-with-provenance",
+            "restricted-private"
+          ]
+        },
+        "licenseName": { "type": "string", "minLength": 1 },
+        "licenseUrl": { "type": "string", "format": "uri" },
+        "attribution": { "type": "string" },
+        "permittedBenchmarkUses": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["analysis", "derivatives", "human-review", "publication"] }
+        },
+        "permittedRedistribution": { "type": "boolean" },
+        "consentReceiptId": { "type": "string", "minLength": 1 }
+      }
+    },
+    "privacy": { "enum": ["public", "private", "sensitive"] },
+    "acquiredAt": { "type": "string", "format": "date-time" },
+    "sourceSha256": { "$ref": "#/$defs/hash" },
+    "durationMs": { "type": "number", "exclusiveMinimum": 0 },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "fps", "codec", "hasAudio"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "fps": { "type": "number", "exclusiveMinimum": 0 },
+        "codec": { "type": "string", "minLength": 1 },
+        "hasAudio": { "type": "boolean" }
+      }
+    },
+    "corpusTier": {
+      "enum": [
+        "motion-short",
+        "speech-long-form",
+        "multi-take-performance",
+        "reference-pair",
+        "launch-multi-asset",
+        "adversarial-corrupt"
+      ]
+    },
+    "admissibleWorkflows": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "smart-reframe",
+          "talking-head-cleanup",
+          "golden-quote-variants",
+          "reference-template",
+          "dance-choreography",
+          "captioned-multi-format",
+          "founder-product-launch",
+          "action-subject-following"
+        ]
+      }
+    },
+    "admissibilityNotes": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "split": { "$ref": "#/$defs/split" },
+    "knownLimitations": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "hash": { "type": "string", "pattern": "^(sha256:)?[a-f0-9]{64}$" },
+    "split": { "enum": ["development", "public-test", "private-heldout", "adversarial"] }
+  }
+}

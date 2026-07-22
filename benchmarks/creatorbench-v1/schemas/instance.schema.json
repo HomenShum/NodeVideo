@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nodevideo.creatorbench-instance/v1",
+  "title": "CreatorBench workflow instance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "benchmarkVersion",
+    "split",
+    "sourceIds",
+    "domain",
+    "workflow",
+    "scenarioId",
+    "request",
+    "adversarialConditions",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "nodevideo.creatorbench-instance/v1" },
+    "id": { "type": "string", "minLength": 1 },
+    "benchmarkVersion": { "type": "string", "minLength": 1 },
+    "split": { "enum": ["development", "public-test", "private-heldout", "adversarial"] },
+    "sourceIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "domain": { "type": "string", "minLength": 1 },
+    "workflow": {
+      "enum": [
+        "smart-reframe",
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "dance-choreography",
+        "captioned-multi-format",
+        "founder-product-launch",
+        "action-subject-following"
+      ]
+    },
+    "scenarioId": { "type": "string", "minLength": 1 },
+    "request": { "$ref": "creator-request.schema.json" },
+    "evaluatorTargetRef": { "type": "string", "minLength": 1 },
+    "adversarialConditions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string" }
+    },
+    "createdAt": { "type": "string", "format": "date-time" }
+  }
+}

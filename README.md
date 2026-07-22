@@ -111,6 +111,36 @@ See [the generalized architecture](docs/architecture/GENERALIZED_CREATOR_PIPELIN
 integration contract](docs/architecture/EXECUTOR_INTEGRATION.md), [Higgsfield runbook](docs/operations/HIGGSFIELD_RUNBOOK.md),
 and [copy-ready end-to-end prompt suite](docs/testing/CREATOR_PIPELINE_TEST_PROMPTS.md).
 
+## CreatorBench
+
+`/creatorbench` is the evidence surface for measured generalization. It is separate from the creator
+workspace and the fixture-bound Artifact Atlas. Every benchmark request uses the same
+`nodevideo.creator-request/v1` contract, and every outcome is classified as automatic usable,
+assisted usable, review required, safe abstention, unsupported, technical failure, or silent
+failure. A rendered file is never counted as usable without a blinded human judgment.
+
+```powershell
+npm run creatorbench:acquire
+npm run creatorbench:manifests
+npm run creatorbench:dedupe
+npm run creatorbench:validate
+npm run creatorbench:evaluate
+npm run creatorbench:freeze
+$env:NODEVIDEO_CREATORBENCH_EVALUATOR_TOKEN='<post-freeze evaluator credential>'
+npm run creatorbench:evaluate:sealed
+npm run creatorbench:report
+npm run proof:creatorbench
+```
+
+Acquisition is fail-honest: the target remains 250 rights-cleared clips, 75 creator-disjoint sources,
+15 domains, 8 workflows, and 2,000 instances. If a source host or rights review prevents that target,
+the receipt publishes the achieved population and gap; it does not prefill the claim. See the
+[governance contract](docs/benchmarks/CREATORBENCH_V1_GOVERNANCE.md), [sealed evaluation
+boundary](docs/benchmarks/SEALED_EVALUATION.md), and [end-to-end benchmark prompts](docs/testing/CREATORBENCH_E2E_TEST_PROMPTS.md).
+The report command also emits the standalone machine-readable
+`benchmarks/creatorbench-v1/results/public-claim.json`; it is derived from the frozen held-out
+results and is scanned alongside the public report for private locators and hidden targets.
+
 ### Music rights modes
 
 | Music input | NodeVideo behavior |

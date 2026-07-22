@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nodevideo.creatorbench-public-claim/v1",
+  "title": "CreatorBench derivable public claim",
+  "description": "This artifact is generated from frozen held-out results. Counts and claims must never be authored by hand.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "benchmarkVersion",
+    "freezeReceiptId",
+    "generatedAt",
+    "population",
+    "outcomes",
+    "statement",
+    "limitations"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "nodevideo.creatorbench-public-claim/v1" },
+    "benchmarkVersion": { "type": "string", "minLength": 1 },
+    "freezeReceiptId": { "type": "string", "minLength": 1 },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "population": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "split",
+        "instanceCount",
+        "sourceCount",
+        "creatorDisjointSourceCount",
+        "domainCount",
+        "workflowCount"
+      ],
+      "properties": {
+        "split": { "const": "private-heldout" },
+        "instanceCount": { "type": "integer", "minimum": 1 },
+        "sourceCount": { "type": "integer", "minimum": 1 },
+        "creatorDisjointSourceCount": { "type": "integer", "minimum": 1 },
+        "domainCount": { "type": "integer", "minimum": 1 },
+        "workflowCount": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "outcomes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "automatic_usable",
+        "assisted_usable",
+        "review_required",
+        "safely_abstained",
+        "unsupported",
+        "technical_failure",
+        "silent_failure"
+      ],
+      "properties": {
+        "automatic_usable": { "$ref": "#/$defs/outcome" },
+        "assisted_usable": { "$ref": "#/$defs/outcome" },
+        "review_required": { "$ref": "#/$defs/outcome" },
+        "safely_abstained": { "$ref": "#/$defs/outcome" },
+        "unsupported": { "$ref": "#/$defs/outcome" },
+        "technical_failure": { "$ref": "#/$defs/outcome" },
+        "silent_failure": { "$ref": "#/$defs/outcome" }
+      }
+    },
+    "statement": { "type": "string", "minLength": 1 },
+    "limitations": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["numerator", "denominator", "rate"],
+      "properties": {
+        "numerator": { "type": "integer", "minimum": 0 },
+        "denominator": { "type": "integer", "minimum": 1 },
+        "rate": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    }
+  }
+}

@@ -1,0 +1,721 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-speech-index-receipt/v1",
+  "benchmarkVersion": "creatorbench-v1.4",
+  "generatedAt": "2026-07-22T09:36:06.208Z",
+  "sourceCount": 134,
+  "indexedCount": 92,
+  "missingTranscriptCount": 42,
+  "splitCounts": {
+    "development": 34,
+    "public-test": 26,
+    "private-heldout": 21,
+    "adversarial": 11
+  },
+  "totalWords": 3422,
+  "totalQuotes": 717,
+  "totalSilenceRegions": 286,
+  "transcriptTextPublished": false,
+  "privateLocatorPublished": false,
+  "publicIndexes": [
+    {
+      "sourceId": "cb-0113-77d2992d",
+      "split": "public-test",
+      "wordCount": 58,
+      "quoteCount": 12,
+      "silenceCount": 5,
+      "indexSha256": "sha256:c74b5579a5566c47b7cb6e7376937153b043e0cae4c9e9c198b3d2a954379e65"
+    },
+    {
+      "sourceId": "cb-0114-c50766ae",
+      "split": "public-test",
+      "wordCount": 75,
+      "quoteCount": 9,
+      "silenceCount": 0,
+      "indexSha256": "sha256:d38f700fa9b5f77aa5a05fbd62e47edf034a5f315b3d0f4fbe457d803ac77eeb"
+    },
+    {
+      "sourceId": "cb-0115-a6ebf0af",
+      "split": "adversarial",
+      "wordCount": 1,
+      "quoteCount": 1,
+      "silenceCount": 0,
+      "indexSha256": "sha256:1943b75a4e335bf2016502cf8351d9a44853e96c40be7ac78e8bf5e794b5d82f"
+    },
+    {
+      "sourceId": "cb-0116-17024424",
+      "split": "development",
+      "wordCount": 37,
+      "quoteCount": 7,
+      "silenceCount": 0,
+      "indexSha256": "sha256:dcaf27f3509a1ede3cc2e584aaf541de5f322bf0ab2b07adf024e6c54c1766f9"
+    },
+    {
+      "sourceId": "cb-0117-3a9e20f6",
+      "split": "public-test",
+      "wordCount": 44,
+      "quoteCount": 10,
+      "silenceCount": 6,
+      "indexSha256": "sha256:7b72c0d80ffa436375bdd9535dfe72d2243d71883ef398469db0e4034e2a0120"
+    },
+    {
+      "sourceId": "cb-0118-92d1c94a",
+      "split": "adversarial",
+      "wordCount": 2,
+      "quoteCount": 1,
+      "silenceCount": 4,
+      "indexSha256": "sha256:b98003c22ce57db82a547760c7558301773dca5b5c2c97dcce9ffdeb1f82a7b8"
+    },
+    {
+      "sourceId": "cb-0119-ec4d1409",
+      "split": "public-test",
+      "wordCount": 57,
+      "quoteCount": 15,
+      "silenceCount": 0,
+      "indexSha256": "sha256:9cc2db31ab3af275c4457097602b29ce68f0d116e2318ee7a74a842e8f80013f"
+    },
+    {
+      "sourceId": "cb-0120-e4d279ac",
+      "split": "public-test",
+      "wordCount": 67,
+      "quoteCount": 16,
+      "silenceCount": 9,
+      "indexSha256": "sha256:9559f94ab3f30f9119df1887c775d134fe9cd9aadc6bd48a761701a605caeeab"
+    },
+    {
+      "sourceId": "cb-0122-bbe1e98d",
+      "split": "adversarial",
+      "wordCount": 75,
+      "quoteCount": 15,
+      "silenceCount": 6,
+      "indexSha256": "sha256:9a33ead1b1461bd7ee2ac01a235d9f98d19afc9e21ce3a96d9a51b4c79ae91fa"
+    },
+    {
+      "sourceId": "cb-0123-407659c2",
+      "split": "public-test",
+      "wordCount": 11,
+      "quoteCount": 1,
+      "silenceCount": 5,
+      "indexSha256": "sha256:65b89ab157b449b4a35e6960175c576fe01294ab23ea0ae9b3763981a157bff3"
+    },
+    {
+      "sourceId": "cb-0124-143f5a7e",
+      "split": "development",
+      "wordCount": 29,
+      "quoteCount": 7,
+      "silenceCount": 4,
+      "indexSha256": "sha256:989d269e73e455b913a935d7d3eea34147fe806983b408baf1cf70c2d5fe8273"
+    },
+    {
+      "sourceId": "cb-0126-d3b796bb",
+      "split": "development",
+      "wordCount": 77,
+      "quoteCount": 16,
+      "silenceCount": 0,
+      "indexSha256": "sha256:50365644c3e0328d46444ea94c8a689b01de54c51887ec28827d8f1f760beccc"
+    },
+    {
+      "sourceId": "cb-0127-70dfca62",
+      "split": "public-test",
+      "wordCount": 70,
+      "quoteCount": 9,
+      "silenceCount": 9,
+      "indexSha256": "sha256:bc7581f43d766a38cdd1d77f8a3790386306cbd70426bfe05a0660470be9b4d1"
+    },
+    {
+      "sourceId": "cb-0128-98086d70",
+      "split": "development",
+      "wordCount": 39,
+      "quoteCount": 12,
+      "silenceCount": 1,
+      "indexSha256": "sha256:39321f442434e81d495e9e009f1a5da3683556ae7528e04b6a6c65efbe1f5b59"
+    },
+    {
+      "sourceId": "cb-0129-53403be3",
+      "split": "development",
+      "wordCount": 15,
+      "quoteCount": 2,
+      "silenceCount": 1,
+      "indexSha256": "sha256:081431a3098eb7f9cbd3d4e1048f391907907474538c1bc59f63e2019f7f9dea"
+    },
+    {
+      "sourceId": "cb-0130-bce0c55b",
+      "split": "development",
+      "wordCount": 5,
+      "quoteCount": 1,
+      "silenceCount": 1,
+      "indexSha256": "sha256:c3901b9d0132614e490f165ea9f2932814bce8b658ab97f3ba3c60ceaad96125"
+    },
+    {
+      "sourceId": "cb-0131-4b5c0241",
+      "split": "development",
+      "wordCount": 34,
+      "quoteCount": 7,
+      "silenceCount": 0,
+      "indexSha256": "sha256:bedf73c6361b583ab3aa6f90fdc6cd3bec6fa0119585c9f836f2ee4add3e898d"
+    },
+    {
+      "sourceId": "cb-0132-40b04ffb",
+      "split": "development",
+      "wordCount": 35,
+      "quoteCount": 8,
+      "silenceCount": 0,
+      "indexSha256": "sha256:74ef6dd87c10b52b04a781ea03b0318ef918c85c871ad52e7b9c5f0781564c17"
+    },
+    {
+      "sourceId": "cb-0134-b782aa46",
+      "split": "public-test",
+      "wordCount": 65,
+      "quoteCount": 15,
+      "silenceCount": 5,
+      "indexSha256": "sha256:d05c278a20b3ba5d660c8d3a7a371063216d25ddbc0aee7ccca6e971b22e256d"
+    },
+    {
+      "sourceId": "cb-0135-5eebc55c",
+      "split": "development",
+      "wordCount": 3,
+      "quoteCount": 1,
+      "silenceCount": 1,
+      "indexSha256": "sha256:04a21b45c60704f5ba2fdecc2a5fa01ee6384e96c1206907f49b42271441d139"
+    },
+    {
+      "sourceId": "cb-0136-2eef0cc5",
+      "split": "public-test",
+      "wordCount": 72,
+      "quoteCount": 7,
+      "silenceCount": 1,
+      "indexSha256": "sha256:1481b13d5b030be3904a314de4e128e0e064573587e30b77b0cb0aa86f2809db"
+    },
+    {
+      "sourceId": "cb-0141-bada7e4e",
+      "split": "development",
+      "wordCount": 52,
+      "quoteCount": 13,
+      "silenceCount": 1,
+      "indexSha256": "sha256:fba75fdf6e9db7a3d3f9232071c7db91c639120f90b48181929d0d2c32c2c0d1"
+    },
+    {
+      "sourceId": "cb-0142-0adf6e67",
+      "split": "development",
+      "wordCount": 56,
+      "quoteCount": 13,
+      "silenceCount": 1,
+      "indexSha256": "sha256:855aa6ba68a89cbecaf484dad8ece885b16ddd282cec8a47066f53a96259e2e2"
+    },
+    {
+      "sourceId": "cb-0143-5b893041",
+      "split": "public-test",
+      "wordCount": 46,
+      "quoteCount": 10,
+      "silenceCount": 2,
+      "indexSha256": "sha256:aae9af3cfb1873536804a3033844365701356c372c4afe2b3418633fcab98d26"
+    },
+    {
+      "sourceId": "cb-0144-a544e90f",
+      "split": "adversarial",
+      "wordCount": 58,
+      "quoteCount": 14,
+      "silenceCount": 2,
+      "indexSha256": "sha256:98f34a0eff29fa5eaba3ceaccde5d88d63980b15842a95d8e88737a998a49519"
+    },
+    {
+      "sourceId": "cb-0147-272153cd",
+      "split": "development",
+      "wordCount": 46,
+      "quoteCount": 9,
+      "silenceCount": 1,
+      "indexSha256": "sha256:31f44e0ab5042450b2ef5102bd29400ce713eabc029d6bfcae71f0fa3e40d799"
+    },
+    {
+      "sourceId": "cb-0148-fb6a1d8f",
+      "split": "development",
+      "wordCount": 48,
+      "quoteCount": 11,
+      "silenceCount": 1,
+      "indexSha256": "sha256:04ff8ad469683ae478316209e168421ef0af04797dc9c4b97a39dcb4ff9b0bda"
+    },
+    {
+      "sourceId": "cb-0149-e6c2183b",
+      "split": "development",
+      "wordCount": 2,
+      "quoteCount": 1,
+      "silenceCount": 1,
+      "indexSha256": "sha256:c367876644a12fde1f209f2f5822ce9c54ad999b4b65b791e28be481f4d320ec"
+    },
+    {
+      "sourceId": "cb-0150-29b92102",
+      "split": "development",
+      "wordCount": 58,
+      "quoteCount": 13,
+      "silenceCount": 8,
+      "indexSha256": "sha256:f76a15436852fc8cda9db4be2c64db0b6e6e91c9e2efb59512de1fa86f185289"
+    },
+    {
+      "sourceId": "cb-0151-12cf225b",
+      "split": "development",
+      "wordCount": 5,
+      "quoteCount": 3,
+      "silenceCount": 1,
+      "indexSha256": "sha256:e76052513fb586c5ec1d3b64ca7bcf4dcb76bec9feec3318afb91e77f251fbac"
+    },
+    {
+      "sourceId": "cb-0152-0f4e5340",
+      "split": "development",
+      "wordCount": 42,
+      "quoteCount": 11,
+      "silenceCount": 6,
+      "indexSha256": "sha256:447d0b454e47ab7d27d019f810cb48624f97361363743aef54913bdaf10cf0eb"
+    },
+    {
+      "sourceId": "cb-0153-5e1af193",
+      "split": "development",
+      "wordCount": 2,
+      "quoteCount": 1,
+      "silenceCount": 1,
+      "indexSha256": "sha256:605aca53606ba11ef50a5131d3670cd12084f9fcef7a65f7fc4169dae3061ead"
+    },
+    {
+      "sourceId": "cb-0154-71d0020d",
+      "split": "development",
+      "wordCount": 37,
+      "quoteCount": 8,
+      "silenceCount": 3,
+      "indexSha256": "sha256:fb605d128955943628005fd6ce5d8cee6d44b18427f9e7996ee0387d1aee6a59"
+    },
+    {
+      "sourceId": "cb-0155-d2dbb814",
+      "split": "development",
+      "wordCount": 42,
+      "quoteCount": 10,
+      "silenceCount": 5,
+      "indexSha256": "sha256:d3234a087c3e1bade503f71b0024970c80a30be79fe9f223fe4c90a4d9db4dd0"
+    },
+    {
+      "sourceId": "cb-0156-64941a80",
+      "split": "public-test",
+      "wordCount": 59,
+      "quoteCount": 13,
+      "silenceCount": 1,
+      "indexSha256": "sha256:943c80e04a5ec930ae63244185ce89327a6704bedab9e9af2bca28b303c91d0f"
+    },
+    {
+      "sourceId": "cb-0157-e2a1de2b",
+      "split": "public-test",
+      "wordCount": 58,
+      "quoteCount": 14,
+      "silenceCount": 7,
+      "indexSha256": "sha256:3112bbc74d1339e53f3193ef3c9218d13e7a086a75a3a0aada15876536a24441"
+    },
+    {
+      "sourceId": "cb-0159-f6261801",
+      "split": "public-test",
+      "wordCount": 49,
+      "quoteCount": 7,
+      "silenceCount": 0,
+      "indexSha256": "sha256:0c9a2434d7de08778a21dede9a5bc3f7d52d50f737b4fc8c4e788bc2f02493ab"
+    },
+    {
+      "sourceId": "cb-0160-98e46a42",
+      "split": "development",
+      "wordCount": 2,
+      "quoteCount": 1,
+      "silenceCount": 1,
+      "indexSha256": "sha256:3981a1192835ca95b4d9a04ea3d0e273896547bf6e2393c5aa982babccd4cf9f"
+    },
+    {
+      "sourceId": "cb-0162-8d8c0062",
+      "split": "development",
+      "wordCount": 2,
+      "quoteCount": 1,
+      "silenceCount": 1,
+      "indexSha256": "sha256:e91c891985c5bd58df4e8b0c7f237fdeadccd4681f3ad37822a63d3d136825e7"
+    },
+    {
+      "sourceId": "cb-0163-f852fd41",
+      "split": "development",
+      "wordCount": 2,
+      "quoteCount": 1,
+      "silenceCount": 1,
+      "indexSha256": "sha256:e7bcc4077977831937e5891ab8c24f7080bc1d06deda66c1d36d83e445b6225c"
+    },
+    {
+      "sourceId": "cb-0166-4dda45e3",
+      "split": "public-test",
+      "wordCount": 31,
+      "quoteCount": 7,
+      "silenceCount": 5,
+      "indexSha256": "sha256:11fe641d82da792bb3ca96070f96007b7efe3e1bf1fcba009c355cadae5f6291"
+    },
+    {
+      "sourceId": "cb-0167-3105c67c",
+      "split": "development",
+      "wordCount": 76,
+      "quoteCount": 16,
+      "silenceCount": 1,
+      "indexSha256": "sha256:c85c1cafd09a1ce1533832f42e26829e769cdea279471d6d922a6ddf16435784"
+    },
+    {
+      "sourceId": "cb-0168-03d42d3f",
+      "split": "development",
+      "wordCount": 2,
+      "quoteCount": 1,
+      "silenceCount": 1,
+      "indexSha256": "sha256:cd50f81c899c9698ae6fe17a5d30ec68706bc8466ef67d2b6365e5138edaea85"
+    },
+    {
+      "sourceId": "cb-0171-06489530",
+      "split": "development",
+      "wordCount": 67,
+      "quoteCount": 16,
+      "silenceCount": 0,
+      "indexSha256": "sha256:5274769937a4e138d5a0df85fb7a761182767f26c1080ab71e23f6b418338885"
+    },
+    {
+      "sourceId": "cb-0172-cd8b4d52",
+      "split": "public-test",
+      "wordCount": 78,
+      "quoteCount": 16,
+      "silenceCount": 12,
+      "indexSha256": "sha256:b3d261a5fa8afcd74d5666d4a6de469be0d4d24aa86cfecddcb4dc37ffd8c94a"
+    },
+    {
+      "sourceId": "cb-0173-34cba741",
+      "split": "development",
+      "wordCount": 6,
+      "quoteCount": 1,
+      "silenceCount": 4,
+      "indexSha256": "sha256:bbc14a3d704e6b1bd8d617592a229bdf24ae08c0ef8941cc4bd4735dc59e04fa"
+    },
+    {
+      "sourceId": "cb-0175-abe64cce",
+      "split": "development",
+      "wordCount": 39,
+      "quoteCount": 9,
+      "silenceCount": 1,
+      "indexSha256": "sha256:8eca4d0ab9c18be00596a2992c081843d5d8d3282da66a6bc69af3e96877adb4"
+    },
+    {
+      "sourceId": "cb-0177-bf093757",
+      "split": "development",
+      "wordCount": 2,
+      "quoteCount": 1,
+      "silenceCount": 1,
+      "indexSha256": "sha256:e777ad72b9566d0a8dbdc13f3e4b8b7454299138caf32f9a97400ea9adb06147"
+    },
+    {
+      "sourceId": "cb-0178-373a952c",
+      "split": "public-test",
+      "wordCount": 48,
+      "quoteCount": 7,
+      "silenceCount": 1,
+      "indexSha256": "sha256:0e5c82555d1ba881a674721e5f18d6231d7de4836a5787f80f768c9bfa08f2ac"
+    },
+    {
+      "sourceId": "cb-0216-91319de8",
+      "split": "adversarial",
+      "wordCount": 74,
+      "quoteCount": 4,
+      "silenceCount": 7,
+      "indexSha256": "sha256:0618a46a3d7e2bf58aac62dd4a1d5527ea27740eee8faa2e9b9660476202f137"
+    },
+    {
+      "sourceId": "cb-0220-32ac7bcd",
+      "split": "adversarial",
+      "wordCount": 32,
+      "quoteCount": 7,
+      "silenceCount": 1,
+      "indexSha256": "sha256:c8102640f28903e0a2787dbadef2a75c3732e2b32bdbc0e34d2cbe7ffb469dbd"
+    },
+    {
+      "sourceId": "cb-0222-00648352",
+      "split": "adversarial",
+      "wordCount": 0,
+      "quoteCount": 0,
+      "silenceCount": 1,
+      "indexSha256": "sha256:0f58e69151f7ace6d0630e3dc8e4980aaadeda8b3d0162aa7efba6e38f239bad"
+    },
+    {
+      "sourceId": "cb-0223-d09a1e6a",
+      "split": "public-test",
+      "wordCount": 57,
+      "quoteCount": 8,
+      "silenceCount": 8,
+      "indexSha256": "sha256:39863e27fa926184e8dbaa5d2764c2e8956ac33b1e8af369ee77871c109af2ab"
+    },
+    {
+      "sourceId": "cb-0226-1f941345",
+      "split": "public-test",
+      "wordCount": 31,
+      "quoteCount": 7,
+      "silenceCount": 0,
+      "indexSha256": "sha256:5ccba5f8a4020c64132594d4a748c31400f613bc0a8e6d96e85422bbf1397c8e"
+    },
+    {
+      "sourceId": "cb-0227-583f3179",
+      "split": "public-test",
+      "wordCount": 58,
+      "quoteCount": 12,
+      "silenceCount": 1,
+      "indexSha256": "sha256:d0c6a16dbc753385e1f8e4a1366f45ff4e650e0cf80ddccd83cae5989b66aacb"
+    },
+    {
+      "sourceId": "cb-0228-06500f08",
+      "split": "public-test",
+      "wordCount": 40,
+      "quoteCount": 10,
+      "silenceCount": 1,
+      "indexSha256": "sha256:8a52119dd170b48fd6937600c38b5ba3c9e2678dc3cfc4384ccce21407fc43f2"
+    },
+    {
+      "sourceId": "cb-0229-5829859e",
+      "split": "development",
+      "wordCount": 64,
+      "quoteCount": 17,
+      "silenceCount": 1,
+      "indexSha256": "sha256:c222820694b011c3d1f72c5e07bf5cd3039d281ff819f1700dcc7607889dd6b7"
+    },
+    {
+      "sourceId": "cb-0230-dac6c67e",
+      "split": "public-test",
+      "wordCount": 16,
+      "quoteCount": 5,
+      "silenceCount": 1,
+      "indexSha256": "sha256:7739eab5f661138a2bc90d0d38e5b23efa8f1bbbb484b24d33b7887559eb8b24"
+    },
+    {
+      "sourceId": "cb-0231-124460bc",
+      "split": "adversarial",
+      "wordCount": 59,
+      "quoteCount": 12,
+      "silenceCount": 6,
+      "indexSha256": "sha256:4ba38126ce57ad14d4ffde6f1d9aa21dff1f31147685e6ab6273a75ed8714418"
+    },
+    {
+      "sourceId": "cb-0232-07ff9cc1",
+      "split": "adversarial",
+      "wordCount": 2,
+      "quoteCount": 1,
+      "silenceCount": 5,
+      "indexSha256": "sha256:dad8fe26d9c442bf8beb13919386f2a65962c35b975ef584a21478b1019a22b3"
+    },
+    {
+      "sourceId": "cb-0233-494463bf",
+      "split": "adversarial",
+      "wordCount": 41,
+      "quoteCount": 9,
+      "silenceCount": 1,
+      "indexSha256": "sha256:a88d7762e126f91486304dc82b7ee1c2c32841d38fbe3828efd0c85632b702ed"
+    },
+    {
+      "sourceId": "cb-0234-c03a62f8",
+      "split": "public-test",
+      "wordCount": 0,
+      "quoteCount": 0,
+      "silenceCount": 1,
+      "indexSha256": "sha256:5c9997c552620c0f7103d45ea1892d5a78219458718b560e6766c87bcc08f1fb"
+    },
+    {
+      "sourceId": "cb-0235-75d6a54e",
+      "split": "development",
+      "wordCount": 2,
+      "quoteCount": 1,
+      "silenceCount": 1,
+      "indexSha256": "sha256:eb61d71477f214ec8d626b413f9ecfe4965e8609abc5fc2735c0e6bc71aaed96"
+    },
+    {
+      "sourceId": "cb-0238-f9d06420",
+      "split": "public-test",
+      "wordCount": 2,
+      "quoteCount": 1,
+      "silenceCount": 17,
+      "indexSha256": "sha256:9e667ca46e8a1fbadb70a0578a1c70e3e34ee9e523afe6aeb9fcaf4b69f6f49b"
+    },
+    {
+      "sourceId": "cb-0241-d5ce9d5c",
+      "split": "public-test",
+      "wordCount": 5,
+      "quoteCount": 1,
+      "silenceCount": 1,
+      "indexSha256": "sha256:cb4a6da522e6d4772b5e6792a52c6a5082a7d78a2c56148789db648587ebc116"
+    },
+    {
+      "sourceId": "cb-0242-b13136a3",
+      "split": "development",
+      "wordCount": 37,
+      "quoteCount": 8,
+      "silenceCount": 1,
+      "indexSha256": "sha256:fbc0d7bd5bbcc3622adc050206affc10438f25127770027763d5e645456e079f"
+    },
+    {
+      "sourceId": "cb-0243-964d9bc4",
+      "split": "development",
+      "wordCount": 55,
+      "quoteCount": 12,
+      "silenceCount": 1,
+      "indexSha256": "sha256:73d70ea6ddcac42ea9ccc060dbd887599a618a35c231434715ea0d90942f57d3"
+    },
+    {
+      "sourceId": "cb-0245-ef1deafe",
+      "split": "public-test",
+      "wordCount": 29,
+      "quoteCount": 6,
+      "silenceCount": 1,
+      "indexSha256": "sha256:985fce05c5334e8069fb1693eb34b6158194922675b1d48f7a007b0516958f7c"
+    },
+    {
+      "sourceId": "cb-0248-f514d898",
+      "split": "public-test",
+      "wordCount": 2,
+      "quoteCount": 1,
+      "silenceCount": 1,
+      "indexSha256": "sha256:3767560cbda3e9a5f7a41ced62c3fdb5ee14a9eec60dd1e78d55cff82d17fcd1"
+    },
+    {
+      "sourceId": "cb-0249-c928d731",
+      "split": "adversarial",
+      "wordCount": 61,
+      "quoteCount": 14,
+      "silenceCount": 2,
+      "indexSha256": "sha256:42fd6a46dd55fbf711e5c70cbdb65d1fa2a7f28be37ed1134f282184b8225630"
+    },
+    {
+      "sourceId": "cb-0250-f50589b7",
+      "split": "development",
+      "wordCount": 5,
+      "quoteCount": 1,
+      "silenceCount": 1,
+      "indexSha256": "sha256:0cb3293d5bb91fa9a035b3533999b57f09931a9cbaa84eb260da4b0df373ba29"
+    }
+  ],
+  "missing": [
+    {
+      "sourceId": "cb-0125-05210f14",
+      "split": "development",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0179-aa6baee7",
+      "split": "adversarial",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0182-64ae7764",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0185-de0138c3",
+      "split": "adversarial",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0186-2c62fead",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0187-11ee60ed",
+      "split": "adversarial",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0188-11c1d9cb",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0189-3c24f27e",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0190-63e4f145",
+      "split": "adversarial",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0191-0ccba77b",
+      "split": "adversarial",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0192-63ff3674",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0193-aa64f2e5",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0194-ef459982",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0196-37efd641",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0198-d116c292",
+      "split": "adversarial",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0199-9827cfbc",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0201-fe37bdcb",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0202-ced3b960",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0205-86b2679b",
+      "split": "adversarial",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0206-6dc116c4",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0208-0140994b",
+      "split": "development",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0210-e28af50e",
+      "split": "development",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0211-c5424ccd",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0212-83e3413e",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0213-a067224f",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    },
+    {
+      "sourceId": "cb-0218-c9c46eb6",
+      "split": "public-test",
+      "reason": "no official SRT sidecar"
+    }
+  ]
+}

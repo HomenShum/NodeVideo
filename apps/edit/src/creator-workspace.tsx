@@ -115,6 +115,9 @@ export function CreatorStart(props: {
         <a className="creator-atlas-link" href="/atlas">
           <Library className="size-3" /> Artifact Atlas
         </a>
+        <a className="creator-atlas-link" href="/creatorbench">
+          <CircleDot className="size-3" /> CreatorBench
+        </a>
       </header>
       <section className="creator-start-stage">
         <div className="creator-start-copy">

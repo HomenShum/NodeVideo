@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nodevideo.creatorbench-split/v1",
+  "title": "CreatorBench split assignment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "sourceId",
+    "split",
+    "creatorOwnerId",
+    "relatedSourceGroupId",
+    "perceptualHash",
+    "assignedAt",
+    "assignmentPolicyVersion"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "nodevideo.creatorbench-split/v1" },
+    "sourceId": { "type": "string", "minLength": 1 },
+    "split": { "enum": ["development", "public-test", "private-heldout", "adversarial"] },
+    "creatorOwnerId": { "type": "string", "minLength": 1 },
+    "relatedSourceGroupId": { "type": "string", "minLength": 1 },
+    "templateFamilyId": { "type": "string", "minLength": 1 },
+    "perceptualHash": { "type": "string", "pattern": "^(sha256:)?[a-f0-9]{64}$" },
+    "audioFingerprint": { "type": "string", "minLength": 1 },
+    "assignedAt": { "type": "string", "format": "date-time" },
+    "assignmentPolicyVersion": { "type": "string", "minLength": 1 }
+  }
+}

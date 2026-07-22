@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-acquisition-receipt.v1",
+  "benchmarkVersion": "creatorbench-v1.4",
+  "generatedAt": "2026-07-22T09:34:46.208Z",
+  "requestedClips": 250,
+  "benchmarkTargetClips": 250,
+  "acquiredClips": 250,
+  "publicCatalogRecords": 200,
+  "privateCatalogRecords": 50,
+  "creators": 205,
+  "domains": 16,
+  "splitCounts": {
+    "development": 125,
+    "public-test": 50,
+    "private-heldout": 50,
+    "adversarial": 25
+  },
+  "allowedLicenses": [
+    "CC0",
+    "Public domain",
+    "NASA SVS public domain",
+    "NodeVideo generated fixture with provenance",
+    "CC BY 1.0",
+    "CC BY 2.0",
+    "CC BY 2.5",
+    "CC BY 3.0",
+    "CC BY 4.0"
+  ],
+  "licenseCounts": {
+    "CC BY 3.0": 5,
+    "CC BY 4.0": 1,
+    "NASA SVS public domain": 106,
+    "Public domain": 134,
+    "NodeVideo generated fixture with provenance": 4
+  },
+  "providerCounts": {
+    "wikimedia": 6,
+    "nasa-svs": 106,
+    "nasa-images": 134,
+    "nodevideo-repository": 4
+  },
+  "privateCatalogSha256": "sha256:a729f6624b5973d64ead96a9ab4756b843dd0a3e2457e725b127834ef2d39847",
+  "publicCatalogSha256": "sha256:f61a40620517f17fc31fbdece61211a71aa18a2888442a902c46ffd4f18c81df",
+  "cacheRootClass": ".qa/evidence/creatorbench-v1/media",
+  "acquisitionGap": 0,
+  "failureCount": 0,
+  "failureCategories": {},
+  "gapReasons": []
+}
