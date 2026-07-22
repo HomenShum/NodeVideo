@@ -176,9 +176,9 @@ type RawPublicReport = PublicReport & {
     splits?: Record<string, number>;
   };
   metrics?: {
-    latencyMs?: { p50?: number; p95?: number };
-    costUsd?: { perUsableOutput?: number };
-    correctionTimeSeconds?: { median?: number };
+    latencyMs?: { p50?: number | null; p95?: number | null };
+    costUsd?: { perUsableOutput?: number | null };
+    correctionTimeSeconds?: { median?: number | null };
     exportReopen?: Metric | number;
   };
   downloads?: { json?: string; csv?: string };
@@ -310,11 +310,14 @@ function normalizePublicReport(input: RawPublicReport): PublicReport {
     },
     outcomes: normalizedOutcomes,
     knownWeaknesses: input.knownWeaknesses ?? input.weaknesses ?? claim?.limitations ?? [],
-    p50LatencyMs: input.p50LatencyMs ?? input.metrics?.latencyMs?.p50,
-    p95LatencyMs: input.p95LatencyMs ?? input.metrics?.latencyMs?.p95,
-    medianCorrectionSeconds:
+    p50LatencyMs: finite(input.p50LatencyMs ?? input.metrics?.latencyMs?.p50),
+    p95LatencyMs: finite(input.p95LatencyMs ?? input.metrics?.latencyMs?.p95),
+    medianCorrectionSeconds: finite(
       input.medianCorrectionSeconds ?? input.metrics?.correctionTimeSeconds?.median,
-    costPerUsableOutputUsd: input.costPerUsableOutputUsd ?? input.metrics?.costUsd?.perUsableOutput,
+    ),
+    costPerUsableOutputUsd: finite(
+      input.costPerUsableOutputUsd ?? input.metrics?.costUsd?.perUsableOutput,
+    ),
     exportReopen: input.exportReopen ?? input.metrics?.exportReopen,
     freezeReceipt: rawFreeze
       ? {

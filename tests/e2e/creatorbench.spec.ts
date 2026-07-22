@@ -229,6 +229,30 @@ test.describe('CreatorBench public evidence and reviewer UI', () => {
     await expect(page.getByTestId('creatorbench-overview')).toHaveCount(0);
   });
 
+  test('renders unavailable measured metrics without crashing when the real report uses null', async ({
+    page,
+  }) => {
+    const reportWithoutUsableOutputs = {
+      ...report,
+      metrics: {
+        ...report.metrics,
+        costUsd: { perUsableOutput: null },
+        correctionTimeSeconds: { median: null },
+      },
+    };
+    await page.route('**/benchmarks/creatorbench-v1/results/public-report.json', (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify(reportWithoutUsableOutputs),
+      }),
+    );
+
+    await page.goto('/creatorbench');
+    await expect(page.getByRole('heading', { name: /See what works/i })).toBeVisible();
+    await expect(page.getByTestId('creatorbench-overview')).toContainText('Not reported');
+  });
+
   test('works in light and dark themes without page-level horizontal overflow', async ({
     page,
   }) => {
