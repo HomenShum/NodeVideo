@@ -164,13 +164,20 @@ test.describe('CreatorBench public evidence and reviewer UI', () => {
     await expect(review).toContainText('Additional requested formats');
     await expect(review).not.toContainText('Deterministic center-crop baseline');
     await expect(review.locator('img')).toHaveCount(4);
-    expect(
-      await review
-        .locator('img')
-        .evaluateAll((images) =>
-          images.every((image) => image instanceof HTMLImageElement && image.naturalWidth > 0),
-        ),
-    ).toBe(true);
+    await expect
+      .poll(
+        () =>
+          review
+            .locator('img')
+            .evaluateAll((images) =>
+              images.every((image) => image instanceof HTMLImageElement && image.naturalWidth > 0),
+            ),
+        {
+          message: 'all public review images should finish decoding before review',
+          timeout: 15_000,
+        },
+      )
+      .toBe(true);
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1),
     ).toBe(true);
