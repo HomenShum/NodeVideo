@@ -187,6 +187,10 @@ test.describe('CreatorBench public evidence and reviewer UI', () => {
     await page.getByRole('button', { name: 'Hold local judgment' }).click();
     await expect(review).toContainText('Judgment recorded in local memory only');
     await expect(review).toContainText('group-performance-local');
+    await expect(page.getByRole('link', { name: 'Download review draft' })).toHaveAttribute(
+      'download',
+      /creatorbench-review-public-review-001\.json/u,
+    );
     await page.reload();
     await page.getByRole('button', { name: 'Review lab' }).first().click();
     await expect(page.getByTestId('review-lab')).not.toContainText('Judgment held locally');

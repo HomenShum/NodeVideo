@@ -17,6 +17,8 @@ const target = Number(
 );
 const downloadMedia = !process.argv.includes('--metadata-only');
 const overwrite = process.argv.includes('--overwrite');
+const cachedOnly = process.argv.includes('--cached-only');
+const acquisitionFailures = [];
 
 const sha256 = (value) => createHash('sha256').update(value).digest('hex');
 const stableNumber = (value) => Number.parseInt(sha256(value).slice(0, 8), 16);
@@ -224,6 +226,23 @@ async function acquireClip(candidate, index) {
       const existing = await readFile(path);
       if (existing.length === 0) throw new Error('empty');
     } catch {
+      if (cachedOnly) throw new Error('Media cache miss; network acquisition disabled.');
+      for (let attempt = 0; attempt < 12; attempt += 1) {
+        const response = await fetch(candidate.acquisitionUrl, {
+          method: 'HEAD',
+          headers: {
+            'user-agent': 'NodeVideo-CreatorBench/1.0 (rights-governed research benchmark)',
+          },
+        });
+        if (response.ok) break;
+        if (response.status !== 429) {
+          throw new Error(`Media preflight failed with HTTP ${response.status}.`);
+        }
+        const retryAfterMs = Number(response.headers.get('retry-after') ?? 55) * 1_000;
+        if (attempt === 11)
+          throw new Error('Media host remained rate-limited after bounded retries.');
+        await wait(Math.min(55_000, Math.max(2_500, retryAfterMs)));
+      }
       await run('ffmpeg', [
         '-y',
         '-hide_banner',
@@ -409,7 +428,23 @@ async function mapLimit(items, limit, fn) {
       } catch (error) {
         const failedId = `cb-${String(index + 1).padStart(4, '0')}-${sha256(items[index].sourceUrl).slice(0, 8)}`;
         await unlink(resolve(mediaRoot, `${failedId}.mp4`)).catch(() => undefined);
+        const message = error instanceof Error ? error.message : String(error);
+        acquisitionFailures.push({
+          category: /cache miss/iu.test(message)
+            ? 'cache-not-acquired'
+            : /rate-limit|429/iu.test(message)
+              ? 'source-host-rate-limit'
+              : /does not contain any stream|ffprobe|decode/iu.test(message)
+                ? 'media-decode'
+                : /HTTP|4XX|5XX/iu.test(message)
+                  ? 'source-http'
+                  : 'other',
+          message: message.slice(0, 300),
+        });
         process.stderr.write(`\nSkipped ${items[index].sourceUrl}: ${error.message}\n`);
+      }
+      if (downloadMedia && !cachedOnly) {
+        await wait(Number(process.env.NODEVIDEO_CREATORBENCH_MEDIA_DELAY_MS ?? 2_500));
       }
     }
   }
@@ -546,10 +581,27 @@ const receipt = {
   domains: domains.size,
   splitCounts,
   allowedLicenses: config.allowedLicenses,
+  licenseCounts: Object.fromEntries(
+    Object.entries(Object.groupBy(selected, (record) => record.license)).map(
+      ([license, records]) => [license, records.length],
+    ),
+  ),
   privateCatalogSha256: `sha256:${sha256(JSON.stringify(privateCatalog))}`,
   publicCatalogSha256: `sha256:${sha256(JSON.stringify(publicCatalog))}`,
   cacheRootClass: '.qa/evidence/creatorbench-v1/media',
   acquisitionGap: Math.max(0, target - selected.length),
+  failureCount: acquisitionFailures.length,
+  failureCategories: Object.fromEntries(
+    Object.entries(Object.groupBy(acquisitionFailures, (failure) => failure.category)).map(
+      ([category, failures]) => [category, failures.length],
+    ),
+  ),
+  gapReasons:
+    selected.length < target
+      ? [
+          'Rights-cleared candidates that could not be normalized are excluded; source-host throttling and decode failures remain visible in this receipt.',
+        ]
+      : [],
 };
 await writeFile(
   resolve(receiptRoot, 'acquisition-receipt.json'),

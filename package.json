@@ -32,6 +32,8 @@
     "creatorbench:publish": "node scripts/benchmarks/publish-creatorbench-report.mjs",
     "creatorbench:report": "npm run creatorbench:publish",
     "creatorbench:claims": "npm run creatorbench:publish",
+    "creatorbench:compare": "node scripts/benchmarks/compare-creatorbench-releases.mjs",
+    "creatorbench:proof:verify": "node scripts/quality/verify-creatorbench-public-proof.mjs",
     "proof:creatorbench": "npm run creatorbench:validate && playwright test tests/e2e/creatorbench.spec.ts --project=desktop-chromium --project=mobile-chromium",
     "media:index": "node scripts/workers/local-media-indexer.mjs",
     "media:index:doctor": "node scripts/workers/local-media-indexer.mjs --verify",

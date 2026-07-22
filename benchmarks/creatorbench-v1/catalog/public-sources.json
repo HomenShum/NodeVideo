@@ -1,35 +1,148 @@
 {
   "schemaVersion": "nodevideo.creatorbench-source-catalog.v1",
   "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T04:22:02.791Z",
+  "generatedAt": "2026-07-22T04:48:24.960Z",
   "records": [
     {
       "schemaVersion": "nodevideo.creatorbench-source/v1",
-      "id": "cb-0007-7e696883",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AOvercoming_Diabetes._Documentary_-_Science_-_Health.webm",
-      "creatorOwnerId": "creator:4b611b22428907f5",
-      "relatedSourceGroupId": "commons:56938697",
-      "title": "Overcoming Diabetes. Documentary - Science - Health.webm",
+      "id": "cb-0001-b0952255",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AWikimania_2016_-_How_to_make_a_short_documentary_with_a_smartphone.webm",
+      "creatorOwnerId": "creator:e2f181bdfaab847b",
+      "relatedSourceGroupId": "commons:49725614",
+      "title": "Wikimania 2016 - How to make a short documentary with a smartphone.webm",
       "rights": {
         "status": "cc-by",
         "licenseName": "CC BY 3.0",
         "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-        "attribution": "Pete Couste",
-        "permittedBenchmarkUses": ["analysis", "derivatives", "human-review", "publication"],
+        "attribution": "Jan Ainali",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
         "permittedRedistribution": true
       },
       "privacy": "public",
-      "acquiredAt": "2026-07-22T04:21:54.498Z",
-      "sourceSha256": "sha256:7db21da48be14f452c45552c66d0f1edf95bb01f2197286bbbfd70cf7e9bfdcb",
-      "durationMs": 6010,
+      "acquiredAt": "2026-07-22T04:48:23.795Z",
+      "sourceSha256": "sha256:5c7af03bb6d06eab298a90b0e25a402c5b733eb6e0c988ab9699587cec56f070",
+      "durationMs": 6006.44,
       "media": {
-        "width": 320,
+        "width": 294,
         "height": 240,
-        "fps": 29.97002997002997,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0004-7bfc3a17",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AReviewing_The_Age_of_Disclosure_%E2%80%93_Amazon_Prime%E2%80%99s_New_UFO_Documentary.webm",
+      "creatorOwnerId": "creator:0780ba03c9e51a21",
+      "relatedSourceGroupId": "commons:179448481",
+      "title": "Reviewing The Age of Disclosure – Amazon Prime’s New UFO Documentary.webm",
+      "rights": {
+        "status": "cc-by",
+        "licenseName": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+        "attribution": "That UFO Podcast",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T04:48:24.081Z",
+      "sourceSha256": "sha256:bb02268619696f229324c66e0e691e8e2bd31eb0165c38f9b145aaac9e997106",
+      "durationMs": 6014.333,
+      "media": {
+        "width": 426,
+        "height": 240,
+        "fps": 59.94006309148265,
         "codec": "h264",
         "hasAudio": true
       },
       "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0009-beb98f01",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMcKinley's_Late_Grandmother_is_an_Inspiration.webm",
+      "creatorOwnerId": "creator:76f0b85c344c40eb",
+      "relatedSourceGroupId": "commons:70108843",
+      "title": "McKinley's Late Grandmother is an Inspiration.webm",
+      "rights": {
+        "status": "cc-by",
+        "licenseName": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+        "attribution": "Atlanta Falcons",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T04:48:24.547Z",
+      "sourceSha256": "sha256:e39a2f9200a406b1ecccde259d72edd0e50a6c122c62897cb7123b83e0adaf0f",
+      "durationMs": 6006,
+      "media": {
+        "width": 426,
+        "height": 240,
+        "fps": 23.976023976023978,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0040-591140b7",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ADemonstration_of_a_2-step.webm",
+      "creatorOwnerId": "creator:dd8dbeaccbc54b02",
+      "relatedSourceGroupId": "commons:97852299",
+      "title": "Demonstration of a 2-step.webm",
+      "rights": {
+        "status": "cc-by",
+        "licenseName": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+        "attribution": "VincaniTV",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T04:48:24.902Z",
+      "sourceSha256": "sha256:ed5c0a4a3600b9544317fcc477b527fa213505f8bb2211fcff1925fb8bb879f7",
+      "durationMs": 6006,
+      "media": {
+        "width": 426,
+        "height": 240,
+        "fps": 23.976023976023978,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "split": "development",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review."
       ]

@@ -10,6 +10,10 @@ import {
   wilsonInterval,
   writeJson,
 } from './creatorbench-io.mjs';
+import {
+  assertFrozenPrivateCatalog,
+  assertPostFreezeEvaluatorAccess,
+} from './sealed-evaluator-guard.mjs';
 
 const sealed = process.argv.includes('--sealed');
 const splits = sealed
@@ -18,12 +22,11 @@ const splits = sealed
 let freeze;
 if (sealed) {
   freeze = await readJson(resolve(benchmarkRoot, 'receipts/creatorbench-freeze-receipt.json'));
-  const credential = process.env.NODEVIDEO_CREATORBENCH_EVALUATOR_TOKEN;
-  if (!credential || credential.length < 24) {
-    throw new Error(
-      'Sealed evaluation requires the post-freeze NODEVIDEO_CREATORBENCH_EVALUATOR_TOKEN credential plane.',
-    );
-  }
+  assertPostFreezeEvaluatorAccess({
+    sealed,
+    credential: process.env.NODEVIDEO_CREATORBENCH_EVALUATOR_TOKEN,
+    freeze,
+  });
 }
 const manifest = await readJson(
   sealed
@@ -43,8 +46,7 @@ const profilesConfig = await readJson(
 
 if (sealed) {
   const privateCatalogHash = `sha256:${sha256(JSON.stringify(sourceCatalog))}`;
-  if (freeze.privateSplit.catalogHash !== privateCatalogHash)
-    throw new Error('Private held-out catalog does not match the frozen hash.');
+  assertFrozenPrivateCatalog(freeze, privateCatalogHash);
 }
 
 const vite = await createServer({

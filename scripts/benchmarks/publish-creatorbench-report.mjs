@@ -40,6 +40,9 @@ const report = {
     workflows: claim.population.workflowCount,
     instances: claim.population.instanceCount,
     splits: acquisition.splitCounts,
+    licenseCounts: acquisition.licenseCounts,
+    acquisitionGap: acquisition.acquisitionGap,
+    acquisitionFailureCategories: acquisition.failureCategories,
   },
   counts: {
     reviewedInstances: sealed.results.filter((result) => result.review).length,

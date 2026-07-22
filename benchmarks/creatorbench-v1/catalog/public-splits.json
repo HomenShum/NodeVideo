@@ -1,17 +1,49 @@
 {
   "schemaVersion": "nodevideo.creatorbench-split-catalog/v1",
   "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T04:22:02.792Z",
+  "generatedAt": "2026-07-22T04:48:24.961Z",
   "assignments": [
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0007-7e696883",
+      "sourceId": "cb-0001-b0952255",
+      "split": "development",
+      "creatorOwnerId": "creator:e2f181bdfaab847b",
+      "relatedSourceGroupId": "commons:49725614",
+      "perceptualHash": "sha256:77930cc5589d85cccc4ea7c58af9c304ea642cead78afcb637412fb3582f566d",
+      "audioFingerprint": "sha256:622816d235d047fb4637961bd9413eef18383da9e0c248861b663771e9455c13",
+      "assignedAt": "2026-07-22T04:48:23.795Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0004-7bfc3a17",
       "split": "adversarial",
-      "creatorOwnerId": "creator:4b611b22428907f5",
-      "relatedSourceGroupId": "commons:56938697",
-      "perceptualHash": "sha256:bd5d05fa1b9dbffca64aa5fa758240200b2493b88b029904b22420494a5fd029",
-      "audioFingerprint": "sha256:194b55093b91db0d42c8676f0a4112083d6843bda20740346f6a9ecd4bab6809",
-      "assignedAt": "2026-07-22T04:21:54.498Z",
+      "creatorOwnerId": "creator:0780ba03c9e51a21",
+      "relatedSourceGroupId": "commons:179448481",
+      "perceptualHash": "sha256:88a94d9c477ac582e592236b9dbc1879dc8442c9889d08c21d9deeae1b211e0e",
+      "audioFingerprint": "sha256:d37b8315a31e1133ae40a46d71118d8b54d4550747700a058993cf64c1537d20",
+      "assignedAt": "2026-07-22T04:48:24.081Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0009-beb98f01",
+      "split": "public-test",
+      "creatorOwnerId": "creator:76f0b85c344c40eb",
+      "relatedSourceGroupId": "commons:70108843",
+      "perceptualHash": "sha256:cb3028a9b07bb781456e0163b93f67b586a59dcc3e97339a1efebe87beb62768",
+      "audioFingerprint": "sha256:74e037c58a4bca7af63bd16c476fd5b48509ae6d2c5129c75debc78e71ceaa4e",
+      "assignedAt": "2026-07-22T04:48:24.547Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0040-591140b7",
+      "split": "development",
+      "creatorOwnerId": "creator:dd8dbeaccbc54b02",
+      "relatedSourceGroupId": "commons:97852299",
+      "perceptualHash": "sha256:c9539d9887cc268f4182bbc57d02f3955b30e99be999e155ecb62b101a7c73d0",
+      "assignedAt": "2026-07-22T04:48:24.902Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     }
   ]

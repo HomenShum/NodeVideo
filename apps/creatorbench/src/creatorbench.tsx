@@ -957,6 +957,35 @@ function ReviewLab({ cases }: { cases: ReviewCase[] }) {
                 : percent(reviewCase.confidence)}
             </p>
             <small>Machine findings remain outside this bounded reviewer surface.</small>
+            <a
+              href={`data:application/json;charset=utf-8,${encodeURIComponent(
+                JSON.stringify(
+                  {
+                    schemaVersion: 'nodevideo.creatorbench-review/v1',
+                    id: `review:draft:${reviewCase.id}`,
+                    instanceId: reviewCase.id,
+                    resultId: `result:${reviewCase.id}`,
+                    reviewerPseudonym: 'reviewer-local-draft',
+                    assignmentId: `assignment:draft:${reviewCase.id}`,
+                    variantId: variant || undefined,
+                    blind: true,
+                    usability: complete,
+                    correctionTimeSeconds: Number(seconds),
+                    correctnessIssues: notes ? [notes] : [],
+                    missedSubjectOrContent: reasons.filter((reason) => reason.includes('subject')),
+                    unwantedEdits: reasons.filter((reason) => !reason.includes('subject')),
+                    reasonCodes: reasons,
+                    preferredVariantId: variant && variant !== 'tie' ? variant : undefined,
+                    submittedAt: new Date().toISOString(),
+                  },
+                  null,
+                  2,
+                ),
+              )}`}
+              download={`creatorbench-review-${reviewCase.id}.json`}
+            >
+              <Download /> Download review draft
+            </a>
           </div>
         </section>
       )}

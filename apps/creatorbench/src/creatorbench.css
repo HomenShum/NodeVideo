@@ -1198,6 +1198,19 @@ label:has(input:focus-visible) {
   color: var(--cb-muted);
   font-size: 12px;
 }
+.cb-post-judgment a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 9px;
+  color: var(--cb-green-ink);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.cb-post-judgment a svg {
+  width: 14px;
+}
 .cb-post-judgment ul {
   margin: 6px 0 0;
   padding-left: 17px;
