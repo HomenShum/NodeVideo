@@ -551,6 +551,45 @@ label:has(input:focus-visible) {
   font-family: ui-monospace, monospace;
 }
 
+.cb-admissibility {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(240px, .75fr);
+  gap: 20px;
+  margin: 0 0 16px;
+  padding: 18px;
+  border: 1px solid color-mix(in srgb, var(--cb-amber) 42%, var(--cb-line));
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--cb-amber) 7%, var(--cb-panel));
+}
+.cb-admissibility span {
+  color: var(--cb-amber);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.cb-admissibility b {
+  display: block;
+  margin-top: 5px;
+  font: 600 18px ui-monospace, monospace;
+}
+.cb-admissibility p {
+  margin: 7px 0 0;
+  color: var(--cb-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.cb-admissibility ul {
+  margin: 0;
+  padding-left: 18px;
+  columns: 2;
+  color: var(--cb-muted);
+  font-size: 11px;
+  text-transform: capitalize;
+}
+.cb-admissibility li {
+  margin: 0 0 5px;
+}
+
 .cb-table-wrap {
   width: 100%;
   overflow: auto;
@@ -1463,6 +1502,9 @@ label:has(input:focus-visible) {
   }
   .cb-metric-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .cb-admissibility {
+    grid-template-columns: 1fr;
   }
   .cb-weakness-grid,
   .cb-failure-gallery,

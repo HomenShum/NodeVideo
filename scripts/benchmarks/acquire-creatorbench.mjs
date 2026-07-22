@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, unlink, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { promisify } from 'node:util';
-import { assignCreatorDisjointSplits } from './creatorbench-splits.mjs';
+import { assignIsolationDisjointSplits } from './creatorbench-splits.mjs';
 import { collectNasaSvsCandidates } from './sources/nasa-svs.mjs';
 
 const execFileAsync = promisify(execFile);
@@ -240,10 +240,23 @@ function enforceCreatorLimit(candidates, seedRecords = []) {
 async function collectCandidates(desiredTarget, existingRecords) {
   const collected = [];
   if (providers.has('nasa-svs')) {
+    const nasaDiscoveryDomains = [
+      ...config.domains,
+      { id: 'science-demonstration', query: 'earth' },
+      { id: 'nature-landscape', query: 'ocean' },
+      { id: 'nature-landscape', query: 'climate' },
+      { id: 'science-demonstration', query: 'sun' },
+      { id: 'science-demonstration', query: 'moon' },
+      { id: 'transportation', query: 'spacecraft' },
+      { id: 'education-lecture', query: 'NASA visualization' },
+      { id: 'events-presentations', query: 'NASA documentary' },
+      { id: 'product-launch', query: 'mission animation' },
+      { id: 'manufacturing', query: 'engineering animation' },
+    ];
     collected.push(
       ...(await collectNasaSvsCandidates({
-        domains: config.domains,
-        target: desiredTarget + 20,
+        domains: nasaDiscoveryDomains,
+        target: desiredTarget + existingRecords.length + 80,
         maximumClipsPerCreator: config.maximumClipsPerCreator,
       })),
     );
@@ -346,7 +359,7 @@ async function acquireClip(candidate, index) {
         '0:v:0',
         ...audioArguments,
         '-vf',
-        'scale=min(640\\,iw):-2:force_original_aspect_ratio=decrease',
+        'scale=min(640\\,iw):-2:force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2',
         '-c:v',
         'libx264',
         '-preset',
@@ -505,7 +518,8 @@ async function mapLimit(items, limit, fn) {
 const existingRecords = overwrite ? [] : await readExistingVault();
 const reusableExisting = existingRecords.slice(0, target);
 const requiredNew = Math.max(0, target - reusableExisting.length);
-const candidates = await collectCandidates(requiredNew, reusableExisting);
+const candidates =
+  requiredNew > 0 || discoverOnly ? await collectCandidates(requiredNew, reusableExisting) : [];
 if (discoverOnly) {
   console.log(
     JSON.stringify(
@@ -537,14 +551,14 @@ const acquired = await mapLimit(
   (candidate, index) => acquireClip(candidate, reusableExisting.length + index),
 );
 const selectedRaw = [...reusableExisting, ...acquired].slice(0, target);
-const creatorSplits = assignCreatorDisjointSplits(
+const creatorSplits = assignIsolationDisjointSplits(
   selectedRaw,
   config.splitPercentages,
   stableNumber,
 );
 const selected = selectedRaw.map((record) => ({
   ...record,
-  split: creatorSplits.get(record.creatorId),
+  split: creatorSplits.get(record.id),
 }));
 const rightsStatus = (license) => {
   if (license === 'CC0') return 'cc0';
@@ -585,6 +599,12 @@ const asSourceRecord = (record) => ({
     codec: record.media.codec,
     hasAudio: record.media.hasAudio,
   },
+  corpusTier: record.corpusTier ?? 'motion-short',
+  admissibleWorkflows: record.admissibleWorkflows ?? ['smart-reframe', 'action-subject-following'],
+  admissibilityNotes: record.admissibilityNotes ?? [
+    'The normalized six-second source is admissible for visual tracking and reframing only.',
+    'Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers.',
+  ],
   split: record.split,
   knownLimitations: record.knownLimitations,
 });

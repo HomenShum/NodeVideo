@@ -16,6 +16,9 @@
     "sourceSha256",
     "durationMs",
     "media",
+    "corpusTier",
+    "admissibleWorkflows",
+    "admissibilityNotes",
     "split",
     "knownLimitations"
   ],
@@ -77,6 +80,34 @@
         "hasAudio": { "type": "boolean" }
       }
     },
+    "corpusTier": {
+      "enum": [
+        "motion-short",
+        "speech-long-form",
+        "multi-take-performance",
+        "reference-pair",
+        "launch-multi-asset",
+        "adversarial-corrupt"
+      ]
+    },
+    "admissibleWorkflows": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "smart-reframe",
+          "talking-head-cleanup",
+          "golden-quote-variants",
+          "reference-template",
+          "dance-choreography",
+          "captioned-multi-format",
+          "founder-product-launch",
+          "action-subject-following"
+        ]
+      }
+    },
+    "admissibilityNotes": { "type": "array", "minItems": 1, "items": { "type": "string" } },
     "split": { "$ref": "#/$defs/split" },
     "knownLimitations": { "type": "array", "items": { "type": "string" } }
   },

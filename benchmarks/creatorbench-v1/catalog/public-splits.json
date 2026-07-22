@@ -1,51 +1,8 @@
 {
   "schemaVersion": "nodevideo.creatorbench-split-catalog/v1",
   "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T05:24:56.775Z",
+  "generatedAt": "2026-07-22T06:03:45.170Z",
   "assignments": [
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0001-b0952255",
-      "split": "development",
-      "creatorOwnerId": "creator:e2f181bdfaab847b",
-      "relatedSourceGroupId": "commons:49725614",
-      "perceptualHash": "sha256:77930cc5589d85cccc4ea7c58af9c304ea642cead78afcb637412fb3582f566d",
-      "audioFingerprint": "sha256:622816d235d047fb4637961bd9413eef18383da9e0c248861b663771e9455c13",
-      "assignedAt": "2026-07-22T04:48:23.795Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0004-7bfc3a17",
-      "split": "public-test",
-      "creatorOwnerId": "creator:0780ba03c9e51a21",
-      "relatedSourceGroupId": "commons:179448481",
-      "perceptualHash": "sha256:88a94d9c477ac582e592236b9dbc1879dc8442c9889d08c21d9deeae1b211e0e",
-      "audioFingerprint": "sha256:d37b8315a31e1133ae40a46d71118d8b54d4550747700a058993cf64c1537d20",
-      "assignedAt": "2026-07-22T04:48:24.081Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0009-beb98f01",
-      "split": "public-test",
-      "creatorOwnerId": "creator:76f0b85c344c40eb",
-      "relatedSourceGroupId": "commons:70108843",
-      "perceptualHash": "sha256:cb3028a9b07bb781456e0163b93f67b586a59dcc3e97339a1efebe87beb62768",
-      "audioFingerprint": "sha256:74e037c58a4bca7af63bd16c476fd5b48509ae6d2c5129c75debc78e71ceaa4e",
-      "assignedAt": "2026-07-22T04:48:24.547Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0040-591140b7",
-      "split": "public-test",
-      "creatorOwnerId": "creator:dd8dbeaccbc54b02",
-      "relatedSourceGroupId": "commons:97852299",
-      "perceptualHash": "sha256:c9539d9887cc268f4182bbc57d02f3955b30e99be999e155ecb62b101a7c73d0",
-      "assignedAt": "2026-07-22T04:48:24.902Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0006-493a02f5",
@@ -58,18 +15,18 @@
     },
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0007-bd64b3cf",
-      "split": "adversarial",
-      "creatorOwnerId": "creator:3a778ba870437925",
-      "relatedSourceGroupId": "nasa-svs:13823",
-      "perceptualHash": "sha256:a1518af05ffd71f7143c88b261dda036e2fe619724dba2e2625862dfe62d4c6b",
-      "assignedAt": "2026-07-22T05:20:59.952Z",
+      "sourceId": "cb-0008-b952fc45",
+      "split": "public-test",
+      "creatorOwnerId": "creator:ecc7d269554788ad",
+      "relatedSourceGroupId": "nasa-svs:13585",
+      "perceptualHash": "sha256:a3c84e6d08c8bb400f9780ca4025177d070607942c80a8e4e7befd5c98a3205a",
+      "assignedAt": "2026-07-22T05:21:05.460Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0009-4f1d6956",
-      "split": "development",
+      "split": "public-test",
       "creatorOwnerId": "creator:66bc3c372077e54b",
       "relatedSourceGroupId": "nasa-svs:4782",
       "perceptualHash": "sha256:fb84a3d288239db948b80617b23f218a205468a2ace46733a465fc9a50594617",
@@ -79,7 +36,7 @@
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0010-565d0079",
-      "split": "development",
+      "split": "public-test",
       "creatorOwnerId": "creator:66bc3c372077e54b",
       "relatedSourceGroupId": "nasa-svs:4783",
       "perceptualHash": "sha256:fb84a3d288239db948b80617b23f218a205468a2ace46733a465fc9a50594617",
@@ -89,7 +46,7 @@
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0011-85b2e35f",
-      "split": "development",
+      "split": "public-test",
       "creatorOwnerId": "creator:66bc3c372077e54b",
       "relatedSourceGroupId": "nasa-svs:4784",
       "perceptualHash": "sha256:6d5f2d095d0b2fb12958a953b6be2b8a0ec08589c944e88851eea62c8c54173d",
@@ -98,32 +55,832 @@
     },
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0013-e3145068",
-      "split": "development",
-      "creatorOwnerId": "creator:e76a80cbb86cf643",
-      "relatedSourceGroupId": "nasa-svs:14624",
-      "perceptualHash": "sha256:99eb9f527e97f7ab67db020a2a29b946b1878bc66e47549f35d4b1081a70d53d",
-      "assignedAt": "2026-07-22T05:21:16.889Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0014-a6e58d23",
-      "split": "development",
-      "creatorOwnerId": "creator:8978cb73dcd12ef0",
-      "relatedSourceGroupId": "nasa-svs:13160",
-      "perceptualHash": "sha256:1b0edb9e54870449df0568e05cbe87f3cc2c764a7626bac2118df673b03a6e83",
-      "assignedAt": "2026-07-22T05:21:22.034Z",
+      "sourceId": "cb-0012-87d1ef2a",
+      "split": "public-test",
+      "creatorOwnerId": "creator:2ae86c237ab39041",
+      "relatedSourceGroupId": "nasa-svs:14639",
+      "perceptualHash": "sha256:a7e236ccb2ab0943f8909fa48a901497b41dd4f9b5b952bd29d3413c3a68ec5e",
+      "assignedAt": "2026-07-22T05:21:17.801Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0015-0a22e6b8",
-      "split": "adversarial",
+      "split": "development",
       "creatorOwnerId": "creator:8e58ef5e5db943c8",
       "relatedSourceGroupId": "nasa-svs:12589",
       "perceptualHash": "sha256:fcdb4b423f4e5283afa249d762ef6aef150e91fccd810d43e5e719d14512dec7",
       "assignedAt": "2026-07-22T05:21:25.126Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0016-4bbd64b0",
+      "split": "development",
+      "creatorOwnerId": "creator:8e58ef5e5db943c8",
+      "relatedSourceGroupId": "nasa-svs:13221",
+      "perceptualHash": "sha256:80bbc01b36b0757318bf17ff5ed86a8f394ad75b6c1239a8fc92502ecdd4e1a0",
+      "assignedAt": "2026-07-22T05:54:34.302Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0017-cc8702fa",
+      "split": "development",
+      "creatorOwnerId": "creator:f6a895a10bf54de9",
+      "relatedSourceGroupId": "nasa-svs:5665",
+      "perceptualHash": "sha256:c14675302cd6004627247fb2c1a8685ff30d8867204b851089dc2e7bb2860d5b",
+      "assignedAt": "2026-07-22T05:54:34.284Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0018-0932f238",
+      "split": "development",
+      "creatorOwnerId": "creator:f6a895a10bf54de9",
+      "relatedSourceGroupId": "nasa-svs:5664",
+      "perceptualHash": "sha256:444bf8d04907aaa7f5f5f6c40c6ffc678db8d112ca50f3e77fab41b5023edbcc",
+      "assignedAt": "2026-07-22T05:54:34.531Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0019-9e58ef72",
+      "split": "development",
+      "creatorOwnerId": "creator:805d5bf61acd2aea",
+      "relatedSourceGroupId": "nasa-svs:5660",
+      "perceptualHash": "sha256:8378b0b4ce7c756e2a0fcd6a1b15cb1a6893f3b05431f0e43af5b13ba33d7f94",
+      "assignedAt": "2026-07-22T05:54:34.549Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0020-8804a7db",
+      "split": "public-test",
+      "creatorOwnerId": "creator:85bb2622ddbd6e37",
+      "relatedSourceGroupId": "nasa-svs:5662",
+      "perceptualHash": "sha256:751727df6a20d489ed8cc3ae118c1c31efb92f827a5e4c448abb8a37fa97441b",
+      "assignedAt": "2026-07-22T05:54:34.749Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0021-31f5bb01",
+      "split": "development",
+      "creatorOwnerId": "creator:765352e7a1eae892",
+      "relatedSourceGroupId": "nasa-svs:5656",
+      "perceptualHash": "sha256:d1ac0b8b2e9f9669ca5b28c6c7eb4225f9cbbc342f9bbedecdf872a700c0cb8d",
+      "assignedAt": "2026-07-22T05:54:34.783Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0022-b933f478",
+      "split": "public-test",
+      "creatorOwnerId": "creator:2ae86c237ab39041",
+      "relatedSourceGroupId": "nasa-svs:5648",
+      "perceptualHash": "sha256:a9cb741d8580bf3bdbbf1880ed21caf6335beaace37826257f6f7577e3a7cbdc",
+      "assignedAt": "2026-07-22T05:54:34.966Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0023-cf31f183",
+      "split": "public-test",
+      "creatorOwnerId": "creator:ff57478f62df0d0a",
+      "relatedSourceGroupId": "nasa-svs:15057",
+      "perceptualHash": "sha256:5d72d45cd031ee55e22142f8a22918dfabe6f11fcf661620124d593d58eab9dc",
+      "assignedAt": "2026-07-22T05:54:34.998Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0024-85653153",
+      "split": "public-test",
+      "creatorOwnerId": "creator:cacb97c76edb2839",
+      "relatedSourceGroupId": "nasa-svs:15055",
+      "perceptualHash": "sha256:da7ca30ba69ee587732cd9ef73dec0a6d3a898f2df438a63352f4aa78f3fd40e",
+      "assignedAt": "2026-07-22T05:54:35.192Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0025-36d4e43b",
+      "split": "public-test",
+      "creatorOwnerId": "creator:cacb97c76edb2839",
+      "relatedSourceGroupId": "nasa-svs:15054",
+      "perceptualHash": "sha256:f6d6d2fb2a7c61911a8a89ee1cc0a367a01e1e5e3a4c8902acdde43d6298043c",
+      "assignedAt": "2026-07-22T05:54:35.224Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0026-7c1b2383",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:85df9b7f6813f03d",
+      "relatedSourceGroupId": "nasa-svs:5649",
+      "perceptualHash": "sha256:ef44ffc38771e0e52cccb2ee0d14c908727f270aea8a7bb5d3cd99f3fb755d38",
+      "assignedAt": "2026-07-22T05:54:35.401Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0027-0cc0ba2b",
+      "split": "development",
+      "creatorOwnerId": "creator:38c68d1decd45ca6",
+      "relatedSourceGroupId": "nasa-svs:31399",
+      "perceptualHash": "sha256:12b53e201e99c2b26cf1b20c7e640bff703fcca67dd141e33fa207b6bead5866",
+      "assignedAt": "2026-07-22T05:54:35.436Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0028-fd71efcf",
+      "split": "development",
+      "creatorOwnerId": "creator:f6a895a10bf54de9",
+      "relatedSourceGroupId": "nasa-svs:5624",
+      "perceptualHash": "sha256:28207ea75e1b0b0d60a9c62911a1f3244ba38e6c6a3a2323d995c5e82cbae7a8",
+      "assignedAt": "2026-07-22T05:54:35.603Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0029-ceb75f1d",
+      "split": "public-test",
+      "creatorOwnerId": "creator:2e3d2d9e05e32ec7",
+      "relatedSourceGroupId": "nasa-svs:15044",
+      "perceptualHash": "sha256:eaecc5110b085bdc553cec1c382692873c51d4e173b27f6f33d06cce9eae44a4",
+      "assignedAt": "2026-07-22T05:54:35.660Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0030-f6dba17c",
+      "split": "public-test",
+      "creatorOwnerId": "creator:ff57478f62df0d0a",
+      "relatedSourceGroupId": "nasa-svs:15042",
+      "perceptualHash": "sha256:8f8ca38c9214ff6ac886e354ff8ece5ac1391fee8b38e6f055ddffe63a4beff0",
+      "assignedAt": "2026-07-22T05:54:35.871Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0031-6f0b437d",
+      "split": "development",
+      "creatorOwnerId": "creator:db1076e7f1c8648a",
+      "relatedSourceGroupId": "nasa-svs:15041",
+      "perceptualHash": "sha256:676d189cba01d47f02b26c246eb372ceac560ab2c35b80782bb92c2153d6cbca",
+      "assignedAt": "2026-07-22T05:54:35.905Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0032-2ce7cec5",
+      "split": "development",
+      "creatorOwnerId": "creator:db1076e7f1c8648a",
+      "relatedSourceGroupId": "nasa-svs:15000",
+      "perceptualHash": "sha256:a38a40330dacf3af32e8161b069f1f3c07205efc58abefd11e7218733907c2cc",
+      "assignedAt": "2026-07-22T05:54:36.110Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0033-b4a20a60",
+      "split": "development",
+      "creatorOwnerId": "creator:ebd986d3e10b4b72",
+      "relatedSourceGroupId": "nasa-svs:15040",
+      "perceptualHash": "sha256:b87b3bfc25ce23a806bb5cd666cfc24d0908f2c5cfd38d09502f155b71a6ffb8",
+      "assignedAt": "2026-07-22T05:54:36.129Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0034-16ed90ac",
+      "split": "development",
+      "creatorOwnerId": "creator:23e276ebbf6de115",
+      "relatedSourceGroupId": "nasa-svs:5643",
+      "perceptualHash": "sha256:a17584be5da5c87c961710eb01e692f873800ae6f6993182f56b489655ff72b4",
+      "assignedAt": "2026-07-22T05:54:36.312Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0036-60582816",
+      "split": "public-test",
+      "creatorOwnerId": "creator:cacb97c76edb2839",
+      "relatedSourceGroupId": "nasa-svs:15027",
+      "perceptualHash": "sha256:e7af9bccf1dc2c38508a0a5db78c1178fd3e48d5a852e9b0dcfd2b46d7a082ce",
+      "assignedAt": "2026-07-22T05:54:36.527Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0037-acd7511c",
+      "split": "development",
+      "creatorOwnerId": "creator:0f52bf10e77cc571",
+      "relatedSourceGroupId": "nasa-svs:5599",
+      "perceptualHash": "sha256:9f6a3c7a45d78691eb1c13ecb28010da6c28125952ec61dbc99d8c873d7f6c35",
+      "assignedAt": "2026-07-22T05:54:36.537Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0038-6a3339c2",
+      "split": "development",
+      "creatorOwnerId": "creator:d9f58daadbea890e",
+      "relatedSourceGroupId": "nasa-svs:15001",
+      "perceptualHash": "sha256:fcdb4b423f4e5283afa249d762ef6aef150e91fccd810d43e5e719d14512dec7",
+      "assignedAt": "2026-07-22T05:54:36.732Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0039-884266ba",
+      "split": "public-test",
+      "creatorOwnerId": "creator:85bb2622ddbd6e37",
+      "relatedSourceGroupId": "nasa-svs:5641",
+      "perceptualHash": "sha256:54302e5c67d48603b2c3111b4e1bdb57160cc43dadca45edf928a60afce8aa77",
+      "assignedAt": "2026-07-22T05:54:36.732Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0040-51f4ed21",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:3674b25761779311",
+      "relatedSourceGroupId": "nasa-svs:5629",
+      "perceptualHash": "sha256:9527e7c95e1a5c2e5f5e10953bd4158f462fc15255ecd1b2162681e82ccdd01c",
+      "assignedAt": "2026-07-22T05:54:36.945Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0042-e291b18d",
+      "split": "development",
+      "creatorOwnerId": "creator:2c0e8ffa67d7e5ad",
+      "relatedSourceGroupId": "nasa-svs:5626",
+      "perceptualHash": "sha256:098d990b001dd7c74ff27e596b4c4193042b4d7b3aa786ff8f72ae870eac686e",
+      "assignedAt": "2026-07-22T05:54:37.176Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0043-b1d571bb",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:eb7cf103cf55f696",
+      "relatedSourceGroupId": "nasa-svs:14986",
+      "perceptualHash": "sha256:f5d126768abac8b7145d462e517e4bc4a1b5629aa43e4657d844cf727e580d46",
+      "assignedAt": "2026-07-22T05:54:37.446Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0044-ee96dc05",
+      "split": "development",
+      "creatorOwnerId": "creator:307b6858764c6b96",
+      "relatedSourceGroupId": "nasa-svs:14990",
+      "perceptualHash": "sha256:d961635978a9da86392d519cd914750953720d933dcdbe10fd34a8d6e1fd4ea3",
+      "assignedAt": "2026-07-22T05:54:42.530Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0045-c0fdc2d9",
+      "split": "development",
+      "creatorOwnerId": "creator:d9f58daadbea890e",
+      "relatedSourceGroupId": "nasa-svs:5616",
+      "perceptualHash": "sha256:c4341a2f71b79415538b93d40331a4765c10f67f6e643ee70911727204348a9e",
+      "assignedAt": "2026-07-22T05:54:42.281Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0046-482f5e97",
+      "split": "development",
+      "creatorOwnerId": "creator:01cb42f4bc1fcfad",
+      "relatedSourceGroupId": "nasa-svs:5618",
+      "perceptualHash": "sha256:1034511a0568e9786cb4279e1a6f754449c7fd344ab0b6f0cd6c58e7b16d4585",
+      "assignedAt": "2026-07-22T05:54:45.601Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0047-1aa70c3c",
+      "split": "development",
+      "creatorOwnerId": "creator:01cb42f4bc1fcfad",
+      "relatedSourceGroupId": "nasa-svs:5619",
+      "perceptualHash": "sha256:8e7acfa57dbaa6e55359b0687754aab40aac8a88965bd6d8cb11e67a18e62195",
+      "assignedAt": "2026-07-22T05:54:45.929Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0050-44f3a3ff",
+      "split": "development",
+      "creatorOwnerId": "creator:38c68d1decd45ca6",
+      "relatedSourceGroupId": "nasa-svs:31365",
+      "perceptualHash": "sha256:888b7d45a12c9ecd3bc414f7e508ba15946fc8c6421cf7faa0dc54459e7f92f2",
+      "assignedAt": "2026-07-22T05:54:52.316Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0051-4bcd095f",
+      "split": "development",
+      "creatorOwnerId": "creator:805d5bf61acd2aea",
+      "relatedSourceGroupId": "nasa-svs:5613",
+      "perceptualHash": "sha256:8b64f28a8760fe2ff0a3d61c50cfa3fb1b3401294d05128485f13f011d47b09b",
+      "assignedAt": "2026-07-22T05:54:53.746Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0052-eb5546f0",
+      "split": "development",
+      "creatorOwnerId": "creator:805d5bf61acd2aea",
+      "relatedSourceGroupId": "nasa-svs:5603",
+      "perceptualHash": "sha256:3ffc995ea021fa59ba4d1f8cdf856aa5c5f005a6ebb97f213ee4c3892a6c1d83",
+      "assignedAt": "2026-07-22T06:00:03.764Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0053-adc83a29",
+      "split": "development",
+      "creatorOwnerId": "creator:0f52bf10e77cc571",
+      "relatedSourceGroupId": "nasa-svs:5591",
+      "perceptualHash": "sha256:2fe13048f455dfeb772ea80d78c95fdb7cc200b1d81445c01252debdd787a05a",
+      "assignedAt": "2026-07-22T06:00:03.950Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0054-e3b9440b",
+      "split": "development",
+      "creatorOwnerId": "creator:0f52bf10e77cc571",
+      "relatedSourceGroupId": "nasa-svs:5592",
+      "perceptualHash": "sha256:79523308b99b2a58c3e13ad95c67c3bc56e07d344b3f7b139d053642ab169e75",
+      "assignedAt": "2026-07-22T06:00:04.145Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0056-ae949169",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:2c5b5301a2efa041",
+      "relatedSourceGroupId": "nasa-svs:5572",
+      "perceptualHash": "sha256:6396d095f3151bb4aeb9657caeb876ce323f466af222604260672b6ea311a27c",
+      "assignedAt": "2026-07-22T06:00:04.544Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0057-1d87ea0e",
+      "split": "development",
+      "creatorOwnerId": "creator:46e3aa7c6a68390d",
+      "relatedSourceGroupId": "nasa-svs:5571",
+      "perceptualHash": "sha256:a3d44d538db8685cb50c790ad1b9f458a3ca6557ec43b138ef932832544b51a2",
+      "assignedAt": "2026-07-22T06:00:04.742Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0058-ca9b5d55",
+      "split": "development",
+      "creatorOwnerId": "creator:b474bff9a876d454",
+      "relatedSourceGroupId": "nasa-svs:14982",
+      "perceptualHash": "sha256:5c331161754fab36c9b97e6e3c7a4b0f6cd2116d6f1ef03ba45c01a7fbb6e35c",
+      "assignedAt": "2026-07-22T06:00:04.964Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0059-c3b960e2",
+      "split": "development",
+      "creatorOwnerId": "creator:b474bff9a876d454",
+      "relatedSourceGroupId": "nasa-svs:14965",
+      "perceptualHash": "sha256:fcdb4b423f4e5283afa249d762ef6aef150e91fccd810d43e5e719d14512dec7",
+      "assignedAt": "2026-07-22T06:00:05.192Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0060-4ef7b32c",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:ecc905a8e00af30c",
+      "relatedSourceGroupId": "nasa-svs:5503",
+      "perceptualHash": "sha256:37a95ee6b51bc1dc2ea1e77ee123109ed4dafde9082e5f0d7ff6c68bd394f46f",
+      "assignedAt": "2026-07-22T06:00:05.455Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0061-68183569",
+      "split": "development",
+      "creatorOwnerId": "creator:b474bff9a876d454",
+      "relatedSourceGroupId": "nasa-svs:14903",
+      "perceptualHash": "sha256:fcdb4b423f4e5283afa249d762ef6aef150e91fccd810d43e5e719d14512dec7",
+      "assignedAt": "2026-07-22T06:00:05.523Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0062-7554e85b",
+      "split": "development",
+      "creatorOwnerId": "creator:307b6858764c6b96",
+      "relatedSourceGroupId": "nasa-svs:14894",
+      "perceptualHash": "sha256:1f7a7da5f98c975b0405c62eb0b1491c502954f4dff53fc01bb2c9febbc6b375",
+      "assignedAt": "2026-07-22T06:00:05.709Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0063-b55329da",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:3674b25761779311",
+      "relatedSourceGroupId": "nasa-svs:5583",
+      "perceptualHash": "sha256:abbe08eed38f1ecb205bd156fefce6ac7c37119ff2d9c8ac67578649a7b1a8b6",
+      "assignedAt": "2026-07-22T06:00:05.747Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0066-9e65c59b",
+      "split": "development",
+      "creatorOwnerId": "creator:23e276ebbf6de115",
+      "relatedSourceGroupId": "nasa-svs:15043",
+      "perceptualHash": "sha256:43bbd37f0165d01928d5a95195f009dcb98cb25164012af0bafcd332655e9826",
+      "assignedAt": "2026-07-22T06:00:06.108Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0068-020c2a0a",
+      "split": "development",
+      "creatorOwnerId": "creator:23e276ebbf6de115",
+      "relatedSourceGroupId": "nasa-svs:15011",
+      "perceptualHash": "sha256:7216a6043606611dba70533f4dcca27a9ace2f478bac1db2485aa8a9851e5ed4",
+      "assignedAt": "2026-07-22T06:00:06.314Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0069-e0f2d14d",
+      "split": "development",
+      "creatorOwnerId": "creator:4c905bdfead30413",
+      "relatedSourceGroupId": "nasa-svs:5623",
+      "perceptualHash": "sha256:c1bae6be27be987e0f9aa38ad094743cff7e0b46e613cdc69fc83f2aa41cbf80",
+      "assignedAt": "2026-07-22T06:00:06.356Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0071-21cbaa5c",
+      "split": "development",
+      "creatorOwnerId": "creator:38c68d1decd45ca6",
+      "relatedSourceGroupId": "nasa-svs:31375",
+      "perceptualHash": "sha256:1b44c9db07a7f798ce1d767f85b78c1872ed3ec8cdfcb81dd0a607cb4508b304",
+      "assignedAt": "2026-07-22T06:00:06.545Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0072-4ed91916",
+      "split": "public-test",
+      "creatorOwnerId": "creator:2e3d2d9e05e32ec7",
+      "relatedSourceGroupId": "nasa-svs:14968",
+      "perceptualHash": "sha256:6c794243dd2a294059bd4a78a031df5d7dfc702b1b0f3ec335ed955c31230092",
+      "assignedAt": "2026-07-22T06:00:06.696Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0073-001f1f6b",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:6d0a8986347e9ad7",
+      "relatedSourceGroupId": "nasa-svs:14992",
+      "perceptualHash": "sha256:8eec94d824a599ff05fe18c6a63d8fef695b49befa93a31b3daeb78ffd32b392",
+      "assignedAt": "2026-07-22T06:00:06.752Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0074-57484d54",
+      "split": "public-test",
+      "creatorOwnerId": "creator:2ae86c237ab39041",
+      "relatedSourceGroupId": "nasa-svs:14988",
+      "perceptualHash": "sha256:99353d044569acf2101a4a318053ecac6835a5d123662eab90681525b551bcc7",
+      "assignedAt": "2026-07-22T06:00:06.930Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0075-cafd8dd1",
+      "split": "development",
+      "creatorOwnerId": "creator:956bf738dd823639",
+      "relatedSourceGroupId": "nasa-svs:5622",
+      "perceptualHash": "sha256:676d189cba01d47f02b26c246eb372ceac560ab2c35b80782bb92c2153d6cbca",
+      "assignedAt": "2026-07-22T06:00:06.945Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0077-76d6a7e7",
+      "split": "public-test",
+      "creatorOwnerId": "creator:fa8daa62e345686e",
+      "relatedSourceGroupId": "nasa-svs:15016",
+      "perceptualHash": "sha256:bf81cf2952f54eda2a284ddb918a32471bd059a3de40a0fc58b4415ec3c8ab2c",
+      "assignedAt": "2026-07-22T06:00:07.149Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0078-5dcaeb49",
+      "split": "development",
+      "creatorOwnerId": "creator:765352e7a1eae892",
+      "relatedSourceGroupId": "nasa-svs:5633",
+      "perceptualHash": "sha256:4d166f29bdc8ebedd786702efdc9fa6c9bfcc3205eae177114e1dad7a40bf34b",
+      "assignedAt": "2026-07-22T06:00:07.338Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0079-b3bf6506",
+      "split": "development",
+      "creatorOwnerId": "creator:cec9a87a3c263a3d",
+      "relatedSourceGroupId": "nasa-svs:5632",
+      "perceptualHash": "sha256:fcdb4b423f4e5283afa249d762ef6aef150e91fccd810d43e5e719d14512dec7",
+      "assignedAt": "2026-07-22T06:00:07.340Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0080-3073e3ec",
+      "split": "development",
+      "creatorOwnerId": "creator:ebd986d3e10b4b72",
+      "relatedSourceGroupId": "nasa-svs:14934",
+      "perceptualHash": "sha256:e42c813381f1dc99daf61ff19449ca6a6808f85a30d83e8c8d95dbde3f928537",
+      "assignedAt": "2026-07-22T06:00:07.567Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0081-5a513c7a",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:6d0a8986347e9ad7",
+      "relatedSourceGroupId": "nasa-svs:5628",
+      "perceptualHash": "sha256:a7726d7bc2212fb128f153961b784aa09d59b2caae7baa124a129608404556c2",
+      "assignedAt": "2026-07-22T06:00:07.555Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0082-0a72ef24",
+      "split": "development",
+      "creatorOwnerId": "creator:db1076e7f1c8648a",
+      "relatedSourceGroupId": "nasa-svs:15051",
+      "perceptualHash": "sha256:002538855edfb8a015a0bbdc1fb69e5ae61d69ce244a45ef6de5897f455456c3",
+      "assignedAt": "2026-07-22T06:00:07.797Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0083-20fd73aa",
+      "split": "development",
+      "creatorOwnerId": "creator:00c4a38e53deada5",
+      "relatedSourceGroupId": "nasa-svs:5627",
+      "perceptualHash": "sha256:0c0f5e7cf16457c07904fa9faccd7d90c35013cfc373ad0429af02649056756b",
+      "assignedAt": "2026-07-22T06:00:07.773Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0084-5ce9e814",
+      "split": "development",
+      "creatorOwnerId": "creator:8d75dbe56ff05bd7",
+      "relatedSourceGroupId": "nasa-svs:5621",
+      "perceptualHash": "sha256:ef934ebfa46d5becafd5edbb692370d84ed91e3564e683658a460c2bb9899f64",
+      "assignedAt": "2026-07-22T06:00:07.981Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0085-7768f9ac",
+      "split": "public-test",
+      "creatorOwnerId": "creator:2e3d2d9e05e32ec7",
+      "relatedSourceGroupId": "nasa-svs:14972",
+      "perceptualHash": "sha256:2f7e574d202f115743fb99627f7c0fbe8305a87d3d07831992f54d8e24b9b020",
+      "assignedAt": "2026-07-22T06:00:08.023Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0086-85a79a17",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:eb7cf103cf55f696",
+      "relatedSourceGroupId": "nasa-svs:5655",
+      "perceptualHash": "sha256:b21563b9d118d1e7e4099cc589345b6d7b1222b8bcd6298e53c5d8eaa272edda",
+      "assignedAt": "2026-07-22T06:00:08.176Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0088-9b30a3c3",
+      "split": "public-test",
+      "creatorOwnerId": "creator:fa8daa62e345686e",
+      "relatedSourceGroupId": "nasa-svs:14785",
+      "perceptualHash": "sha256:60acf1b71a249b9bd9da3a1a850a7476d34da27189c9596fa5678f1af91d50a8",
+      "assignedAt": "2026-07-22T06:00:08.383Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0089-a5140cae",
+      "split": "development",
+      "creatorOwnerId": "creator:44c0cbcedb52d83c",
+      "relatedSourceGroupId": "nasa-svs:14691",
+      "perceptualHash": "sha256:fcdb4b423f4e5283afa249d762ef6aef150e91fccd810d43e5e719d14512dec7",
+      "assignedAt": "2026-07-22T06:00:08.455Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0090-8d000e84",
+      "split": "public-test",
+      "creatorOwnerId": "creator:fa8daa62e345686e",
+      "relatedSourceGroupId": "nasa-svs:14193",
+      "perceptualHash": "sha256:3312dad8a7d19861dda0245d08d5869ed9d16fb27fa5a6eb4a8ea89155e4afc6",
+      "assignedAt": "2026-07-22T06:00:08.591Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0092-75e3169a",
+      "split": "development",
+      "creatorOwnerId": "creator:fa5f778e83d4e864",
+      "relatedSourceGroupId": "nasa-svs:13270",
+      "perceptualHash": "sha256:fcdb4b423f4e5283afa249d762ef6aef150e91fccd810d43e5e719d14512dec7",
+      "assignedAt": "2026-07-22T06:00:12.243Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0093-454e2d61",
+      "split": "development",
+      "creatorOwnerId": "creator:765352e7a1eae892",
+      "relatedSourceGroupId": "nasa-svs:4655",
+      "perceptualHash": "sha256:fcdb4b423f4e5283afa249d762ef6aef150e91fccd810d43e5e719d14512dec7",
+      "assignedAt": "2026-07-22T06:00:13.418Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0094-ac666c8f",
+      "split": "development",
+      "creatorOwnerId": "creator:669712b76787f437",
+      "relatedSourceGroupId": "nasa-svs:3220",
+      "perceptualHash": "sha256:fcdb4b423f4e5283afa249d762ef6aef150e91fccd810d43e5e719d14512dec7",
+      "assignedAt": "2026-07-22T06:00:15.617Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0096-bbc6d99c",
+      "split": "public-test",
+      "creatorOwnerId": "creator:8214719fad70e6d9",
+      "relatedSourceGroupId": "nasa-svs:20412",
+      "perceptualHash": "sha256:ee1268f09484c816bdb41cf5d2bcdda901e59f844995611fd705bd1570df50f8",
+      "assignedAt": "2026-07-22T06:00:17.928Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0097-b78025cb",
+      "split": "public-test",
+      "creatorOwnerId": "creator:8214719fad70e6d9",
+      "relatedSourceGroupId": "nasa-svs:20411",
+      "perceptualHash": "sha256:0ba1e6ffe05d1f058276483acb48d8a9b6bd657dff81a7ce2e98db5408aee3e4",
+      "assignedAt": "2026-07-22T06:00:18.511Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0098-98ab8feb",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:56aa250e4de4f863",
+      "relatedSourceGroupId": "nasa-svs:5576",
+      "perceptualHash": "sha256:d1a2eec4d9ebf3cfd0b539b146208eadf6ae0a26b4a04c57ccaa83fa1e0c5723",
+      "assignedAt": "2026-07-22T06:00:21.259Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0100-dcd76e76",
+      "split": "development",
+      "creatorOwnerId": "creator:52b564b871e6f6fb",
+      "relatedSourceGroupId": "nasa-svs:20410",
+      "perceptualHash": "sha256:791e4de7ea9e5397a4f8ed859e2777e930fa73b674f4407b572b6f438f1e05e5",
+      "assignedAt": "2026-07-22T06:00:24.431Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0101-28404cbc",
+      "split": "development",
+      "creatorOwnerId": "creator:1e86912b788f6182",
+      "relatedSourceGroupId": "nasa-svs:20407",
+      "perceptualHash": "sha256:66ebbac8c48226c04e3965dd34ef859e1c6b19f810df53dd7182441309955635",
+      "assignedAt": "2026-07-22T06:00:25.302Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0102-0024dcf8",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:e0f70872013d07a8",
+      "relatedSourceGroupId": "nasa-svs:14542",
+      "perceptualHash": "sha256:d185c32307b72b4b21b32f3713069d32acbfa16d3fdc74fff84fccd1721abbae",
+      "assignedAt": "2026-07-22T06:02:29.119Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0106-fd128f45",
+      "split": "public-test",
+      "creatorOwnerId": "creator:ecc7d269554788ad",
+      "relatedSourceGroupId": "nasa-svs:4826",
+      "perceptualHash": "sha256:4855c8c990fceb6e30a330fae8ab96cd122a25a8b57bbf48be73b9cc852fe93d",
+      "assignedAt": "2026-07-22T06:02:30.573Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0107-06e107d2",
+      "split": "public-test",
+      "creatorOwnerId": "creator:ecc7d269554788ad",
+      "relatedSourceGroupId": "nasa-svs:4833",
+      "perceptualHash": "sha256:fc1132531af9f994a6f6be66f3459a71cd4ba8fc54372d0de5f6165c4113684b",
+      "assignedAt": "2026-07-22T06:02:30.790Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0108-0f94ea96",
+      "split": "development",
+      "creatorOwnerId": "creator:ebd986d3e10b4b72",
+      "relatedSourceGroupId": "nasa-svs:13746",
+      "perceptualHash": "sha256:62ad6c737a5990b5da939540324e4a7fdf84437c57c0fbd4be1a41d9a870922e",
+      "assignedAt": "2026-07-22T06:02:30.876Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0109-9955efd2",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:d778a9cb3d7305de",
+      "relatedSourceGroupId": "nasa-svs:20326",
+      "perceptualHash": "sha256:263499ba1724a4fedcf90bd550525c02ea5a5e71be36dccfd1a545fd3ec96bd1",
+      "assignedAt": "2026-07-22T06:02:30.997Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0110-c17e1c3f",
+      "split": "development",
+      "creatorOwnerId": "creator:44c0cbcedb52d83c",
+      "relatedSourceGroupId": "nasa-svs:13738",
+      "perceptualHash": "sha256:b0eba9b97ff639343966759b66c068dafb25eab1fdfabd92d312a5505946ebb6",
+      "assignedAt": "2026-07-22T06:02:31.115Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0111-1460dea9",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:064faefc6941e019",
+      "relatedSourceGroupId": "nasa-svs:13371",
+      "perceptualHash": "sha256:a437673f289410316966a94007c78842d4c2a0067e351465447b8d8627a2f9ec",
+      "assignedAt": "2026-07-22T06:02:31.188Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0112-c462e74c",
+      "split": "development",
+      "creatorOwnerId": "creator:1a9c041df2295ff6",
+      "relatedSourceGroupId": "nasa-svs:4532",
+      "perceptualHash": "sha256:fcdb4b423f4e5283afa249d762ef6aef150e91fccd810d43e5e719d14512dec7",
+      "assignedAt": "2026-07-22T06:02:31.297Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0111-c8656e5e",
+      "split": "development",
+      "creatorOwnerId": "creator:2c0e8ffa67d7e5ad",
+      "relatedSourceGroupId": "nasa-svs:5625",
+      "perceptualHash": "sha256:6fdc7fcda616d7617b225a4cbe0c2a302758ae146f1aceeb418f370a73c1f31a",
+      "assignedAt": "2026-07-22T06:03:45.125Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     }
   ]

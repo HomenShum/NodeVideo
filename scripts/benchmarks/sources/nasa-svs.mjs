@@ -150,9 +150,9 @@ export async function collectNasaSvsCandidates({
   maximumClipsPerCreator = 3,
 }) {
   const resultByPage = new Map();
-  const searchLimit = Math.max(12, Math.min(30, Math.ceil((target * 2) / domains.length)));
+  const searchLimit = 30;
   for (const domain of domains) {
-    if (resultByPage.size >= target * 2) break;
+    if (resultByPage.size >= target * 6) break;
     const params = new URLSearchParams({ search: domain.query, limit: String(searchLimit) });
     const search = await fetchJson(`${API_ROOT}/search/?${params}`, fetchImpl);
     for (const result of search.results ?? []) {

@@ -1,152 +1,8 @@
 {
   "schemaVersion": "nodevideo.creatorbench-source-catalog.v1",
   "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T05:24:56.773Z",
+  "generatedAt": "2026-07-22T06:03:45.167Z",
   "records": [
-    {
-      "schemaVersion": "nodevideo.creatorbench-source/v1",
-      "id": "cb-0001-b0952255",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AWikimania_2016_-_How_to_make_a_short_documentary_with_a_smartphone.webm",
-      "creatorOwnerId": "creator:e2f181bdfaab847b",
-      "relatedSourceGroupId": "commons:49725614",
-      "title": "Wikimania 2016 - How to make a short documentary with a smartphone.webm",
-      "rights": {
-        "status": "cc-by",
-        "licenseName": "CC BY 3.0",
-        "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-        "attribution": "Jan Ainali",
-        "permittedBenchmarkUses": [
-          "analysis",
-          "derivatives",
-          "human-review",
-          "publication"
-        ],
-        "permittedRedistribution": true
-      },
-      "privacy": "public",
-      "acquiredAt": "2026-07-22T04:48:23.795Z",
-      "sourceSha256": "sha256:5c7af03bb6d06eab298a90b0e25a402c5b733eb6e0c988ab9699587cec56f070",
-      "durationMs": 6006.44,
-      "media": {
-        "width": 294,
-        "height": 240,
-        "fps": 30,
-        "codec": "h264",
-        "hasAudio": true
-      },
-      "split": "development",
-      "knownLimitations": [
-        "Six-second normalized derivative; source semantics require human review."
-      ]
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-source/v1",
-      "id": "cb-0004-7bfc3a17",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AReviewing_The_Age_of_Disclosure_%E2%80%93_Amazon_Prime%E2%80%99s_New_UFO_Documentary.webm",
-      "creatorOwnerId": "creator:0780ba03c9e51a21",
-      "relatedSourceGroupId": "commons:179448481",
-      "title": "Reviewing The Age of Disclosure – Amazon Prime’s New UFO Documentary.webm",
-      "rights": {
-        "status": "cc-by",
-        "licenseName": "CC BY 3.0",
-        "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-        "attribution": "That UFO Podcast",
-        "permittedBenchmarkUses": [
-          "analysis",
-          "derivatives",
-          "human-review",
-          "publication"
-        ],
-        "permittedRedistribution": true
-      },
-      "privacy": "public",
-      "acquiredAt": "2026-07-22T04:48:24.081Z",
-      "sourceSha256": "sha256:bb02268619696f229324c66e0e691e8e2bd31eb0165c38f9b145aaac9e997106",
-      "durationMs": 6014.333,
-      "media": {
-        "width": 426,
-        "height": 240,
-        "fps": 59.94006309148265,
-        "codec": "h264",
-        "hasAudio": true
-      },
-      "split": "public-test",
-      "knownLimitations": [
-        "Six-second normalized derivative; source semantics require human review."
-      ]
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-source/v1",
-      "id": "cb-0009-beb98f01",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMcKinley's_Late_Grandmother_is_an_Inspiration.webm",
-      "creatorOwnerId": "creator:76f0b85c344c40eb",
-      "relatedSourceGroupId": "commons:70108843",
-      "title": "McKinley's Late Grandmother is an Inspiration.webm",
-      "rights": {
-        "status": "cc-by",
-        "licenseName": "CC BY 3.0",
-        "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-        "attribution": "Atlanta Falcons",
-        "permittedBenchmarkUses": [
-          "analysis",
-          "derivatives",
-          "human-review",
-          "publication"
-        ],
-        "permittedRedistribution": true
-      },
-      "privacy": "public",
-      "acquiredAt": "2026-07-22T04:48:24.547Z",
-      "sourceSha256": "sha256:e39a2f9200a406b1ecccde259d72edd0e50a6c122c62897cb7123b83e0adaf0f",
-      "durationMs": 6006,
-      "media": {
-        "width": 426,
-        "height": 240,
-        "fps": 23.976023976023978,
-        "codec": "h264",
-        "hasAudio": true
-      },
-      "split": "public-test",
-      "knownLimitations": [
-        "Six-second normalized derivative; source semantics require human review."
-      ]
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-source/v1",
-      "id": "cb-0040-591140b7",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ADemonstration_of_a_2-step.webm",
-      "creatorOwnerId": "creator:dd8dbeaccbc54b02",
-      "relatedSourceGroupId": "commons:97852299",
-      "title": "Demonstration of a 2-step.webm",
-      "rights": {
-        "status": "cc-by",
-        "licenseName": "CC BY 3.0",
-        "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-        "attribution": "VincaniTV",
-        "permittedBenchmarkUses": [
-          "analysis",
-          "derivatives",
-          "human-review",
-          "publication"
-        ],
-        "permittedRedistribution": true
-      },
-      "privacy": "public",
-      "acquiredAt": "2026-07-22T04:48:24.902Z",
-      "sourceSha256": "sha256:ed5c0a4a3600b9544317fcc477b527fa213505f8bb2211fcff1925fb8bb879f7",
-      "durationMs": 6006,
-      "media": {
-        "width": 426,
-        "height": 240,
-        "fps": 23.976023976023978,
-        "codec": "h264",
-        "hasAudio": false
-      },
-      "split": "public-test",
-      "knownLimitations": [
-        "Six-second normalized derivative; source semantics require human review."
-      ]
-    },
     {
       "schemaVersion": "nodevideo.creatorbench-source/v1",
       "id": "cb-0006-493a02f5",
@@ -178,6 +34,15 @@
         "codec": "h264",
         "hasAudio": false
       },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
       "split": "development",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
@@ -188,16 +53,16 @@
     },
     {
       "schemaVersion": "nodevideo.creatorbench-source/v1",
-      "id": "cb-0007-bd64b3cf",
-      "sourceUrl": "https://svs.gsfc.nasa.gov/13823/",
-      "creatorOwnerId": "creator:3a778ba870437925",
-      "relatedSourceGroupId": "nasa-svs:13823",
-      "title": "Hubble Celebrates World Wildlife Day",
+      "id": "cb-0008-b952fc45",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/13585/",
+      "creatorOwnerId": "creator:ecc7d269554788ad",
+      "relatedSourceGroupId": "nasa-svs:13585",
+      "title": "Bird's-eye View of Biodiversity with Landsat",
       "rights": {
         "status": "public-domain",
         "licenseName": "NASA SVS public domain",
         "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
-        "attribution": "NASA Scientific Visualization Studio; Paul R. Morris",
+        "attribution": "NASA Scientific Visualization Studio; Matthew R. Radcliff, Sofie L. Bates, Sofie L. Bates, Matthew R. Radcliff",
         "permittedBenchmarkUses": [
           "analysis",
           "derivatives",
@@ -207,17 +72,26 @@
         "permittedRedistribution": true
       },
       "privacy": "public",
-      "acquiredAt": "2026-07-22T05:20:59.952Z",
-      "sourceSha256": "sha256:41a903d37f0b6b52a7d997af2400477665ac10eab92afa6e3c6222e999e1cc66",
+      "acquiredAt": "2026-07-22T05:21:05.460Z",
+      "sourceSha256": "sha256:c1f1441d3fb89865153977e05f489f59a2db24038782918313fbb1f847c1183a",
       "durationMs": 6006,
       "media": {
         "width": 640,
-        "height": 640,
+        "height": 360,
         "fps": 29.97002997002997,
         "codec": "h264",
         "hasAudio": false
       },
-      "split": "adversarial",
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -256,7 +130,16 @@
         "codec": "h264",
         "hasAudio": false
       },
-      "split": "development",
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -295,7 +178,16 @@
         "codec": "h264",
         "hasAudio": false
       },
-      "split": "development",
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -334,7 +226,16 @@
         "codec": "h264",
         "hasAudio": false
       },
-      "split": "development",
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -344,16 +245,16 @@
     },
     {
       "schemaVersion": "nodevideo.creatorbench-source/v1",
-      "id": "cb-0013-e3145068",
-      "sourceUrl": "https://svs.gsfc.nasa.gov/14624/",
-      "creatorOwnerId": "creator:e76a80cbb86cf643",
-      "relatedSourceGroupId": "nasa-svs:14624",
-      "title": "Eclipse Poems",
+      "id": "cb-0012-87d1ef2a",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14639/",
+      "creatorOwnerId": "creator:2ae86c237ab39041",
+      "relatedSourceGroupId": "nasa-svs:14639",
+      "title": "Helio Big Year: How Sonifications Connect to Performance Art",
       "rights": {
         "status": "public-domain",
         "licenseName": "NASA SVS public domain",
         "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
-        "attribution": "NASA Scientific Visualization Studio",
+        "attribution": "NASA Scientific Visualization Studio; Joy Ng",
         "permittedBenchmarkUses": [
           "analysis",
           "derivatives",
@@ -363,56 +264,26 @@
         "permittedRedistribution": true
       },
       "privacy": "public",
-      "acquiredAt": "2026-07-22T05:21:16.889Z",
-      "sourceSha256": "sha256:db42ec9dda0b99c8d8da2a88fecd73610596e5c8cb6deb6392cc9e7253a558d3",
+      "acquiredAt": "2026-07-22T05:21:17.801Z",
+      "sourceSha256": "sha256:8dbc30222ccacfed62b772c236339f1109093c75a8b143205db7d91a4cd01404",
       "durationMs": 6000,
       "media": {
         "width": 640,
-        "height": 360,
+        "height": 1138,
         "fps": 30,
         "codec": "h264",
         "hasAudio": false
       },
-      "split": "development",
-      "knownLimitations": [
-        "Six-second normalized derivative; source semantics require human review.",
-        "NASA SVS states its visual content is public domain unless otherwise noted.",
-        "Audio is removed because some SVS items contain separately licensed music.",
-        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
-      ]
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-source/v1",
-      "id": "cb-0014-a6e58d23",
-      "sourceUrl": "https://svs.gsfc.nasa.gov/13160/",
-      "creatorOwnerId": "creator:8978cb73dcd12ef0",
-      "relatedSourceGroupId": "nasa-svs:13160",
-      "title": "Hubble Archive - Servicing Mission 4, STS-125",
-      "rights": {
-        "status": "public-domain",
-        "licenseName": "NASA SVS public domain",
-        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
-        "attribution": "NASA Scientific Visualization Studio; Katrina Jackson",
-        "permittedBenchmarkUses": [
-          "analysis",
-          "derivatives",
-          "human-review",
-          "publication"
-        ],
-        "permittedRedistribution": true
-      },
-      "privacy": "public",
-      "acquiredAt": "2026-07-22T05:21:22.034Z",
-      "sourceSha256": "sha256:3b2e062b6a35457d8979cd6dae2a608e1d98e36b3a0acc04d378647b2bbde4c7",
-      "durationMs": 6006,
-      "media": {
-        "width": 640,
-        "height": 360,
-        "fps": 59.94005994005994,
-        "codec": "h264",
-        "hasAudio": false
-      },
-      "split": "development",
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -451,7 +322,3904 @@
         "codec": "h264",
         "hasAudio": false
       },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0016-4bbd64b0",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/13221/",
+      "creatorOwnerId": "creator:8e58ef5e5db943c8",
+      "relatedSourceGroupId": "nasa-svs:13221",
+      "title": "NASA Tech on SpaceX Falcon Heavy Launch - Media Telecon Resources",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Genna Duberstein",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:34.302Z",
+      "sourceSha256": "sha256:bc35806a1507b12f0944d7f1a8ff9983134e8dbfa807b7e90bbd5276314b4f71",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0017-cc8702fa",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5665/",
+      "creatorOwnerId": "creator:f6a895a10bf54de9",
+      "relatedSourceGroupId": "nasa-svs:5665",
+      "title": "Long-range Transport of 2026 Canadian Wildfire Smoke into the United States (July 14-20, 2026)",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Joseph V. Ardizzone, Helen-Nicole Kostis, Zoey N. Armstrong",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:34.284Z",
+      "sourceSha256": "sha256:89c035e3328653d38e71fa60989556adcf1d0461b9b29233bd19224b08fd84b3",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 320,
+        "fps": 1,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0018-0932f238",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5664/",
+      "creatorOwnerId": "creator:f6a895a10bf54de9",
+      "relatedSourceGroupId": "nasa-svs:5664",
+      "title": "Long-range Transport of 2026 Canadian Wildfire Smoke into the United States (July 14-17, 2026)",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Joseph V. Ardizzone, Helen-Nicole Kostis",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:34.531Z",
+      "sourceSha256": "sha256:0f0b66559a4665abf3ce594d931b202aebfe2a1bb161d9fcfc2b7a48a46ed14b",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 59.94005994005994,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0019-9e58ef72",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5660/",
+      "creatorOwnerId": "creator:805d5bf61acd2aea",
+      "relatedSourceGroupId": "nasa-svs:5660",
+      "title": "The Geoid",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Mark SubbaRao",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:34.549Z",
+      "sourceSha256": "sha256:c10a4702ab0a44d179790d6e30f256f2751cff46c393cd24cc0aec3c3623a21c",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 640,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0020-8804a7db",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5662/",
+      "creatorOwnerId": "creator:85bb2622ddbd6e37",
+      "relatedSourceGroupId": "nasa-svs:5662",
+      "title": "Super Typhoon Bavi",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Peter H. Jacobs",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:34.749Z",
+      "sourceSha256": "sha256:419ef44ced55c0fa0607290378f7b6cf806d5f068fd01aba96b8acae960197e7",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0021-31f5bb01",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5656/",
+      "creatorOwnerId": "creator:765352e7a1eae892",
+      "relatedSourceGroupId": "nasa-svs:5656",
+      "title": "Animations of the August 12, 2026, Total Solar Eclipse",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Ernie Wright, Joy Ng",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:34.783Z",
+      "sourceSha256": "sha256:7d46c8db2cef9930aacf679a2241fbd2ee8cc1d2d28a2738130833b7c5949119",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0022-b933f478",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5648/",
+      "creatorOwnerId": "creator:2ae86c237ab39041",
+      "relatedSourceGroupId": "nasa-svs:5648",
+      "title": "The Moon Passes In and Out of Earth's Magnetosphere",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Joy Ng",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:34.966Z",
+      "sourceSha256": "sha256:6ce7a98988bcfe5e601d4a76075200090dd88ff8cccb1ec1b08c40c35eb72f1b",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0023-cf31f183",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15057/",
+      "creatorOwnerId": "creator:ff57478f62df0d0a",
+      "relatedSourceGroupId": "nasa-svs:15057",
+      "title": "Earth Data User: ROFFS Fishing",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Katie Jepson",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:34.998Z",
+      "sourceSha256": "sha256:2ca7f772041de42c31bc147d4d78ac104cadbfc917fcd5eda6986067cd132b64",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 16,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0024-85653153",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15055/",
+      "creatorOwnerId": "creator:cacb97c76edb2839",
+      "relatedSourceGroupId": "nasa-svs:15055",
+      "title": "Tracking Timber in Washington’s Wynoochee Valley",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Ross K. Walter",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:35.192Z",
+      "sourceSha256": "sha256:b225a79bca8cebee9776d8051f2fc9f13f86fa6523e17a4b512f778101806962",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 10,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0025-36d4e43b",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15054/",
+      "creatorOwnerId": "creator:cacb97c76edb2839",
+      "relatedSourceGroupId": "nasa-svs:15054",
+      "title": "The Retreating Alsek Glacier, Alaska",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Ross K. Walter",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:35.224Z",
+      "sourceSha256": "sha256:a400980026f50976514501799ad7b822c28f85065ba9edbd81a957fe8611f6da",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 10,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0026-7c1b2383",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5649/",
+      "creatorOwnerId": "creator:85df9b7f6813f03d",
+      "relatedSourceGroupId": "nasa-svs:5649",
+      "title": "Four Days of Solar Dynamics in 16 Minutes",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:35.401Z",
+      "sourceSha256": "sha256:b28403382b905ca756c3bca89f3181cd0de1689ad1a37ccfd115585b159e18db",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 640,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
       "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0027-0cc0ba2b",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/31399/",
+      "creatorOwnerId": "creator:38c68d1decd45ca6",
+      "relatedSourceGroupId": "nasa-svs:31399",
+      "title": "Sea Surface Height Anomaly, 2026",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Marit Jentoft-Nilsen",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:35.436Z",
+      "sourceSha256": "sha256:73876d92c621e840a875853612d943b35a0b86101c3fc57599379c6ee15bd20b",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0028-fd71efcf",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5624/",
+      "creatorOwnerId": "creator:f6a895a10bf54de9",
+      "relatedSourceGroupId": "nasa-svs:5624",
+      "title": "Global Smoke Forecast Visualization (Daily Updated)",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Joseph V. Ardizzone, Helen-Nicole Kostis",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:35.603Z",
+      "sourceSha256": "sha256:259503a025571a5ac923e24a12a779c747645cca2c57c8fa0dce3e3bc253a1a9",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 320,
+        "fps": 12,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0029-ceb75f1d",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15044/",
+      "creatorOwnerId": "creator:2e3d2d9e05e32ec7",
+      "relatedSourceGroupId": "nasa-svs:15044",
+      "title": "Testing for the Katalyst-NASA Swift Boost Mission",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Scott Wiessinger, Sophia Roberts",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:35.660Z",
+      "sourceSha256": "sha256:dd6b5095c7d97b1e3696b21269d325cf378aabb64359b909feb024b2de7d88f6",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 338,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0030-f6dba17c",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15042/",
+      "creatorOwnerId": "creator:ff57478f62df0d0a",
+      "relatedSourceGroupId": "nasa-svs:15042",
+      "title": "How NASA Uses Light to Detect Waste From Mines",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Katie Jepson, Katie Jepson, Wes D. Buchanan",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:35.871Z",
+      "sourceSha256": "sha256:d1c7841d403f3b4f94eb2c5a672d477012e742fdd6d6c9f68b7859dfee52fed4",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 1138,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0031-6f0b437d",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15041/",
+      "creatorOwnerId": "creator:db1076e7f1c8648a",
+      "relatedSourceGroupId": "nasa-svs:15041",
+      "title": "NASA's Fermi Spies a Supercharged Supernova",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Sophia Roberts, Scott Wiessinger, Jonathan North",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:35.905Z",
+      "sourceSha256": "sha256:ef1eb185c10808ebcd061f787189dd20c0b8db3e38ab5bdbe28569de750fca2e",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0032-2ce7cec5",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15000/",
+      "creatorOwnerId": "creator:db1076e7f1c8648a",
+      "relatedSourceGroupId": "nasa-svs:15000",
+      "title": "Nancy Grace Roman Telescope's Final Solar Panel and Deployable Aperture Cover Deployments",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Sophia Roberts",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:36.110Z",
+      "sourceSha256": "sha256:cff4942a4e4e34933079bf5605aed095ad3ffc440b8e343fefb211e301d189c1",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 59.94005994005994,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0033-b4a20a60",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15040/",
+      "creatorOwnerId": "creator:ebd986d3e10b4b72",
+      "relatedSourceGroupId": "nasa-svs:15040",
+      "title": "NASA Interview Opportunity: Catch Last Look at NASA’s Newest Space Telescope",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Michelle Handleman, Angel Kumari",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:36.129Z",
+      "sourceSha256": "sha256:1efe2066539343c2799da98529454171648c471abaf943756bac62dd65109fae",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0034-16ed90ac",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5643/",
+      "creatorOwnerId": "creator:23e276ebbf6de115",
+      "relatedSourceGroupId": "nasa-svs:5643",
+      "title": "The Ring Current in Earth's Magnetosphere",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Lacey Young",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:36.312Z",
+      "sourceSha256": "sha256:65e20ae6556910820e76d423abc59fc4cda77c4157a5adf0a978e807bd85221b",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0036-60582816",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15027/",
+      "creatorOwnerId": "creator:cacb97c76edb2839",
+      "relatedSourceGroupId": "nasa-svs:15027",
+      "title": "Undamming the Klamath",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Ross K. Walter",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:36.527Z",
+      "sourceSha256": "sha256:b3bae8a349c960097cca018a494d727a1a14d2087e0d56786d268d5d604c20dc",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0037-acd7511c",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5599/",
+      "creatorOwnerId": "creator:0f52bf10e77cc571",
+      "relatedSourceGroupId": "nasa-svs:5599",
+      "title": "PACE Data Tour - Visualizations",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Kel Elkins, Ryan Fitzgibbons",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:36.537Z",
+      "sourceSha256": "sha256:674b5386c747cc7de0b0ecd3d737add6fd85ab11eb57461daa393bfcc43301d4",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0038-6a3339c2",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15001/",
+      "creatorOwnerId": "creator:d9f58daadbea890e",
+      "relatedSourceGroupId": "nasa-svs:15001",
+      "title": "On Tour Around the Globe with PACE",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Ryan Fitzgibbons, Kel Elkins",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:36.732Z",
+      "sourceSha256": "sha256:2484d54173b78d3463c5ff640d585187dd275024bfb9434dafeb824cbf0f3a68",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0039-884266ba",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5641/",
+      "creatorOwnerId": "creator:85bb2622ddbd6e37",
+      "relatedSourceGroupId": "nasa-svs:5641",
+      "title": "Powerful Typhoon Sinlaku strikes the Northern Marianas",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Peter H. Jacobs",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:36.732Z",
+      "sourceSha256": "sha256:c6522f362f27b69c2915a25e6fe53473cb4edc207b0c3e4c0c997d36cb9c37d4",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0040-51f4ed21",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5629/",
+      "creatorOwnerId": "creator:3674b25761779311",
+      "relatedSourceGroupId": "nasa-svs:5629",
+      "title": "Arctic Sea Ice Maximum 2026",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Trent L. Schindler",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:36.945Z",
+      "sourceSha256": "sha256:a82f141ce5f725b29af565e5ce9a2253180c80f038a6ccb52e326fcc86e95873",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 1138,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0042-e291b18d",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5626/",
+      "creatorOwnerId": "creator:2c0e8ffa67d7e5ad",
+      "relatedSourceGroupId": "nasa-svs:5626",
+      "title": "GUARDIAN Warns Hawaii Early of Incoming Kamchatka Tsunami (Vertical version)",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Kathleen Gaeta Greer, Andrew Wang",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:37.176Z",
+      "sourceSha256": "sha256:b0c7a836455f8036c6f29c36cbb93196980422ab58a017a446236722a155c944",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 1138,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0043-b1d571bb",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14986/",
+      "creatorOwnerId": "creator:eb7cf103cf55f696",
+      "relatedSourceGroupId": "nasa-svs:14986",
+      "title": "See How NASA’s GUARDIAN Tsunami Detection System Works",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Alex Kekesi, Mark SubbaRao, Kathleen Gaeta Greer",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:37.446Z",
+      "sourceSha256": "sha256:01b82c56c36e7e81a32d951b1f1cdf0d985fb40e177bb16ab6209fbabd045bde",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 1138,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0044-ee96dc05",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14990/",
+      "creatorOwnerId": "creator:307b6858764c6b96",
+      "relatedSourceGroupId": "nasa-svs:14990",
+      "title": "SWOT Mission Unlocks a New View of Our Waterways",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Grace Weikert, Greg Shirah",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:42.530Z",
+      "sourceSha256": "sha256:a208e3e3ad64880456c23b70d1b25c421ccc2739f14374564fa57235948607f1",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0045-c0fdc2d9",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5616/",
+      "creatorOwnerId": "creator:d9f58daadbea890e",
+      "relatedSourceGroupId": "nasa-svs:5616",
+      "title": "Global Views of ICESat-2 Data",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Ryan Fitzgibbons",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:42.281Z",
+      "sourceSha256": "sha256:8ccb2875eed5d1230898b38348801882281961bc0d7e0ac4efddd655c40de0ac",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0046-482f5e97",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5618/",
+      "creatorOwnerId": "creator:01cb42f4bc1fcfad",
+      "relatedSourceGroupId": "nasa-svs:5618",
+      "title": "SWOT River Volume Variations",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Andrew Wang",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:45.601Z",
+      "sourceSha256": "sha256:88720be7c5db57c081c7fe55ee3e79800f4006e6ae528ce88d551f2a4b92fc10",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0047-1aa70c3c",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5619/",
+      "creatorOwnerId": "creator:01cb42f4bc1fcfad",
+      "relatedSourceGroupId": "nasa-svs:5619",
+      "title": "SWOT River Volume Variations (rivers only)",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Andrew Wang",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:45.929Z",
+      "sourceSha256": "sha256:21a241d0b15af0026cb75d914ae4cee74b2e37ced23b231729e6c40d2393d23b",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0050-44f3a3ff",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/31365/",
+      "creatorOwnerId": "creator:38c68d1decd45ca6",
+      "relatedSourceGroupId": "nasa-svs:31365",
+      "title": "The Earth System Science Spheres",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Marit Jentoft-Nilsen",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:52.316Z",
+      "sourceSha256": "sha256:d0714d9e470982d0b3545b44eed82b4090cbae5fdc748a94f732c6e4f4959c19",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0051-4bcd095f",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5613/",
+      "creatorOwnerId": "creator:805d5bf61acd2aea",
+      "relatedSourceGroupId": "nasa-svs:5613",
+      "title": "Shifting Distribution of Land Temperature Anomalies, 1964-2025",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Mark SubbaRao",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T05:54:53.746Z",
+      "sourceSha256": "sha256:c7bd57ff93abc39456aa61482cc6969817726e7334fea750f817bdfb99a19b48",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0052-eb5546f0",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5603/",
+      "creatorOwnerId": "creator:805d5bf61acd2aea",
+      "relatedSourceGroupId": "nasa-svs:5603",
+      "title": "Global Temperature Anomalies from 1880 to 2025",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Mark SubbaRao",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:03.764Z",
+      "sourceSha256": "sha256:31dafbd6bb8029474db77771c11ef284bddfa47ec5bbead78f3eee7e8676426b",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0053-adc83a29",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5591/",
+      "creatorOwnerId": "creator:0f52bf10e77cc571",
+      "relatedSourceGroupId": "nasa-svs:5591",
+      "title": "ICESat-2 Land Ice Height Change (2020-2025)",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Kel Elkins, Ryan Fitzgibbons",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:03.950Z",
+      "sourceSha256": "sha256:8cb3e71efbfbb99c121356dd449fd3005ec63cc4c033e708071df5a16542b3ed",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0054-e3b9440b",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5592/",
+      "creatorOwnerId": "creator:0f52bf10e77cc571",
+      "relatedSourceGroupId": "nasa-svs:5592",
+      "title": "ICESat-2 Winter Sea Ice Thickness (2020-2025)",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Kel Elkins, Ryan Fitzgibbons",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:04.145Z",
+      "sourceSha256": "sha256:cf308c28026945079a5918e24db0c2c5e068717f28b95794727b2e9148e05030",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0056-ae949169",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5572/",
+      "creatorOwnerId": "creator:2c5b5301a2efa041",
+      "relatedSourceGroupId": "nasa-svs:5572",
+      "title": "GEOS Aerosols",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:04.544Z",
+      "sourceSha256": "sha256:c4a9b083c3e30821380d0a2470fb5e41c81fc0122d609106e3f80784e31c6398",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 180,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0057-1d87ea0e",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5571/",
+      "creatorOwnerId": "creator:46e3aa7c6a68390d",
+      "relatedSourceGroupId": "nasa-svs:5571",
+      "title": "NASA's Fleet of Active Satellites (July 2025)",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:04.742Z",
+      "sourceSha256": "sha256:7e006a30258bf6eb78f257859083dec2ca61b2c1ba8fbe6169334b1ecac04492",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0058-ca9b5d55",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14982/",
+      "creatorOwnerId": "creator:b474bff9a876d454",
+      "relatedSourceGroupId": "nasa-svs:14982",
+      "title": "Deserts of Africa and the Middle East",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Chris Burns",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:04.964Z",
+      "sourceSha256": "sha256:8fdfd7090203a01c1b2f9c0cde37c09a70897077eeff248ef8fa89a84b14497f",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0059-c3b960e2",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14965/",
+      "creatorOwnerId": "creator:b474bff9a876d454",
+      "relatedSourceGroupId": "nasa-svs:14965",
+      "title": "Northward Shift of Boreal Tree Cover Confirmed By Satellite Record",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Chris Burns, Ross K. Walter",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:05.192Z",
+      "sourceSha256": "sha256:814efeb88e1f590496a05baca6282ebd5dfd6913cf296793d88566f37eb1aac9",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 23.976023976023978,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0060-4ef7b32c",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5503/",
+      "creatorOwnerId": "creator:ecc905a8e00af30c",
+      "relatedSourceGroupId": "nasa-svs:5503",
+      "title": "ESCAPADE Theoretical Flight Through Active Mars Magnetosphere",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; AJ Christensen, Joy Ng",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:05.455Z",
+      "sourceSha256": "sha256:b31f90cce9f2173149ff0d780ab4cc4e2d6cbc8c6af97eb4b983a04a0fa0ec40",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0061-68183569",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14903/",
+      "creatorOwnerId": "creator:b474bff9a876d454",
+      "relatedSourceGroupId": "nasa-svs:14903",
+      "title": "At Land's Edge - Tracking Coastal Ecosystem with Landsat",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Chris Burns, Ross K. Walter",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:05.523Z",
+      "sourceSha256": "sha256:64f891a8a8537d806871e7c616b8359222a4c855b53517cf6907e98ab0e0b3b6",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0062-7554e85b",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14894/",
+      "creatorOwnerId": "creator:307b6858764c6b96",
+      "relatedSourceGroupId": "nasa-svs:14894",
+      "title": "NASA Flew Over a Fire — to Better Understand Future Ones",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Grace Weikert, Grace Weikert, Joseph O'Brien, Derek Michael Wallace, Steve Pollard, Kel Elkins, Grace Weikert, Adriana Manrique Gutierrez",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:05.709Z",
+      "sourceSha256": "sha256:c31d24da4994a40865123251c1538db1e4aa45eacb58dfcb48ebc46ffe33da75",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 1138,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0063-b55329da",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5583/",
+      "creatorOwnerId": "creator:3674b25761779311",
+      "relatedSourceGroupId": "nasa-svs:5583",
+      "title": "Arctic Sea Ice Minimum 2025",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Trent L. Schindler, Grace Weikert",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:05.747Z",
+      "sourceSha256": "sha256:d3dd3745e7e81b8dd3c1c611d68e9ee00283ec98b848e459ccb5382bd089e3a3",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 1138,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0066-9e65c59b",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15043/",
+      "creatorOwnerId": "creator:23e276ebbf6de115",
+      "relatedSourceGroupId": "nasa-svs:15043",
+      "title": "STORIE Launch and Install on the Space Station",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Lacey Young",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:06.108Z",
+      "sourceSha256": "sha256:b9e8069d878abcc3885c5e05f21e1a0fbdf5d42878c5ff26a611cbe1c1ec5253",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0068-020c2a0a",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15011/",
+      "creatorOwnerId": "creator:23e276ebbf6de115",
+      "relatedSourceGroupId": "nasa-svs:15011",
+      "title": "NASA Experiment to Track Space ‘Doughnut’ Encircling Earth",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Lacey Young, Lacey Young, Joy Ng",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:06.314Z",
+      "sourceSha256": "sha256:54c24cfe2940774196dcbc5ceb27e59ee6d107def6a2240bd68bae2d376105dd",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 720,
+        "fps": 8,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0069-e0f2d14d",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5623/",
+      "creatorOwnerId": "creator:4c905bdfead30413",
+      "relatedSourceGroupId": "nasa-svs:5623",
+      "title": "The Moon Passes Through Earth's Magnetotail",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:06.356Z",
+      "sourceSha256": "sha256:8fff6ae7c1b09e379ba94d9bc771bd0c03f55142658553a7639cf48736ba6660",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0071-21cbaa5c",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/31375/",
+      "creatorOwnerId": "creator:38c68d1decd45ca6",
+      "relatedSourceGroupId": "nasa-svs:31375",
+      "title": "ISS views Aurora from the November 11-13, 2025 Geomagnetic Storm",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Marit Jentoft-Nilsen",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:06.545Z",
+      "sourceSha256": "sha256:52828529b1c8f0042f44c6520e2e6aace40169732aaf5d76b18115cc793f1098",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0072-4ed91916",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14968/",
+      "creatorOwnerId": "creator:2e3d2d9e05e32ec7",
+      "relatedSourceGroupId": "nasa-svs:14968",
+      "title": "XRISM Clocks Hot Wind of Galaxy M82",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Scott Wiessinger",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:06.696Z",
+      "sourceSha256": "sha256:35f065bce8fe077ce686818d0a59f8d6d9db7a0c11844f9c5c04d930953dd4b7",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0073-001f1f6b",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14992/",
+      "creatorOwnerId": "creator:6d0a8986347e9ad7",
+      "relatedSourceGroupId": "nasa-svs:14992",
+      "title": "Lunar Near and Far Side Phases",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Dan Gallagher",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:06.752Z",
+      "sourceSha256": "sha256:c7268cecbc35c63d1858ef670f5077746bf5e8d88be6cd367e2ca18ab4652db8",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 59.94005994005994,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0074-57484d54",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14988/",
+      "creatorOwnerId": "creator:2ae86c237ab39041",
+      "relatedSourceGroupId": "nasa-svs:14988",
+      "title": "Artemis II: Into the Path of Solar Eruptions",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Joy Ng",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:06.930Z",
+      "sourceSha256": "sha256:6dd2b3c10f37407ed45563c76b7339411fcaa67a08e6b8753fb97dfae2409a9c",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 1138,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0075-cafd8dd1",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5622/",
+      "creatorOwnerId": "creator:956bf738dd823639",
+      "relatedSourceGroupId": "nasa-svs:5622",
+      "title": "Artemis II: Sending Humans Beyond the Magnetosphere",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:06.945Z",
+      "sourceSha256": "sha256:bf94604f2d9d3c78e94c0b875f4bbdff1b1f276fd2bbafc916f8283965b86c62",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0077-76d6a7e7",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15016/",
+      "creatorOwnerId": "creator:fa8daa62e345686e",
+      "relatedSourceGroupId": "nasa-svs:15016",
+      "title": "The Universe Needs Your Eyes! Hubble's Citizen Scientists",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Paul Morris",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:07.149Z",
+      "sourceSha256": "sha256:d697ea37d761e09fdf583cc5e615cdba11fa7c7d9e1b6e64612b46268f1c0a30",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0078-5dcaeb49",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5633/",
+      "creatorOwnerId": "creator:765352e7a1eae892",
+      "relatedSourceGroupId": "nasa-svs:5633",
+      "title": "Simulating the Artemis II Lunar Flyby on April 6, 2026",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Ernie Wright",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:07.338Z",
+      "sourceSha256": "sha256:f95c3641ab4b37f0567baa474f54b49e29d755ce8971b69b9523b33dfa65678f",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0079-b3bf6506",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5632/",
+      "creatorOwnerId": "creator:cec9a87a3c263a3d",
+      "relatedSourceGroupId": "nasa-svs:5632",
+      "title": "Artemis II mission trajectory",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:07.340Z",
+      "sourceSha256": "sha256:ec8d87cd1787935f9622576fde2d3ad703920ed11329e7c54208a13c97191e76",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0080-3073e3ec",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14934/",
+      "creatorOwnerId": "creator:ebd986d3e10b4b72",
+      "relatedSourceGroupId": "nasa-svs:14934",
+      "title": "NASA Interview Opportunity: Moonbound! NASA’s Artemis II Mission Days From Launch — First Crewed Journey Around the Moon in More Than 50 Years!",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Michelle Handleman, Angel Kumari, Swarupa Nune, Lacey Young, Desiree S. Apodaca, Vanessa Thomas",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:07.567Z",
+      "sourceSha256": "sha256:f7bd61e67fee88dd3f47751c5678dae93482a7dd60d72fd2fef86f9a72e4cdb5",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0081-5a513c7a",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5628/",
+      "creatorOwnerId": "creator:6d0a8986347e9ad7",
+      "relatedSourceGroupId": "nasa-svs:5628",
+      "title": "Lucy Observations of Asteroid Donaldjohanson",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Dan Gallagher",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:07.555Z",
+      "sourceSha256": "sha256:620eb00b3eb1718ec81fc911f23974072f494b29330e708e6631ac1a625ebc72",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0082-0a72ef24",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/15051/",
+      "creatorOwnerId": "creator:db1076e7f1c8648a",
+      "relatedSourceGroupId": "nasa-svs:15051",
+      "title": "NASA's Swift Mission Gets a Boost",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Sophia Roberts, Scott Wiessinger",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:07.797Z",
+      "sourceSha256": "sha256:9993a3c3ddb0edccbd56d3059a08463982c25fe36802bbc1e25c5c35941ee896",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 1138,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0083-20fd73aa",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5627/",
+      "creatorOwnerId": "creator:00c4a38e53deada5",
+      "relatedSourceGroupId": "nasa-svs:5627",
+      "title": "Global Navigation Satellite System (GNSS) Fleet",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:07.773Z",
+      "sourceSha256": "sha256:6b898a03abad8309241fb6116f56721e1bb1335064bfaa80264c51cedfb236a7",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0084-5ce9e814",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5621/",
+      "creatorOwnerId": "creator:8d75dbe56ff05bd7",
+      "relatedSourceGroupId": "nasa-svs:5621",
+      "title": "Committee on Earth Observation Satellites (CEOS) - Fleet - 2026",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; David Borges, Libby Rose",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:07.981Z",
+      "sourceSha256": "sha256:9a45f5d41319f78cf467e41d7fa0f24230c663a3f154745e52428a2fc5816822",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0085-7768f9ac",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14972/",
+      "creatorOwnerId": "creator:2e3d2d9e05e32ec7",
+      "relatedSourceGroupId": "nasa-svs:14972",
+      "title": "See the Sun's Active Region: The Source of the Early-February Flares",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Scott Wiessinger, AJ Christensen",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:08.023Z",
+      "sourceSha256": "sha256:c873be82024ff46575e184de13e069aa255e3bc8a6339b49690810c77729f27a",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0086-85a79a17",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5655/",
+      "creatorOwnerId": "creator:eb7cf103cf55f696",
+      "relatedSourceGroupId": "nasa-svs:5655",
+      "title": "Long-Span Bridge Inspection Prioritization",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Alex Kekesi, Grace Weikert",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:08.176Z",
+      "sourceSha256": "sha256:97affdf47014e9b90e07271c97f7270dcb326b7ed3fc43fade75019db69e0df5",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0088-9b30a3c3",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14785/",
+      "creatorOwnerId": "creator:fa8daa62e345686e",
+      "relatedSourceGroupId": "nasa-svs:14785",
+      "title": "Kathy Sullivan: American Pioneers and the Hubble Space Telescope",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Paul Morris, Elizabeth C. Wilk",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:08.383Z",
+      "sourceSha256": "sha256:4d486f95b0af14c846f9436a3036178cf6db4fd0d29c1797b13d52776efabb98",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0089-a5140cae",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14691/",
+      "creatorOwnerId": "creator:44c0cbcedb52d83c",
+      "relatedSourceGroupId": "nasa-svs:14691",
+      "title": "To an Asteroid and Back Trailer",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; James Tralie",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:08.455Z",
+      "sourceSha256": "sha256:4d1ce80e8ded15d9219175ced50a8742ce17567885727c0975f666b7ea95a77f",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0090-8d000e84",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14193/",
+      "creatorOwnerId": "creator:fa8daa62e345686e",
+      "relatedSourceGroupId": "nasa-svs:14193",
+      "title": "NASA’s Incredible Discovery Machine: The Story of the Hubble Space Telescope",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Paul Morris",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:08.591Z",
+      "sourceSha256": "sha256:63534e02170c9d9ce7d3f3b7464e80f8a8aa99ce731cd945ede2c41f8b1ecdd1",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0092-75e3169a",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/13270/",
+      "creatorOwnerId": "creator:fa5f778e83d4e864",
+      "relatedSourceGroupId": "nasa-svs:13270",
+      "title": "Apollo 11: This Is Goddard",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:12.243Z",
+      "sourceSha256": "sha256:84f71001810e04ad50eb51e44382aaceb9c11df9a2f1c60c679cfb67d8263f0d",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 24,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0093-454e2d61",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/4655/",
+      "creatorOwnerId": "creator:765352e7a1eae892",
+      "relatedSourceGroupId": "nasa-svs:4655",
+      "title": "Moonlight (Clair de Lune)",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Ernie Wright, Wade Sisler",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:13.418Z",
+      "sourceSha256": "sha256:c498967ce20735c46aef8b7015174c09c0ab49536c0614eb7d0ba5de6a8c8909",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0094-ac666c8f",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/3220/",
+      "creatorOwnerId": "creator:669712b76787f437",
+      "relatedSourceGroupId": "nasa-svs:3220",
+      "title": "Behold, A Whirlwind Came: The Science of Tracking Hurricanes",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Stuart A. Snodgrass, Alex Kekesi, Lori Perkins, Greg Shirah, James W. Williams",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:15.617Z",
+      "sourceSha256": "sha256:49bc4ea8c82b2fb6e5a9a0c924711455cd97c21330b072785b37eaf204675124",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 480,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0096-bbc6d99c",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/20412/",
+      "creatorOwnerId": "creator:8214719fad70e6d9",
+      "relatedSourceGroupId": "nasa-svs:20412",
+      "title": "Artemis II Flight Path Animations",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Kim Dongjae, Jonathan North, Dan Gallagher",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:17.928Z",
+      "sourceSha256": "sha256:a8a5e7232faf5cb07279b08a753b4267e34bbce21a7daf6a8c69547394e25dd0",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0097-b78025cb",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/20411/",
+      "creatorOwnerId": "creator:8214719fad70e6d9",
+      "relatedSourceGroupId": "nasa-svs:20411",
+      "title": "A Pathway to Protocells on Titan – Animations",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Kim Dongjae, Wes D. Buchanan, Jenny McElligott, Dan Gallagher, Dan Gallagher",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:18.511Z",
+      "sourceSha256": "sha256:8a252654216ba4a9dd5b1dabdcacd8d1c2e7b5df0585441d9f6e279166844bee",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0098-98ab8feb",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5576/",
+      "creatorOwnerId": "creator:56aa250e4de4f863",
+      "relatedSourceGroupId": "nasa-svs:5576",
+      "title": "TROPICS Eyes Hurricane Erin",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:21.259Z",
+      "sourceSha256": "sha256:212335d9f69102bd707427a25892524fda061c13f5afaf4c058572ff2104ba02",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0100-dcd76e76",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/20410/",
+      "creatorOwnerId": "creator:52b564b871e6f6fb",
+      "relatedSourceGroupId": "nasa-svs:20410",
+      "title": "IMAP Beauty Passes",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Patrick McPike, Jonathan North, Adriana Manrique Gutierrez, Joy Ng",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:24.431Z",
+      "sourceSha256": "sha256:8882ebbc2a951b80db8b75269b2c1898b3e748d98411e8eb1ee096e0b9a7972f",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0101-28404cbc",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/20407/",
+      "creatorOwnerId": "creator:1e86912b788f6182",
+      "relatedSourceGroupId": "nasa-svs:20407",
+      "title": "Carruthers Geocorona Animation",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Wes D. Buchanan, Beth Anthony, Lacey Young",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:25.302Z",
+      "sourceSha256": "sha256:af6b297e2d139ca04eb83c5ec2ce93b5ae39b8db18dc7b066fbd35a8e311c2f1",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0102-0024dcf8",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14542/",
+      "creatorOwnerId": "creator:e0f70872013d07a8",
+      "relatedSourceGroupId": "nasa-svs:14542",
+      "title": "EZIE – Electrojet Zeeman Imaging Explorer",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Beth Anthony",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:02:29.119Z",
+      "sourceSha256": "sha256:32f65b7944c7c0019f4faf43f4f260d271bab6960946e59d9d0ac493f096f3bf",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0106-fd128f45",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/4826/",
+      "creatorOwnerId": "creator:ecc7d269554788ad",
+      "relatedSourceGroupId": "nasa-svs:4826",
+      "title": "Brazil and Novo Progresso Land Use Data Over Time",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Matthew R. Radcliff",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:02:30.573Z",
+      "sourceSha256": "sha256:ccd3648586d8055b5d0319088dfcff058d056d28a58da659358cef0d5c4a79da",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0107-06e107d2",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/4833/",
+      "creatorOwnerId": "creator:ecc7d269554788ad",
+      "relatedSourceGroupId": "nasa-svs:4833",
+      "title": "Northern Brazil Land Use Data Over Time",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Matthew R. Radcliff",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:02:30.790Z",
+      "sourceSha256": "sha256:c6edce36ab80b8f7357942f86de67854c8f619fc6c734f88fa6f7157ba2292f4",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0108-0f94ea96",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/13746/",
+      "creatorOwnerId": "creator:ebd986d3e10b4b72",
+      "relatedSourceGroupId": "nasa-svs:13746",
+      "title": "Measuring the Seas from Space! U.S.-European Satellite Launching THIS SATURDAY Seeks to Answer Vital Climate Questions Live Shots",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Michelle Handleman, Courtney A. Lee, Victoria Woodburn, Christina Brooke Mitchell, Madison Arnold, Pedro Cota",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:02:30.876Z",
+      "sourceSha256": "sha256:d66e4f5194378f639788263952c2c9371e0db86a9e260419c24df1c054367725",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 59.94006309148265,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0109-9955efd2",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/20326/",
+      "creatorOwnerId": "creator:d778a9cb3d7305de",
+      "relatedSourceGroupId": "nasa-svs:20326",
+      "title": "OSIRIS-REx TAG Event: Real-time Animation",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Jonathan North, Walt Feimer, Dan Gallagher",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:02:30.997Z",
+      "sourceSha256": "sha256:916d4e04976c6e408408504b103c53bf69530d8820bcefea9101e6b14f6d46e9",
+      "durationMs": 6006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0110-c17e1c3f",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/13738/",
+      "creatorOwnerId": "creator:44c0cbcedb52d83c",
+      "relatedSourceGroupId": "nasa-svs:13738",
+      "title": "OSIRIS-REx Science and Engineering Briefing",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; James Tralie, Dan Gallagher, Walt Feimer, Michael Lentz, Adriana Manrique Gutierrez, Bailee DesRocher, Jacquelyn DeMink, Jonathan North, Lisa Poje",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:02:31.115Z",
+      "sourceSha256": "sha256:19a6984cf0b2ab5ad6bc1d5e9f48092efdf7facbc038fd0e50cefaced3a6dd9a",
+      "durationMs": 6006.006,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 29.97,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0111-1460dea9",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/13371/",
+      "creatorOwnerId": "creator:064faefc6941e019",
+      "relatedSourceGroupId": "nasa-svs:13371",
+      "title": "Webb Global Contributor Map",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Michael P. Menzel, Bailee DesRocher",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:02:31.188Z",
+      "sourceSha256": "sha256:b07be2f8b794a92b83cf5c9cdbf7095444080def2302603aa7df9d37b947a1b1",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 270,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0112-c462e74c",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/4532/",
+      "creatorOwnerId": "creator:1a9c041df2295ff6",
+      "relatedSourceGroupId": "nasa-svs:4532",
+      "title": "Flying Through LIDAR Canopy Data",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:02:31.297Z",
+      "sourceSha256": "sha256:2f0c30570aff249e949ea9d8e2f07413634bcc5ac077541c051c452f459539e6",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0111-c8656e5e",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/5625/",
+      "creatorOwnerId": "creator:2c0e8ffa67d7e5ad",
+      "relatedSourceGroupId": "nasa-svs:5625",
+      "title": "GUARDIAN Warns Hawaii Early of Incoming Kamchatka Tsunami",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Kathleen Gaeta Greer, Andrew Wang",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:03:45.125Z",
+      "sourceSha256": "sha256:d11785b3e3e2880e5da37f93a85f13595ff2fba13fd24401ba1d19b8a8463f2b",
+      "durationMs": 6000,
+      "media": {
+        "width": 636,
+        "height": 166,
+        "fps": 60,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "development",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",

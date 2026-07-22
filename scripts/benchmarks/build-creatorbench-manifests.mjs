@@ -99,24 +99,26 @@ function workflowRequest(source, workflow, workflowIndex) {
 }
 
 const instances = sources.flatMap((source) =>
-  config.workflows.map((workflow, workflowIndex) => ({
-    schemaVersion: 'nodevideo.creatorbench-instance/v1',
-    id: `instance:${source.id}:${workflow}`,
-    benchmarkVersion: config.benchmarkVersion,
-    sourceIds: [source.id],
-    domain: domainBySource.get(source.id) ?? 'general-creator-footage',
-    workflow,
-    split: source.split,
-    request: workflowRequest(source, workflow, workflowIndex),
-    ...(source.split === 'private-heldout'
-      ? { evaluatorTargetRef: `sealed:${sha256(`${source.id}:${workflow}:target`).slice(0, 24)}` }
-      : {}),
-    adversarialConditions:
-      source.split === 'adversarial'
-        ? [adversarialRequests[workflowIndex % adversarialRequests.length]]
-        : [],
-    createdAt: new Date().toISOString(),
-  })),
+  config.workflows
+    .filter((workflow) => source.admissibleWorkflows.includes(workflow))
+    .map((workflow, workflowIndex) => ({
+      schemaVersion: 'nodevideo.creatorbench-instance/v1',
+      id: `instance:${source.id}:${workflow}`,
+      benchmarkVersion: config.benchmarkVersion,
+      sourceIds: [source.id],
+      domain: domainBySource.get(source.id) ?? 'general-creator-footage',
+      workflow,
+      split: source.split,
+      request: workflowRequest(source, workflow, workflowIndex),
+      ...(source.split === 'private-heldout'
+        ? { evaluatorTargetRef: `sealed:${sha256(`${source.id}:${workflow}:target`).slice(0, 24)}` }
+        : {}),
+      adversarialConditions:
+        source.split === 'adversarial'
+          ? [adversarialRequests[workflowIndex % adversarialRequests.length]]
+          : [],
+      createdAt: new Date().toISOString(),
+    })),
 );
 const publicInstances = instances.filter((instance) => instance.split !== 'private-heldout');
 const privateInstances = instances.filter((instance) => instance.split === 'private-heldout');
@@ -141,6 +143,12 @@ const receipt = {
   sourceCount: sources.length,
   instanceCount: instances.length,
   workflowCount: config.workflows.length,
+  representedWorkflowCount: new Set(instances.map((instance) => instance.workflow)).size,
+  corpusTierCounts: Object.fromEntries(
+    Object.entries(Object.groupBy(sources, (source) => source.corpusTier)).map(
+      ([tier, records]) => [tier, records.length],
+    ),
+  ),
   domainCount: new Set(sources.map((source) => domainBySource.get(source.id))).size,
   creatorCount: new Set(sources.map((source) => source.creatorOwnerId)).size,
   splitCounts: Object.fromEntries(

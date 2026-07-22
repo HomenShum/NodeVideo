@@ -139,6 +139,15 @@ export interface CreatorBenchSourceRecord {
     codec: string;
     hasAudio: boolean;
   };
+  corpusTier:
+    | 'motion-short'
+    | 'speech-long-form'
+    | 'multi-take-performance'
+    | 'reference-pair'
+    | 'launch-multi-asset'
+    | 'adversarial-corrupt';
+  admissibleWorkflows: CreatorBenchWorkflow[];
+  admissibilityNotes: string[];
   split: CreatorBenchSplit;
   knownLimitations: string[];
 }
@@ -335,6 +344,15 @@ export function validateCreatorBenchSource(source: CreatorBenchSourceRecord) {
   if (source.rights.status === 'unclear') fail(`${source.id} has unclear rights.`);
   if (source.rights.permittedBenchmarkUses.length === 0) {
     fail(`${source.id} has no permitted benchmark use.`);
+  }
+  if (source.admissibleWorkflows.length === 0) {
+    fail(`${source.id} has no admissible benchmark workflow.`);
+  }
+  unique(source.admissibleWorkflows, `${source.id} admissible workflow`);
+  for (const workflow of source.admissibleWorkflows) {
+    if (!CREATORBENCH_WORKFLOWS.includes(workflow)) {
+      fail(`${source.id} declares an unknown admissible workflow: ${String(workflow)}.`);
+    }
   }
   if (source.split === 'private-heldout') {
     if (!source.privateLocatorClass)

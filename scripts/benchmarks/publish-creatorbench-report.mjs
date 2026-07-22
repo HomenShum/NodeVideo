@@ -26,6 +26,7 @@ const claim = derivePublicClaim({
 await vite.close();
 const publicSources = await readJson(resolve(benchmarkRoot, 'catalog/public-sources.json'));
 const acquisition = await readJson(resolve(benchmarkRoot, 'receipts/acquisition-receipt.json'));
+const instanceReceipt = await readJson(resolve(benchmarkRoot, 'receipts/instance-receipt.json'));
 const renderPilot = await readJson(
   resolve(benchmarkRoot, 'results/public-render-pilot.json'),
 ).catch(() => undefined);
@@ -51,6 +52,26 @@ const report = {
     reviewedInstances: sealed.results.filter((result) => result.review).length,
     excludedInstances: 0,
   },
+  workflowCoverage: {
+    declared: instanceReceipt.workflowCount,
+    represented: instanceReceipt.representedWorkflowCount,
+    missing: [
+      'smart-reframe',
+      'talking-head-cleanup',
+      'golden-quote-variants',
+      'reference-template',
+      'dance-choreography',
+      'captioned-multi-format',
+      'founder-product-launch',
+      'action-subject-following',
+    ].filter(
+      (workflow) =>
+        !sealed.subgroups.some(
+          (subgroup) => subgroup.kind === 'workflow' && subgroup.id === workflow,
+        ),
+    ),
+    corpusTierCounts: instanceReceipt.corpusTierCounts,
+  },
   metrics: {
     latencyMs: { p50: 0, p95: 0 },
     costUsd: { perUsableOutput: null },
@@ -63,7 +84,7 @@ const report = {
     reviewerAgreement: null,
   },
   missingDataTreatment:
-    'Unevaluated editing quality remains review_required, safely_abstained, or unsupported; it is never counted as usable.',
+    'Only workflow-admissible sources enter a denominator. Unevaluated editing quality remains review_required, safely_abstained, or unsupported; it is never counted as usable.',
   subgroups: sealed.subgroups,
   routes: sealed.routeDistribution,
   representativeFailures: [],

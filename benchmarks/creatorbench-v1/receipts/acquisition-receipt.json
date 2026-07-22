@@ -1,18 +1,18 @@
 {
   "schemaVersion": "nodevideo.creatorbench-acquisition-receipt.v1",
   "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T05:24:56.777Z",
-  "requestedClips": 15,
-  "acquiredClips": 15,
-  "publicCatalogRecords": 12,
-  "privateCatalogRecords": 3,
-  "creators": 13,
-  "domains": 8,
+  "generatedAt": "2026-07-22T06:03:45.174Z",
+  "requestedClips": 112,
+  "acquiredClips": 111,
+  "publicCatalogRecords": 88,
+  "privateCatalogRecords": 23,
+  "creators": 68,
+  "domains": 14,
   "splitCounts": {
-    "development": 7,
-    "public-test": 3,
-    "private-heldout": 3,
-    "adversarial": 2
+    "development": 51,
+    "public-test": 24,
+    "private-heldout": 23,
+    "adversarial": 13
   },
   "allowedLicenses": [
     "CC0",
@@ -27,17 +27,21 @@
   "licenseCounts": {
     "CC BY 3.0": 4,
     "CC BY 4.0": 1,
-    "NASA SVS public domain": 10
+    "NASA SVS public domain": 106
   },
   "providerCounts": {
     "wikimedia": 5,
-    "nasa-svs": 10
+    "nasa-svs": 106
   },
-  "privateCatalogSha256": "sha256:dfd128742ae21712864f6e713214e02d03c107c108593986486d6c10a892f34a",
-  "publicCatalogSha256": "sha256:34575d2e004a946c683da425c5c0e9b7e9fe4aa34927b62fcee81ebe639e06af",
+  "privateCatalogSha256": "sha256:6bf6fdf4d5bc0da740d869a96ef4ec683445f909ef634b31af1ec9149879722a",
+  "publicCatalogSha256": "sha256:22cbfdb243ed6e7cae0aa433f81b7219bf40a3b7dd2081940641ca22444a1602",
   "cacheRootClass": ".qa/evidence/creatorbench-v1/media",
-  "acquisitionGap": 0,
-  "failureCount": 0,
-  "failureCategories": {},
-  "gapReasons": []
+  "acquisitionGap": 1,
+  "failureCount": 1,
+  "failureCategories": {
+    "source-http": 1
+  },
+  "gapReasons": [
+    "Rights-cleared candidates that could not be normalized are excluded; source-host throttling and decode failures remain visible in this receipt."
+  ]
 }

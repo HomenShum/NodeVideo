@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { assignCreatorDisjointSplits } from './creatorbench-splits.mjs';
+import {
+  assignCreatorDisjointSplits,
+  assignIsolationDisjointSplits,
+} from './creatorbench-splits.mjs';
 
 const stable = (value) => Number(value.replace(/\D/gu, '') || 0);
 
@@ -40,5 +43,43 @@ describe('CreatorBench split assignment', () => {
     );
     expect(assignment.size).toBe(10);
     expect([...assignment.values()].every(Boolean)).toBe(true);
+  });
+
+  it('keeps visually near-duplicate sources in the same split', () => {
+    const records = [
+      {
+        id: 'source:1',
+        creatorId: 'creator:1',
+        relatedSourceGroup: 'group:1',
+        sourceSha256: 'hash:1',
+        visualPerceptualHash: '0000000000000000',
+        audioFingerprint: 'no-audio',
+        domain: 'nature',
+      },
+      {
+        id: 'source:2',
+        creatorId: 'creator:2',
+        relatedSourceGroup: 'group:2',
+        sourceSha256: 'hash:2',
+        visualPerceptualHash: '0000000000000003',
+        audioFingerprint: 'no-audio',
+        domain: 'science',
+      },
+      ...Array.from({ length: 18 }, (_, index) => ({
+        id: `source:${index + 3}`,
+        creatorId: `creator:${index + 3}`,
+        relatedSourceGroup: `group:${index + 3}`,
+        sourceSha256: `hash:${index + 3}`,
+        visualPerceptualHash: (BigInt(index + 10) << 16n).toString(16).padStart(16, '0'),
+        audioFingerprint: 'no-audio',
+        domain: `domain:${index % 5}`,
+      })),
+    ];
+    const assignment = assignIsolationDisjointSplits(
+      records,
+      { development: 50, 'public-test': 20, 'private-heldout': 20, adversarial: 10 },
+      stable,
+    );
+    expect(assignment.get('source:1')).toBe(assignment.get('source:2'));
   });
 });

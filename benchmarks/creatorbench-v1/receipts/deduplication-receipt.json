@@ -1,9 +1,9 @@
 {
   "schemaVersion": "nodevideo.creatorbench-deduplication-receipt.v1",
   "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T05:24:57.552Z",
-  "sourceCount": 15,
-  "creatorCount": 13,
+  "generatedAt": "2026-07-22T06:11:31.687Z",
+  "sourceCount": 111,
+  "creatorCount": 68,
   "visualAlgorithm": "first-frame-dhash-64",
   "visualHammingThreshold": 4,
   "audioAlgorithm": "sha256-normalized-mono-pcm-8khz-six-seconds",
@@ -12,13 +12,976 @@
       "kind": "visual-near-duplicate",
       "leftId": "cb-0009-4f1d6956",
       "rightId": "cb-0010-565d0079",
+      "leftSplit": "public-test",
+      "rightSplit": "public-test",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0031-6f0b437d",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0038-6a3339c2",
       "leftSplit": "development",
       "rightSplit": "development",
       "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0059-c3b960e2",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0061-68183569",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0069-e0f2d14d",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0075-cafd8dd1",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0079-b3bf6506",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0089-a5140cae",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0092-75e3169a",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0093-454e2d61",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0094-ac666c8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0112-c462e74c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0038-6a3339c2",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0059-c3b960e2",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0061-68183569",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0069-e0f2d14d",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 4,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0075-cafd8dd1",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0078-5dcaeb49",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 4,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0079-b3bf6506",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0084-5ce9e814",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 4,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0089-a5140cae",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0092-75e3169a",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0093-454e2d61",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0094-ac666c8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0101-28404cbc",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 3,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0112-c462e74c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0037-acd7511c",
+      "rightId": "cb-0057-1d87ea0e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 3,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0059-c3b960e2",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0061-68183569",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0069-e0f2d14d",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0075-cafd8dd1",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0079-b3bf6506",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0089-a5140cae",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0092-75e3169a",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0093-454e2d61",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0094-ac666c8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0112-c462e74c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0044-ee96dc05",
+      "rightId": "cb-0046-482f5e97",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0057-1d87ea0e",
+      "rightId": "cb-0083-20fd73aa",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 4,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0059-c3b960e2",
+      "rightId": "cb-0061-68183569",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0059-c3b960e2",
+      "rightId": "cb-0069-e0f2d14d",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0059-c3b960e2",
+      "rightId": "cb-0075-cafd8dd1",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0059-c3b960e2",
+      "rightId": "cb-0079-b3bf6506",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0059-c3b960e2",
+      "rightId": "cb-0089-a5140cae",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0059-c3b960e2",
+      "rightId": "cb-0092-75e3169a",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0059-c3b960e2",
+      "rightId": "cb-0093-454e2d61",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0059-c3b960e2",
+      "rightId": "cb-0094-ac666c8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0059-c3b960e2",
+      "rightId": "cb-0112-c462e74c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0059-c3b960e2",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0061-68183569",
+      "rightId": "cb-0069-e0f2d14d",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0061-68183569",
+      "rightId": "cb-0075-cafd8dd1",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0061-68183569",
+      "rightId": "cb-0079-b3bf6506",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0061-68183569",
+      "rightId": "cb-0089-a5140cae",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0061-68183569",
+      "rightId": "cb-0092-75e3169a",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0061-68183569",
+      "rightId": "cb-0093-454e2d61",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0061-68183569",
+      "rightId": "cb-0094-ac666c8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0061-68183569",
+      "rightId": "cb-0112-c462e74c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0061-68183569",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0069-e0f2d14d",
+      "rightId": "cb-0075-cafd8dd1",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 4,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0069-e0f2d14d",
+      "rightId": "cb-0079-b3bf6506",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0069-e0f2d14d",
+      "rightId": "cb-0089-a5140cae",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0069-e0f2d14d",
+      "rightId": "cb-0092-75e3169a",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0069-e0f2d14d",
+      "rightId": "cb-0093-454e2d61",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0069-e0f2d14d",
+      "rightId": "cb-0094-ac666c8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0069-e0f2d14d",
+      "rightId": "cb-0112-c462e74c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0069-e0f2d14d",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 3,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0075-cafd8dd1",
+      "rightId": "cb-0078-5dcaeb49",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 4,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0075-cafd8dd1",
+      "rightId": "cb-0079-b3bf6506",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0075-cafd8dd1",
+      "rightId": "cb-0084-5ce9e814",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 4,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0075-cafd8dd1",
+      "rightId": "cb-0089-a5140cae",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0075-cafd8dd1",
+      "rightId": "cb-0092-75e3169a",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0075-cafd8dd1",
+      "rightId": "cb-0093-454e2d61",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0075-cafd8dd1",
+      "rightId": "cb-0094-ac666c8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0075-cafd8dd1",
+      "rightId": "cb-0101-28404cbc",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 3,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0075-cafd8dd1",
+      "rightId": "cb-0112-c462e74c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0075-cafd8dd1",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0078-5dcaeb49",
+      "rightId": "cb-0083-20fd73aa",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0078-5dcaeb49",
+      "rightId": "cb-0100-dcd76e76",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0078-5dcaeb49",
+      "rightId": "cb-0101-28404cbc",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0079-b3bf6506",
+      "rightId": "cb-0089-a5140cae",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0079-b3bf6506",
+      "rightId": "cb-0092-75e3169a",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0079-b3bf6506",
+      "rightId": "cb-0093-454e2d61",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0079-b3bf6506",
+      "rightId": "cb-0094-ac666c8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0079-b3bf6506",
+      "rightId": "cb-0112-c462e74c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0079-b3bf6506",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0083-20fd73aa",
+      "rightId": "cb-0100-dcd76e76",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0083-20fd73aa",
+      "rightId": "cb-0101-28404cbc",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 3,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0089-a5140cae",
+      "rightId": "cb-0092-75e3169a",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0089-a5140cae",
+      "rightId": "cb-0093-454e2d61",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0089-a5140cae",
+      "rightId": "cb-0094-ac666c8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0089-a5140cae",
+      "rightId": "cb-0112-c462e74c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0089-a5140cae",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0092-75e3169a",
+      "rightId": "cb-0093-454e2d61",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0092-75e3169a",
+      "rightId": "cb-0094-ac666c8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0092-75e3169a",
+      "rightId": "cb-0112-c462e74c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0092-75e3169a",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0093-454e2d61",
+      "rightId": "cb-0094-ac666c8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0093-454e2d61",
+      "rightId": "cb-0112-c462e74c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0093-454e2d61",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0094-ac666c8f",
+      "rightId": "cb-0112-c462e74c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0094-ac666c8f",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0100-dcd76e76",
+      "rightId": "cb-0101-28404cbc",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 3,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0101-28404cbc",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 4,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0112-c462e74c",
+      "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
       "crossesSplit": false
     }
   ],
   "blockingFindingCount": 0,
   "passed": true,
-  "catalogSetSha256": "sha256:84dcadf70ba61ff254645b375610ea2f68d851854722af555312d1ce422c92d0"
+  "catalogSetSha256": "sha256:2e22b31d222314bb2d6f426f49fb1667598a106c296af79d5f5551e27f30335f"
 }

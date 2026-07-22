@@ -139,6 +139,12 @@ type PublicReport = {
   exportReopen?: Metric | number;
   missingDataTreatment?: string;
   exclusions?: string[];
+  workflowCoverage?: {
+    declared?: number;
+    represented?: number;
+    missing?: string[];
+    corpusTierCounts?: Record<string, number>;
+  };
   freezeReceipt?: {
     receiptId?: string;
     frozenAt?: string;
@@ -525,6 +531,28 @@ function Coverage({ report }: { report: PublicReport }) {
               <b>{whole(count)}</b>
             </article>
           ))}
+        </section>
+      )}
+      {report.workflowCoverage && (
+        <section className="cb-admissibility" aria-label="Workflow admissibility coverage">
+          <div>
+            <span>Workflow-admissible coverage</span>
+            <b>
+              {whole(report.workflowCoverage.represented)} /{' '}
+              {whole(report.workflowCoverage.declared)} workflows
+            </b>
+            <p>
+              Sources count only where their duration, audio, assets, and annotations make the
+              workflow a valid test. Missing tiers remain explicit gaps.
+            </p>
+          </div>
+          {(report.workflowCoverage.missing?.length ?? 0) > 0 && (
+            <ul>
+              {report.workflowCoverage.missing?.map((workflow) => (
+                <li key={workflow}>{workflow.replaceAll('-', ' ')}</li>
+              ))}
+            </ul>
+          )}
         </section>
       )}
       {groups.length === 0 ? (

@@ -139,6 +139,9 @@ const source: CreatorBenchSourceRecord = {
   sourceSha256: HASH,
   durationMs: 60_000,
   media: { width: 1920, height: 1080, fps: 30, codec: 'h264', hasAudio: true },
+  corpusTier: 'speech-long-form',
+  admissibleWorkflows: ['smart-reframe', 'talking-head-cleanup', 'golden-quote-variants'],
+  admissibilityNotes: ['Long-form speech source with audio.'],
   split: 'private-heldout',
   knownLimitations: ['Evaluator-only source.'],
 };
