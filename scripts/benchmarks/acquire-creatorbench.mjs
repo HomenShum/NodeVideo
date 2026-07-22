@@ -4,7 +4,9 @@ import { mkdir, readFile, unlink, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { promisify } from 'node:util';
 import { assignIsolationDisjointSplits } from './creatorbench-splits.mjs';
+import { collectNasaImagesCandidates } from './sources/nasa-images.mjs';
 import { collectNasaSvsCandidates } from './sources/nasa-svs.mjs';
+import { collectRepositoryFixtureCandidates } from './sources/repository-fixtures.mjs';
 
 const execFileAsync = promisify(execFile);
 const root = resolve(import.meta.dirname, '..', '..');
@@ -24,13 +26,17 @@ const discoverOnly = process.argv.includes('--discover-only');
 const providers = new Set(
   (
     process.argv.find((arg) => arg.startsWith('--providers='))?.split('=')[1] ??
-    'wikimedia,nasa-svs'
+    'wikimedia,nasa-svs,nasa-images,repository-fixtures'
   )
     .split(',')
     .map((provider) => provider.trim())
     .filter(Boolean),
 );
 const acquisitionFailures = [];
+const acquisitionConcurrency = Math.max(
+  1,
+  Number(process.env.NODEVIDEO_CREATORBENCH_ACQUISITION_CONCURRENCY ?? 2),
+);
 
 const sha256 = (value) => createHash('sha256').update(value).digest('hex');
 const stableNumber = (value) => Number.parseInt(sha256(value).slice(0, 8), 16);
@@ -239,6 +245,20 @@ function enforceCreatorLimit(candidates, seedRecords = []) {
 
 async function collectCandidates(desiredTarget, existingRecords) {
   const collected = [];
+  if (providers.has('repository-fixtures')) {
+    collected.push(...(await collectRepositoryFixtureCandidates()));
+  }
+  if (providers.has('nasa-images')) {
+    const existingNasaImages = existingRecords.filter(
+      (record) => record.sourceProvider === 'nasa-images',
+    ).length;
+    collected.push(
+      ...(await collectNasaImagesCandidates({
+        target: Math.max(24, desiredTarget + existingNasaImages + 40),
+        maximumClipsPerCreator: config.maximumClipsPerCreator,
+      })),
+    );
+  }
   if (providers.has('nasa-svs')) {
     const nasaDiscoveryDomains = [
       ...config.domains,
@@ -283,17 +303,36 @@ async function collectCandidates(desiredTarget, existingRecords) {
 
 function run(command, args, options = {}) {
   return new Promise((resolveRun, rejectRun) => {
+    const {
+      timeoutMs = Number(process.env.NODEVIDEO_CREATORBENCH_SOURCE_TIMEOUT_MS ?? 45_000),
+      ...spawnOptions
+    } = options;
     const child = spawn(command, args, {
-      ...options,
+      ...spawnOptions,
       windowsHide: true,
       stdio: ['ignore', 'pipe', 'pipe'],
     });
     const stdout = [];
     const stderr = [];
+    let settled = false;
+    const timeout = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      child.kill('SIGKILL');
+      rejectRun(new Error(`${command} exceeded the ${timeoutMs} ms per-source timeout.`));
+    }, timeoutMs);
     child.stdout?.on('data', (chunk) => stdout.push(chunk));
     child.stderr?.on('data', (chunk) => stderr.push(chunk));
-    child.on('error', rejectRun);
+    child.on('error', (error) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timeout);
+      rejectRun(error);
+    });
     child.on('close', (code) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timeout);
       if (code === 0) resolveRun(Buffer.concat(stdout));
       else
         rejectRun(
@@ -317,44 +356,36 @@ async function acquireClip(candidate, index) {
       if (existing.length === 0) throw new Error('empty');
     } catch {
       if (cachedOnly) throw new Error('Media cache miss; network acquisition disabled.');
-      for (let attempt = 0; attempt < 12; attempt += 1) {
-        const response = await fetch(candidate.acquisitionUrl, {
-          method: 'HEAD',
-          headers: {
-            'user-agent': 'NodeVideo-CreatorBench/1.0 (rights-governed research benchmark)',
-          },
-        });
-        if (response.ok) break;
-        if (response.status !== 429) {
-          throw new Error(`Media preflight failed with HTTP ${response.status}.`);
-        }
-        const retryAfterMs = Number(response.headers.get('retry-after') ?? 55) * 1_000;
-        if (attempt === 11)
-          throw new Error('Media host remained rate-limited after bounded retries.');
-        await wait(Math.min(55_000, Math.max(2_500, retryAfterMs)));
-      }
       const audioArguments = candidate.stripAudio
         ? ['-an']
         : ['-map', '0:a:0?', '-c:a', 'aac', '-b:a', '64k'];
+      const clipDurationSeconds = candidate.clipDurationSeconds ?? config.clipDurationSeconds;
+      const acquisitionInput = candidate.repositoryPath
+        ? resolve(root, candidate.repositoryPath)
+        : candidate.acquisitionUrl;
       await run('ffmpeg', [
         '-y',
         '-hide_banner',
         '-loglevel',
         'error',
-        '-user_agent',
-        'NodeVideo-CreatorBench/1.0 (rights-governed research benchmark)',
-        '-reconnect',
-        '1',
-        '-reconnect_streamed',
-        '1',
-        '-reconnect_delay_max',
-        '3',
+        ...(candidate.repositoryPath
+          ? []
+          : [
+              '-user_agent',
+              'NodeVideo-CreatorBench/1.0 (rights-governed research benchmark)',
+              '-reconnect',
+              '1',
+              '-reconnect_streamed',
+              '1',
+              '-reconnect_delay_max',
+              '3',
+            ]),
         '-ss',
-        '0',
+        String(candidate.startSeconds ?? 0),
         '-i',
-        candidate.acquisitionUrl,
+        acquisitionInput,
         '-t',
-        String(config.clipDurationSeconds),
+        String(clipDurationSeconds),
         '-map',
         '0:v:0',
         ...audioArguments,
@@ -426,7 +457,7 @@ async function acquireClip(candidate, index) {
         '-ar',
         '8000',
         '-t',
-        String(config.clipDurationSeconds),
+        String(candidate.clipDurationSeconds ?? config.clipDurationSeconds),
         '-f',
         's16le',
         'pipe:1',
@@ -454,6 +485,8 @@ async function acquireClip(candidate, index) {
     sourceSha256: `sha256:${sha256(bytes)}`,
     originalSourceSha1: candidate.originalSha1,
     durationSeconds: Number(probe.format.duration ?? config.clipDurationSeconds),
+    sourceClipStartSeconds: candidate.startSeconds ?? 0,
+    normalizedClipDurationSeconds: candidate.clipDurationSeconds ?? config.clipDurationSeconds,
     media: {
       mimeType: 'video/mp4',
       codec: video?.codec_name ?? 'unknown',
@@ -466,9 +499,12 @@ async function acquireClip(candidate, index) {
     },
     permittedBenchmarkUses: candidate.permittedBenchmarkUses,
     permittedRedistribution: candidate.permittedRedistribution,
+    corpusTier: candidate.corpusTier,
+    admissibleWorkflows: candidate.admissibleWorkflows,
+    admissibilityNotes: candidate.admissibilityNotes,
     relatedSourceGroup: candidate.relatedSourceGroup,
     knownLimitations: [
-      'Six-second normalized derivative; source semantics require human review.',
+      `${candidate.clipDurationSeconds ?? config.clipDurationSeconds}-second normalized derivative; source semantics require human review.`,
       ...(candidate.knownLimitations ?? []),
     ],
     visualPerceptualHash,
@@ -545,11 +581,20 @@ if (reusableExisting.length + candidates.length < target) {
     `Only ${reusableExisting.length + candidates.length} rights-cleared cached or discovered candidates found; target is ${target}.`,
   );
 }
-const acquired = await mapLimit(
-  candidates.slice(0, requiredNew + 40),
-  downloadMedia ? 2 : 12,
-  (candidate, index) => acquireClip(candidate, reusableExisting.length + index),
-);
+const acquired = [];
+let candidateCursor = 0;
+while (acquired.length < requiredNew && candidateCursor < candidates.length) {
+  const needed = requiredNew - acquired.length;
+  const batch = candidates.slice(candidateCursor, candidateCursor + needed);
+  const batchStart = candidateCursor;
+  const batchResults = await mapLimit(
+    batch,
+    downloadMedia ? acquisitionConcurrency : 12,
+    (candidate, index) => acquireClip(candidate, reusableExisting.length + batchStart + index),
+  );
+  acquired.push(...batchResults);
+  candidateCursor += batch.length;
+}
 const selectedRaw = [...reusableExisting, ...acquired].slice(0, target);
 const creatorSplits = assignIsolationDisjointSplits(
   selectedRaw,
@@ -562,6 +607,9 @@ const selected = selectedRaw.map((record) => ({
 }));
 const rightsStatus = (license) => {
   if (license === 'CC0') return 'cc0';
+  if (license === 'NodeVideo generated fixture with provenance') {
+    return 'generated-with-provenance';
+  }
   if (/public domain/iu.test(license)) return 'public-domain';
   return 'cc-by';
 };
@@ -585,8 +633,22 @@ const asSourceRecord = (record) => ({
     licenseName: record.license,
     ...(record.licenseUrl ? { licenseUrl: record.licenseUrl } : {}),
     attribution: record.attribution,
-    permittedBenchmarkUses: ['analysis', 'derivatives', 'human-review', 'publication'],
-    permittedRedistribution: record.split !== 'private-heldout',
+    permittedBenchmarkUses: [
+      ...(record.permittedBenchmarkUses?.some((use) => ['analysis', 'evaluation'].includes(use))
+        ? ['analysis']
+        : []),
+      ...(record.permittedBenchmarkUses?.some((use) =>
+        ['derivatives', 'derived-six-second-clip'].includes(use),
+      )
+        ? ['derivatives']
+        : []),
+      ...(record.permittedBenchmarkUses?.includes('human-review') ? ['human-review'] : []),
+      ...(record.permittedRedistribution && record.split !== 'private-heldout'
+        ? ['publication']
+        : []),
+    ],
+    permittedRedistribution:
+      Boolean(record.permittedRedistribution) && record.split !== 'private-heldout',
   },
   privacy: record.split === 'private-heldout' ? 'private' : 'public',
   acquiredAt: record.acquiredAt,
@@ -674,6 +736,7 @@ const receipt = {
   benchmarkVersion: config.benchmarkVersion,
   generatedAt: new Date().toISOString(),
   requestedClips: target,
+  benchmarkTargetClips: config.targetClips,
   acquiredClips: selected.length,
   publicCatalogRecords: publicRecords.length,
   privateCatalogRecords: privateRecords.length,
@@ -694,7 +757,7 @@ const receipt = {
   privateCatalogSha256: `sha256:${sha256(JSON.stringify(privateCatalog))}`,
   publicCatalogSha256: `sha256:${sha256(JSON.stringify(publicCatalog))}`,
   cacheRootClass: '.qa/evidence/creatorbench-v1/media',
-  acquisitionGap: Math.max(0, target - selected.length),
+  acquisitionGap: Math.max(0, config.targetClips - selected.length),
   failureCount: acquisitionFailures.length,
   failureCategories: Object.fromEntries(
     Object.entries(Object.groupBy(acquisitionFailures, (failure) => failure.category)).map(
@@ -702,8 +765,9 @@ const receipt = {
     ),
   ),
   gapReasons:
-    selected.length < target
+    selected.length < config.targetClips
       ? [
+          `CreatorBench v1 requires ${config.targetClips} distinct clips; this corpus currently contains ${selected.length}. Generated fixtures are counted separately and do not establish unseen external-creator performance.`,
           'Rights-cleared candidates that could not be normalized are excluded; source-host throttling and decode failures remain visible in this receipt.',
         ]
       : [],

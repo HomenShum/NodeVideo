@@ -30,6 +30,12 @@ const instanceReceipt = await readJson(resolve(benchmarkRoot, 'receipts/instance
 const renderPilot = await readJson(
   resolve(benchmarkRoot, 'results/public-render-pilot.json'),
 ).catch(() => undefined);
+const workflowPilot = await readJson(
+  resolve(benchmarkRoot, 'results/public-workflow-pilot.json'),
+).catch(() => undefined);
+const speechIndex = await readJson(
+  resolve(benchmarkRoot, 'receipts/speech-index-receipt.json'),
+).catch(() => undefined);
 const hardTargets = {
   clips: 250,
   creators: 75,
@@ -92,6 +98,35 @@ const report = {
     ),
     corpusTierCounts: instanceReceipt.corpusTierCounts,
   },
+  workflowExecution: workflowPilot
+    ? {
+        talkingHeadCleanup: {
+          instanceCount: workflowPilot.instanceCount,
+          sourceCount: workflowPilot.sourceCount,
+          renderedArtifactCount: workflowPilot.renderedArtifactCount,
+          exportReopenCount: workflowPilot.exportReopenCount,
+          automaticCutCount: workflowPilot.automaticCutCount,
+          fillerReviewCount: workflowPilot.fillerReviewCount,
+          silenceReviewCount: workflowPilot.silenceReviewCount,
+          meanSpeechRetention: workflowPilot.meanSpeechRetention,
+          wordTruncationCount: workflowPilot.wordTruncationCount,
+          machinePassCount: workflowPilot.machinePassCount,
+          reviewRequiredCount: workflowPilot.reviewRequiredCount,
+          limitations: workflowPilot.limitations,
+        },
+      }
+    : null,
+  speechEvidence: speechIndex
+    ? {
+        sourceCount: speechIndex.sourceCount,
+        indexedCount: speechIndex.indexedCount,
+        missingTranscriptCount: speechIndex.missingTranscriptCount,
+        totalWords: speechIndex.totalWords,
+        totalQuotes: speechIndex.totalQuotes,
+        totalSilenceRegions: speechIndex.totalSilenceRegions,
+        transcriptTextPublished: speechIndex.transcriptTextPublished,
+      }
+    : null,
   metrics: {
     latencyMs: { p50: null, p95: null, scope: 'not-measured-for-sealed-routing' },
     costUsd: { perUsableOutput: null },
@@ -226,6 +261,104 @@ const rows = [
     '',
     '',
   ],
+  ...(workflowPilot
+    ? [
+        [
+          'workflow-metric',
+          'public talking-head cleanup pilot',
+          'workflow',
+          'talking-head-cleanup',
+          'rendered_artifacts',
+          workflowPilot.renderedArtifactCount,
+          workflowPilot.instanceCount,
+          workflowPilot.instanceCount > 0
+            ? workflowPilot.renderedArtifactCount / workflowPilot.instanceCount
+            : 0,
+          '',
+          'Canonical EditPlan renderer; usability remains human-unreviewed.',
+        ],
+        [
+          'workflow-metric',
+          'public talking-head cleanup pilot',
+          'workflow',
+          'talking-head-cleanup',
+          'export_reopen',
+          workflowPilot.exportReopenCount,
+          workflowPilot.renderedArtifactCount,
+          workflowPilot.renderedArtifactCount > 0
+            ? workflowPilot.exportReopenCount / workflowPilot.renderedArtifactCount
+            : 0,
+          '',
+          '',
+        ],
+        [
+          'workflow-metric',
+          'public talking-head cleanup pilot',
+          'workflow',
+          'talking-head-cleanup',
+          'word_truncations',
+          workflowPilot.wordTruncationCount,
+          workflowPilot.renderedArtifactCount,
+          '',
+          '',
+          'Official segment-level SRT evidence with interpolated word timing.',
+        ],
+        [
+          'workflow-metric',
+          'public talking-head cleanup pilot',
+          'workflow',
+          'talking-head-cleanup',
+          'mean_speech_retention',
+          '',
+          '',
+          '',
+          workflowPilot.meanSpeechRetention,
+          'rate',
+        ],
+        [
+          'workflow-metric',
+          'public talking-head cleanup pilot',
+          'workflow',
+          'talking-head-cleanup',
+          'review_required',
+          workflowPilot.reviewRequiredCount,
+          workflowPilot.instanceCount,
+          workflowPilot.instanceCount > 0
+            ? workflowPilot.reviewRequiredCount / workflowPilot.instanceCount
+            : 0,
+          '',
+          'Intentional pauses and audible joins require blinded human review.',
+        ],
+      ]
+    : []),
+  ...(speechIndex
+    ? [
+        [
+          'evidence-coverage',
+          'official speech sidecars',
+          'corpus-tier',
+          'speech-long-form',
+          'indexed_sources',
+          speechIndex.indexedCount,
+          speechIndex.sourceCount,
+          speechIndex.sourceCount > 0 ? speechIndex.indexedCount / speechIndex.sourceCount : 0,
+          '',
+          `${speechIndex.missingTranscriptCount} sources lack an official SRT sidecar.`,
+        ],
+        [
+          'evidence-coverage',
+          'official speech sidecars',
+          'corpus-tier',
+          'speech-long-form',
+          'aligned_words',
+          '',
+          '',
+          '',
+          speechIndex.totalWords,
+          'words',
+        ],
+      ]
+    : []),
   ...Object.entries(report.dataset.targetGaps).map(([metricName, gap]) => [
     'target-gap',
     'creatorbench-v1 hard target',

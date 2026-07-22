@@ -45,7 +45,7 @@ export const claimAssignment = mutation({
   handler: async (ctx, args) => {
     assertReviewerRef(args.reviewerRef);
     assertConsent(args.consentVersion);
-    if (args.benchmarkVersion !== 'creatorbench-v1.1') {
+    if (args.benchmarkVersion !== 'creatorbench-v1.2') {
       throw new Error('Unsupported benchmark version.');
     }
     if (

@@ -12,6 +12,7 @@
     "sourceIds",
     "domain",
     "workflow",
+    "scenarioId",
     "request",
     "adversarialConditions",
     "createdAt"
@@ -40,6 +41,7 @@
         "action-subject-following"
       ]
     },
+    "scenarioId": { "type": "string", "minLength": 1 },
     "request": { "$ref": "creator-request.schema.json" },
     "evaluatorTargetRef": { "type": "string", "minLength": 1 },
     "adversarialConditions": {

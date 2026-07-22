@@ -156,6 +156,31 @@ type PublicReport = {
     missing?: string[];
     corpusTierCounts?: Record<string, number>;
   };
+  workflowExecution?: {
+    talkingHeadCleanup?: {
+      instanceCount?: number;
+      sourceCount?: number;
+      renderedArtifactCount?: number;
+      exportReopenCount?: number;
+      automaticCutCount?: number;
+      fillerReviewCount?: number;
+      silenceReviewCount?: number;
+      meanSpeechRetention?: number | null;
+      wordTruncationCount?: number;
+      machinePassCount?: number;
+      reviewRequiredCount?: number;
+      limitations?: string[];
+    };
+  };
+  speechEvidence?: {
+    sourceCount?: number;
+    indexedCount?: number;
+    missingTranscriptCount?: number;
+    totalWords?: number;
+    totalQuotes?: number;
+    totalSilenceRegions?: number;
+    transcriptTextPublished?: boolean;
+  };
   freezeReceipt?: {
     receiptId?: string;
     frozenAt?: string;
@@ -582,6 +607,7 @@ function Overview({ report }: { report: PublicReport }) {
 function Coverage({ report }: { report: PublicReport }) {
   const groups = report.subgroupPerformance ?? report.subgroups ?? [];
   const splitEntries = Object.entries(report.counts?.splits ?? {});
+  const cleanup = report.workflowExecution?.talkingHeadCleanup;
   return (
     <div className="cb-coverage" data-testid="coverage-view">
       <section className="cb-section-heading">
@@ -621,6 +647,52 @@ function Coverage({ report }: { report: PublicReport }) {
               ))}
             </ul>
           )}
+        </section>
+      )}
+      {cleanup && (
+        <section className="cb-admissibility" aria-label="Talking-head workflow execution">
+          <div>
+            <span>Canonical workflow pilot</span>
+            <b>{whole(cleanup.renderedArtifactCount)} talking-head candidates rendered</b>
+            <p>
+              FFmpeg silence detection and official caption evidence compiled through the shared
+              EditPlan renderer. Candidate creation is not a human usability judgment.
+            </p>
+          </div>
+          <ul>
+            <li>
+              {whole(cleanup.exportReopenCount)} / {whole(cleanup.renderedArtifactCount)} reopened
+            </li>
+            <li>{whole(cleanup.wordTruncationCount)} detected word truncations</li>
+            <li>{whole(cleanup.automaticCutCount)} automatic silence cuts</li>
+            <li>
+              {whole(cleanup.silenceReviewCount)} conflicting silence cuts withheld for review
+            </li>
+            <li>{whole(cleanup.reviewRequiredCount)} still require human review</li>
+          </ul>
+        </section>
+      )}
+      {report.speechEvidence && (
+        <section className="cb-splits" aria-label="Speech evidence coverage">
+          <article>
+            <span>Speech sources indexed</span>
+            <b>
+              {whole(report.speechEvidence.indexedCount)} /{' '}
+              {whole(report.speechEvidence.sourceCount)}
+            </b>
+          </article>
+          <article>
+            <span>Aligned caption words</span>
+            <b>{whole(report.speechEvidence.totalWords)}</b>
+          </article>
+          <article>
+            <span>Quote segments</span>
+            <b>{whole(report.speechEvidence.totalQuotes)}</b>
+          </article>
+          <article>
+            <span>Detected silence regions</span>
+            <b>{whole(report.speechEvidence.totalSilenceRegions)}</b>
+          </article>
         </section>
       )}
       {groups.length === 0 ? (
@@ -1547,7 +1619,7 @@ function App() {
               cases={(report.reviewCases ?? []).filter(
                 (reviewCase) => reviewCase.visibility !== 'private',
               )}
-              benchmarkVersion={report.benchmarkVersion ?? 'creatorbench-v1.1'}
+              benchmarkVersion={report.benchmarkVersion ?? 'creatorbench-v1.2'}
             />
           )}
         </section>

@@ -28,7 +28,7 @@ class MemoryStorage implements Storage {
 }
 
 const input: DurableReviewInput = {
-  benchmarkVersion: 'creatorbench-v1.1',
+  benchmarkVersion: 'creatorbench-v1.2',
   instanceId: 'instance:public:1',
   resultId: 'result:public:1',
   split: 'public-test',

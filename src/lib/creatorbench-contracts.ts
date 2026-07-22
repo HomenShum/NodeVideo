@@ -173,6 +173,7 @@ export interface CreatorBenchInstance {
   sourceIds: string[];
   domain: string;
   workflow: CreatorBenchWorkflow;
+  scenarioId: string;
   request: CreatorRequestV1;
   evaluatorTargetRef?: string;
   adversarialConditions: string[];
@@ -444,6 +445,7 @@ export function validateCreatorBenchInstance(instance: CreatorBenchInstance) {
   if (instance.schemaVersion !== CREATORBENCH_INSTANCE_SCHEMA)
     fail('Instance schema is unsupported.');
   validateCreatorRequest(instance.request);
+  requiredText(instance.scenarioId, `${instance.id} scenario ID`);
   if (instance.sourceIds.length === 0) fail(`${instance.id} requires source IDs.`);
   unique(instance.sourceIds, `${instance.id} source`);
   if (instance.split === 'private-heldout' && !instance.evaluatorTargetRef) {
@@ -654,6 +656,7 @@ export function derivePublicClaim(args: {
   const assisted = percentage(outcomes.assisted_usable.rate);
   const abstained = percentage(outcomes.safely_abstained.rate);
   const silent = percentage(outcomes.silent_failure.rate);
+  const humanReviewedCount = results.filter((result) => result.review).length;
   const domains = new Set(instances.map((instance) => instance.domain));
   const workflows = new Set(instances.map((instance) => instance.workflow));
   const creators = new Set(sources.map((source) => source.creatorOwnerId));
@@ -671,12 +674,21 @@ export function derivePublicClaim(args: {
       workflowCount: workflows.size,
     },
     outcomes,
-    statement:
-      `On ${args.benchmarkVersion}, covering ${instances.length} private held-out workflow instances ` +
-      `from ${creators.size} creator-disjoint sources across ${workflows.size} workflows, ` +
-      `NodeVideo produced a usable first-pass result automatically in ${automatic}, after bounded ` +
-      `assistance in ${assisted}, and safely abstained in ${abstained}. Silent failures occurred in ${silent}.`,
-    limitations: [...args.limitations],
+    statement: `On ${args.benchmarkVersion}, covering ${instances.length} private held-out workflow instances from ${creators.size} creator-disjoint sources across ${workflows.size} workflows, NodeVideo produced a usable first-pass result automatically in ${automatic}, after bounded assistance in ${assisted}, and safely abstained in ${abstained}. ${
+      humanReviewedCount === results.length
+        ? `Silent failures occurred in ${silent}.`
+        : `${outcomes.silent_failure.numerator} instances were classified as silent failures, but editing-quality silent-failure incidence remains unverified because only ${humanReviewedCount}/${results.length} results have human review.`
+    }`,
+    limitations: [
+      ...new Set([
+        ...args.limitations,
+        ...(humanReviewedCount === results.length
+          ? []
+          : [
+              `Editing-quality silent-failure incidence is unverified: ${humanReviewedCount}/${results.length} private held-out results have human review.`,
+            ]),
+      ]),
+    ],
   };
 }
 

@@ -42,9 +42,16 @@ const manifest = await readJson(resolve(benchmarkRoot, 'catalog/public-instances
 const sources = await readJson(resolve(benchmarkRoot, 'catalog/public-sources.json'));
 const vaultById = new Map(vault.records.map((record) => [record.id, record]));
 const sourceById = new Map(sources.records.map((record) => [record.id, record]));
-const instances = manifest.instances.filter(
-  (instance) => instance.workflow === workflow && selectedSplits.has(instance.split),
-);
+const instances = manifest.instances.filter((instance) => {
+  const source = sourceById.get(instance.sourceIds[0]);
+  return (
+    instance.workflow === workflow &&
+    instance.scenarioId === 'multi-format' &&
+    selectedSplits.has(instance.split) &&
+    source?.rights.permittedRedistribution === true &&
+    source.rights.permittedBenchmarkUses.includes('publication')
+  );
+});
 const results = [];
 
 for (const instance of instances) {

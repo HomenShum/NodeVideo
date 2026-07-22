@@ -10,7 +10,7 @@ const consentVersion = 'creatorbench-review-consent/v1';
 
 function assignment(overrides: Record<string, unknown> = {}) {
   return {
-    benchmarkVersion: 'creatorbench-v1.1',
+    benchmarkVersion: 'creatorbench-v1.2',
     instanceId: 'instance:public:1',
     resultId: 'result:public:1',
     split: 'public-test' as const,

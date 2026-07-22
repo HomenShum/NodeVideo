@@ -10,7 +10,7 @@ describe('CreatorBench reviewer persistence', () => {
   it('stores one blinded pseudonymous judgment per assignment and rejects repeats', async () => {
     const t = convexTest(schema, modules);
     const args = {
-      benchmarkVersion: 'creatorbench-v1.1',
+      benchmarkVersion: 'creatorbench-v1.2',
       instanceId: 'instance:public:1',
       resultId: 'result:public:1',
       split: 'public-test' as const,

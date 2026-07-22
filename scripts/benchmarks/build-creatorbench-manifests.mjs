@@ -7,12 +7,16 @@ import {
   sha256,
   writeJson,
 } from './creatorbench-io.mjs';
+import { applyCreatorBenchScenario, creatorBenchScenarios } from './creatorbench-scenarios.mjs';
 
 const config = await readJson(resolve(benchmarkRoot, 'config/domains.json'));
 const sources = await loadAllSources();
 const acquisitionVault = await readJson(resolve(evidenceRoot, 'acquisition-vault.json'));
 const domainBySource = new Map(
   acquisitionVault.records.map((record) => [record.id, record.domain]),
+);
+const locatorClassBySource = new Map(
+  acquisitionVault.records.map((record) => [record.id, record.sourceLocatorClass]),
 );
 const adversarialRequests = [
   'Target leaves and re-enters after occlusion; retain identity or request assistance.',
@@ -41,7 +45,7 @@ function workflowRequest(source, workflow, workflowIndex) {
     'action-subject-following':
       'Follow the intended subject while preserving relevant action context and surfacing uncertainty.',
   };
-  const createdAt = new Date().toISOString();
+  const createdAt = source.acquiredAt;
   return {
     schemaVersion: 'nodevideo.creator-request/v1',
     id: `request:${source.id}:${workflow}`,
@@ -51,7 +55,12 @@ function workflowRequest(source, workflow, workflowIndex) {
         artifactId: source.id,
         role: 'primary',
         sha256: source.sourceSha256,
-        locatorClass: source.split === 'private-heldout' ? 'private-vault' : 'public-url',
+        locatorClass:
+          source.split === 'private-heldout'
+            ? 'private-vault'
+            : locatorClassBySource.get(source.id) === 'repository-generated-public'
+              ? 'repository-fixture'
+              : 'public-url',
       },
     ],
     ...(workflow === 'reference-template'
@@ -101,24 +110,32 @@ function workflowRequest(source, workflow, workflowIndex) {
 const instances = sources.flatMap((source) =>
   config.workflows
     .filter((workflow) => source.admissibleWorkflows.includes(workflow))
-    .map((workflow, workflowIndex) => ({
-      schemaVersion: 'nodevideo.creatorbench-instance/v1',
-      id: `instance:${source.id}:${workflow}`,
-      benchmarkVersion: config.benchmarkVersion,
-      sourceIds: [source.id],
-      domain: domainBySource.get(source.id) ?? 'general-creator-footage',
-      workflow,
-      split: source.split,
-      request: workflowRequest(source, workflow, workflowIndex),
-      ...(source.split === 'private-heldout'
-        ? { evaluatorTargetRef: `sealed:${sha256(`${source.id}:${workflow}:target`).slice(0, 24)}` }
-        : {}),
-      adversarialConditions:
-        source.split === 'adversarial'
-          ? [adversarialRequests[workflowIndex % adversarialRequests.length]]
-          : [],
-      createdAt: new Date().toISOString(),
-    })),
+    .flatMap((workflow, workflowIndex) => {
+      const baseRequest = workflowRequest(source, workflow, workflowIndex);
+      return creatorBenchScenarios.map((scenario, scenarioIndex) => ({
+        schemaVersion: 'nodevideo.creatorbench-instance/v1',
+        id: `instance:${source.id}:${workflow}:${scenario.id}`,
+        benchmarkVersion: config.benchmarkVersion,
+        sourceIds: [source.id],
+        domain: domainBySource.get(source.id) ?? 'general-creator-footage',
+        workflow,
+        scenarioId: scenario.id,
+        split: source.split,
+        request: applyCreatorBenchScenario(baseRequest, scenario),
+        ...(source.split === 'private-heldout'
+          ? {
+              evaluatorTargetRef: `sealed:${sha256(
+                `${source.id}:${workflow}:${scenario.id}:target`,
+              ).slice(0, 24)}`,
+            }
+          : {}),
+        adversarialConditions:
+          source.split === 'adversarial'
+            ? [adversarialRequests[(workflowIndex + scenarioIndex) % adversarialRequests.length]]
+            : [],
+        createdAt: source.acquiredAt,
+      }));
+    }),
 );
 const publicInstances = instances.filter((instance) => instance.split !== 'private-heldout');
 const privateInstances = instances.filter((instance) => instance.split === 'private-heldout');
@@ -143,6 +160,7 @@ const receipt = {
   sourceCount: sources.length,
   instanceCount: instances.length,
   workflowCount: config.workflows.length,
+  scenarioCount: creatorBenchScenarios.length,
   representedWorkflowCount: new Set(instances.map((instance) => instance.workflow)).size,
   corpusTierCounts: Object.fromEntries(
     Object.entries(Object.groupBy(sources, (source) => source.corpusTier)).map(

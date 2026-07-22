@@ -154,6 +154,7 @@ const instance: CreatorBenchInstance = {
   sourceIds: ['source:1'],
   domain: 'talking-head',
   workflow: 'smart-reframe',
+  scenarioId: 'baseline',
   request,
   evaluatorTargetRef: 'evaluator-target:opaque:1',
   adversarialConditions: [],

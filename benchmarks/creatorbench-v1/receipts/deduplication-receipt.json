@@ -1,9 +1,9 @@
 {
   "schemaVersion": "nodevideo.creatorbench-deduplication-receipt.v1",
-  "benchmarkVersion": "creatorbench-v1.1",
-  "generatedAt": "2026-07-22T06:53:11.136Z",
-  "sourceCount": 112,
-  "creatorCount": 69,
+  "benchmarkVersion": "creatorbench-v1.2",
+  "generatedAt": "2026-07-22T08:46:14.146Z",
+  "sourceCount": 250,
+  "creatorCount": 205,
   "visualAlgorithm": "first-frame-dhash-64",
   "visualHammingThreshold": 4,
   "audioAlgorithm": "sha256-normalized-mono-pcm-8khz-six-seconds",
@@ -136,6 +136,33 @@
     },
     {
       "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0015-0a22e6b8",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
       "leftId": "cb-0031-6f0b437d",
       "rightId": "cb-0038-6a3339c2",
       "leftSplit": "development",
@@ -271,6 +298,33 @@
     },
     {
       "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0031-6f0b437d",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 3,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
       "leftId": "cb-0037-acd7511c",
       "rightId": "cb-0057-1d87ea0e",
       "leftSplit": "development",
@@ -372,6 +426,33 @@
       "kind": "visual-near-duplicate",
       "leftId": "cb-0038-6a3339c2",
       "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0038-6a3339c2",
+      "rightId": "cb-0168-03d42d3f",
       "leftSplit": "development",
       "rightSplit": "development",
       "visualDistance": 1,
@@ -487,6 +568,33 @@
     },
     {
       "kind": "visual-near-duplicate",
+      "leftId": "cb-0059-c3b960e2",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0059-c3b960e2",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0059-c3b960e2",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
       "leftId": "cb-0061-68183569",
       "rightId": "cb-0069-e0f2d14d",
       "leftSplit": "development",
@@ -568,6 +676,42 @@
     },
     {
       "kind": "visual-near-duplicate",
+      "leftId": "cb-0061-68183569",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0061-68183569",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0061-68183569",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0066-9e65c59b",
+      "rightId": "cb-0125-05210f14",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
       "leftId": "cb-0069-e0f2d14d",
       "rightId": "cb-0075-cafd8dd1",
       "leftSplit": "development",
@@ -633,6 +777,33 @@
       "kind": "visual-near-duplicate",
       "leftId": "cb-0069-e0f2d14d",
       "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 3,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0069-e0f2d14d",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0069-e0f2d14d",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0069-e0f2d14d",
+      "rightId": "cb-0168-03d42d3f",
       "leftSplit": "development",
       "rightSplit": "development",
       "visualDistance": 3,
@@ -730,6 +901,33 @@
     },
     {
       "kind": "visual-near-duplicate",
+      "leftId": "cb-0075-cafd8dd1",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0075-cafd8dd1",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0075-cafd8dd1",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 3,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
       "leftId": "cb-0078-5dcaeb49",
       "rightId": "cb-0083-20fd73aa",
       "leftSplit": "development",
@@ -811,6 +1009,33 @@
     },
     {
       "kind": "visual-near-duplicate",
+      "leftId": "cb-0079-b3bf6506",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0079-b3bf6506",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0079-b3bf6506",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
       "leftId": "cb-0083-20fd73aa",
       "rightId": "cb-0100-dcd76e76",
       "leftSplit": "development",
@@ -822,6 +1047,15 @@
       "kind": "visual-near-duplicate",
       "leftId": "cb-0083-20fd73aa",
       "rightId": "cb-0101-28404cbc",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 3,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0087-0494c2d0",
+      "rightId": "cb-0140-d28b13e3",
       "leftSplit": "development",
       "rightSplit": "development",
       "visualDistance": 3,
@@ -874,6 +1108,33 @@
     },
     {
       "kind": "visual-near-duplicate",
+      "leftId": "cb-0089-a5140cae",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0089-a5140cae",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0089-a5140cae",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
       "leftId": "cb-0092-75e3169a",
       "rightId": "cb-0093-454e2d61",
       "leftSplit": "development",
@@ -910,6 +1171,33 @@
     },
     {
       "kind": "visual-near-duplicate",
+      "leftId": "cb-0092-75e3169a",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0092-75e3169a",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0092-75e3169a",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
       "leftId": "cb-0093-454e2d61",
       "rightId": "cb-0094-ac666c8f",
       "leftSplit": "development",
@@ -937,6 +1225,33 @@
     },
     {
       "kind": "visual-near-duplicate",
+      "leftId": "cb-0093-454e2d61",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0093-454e2d61",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0093-454e2d61",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
       "leftId": "cb-0094-ac666c8f",
       "rightId": "cb-0112-c462e74c",
       "leftSplit": "development",
@@ -948,6 +1263,33 @@
       "kind": "visual-near-duplicate",
       "leftId": "cb-0094-ac666c8f",
       "rightId": "cb-0111-c8656e5e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0094-ac666c8f",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0094-ac666c8f",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0094-ac666c8f",
+      "rightId": "cb-0168-03d42d3f",
       "leftSplit": "development",
       "rightSplit": "development",
       "visualDistance": 1,
@@ -979,9 +1321,1890 @@
       "rightSplit": "development",
       "visualDistance": 1,
       "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0112-c462e74c",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0112-c462e74c",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0112-c462e74c",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0111-c8656e5e",
+      "rightId": "cb-0150-29b92102",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0111-c8656e5e",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0111-c8656e5e",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0124-143f5a7e",
+      "rightId": "cb-0126-d3b796bb",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0124-143f5a7e",
+      "rightId": "cb-0131-4b5c0241",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 3,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0126-d3b796bb",
+      "rightId": "cb-0131-4b5c0241",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 3,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0129-53403be3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0130-bce0c55b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 24,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0135-5eebc55c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0142-0adf6e67",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0147-272153cd",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0148-fb6a1d8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0149-e6c2183b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 37,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 33,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0153-5e1af193",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 37,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0160-98e46a42",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 27,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0162-8d8c0062",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0163-f852fd41",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 37,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 37,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0128-98086d70",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 33,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0130-bce0c55b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0135-5eebc55c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0142-0adf6e67",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0147-272153cd",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0148-fb6a1d8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0149-e6c2183b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 29,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 25,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0153-5e1af193",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 23,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0160-98e46a42",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 23,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0162-8d8c0062",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 9,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0163-f852fd41",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 26,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 25,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 13,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 27,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 27,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0129-53403be3",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 37,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0135-5eebc55c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 36,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0142-0adf6e67",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0147-272153cd",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0148-fb6a1d8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0149-e6c2183b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 33,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 29,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0153-5e1af193",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0160-98e46a42",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0162-8d8c0062",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0163-f852fd41",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 29,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 25,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 33,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 29,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0130-bce0c55b",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0131-4b5c0241",
+      "rightId": "cb-0167-3105c67c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 4,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0132-40b04ffb",
+      "rightId": "cb-0167-3105c67c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0132-40b04ffb",
+      "rightId": "cb-0171-06489530",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0142-0adf6e67",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0147-272153cd",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0148-fb6a1d8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0149-e6c2183b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 33,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0153-5e1af193",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 33,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0160-98e46a42",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 37,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0162-8d8c0062",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0163-f852fd41",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 33,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 33,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 33,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0135-5eebc55c",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 37,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0137-232afbe2",
+      "rightId": "cb-0138-c35f97e7",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0137-232afbe2",
+      "rightId": "cb-0139-f76d589c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0138-c35f97e7",
+      "rightId": "cb-0139-f76d589c",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0147-272153cd",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 29,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0148-fb6a1d8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 29,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0149-e6c2183b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 26,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0153-5e1af193",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0160-98e46a42",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0162-8d8c0062",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0163-f852fd41",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 27,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0142-0adf6e67",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 38,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0148-fb6a1d8f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 8,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0149-e6c2183b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 13,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0153-5e1af193",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 29,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0160-98e46a42",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0162-8d8c0062",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 33,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0163-f852fd41",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 7,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 17,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 15,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 19,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0147-272153cd",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0148-fb6a1d8f",
+      "rightId": "cb-0149-e6c2183b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 17,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0148-fb6a1d8f",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 29,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0148-fb6a1d8f",
+      "rightId": "cb-0153-5e1af193",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 29,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0148-fb6a1d8f",
+      "rightId": "cb-0160-98e46a42",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 33,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0148-fb6a1d8f",
+      "rightId": "cb-0162-8d8c0062",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0148-fb6a1d8f",
+      "rightId": "cb-0163-f852fd41",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 9,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0148-fb6a1d8f",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0148-fb6a1d8f",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 19,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0148-fb6a1d8f",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0148-fb6a1d8f",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0148-fb6a1d8f",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 19,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0148-fb6a1d8f",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 21,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0148-fb6a1d8f",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0149-e6c2183b",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0149-e6c2183b",
+      "rightId": "cb-0153-5e1af193",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0149-e6c2183b",
+      "rightId": "cb-0160-98e46a42",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0149-e6c2183b",
+      "rightId": "cb-0162-8d8c0062",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0149-e6c2183b",
+      "rightId": "cb-0163-f852fd41",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 14,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0149-e6c2183b",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0149-e6c2183b",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 14,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0149-e6c2183b",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 26,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0149-e6c2183b",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 27,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0149-e6c2183b",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 4,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0149-e6c2183b",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 14,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0149-e6c2183b",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 42,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0150-29b92102",
+      "rightId": "cb-0151-12cf225b",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 0,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0150-29b92102",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0151-12cf225b",
+      "rightId": "cb-0153-5e1af193",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0151-12cf225b",
+      "rightId": "cb-0160-98e46a42",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0151-12cf225b",
+      "rightId": "cb-0162-8d8c0062",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0151-12cf225b",
+      "rightId": "cb-0163-f852fd41",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0151-12cf225b",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 1,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0151-12cf225b",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0151-12cf225b",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0151-12cf225b",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0151-12cf225b",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0151-12cf225b",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0151-12cf225b",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0153-5e1af193",
+      "rightId": "cb-0160-98e46a42",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 26,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0153-5e1af193",
+      "rightId": "cb-0162-8d8c0062",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 24,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0153-5e1af193",
+      "rightId": "cb-0163-f852fd41",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 26,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0153-5e1af193",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0153-5e1af193",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0153-5e1af193",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0153-5e1af193",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0153-5e1af193",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 24,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0153-5e1af193",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 26,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0153-5e1af193",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 36,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0154-71d0020d",
+      "rightId": "cb-0155-d2dbb814",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 3,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0160-98e46a42",
+      "rightId": "cb-0162-8d8c0062",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 18,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0160-98e46a42",
+      "rightId": "cb-0163-f852fd41",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0160-98e46a42",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0160-98e46a42",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0160-98e46a42",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 20,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0160-98e46a42",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 27,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0160-98e46a42",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0160-98e46a42",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 26,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0160-98e46a42",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0162-8d8c0062",
+      "rightId": "cb-0163-f852fd41",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0162-8d8c0062",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0162-8d8c0062",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 26,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0162-8d8c0062",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 10,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0162-8d8c0062",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 27,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0162-8d8c0062",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0162-8d8c0062",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 26,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0162-8d8c0062",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0163-f852fd41",
+      "rightId": "cb-0168-03d42d3f",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 29,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0163-f852fd41",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 18,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0163-f852fd41",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 30,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0163-f852fd41",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 25,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0163-f852fd41",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 16,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0163-f852fd41",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 20,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0163-f852fd41",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 36,
+      "crossesSplit": false
+    },
+    {
+      "kind": "visual-near-duplicate",
+      "leftId": "cb-0167-3105c67c",
+      "rightId": "cb-0171-06489530",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 2,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0168-03d42d3f",
+      "rightId": "cb-0175-abe64cce",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 29,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0168-03d42d3f",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0168-03d42d3f",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 36,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0168-03d42d3f",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 29,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0168-03d42d3f",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0168-03d42d3f",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 33,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0175-abe64cce",
+      "rightId": "cb-0177-bf093757",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 22,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0175-abe64cce",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 33,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0175-abe64cce",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 16,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0175-abe64cce",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 16,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0175-abe64cce",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0177-bf093757",
+      "rightId": "cb-0229-5829859e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 31,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0177-bf093757",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0177-bf093757",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 28,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0177-bf093757",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 32,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0229-5829859e",
+      "rightId": "cb-0235-75d6a54e",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 27,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0229-5829859e",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 29,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0229-5829859e",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 35,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0235-75d6a54e",
+      "rightId": "cb-0242-b13136a3",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 12,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0235-75d6a54e",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 38,
+      "crossesSplit": false
+    },
+    {
+      "kind": "audio-duplicate",
+      "leftId": "cb-0242-b13136a3",
+      "rightId": "cb-0243-964d9bc4",
+      "leftSplit": "development",
+      "rightSplit": "development",
+      "visualDistance": 34,
+      "crossesSplit": false
     }
   ],
   "blockingFindingCount": 0,
   "passed": true,
-  "catalogSetSha256": "sha256:a8dbbef31fd883e48ad2fe8b32f85557f87ff5083e9737e06ecfb1f38575353a"
+  "catalogSetSha256": "sha256:b82aec9658a16df5a50d2bd3a38b900a52061b10837ff3edbbecd5cc3875b980"
 }

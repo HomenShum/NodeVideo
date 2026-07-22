@@ -134,8 +134,21 @@ export function compileFounderVariants(
     pausePolicy: 'natural',
     removeFillers: true,
   });
-  const approvedRemovals = cleanup.filter((candidate) => candidate.approval === 'automatic');
-  const cleanRanges = retainedRanges(mediaIndex.technical.durationMs, approvedRemovals);
+  const proposedAutomaticRemovals = cleanup.filter(
+    (candidate) => candidate.approval === 'automatic',
+  );
+  const proposedCleanRanges = retainedRanges(
+    mediaIndex.technical.durationMs,
+    proposedAutomaticRemovals,
+  );
+  const approvedRemovals = proposedCleanRanges.length > 0 ? proposedAutomaticRemovals : [];
+  const cleanRanges =
+    proposedCleanRanges.length > 0
+      ? proposedCleanRanges
+      : [{ startMs: 0, endMs: mediaIndex.technical.durationMs }];
+  const effectiveCleanup = cleanup.filter(
+    (candidate) => candidate.approval === 'required' || approvedRemovals.includes(candidate),
+  );
   const quote = rankGoldenQuotes(mediaIndex)[0];
   const variants = intent.outputs.map<FounderVariant>((output) => {
     const reframePlan = reframePlans.find(
@@ -154,7 +167,7 @@ export function compileFounderVariants(
         sourceStartMs: item.startMs,
         sourceEndMs: item.endMs,
       })),
-      ...cleanup.map((item) => ({
+      ...effectiveCleanup.map((item) => ({
         id: `${item.id}:${output.id}`,
         kind: 'remove' as const,
         assetId: mediaIndex.assetId,
@@ -184,13 +197,16 @@ export function compileFounderVariants(
       outputIntentId: output.id,
       templateId: output.templateId,
       operations,
-      approvals: cleanup
+      approvals: effectiveCleanup
         .filter((item) => item.approval === 'required')
         .map((item) => ({
           id: `approval:${item.id}:${output.id}`,
           operationIds: [`${item.id}:${output.id}`],
           status: 'required' as const,
-          reason: 'Filler removal can change meaning or cadence.',
+          reason:
+            item.kind === 'filler'
+              ? 'Filler removal can change meaning or cadence.'
+              : 'Silence timing conflicts with transcript evidence and requires review.',
         })),
       lineage: {
         sourceAssetIds: [mediaIndex.assetId],
@@ -213,6 +229,9 @@ export function compileFounderVariants(
       semanticPlan,
       rationale: [
         `${cleanup.length} cleanup candidates; ${approvedRemovals.length} deterministic silence cuts applied`,
+        ...(proposedAutomaticRemovals.length > 0 && approvedRemovals.length === 0
+          ? ['Automatic cleanup was suppressed because it would remove the entire source.']
+          : []),
         quote
           ? `Golden quote ${quote.id} selected from source evidence`
           : 'No quote claimed; goal text used as creator-supplied title',
