@@ -148,12 +148,11 @@ export default async function handler(request: ApiRequest, response: ApiResponse
         },
         body: JSON.stringify({
           model: 'openai/gpt-oss-20b:free',
-          models: [
-            'google/gemma-4-26b-a4b-it:free',
-            'nvidia/nemotron-nano-9b-v2:free',
-            'nvidia/nemotron-3-super-120b-a12b:free',
-            'openrouter/free',
-          ],
+            models: [
+              'google/gemma-4-26b-a4b-it:free',
+              'nvidia/nemotron-nano-9b-v2:free',
+              'openrouter/free',
+            ],
           provider: { require_parameters: true },
           response_format: {
             type: 'json_schema',
