@@ -624,16 +624,16 @@
   font-size: .7rem !important;
 }
 
-@media (max-width: 1100px) and (min-width: 761px) {
+@media (max-width: 1350px) and (min-width: 1024px) {
   .creator-workspace-grid {
-    grid-template-columns: 210px minmax(0, 1fr) 350px;
+    grid-template-columns: 210px minmax(0, 1fr) 340px;
   }
   .creator-project-rail {
     padding: .75rem;
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1023px) {
   body:has(.creator-shell) {
     height: 100dvh;
     overflow: hidden;

@@ -29,7 +29,7 @@ async function startCreatorWithDemo(page: Page, template?: string) {
     timeout: 15_000,
   });
   await page.getByRole('button', { name: /Start creating/u }).click();
-  if ((page.viewportSize()?.width ?? 1000) <= 760) {
+  if ((page.viewportSize()?.width ?? 1000) <= 1023) {
     await page.getByRole('button', { name: 'Agent', exact: true }).click();
   }
   await expect(page.getByRole('heading', { name: 'NodeAgent' })).toBeVisible({ timeout: 15_000 });
@@ -52,18 +52,18 @@ test('creator pipeline compiles one source into reviewable variants', async ({
   expect(creatorCsp).toContain('https://*.convex.cloud');
   expect(creatorCsp).toContain('wss://*.convex.cloud');
 
-  if ((page.viewportSize()?.width ?? 1000) <= 760) {
+  if ((page.viewportSize()?.width ?? 1000) <= 1023) {
     await page.getByRole('button', { name: 'Canvas', exact: true }).click();
   }
   await expect(page.getByText('Primary video artifact')).toBeVisible();
   await expect(page.getByTestId('video-canvas')).toBeVisible();
-  if ((page.viewportSize()?.width ?? 1000) <= 760) {
+  if ((page.viewportSize()?.width ?? 1000) <= 1023) {
     await page.getByRole('button', { name: 'Agent', exact: true }).click();
   }
   await expect(page.getByText('Private media collaborator')).toBeVisible();
 
   await page.getByRole('button', { name: 'Send message' }).click();
-  if ((page.viewportSize()?.width ?? 1000) > 760) {
+  if ((page.viewportSize()?.width ?? 1000) > 1023) {
     await expect(
       page.getByText('2 variants compiled from one shared MediaIndex. Review before export.'),
     ).toBeVisible();
@@ -78,7 +78,7 @@ test('creator pipeline compiles one source into reviewable variants', async ({
     fullPage: true,
   });
 
-  if ((page.viewportSize()?.width ?? 1000) <= 760) {
+  if ((page.viewportSize()?.width ?? 1000) <= 1023) {
     await page.getByRole('button', { name: 'Canvas', exact: true }).click();
   }
   await expect(page.getByTestId('artifact-timeline')).toBeVisible();
@@ -88,7 +88,7 @@ test('creator pipeline compiles one source into reviewable variants', async ({
       .getByRole('heading', { name: 'launch landscape' }),
   ).toBeVisible();
 
-  if ((page.viewportSize()?.width ?? 1000) <= 760) {
+  if ((page.viewportSize()?.width ?? 1000) <= 1023) {
     await page
       .getByRole('navigation', { name: 'Creator workspace surfaces' })
       .getByRole('button', { name: 'Review', exact: true })
@@ -101,7 +101,7 @@ test('creator pipeline compiles one source into reviewable variants', async ({
   await expect(exportButton).toBeDisabled();
   await page.getByRole('button', { name: 'Approve exact variant' }).click();
   await expect(exportButton).toBeEnabled();
-  if ((page.viewportSize()?.width ?? 1000) > 760) {
+  if ((page.viewportSize()?.width ?? 1000) > 1023) {
     await expect(page.getByText('Project v2')).toBeVisible();
   }
 
@@ -172,7 +172,7 @@ test('creator topology keeps the artifact dominant and mobile surfaces mode-base
   await expect(page.getByText(/nodevideo-demo\.mp4 · ready in this browser/u)).toBeVisible();
   await page.getByRole('button', { name: /Start creating/u }).click();
 
-  const mobile = (page.viewportSize()?.width ?? 1000) <= 760;
+  const mobile = (page.viewportSize()?.width ?? 1000) <= 1023;
   const actionBox = await page.getByTestId('current-action').boundingBox();
   expect(actionBox?.y ?? 999).toBeLessThan(150);
   if (mobile) {
@@ -232,12 +232,12 @@ test('creator pipeline exposes cleanup and quote workflows', async ({ page }) =>
     /strongest source-grounded quote/u,
   );
   await page.getByRole('button', { name: 'Send message' }).click();
-  if ((page.viewportSize()?.width ?? 1000) > 760) {
+  if ((page.viewportSize()?.width ?? 1000) > 1023) {
     await expect(
       page.getByText('3 variants compiled from one shared MediaIndex. Review before export.'),
     ).toBeVisible();
   }
-  if ((page.viewportSize()?.width ?? 1000) <= 760) {
+  if ((page.viewportSize()?.width ?? 1000) <= 1023) {
     await page.getByRole('button', { name: 'Canvas', exact: true }).click();
   }
   const stage = page.getByRole('region', { name: 'Artifact stage' });
@@ -305,7 +305,7 @@ test('agent rail gates cloud execution and supports inline proposal decisions', 
   await expect(page.getByTestId('executor-proposal-card')).toContainText('7.5 credits');
   await expect(page.getByTestId('executor-proposal-card')).toContainText('nodevideo-demo.mp4');
   await page.getByRole('button', { name: 'Approve exact 7.5 credits' }).click();
-  if ((page.viewportSize()?.width ?? 1000) > 760) {
+  if ((page.viewportSize()?.width ?? 1000) > 1023) {
     await expect(page.getByText(/No job was submitted and no credits were spent/u)).toBeVisible();
   } else {
     await expect(page.getByTestId('executor-proposal-card')).toContainText('approved');
@@ -367,7 +367,7 @@ test('creator template selection and restore are real state transitions', async 
     /strongest source-grounded quote/u,
   );
   await page.getByRole('button', { name: 'Send message' }).click();
-  if ((page.viewportSize()?.width ?? 1000) > 760) {
+  if ((page.viewportSize()?.width ?? 1000) > 1023) {
     await expect(
       page.getByText('3 variants compiled from one shared MediaIndex. Review before export.'),
     ).toBeVisible();
@@ -377,7 +377,7 @@ test('creator template selection and restore are real state transitions', async 
   await page.getByRole('button', { name: 'Proposal', exact: true }).click();
   await page.getByRole('button', { name: 'Approve exact variant' }).click();
   await page.getByRole('button', { name: 'Restore draft' }).click();
-  if ((page.viewportSize()?.width ?? 1000) > 760) {
+  if ((page.viewportSize()?.width ?? 1000) > 1023) {
     await expect(page.getByText('Project v2')).toBeVisible();
   }
   await expect(page.getByRole('button', { name: 'Approve exact variant' })).toBeEnabled();
