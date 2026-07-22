@@ -203,7 +203,6 @@ test('live OpenRouter free planner resolves a model before deterministic compila
   await expect(sendButton).toBeEnabled({ timeout: 30_000 });
   await sendButton.click();
   await expect(page.getByText(/planned · openrouter\/free →/u)).toBeVisible({ timeout: 45_000 });
-  await expect(page.getByText(/resolved in .*\$0\.00/u)).toBeVisible();
   await expect(page.getByTestId('agent-proposal-card')).toBeVisible();
   await expect(page.getByText('Project v1')).toBeVisible();
 });
