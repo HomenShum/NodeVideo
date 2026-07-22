@@ -47,4 +47,22 @@ describe('creator free-route boundary', () => {
       ),
     ).toMatchObject({ operations: [{ kind: 'preserve_meaning' }] });
   });
+
+  test('extracts the final typed plan when model reasoning contains another object', () => {
+    expect(
+      parsePlannerOutput(
+        `Reasoning scratch: ${JSON.stringify({ format: 'example', operations: [] })}\n${JSON.stringify(
+          {
+            summary: 'Create bounded variants.',
+            operations: [
+              {
+                kind: 'compose_variants',
+                reason: 'Produce only the requested aspect-ratio outputs.',
+              },
+            ],
+          },
+        )}`,
+      ),
+    ).toMatchObject({ operations: [{ kind: 'compose_variants' }] });
+  });
 });

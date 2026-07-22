@@ -26,16 +26,45 @@ const PLANNER_OPERATIONS = new Set([
 ]);
 
 export function parsePlannerOutput(value: string) {
-  let candidate: unknown;
-  try {
-    const unfenced = value.replace(/^```(?:json)?\s*|\s*```$/giu, '').trim();
-    const objectStart = unfenced.indexOf('{');
-    const objectEnd = unfenced.lastIndexOf('}');
-    if (objectStart < 0 || objectEnd <= objectStart) return null;
-    candidate = JSON.parse(unfenced.slice(objectStart, objectEnd + 1));
-  } catch {
-    return null;
+  const unfenced = value.replace(/^```(?:json)?\s*|\s*```$/giu, '').trim();
+  const fragments = [unfenced];
+  for (let start = 0; start < unfenced.length; start += 1) {
+    if (unfenced[start] !== '{') continue;
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
+    for (let cursor = start; cursor < unfenced.length; cursor += 1) {
+      const character = unfenced[cursor];
+      if (inString) {
+        if (escaped) escaped = false;
+        else if (character === '\\') escaped = true;
+        else if (character === '"') inString = false;
+        continue;
+      }
+      if (character === '"') inString = true;
+      else if (character === '{') depth += 1;
+      else if (character === '}') depth -= 1;
+      if (depth === 0) {
+        fragments.push(unfenced.slice(start, cursor + 1));
+        break;
+      }
+    }
   }
+
+  for (const fragment of fragments.reverse()) {
+    let candidate: unknown;
+    try {
+      candidate = JSON.parse(fragment);
+    } catch {
+      continue;
+    }
+    const parsed = validatePlannerCandidate(candidate);
+    if (parsed) return parsed;
+  }
+  return null;
+}
+
+function validatePlannerCandidate(candidate: unknown) {
   if (!candidate || typeof candidate !== 'object') return null;
   const record = candidate as Record<string, unknown>;
   if (typeof record.summary !== 'string' || record.summary.trim().length < 8) return null;
