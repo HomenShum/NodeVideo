@@ -141,6 +141,72 @@ Start an approved remote generation, simulate a lost client connection after the
 
 ```text
 Turn these owned product images into an interactive 3D showcase only if a commercially approved local or hosted executor is available. Otherwise produce a capability-gap report naming GPU, model, license, and validation requirements. Any GLB or Gaussian-splat output must have a hash, viewer fallback, source lineage, safety review, and public-rights receipt before it enters the showcase catalog.
+
+## 19. Group-performance reframing
+
+```text
+Track the selected three-person formation through crossings and temporary occlusion. Make a 9:16
+version, but widen or use an honest blurred-fit fallback whenever a crop would cut a member. Show
+identity warnings, action-envelope coverage, crop motion, and the exact proposal before export.
+```
+
+## 20. Object/product target seed
+
+```text
+Use my first-frame selection as the product target, then follow it locally with the cheapest
+reliable tracker. Preserve the hands-and-object interaction envelope, hold through low confidence,
+and compare the automatic detector with the explicit-seed route. Do not claim automatic discovery
+if the selected route required my seed.
+```
+
+## 21. Animal tracking
+
+```text
+Follow the selected dog across the frame and create vertical and square versions. Keep the whole
+animal visible, widen when the detector loses it behind another dog, and never silently switch
+identity. Return the low-confidence ranges and target-coverage critic with the proposed crop path.
+```
+
+## 22. Climbing policy
+
+```text
+Create a vertical climbing highlight that follows the climber while preserving lead room along the
+movement corridor. When the climber is too small for reliable pose landmarks, use the object/person
+detector and a conservative hold. Mark that limitation in the receipt.
+```
+
+## 23. Workout group policy
+
+```text
+Keep both athletes and the active equipment visible during each repetition. Generate a stable 9:16
+coach version and a responsive highlight version from one analysis. Show which frames used pose,
+generic person detection, or a wide group fallback.
+```
+
+## 24. Board-sport action envelope
+
+```text
+Track the rider and skateboard as one action envelope, add predictive lead room before takeoff and
+landing, and produce three edit directions: stable tutorial, responsive highlight, and cinematic
+slow-motion. Keep every crop keyframe editable and reviewable.
+```
+
+## 25. Ball-sport semantics
+
+```text
+For basketball or soccer, follow the ball plus the nearest active-player and goal/hoop context.
+Compare the cheap automatic detector with an explicit first-frame target seed. Do not center a
+single player when the play moves elsewhere, and do not call the seeded route automatic.
+```
+
+## 26. Artifact Atlas audit
+
+```text
+Open the NodeVideo Artifact Atlas. For every group, object, animal, and sport fixture, inspect the
+before image, after image, comparison video, detector route, target coverage, source license, source
+hash, limitations, and output hashes. Then compare Harness v0 with v1 and identify the next pack
+that should be promoted only after held-out creator proof.
+```
 ```
 
 ## 19. Smart Reframe — full-body performance

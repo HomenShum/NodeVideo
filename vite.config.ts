@@ -123,6 +123,7 @@ function browserFfmpegAssets(): Plugin {
         if (/^\/creator\/runs\/[^/]+\/proof\/?$/u.test(pathname)) {
           request.url = '/creator.html';
         }
+        if (pathname === '/atlas' || pathname === '/atlas/') request.url = '/atlas.html';
         applyBrowserFfmpegHeaders(pathname, response);
         const asset = files.get(pathname);
         if (!asset || !existsSync(asset.file)) return next();
@@ -136,6 +137,7 @@ function browserFfmpegAssets(): Plugin {
         if (/^\/creator\/runs\/[^/]+\/proof\/?$/u.test(pathname)) {
           request.url = '/creator.html';
         }
+        if (pathname === '/atlas' || pathname === '/atlas/') request.url = '/atlas.html';
         applyBrowserFfmpegHeaders(pathname, response);
         next();
       });
@@ -190,6 +192,7 @@ export default defineConfig({
         collab: path.resolve(__dirname, 'collab.html'),
         edit: path.resolve(__dirname, 'edit.html'),
         creator: path.resolve(__dirname, 'creator.html'),
+        atlas: path.resolve(__dirname, 'atlas.html'),
         practice: path.resolve(__dirname, 'practice.html'),
         'chrome-extension-sidepanel': path.resolve(
           __dirname,

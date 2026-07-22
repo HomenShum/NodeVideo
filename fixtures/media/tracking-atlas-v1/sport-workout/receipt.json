@@ -1,0 +1,352 @@
+{
+  "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+  "id": "atlas:sport-workout",
+  "packId": "sport-workout",
+  "source": {
+    "videoId": "6wO8hWIJT_4",
+    "url": "https://www.youtube.com/watch?v=6wO8hWIJT_4",
+    "title": "Two People Working Out \u2502 4K \u2502 Free Copyrights \u2502 Creative Common Licences",
+    "uploader": "Audioarc - No Copyrights Music",
+    "license": "Creative Commons Attribution license (reuse allowed)",
+    "sourceSha256": "sha256:3d4b0c9563e0f0beaf77fea84015878c5ce5197a518605b2a524df0638452d3f",
+    "retrievedAt": "2026-07-22T03:11:10.829021+00:00"
+  },
+  "execution": {
+    "detector": "ultralytics/yolo11n-coco",
+    "tracker": "temporal-envelope-hold-v1",
+    "policy": "workout-form",
+    "frameCount": 120,
+    "analyzedFrames": 120,
+    "latencyMs": 26210,
+    "costUsd": 0
+  },
+  "evaluation": {
+    "tier": "rights-cleared-fixture",
+    "detectionCoverage": 1.0,
+    "targetCoverage": 1.0,
+    "lowConfidenceHoldRate": 0.0,
+    "trackSwitchCount": 0,
+    "manualCorrections": 0,
+    "previewExportParity": true,
+    "verdict": "pass",
+    "limitations": [
+      "Creative Commons stock fixture; not creator-held-out media.",
+      "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model."
+    ]
+  },
+  "outputs": {
+    "beforeImage": "fixtures/media/tracking-atlas-v1/sport-workout/before.jpg",
+    "afterImage": "fixtures/media/tracking-atlas-v1/sport-workout/after.jpg",
+    "comparisonVideo": "fixtures/media/tracking-atlas-v1/sport-workout/comparison.mp4",
+    "analysisVideo": "fixtures/media/tracking-atlas-v1/sport-workout/analysis.mp4",
+    "receipt": "fixtures/media/tracking-atlas-v1/sport-workout/receipt.json",
+    "sha256": {
+      "beforeImage": "sha256:44e9b2968a76b2d7dba0fab096b7b41fac40d67ef3579148c5a8e78f9e028f34",
+      "afterImage": "sha256:c24c722422866a9aaaac1effb59c39e17a1407b382715e8e9c5995e2b88e3baa",
+      "comparisonVideo": "sha256:3aa8070d38aee1e672427996df94eb9780acd2ff0dee59f4747fb497b892a5ec",
+      "analysisVideo": "sha256:3a29d0ba43ea8195d05ba4e834c47e321575d058f48ca8c1c7ba113556dac003"
+    }
+  },
+  "observations": [
+    {
+      "timelineFrame": 0,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.8376759886741638,
+      "envelope": [
+        0.028125,
+        0.002777777777777778,
+        0.3078125,
+        0.9833333333333333
+      ],
+      "fallback": "none",
+      "crop": [
+        0.009375,
+        0.0,
+        0.325,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 8,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.7964718341827393,
+      "envelope": [
+        0.028665474038597163,
+        0.004187777777777778,
+        0.31204426832090004,
+        0.9842332815490455
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0125,
+        0.0,
+        0.328125,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 16,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.8119472861289978,
+      "envelope": [
+        0.03011761774236904,
+        0.02890101123017165,
+        0.3198636665164364,
+        0.9794855896725789
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 24,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.8075366020202637,
+      "envelope": [
+        0.029649785540056067,
+        0.0501752563658453,
+        0.3208536919000248,
+        0.979373078585084
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 32,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.8224232196807861,
+      "envelope": [
+        0.022560042709238334,
+        0.05473143061500807,
+        0.3225265014560538,
+        0.9786065866849798
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 40,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.8016669154167175,
+      "envelope": [
+        0.00941889211457114,
+        0.057594346730794596,
+        0.3215424402818174,
+        0.9744919991913008
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 48,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.6901920437812805,
+      "envelope": [
+        0.002080967636400965,
+        0.05935287478570854,
+        0.31734981424887976,
+        0.970428578461759
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 56,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.804050624370575,
+      "envelope": [
+        0.004375897418010589,
+        0.06496335367048614,
+        0.3124676203463024,
+        0.9712689174446794
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 64,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.800174355506897,
+      "envelope": [
+        0.01705139298593079,
+        0.06847875527470082,
+        0.3148227208632566,
+        0.9730872213049739
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 72,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.8161606192588806,
+      "envelope": [
+        0.02964949135818812,
+        0.05592558948269406,
+        0.31734356697396204,
+        0.9716148562115936
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 80,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.7994335889816284,
+      "envelope": [
+        0.04097724272554285,
+        0.05540713724679881,
+        0.31805273074799495,
+        0.9675285923801782
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0203125,
+        0.0,
+        0.3359375,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 88,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.8113845586776733,
+      "envelope": [
+        0.04652547508808526,
+        0.05710986328467352,
+        0.31965927621691137,
+        0.9696834642740825
+      ],
+      "fallback": "none",
+      "crop": [
+        0.025,
+        0.0,
+        0.340625,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 96,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.833104133605957,
+      "envelope": [
+        0.049219646627716905,
+        0.058812902135400094,
+        0.32462345754558763,
+        0.9721006729349916
+      ],
+      "fallback": "none",
+      "crop": [
+        0.028125,
+        0.0,
+        0.34375,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 104,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.861700713634491,
+      "envelope": [
+        0.05159546276958787,
+        0.02918912400972623,
+        0.328454351404227,
+        0.9709511758357857
+      ],
+      "fallback": "none",
+      "crop": [
+        0.03125,
+        0.0,
+        0.346875,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 112,
+      "labels": [
+        "person"
+      ],
+      "confidence": 0.8610026836395264,
+      "envelope": [
+        0.05434159408255091,
+        0.008301271709542521,
+        0.33055191063044026,
+        0.9693828749785626
+      ],
+      "fallback": "none",
+      "crop": [
+        0.034375,
+        0.0,
+        0.35,
+        1.0
+      ]
+    }
+  ]
+}

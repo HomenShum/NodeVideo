@@ -31,6 +31,10 @@
     "executors:doctor": "node scripts/quality/doctor-specialist-executors.mjs",
     "asset:approve": "node scripts/artifacts/approve-asset-receipt.mjs",
     "showcase:build": "node scripts/showcase/build-showcase.mjs",
+    "tracking:packs": "node scripts/domain/generate-tracking-packs.mjs",
+    "atlas:build": "python scripts/media/build_tracking_atlas.py",
+    "atlas:verify": "node scripts/quality/verify-tracking-atlas.mjs",
+    "proof:atlas": "npm run atlas:verify && playwright test tests/e2e/tracking-atlas.spec.ts --project=desktop-chromium --project=mobile-chromium",
     "capability:validate": "node scripts/quality/validate-capability-pack.mjs",
     "check:bloat": "node scripts/quality/check-repo-bloat.mjs",
     "check:contract": "node scripts/quality/verify-ui-contract.mjs",
@@ -85,7 +89,7 @@
     "ui:policy": "node scripts/quality/check-ui-policy.mjs",
     "ui:budget": "node scripts/quality/check-ui-budget.mjs",
     "check:ui": "npm run ui:policy && npm run ui:budget",
-    "check": "npm run lint && npm run typecheck && npm run test && npm run check:ui && npm run capability:validate && npm run grounding:doctor && npm run grounding:proof:verify && npm run worker:verify && npm run worker:song:verify && npm run proof:song:real:verify && npm run worker:authorized:verify && npm run build && npm run check:contract",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run check:ui && npm run capability:validate && npm run atlas:verify && npm run grounding:doctor && npm run grounding:proof:verify && npm run worker:verify && npm run worker:song:verify && npm run proof:song:real:verify && npm run worker:authorized:verify && npm run build && npm run check:contract",
     "qa": "npm run check && npm run proof:synthetic && npm run test:e2e"
   },
   "dependencies": {

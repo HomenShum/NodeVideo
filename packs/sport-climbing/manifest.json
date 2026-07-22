@@ -1,0 +1,45 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.sport-climbing",
+  "version": "0.1.0",
+  "implementationStatus": "rights-cleared-specialist-fixture-validated",
+  "title": "Climbing",
+  "description": "Frames the climber and movement corridor with conservative holds when the subject becomes tiny or occluded.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": ["video/authorized", "video/target-selection", "video/framing-intent"],
+  "outputs": [
+    "video/detection-track",
+    "video/action-envelope",
+    "video/reframe-plan",
+    "video/reframe-critic"
+  ],
+  "tools": [
+    "sport-climbing.detect",
+    "sport-climbing.track",
+    "sport-climbing.build_action_envelope",
+    "sport-climbing.plan_reframe",
+    "sport-climbing.validate"
+  ],
+  "permissions": ["read_authorized_video", "write_private_derived_artifacts"],
+  "uiRenderers": ["TrackingAtlasCard", "DetectorArenaComparison", "CropPathOverlay"],
+  "evalSuite": "evals/contract-v1.json",
+  "validation": {
+    "status": "passed",
+    "profile": "sport-climbing-cc-fixture-v1",
+    "fixture": "Ra81aQVXqe8",
+    "excludes": ["generalized-held-out-creator-coverage", "autonomous-publication"]
+  },
+  "execution": {
+    "kind": "specialist-detector-to-common-reframe-contract",
+    "detectorChain": ["yolo11n-coco", "mediapipe-pose-lite", "bytetrack"],
+    "framingPolicy": "climbing-route",
+    "rawMediaEgress": "none",
+    "modelRequired": false,
+    "applicationWriteAuthority": "proposal-validation-approval-apply"
+  }
+}

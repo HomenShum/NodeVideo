@@ -45,6 +45,20 @@
   color: var(--primary-foreground);
 }
 
+.creator-atlas-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  color: var(--muted-foreground);
+  font-size: .67rem;
+  text-decoration: none;
+}
+
+.creator-atlas-link:hover,
+.creator-atlas-link:focus-visible {
+  color: var(--foreground);
+}
+
 .creator-stage-progress {
   flex: 1;
   display: flex;

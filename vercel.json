@@ -98,6 +98,7 @@
   ],
   "rewrites": [
     { "source": "/creator/runs/:runId/proof", "destination": "/creator" },
+    { "source": "/atlas", "destination": "/atlas.html" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }

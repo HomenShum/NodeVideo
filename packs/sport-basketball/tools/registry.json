@@ -1,0 +1,31 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.sport-basketball@0.1.0",
+  "tools": [
+    {
+      "id": "sport-basketball.detect",
+      "accepts": ["video/authorized"],
+      "produces": ["video/detections"]
+    },
+    {
+      "id": "sport-basketball.track",
+      "accepts": ["video/detections"],
+      "produces": ["video/detection-track"]
+    },
+    {
+      "id": "sport-basketball.build_action_envelope",
+      "accepts": ["video/detection-track"],
+      "produces": ["video/action-envelope"]
+    },
+    {
+      "id": "sport-basketball.plan_reframe",
+      "accepts": ["video/action-envelope", "video/framing-intent"],
+      "produces": ["video/reframe-plan"]
+    },
+    {
+      "id": "sport-basketball.validate",
+      "accepts": ["video/reframe-plan"],
+      "produces": ["video/reframe-critic"]
+    }
+  ]
+}

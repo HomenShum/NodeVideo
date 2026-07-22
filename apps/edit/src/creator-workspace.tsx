@@ -112,6 +112,9 @@ export function CreatorStart(props: {
         <Badge variant="outline">
           <ShieldCheck className="size-3" /> local by default
         </Badge>
+        <a className="creator-atlas-link" href="/atlas">
+          <Library className="size-3" /> Artifact Atlas
+        </a>
       </header>
       <section className="creator-start-stage">
         <div className="creator-start-copy">

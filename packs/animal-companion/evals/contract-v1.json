@@ -1,0 +1,17 @@
+{
+  "schema": "nodevideo.capability-eval.v1",
+  "pack": "nodevideo.animal-companion@0.1.0",
+  "profile": "animal-companion-cc-fixture-v1",
+  "cases": [
+    {
+      "id": "FJlFCF38tKE",
+      "status": "passed",
+      "proof": "fixtures/media/tracking-atlas-v1/animal-companion/receipt.json"
+    },
+    {
+      "id": "animal-companion-held-out",
+      "status": "planned"
+    }
+  ],
+  "claimBoundary": "The passing claim covers the named rights-cleared Creative Commons fixture and common contract only. Creator-held-out generalization remains a promotion gate."
+}

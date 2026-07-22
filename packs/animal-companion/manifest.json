@@ -1,0 +1,45 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.animal-companion",
+  "version": "0.1.0",
+  "implementationStatus": "rights-cleared-specialist-fixture-validated",
+  "title": "Animal companion",
+  "description": "Tracks dogs and cats with wider fallback framing when keypoints or identity confidence fall.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": ["video/authorized", "video/target-selection", "video/framing-intent"],
+  "outputs": [
+    "video/detection-track",
+    "video/action-envelope",
+    "video/reframe-plan",
+    "video/reframe-critic"
+  ],
+  "tools": [
+    "animal-companion.detect",
+    "animal-companion.track",
+    "animal-companion.build_action_envelope",
+    "animal-companion.plan_reframe",
+    "animal-companion.validate"
+  ],
+  "permissions": ["read_authorized_video", "write_private_derived_artifacts"],
+  "uiRenderers": ["TrackingAtlasCard", "DetectorArenaComparison", "CropPathOverlay"],
+  "evalSuite": "evals/contract-v1.json",
+  "validation": {
+    "status": "passed",
+    "profile": "animal-companion-cc-fixture-v1",
+    "fixture": "FJlFCF38tKE",
+    "excludes": ["generalized-held-out-creator-coverage", "autonomous-publication"]
+  },
+  "execution": {
+    "kind": "specialist-detector-to-common-reframe-contract",
+    "detectorChain": ["yolo11n-coco", "bytetrack", "species-keypoints-optional"],
+    "framingPolicy": "animal-safe",
+    "rawMediaEgress": "none",
+    "modelRequired": false,
+    "applicationWriteAuthority": "proposal-validation-approval-apply"
+  }
+}

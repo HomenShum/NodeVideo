@@ -1,0 +1,45 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.group-performance",
+  "version": "0.1.0",
+  "implementationStatus": "rights-cleared-specialist-fixture-validated",
+  "title": "Group performance",
+  "description": "Keeps a selected ensemble or formation visible through crossings and temporary occlusion.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": ["video/authorized", "video/target-selection", "video/framing-intent"],
+  "outputs": [
+    "video/detection-track",
+    "video/action-envelope",
+    "video/reframe-plan",
+    "video/reframe-critic"
+  ],
+  "tools": [
+    "group-performance.detect",
+    "group-performance.track",
+    "group-performance.build_action_envelope",
+    "group-performance.plan_reframe",
+    "group-performance.validate"
+  ],
+  "permissions": ["read_authorized_video", "write_private_derived_artifacts"],
+  "uiRenderers": ["TrackingAtlasCard", "DetectorArenaComparison", "CropPathOverlay"],
+  "evalSuite": "evals/contract-v1.json",
+  "validation": {
+    "status": "passed",
+    "profile": "group-performance-cc-fixture-v1",
+    "fixture": "vLQ7wIeHSMM",
+    "excludes": ["generalized-held-out-creator-coverage", "autonomous-publication"]
+  },
+  "execution": {
+    "kind": "specialist-detector-to-common-reframe-contract",
+    "detectorChain": ["mediapipe-pose-lite", "yolo11n-coco", "bytetrack"],
+    "framingPolicy": "group-formation",
+    "rawMediaEgress": "none",
+    "modelRequired": false,
+    "applicationWriteAuthority": "proposal-validation-approval-apply"
+  }
+}

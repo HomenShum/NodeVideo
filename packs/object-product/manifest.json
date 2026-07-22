@@ -1,0 +1,45 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.object-product",
+  "version": "0.1.0",
+  "implementationStatus": "rights-cleared-specialist-fixture-validated",
+  "title": "Object and product focus",
+  "description": "Follows a product or manipulated object while preserving the hands-and-object interaction envelope.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": ["video/authorized", "video/target-selection", "video/framing-intent"],
+  "outputs": [
+    "video/detection-track",
+    "video/action-envelope",
+    "video/reframe-plan",
+    "video/reframe-critic"
+  ],
+  "tools": [
+    "object-product.detect",
+    "object-product.track",
+    "object-product.build_action_envelope",
+    "object-product.plan_reframe",
+    "object-product.validate"
+  ],
+  "permissions": ["read_authorized_video", "write_private_derived_artifacts"],
+  "uiRenderers": ["TrackingAtlasCard", "DetectorArenaComparison", "CropPathOverlay"],
+  "evalSuite": "evals/contract-v1.json",
+  "validation": {
+    "status": "passed",
+    "profile": "object-product-cc-fixture-v1",
+    "fixture": "FxXC-Rnq2Zw",
+    "excludes": ["generalized-held-out-creator-coverage", "autonomous-publication"]
+  },
+  "execution": {
+    "kind": "specialist-detector-to-common-reframe-contract",
+    "detectorChain": ["yolo11n-coco", "sam2-optional", "opencv-optical-flow"],
+    "framingPolicy": "object-demo",
+    "rawMediaEgress": "none",
+    "modelRequired": false,
+    "applicationWriteAuthority": "proposal-validation-approval-apply"
+  }
+}

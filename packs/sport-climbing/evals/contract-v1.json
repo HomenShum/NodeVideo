@@ -1,0 +1,17 @@
+{
+  "schema": "nodevideo.capability-eval.v1",
+  "pack": "nodevideo.sport-climbing@0.1.0",
+  "profile": "sport-climbing-cc-fixture-v1",
+  "cases": [
+    {
+      "id": "Ra81aQVXqe8",
+      "status": "passed",
+      "proof": "fixtures/media/tracking-atlas-v1/sport-climbing/receipt.json"
+    },
+    {
+      "id": "sport-climbing-held-out",
+      "status": "planned"
+    }
+  ],
+  "claimBoundary": "The passing claim covers the named rights-cleared Creative Commons fixture and common contract only. Creator-held-out generalization remains a promotion gate."
+}

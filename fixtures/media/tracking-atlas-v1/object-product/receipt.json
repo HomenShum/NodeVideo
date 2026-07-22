@@ -1,0 +1,353 @@
+{
+  "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+  "id": "atlas:object-product",
+  "packId": "object-product",
+  "source": {
+    "videoId": "FxXC-Rnq2Zw",
+    "url": "https://www.youtube.com/watch?v=FxXC-Rnq2Zw",
+    "title": "Pouring Coffee On Cup - Free Stock Creative Commons Video",
+    "uploader": "Freestocks",
+    "license": "Creative Commons Attribution license (reuse allowed)",
+    "sourceSha256": "sha256:14df459717b37b9e588454e1737fe6493bb85c3d31bdb22b926673604e1342b5",
+    "retrievedAt": "2026-07-22T03:09:39.863724+00:00"
+  },
+  "execution": {
+    "detector": "manual-first-frame-seed+opencv-template",
+    "tracker": "opencv-template+temporal-envelope-hold-v1",
+    "policy": "object-demo",
+    "frameCount": 149,
+    "analyzedFrames": 149,
+    "latencyMs": 27110,
+    "costUsd": 0
+  },
+  "evaluation": {
+    "tier": "rights-cleared-fixture",
+    "detectionCoverage": 1.0,
+    "targetCoverage": 1.0,
+    "lowConfidenceHoldRate": 0.0,
+    "trackSwitchCount": 0,
+    "manualCorrections": 0,
+    "previewExportParity": true,
+    "verdict": "pass",
+    "limitations": [
+      "Creative Commons stock fixture; not creator-held-out media.",
+      "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model.",
+      "This fixture uses an explicit first-frame target seed plus local template tracking; it does not prove automatic target discovery."
+    ]
+  },
+  "outputs": {
+    "beforeImage": "fixtures/media/tracking-atlas-v1/object-product/before.jpg",
+    "afterImage": "fixtures/media/tracking-atlas-v1/object-product/after.jpg",
+    "comparisonVideo": "fixtures/media/tracking-atlas-v1/object-product/comparison.mp4",
+    "analysisVideo": "fixtures/media/tracking-atlas-v1/object-product/analysis.mp4",
+    "receipt": "fixtures/media/tracking-atlas-v1/object-product/receipt.json",
+    "sha256": {
+      "beforeImage": "sha256:25009474dfa02bfc30883d845928604738d8b0c930537f7059250ac6d827a2bd",
+      "afterImage": "sha256:dd05fc5c1237b65816a9d8aee40cc3c521c04ed69678b5d530955b366717a225",
+      "comparisonVideo": "sha256:9445fe66e45774693c471e87400b3955d9dbfcf5b15069b2447badf395ebfb6e",
+      "analysisVideo": "sha256:d39c3e11b9800f56d64382414c361bb49d715f96f4527ac9ce4ad8e1b88d94c4"
+    }
+  },
+  "observations": [
+    {
+      "timelineFrame": 0,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.2203125,
+        0.03888888888888889,
+        0.9796875,
+        0.9805555555555555
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 10,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.22031250000000002,
+        0.03888888888888889,
+        0.9796875000000002,
+        0.9805555555555556
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 20,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.22031250000000002,
+        0.03888888888888889,
+        0.9796875000000002,
+        0.9805555555555556
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 30,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.22031250000000002,
+        0.03888888888888889,
+        0.9796875000000002,
+        0.9805555555555556
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 40,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.21909865600500003,
+        0.03888888888888889,
+        0.9784736560050002,
+        0.9805555555555556
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 50,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.23184015782334755,
+        0.029895436678652465,
+        0.9912151578233477,
+        0.9715621033453194
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 60,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.18393203507196498,
+        0.023712821431708928,
+        0.9433070350719651,
+        0.9653794880983757
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 70,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.08415103527767848,
+        0.04700920541342983,
+        0.8435260352776788,
+        0.9886758720800968
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 80,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.025377152761548893,
+        0.05469485973527498,
+        0.7847521527615491,
+        0.9963615264019421
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 90,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.10401293398058832,
+        0.04982900966888558,
+        0.8633879339805884,
+        0.9914956763355526
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 100,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.082525657249848,
+        0.055827674207944294,
+        0.8419006572498483,
+        0.9974943408746113
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 110,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.06947264350156326,
+        0.057988935419349644,
+        0.8288476435015637,
+        0.9996556020860166
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 120,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.050123374649404306,
+        0.058285996518060074,
+        0.8094983746494047,
+        0.9999526631847271
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 130,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.04486360867138228,
+        0.05832682698126432,
+        0.8042386086713826,
+        0.9999934936479313
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 140,
+      "labels": [
+        "manual-seed:coffee-maker"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.029405921220651048,
+        0.05742243904805028,
+        0.7887809212206514,
+        0.9990891057147173
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    }
+  ]
+}

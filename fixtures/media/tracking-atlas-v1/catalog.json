@@ -1,0 +1,2870 @@
+{
+  "schemaVersion": "nodevideo.tracking-atlas-catalog.v1",
+  "generatedAt": "2026-07-22T03:12:48.996948+00:00",
+  "model": "ultralytics/yolo11n-coco",
+  "receipts": [
+    {
+      "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+      "id": "atlas:group-performance",
+      "packId": "group-performance",
+      "source": {
+        "videoId": "vLQ7wIeHSMM",
+        "url": "https://www.youtube.com/watch?v=vLQ7wIeHSMM",
+        "title": "People Dancing - Free Stock Creative Commons Video",
+        "uploader": "Freestocks",
+        "license": "Creative Commons Attribution license (reuse allowed)",
+        "sourceSha256": "sha256:0f4628f86d1cd13ac5206635323095379a5fba845e7f997c0583c462d9d80010",
+        "retrievedAt": "2026-07-22T03:09:12.718484+00:00"
+      },
+      "execution": {
+        "detector": "ultralytics/yolo11n-coco",
+        "tracker": "temporal-envelope-hold-v1",
+        "policy": "group-formation",
+        "frameCount": 119,
+        "analyzedFrames": 119,
+        "latencyMs": 23854,
+        "costUsd": 0
+      },
+      "evaluation": {
+        "tier": "rights-cleared-fixture",
+        "detectionCoverage": 1.0,
+        "targetCoverage": 1.0,
+        "lowConfidenceHoldRate": 0.0,
+        "trackSwitchCount": 0,
+        "manualCorrections": 0,
+        "previewExportParity": true,
+        "verdict": "pass",
+        "limitations": [
+          "Creative Commons stock fixture; not creator-held-out media.",
+          "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model.",
+          "Wide formations use blurred-fit preservation instead of silently cropping members."
+        ]
+      },
+      "outputs": {
+        "beforeImage": "fixtures/media/tracking-atlas-v1/group-performance/before.jpg",
+        "afterImage": "fixtures/media/tracking-atlas-v1/group-performance/after.jpg",
+        "comparisonVideo": "fixtures/media/tracking-atlas-v1/group-performance/comparison.mp4",
+        "analysisVideo": "fixtures/media/tracking-atlas-v1/group-performance/analysis.mp4",
+        "receipt": "fixtures/media/tracking-atlas-v1/group-performance/receipt.json",
+        "sha256": {
+          "beforeImage": "sha256:ec751b832a42d7ffa63976bcad133bd400d2fb9cf5bed0bb7ddaa7542616dadf",
+          "afterImage": "sha256:fc0c5ecbbe97f0043fee0efd159a5a8792577fc8b564240cf61259594dbce306",
+          "comparisonVideo": "sha256:f668fb8682c25181e67740625a64ddf63f570818e4329cd59921364ecf56ccab",
+          "analysisVideo": "sha256:3d8abfe213701e84b91b66571c39f135ae9d696e831bc8de8d2384251ed618a1"
+        }
+      },
+      "observations": [
+        {
+          "timelineFrame": 0,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.7913675308227539,
+          "envelope": [
+            0.0,
+            0.17222222222222222,
+            0.9984375,
+            0.9972222222222222
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 8,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.808668851852417,
+          "envelope": [
+            0.002674498691852641,
+            0.15716720969684625,
+            0.9984375000000001,
+            0.9943357699550025
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 16,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8617735505104065,
+          "envelope": [
+            0.004809083097643528,
+            0.14953462905079548,
+            0.9933637500000001,
+            0.9939948565907166
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 24,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8508400917053223,
+          "envelope": [
+            0.009983044325256017,
+            0.1530411227064582,
+            0.9976816040318401,
+            0.9928887814817129
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 32,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8731291890144348,
+          "envelope": [
+            0.020469619834365956,
+            0.14366899605082567,
+            0.9989839717166593,
+            0.9934164841494071
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 40,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8602293133735657,
+          "envelope": [
+            0.004288549207356178,
+            0.12646746891625982,
+            0.9986193180550094,
+            0.9941325826573124
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 48,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.7638903260231018,
+          "envelope": [
+            0.0016697648659109179,
+            0.12728905940988083,
+            0.9859148117524087,
+            0.9934421152865998
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 56,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.86309415102005,
+          "envelope": [
+            0.002057833056049946,
+            0.1169927214201553,
+            0.9730716719383574,
+            0.9930177967090237
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 64,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.7735239267349243,
+          "envelope": [
+            0.00042065006301625325,
+            0.11446162211575933,
+            0.9781830161159621,
+            0.9926309335517566
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 72,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8509774208068848,
+          "envelope": [
+            8.59867981007314e-05,
+            0.12185494144681644,
+            0.9934679968246181,
+            0.9870290072021126
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 80,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8438157439231873,
+          "envelope": [
+            1.7576912730262127e-05,
+            0.1310842687407654,
+            0.9975071654275369,
+            0.9839031058250902
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 88,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8151235580444336,
+          "envelope": [
+            3.592968548094162e-06,
+            0.1274044265049713,
+            0.9982473265088212,
+            0.9864755954099509
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 96,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.7858525514602661,
+          "envelope": [
+            0.0014069844533813021,
+            0.13818277453595235,
+            0.9985542392745803,
+            0.9879754718668226
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 104,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.7523482441902161,
+          "envelope": [
+            0.008409657440864906,
+            0.14748579213739246,
+            0.9984613631520982,
+            0.9926386094069011
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 112,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.6851368546485901,
+          "envelope": [
+            0.006680640135176702,
+            0.1484941971696336,
+            0.998442377964422,
+            0.9905392327891376
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+      "id": "atlas:object-product",
+      "packId": "object-product",
+      "source": {
+        "videoId": "FxXC-Rnq2Zw",
+        "url": "https://www.youtube.com/watch?v=FxXC-Rnq2Zw",
+        "title": "Pouring Coffee On Cup - Free Stock Creative Commons Video",
+        "uploader": "Freestocks",
+        "license": "Creative Commons Attribution license (reuse allowed)",
+        "sourceSha256": "sha256:14df459717b37b9e588454e1737fe6493bb85c3d31bdb22b926673604e1342b5",
+        "retrievedAt": "2026-07-22T03:09:39.863724+00:00"
+      },
+      "execution": {
+        "detector": "manual-first-frame-seed+opencv-template",
+        "tracker": "opencv-template+temporal-envelope-hold-v1",
+        "policy": "object-demo",
+        "frameCount": 149,
+        "analyzedFrames": 149,
+        "latencyMs": 27110,
+        "costUsd": 0
+      },
+      "evaluation": {
+        "tier": "rights-cleared-fixture",
+        "detectionCoverage": 1.0,
+        "targetCoverage": 1.0,
+        "lowConfidenceHoldRate": 0.0,
+        "trackSwitchCount": 0,
+        "manualCorrections": 0,
+        "previewExportParity": true,
+        "verdict": "pass",
+        "limitations": [
+          "Creative Commons stock fixture; not creator-held-out media.",
+          "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model.",
+          "This fixture uses an explicit first-frame target seed plus local template tracking; it does not prove automatic target discovery."
+        ]
+      },
+      "outputs": {
+        "beforeImage": "fixtures/media/tracking-atlas-v1/object-product/before.jpg",
+        "afterImage": "fixtures/media/tracking-atlas-v1/object-product/after.jpg",
+        "comparisonVideo": "fixtures/media/tracking-atlas-v1/object-product/comparison.mp4",
+        "analysisVideo": "fixtures/media/tracking-atlas-v1/object-product/analysis.mp4",
+        "receipt": "fixtures/media/tracking-atlas-v1/object-product/receipt.json",
+        "sha256": {
+          "beforeImage": "sha256:25009474dfa02bfc30883d845928604738d8b0c930537f7059250ac6d827a2bd",
+          "afterImage": "sha256:dd05fc5c1237b65816a9d8aee40cc3c521c04ed69678b5d530955b366717a225",
+          "comparisonVideo": "sha256:9445fe66e45774693c471e87400b3955d9dbfcf5b15069b2447badf395ebfb6e",
+          "analysisVideo": "sha256:d39c3e11b9800f56d64382414c361bb49d715f96f4527ac9ce4ad8e1b88d94c4"
+        }
+      },
+      "observations": [
+        {
+          "timelineFrame": 0,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.2203125,
+            0.03888888888888889,
+            0.9796875,
+            0.9805555555555555
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 10,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.22031250000000002,
+            0.03888888888888889,
+            0.9796875000000002,
+            0.9805555555555556
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 20,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.22031250000000002,
+            0.03888888888888889,
+            0.9796875000000002,
+            0.9805555555555556
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 30,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.22031250000000002,
+            0.03888888888888889,
+            0.9796875000000002,
+            0.9805555555555556
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 40,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.21909865600500003,
+            0.03888888888888889,
+            0.9784736560050002,
+            0.9805555555555556
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 50,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.23184015782334755,
+            0.029895436678652465,
+            0.9912151578233477,
+            0.9715621033453194
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 60,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.18393203507196498,
+            0.023712821431708928,
+            0.9433070350719651,
+            0.9653794880983757
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 70,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.08415103527767848,
+            0.04700920541342983,
+            0.8435260352776788,
+            0.9886758720800968
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 80,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.025377152761548893,
+            0.05469485973527498,
+            0.7847521527615491,
+            0.9963615264019421
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 90,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.10401293398058832,
+            0.04982900966888558,
+            0.8633879339805884,
+            0.9914956763355526
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 100,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.082525657249848,
+            0.055827674207944294,
+            0.8419006572498483,
+            0.9974943408746113
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 110,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.06947264350156326,
+            0.057988935419349644,
+            0.8288476435015637,
+            0.9996556020860166
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 120,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.050123374649404306,
+            0.058285996518060074,
+            0.8094983746494047,
+            0.9999526631847271
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 130,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.04486360867138228,
+            0.05832682698126432,
+            0.8042386086713826,
+            0.9999934936479313
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 140,
+          "labels": [
+            "manual-seed:coffee-maker"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.029405921220651048,
+            0.05742243904805028,
+            0.7887809212206514,
+            0.9990891057147173
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+      "id": "atlas:animal-companion",
+      "packId": "animal-companion",
+      "source": {
+        "videoId": "FJlFCF38tKE",
+        "url": "https://www.youtube.com/watch?v=FJlFCF38tKE",
+        "title": "Dogs Running On A Snowy Day - Free Stock Creative Commons Video",
+        "uploader": "Freestocks",
+        "license": "Creative Commons Attribution license (reuse allowed)",
+        "sourceSha256": "sha256:a00679114d8af593be2780d34d42615832b9cee77027b83f9f82932e29ee2058",
+        "retrievedAt": "2026-07-22T03:10:11.994038+00:00"
+      },
+      "execution": {
+        "detector": "ultralytics/yolo11n-coco",
+        "tracker": "temporal-envelope-hold-v1",
+        "policy": "animal-safe",
+        "frameCount": 125,
+        "analyzedFrames": 125,
+        "latencyMs": 15434,
+        "costUsd": 0
+      },
+      "evaluation": {
+        "tier": "rights-cleared-fixture",
+        "detectionCoverage": 0.76,
+        "targetCoverage": 1.0,
+        "lowConfidenceHoldRate": 0.24,
+        "trackSwitchCount": 0,
+        "manualCorrections": 0,
+        "previewExportParity": true,
+        "verdict": "pass",
+        "limitations": [
+          "Creative Commons stock fixture; not creator-held-out media.",
+          "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model."
+        ]
+      },
+      "outputs": {
+        "beforeImage": "fixtures/media/tracking-atlas-v1/animal-companion/before.jpg",
+        "afterImage": "fixtures/media/tracking-atlas-v1/animal-companion/after.jpg",
+        "comparisonVideo": "fixtures/media/tracking-atlas-v1/animal-companion/comparison.mp4",
+        "analysisVideo": "fixtures/media/tracking-atlas-v1/animal-companion/analysis.mp4",
+        "receipt": "fixtures/media/tracking-atlas-v1/animal-companion/receipt.json",
+        "sha256": {
+          "beforeImage": "sha256:dd39a63b78b260f4a00ebf9ea3c0c4eac273e938d3aa5ebd07c50a69a16294f8",
+          "afterImage": "sha256:b5676c8ba7930cb168aa9c16db86949a5c9db247c5b6eabe7d7a89c8c295f992",
+          "comparisonVideo": "sha256:eb29721c4fe9cd0ed4ebf1dcd58552e12f48037fc2dbc1be3ad1f3b3c529f7fb",
+          "analysisVideo": "sha256:3556682d266ff0e6686e2e67264566a3c532f530e9210e2a7ebdcebd1649e0eb"
+        }
+      },
+      "observations": [
+        {
+          "timelineFrame": 0,
+          "labels": [
+            "dog"
+          ],
+          "confidence": 0.6758469343185425,
+          "envelope": [
+            0.853125,
+            0.75,
+            0.9921875,
+            0.925
+          ],
+          "fallback": "none",
+          "crop": [
+            0.684375,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 8,
+          "labels": [
+            "dog"
+          ],
+          "confidence": 0.47402897477149963,
+          "envelope": [
+            0.8617494145990381,
+            0.7373453773084924,
+            0.9969194566293056,
+            0.9152501565096167
+          ],
+          "fallback": "none",
+          "crop": [
+            0.684375,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 16,
+          "labels": [
+            "dog"
+          ],
+          "confidence": 0.741426944732666,
+          "envelope": [
+            0.8877575526497621,
+            0.7118279964063711,
+            0.9981633444248945,
+            0.9036520400174427
+          ],
+          "fallback": "none",
+          "crop": [
+            0.684375,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 24,
+          "labels": [
+            "dog"
+          ],
+          "confidence": 0.35809892416000366,
+          "envelope": [
+            0.9139395442611001,
+            0.7046061784516351,
+            0.9983691569984514,
+            0.8877755675753685
+          ],
+          "fallback": "none",
+          "crop": [
+            0.684375,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 32,
+          "labels": [
+            "dog"
+          ],
+          "confidence": 0.21909043192863464,
+          "envelope": [
+            0.9300282319712876,
+            0.7028936241958585,
+            0.9984204630826992,
+            0.8582712362130351
+          ],
+          "fallback": "none",
+          "crop": [
+            0.684375,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 40,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.9300282319712876,
+            0.7028936241958585,
+            0.9984204630826992,
+            0.8582712362130351
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.684375,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 48,
+          "labels": [
+            "dog"
+          ],
+          "confidence": 0.41043537855148315,
+          "envelope": [
+            0.936276393705545,
+            0.7056616517856222,
+            0.9984281063889819,
+            0.8334736949683089
+          ],
+          "fallback": "none",
+          "crop": [
+            0.684375,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 56,
+          "labels": [
+            "dog"
+          ],
+          "confidence": 0.7866469025611877,
+          "envelope": [
+            0.7873211676446391,
+            0.644742653621735,
+            0.8638091956634804,
+            0.7775963242472866
+          ],
+          "fallback": "none",
+          "crop": [
+            0.6671875,
+            0.0,
+            0.9828125,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 64,
+          "labels": [
+            "dog"
+          ],
+          "confidence": 0.5298401713371277,
+          "envelope": [
+            0.536634367743659,
+            0.5495123621356044,
+            0.6556647393613165,
+            0.7253839668324689
+          ],
+          "fallback": "none",
+          "crop": [
+            0.4375,
+            0.0,
+            0.753125,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 72,
+          "labels": [
+            "dog"
+          ],
+          "confidence": 0.8932182192802429,
+          "envelope": [
+            0.4849878951993829,
+            0.5437798857408574,
+            0.6532469452785997,
+            0.772728387137085
+          ],
+          "fallback": "none",
+          "crop": [
+            0.4109375,
+            0.0,
+            0.7265625,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 80,
+          "labels": [
+            "dog"
+          ],
+          "confidence": 0.894977867603302,
+          "envelope": [
+            0.4691434676776617,
+            0.5615961883216746,
+            0.6972183397835653,
+            0.8718215308086681
+          ],
+          "fallback": "none",
+          "crop": [
+            0.425,
+            0.0,
+            0.740625,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 88,
+          "labels": [
+            "dog"
+          ],
+          "confidence": 0.8739302158355713,
+          "envelope": [
+            0.4619358350505711,
+            0.5703267572870621,
+            0.728712272635216,
+            0.9424764237767016
+          ],
+          "fallback": "none",
+          "crop": [
+            0.4375,
+            0.0,
+            0.753125,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 96,
+          "labels": [
+            "dog"
+          ],
+          "confidence": 0.7598825693130493,
+          "envelope": [
+            0.4634721663134853,
+            0.5718347624902115,
+            0.7386309742297278,
+            0.9552166003969466
+          ],
+          "fallback": "none",
+          "crop": [
+            0.4421875,
+            0.0,
+            0.7578125,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 104,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.4634034633891653,
+            0.5733718341406021,
+            0.7401279183475338,
+            0.9585563770966525
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.44375,
+            0.0,
+            0.759375,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 112,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.46267833997911556,
+            0.5736649039952938,
+            0.7402173930449778,
+            0.9590162292192552
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.4421875,
+            0.0,
+            0.7578125,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 120,
+          "labels": [
+            "dog"
+          ],
+          "confidence": 0.8900738954544067,
+          "envelope": [
+            0.44288050537562096,
+            0.6237107962480221,
+            0.7223374538785587,
+            0.9601788874929162
+          ],
+          "fallback": "none",
+          "crop": [
+            0.4234375,
+            0.0,
+            0.7390625,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+      "id": "atlas:sport-climbing",
+      "packId": "sport-climbing",
+      "source": {
+        "videoId": "Ra81aQVXqe8",
+        "url": "https://www.youtube.com/watch?v=Ra81aQVXqe8",
+        "title": "Rock Climbing - Free Stock Creative Commons Video",
+        "uploader": "Freestocks",
+        "license": "Creative Commons Attribution license (reuse allowed)",
+        "sourceSha256": "sha256:19aa73bdacb65c7009c7cee482fdbb77917aba770de568c6c52a5b476d61753f",
+        "retrievedAt": "2026-07-22T03:10:28.312247+00:00"
+      },
+      "execution": {
+        "detector": "ultralytics/yolo11n-coco",
+        "tracker": "temporal-envelope-hold-v1",
+        "policy": "climbing-route",
+        "frameCount": 149,
+        "analyzedFrames": 149,
+        "latencyMs": 16281,
+        "costUsd": 0
+      },
+      "evaluation": {
+        "tier": "rights-cleared-fixture",
+        "detectionCoverage": 0.3289,
+        "targetCoverage": 1.0,
+        "lowConfidenceHoldRate": 0.6711,
+        "trackSwitchCount": 0,
+        "manualCorrections": 0,
+        "previewExportParity": true,
+        "verdict": "pass",
+        "limitations": [
+          "Creative Commons stock fixture; not creator-held-out media.",
+          "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model.",
+          "More than one quarter of frames use a low-confidence hold or wide fallback.",
+          "The climber is small in frame; route and hold detection are not implemented in this baseline."
+        ]
+      },
+      "outputs": {
+        "beforeImage": "fixtures/media/tracking-atlas-v1/sport-climbing/before.jpg",
+        "afterImage": "fixtures/media/tracking-atlas-v1/sport-climbing/after.jpg",
+        "comparisonVideo": "fixtures/media/tracking-atlas-v1/sport-climbing/comparison.mp4",
+        "analysisVideo": "fixtures/media/tracking-atlas-v1/sport-climbing/analysis.mp4",
+        "receipt": "fixtures/media/tracking-atlas-v1/sport-climbing/receipt.json",
+        "sha256": {
+          "beforeImage": "sha256:fa9bc9c6d9295377461b05dad14b8223b250d10510def8d45426bbf8e995a47a",
+          "afterImage": "sha256:7096ac2bfc98df605c5718ab1ceea39fb7de95853e20a7a17e4980569efb9c1f",
+          "comparisonVideo": "sha256:f00426bc9a289a02e2be14f74193d6975c4ffe7eed77d6c22dc24597a3573fba",
+          "analysisVideo": "sha256:2e8f3fe4348394710921a60f9b3078b3b266234b41982e2c2e069663ffffc74f"
+        }
+      },
+      "observations": [
+        {
+          "timelineFrame": 0,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.2737296521663666,
+          "envelope": [
+            0.2421875,
+            0.5861111111111111,
+            0.2765625,
+            0.65
+          ],
+          "fallback": "none",
+          "crop": [
+            0.1015625,
+            0.0,
+            0.4171875,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 10,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.24288848750000003,
+            0.5861111111111111,
+            0.2767931250000001,
+            0.6490900000000002
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.1015625,
+            0.0,
+            0.4171875,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 20,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.24288848750000003,
+            0.5861111111111111,
+            0.2767931250000001,
+            0.6490900000000002
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.1015625,
+            0.0,
+            0.4171875,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 30,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.2761341631412506,
+          "envelope": [
+            0.24290283882969965,
+            0.5826275896380874,
+            0.27344400610528774,
+            0.6478398354201838
+          ],
+          "fallback": "none",
+          "crop": [
+            0.1,
+            0.0,
+            0.415625,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 40,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.2979346811771393,
+          "envelope": [
+            0.243633559364918,
+            0.5795941525610608,
+            0.2700818028970504,
+            0.6473071119404096
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0984375,
+            0.0,
+            0.4140625,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 50,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.24372619789402217,
+            0.5781490703686918,
+            0.27392453969649716,
+            0.649172889677965
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.1,
+            0.0,
+            0.415625,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 60,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.1690593957901001,
+          "envelope": [
+            0.24374117561096198,
+            0.5761674858547147,
+            0.2746012840157116,
+            0.6496933572488998
+          ],
+          "fallback": "none",
+          "crop": [
+            0.1,
+            0.0,
+            0.415625,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 70,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.24374780020802625,
+            0.5752910372606739,
+            0.2749006058982339,
+            0.6499235584174959
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.1,
+            0.0,
+            0.415625,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 80,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.2449926533223698,
+            0.5750594921155936,
+            0.27497968244554716,
+            0.6499843742637905
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.1015625,
+            0.0,
+            0.4171875,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 90,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.2449926533223698,
+            0.5750594921155936,
+            0.27497968244554716,
+            0.6499843742637905
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.1015625,
+            0.0,
+            0.4171875,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 100,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.2449926533223698,
+            0.5750594921155936,
+            0.27497968244554716,
+            0.6499843742637905
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.1015625,
+            0.0,
+            0.4171875,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 110,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.2449926533223698,
+            0.5750594921155936,
+            0.27497968244554716,
+            0.6499843742637905
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.1015625,
+            0.0,
+            0.4171875,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 120,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.2449926533223698,
+            0.5750594921155936,
+            0.27497968244554716,
+            0.6499843742637905
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.1015625,
+            0.0,
+            0.4171875,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 130,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.2449926533223698,
+            0.5750594921155936,
+            0.27497968244554716,
+            0.6499843742637905
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.1015625,
+            0.0,
+            0.4171875,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 140,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.2449926533223698,
+            0.5750594921155936,
+            0.27497968244554716,
+            0.6499843742637905
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.1015625,
+            0.0,
+            0.4171875,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+      "id": "atlas:sport-workout",
+      "packId": "sport-workout",
+      "source": {
+        "videoId": "6wO8hWIJT_4",
+        "url": "https://www.youtube.com/watch?v=6wO8hWIJT_4",
+        "title": "Two People Working Out \u2502 4K \u2502 Free Copyrights \u2502 Creative Common Licences",
+        "uploader": "Audioarc - No Copyrights Music",
+        "license": "Creative Commons Attribution license (reuse allowed)",
+        "sourceSha256": "sha256:3d4b0c9563e0f0beaf77fea84015878c5ce5197a518605b2a524df0638452d3f",
+        "retrievedAt": "2026-07-22T03:11:10.829021+00:00"
+      },
+      "execution": {
+        "detector": "ultralytics/yolo11n-coco",
+        "tracker": "temporal-envelope-hold-v1",
+        "policy": "workout-form",
+        "frameCount": 120,
+        "analyzedFrames": 120,
+        "latencyMs": 26210,
+        "costUsd": 0
+      },
+      "evaluation": {
+        "tier": "rights-cleared-fixture",
+        "detectionCoverage": 1.0,
+        "targetCoverage": 1.0,
+        "lowConfidenceHoldRate": 0.0,
+        "trackSwitchCount": 0,
+        "manualCorrections": 0,
+        "previewExportParity": true,
+        "verdict": "pass",
+        "limitations": [
+          "Creative Commons stock fixture; not creator-held-out media.",
+          "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model."
+        ]
+      },
+      "outputs": {
+        "beforeImage": "fixtures/media/tracking-atlas-v1/sport-workout/before.jpg",
+        "afterImage": "fixtures/media/tracking-atlas-v1/sport-workout/after.jpg",
+        "comparisonVideo": "fixtures/media/tracking-atlas-v1/sport-workout/comparison.mp4",
+        "analysisVideo": "fixtures/media/tracking-atlas-v1/sport-workout/analysis.mp4",
+        "receipt": "fixtures/media/tracking-atlas-v1/sport-workout/receipt.json",
+        "sha256": {
+          "beforeImage": "sha256:44e9b2968a76b2d7dba0fab096b7b41fac40d67ef3579148c5a8e78f9e028f34",
+          "afterImage": "sha256:c24c722422866a9aaaac1effb59c39e17a1407b382715e8e9c5995e2b88e3baa",
+          "comparisonVideo": "sha256:3aa8070d38aee1e672427996df94eb9780acd2ff0dee59f4747fb497b892a5ec",
+          "analysisVideo": "sha256:3a29d0ba43ea8195d05ba4e834c47e321575d058f48ca8c1c7ba113556dac003"
+        }
+      },
+      "observations": [
+        {
+          "timelineFrame": 0,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8376759886741638,
+          "envelope": [
+            0.028125,
+            0.002777777777777778,
+            0.3078125,
+            0.9833333333333333
+          ],
+          "fallback": "none",
+          "crop": [
+            0.009375,
+            0.0,
+            0.325,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 8,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.7964718341827393,
+          "envelope": [
+            0.028665474038597163,
+            0.004187777777777778,
+            0.31204426832090004,
+            0.9842332815490455
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0125,
+            0.0,
+            0.328125,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 16,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8119472861289978,
+          "envelope": [
+            0.03011761774236904,
+            0.02890101123017165,
+            0.3198636665164364,
+            0.9794855896725789
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 24,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8075366020202637,
+          "envelope": [
+            0.029649785540056067,
+            0.0501752563658453,
+            0.3208536919000248,
+            0.979373078585084
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 32,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8224232196807861,
+          "envelope": [
+            0.022560042709238334,
+            0.05473143061500807,
+            0.3225265014560538,
+            0.9786065866849798
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 40,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8016669154167175,
+          "envelope": [
+            0.00941889211457114,
+            0.057594346730794596,
+            0.3215424402818174,
+            0.9744919991913008
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 48,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.6901920437812805,
+          "envelope": [
+            0.002080967636400965,
+            0.05935287478570854,
+            0.31734981424887976,
+            0.970428578461759
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 56,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.804050624370575,
+          "envelope": [
+            0.004375897418010589,
+            0.06496335367048614,
+            0.3124676203463024,
+            0.9712689174446794
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 64,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.800174355506897,
+          "envelope": [
+            0.01705139298593079,
+            0.06847875527470082,
+            0.3148227208632566,
+            0.9730872213049739
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 72,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8161606192588806,
+          "envelope": [
+            0.02964949135818812,
+            0.05592558948269406,
+            0.31734356697396204,
+            0.9716148562115936
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 80,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.7994335889816284,
+          "envelope": [
+            0.04097724272554285,
+            0.05540713724679881,
+            0.31805273074799495,
+            0.9675285923801782
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0203125,
+            0.0,
+            0.3359375,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 88,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8113845586776733,
+          "envelope": [
+            0.04652547508808526,
+            0.05710986328467352,
+            0.31965927621691137,
+            0.9696834642740825
+          ],
+          "fallback": "none",
+          "crop": [
+            0.025,
+            0.0,
+            0.340625,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 96,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.833104133605957,
+          "envelope": [
+            0.049219646627716905,
+            0.058812902135400094,
+            0.32462345754558763,
+            0.9721006729349916
+          ],
+          "fallback": "none",
+          "crop": [
+            0.028125,
+            0.0,
+            0.34375,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 104,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.861700713634491,
+          "envelope": [
+            0.05159546276958787,
+            0.02918912400972623,
+            0.328454351404227,
+            0.9709511758357857
+          ],
+          "fallback": "none",
+          "crop": [
+            0.03125,
+            0.0,
+            0.346875,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 112,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.8610026836395264,
+          "envelope": [
+            0.05434159408255091,
+            0.008301271709542521,
+            0.33055191063044026,
+            0.9693828749785626
+          ],
+          "fallback": "none",
+          "crop": [
+            0.034375,
+            0.0,
+            0.35,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+      "id": "atlas:sport-skateboarding",
+      "packId": "sport-skateboarding",
+      "source": {
+        "videoId": "QX9y3-6ccwk",
+        "url": "https://www.youtube.com/watch?v=QX9y3-6ccwk",
+        "title": "Person Skateboarding Indoors - Free Stock Creative Commons Video",
+        "uploader": "Freestocks",
+        "license": "Creative Commons Attribution license (reuse allowed)",
+        "sourceSha256": "sha256:661d6195ef1f0a6cd8e3a12a1adfb7af48d1bc6e7a98e6fae64cf0923b338043",
+        "retrievedAt": "2026-07-22T03:11:40.181566+00:00"
+      },
+      "execution": {
+        "detector": "ultralytics/yolo11n-coco",
+        "tracker": "temporal-envelope-hold-v1",
+        "policy": "board-action",
+        "frameCount": 125,
+        "analyzedFrames": 125,
+        "latencyMs": 29320,
+        "costUsd": 0
+      },
+      "evaluation": {
+        "tier": "rights-cleared-fixture",
+        "detectionCoverage": 0.864,
+        "targetCoverage": 0.928,
+        "lowConfidenceHoldRate": 0.136,
+        "trackSwitchCount": 0,
+        "manualCorrections": 0,
+        "previewExportParity": true,
+        "verdict": "pass",
+        "limitations": [
+          "Creative Commons stock fixture; not creator-held-out media.",
+          "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model."
+        ]
+      },
+      "outputs": {
+        "beforeImage": "fixtures/media/tracking-atlas-v1/sport-skateboarding/before.jpg",
+        "afterImage": "fixtures/media/tracking-atlas-v1/sport-skateboarding/after.jpg",
+        "comparisonVideo": "fixtures/media/tracking-atlas-v1/sport-skateboarding/comparison.mp4",
+        "analysisVideo": "fixtures/media/tracking-atlas-v1/sport-skateboarding/analysis.mp4",
+        "receipt": "fixtures/media/tracking-atlas-v1/sport-skateboarding/receipt.json",
+        "sha256": {
+          "beforeImage": "sha256:c2d4e3425ebf3a747841d84352b793687451fe77318e1ceed5cad63c8b883cf7",
+          "afterImage": "sha256:1f5f1ec978560bb63231494fa2c0563450bdab385e2c87e80b6fc4b2348800fa",
+          "comparisonVideo": "sha256:acc1ab4ddf163e9db6d6619afe35a6af94bcc8b80ac32e870dfc60f00e17ceb9",
+          "analysisVideo": "sha256:fcbe6ad1ab1d693d2151ae7df6aab426ccff60dc1fd4a15067a3d069fcaa5e5c"
+        }
+      },
+      "observations": [
+        {
+          "timelineFrame": 0,
+          "labels": [],
+          "confidence": 0,
+          "envelope": null,
+          "fallback": "wide",
+          "crop": [
+            0.3421875,
+            0.0,
+            0.6578125,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 8,
+          "labels": [],
+          "confidence": 0,
+          "envelope": null,
+          "fallback": "wide",
+          "crop": [
+            0.3421875,
+            0.0,
+            0.6578125,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 16,
+          "labels": [],
+          "confidence": 0,
+          "envelope": [
+            0.7635039207650002,
+            0.0036157226577777785,
+            0.9984375000000001,
+            0.5745889126222224
+          ],
+          "fallback": "hold",
+          "crop": [
+            0.684375,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 24,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.2130352258682251,
+          "envelope": [
+            0.7323554904849413,
+            0.0030325186115833618,
+            0.9984375000000001,
+            0.5721444579714176
+          ],
+          "fallback": "none",
+          "crop": [
+            0.684375,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 32,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.32052212953567505,
+          "envelope": [
+            0.724620088303715,
+            0.0033029516519018265,
+            0.9984375000000001,
+            0.5721870633122835
+          ],
+          "fallback": "none",
+          "crop": [
+            0.684375,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 40,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.5083523392677307,
+          "envelope": [
+            0.43172785252641865,
+            0.003009773450461128,
+            0.9984375000000001,
+            0.5828005819810711
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 48,
+          "labels": [
+            "person"
+          ],
+          "confidence": 0.33810222148895264,
+          "envelope": [
+            0.45316985784683694,
+            0.0028252009611340967,
+            0.9984375000000001,
+            0.5789510177382838
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 56,
+          "labels": [
+            "person",
+            "skateboard"
+          ],
+          "confidence": 0.5929265022277832,
+          "envelope": [
+            0.3041971708577973,
+            0.0032874717444523927,
+            0.9326250000000001,
+            0.594592878806614
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 64,
+          "labels": [
+            "person",
+            "skateboard"
+          ],
+          "confidence": 0.7347606420516968,
+          "envelope": [
+            0.06218218660376726,
+            0.0028819664040467294,
+            0.9409212854739772,
+            0.5974027256997657
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 72,
+          "labels": [
+            "person",
+            "skateboard"
+          ],
+          "confidence": 0.6910306811332703,
+          "envelope": [
+            0.01271091483172688,
+            0.0027990754005741284,
+            0.9566707937652195,
+            0.5998485755654878
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 80,
+          "labels": [
+            "person",
+            "skateboard"
+          ],
+          "confidence": 0.6251733303070068,
+          "envelope": [
+            0.0025982900358416474,
+            0.0027821313118728025,
+            0.9898997969254046,
+            0.5916277741633936
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 88,
+          "labels": [
+            "person",
+            "skateboard"
+          ],
+          "confidence": 0.5959746837615967,
+          "envelope": [
+            0.0005311270824900016,
+            0.0010307228214700972,
+            0.9966922732306158,
+            0.5911967004985673
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 96,
+          "labels": [
+            "person",
+            "skateboard"
+          ],
+          "confidence": 0.8177241086959839,
+          "envelope": [
+            0.00010856985704560249,
+            0.0024206551359273578,
+            0.9980807510653087,
+            0.5893606380894313
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 104,
+          "labels": [
+            "person",
+            "skateboard"
+          ],
+          "confidence": 0.6972346305847168,
+          "envelope": [
+            2.2193208080524605e-05,
+            0.0027047768794020537,
+            0.9983645754926318,
+            0.5889853210704757
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 112,
+          "labels": [
+            "person",
+            "skateboard"
+          ],
+          "confidence": 0.8190801739692688,
+          "envelope": [
+            4.536604342203215e-06,
+            0.0027628553658689448,
+            0.9984225932034894,
+            0.5889086009851362
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 120,
+          "labels": [
+            "person",
+            "skateboard"
+          ],
+          "confidence": 0.7108513116836548,
+          "envelope": [
+            9.273458295449179e-07,
+            0.002774727426588526,
+            0.9984344528408182,
+            0.5888929183190239
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+      "id": "atlas:sport-basketball",
+      "packId": "sport-basketball",
+      "source": {
+        "videoId": "TWLLv2ikavc",
+        "url": "https://www.youtube.com/watch?v=TWLLv2ikavc",
+        "title": "Basketball - Free Stock Creative Commons Video",
+        "uploader": "Freestocks",
+        "license": "Creative Commons Attribution license (reuse allowed)",
+        "sourceSha256": "sha256:281c2ab4e025521392752b4d54a9d25660f29f6ebd1aa47b88edb58fe7ba1d82",
+        "retrievedAt": "2026-07-22T03:12:30.706968+00:00"
+      },
+      "execution": {
+        "detector": "manual-first-frame-seed+opencv-template",
+        "tracker": "opencv-template+temporal-envelope-hold-v1",
+        "policy": "ball-action",
+        "frameCount": 149,
+        "analyzedFrames": 149,
+        "latencyMs": 33637,
+        "costUsd": 0
+      },
+      "evaluation": {
+        "tier": "rights-cleared-fixture",
+        "detectionCoverage": 1.0,
+        "targetCoverage": 1.0,
+        "lowConfidenceHoldRate": 0.0,
+        "trackSwitchCount": 0,
+        "manualCorrections": 0,
+        "previewExportParity": true,
+        "verdict": "pass",
+        "limitations": [
+          "Creative Commons stock fixture; not creator-held-out media.",
+          "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model.",
+          "This fixture uses an explicit first-frame target seed plus local template tracking; it does not prove automatic target discovery."
+        ]
+      },
+      "outputs": {
+        "beforeImage": "fixtures/media/tracking-atlas-v1/sport-basketball/before.jpg",
+        "afterImage": "fixtures/media/tracking-atlas-v1/sport-basketball/after.jpg",
+        "comparisonVideo": "fixtures/media/tracking-atlas-v1/sport-basketball/comparison.mp4",
+        "analysisVideo": "fixtures/media/tracking-atlas-v1/sport-basketball/analysis.mp4",
+        "receipt": "fixtures/media/tracking-atlas-v1/sport-basketball/receipt.json",
+        "sha256": {
+          "beforeImage": "sha256:1a30219e1b0fd7cea3f857912baaded6134cde36f38509ccc0636f56bea0d9d1",
+          "afterImage": "sha256:645107150fa435c877dde6330ed31f4472c8e748222423073ef0cb439e9d909d",
+          "comparisonVideo": "sha256:1c8369936ee5cdbbedcf54cfc2cb14399f7fb4d261d8f969384c9a2dc6a63fd5",
+          "analysisVideo": "sha256:516bf324b3b02a4071b1611a50fd98e7e7681df30f328c13ff32ce10d7f9a0ed"
+        }
+      },
+      "observations": [
+        {
+          "timelineFrame": 0,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.2203125,
+            0.019444444444444445,
+            0.8203125,
+            0.8194444444444444
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 10,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.221485491452238,
+            0.02305164658175645,
+            0.8214854914522383,
+            0.8230516465817566
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 20,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.2216323503169216,
+            0.028566254573844325,
+            0.8216323503169218,
+            0.8285662545738445
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 30,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.2218416482787566,
+            0.03434224284741325,
+            0.8218416482787572,
+            0.8343422428474135
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 40,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.2194351888446359,
+            0.03586798365057319,
+            0.8194351888446361,
+            0.8358679836505732
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 50,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.21970023760778865,
+            0.03661441415371791,
+            0.8197002376077887,
+            0.8366144141537181
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 60,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.22147144873036465,
+            0.03428431143274938,
+            0.8214714487303649,
+            0.8342843114327497
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 70,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.22376362316328074,
+            0.03536002109167513,
+            0.8237636231632807,
+            0.8353600210916753
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 80,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.22635441542863877,
+            0.02818443789425011,
+            0.8263544154286389,
+            0.8281844378942503
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 90,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.22948100121225265,
+            0.019710198891430872,
+            0.8294810012122528,
+            0.8197101988914312
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 100,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.23258869905167331,
+            0.014999676041956064,
+            0.8325886990516735,
+            0.8149996760419562
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 110,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.23591795352717898,
+            0.015974879197911254,
+            0.835917953527179,
+            0.8159748791979116
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 120,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.2383700404027288,
+            0.014361620968387511,
+            0.838370040402729,
+            0.8143616209683876
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 130,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.2404566540374106,
+            0.013668507717849176,
+            0.8404566540374108,
+            0.8136685077178493
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 140,
+          "labels": [
+            "manual-seed:ball-and-hoop"
+          ],
+          "confidence": 0.55,
+          "envelope": [
+            0.2507244427546172,
+            0.02826082719691654,
+            0.8264419098746254,
+            0.7999882067544848
+          ],
+          "fallback": "none",
+          "crop": [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        }
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+      "id": "atlas:sport-soccer",
+      "packId": "sport-soccer",
+      "source": {
+        "videoId": "O1x9Nrp5TTU",
+        "url": "https://www.youtube.com/watch?v=O1x9Nrp5TTU",
+        "title": "Soccer Players Training l Free Stock Footage | No Copyright Videos | Creative Common !",
+        "uploader": "Video Gallery - No Copyright Footage",
+        "license": "Creative Commons Attribution license (reuse allowed)",
+        "sourceSha256": "sha256:cd2954d9e4fdc14fadfa24eb0636adc56d8b36866cb58e2b0068b7689fc6c442",
+        "retrievedAt": "2026-07-22T03:12:48.776605+00:00"
+      },
+      "execution": {
+        "detector": "ultralytics/yolo11n-coco",
+        "tracker": "temporal-envelope-hold-v1",
+        "policy": "ball-action",
+        "frameCount": 125,
+        "analyzedFrames": 125,
+        "latencyMs": 18034,
+        "costUsd": 0
+      },
+      "evaluation": {
+        "tier": "rights-cleared-fixture",
+        "detectionCoverage": 1.0,
+        "targetCoverage": 1.0,
+        "lowConfidenceHoldRate": 0.0,
+        "trackSwitchCount": 0,
+        "manualCorrections": 0,
+        "previewExportParity": true,
+        "verdict": "pass",
+        "limitations": [
+          "Creative Commons stock fixture; not creator-held-out media.",
+          "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model."
+        ]
+      },
+      "outputs": {
+        "beforeImage": "fixtures/media/tracking-atlas-v1/sport-soccer/before.jpg",
+        "afterImage": "fixtures/media/tracking-atlas-v1/sport-soccer/after.jpg",
+        "comparisonVideo": "fixtures/media/tracking-atlas-v1/sport-soccer/comparison.mp4",
+        "analysisVideo": "fixtures/media/tracking-atlas-v1/sport-soccer/analysis.mp4",
+        "receipt": "fixtures/media/tracking-atlas-v1/sport-soccer/receipt.json",
+        "sha256": {
+          "beforeImage": "sha256:cce161358353614773aa0422bec5471b9fffa4f60313219df24de1d0ef8e78f1",
+          "afterImage": "sha256:e21b9fad077844f911348f585a5d075eca2e904f8ae2331f169914f41dad3af5",
+          "comparisonVideo": "sha256:c0c21b8fa46c4b16bbb9f7cf75f0bc4ae2d81e9a6d8e46f833c195711ebbcce4",
+          "analysisVideo": "sha256:34120b1dfe07740e9cad82d8a3d1a3c240949efd5798dba2d3b5a5b160237fa5"
+        }
+      },
+      "observations": [
+        {
+          "timelineFrame": 0,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.9097399115562439,
+          "envelope": [
+            0.4484777517564403,
+            0.2791666666666667,
+            0.5515222482435597,
+            0.875
+          ],
+          "fallback": "none",
+          "crop": [
+            0.36065573770491804,
+            0.0,
+            0.6768149882903981,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 8,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.9158228039741516,
+          "envelope": [
+            0.4498553984074943,
+            0.2779681090122198,
+            0.5515222482435597,
+            0.875
+          ],
+          "fallback": "none",
+          "crop": [
+            0.36065573770491804,
+            0.0,
+            0.6768149882903981,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 16,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.9152361750602722,
+          "envelope": [
+            0.4530374249012096,
+            0.278882652604929,
+            0.5507072677651336,
+            0.875
+          ],
+          "fallback": "none",
+          "crop": [
+            0.3618266978922717,
+            0.0,
+            0.6779859484777517,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 24,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.9223152995109558,
+          "envelope": [
+            0.45283262287847426,
+            0.27864969719186367,
+            0.5495449984969603,
+            0.8758411679485373
+          ],
+          "fallback": "none",
+          "crop": [
+            0.3618266978922717,
+            0.0,
+            0.6779859484777517,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 32,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.9071817398071289,
+          "envelope": [
+            0.4420480543260473,
+            0.2690859772155174,
+            0.5485180330908387,
+            0.8740684724705066
+          ],
+          "fallback": "none",
+          "crop": [
+            0.3559718969555035,
+            0.0,
+            0.6721311475409836,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 40,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.8969426155090332,
+          "envelope": [
+            0.43448552800650375,
+            0.23284326022811166,
+            0.5468506826727504,
+            0.8740413749971532
+          ],
+          "fallback": "none",
+          "crop": [
+            0.351288056206089,
+            0.0,
+            0.667447306791569,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 48,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.8942180871963501,
+          "envelope": [
+            0.43685675997155266,
+            0.26373040212294735,
+            0.5453839870717152,
+            0.8742516484948925
+          ],
+          "fallback": "none",
+          "crop": [
+            0.351288056206089,
+            0.0,
+            0.667447306791569,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 56,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.8839062452316284,
+          "envelope": [
+            0.4270648784277765,
+            0.2758979958122473,
+            0.5440363610043311,
+            0.8731895557567305
+          ],
+          "fallback": "none",
+          "crop": [
+            0.34543325526932084,
+            0.0,
+            0.6615925058548009,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 64,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.9042803049087524,
+          "envelope": [
+            0.4172614171441485,
+            0.27880707740316546,
+            0.542945501218392,
+            0.8736017876435388
+          ],
+          "fallback": "none",
+          "crop": [
+            0.3407494145199063,
+            0.0,
+            0.6569086651053864,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 72,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.9050871133804321,
+          "envelope": [
+            0.4347391639489545,
+            0.282060282210528,
+            0.5414371880661107,
+            0.8737392150448613
+          ],
+          "fallback": "none",
+          "crop": [
+            0.34894613583138173,
+            0.0,
+            0.6651053864168618,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 80,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.9125558137893677,
+          "envelope": [
+            0.44713805186445865,
+            0.2840077537518051,
+            0.5410763250068505,
+            0.8747422777959224
+          ],
+          "fallback": "none",
+          "crop": [
+            0.3548009367681499,
+            0.0,
+            0.6709601873536299,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 88,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.9189976453781128,
+          "envelope": [
+            0.4463196447351044,
+            0.28512866502111117,
+            0.5396873535260213,
+            0.8749473179512463
+          ],
+          "fallback": "none",
+          "crop": [
+            0.35362997658079626,
+            0.0,
+            0.6697892271662763,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 96,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.9129512906074524,
+          "envelope": [
+            0.4404150528330851,
+            0.28951390433099367,
+            0.5388554353167805,
+            0.8747362011041787
+          ],
+          "fallback": "none",
+          "crop": [
+            0.35011709601873536,
+            0.0,
+            0.6662763466042154,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 104,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.9242193698883057,
+          "envelope": [
+            0.4363534050675428,
+            0.2891016644587505,
+            0.5377537800854529,
+            0.8749460757898585
+          ],
+          "fallback": "none",
+          "crop": [
+            0.3477751756440281,
+            0.0,
+            0.6639344262295082,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 112,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.9334986209869385,
+          "envelope": [
+            0.4330492930810438,
+            0.28254796002252347,
+            0.5367136057599758,
+            0.8736574980215568
+          ],
+          "fallback": "none",
+          "crop": [
+            0.34543325526932084,
+            0.0,
+            0.6615925058548009,
+            1.0
+          ]
+        },
+        {
+          "timelineFrame": 120,
+          "labels": [
+            "person",
+            "sports ball"
+          ],
+          "confidence": 0.9209574460983276,
+          "envelope": [
+            0.43570444495327054,
+            0.27862379505591917,
+            0.5363843605234481,
+            0.8734906786338411
+          ],
+          "fallback": "none",
+          "crop": [
+            0.34660421545667447,
+            0.0,
+            0.6627634660421545,
+            1.0
+          ]
+        }
+      ]
+    }
+  ],
+  "compilation": "fixtures/media/tracking-atlas-v1/nodevideo-tracking-artifact-atlas.mp4"
+}
