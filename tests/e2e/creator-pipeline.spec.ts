@@ -19,6 +19,16 @@ test('creator pipeline compiles one source into reviewable variants', async ({
   page.on('pageerror', (error) => pageErrors.push(error.message));
   await page.goto('/creator.html');
 
+  const creatorCsp = await page
+    .locator('html')
+    .evaluate(() =>
+      fetch(location.href, { method: 'HEAD' }).then((response) =>
+        response.headers.get('content-security-policy'),
+      ),
+    );
+  expect(creatorCsp).toContain('https://*.convex.cloud');
+  expect(creatorCsp).toContain('wss://*.convex.cloud');
+
   await expect(
     page.getByRole('heading', { name: 'One source. Many reviewable cuts.' }),
   ).toBeVisible();
