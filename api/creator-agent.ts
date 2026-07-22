@@ -110,6 +110,39 @@ export default async function handler(request: ApiRequest, response: ApiResponse
       },
       body: JSON.stringify({
         model: 'openrouter/free',
+        provider: { require_parameters: true },
+        response_format: {
+          type: 'json_schema',
+          json_schema: {
+            name: 'nodevideo_creator_plan',
+            strict: true,
+            schema: {
+              type: 'object',
+              additionalProperties: false,
+              properties: {
+                summary: { type: 'string', minLength: 8, maxLength: 800 },
+                operations: {
+                  type: 'array',
+                  minItems: 1,
+                  maxItems: 8,
+                  items: {
+                    type: 'object',
+                    additionalProperties: false,
+                    properties: {
+                      kind: {
+                        type: 'string',
+                        enum: [...PLANNER_OPERATIONS],
+                      },
+                      reason: { type: 'string', minLength: 8, maxLength: 300 },
+                    },
+                    required: ['kind', 'reason'],
+                  },
+                },
+              },
+              required: ['summary', 'operations'],
+            },
+          },
+        },
         max_tokens: 500,
         temperature: 0.2,
         messages: [
