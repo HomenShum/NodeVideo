@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFileSync, realpathSync } from 'node:fs';
 import path from 'node:path';
@@ -17,6 +18,10 @@ interface ConsumerVerdict {
   };
   evidence: Array<{ path: string; sha256: string }>;
   evidenceHash: string;
+  consumer: {
+    committedInputs: Array<{ gitBlob: string; mode: string; path: string; sha256: string }>;
+    implementationCommit: string;
+  };
   nodekit: {
     installedPackageFiles: Array<{ path: string; sha256: string }>;
     lockfileIntegrity: string;
@@ -25,6 +30,9 @@ interface ConsumerVerdict {
     packagePath: string;
     packageSha256: string;
     packageSpec: string;
+    sourceCommit: string;
+    sourceHash: string;
+    sourceWorkingTreeCleanAtPackTime: boolean;
     supportedImports: string[];
   };
   status: string;
@@ -72,10 +80,23 @@ describe('NodeVideo local NodeKit consumer proof', () => {
     expect(proof.nodekit.lockfileIntegrity).toBe(proof.nodekit.packageIntegrity);
     const packageManifest = JSON.parse(
       readFileSync(containedEvidencePath('vendor/nodekit-package-manifest.json'), 'utf8'),
-    ) as { manifestHash: string } & Record<string, unknown>;
+    ) as {
+      manifestHash: string;
+      source: {
+        commit: string;
+        distributableSourceHash: string;
+        workingTreeClean: boolean;
+      };
+    } & Record<string, unknown>;
     const { manifestHash, ...packageManifestBody } = packageManifest;
     expect(manifestHash).toBe(contentHash(packageManifestBody));
     expect(manifestHash).toBe(proof.nodekit.packageManifestHash);
+    expect(packageManifest.source.workingTreeClean).toBe(true);
+    expect(proof.nodekit.sourceWorkingTreeCleanAtPackTime).toBe(true);
+    expect(proof.nodekit.sourceCommit).toMatch(/^[a-f0-9]{40}$/u);
+    expect(proof.nodekit.sourceHash).toMatch(/^[a-f0-9]{64}$/u);
+    expect(packageManifest.source.commit).toBe(proof.nodekit.sourceCommit);
+    expect(packageManifest.source.distributableSourceHash).toBe(proof.nodekit.sourceHash);
     expect(sha256(containedEvidencePath(proof.nodekit.packagePath))).toBe(
       proof.nodekit.packageSha256,
     );
@@ -90,5 +111,32 @@ describe('NodeVideo local NodeKit consumer proof', () => {
     expect(proof.assertions.authenticatedProductionProof).toBe(false);
     expect(proof.assertions.deployed).toBe(false);
     expect(proof.assertions.published).toBe(false);
+  });
+
+  it('reopens every proof input from the exact consumer commit', () => {
+    expect(proof.consumer.implementationCommit).toMatch(/^[a-f0-9]{40}$/u);
+    expect(Array.isArray(proof.consumer.committedInputs)).toBe(true);
+    expect(proof.consumer.committedInputs.length).toBeGreaterThanOrEqual(10);
+    expect(new Set(proof.consumer.committedInputs.map((entry) => entry.path)).size).toBe(
+      proof.consumer.committedInputs.length,
+    );
+    for (const entry of proof.consumer.committedInputs) {
+      expect(entry.mode).toMatch(/^100(?:644|755)$/u);
+      expect(entry.gitBlob).toMatch(/^[a-f0-9]{40,64}$/u);
+      expect(entry.sha256).toMatch(/^[a-f0-9]{64}$/u);
+      const committedBytes = execFileSync(
+        'git',
+        ['show', `${proof.consumer.implementationCommit}:${entry.path}`],
+        { cwd: root, encoding: 'buffer' },
+      );
+      expect(createHash('sha256').update(committedBytes).digest('hex')).toBe(entry.sha256);
+      expect(
+        execFileSync('git', ['rev-parse', `${proof.consumer.implementationCommit}:${entry.path}`], {
+          cwd: root,
+          encoding: 'utf8',
+        }).trim(),
+      ).toBe(entry.gitBlob);
+      expect(proof.evidence).toContainEqual({ path: entry.path, sha256: entry.sha256 });
+    }
   });
 });

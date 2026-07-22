@@ -3,6 +3,11 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, realpath, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {
+  assertCommittedProofInputs,
+  assertExactPackageProvenance,
+  contentHash,
+} from './nodekit-consumer-proof-integrity.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const rootRealPath = await realpath(root);
@@ -16,9 +21,12 @@ const sourcePaths = [
   'docs/nodekit-caseflow-consumer.md',
   'package-lock.json',
   'package.json',
+  'scripts/quality/nodekit-consumer-proof-integrity.d.mts',
+  'scripts/quality/nodekit-consumer-proof-integrity.mjs',
   'scripts/quality/prepare-nodekit-package.mjs',
   'scripts/quality/prove-nodekit-caseflow-consumer.mjs',
   'tests/nodekit-caseflow-conformance.test.ts',
+  'tests/nodekit-consumer-proof-integrity.test.ts',
   'tests/nodekit-caseflow-proof.test.ts',
   'vendor/homenshum-nodekit-0.2.1.tgz',
   'vendor/nodekit-package-manifest.json',
@@ -41,21 +49,6 @@ const commands = [
   ['npm run build', 'npm', ['run', 'build']],
 ];
 
-function canonical(value) {
-  if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
-  if (value !== null && typeof value === 'object') {
-    return `{${Object.keys(value)
-      .sort()
-      .map((key) => `${JSON.stringify(key)}:${canonical(value[key])}`)
-      .join(',')}}`;
-  }
-  return JSON.stringify(value);
-}
-
-function contentHash(value) {
-  return createHash('sha256').update(canonical(value)).digest('hex');
-}
-
 function sha256(buffer) {
   return createHash('sha256').update(buffer).digest('hex');
 }
@@ -74,11 +67,28 @@ function git(args, encoding = 'utf8') {
   return execFileSync('git', args, { cwd: root, encoding });
 }
 
-const dirtySource = git(['status', '--porcelain=v1', '-z', '--', ...sourcePaths], 'buffer');
-if (dirtySource.length !== 0) {
-  throw new Error(
-    'consumer source and immutable package must be committed before generating the local proof receipt',
-  );
+const committedProofInputs = assertCommittedProofInputs({ root, relativePaths: sourcePaths });
+const packageJson = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
+const packageSpec = packageJson.dependencies['@homenshum/nodekit'];
+if (packageSpec !== 'file:vendor/homenshum-nodekit-0.2.1.tgz') {
+  throw new Error(`unexpected NodeKit package spec: ${String(packageSpec)}`);
+}
+const packagePath = packageSpec.slice('file:'.length);
+const packageBytes = await readFile(path.join(root, packagePath));
+const packageManifest = JSON.parse(
+  await readFile(path.join(root, 'vendor/nodekit-package-manifest.json'), 'utf8'),
+);
+const packageProvenance = assertExactPackageProvenance({
+  expectedName: '@homenshum/nodekit',
+  expectedVersion: '0.2.1',
+  manifest: packageManifest,
+  packageBytes,
+  packagePath,
+});
+const packageLock = JSON.parse(await readFile(path.join(root, 'package-lock.json'), 'utf8'));
+const lockedNodeKit = packageLock.packages?.['node_modules/@homenshum/nodekit'];
+if (lockedNodeKit?.integrity !== packageManifest.package.integrity) {
+  throw new Error('installed NodeKit lockfile integrity does not match the packed candidate');
 }
 
 await mkdir(proofDirectory, { recursive: true });
@@ -129,23 +139,6 @@ for (const command of commands) {
   await executeCommand(command);
 }
 
-const packageJson = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
-const packageSpec = packageJson.dependencies['@homenshum/nodekit'];
-if (packageSpec !== 'file:vendor/homenshum-nodekit-0.2.1.tgz') {
-  throw new Error(`unexpected NodeKit package spec: ${String(packageSpec)}`);
-}
-const packageManifest = JSON.parse(
-  await readFile(path.join(root, 'vendor/nodekit-package-manifest.json'), 'utf8'),
-);
-const { manifestHash, ...packageManifestBody } = packageManifest;
-if (contentHash(packageManifestBody) !== manifestHash) {
-  throw new Error('NodeKit package manifest content hash is invalid');
-}
-const packageLock = JSON.parse(await readFile(path.join(root, 'package-lock.json'), 'utf8'));
-const lockedNodeKit = packageLock.packages?.['node_modules/@homenshum/nodekit'];
-if (lockedNodeKit?.integrity !== packageManifest.package.integrity) {
-  throw new Error('installed NodeKit lockfile integrity does not match the packed candidate');
-}
 const installedPackagePaths = [
   'dist/client/index.js',
   'dist/component/caseflow.js',
@@ -173,11 +166,16 @@ if (new Set(evidence.map((entry) => entry.path)).size !== evidence.length) {
 const packageEvidence = evidence.find(
   (entry) => entry.path === 'vendor/homenshum-nodekit-0.2.1.tgz',
 );
-if (packageEvidence?.sha256 !== packageManifest.package.sha256) {
+if (packageEvidence?.sha256 !== packageProvenance.packageSha256) {
   throw new Error('packed NodeKit tarball does not match its immutable manifest');
 }
+for (const committedInput of committedProofInputs.entries) {
+  const observed = evidence.find((entry) => entry.path === committedInput.path);
+  if (observed?.sha256 !== committedInput.sha256) {
+    throw new Error(`committed proof input changed during proof execution: ${committedInput.path}`);
+  }
+}
 
-const implementationCommit = git(['rev-parse', 'HEAD']).trim();
 const branch = git(['branch', '--show-current']).trim();
 const verdictBody = {
   assertions: {
@@ -199,7 +197,8 @@ const verdictBody = {
   commands: commandResults,
   consumer: {
     branch,
-    implementationCommit,
+    committedInputs: committedProofInputs.entries,
+    implementationCommit: committedProofInputs.commit,
     repository: 'https://github.com/HomenShum/NodeVideo.git',
     sourceManifestHash: contentHash(evidence.filter((entry) => sourcePaths.includes(entry.path))),
   },
@@ -214,15 +213,15 @@ const verdictBody = {
     packageIntegrity: packageManifest.package.integrity,
     installedPackageFiles,
     lockfileIntegrity: lockedNodeKit.integrity,
-    packageManifestHash: packageManifest.manifestHash,
-    packagePath: 'vendor/homenshum-nodekit-0.2.1.tgz',
-    packageSha1: packageManifest.package.sha1,
-    packageSha256: packageManifest.package.sha256,
+    packageManifestHash: packageProvenance.manifestHash,
+    packagePath,
+    packageSha1: packageProvenance.packageSha1,
+    packageSha256: packageProvenance.packageSha256,
     packageSpec,
     packageVersion: packageManifest.package.version,
-    sourceCommit: packageManifest.source.commit,
-    sourceHash: packageManifest.source.distributableSourceHash,
-    sourceWorkingTreeCleanAtPackTime: packageManifest.source.workingTreeClean,
+    sourceCommit: packageProvenance.sourceCommit,
+    sourceHash: packageProvenance.sourceHash,
+    sourceWorkingTreeCleanAtPackTime: true,
     supportedImports: [
       '@homenshum/nodekit/convex-caseflow',
       '@homenshum/nodekit/convex.config.js',

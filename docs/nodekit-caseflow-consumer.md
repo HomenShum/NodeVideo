@@ -70,6 +70,13 @@ npm run proof:nodekit-consumer
 npx vitest run tests/nodekit-caseflow-proof.test.ts --reporter=verbose
 ```
 
+The proof fails before installing dependencies unless the NodeKit package manifest records
+`source.workingTreeClean: true`, an exact source commit, and an exact distributable source hash.
+Every declared consumer input must be a stage-0 file in the consumer's current `HEAD`; staged,
+unstaged, untracked, ignored, missing, escaping, and byte-mismatched inputs are rejected. The final
+receipt records each committed blob ID and SHA-256 so verification can reopen the evidence from the
+exact consumer commit rather than trusting the current checkout.
+
 The proof command starts with `npm ci`, then runs lint, application typecheck, Convex function
 typecheck, the focused component consumer suite, the production build, and the full regression
 suite. It stores complete logs and writes
