@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nodevideo.creatorbench-deduplication-receipt.v1",
-  "benchmarkVersion": "creatorbench-v1.2",
-  "generatedAt": "2026-07-22T08:46:14.146Z",
+  "benchmarkVersion": "creatorbench-v1.3",
+  "generatedAt": "2026-07-22T09:20:28.902Z",
   "sourceCount": 250,
   "creatorCount": 205,
   "visualAlgorithm": "first-frame-dhash-64",

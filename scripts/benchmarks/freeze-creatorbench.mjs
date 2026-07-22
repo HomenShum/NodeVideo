@@ -46,13 +46,48 @@ const privateSplits = await readJson(resolve(evidenceRoot, 'private-heldout-spli
 const dedupe = await readJson(resolve(benchmarkRoot, 'receipts/deduplication-receipt.json'));
 if (!dedupe.passed)
   throw new Error('CreatorBench cannot freeze with split leakage or blocking duplicates.');
+const benchmarkVersion = publicManifest.benchmarkVersion;
+const versionedArtifacts = [
+  ['private instance manifest', privateManifest.benchmarkVersion],
+  ['public source catalog', publicCatalog.benchmarkVersion],
+  ['private source catalog', privateCatalog.benchmarkVersion],
+  ['public split catalog', publicSplits.benchmarkVersion],
+  ['private split catalog', privateSplits.benchmarkVersion],
+];
+for (const [label, observedVersion] of versionedArtifacts) {
+  if (observedVersion !== benchmarkVersion) {
+    throw new Error(
+      `CreatorBench freeze refused: ${label} is ${observedVersion}, expected ${benchmarkVersion}.`,
+    );
+  }
+}
+const publicSourceIds = new Set(publicCatalog.records.map((source) => source.id));
+const privateSourceIds = new Set(privateCatalog.records.map((source) => source.id));
+for (const instance of publicManifest.instances) {
+  for (const sourceId of instance.sourceIds) {
+    if (!publicSourceIds.has(sourceId)) {
+      throw new Error(
+        `CreatorBench freeze refused: public instance ${instance.id} references missing source ${sourceId}.`,
+      );
+    }
+  }
+}
+for (const instance of privateManifest.instances) {
+  for (const sourceId of instance.sourceIds) {
+    if (!privateSourceIds.has(sourceId)) {
+      throw new Error(
+        `CreatorBench freeze refused: private instance ${instance.id} references missing source ${sourceId}.`,
+      );
+    }
+  }
+}
 const evaluatorPath = 'scripts/benchmarks/evaluate-creatorbench.mjs';
 const benchmarkManifestHash = `sha256:${sha256(JSON.stringify({ publicManifest, privateManifest, publicCatalog, privateCatalog, publicSplits, privateSplits }))}`;
 const frozenAt = new Date().toISOString();
 const receipt = {
   schemaVersion: 'nodevideo.creatorbench-freeze/v1',
   id: `creatorbench-freeze:${sha256(`${sourceCommitSha}:${benchmarkManifestHash}`).slice(0, 24)}`,
-  benchmarkVersion: publicManifest.benchmarkVersion,
+  benchmarkVersion,
   frozenAt,
   sourceCommitSha,
   configHash: await hashFiles(configFiles),

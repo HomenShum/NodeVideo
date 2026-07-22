@@ -1,8 +1,8 @@
 {
   "schemaVersion": "nodevideo.creatorbench-evaluation/v1",
-  "benchmarkVersion": "creatorbench-v1.2",
+  "benchmarkVersion": "creatorbench-v1.3",
   "evaluationMode": "public-routing-and-ingestion",
-  "generatedAt": "2026-07-22T08:53:28.735Z",
+  "generatedAt": "2026-07-22T09:20:36.283Z",
   "population": {
     "instanceCount": 4736,
     "sourceCount": 200,
@@ -1593,5 +1593,5 @@
     "No result is classified usable until a rendered artifact is blindly reviewed by a human.",
     "This baseline measures request ingestion, rights validation, route eligibility, and honest non-success states—not editing quality."
   ],
-  "resultsSha256": "sha256:13c3b57bb41f8f6dd24df3cadc5f9a355aa044b936b433b9060fa17aa39f1141"
+  "resultsSha256": "sha256:ba777d0ea33a1838c103c71e244984147a2e68328aa9239bc5d5babe012ff8ff"
 }

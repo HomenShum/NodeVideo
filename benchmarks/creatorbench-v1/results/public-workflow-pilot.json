@@ -1,9 +1,9 @@
 {
   "schemaVersion": "nodevideo.creatorbench-workflow-pilot/v1",
-  "benchmarkVersion": "creatorbench-v1.2",
+  "benchmarkVersion": "creatorbench-v1.3",
   "workflow": "talking-head-cleanup",
   "evaluationMode": "public-workflow-pilot",
-  "generatedAt": "2026-07-22T09:03:42.542Z",
+  "generatedAt": "2026-07-22T09:26:20.154Z",
   "instanceCount": 71,
   "sourceCount": 71,
   "splitCounts": {
@@ -27,7 +27,7 @@
     "Rendered candidates are not classified usable without human review.",
     "Non-redistributable source and output media remain in the evaluator vault."
   ],
-  "resultsSha256": "sha256:3c312bda62f0580fc1b3ba30d0e64fe4ea9fa00c986186a025eec9a736ae1c59",
+  "resultsSha256": "sha256:f82954af71f0e35d70814d9e6337135940ede8982b5171f4be1542d2120276de",
   "results": [
     {
       "instanceId": "instance:cb-0113-77d2992d:talking-head-cleanup:baseline",
@@ -52,7 +52,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0113-77d2992d:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0113-77d2992d:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -63,9 +63,9 @@
           "artifact:sha256:a5660358eaf745c9deee16948cefce1dde630a91393351518eb5b62494115517"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:00:56.167Z",
-          "completedAt": "2026-07-22T09:01:02.100Z",
-          "latencyMs": 5931,
+          "startedAt": "2026-07-22T09:23:51.436Z",
+          "completedAt": "2026-07-22T09:23:56.343Z",
+          "latencyMs": 4906,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -163,7 +163,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0114-c50766ae:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0114-c50766ae:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -174,9 +174,9 @@
           "artifact:sha256:3ad07d40a11afc3b78acec234877d0ad0592dd1fbfa40d87662f7ffb9b52f26c"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:03.571Z",
-          "completedAt": "2026-07-22T09:01:06.617Z",
-          "latencyMs": 3047,
+          "startedAt": "2026-07-22T09:23:56.351Z",
+          "completedAt": "2026-07-22T09:23:58.829Z",
+          "latencyMs": 2478,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -274,7 +274,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0115-a6ebf0af:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0115-a6ebf0af:talking-head-cleanup:baseline",
         "split": "adversarial",
         "classification": "review_required",
@@ -285,9 +285,9 @@
           "artifact:sha256:e7686d1fd98cf5844a5834c534070f1fa57550011e8ad989a03009325da6ec50"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:06.618Z",
-          "completedAt": "2026-07-22T09:01:08.630Z",
-          "latencyMs": 2012,
+          "startedAt": "2026-07-22T09:23:58.830Z",
+          "completedAt": "2026-07-22T09:24:00.519Z",
+          "latencyMs": 1690,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -385,7 +385,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0116-17024424:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0116-17024424:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -396,9 +396,9 @@
           "artifact:sha256:17e9cea8f7dd0a6666a91d85b0fda34e9ad3973ce7c281e036b684342ebbf0c3"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:08.631Z",
-          "completedAt": "2026-07-22T09:01:10.860Z",
-          "latencyMs": 2229,
+          "startedAt": "2026-07-22T09:24:00.520Z",
+          "completedAt": "2026-07-22T09:24:02.421Z",
+          "latencyMs": 1901,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -496,7 +496,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0117-3a9e20f6:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0117-3a9e20f6:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -507,9 +507,9 @@
           "artifact:sha256:8a07eb8b254c8715e2cb771cd232f67787e8a6d0dc4e7a8adc81578472d8fd2a"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:10.861Z",
-          "completedAt": "2026-07-22T09:01:13.069Z",
-          "latencyMs": 2208,
+          "startedAt": "2026-07-22T09:24:02.422Z",
+          "completedAt": "2026-07-22T09:24:04.218Z",
+          "latencyMs": 1796,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -607,7 +607,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0118-92d1c94a:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0118-92d1c94a:talking-head-cleanup:baseline",
         "split": "adversarial",
         "classification": "review_required",
@@ -618,9 +618,9 @@
           "artifact:sha256:628c0b2cd4918f3c81d7c958f568f5acf228cde9e57b11d1f32d9a3b928143d9"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:13.083Z",
-          "completedAt": "2026-07-22T09:01:16.033Z",
-          "latencyMs": 2951,
+          "startedAt": "2026-07-22T09:24:04.218Z",
+          "completedAt": "2026-07-22T09:24:06.464Z",
+          "latencyMs": 2246,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -718,7 +718,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0119-ec4d1409:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0119-ec4d1409:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -729,9 +729,9 @@
           "artifact:sha256:2fa50d2a5e5868ac499770dd8df16cc40d2d5f077e31d32451c7eb7a41826f3f"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:16.060Z",
-          "completedAt": "2026-07-22T09:01:18.455Z",
-          "latencyMs": 2395,
+          "startedAt": "2026-07-22T09:24:06.465Z",
+          "completedAt": "2026-07-22T09:24:08.215Z",
+          "latencyMs": 1750,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -829,7 +829,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0120-e4d279ac:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0120-e4d279ac:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -840,9 +840,9 @@
           "artifact:sha256:c95488c1a9ad664c6b0615a0668de83f93a16a44ce3b9a729c3a448213c0feec"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:18.456Z",
-          "completedAt": "2026-07-22T09:01:20.964Z",
-          "latencyMs": 2508,
+          "startedAt": "2026-07-22T09:24:08.228Z",
+          "completedAt": "2026-07-22T09:24:10.562Z",
+          "latencyMs": 2334,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -940,7 +940,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0122-bbe1e98d:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0122-bbe1e98d:talking-head-cleanup:baseline",
         "split": "adversarial",
         "classification": "review_required",
@@ -951,9 +951,9 @@
           "artifact:sha256:88e0e796544037e3b1aa2b1abd223f83deb246070ef1325183939ee1da545a01"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:20.965Z",
-          "completedAt": "2026-07-22T09:01:23.939Z",
-          "latencyMs": 2974,
+          "startedAt": "2026-07-22T09:24:10.562Z",
+          "completedAt": "2026-07-22T09:24:12.655Z",
+          "latencyMs": 2093,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -1051,7 +1051,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0123-407659c2:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0123-407659c2:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -1062,9 +1062,9 @@
           "artifact:sha256:1c649ef56966f73eef323997f1850ce03bf2b0d9c7fabbcb11813821ce2ce916"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:23.953Z",
-          "completedAt": "2026-07-22T09:01:26.947Z",
-          "latencyMs": 2994,
+          "startedAt": "2026-07-22T09:24:12.657Z",
+          "completedAt": "2026-07-22T09:24:15.242Z",
+          "latencyMs": 2585,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -1162,7 +1162,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0124-143f5a7e:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0124-143f5a7e:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -1173,9 +1173,9 @@
           "artifact:sha256:7e1b19677f1cce7a90e83631e59acb844c3c6864abced175227cad76c1c43b19"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:26.948Z",
-          "completedAt": "2026-07-22T09:01:29.603Z",
-          "latencyMs": 2655,
+          "startedAt": "2026-07-22T09:24:15.243Z",
+          "completedAt": "2026-07-22T09:24:17.331Z",
+          "latencyMs": 2087,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -1273,7 +1273,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0126-d3b796bb:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0126-d3b796bb:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -1284,9 +1284,9 @@
           "artifact:sha256:90031d747a2ccf6a9d61a56d9a26f1acdf42652901d4685b31ad2ebe7dd67653"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:29.604Z",
-          "completedAt": "2026-07-22T09:01:32.101Z",
-          "latencyMs": 2497,
+          "startedAt": "2026-07-22T09:24:17.332Z",
+          "completedAt": "2026-07-22T09:24:19.246Z",
+          "latencyMs": 1915,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -1384,7 +1384,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0127-70dfca62:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0127-70dfca62:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -1395,9 +1395,9 @@
           "artifact:sha256:5e67dd24646a2b7a843cb4f73319d51a033f77e6a9c167400c2d320749d84355"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:32.105Z",
-          "completedAt": "2026-07-22T09:01:34.640Z",
-          "latencyMs": 2535,
+          "startedAt": "2026-07-22T09:24:19.247Z",
+          "completedAt": "2026-07-22T09:24:21.462Z",
+          "latencyMs": 2215,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -1495,7 +1495,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0128-98086d70:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0128-98086d70:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -1506,9 +1506,9 @@
           "artifact:sha256:51b7f0790e4a86429cb40ce05ede65fc1732dd70c85bb0fe8cbb69f3f5e3c70c"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:34.640Z",
-          "completedAt": "2026-07-22T09:01:37.664Z",
-          "latencyMs": 3023,
+          "startedAt": "2026-07-22T09:24:21.466Z",
+          "completedAt": "2026-07-22T09:24:23.863Z",
+          "latencyMs": 2397,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -1606,7 +1606,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0129-53403be3:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0129-53403be3:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -1617,9 +1617,9 @@
           "artifact:sha256:60e88f16d3442e05cbaf49027fec5f88d48de412590c895e049be5c05e9e59f8"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:37.664Z",
-          "completedAt": "2026-07-22T09:01:40.487Z",
-          "latencyMs": 2823,
+          "startedAt": "2026-07-22T09:24:23.864Z",
+          "completedAt": "2026-07-22T09:24:26.204Z",
+          "latencyMs": 2340,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -1717,7 +1717,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0130-bce0c55b:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0130-bce0c55b:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -1728,9 +1728,9 @@
           "artifact:sha256:2e329018080f1491a52548f6d497c01364088e8020a498d1bbf8e7bc097c2a27"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:40.488Z",
-          "completedAt": "2026-07-22T09:01:43.406Z",
-          "latencyMs": 2917,
+          "startedAt": "2026-07-22T09:24:26.205Z",
+          "completedAt": "2026-07-22T09:24:28.659Z",
+          "latencyMs": 2454,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -1828,7 +1828,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0131-4b5c0241:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0131-4b5c0241:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -1839,9 +1839,9 @@
           "artifact:sha256:1282a62112ddecfb2409b4fe6dae9696bbe84474f074cdbd53892ffca6a7ea1f"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:43.407Z",
-          "completedAt": "2026-07-22T09:01:45.626Z",
-          "latencyMs": 2220,
+          "startedAt": "2026-07-22T09:24:28.672Z",
+          "completedAt": "2026-07-22T09:24:30.688Z",
+          "latencyMs": 2016,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -1939,7 +1939,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0132-40b04ffb:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0132-40b04ffb:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -1950,9 +1950,9 @@
           "artifact:sha256:4b24855c956b84de23ec0287a2ef97919a09d8a2af0c6fdbdc1e06eee75e6591"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:45.631Z",
-          "completedAt": "2026-07-22T09:01:47.583Z",
-          "latencyMs": 1952,
+          "startedAt": "2026-07-22T09:24:30.689Z",
+          "completedAt": "2026-07-22T09:24:32.360Z",
+          "latencyMs": 1671,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -2050,7 +2050,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0134-b782aa46:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0134-b782aa46:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -2061,9 +2061,9 @@
           "artifact:sha256:401f3187e0c378517c0b28cc1bf8b6eb2d89ef5222ef29e92b456d06f75f999e"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:47.584Z",
-          "completedAt": "2026-07-22T09:01:50.220Z",
-          "latencyMs": 2635,
+          "startedAt": "2026-07-22T09:24:32.380Z",
+          "completedAt": "2026-07-22T09:24:34.876Z",
+          "latencyMs": 2497,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -2161,7 +2161,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0135-5eebc55c:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0135-5eebc55c:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -2172,9 +2172,9 @@
           "artifact:sha256:5e2a3625737e4b467c7eb57ac6664d65ad3263f2a967be816936d50dfbe9ec79"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:50.220Z",
-          "completedAt": "2026-07-22T09:01:52.745Z",
-          "latencyMs": 2524,
+          "startedAt": "2026-07-22T09:24:34.877Z",
+          "completedAt": "2026-07-22T09:24:37.345Z",
+          "latencyMs": 2468,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -2272,7 +2272,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0136-2eef0cc5:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0136-2eef0cc5:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -2283,9 +2283,9 @@
           "artifact:sha256:4c54dab2b45c36f85cc3fd89bb5aeac074e3d4f18d25b2d891dae2c4dd139f16"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:52.746Z",
-          "completedAt": "2026-07-22T09:01:55.288Z",
-          "latencyMs": 2542,
+          "startedAt": "2026-07-22T09:24:37.346Z",
+          "completedAt": "2026-07-22T09:24:39.451Z",
+          "latencyMs": 2105,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -2383,7 +2383,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0141-bada7e4e:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0141-bada7e4e:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -2394,9 +2394,9 @@
           "artifact:sha256:09a318e9a312f8aed0a6a7fa4a4c4527ddcb27e03f9fae59f487cb157991b0ef"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:55.289Z",
-          "completedAt": "2026-07-22T09:01:57.160Z",
-          "latencyMs": 1871,
+          "startedAt": "2026-07-22T09:24:39.454Z",
+          "completedAt": "2026-07-22T09:24:40.968Z",
+          "latencyMs": 1514,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -2494,7 +2494,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0142-0adf6e67:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0142-0adf6e67:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -2505,9 +2505,9 @@
           "artifact:sha256:7f10044c61da3fb99964dd863b39c13672ff6d50ea09f09d7ea51a42dbfbdc4e"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:57.161Z",
-          "completedAt": "2026-07-22T09:01:59.655Z",
-          "latencyMs": 2494,
+          "startedAt": "2026-07-22T09:24:40.969Z",
+          "completedAt": "2026-07-22T09:24:43.270Z",
+          "latencyMs": 2301,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -2605,7 +2605,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0143-5b893041:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0143-5b893041:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -2616,9 +2616,9 @@
           "artifact:sha256:faab4a03592bf6e33270a7268a7e711bb35e4f55bc6c8435d8a87b9175f9a4dd"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:01:59.659Z",
-          "completedAt": "2026-07-22T09:02:01.460Z",
-          "latencyMs": 1801,
+          "startedAt": "2026-07-22T09:24:43.271Z",
+          "completedAt": "2026-07-22T09:24:44.902Z",
+          "latencyMs": 1631,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -2716,7 +2716,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0144-a544e90f:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0144-a544e90f:talking-head-cleanup:baseline",
         "split": "adversarial",
         "classification": "review_required",
@@ -2727,9 +2727,9 @@
           "artifact:sha256:0695ce47e401337a145ecb4624c6d0200906cff0e827e4be9b1ea0a859bae625"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:01.461Z",
-          "completedAt": "2026-07-22T09:02:04.083Z",
-          "latencyMs": 2622,
+          "startedAt": "2026-07-22T09:24:44.902Z",
+          "completedAt": "2026-07-22T09:24:46.794Z",
+          "latencyMs": 1891,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -2827,7 +2827,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0147-272153cd:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0147-272153cd:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -2838,9 +2838,9 @@
           "artifact:sha256:d073585989c347b906789d25ed517dca4dbacd87a74221a70271f61b8d467c60"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:04.084Z",
-          "completedAt": "2026-07-22T09:02:07.219Z",
-          "latencyMs": 3135,
+          "startedAt": "2026-07-22T09:24:46.794Z",
+          "completedAt": "2026-07-22T09:24:49.154Z",
+          "latencyMs": 2359,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -2938,7 +2938,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0148-fb6a1d8f:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0148-fb6a1d8f:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -2949,9 +2949,9 @@
           "artifact:sha256:673eeb132619e40536d76b4bc8d9edfda06f046fa9deb552c904abd90b9f2b8d"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:07.229Z",
-          "completedAt": "2026-07-22T09:02:10.081Z",
-          "latencyMs": 2853,
+          "startedAt": "2026-07-22T09:24:49.155Z",
+          "completedAt": "2026-07-22T09:24:51.533Z",
+          "latencyMs": 2378,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -3049,7 +3049,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0149-e6c2183b:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0149-e6c2183b:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -3060,9 +3060,9 @@
           "artifact:sha256:bb482da84309740bdd38e8c8ef04783cf7117479f6248f9cb44452cd74fdc60f"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:10.082Z",
-          "completedAt": "2026-07-22T09:02:12.708Z",
-          "latencyMs": 2626,
+          "startedAt": "2026-07-22T09:24:51.534Z",
+          "completedAt": "2026-07-22T09:24:53.873Z",
+          "latencyMs": 2339,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -3160,7 +3160,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0150-29b92102:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0150-29b92102:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -3171,9 +3171,9 @@
           "artifact:sha256:1b0602b73e2164ef8081df0e75df729503472fb9fdaeca9c8c352814b3fe8c27"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:12.709Z",
-          "completedAt": "2026-07-22T09:02:14.719Z",
-          "latencyMs": 2010,
+          "startedAt": "2026-07-22T09:24:53.873Z",
+          "completedAt": "2026-07-22T09:24:55.609Z",
+          "latencyMs": 1736,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -3271,7 +3271,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0151-12cf225b:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0151-12cf225b:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -3282,9 +3282,9 @@
           "artifact:sha256:6c5895e75a064bb0f5da05aeaa8e83cb5a30a47d8fafba34d6ca70956e10f327"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:14.722Z",
-          "completedAt": "2026-07-22T09:02:17.683Z",
-          "latencyMs": 2962,
+          "startedAt": "2026-07-22T09:24:55.610Z",
+          "completedAt": "2026-07-22T09:24:57.882Z",
+          "latencyMs": 2272,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -3382,7 +3382,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0152-0f4e5340:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0152-0f4e5340:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -3393,9 +3393,9 @@
           "artifact:sha256:d468b6e567752d8c8194eb61abd117bad1fefe649c256ec8efb5ee37ccbbdbb0"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:17.684Z",
-          "completedAt": "2026-07-22T09:02:19.622Z",
-          "latencyMs": 1938,
+          "startedAt": "2026-07-22T09:24:57.883Z",
+          "completedAt": "2026-07-22T09:24:59.736Z",
+          "latencyMs": 1853,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -3493,7 +3493,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0153-5e1af193:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0153-5e1af193:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -3504,9 +3504,9 @@
           "artifact:sha256:1a21b5b2d5b1a81cb3fe6fd71920bf6f0a892244ed442043a10c3ee1133e06a5"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:19.623Z",
-          "completedAt": "2026-07-22T09:02:20.940Z",
-          "latencyMs": 1317,
+          "startedAt": "2026-07-22T09:24:59.736Z",
+          "completedAt": "2026-07-22T09:25:00.797Z",
+          "latencyMs": 1061,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -3604,7 +3604,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0154-71d0020d:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0154-71d0020d:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -3615,9 +3615,9 @@
           "artifact:sha256:601d5b81f7150b17850a0201bcaff697251dad885c30ac628d69f76d335cd539"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:20.941Z",
-          "completedAt": "2026-07-22T09:02:23.330Z",
-          "latencyMs": 2389,
+          "startedAt": "2026-07-22T09:25:00.798Z",
+          "completedAt": "2026-07-22T09:25:02.969Z",
+          "latencyMs": 2171,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -3715,7 +3715,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0155-d2dbb814:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0155-d2dbb814:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -3726,9 +3726,9 @@
           "artifact:sha256:847f58cddb0e2cda8a54ce57010f59510eb641543b4044ac5466fe803cd279c1"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:23.331Z",
-          "completedAt": "2026-07-22T09:02:25.308Z",
-          "latencyMs": 1977,
+          "startedAt": "2026-07-22T09:25:02.970Z",
+          "completedAt": "2026-07-22T09:25:04.526Z",
+          "latencyMs": 1557,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -3826,7 +3826,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0156-64941a80:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0156-64941a80:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -3837,9 +3837,9 @@
           "artifact:sha256:4678c2343f7687f5cdfc07af4d0bf220fba446f5c6ebb900afdf56706b820e81"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:25.320Z",
-          "completedAt": "2026-07-22T09:02:27.122Z",
-          "latencyMs": 1802,
+          "startedAt": "2026-07-22T09:25:04.527Z",
+          "completedAt": "2026-07-22T09:25:06.237Z",
+          "latencyMs": 1709,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -3937,7 +3937,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0157-e2a1de2b:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0157-e2a1de2b:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -3948,9 +3948,9 @@
           "artifact:sha256:c322bf64a97aff2aecb39b0a71a32222917ea48abfc774d29eee7d37501f76d7"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:27.123Z",
-          "completedAt": "2026-07-22T09:02:28.980Z",
-          "latencyMs": 1857,
+          "startedAt": "2026-07-22T09:25:06.237Z",
+          "completedAt": "2026-07-22T09:25:08.153Z",
+          "latencyMs": 1916,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -4048,7 +4048,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0159-f6261801:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0159-f6261801:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -4059,9 +4059,9 @@
           "artifact:sha256:8807210e04c921bcb1c84b2c38afc24e6e87b3b8700990bcd5633c9b892ce2c7"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:28.981Z",
-          "completedAt": "2026-07-22T09:02:31.180Z",
-          "latencyMs": 2199,
+          "startedAt": "2026-07-22T09:25:08.154Z",
+          "completedAt": "2026-07-22T09:25:10.160Z",
+          "latencyMs": 2006,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -4159,7 +4159,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0160-98e46a42:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0160-98e46a42:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -4170,9 +4170,9 @@
           "artifact:sha256:5dd52496db975eef5bbd93d03ab1b4d95c89d6cdf8ce67c4a60c8fb1b4cd821e"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:31.181Z",
-          "completedAt": "2026-07-22T09:02:32.299Z",
-          "latencyMs": 1118,
+          "startedAt": "2026-07-22T09:25:10.160Z",
+          "completedAt": "2026-07-22T09:25:11.265Z",
+          "latencyMs": 1105,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -4270,7 +4270,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0162-8d8c0062:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0162-8d8c0062:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -4281,9 +4281,9 @@
           "artifact:sha256:74541741210ac7f9d8510151aa972d69639b86b75035ce6f83c0a269113c5a5e"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:32.302Z",
-          "completedAt": "2026-07-22T09:02:34.947Z",
-          "latencyMs": 2646,
+          "startedAt": "2026-07-22T09:25:11.266Z",
+          "completedAt": "2026-07-22T09:25:13.729Z",
+          "latencyMs": 2463,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -4381,7 +4381,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0163-f852fd41:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0163-f852fd41:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -4392,9 +4392,9 @@
           "artifact:sha256:210872e1fcc1824db0d69c7694836c0060507b695325647ea6540041c6cfa6c4"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:34.948Z",
-          "completedAt": "2026-07-22T09:02:36.190Z",
-          "latencyMs": 1242,
+          "startedAt": "2026-07-22T09:25:13.729Z",
+          "completedAt": "2026-07-22T09:25:15.404Z",
+          "latencyMs": 1675,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -4492,7 +4492,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0166-4dda45e3:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0166-4dda45e3:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -4503,9 +4503,9 @@
           "artifact:sha256:40ce49a19570c2f2e30130aec2de70ce6b10f7e66a7f5ab69bac590dcda00237"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:36.191Z",
-          "completedAt": "2026-07-22T09:02:38.382Z",
-          "latencyMs": 2191,
+          "startedAt": "2026-07-22T09:25:15.405Z",
+          "completedAt": "2026-07-22T09:25:17.637Z",
+          "latencyMs": 2232,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -4603,7 +4603,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0167-3105c67c:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0167-3105c67c:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -4614,9 +4614,9 @@
           "artifact:sha256:0c285045bdaf9357d2d46a4dc2605d0a1ba21c11b2fb43f137efda4ee347335d"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:38.383Z",
-          "completedAt": "2026-07-22T09:02:40.387Z",
-          "latencyMs": 2004,
+          "startedAt": "2026-07-22T09:25:17.638Z",
+          "completedAt": "2026-07-22T09:25:19.421Z",
+          "latencyMs": 1783,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -4714,7 +4714,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0168-03d42d3f:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0168-03d42d3f:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -4725,9 +4725,9 @@
           "artifact:sha256:259de787cecd75a01d6e18a6d84e3e03a52f76ba17ce3b04d0a08cb89fee83fd"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:40.387Z",
-          "completedAt": "2026-07-22T09:02:42.905Z",
-          "latencyMs": 2517,
+          "startedAt": "2026-07-22T09:25:19.421Z",
+          "completedAt": "2026-07-22T09:25:21.699Z",
+          "latencyMs": 2278,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -4825,7 +4825,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0171-06489530:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0171-06489530:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -4836,9 +4836,9 @@
           "artifact:sha256:17e5db78e2d6c961a7131cb4ea1ade44ae22a926b676f8cfa843fc56b33798e2"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:42.905Z",
-          "completedAt": "2026-07-22T09:02:44.664Z",
-          "latencyMs": 1759,
+          "startedAt": "2026-07-22T09:25:21.700Z",
+          "completedAt": "2026-07-22T09:25:23.364Z",
+          "latencyMs": 1664,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -4936,7 +4936,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0172-cd8b4d52:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0172-cd8b4d52:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -4947,9 +4947,9 @@
           "artifact:sha256:c74055a01dcc5af87e67fdff1363c78dde4624dc6afe2b2ef216d10b9582e29e"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:44.673Z",
-          "completedAt": "2026-07-22T09:02:46.683Z",
-          "latencyMs": 2009,
+          "startedAt": "2026-07-22T09:25:23.364Z",
+          "completedAt": "2026-07-22T09:25:25.355Z",
+          "latencyMs": 1990,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -5047,7 +5047,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0173-34cba741:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0173-34cba741:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -5058,9 +5058,9 @@
           "artifact:sha256:468e5fb16c9c98f4a46a21e3f45d85b6d4d2795c7bc6ed9630b62eceaa8e67e1"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:46.683Z",
-          "completedAt": "2026-07-22T09:02:48.493Z",
-          "latencyMs": 1810,
+          "startedAt": "2026-07-22T09:25:25.355Z",
+          "completedAt": "2026-07-22T09:25:27.099Z",
+          "latencyMs": 1744,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -5158,7 +5158,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0175-abe64cce:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0175-abe64cce:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -5169,9 +5169,9 @@
           "artifact:sha256:12fe9f9962376b25b1c42cd10fddc9a127c9874762b8fb45206fafd50fb29770"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:48.494Z",
-          "completedAt": "2026-07-22T09:02:51.209Z",
-          "latencyMs": 2716,
+          "startedAt": "2026-07-22T09:25:27.100Z",
+          "completedAt": "2026-07-22T09:25:29.533Z",
+          "latencyMs": 2434,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -5269,7 +5269,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0177-bf093757:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0177-bf093757:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -5280,9 +5280,9 @@
           "artifact:sha256:cb68cb0f8e1f791f799a38707e7acb1df534dc127a045fd82244874b08071fc5"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:51.221Z",
-          "completedAt": "2026-07-22T09:02:53.754Z",
-          "latencyMs": 2533,
+          "startedAt": "2026-07-22T09:25:29.534Z",
+          "completedAt": "2026-07-22T09:25:31.999Z",
+          "latencyMs": 2465,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -5380,7 +5380,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0178-373a952c:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0178-373a952c:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -5391,9 +5391,9 @@
           "artifact:sha256:5d68d793fc60884ef152646d968b0bba9a83078d3a1bd5bcdd23037bee8c1f10"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:53.755Z",
-          "completedAt": "2026-07-22T09:02:55.311Z",
-          "latencyMs": 1556,
+          "startedAt": "2026-07-22T09:25:31.999Z",
+          "completedAt": "2026-07-22T09:25:33.437Z",
+          "latencyMs": 1438,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -5491,7 +5491,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0216-91319de8:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0216-91319de8:talking-head-cleanup:baseline",
         "split": "adversarial",
         "classification": "review_required",
@@ -5502,9 +5502,9 @@
           "artifact:sha256:07dc1ede5a1603e2b1af14a949ab4a1c9768155912da52d1608f1c72873812ea"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:55.316Z",
-          "completedAt": "2026-07-22T09:02:58.022Z",
-          "latencyMs": 2706,
+          "startedAt": "2026-07-22T09:25:33.441Z",
+          "completedAt": "2026-07-22T09:25:35.787Z",
+          "latencyMs": 2346,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -5602,7 +5602,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0220-32ac7bcd:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0220-32ac7bcd:talking-head-cleanup:baseline",
         "split": "adversarial",
         "classification": "review_required",
@@ -5613,9 +5613,9 @@
           "artifact:sha256:fba37f45f2d9056bec3f8308acd6d2a03c843867daa3f986ddc71fb1dd652d49"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:02:58.026Z",
-          "completedAt": "2026-07-22T09:03:00.522Z",
-          "latencyMs": 2496,
+          "startedAt": "2026-07-22T09:25:35.788Z",
+          "completedAt": "2026-07-22T09:25:38.468Z",
+          "latencyMs": 2680,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -5713,7 +5713,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0222-00648352:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0222-00648352:talking-head-cleanup:baseline",
         "split": "adversarial",
         "classification": "review_required",
@@ -5724,9 +5724,9 @@
           "artifact:sha256:3f708486a32f0166a396bec716746c89633ff6035ee13a38820052116235a988"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:00.523Z",
-          "completedAt": "2026-07-22T09:03:01.682Z",
-          "latencyMs": 1159,
+          "startedAt": "2026-07-22T09:25:38.469Z",
+          "completedAt": "2026-07-22T09:25:39.659Z",
+          "latencyMs": 1191,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -5826,7 +5826,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0223-d09a1e6a:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0223-d09a1e6a:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -5837,9 +5837,9 @@
           "artifact:sha256:66f094f7fc14ae7db63fc37e6823581e48d632672392347c5349f22a3bf5bd80"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:01.683Z",
-          "completedAt": "2026-07-22T09:03:03.764Z",
-          "latencyMs": 2081,
+          "startedAt": "2026-07-22T09:25:39.660Z",
+          "completedAt": "2026-07-22T09:25:41.719Z",
+          "latencyMs": 2059,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -5937,7 +5937,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0226-1f941345:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0226-1f941345:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -5948,9 +5948,9 @@
           "artifact:sha256:9d50a049c49b5c67a58da306af2887ec7a731e4f25bfd0eb04eab4bc9c1b088d"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:03.765Z",
-          "completedAt": "2026-07-22T09:03:06.190Z",
-          "latencyMs": 2425,
+          "startedAt": "2026-07-22T09:25:41.720Z",
+          "completedAt": "2026-07-22T09:25:44.126Z",
+          "latencyMs": 2407,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -6048,7 +6048,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0227-583f3179:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0227-583f3179:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -6059,9 +6059,9 @@
           "artifact:sha256:f6dd9a8852cc3885bb57724bc3c00388e9f48db9e02a50f75faeef42fd3894f4"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:06.193Z",
-          "completedAt": "2026-07-22T09:03:08.009Z",
-          "latencyMs": 1816,
+          "startedAt": "2026-07-22T09:25:44.127Z",
+          "completedAt": "2026-07-22T09:25:45.889Z",
+          "latencyMs": 1762,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -6159,7 +6159,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0228-06500f08:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0228-06500f08:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -6170,9 +6170,9 @@
           "artifact:sha256:946fd03ab04c8ed436c1114507de2f0fe92f47c824586ffef5b2bafed06aebac"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:08.010Z",
-          "completedAt": "2026-07-22T09:03:09.660Z",
-          "latencyMs": 1650,
+          "startedAt": "2026-07-22T09:25:45.890Z",
+          "completedAt": "2026-07-22T09:25:47.943Z",
+          "latencyMs": 2053,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -6270,7 +6270,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0229-5829859e:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0229-5829859e:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -6281,9 +6281,9 @@
           "artifact:sha256:ebce9349e8f376d3b1c89ee3ec010a73ab1bd2e0decddae37ad5a4aea5b9180c"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:09.660Z",
-          "completedAt": "2026-07-22T09:03:12.465Z",
-          "latencyMs": 2805,
+          "startedAt": "2026-07-22T09:25:47.945Z",
+          "completedAt": "2026-07-22T09:25:51.185Z",
+          "latencyMs": 3240,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -6381,7 +6381,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0230-dac6c67e:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0230-dac6c67e:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -6392,9 +6392,9 @@
           "artifact:sha256:7e8c300cf8f874a24e860120a74b8548a828b573d359f9c7b42527b3e2612265"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:12.475Z",
-          "completedAt": "2026-07-22T09:03:14.497Z",
-          "latencyMs": 2021,
+          "startedAt": "2026-07-22T09:25:51.186Z",
+          "completedAt": "2026-07-22T09:25:53.235Z",
+          "latencyMs": 2049,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -6492,7 +6492,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0231-124460bc:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0231-124460bc:talking-head-cleanup:baseline",
         "split": "adversarial",
         "classification": "review_required",
@@ -6503,9 +6503,9 @@
           "artifact:sha256:e8919933b8d1d1ec20055600fb73c4654bf6ff39ba68f1e39601841d212178d2"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:14.498Z",
-          "completedAt": "2026-07-22T09:03:16.361Z",
-          "latencyMs": 1863,
+          "startedAt": "2026-07-22T09:25:53.236Z",
+          "completedAt": "2026-07-22T09:25:54.941Z",
+          "latencyMs": 1705,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -6603,7 +6603,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0232-07ff9cc1:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0232-07ff9cc1:talking-head-cleanup:baseline",
         "split": "adversarial",
         "classification": "review_required",
@@ -6614,9 +6614,9 @@
           "artifact:sha256:774de7feb55031504df43e088e3a97eeb0bc6ca8334c1522d8185c43d2169368"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:16.363Z",
-          "completedAt": "2026-07-22T09:03:18.463Z",
-          "latencyMs": 2101,
+          "startedAt": "2026-07-22T09:25:54.942Z",
+          "completedAt": "2026-07-22T09:25:56.983Z",
+          "latencyMs": 2041,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -6714,7 +6714,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0233-494463bf:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0233-494463bf:talking-head-cleanup:baseline",
         "split": "adversarial",
         "classification": "review_required",
@@ -6725,9 +6725,9 @@
           "artifact:sha256:30a796d98eb763abe4bad6729e0130c1a03b84341afb65eb1ccd58084d1d4630"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:18.464Z",
-          "completedAt": "2026-07-22T09:03:20.225Z",
-          "latencyMs": 1760,
+          "startedAt": "2026-07-22T09:25:56.984Z",
+          "completedAt": "2026-07-22T09:25:58.616Z",
+          "latencyMs": 1632,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -6825,7 +6825,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0234-c03a62f8:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0234-c03a62f8:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -6836,9 +6836,9 @@
           "artifact:sha256:7faf7d575b54c1791f409085311c61e94c767a000496ea596bf9c2c9f1d3bb0e"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:20.229Z",
-          "completedAt": "2026-07-22T09:03:22.071Z",
-          "latencyMs": 1842,
+          "startedAt": "2026-07-22T09:25:58.619Z",
+          "completedAt": "2026-07-22T09:26:00.124Z",
+          "latencyMs": 1505,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -6938,7 +6938,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0235-75d6a54e:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0235-75d6a54e:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -6949,9 +6949,9 @@
           "artifact:sha256:d8ced81b392a4b0992850f7af9e71c47b75fd0adffad7a07869a6f53a10142b0"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:22.072Z",
-          "completedAt": "2026-07-22T09:03:24.878Z",
-          "latencyMs": 2806,
+          "startedAt": "2026-07-22T09:26:00.125Z",
+          "completedAt": "2026-07-22T09:26:02.465Z",
+          "latencyMs": 2340,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -7049,7 +7049,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0238-f9d06420:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0238-f9d06420:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -7060,9 +7060,9 @@
           "artifact:sha256:bb2aa4a13d5dba6e5573087ee11061ea59cb8d328dcb5a22031612a6cfd51162"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:24.879Z",
-          "completedAt": "2026-07-22T09:03:27.145Z",
-          "latencyMs": 2266,
+          "startedAt": "2026-07-22T09:26:02.466Z",
+          "completedAt": "2026-07-22T09:26:04.462Z",
+          "latencyMs": 1997,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -7160,7 +7160,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0241-d5ce9d5c:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0241-d5ce9d5c:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -7171,9 +7171,9 @@
           "artifact:sha256:9b278d30e24a586d19b8ded40d6f40ade3b265bb3d440f99ea38a188cce08e4c"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:27.149Z",
-          "completedAt": "2026-07-22T09:03:29.181Z",
-          "latencyMs": 2032,
+          "startedAt": "2026-07-22T09:26:04.471Z",
+          "completedAt": "2026-07-22T09:26:06.178Z",
+          "latencyMs": 1707,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -7271,7 +7271,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0242-b13136a3:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0242-b13136a3:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -7282,9 +7282,9 @@
           "artifact:sha256:bee3576de4a88b940c9b95155c090fed3e6b9892f592e011fb18322be2b7f85f"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:29.182Z",
-          "completedAt": "2026-07-22T09:03:31.805Z",
-          "latencyMs": 2624,
+          "startedAt": "2026-07-22T09:26:06.178Z",
+          "completedAt": "2026-07-22T09:26:09.029Z",
+          "latencyMs": 2850,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -7382,7 +7382,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0243-964d9bc4:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0243-964d9bc4:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -7393,9 +7393,9 @@
           "artifact:sha256:fb9c11fff3af2ccf43308760831964120ac28e610dc40925fcf0894090c54a64"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:31.809Z",
-          "completedAt": "2026-07-22T09:03:34.381Z",
-          "latencyMs": 2572,
+          "startedAt": "2026-07-22T09:26:09.029Z",
+          "completedAt": "2026-07-22T09:26:12.078Z",
+          "latencyMs": 3049,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -7493,7 +7493,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0245-ef1deafe:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0245-ef1deafe:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -7504,9 +7504,9 @@
           "artifact:sha256:a0b034432f2737a24365304a93550341fd56ec62bc11a2f47c6c7a009ffd5831"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:34.382Z",
-          "completedAt": "2026-07-22T09:03:36.171Z",
-          "latencyMs": 1789,
+          "startedAt": "2026-07-22T09:26:12.079Z",
+          "completedAt": "2026-07-22T09:26:14.197Z",
+          "latencyMs": 2118,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -7604,7 +7604,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0248-f514d898:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0248-f514d898:talking-head-cleanup:baseline",
         "split": "public-test",
         "classification": "review_required",
@@ -7615,9 +7615,9 @@
           "artifact:sha256:8192f7181c8bc607d2e7e7948b1ee8149bb92db7356e423dee301c3a488a33f9"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:36.171Z",
-          "completedAt": "2026-07-22T09:03:38.643Z",
-          "latencyMs": 2472,
+          "startedAt": "2026-07-22T09:26:14.198Z",
+          "completedAt": "2026-07-22T09:26:16.574Z",
+          "latencyMs": 2376,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -7715,7 +7715,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0249-c928d731:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0249-c928d731:talking-head-cleanup:baseline",
         "split": "adversarial",
         "classification": "review_required",
@@ -7726,9 +7726,9 @@
           "artifact:sha256:60cb9d7cf0a1e319197d2dfaf2d214b4a565901afedf2537882094668a3ab646"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:38.656Z",
-          "completedAt": "2026-07-22T09:03:40.507Z",
-          "latencyMs": 1851,
+          "startedAt": "2026-07-22T09:26:16.575Z",
+          "completedAt": "2026-07-22T09:26:18.228Z",
+          "latencyMs": 1653,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",
@@ -7826,7 +7826,7 @@
       "result": {
         "schemaVersion": "nodevideo.creatorbench-result/v1",
         "id": "result:instance:cb-0250-f50589b7:talking-head-cleanup:baseline:talking-head-cleanup-v1",
-        "benchmarkVersion": "creatorbench-v1.2",
+        "benchmarkVersion": "creatorbench-v1.3",
         "instanceId": "instance:cb-0250-f50589b7:talking-head-cleanup:baseline",
         "split": "development",
         "classification": "review_required",
@@ -7837,9 +7837,9 @@
           "artifact:sha256:fc9bc1e7f4d3fcc1621681b32260c276088e44148283de9c52a3b809b34ed087"
         ],
         "execution": {
-          "startedAt": "2026-07-22T09:03:40.508Z",
-          "completedAt": "2026-07-22T09:03:42.293Z",
-          "latencyMs": 1786,
+          "startedAt": "2026-07-22T09:26:18.229Z",
+          "completedAt": "2026-07-22T09:26:19.890Z",
+          "latencyMs": 1661,
           "costUsd": 0,
           "executorVersions": [
             "executor.ffmpeg-silencedetect",

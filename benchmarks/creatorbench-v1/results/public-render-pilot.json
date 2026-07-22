@@ -1,8 +1,8 @@
 {
   "schemaVersion": "nodevideo.creatorbench-render-pilot/v1",
-  "benchmarkVersion": "creatorbench-v1.2",
-  "generatedAt": "2026-07-22T09:10:33.209Z",
-  "sourceCommitSha": "857bfca7e9adb61dc46a930fe018a3921ae944eb",
+  "benchmarkVersion": "creatorbench-v1.3",
+  "generatedAt": "2026-07-22T09:30:06.408Z",
+  "sourceCommitSha": "2387a33707410eaf7177822983906ed00282461c",
   "scope": {
     "workflow": "smart-reframe",
     "executorVersion": "local-ffmpeg-center-reframe-v1",
@@ -11,22 +11,22 @@
       "public-test",
       "adversarial"
     ],
-    "sourceCount": 97,
-    "outputCount": 97,
-    "artifactCount": 291
+    "sourceCount": 99,
+    "outputCount": 99,
+    "artifactCount": 297
   },
   "metrics": {
     "latencyMs": {
-      "p50": 2209,
-      "p95": 3677
+      "p50": 1881,
+      "p95": 2391
     },
     "costUsd": {
       "total": 0,
       "perOutput": 0
     },
     "exportReopen": {
-      "numerator": 291,
-      "denominator": 291,
+      "numerator": 297,
+      "denominator": 297,
       "rate": 1
     }
   },
@@ -36,6 +36,34 @@
     "No pilot result is counted as usable before human review."
   ],
   "reviewCases": [
+    {
+      "id": "instance:cb-0004-7bfc3a17:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0004-7bfc3a17:smart-reframe:multi-format",
+      "split": "adversarial",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "CC BY 3.0 · Reviewing The Age of Disclosure – Amazon Prime’s New UFO Documentary.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
     {
       "id": "instance:cb-0009-beb98f01:smart-reframe:multi-format",
       "resultId": "result:instance:cb-0009-beb98f01:smart-reframe:multi-format",
@@ -1605,6 +1633,34 @@
       ]
     },
     {
+      "id": "instance:cb-0067-cd4a485c:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0067-cd4a485c:smart-reframe:multi-format",
+      "split": "adversarial",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/b8664036e94feada-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/b8664036e94feada-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/b8664036e94feada-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/b8664036e94feada-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · “Cosmic Echoes” Audio Activation",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
       "id": "instance:cb-0068-020c2a0a:smart-reframe:multi-format",
       "resultId": "result:instance:cb-0068-020c2a0a:smart-reframe:multi-format",
       "split": "development",
@@ -2756,6 +2812,73 @@
   "results": [
     {
       "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:0f7e6f95fa7c934f",
+      "instanceId": "instance:cb-0004-7bfc3a17:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0004-7bfc3a17:smart-reframe:multi-format",
+      "split": "adversarial",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:f7b1f9266e7dee72d750f056bc466281828d6d2ec1d4c97d91cadb5c5b6ed5c7",
+          "sha256": "sha256:f7b1f9266e7dee72d750f056bc466281828d6d2ec1d4c97d91cadb5c5b6ed5c7",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:7093012e4bb4a6738be8b540d014d353221d5462068c3d7c398e6754c3b0d8ad",
+          "sha256": "sha256:7093012e4bb4a6738be8b540d014d353221d5462068c3d7c398e6754c3b0d8ad",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:0e3ba09431740b8856683c2ba40fff0f767c36602bce2c14b538be0c9bf1d0c9",
+          "sha256": "sha256:0e3ba09431740b8856683c2ba40fff0f767c36602bce2c14b538be0c9bf1d0c9",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T09:26:58.392Z",
+      "completedAt": "2026-07-22T09:27:01.254Z",
+      "latencyMs": 2861,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "publicSourceLabel": "CC BY 3.0 · Reviewing The Age of Disclosure – Amazon Prime’s New UFO Documentary.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
       "id": "render-pilot:7f6487e77e241280",
       "instanceId": "instance:cb-0009-beb98f01:smart-reframe:multi-format",
       "resultId": "result:instance:cb-0009-beb98f01:smart-reframe:multi-format",
@@ -2791,9 +2914,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:06:44.404Z",
-      "completedAt": "2026-07-22T09:06:46.677Z",
-      "latencyMs": 2272,
+      "startedAt": "2026-07-22T09:27:01.256Z",
+      "completedAt": "2026-07-22T09:27:03.232Z",
+      "latencyMs": 1976,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -2858,9 +2981,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:06:46.679Z",
-      "completedAt": "2026-07-22T09:06:49.145Z",
-      "latencyMs": 2467,
+      "startedAt": "2026-07-22T09:27:03.232Z",
+      "completedAt": "2026-07-22T09:27:05.078Z",
+      "latencyMs": 1846,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -2925,9 +3048,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:06:49.146Z",
-      "completedAt": "2026-07-22T09:06:51.279Z",
-      "latencyMs": 2134,
+      "startedAt": "2026-07-22T09:27:05.078Z",
+      "completedAt": "2026-07-22T09:27:06.603Z",
+      "latencyMs": 1525,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -2992,9 +3115,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:06:51.279Z",
-      "completedAt": "2026-07-22T09:06:53.064Z",
-      "latencyMs": 1784,
+      "startedAt": "2026-07-22T09:27:06.604Z",
+      "completedAt": "2026-07-22T09:27:08.120Z",
+      "latencyMs": 1516,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3059,9 +3182,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:06:53.064Z",
-      "completedAt": "2026-07-22T09:06:55.196Z",
-      "latencyMs": 2132,
+      "startedAt": "2026-07-22T09:27:08.120Z",
+      "completedAt": "2026-07-22T09:27:10.013Z",
+      "latencyMs": 1893,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3126,9 +3249,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:06:55.196Z",
-      "completedAt": "2026-07-22T09:06:58.372Z",
-      "latencyMs": 3176,
+      "startedAt": "2026-07-22T09:27:10.013Z",
+      "completedAt": "2026-07-22T09:27:11.771Z",
+      "latencyMs": 1758,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3193,9 +3316,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:06:58.372Z",
-      "completedAt": "2026-07-22T09:07:02.832Z",
-      "latencyMs": 4460,
+      "startedAt": "2026-07-22T09:27:11.771Z",
+      "completedAt": "2026-07-22T09:27:14.066Z",
+      "latencyMs": 2295,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3260,9 +3383,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:02.832Z",
-      "completedAt": "2026-07-22T09:07:06.503Z",
-      "latencyMs": 3671,
+      "startedAt": "2026-07-22T09:27:14.066Z",
+      "completedAt": "2026-07-22T09:27:16.458Z",
+      "latencyMs": 2392,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3327,9 +3450,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:06.503Z",
-      "completedAt": "2026-07-22T09:07:09.572Z",
-      "latencyMs": 3070,
+      "startedAt": "2026-07-22T09:27:16.459Z",
+      "completedAt": "2026-07-22T09:27:18.370Z",
+      "latencyMs": 1911,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3394,9 +3517,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:09.573Z",
-      "completedAt": "2026-07-22T09:07:12.174Z",
-      "latencyMs": 2601,
+      "startedAt": "2026-07-22T09:27:18.370Z",
+      "completedAt": "2026-07-22T09:27:19.673Z",
+      "latencyMs": 1303,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3461,9 +3584,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:12.174Z",
-      "completedAt": "2026-07-22T09:07:16.743Z",
-      "latencyMs": 4569,
+      "startedAt": "2026-07-22T09:27:19.673Z",
+      "completedAt": "2026-07-22T09:27:22.064Z",
+      "latencyMs": 2391,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3528,9 +3651,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:16.743Z",
-      "completedAt": "2026-07-22T09:07:18.484Z",
-      "latencyMs": 1741,
+      "startedAt": "2026-07-22T09:27:22.064Z",
+      "completedAt": "2026-07-22T09:27:23.954Z",
+      "latencyMs": 1889,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3595,9 +3718,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:18.484Z",
-      "completedAt": "2026-07-22T09:07:20.332Z",
-      "latencyMs": 1848,
+      "startedAt": "2026-07-22T09:27:23.954Z",
+      "completedAt": "2026-07-22T09:27:25.848Z",
+      "latencyMs": 1894,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3662,9 +3785,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:20.333Z",
-      "completedAt": "2026-07-22T09:07:21.949Z",
-      "latencyMs": 1617,
+      "startedAt": "2026-07-22T09:27:25.848Z",
+      "completedAt": "2026-07-22T09:27:27.529Z",
+      "latencyMs": 1680,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3729,9 +3852,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:21.950Z",
-      "completedAt": "2026-07-22T09:07:23.585Z",
-      "latencyMs": 1635,
+      "startedAt": "2026-07-22T09:27:27.529Z",
+      "completedAt": "2026-07-22T09:27:29.313Z",
+      "latencyMs": 1784,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3796,9 +3919,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:23.585Z",
-      "completedAt": "2026-07-22T09:07:25.332Z",
-      "latencyMs": 1747,
+      "startedAt": "2026-07-22T09:27:29.313Z",
+      "completedAt": "2026-07-22T09:27:31.103Z",
+      "latencyMs": 1790,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3863,9 +3986,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:25.332Z",
-      "completedAt": "2026-07-22T09:07:27.597Z",
-      "latencyMs": 2265,
+      "startedAt": "2026-07-22T09:27:31.103Z",
+      "completedAt": "2026-07-22T09:27:32.902Z",
+      "latencyMs": 1799,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3930,9 +4053,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:27.597Z",
-      "completedAt": "2026-07-22T09:07:30.437Z",
-      "latencyMs": 2840,
+      "startedAt": "2026-07-22T09:27:32.902Z",
+      "completedAt": "2026-07-22T09:27:34.627Z",
+      "latencyMs": 1724,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -3997,9 +4120,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:30.437Z",
-      "completedAt": "2026-07-22T09:07:32.855Z",
-      "latencyMs": 2418,
+      "startedAt": "2026-07-22T09:27:34.627Z",
+      "completedAt": "2026-07-22T09:27:36.203Z",
+      "latencyMs": 1576,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4064,9 +4187,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:32.856Z",
-      "completedAt": "2026-07-22T09:07:34.807Z",
-      "latencyMs": 1951,
+      "startedAt": "2026-07-22T09:27:36.203Z",
+      "completedAt": "2026-07-22T09:27:37.758Z",
+      "latencyMs": 1555,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4131,9 +4254,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:34.807Z",
-      "completedAt": "2026-07-22T09:07:36.346Z",
-      "latencyMs": 1539,
+      "startedAt": "2026-07-22T09:27:37.759Z",
+      "completedAt": "2026-07-22T09:27:39.174Z",
+      "latencyMs": 1416,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4198,9 +4321,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:36.346Z",
-      "completedAt": "2026-07-22T09:07:38.302Z",
-      "latencyMs": 1956,
+      "startedAt": "2026-07-22T09:27:39.174Z",
+      "completedAt": "2026-07-22T09:27:41.001Z",
+      "latencyMs": 1826,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4265,9 +4388,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:38.302Z",
-      "completedAt": "2026-07-22T09:07:40.429Z",
-      "latencyMs": 2127,
+      "startedAt": "2026-07-22T09:27:41.001Z",
+      "completedAt": "2026-07-22T09:27:43.141Z",
+      "latencyMs": 2141,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4332,9 +4455,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:40.429Z",
-      "completedAt": "2026-07-22T09:07:42.364Z",
-      "latencyMs": 1935,
+      "startedAt": "2026-07-22T09:27:43.141Z",
+      "completedAt": "2026-07-22T09:27:45.027Z",
+      "latencyMs": 1886,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4399,9 +4522,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:42.364Z",
-      "completedAt": "2026-07-22T09:07:44.305Z",
-      "latencyMs": 1941,
+      "startedAt": "2026-07-22T09:27:45.028Z",
+      "completedAt": "2026-07-22T09:27:46.853Z",
+      "latencyMs": 1825,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4466,9 +4589,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:44.305Z",
-      "completedAt": "2026-07-22T09:07:45.939Z",
-      "latencyMs": 1633,
+      "startedAt": "2026-07-22T09:27:46.853Z",
+      "completedAt": "2026-07-22T09:27:48.590Z",
+      "latencyMs": 1737,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4533,9 +4656,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:45.939Z",
-      "completedAt": "2026-07-22T09:07:47.630Z",
-      "latencyMs": 1691,
+      "startedAt": "2026-07-22T09:27:48.591Z",
+      "completedAt": "2026-07-22T09:27:50.482Z",
+      "latencyMs": 1891,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4600,9 +4723,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:47.630Z",
-      "completedAt": "2026-07-22T09:07:49.342Z",
-      "latencyMs": 1712,
+      "startedAt": "2026-07-22T09:27:50.482Z",
+      "completedAt": "2026-07-22T09:27:52.706Z",
+      "latencyMs": 2224,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4667,9 +4790,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:49.342Z",
-      "completedAt": "2026-07-22T09:07:51.100Z",
-      "latencyMs": 1758,
+      "startedAt": "2026-07-22T09:27:52.706Z",
+      "completedAt": "2026-07-22T09:27:54.526Z",
+      "latencyMs": 1820,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4734,9 +4857,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:51.101Z",
-      "completedAt": "2026-07-22T09:07:52.786Z",
-      "latencyMs": 1685,
+      "startedAt": "2026-07-22T09:27:54.527Z",
+      "completedAt": "2026-07-22T09:27:56.309Z",
+      "latencyMs": 1782,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4801,9 +4924,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:52.786Z",
-      "completedAt": "2026-07-22T09:07:54.624Z",
-      "latencyMs": 1838,
+      "startedAt": "2026-07-22T09:27:56.309Z",
+      "completedAt": "2026-07-22T09:27:58.082Z",
+      "latencyMs": 1773,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4868,9 +4991,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:54.624Z",
-      "completedAt": "2026-07-22T09:07:56.726Z",
-      "latencyMs": 2101,
+      "startedAt": "2026-07-22T09:27:58.083Z",
+      "completedAt": "2026-07-22T09:28:00.084Z",
+      "latencyMs": 2002,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -4935,9 +5058,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:56.726Z",
-      "completedAt": "2026-07-22T09:07:59.117Z",
-      "latencyMs": 2391,
+      "startedAt": "2026-07-22T09:28:00.084Z",
+      "completedAt": "2026-07-22T09:28:02.119Z",
+      "latencyMs": 2035,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5002,9 +5125,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:07:59.117Z",
-      "completedAt": "2026-07-22T09:08:01.527Z",
-      "latencyMs": 2410,
+      "startedAt": "2026-07-22T09:28:02.119Z",
+      "completedAt": "2026-07-22T09:28:04.191Z",
+      "latencyMs": 2072,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5069,9 +5192,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:01.527Z",
-      "completedAt": "2026-07-22T09:08:03.849Z",
-      "latencyMs": 2322,
+      "startedAt": "2026-07-22T09:28:04.191Z",
+      "completedAt": "2026-07-22T09:28:06.357Z",
+      "latencyMs": 2166,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5136,9 +5259,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:03.850Z",
-      "completedAt": "2026-07-22T09:08:05.958Z",
-      "latencyMs": 2109,
+      "startedAt": "2026-07-22T09:28:06.358Z",
+      "completedAt": "2026-07-22T09:28:08.309Z",
+      "latencyMs": 1952,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5203,9 +5326,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:05.959Z",
-      "completedAt": "2026-07-22T09:08:08.222Z",
-      "latencyMs": 2263,
+      "startedAt": "2026-07-22T09:28:08.310Z",
+      "completedAt": "2026-07-22T09:28:10.113Z",
+      "latencyMs": 1804,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5270,9 +5393,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:08.222Z",
-      "completedAt": "2026-07-22T09:08:09.970Z",
-      "latencyMs": 1748,
+      "startedAt": "2026-07-22T09:28:10.113Z",
+      "completedAt": "2026-07-22T09:28:12.118Z",
+      "latencyMs": 2004,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5337,9 +5460,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:09.970Z",
-      "completedAt": "2026-07-22T09:08:11.719Z",
-      "latencyMs": 1748,
+      "startedAt": "2026-07-22T09:28:12.118Z",
+      "completedAt": "2026-07-22T09:28:14.162Z",
+      "latencyMs": 2044,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5404,9 +5527,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:11.719Z",
-      "completedAt": "2026-07-22T09:08:13.385Z",
-      "latencyMs": 1666,
+      "startedAt": "2026-07-22T09:28:14.162Z",
+      "completedAt": "2026-07-22T09:28:16.085Z",
+      "latencyMs": 1923,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5471,9 +5594,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:13.386Z",
-      "completedAt": "2026-07-22T09:08:16.481Z",
-      "latencyMs": 3095,
+      "startedAt": "2026-07-22T09:28:16.085Z",
+      "completedAt": "2026-07-22T09:28:17.966Z",
+      "latencyMs": 1881,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5538,9 +5661,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:16.481Z",
-      "completedAt": "2026-07-22T09:08:19.317Z",
-      "latencyMs": 2836,
+      "startedAt": "2026-07-22T09:28:17.966Z",
+      "completedAt": "2026-07-22T09:28:19.833Z",
+      "latencyMs": 1867,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5605,9 +5728,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:19.317Z",
-      "completedAt": "2026-07-22T09:08:22.031Z",
-      "latencyMs": 2714,
+      "startedAt": "2026-07-22T09:28:19.833Z",
+      "completedAt": "2026-07-22T09:28:21.565Z",
+      "latencyMs": 1732,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5672,9 +5795,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:22.031Z",
-      "completedAt": "2026-07-22T09:08:24.434Z",
-      "latencyMs": 2402,
+      "startedAt": "2026-07-22T09:28:21.565Z",
+      "completedAt": "2026-07-22T09:28:23.631Z",
+      "latencyMs": 2065,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5739,9 +5862,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:24.434Z",
-      "completedAt": "2026-07-22T09:08:26.615Z",
-      "latencyMs": 2181,
+      "startedAt": "2026-07-22T09:28:23.631Z",
+      "completedAt": "2026-07-22T09:28:25.504Z",
+      "latencyMs": 1873,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5806,9 +5929,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:26.615Z",
-      "completedAt": "2026-07-22T09:08:29.001Z",
-      "latencyMs": 2386,
+      "startedAt": "2026-07-22T09:28:25.504Z",
+      "completedAt": "2026-07-22T09:28:27.612Z",
+      "latencyMs": 2107,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5873,9 +5996,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:29.001Z",
-      "completedAt": "2026-07-22T09:08:31.764Z",
-      "latencyMs": 2763,
+      "startedAt": "2026-07-22T09:28:27.612Z",
+      "completedAt": "2026-07-22T09:28:29.800Z",
+      "latencyMs": 2188,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -5940,9 +6063,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:31.765Z",
-      "completedAt": "2026-07-22T09:08:33.937Z",
-      "latencyMs": 2172,
+      "startedAt": "2026-07-22T09:28:29.800Z",
+      "completedAt": "2026-07-22T09:28:32.016Z",
+      "latencyMs": 2216,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6007,9 +6130,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:33.937Z",
-      "completedAt": "2026-07-22T09:08:35.727Z",
-      "latencyMs": 1790,
+      "startedAt": "2026-07-22T09:28:32.016Z",
+      "completedAt": "2026-07-22T09:28:33.831Z",
+      "latencyMs": 1815,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6074,9 +6197,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:35.727Z",
-      "completedAt": "2026-07-22T09:08:37.474Z",
-      "latencyMs": 1747,
+      "startedAt": "2026-07-22T09:28:33.831Z",
+      "completedAt": "2026-07-22T09:28:35.841Z",
+      "latencyMs": 2010,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6141,9 +6264,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:37.474Z",
-      "completedAt": "2026-07-22T09:08:39.312Z",
-      "latencyMs": 1838,
+      "startedAt": "2026-07-22T09:28:35.841Z",
+      "completedAt": "2026-07-22T09:28:37.655Z",
+      "latencyMs": 1814,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6208,9 +6331,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:39.312Z",
-      "completedAt": "2026-07-22T09:08:41.334Z",
-      "latencyMs": 2021,
+      "startedAt": "2026-07-22T09:28:37.655Z",
+      "completedAt": "2026-07-22T09:28:39.468Z",
+      "latencyMs": 1812,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6275,9 +6398,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:41.334Z",
-      "completedAt": "2026-07-22T09:08:44.024Z",
-      "latencyMs": 2690,
+      "startedAt": "2026-07-22T09:28:39.468Z",
+      "completedAt": "2026-07-22T09:28:41.353Z",
+      "latencyMs": 1886,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6342,9 +6465,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:44.024Z",
-      "completedAt": "2026-07-22T09:08:46.284Z",
-      "latencyMs": 2261,
+      "startedAt": "2026-07-22T09:28:41.354Z",
+      "completedAt": "2026-07-22T09:28:43.436Z",
+      "latencyMs": 2082,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6409,9 +6532,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:46.285Z",
-      "completedAt": "2026-07-22T09:08:49.343Z",
-      "latencyMs": 3059,
+      "startedAt": "2026-07-22T09:28:43.436Z",
+      "completedAt": "2026-07-22T09:28:45.068Z",
+      "latencyMs": 1632,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6476,9 +6599,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:49.343Z",
-      "completedAt": "2026-07-22T09:08:52.966Z",
-      "latencyMs": 3623,
+      "startedAt": "2026-07-22T09:28:45.068Z",
+      "completedAt": "2026-07-22T09:28:46.521Z",
+      "latencyMs": 1453,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6499,6 +6622,73 @@
       ],
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
       "publicSourceLabel": "NASA SVS public domain · STORIE Launch and Install on the Space Station",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-render-pilot-result/v1",
+      "id": "render-pilot:b8664036e94feada",
+      "instanceId": "instance:cb-0067-cd4a485c:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0067-cd4a485c:smart-reframe:multi-format",
+      "split": "adversarial",
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "outputArtifacts": [
+        {
+          "id": "artifact:sha256:8a0ea999f84c38d170e22ba4d36a02f84ca4bdd75acffbe94a0144e99f98c4a6",
+          "sha256": "sha256:8a0ea999f84c38d170e22ba4d36a02f84ca4bdd75acffbe94a0144e99f98c4a6",
+          "aspectRatio": "16:9",
+          "width": 640,
+          "height": 360,
+          "poster": "/media/creatorbench-v1/public/b8664036e94feada-16x9.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:ee508992f3b45330327c8cbce7e5406b8a05214dcf8a0d908f854504fbea6b71",
+          "sha256": "sha256:ee508992f3b45330327c8cbce7e5406b8a05214dcf8a0d908f854504fbea6b71",
+          "aspectRatio": "9:16",
+          "width": 360,
+          "height": 640,
+          "poster": "/media/creatorbench-v1/public/b8664036e94feada-9x16.jpg",
+          "exportDecodesAndReopens": true
+        },
+        {
+          "id": "artifact:sha256:9f0615df89c81f898210a44fbb1db6c35e3bb0654fd7f542dbbae1ea65003ef7",
+          "sha256": "sha256:9f0615df89c81f898210a44fbb1db6c35e3bb0654fd7f542dbbae1ea65003ef7",
+          "aspectRatio": "1:1",
+          "width": 480,
+          "height": 480,
+          "poster": "/media/creatorbench-v1/public/b8664036e94feada-1x1.jpg",
+          "exportDecodesAndReopens": true
+        }
+      ],
+      "startedAt": "2026-07-22T09:28:46.521Z",
+      "completedAt": "2026-07-22T09:28:48.040Z",
+      "latencyMs": 1519,
+      "costUsd": 0,
+      "exportDecodesAndReopens": true,
+      "rightsPassed": true,
+      "privacyPassed": true,
+      "sourcePoster": "/media/creatorbench-v1/public/b8664036e94feada-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/b8664036e94feada-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/b8664036e94feada-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/b8664036e94feada-1x1.jpg"
+        }
+      ],
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "publicSourceLabel": "NASA SVS public domain · “Cosmic Echoes” Audio Activation",
       "route": "local-ffmpeg-center-reframe-v1",
       "machineFindings": [
         "Deterministic center-crop baseline; no subject detector was used.",
@@ -6543,9 +6733,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:52.967Z",
-      "completedAt": "2026-07-22T09:08:56.253Z",
-      "latencyMs": 3287,
+      "startedAt": "2026-07-22T09:28:48.040Z",
+      "completedAt": "2026-07-22T09:28:49.440Z",
+      "latencyMs": 1400,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6610,9 +6800,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:08:56.253Z",
-      "completedAt": "2026-07-22T09:09:00.371Z",
-      "latencyMs": 4118,
+      "startedAt": "2026-07-22T09:28:49.441Z",
+      "completedAt": "2026-07-22T09:28:51.169Z",
+      "latencyMs": 1729,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6677,9 +6867,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:00.371Z",
-      "completedAt": "2026-07-22T09:09:02.899Z",
-      "latencyMs": 2528,
+      "startedAt": "2026-07-22T09:28:51.170Z",
+      "completedAt": "2026-07-22T09:28:52.745Z",
+      "latencyMs": 1576,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6744,9 +6934,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:02.899Z",
-      "completedAt": "2026-07-22T09:09:06.114Z",
-      "latencyMs": 3215,
+      "startedAt": "2026-07-22T09:28:52.745Z",
+      "completedAt": "2026-07-22T09:28:54.213Z",
+      "latencyMs": 1468,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6811,9 +7001,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:06.114Z",
-      "completedAt": "2026-07-22T09:09:09.093Z",
-      "latencyMs": 2979,
+      "startedAt": "2026-07-22T09:28:54.213Z",
+      "completedAt": "2026-07-22T09:28:56.563Z",
+      "latencyMs": 2349,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6878,9 +7068,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:09.093Z",
-      "completedAt": "2026-07-22T09:09:11.722Z",
-      "latencyMs": 2629,
+      "startedAt": "2026-07-22T09:28:56.563Z",
+      "completedAt": "2026-07-22T09:28:58.897Z",
+      "latencyMs": 2335,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -6945,9 +7135,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:11.722Z",
-      "completedAt": "2026-07-22T09:09:14.327Z",
-      "latencyMs": 2605,
+      "startedAt": "2026-07-22T09:28:58.898Z",
+      "completedAt": "2026-07-22T09:29:01.021Z",
+      "latencyMs": 2123,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7012,9 +7202,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:14.327Z",
-      "completedAt": "2026-07-22T09:09:18.004Z",
-      "latencyMs": 3677,
+      "startedAt": "2026-07-22T09:29:01.021Z",
+      "completedAt": "2026-07-22T09:29:02.997Z",
+      "latencyMs": 1976,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7079,9 +7269,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:18.005Z",
-      "completedAt": "2026-07-22T09:09:21.110Z",
-      "latencyMs": 3105,
+      "startedAt": "2026-07-22T09:29:02.998Z",
+      "completedAt": "2026-07-22T09:29:04.695Z",
+      "latencyMs": 1698,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7146,9 +7336,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:21.110Z",
-      "completedAt": "2026-07-22T09:09:23.447Z",
-      "latencyMs": 2337,
+      "startedAt": "2026-07-22T09:29:04.695Z",
+      "completedAt": "2026-07-22T09:29:06.077Z",
+      "latencyMs": 1382,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7213,9 +7403,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:23.447Z",
-      "completedAt": "2026-07-22T09:09:26.472Z",
-      "latencyMs": 3025,
+      "startedAt": "2026-07-22T09:29:06.077Z",
+      "completedAt": "2026-07-22T09:29:08.148Z",
+      "latencyMs": 2071,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7280,9 +7470,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:26.472Z",
-      "completedAt": "2026-07-22T09:09:28.646Z",
-      "latencyMs": 2174,
+      "startedAt": "2026-07-22T09:29:08.148Z",
+      "completedAt": "2026-07-22T09:29:09.735Z",
+      "latencyMs": 1588,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7347,9 +7537,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:28.646Z",
-      "completedAt": "2026-07-22T09:09:31.517Z",
-      "latencyMs": 2871,
+      "startedAt": "2026-07-22T09:29:09.736Z",
+      "completedAt": "2026-07-22T09:29:11.646Z",
+      "latencyMs": 1911,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7414,9 +7604,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:31.517Z",
-      "completedAt": "2026-07-22T09:09:34.052Z",
-      "latencyMs": 2536,
+      "startedAt": "2026-07-22T09:29:11.646Z",
+      "completedAt": "2026-07-22T09:29:13.826Z",
+      "latencyMs": 2179,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7481,9 +7671,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:34.053Z",
-      "completedAt": "2026-07-22T09:09:36.441Z",
-      "latencyMs": 2389,
+      "startedAt": "2026-07-22T09:29:13.826Z",
+      "completedAt": "2026-07-22T09:29:16.598Z",
+      "latencyMs": 2772,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7548,9 +7738,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:36.442Z",
-      "completedAt": "2026-07-22T09:09:38.822Z",
-      "latencyMs": 2380,
+      "startedAt": "2026-07-22T09:29:16.598Z",
+      "completedAt": "2026-07-22T09:29:18.822Z",
+      "latencyMs": 2224,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7615,9 +7805,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:38.822Z",
-      "completedAt": "2026-07-22T09:09:41.087Z",
-      "latencyMs": 2265,
+      "startedAt": "2026-07-22T09:29:18.822Z",
+      "completedAt": "2026-07-22T09:29:20.855Z",
+      "latencyMs": 2033,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7682,9 +7872,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:41.087Z",
-      "completedAt": "2026-07-22T09:09:43.705Z",
-      "latencyMs": 2619,
+      "startedAt": "2026-07-22T09:29:20.855Z",
+      "completedAt": "2026-07-22T09:29:22.897Z",
+      "latencyMs": 2042,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7749,9 +7939,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:43.706Z",
-      "completedAt": "2026-07-22T09:09:46.281Z",
-      "latencyMs": 2575,
+      "startedAt": "2026-07-22T09:29:22.897Z",
+      "completedAt": "2026-07-22T09:29:25.002Z",
+      "latencyMs": 2104,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7816,9 +8006,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:46.281Z",
-      "completedAt": "2026-07-22T09:09:50.481Z",
-      "latencyMs": 4200,
+      "startedAt": "2026-07-22T09:29:25.002Z",
+      "completedAt": "2026-07-22T09:29:27.668Z",
+      "latencyMs": 2666,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7883,9 +8073,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:50.482Z",
-      "completedAt": "2026-07-22T09:09:52.887Z",
-      "latencyMs": 2406,
+      "startedAt": "2026-07-22T09:29:27.668Z",
+      "completedAt": "2026-07-22T09:29:29.512Z",
+      "latencyMs": 1844,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -7950,9 +8140,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:52.888Z",
-      "completedAt": "2026-07-22T09:09:54.849Z",
-      "latencyMs": 1962,
+      "startedAt": "2026-07-22T09:29:29.512Z",
+      "completedAt": "2026-07-22T09:29:31.468Z",
+      "latencyMs": 1956,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8017,9 +8207,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:54.850Z",
-      "completedAt": "2026-07-22T09:09:56.960Z",
-      "latencyMs": 2110,
+      "startedAt": "2026-07-22T09:29:31.469Z",
+      "completedAt": "2026-07-22T09:29:33.110Z",
+      "latencyMs": 1641,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8084,9 +8274,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:56.960Z",
-      "completedAt": "2026-07-22T09:09:58.686Z",
-      "latencyMs": 1726,
+      "startedAt": "2026-07-22T09:29:33.110Z",
+      "completedAt": "2026-07-22T09:29:34.781Z",
+      "latencyMs": 1671,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8151,9 +8341,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:09:58.686Z",
-      "completedAt": "2026-07-22T09:10:00.523Z",
-      "latencyMs": 1837,
+      "startedAt": "2026-07-22T09:29:34.781Z",
+      "completedAt": "2026-07-22T09:29:36.533Z",
+      "latencyMs": 1752,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8218,9 +8408,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:00.524Z",
-      "completedAt": "2026-07-22T09:10:02.961Z",
-      "latencyMs": 2437,
+      "startedAt": "2026-07-22T09:29:36.533Z",
+      "completedAt": "2026-07-22T09:29:38.625Z",
+      "latencyMs": 2092,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8285,9 +8475,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:02.961Z",
-      "completedAt": "2026-07-22T09:10:04.759Z",
-      "latencyMs": 1798,
+      "startedAt": "2026-07-22T09:29:38.625Z",
+      "completedAt": "2026-07-22T09:29:40.420Z",
+      "latencyMs": 1795,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8352,9 +8542,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:04.760Z",
-      "completedAt": "2026-07-22T09:10:07.058Z",
-      "latencyMs": 2299,
+      "startedAt": "2026-07-22T09:29:40.420Z",
+      "completedAt": "2026-07-22T09:29:42.364Z",
+      "latencyMs": 1944,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8419,9 +8609,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:07.058Z",
-      "completedAt": "2026-07-22T09:10:09.267Z",
-      "latencyMs": 2209,
+      "startedAt": "2026-07-22T09:29:42.364Z",
+      "completedAt": "2026-07-22T09:29:44.136Z",
+      "latencyMs": 1773,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8486,9 +8676,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:09.267Z",
-      "completedAt": "2026-07-22T09:10:11.315Z",
-      "latencyMs": 2048,
+      "startedAt": "2026-07-22T09:29:44.137Z",
+      "completedAt": "2026-07-22T09:29:46.404Z",
+      "latencyMs": 2268,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8553,9 +8743,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:11.315Z",
-      "completedAt": "2026-07-22T09:10:13.670Z",
-      "latencyMs": 2355,
+      "startedAt": "2026-07-22T09:29:46.405Z",
+      "completedAt": "2026-07-22T09:29:48.144Z",
+      "latencyMs": 1739,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8620,9 +8810,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:13.670Z",
-      "completedAt": "2026-07-22T09:10:15.877Z",
-      "latencyMs": 2206,
+      "startedAt": "2026-07-22T09:29:48.144Z",
+      "completedAt": "2026-07-22T09:29:50.066Z",
+      "latencyMs": 1922,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8687,9 +8877,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:15.877Z",
-      "completedAt": "2026-07-22T09:10:17.594Z",
-      "latencyMs": 1717,
+      "startedAt": "2026-07-22T09:29:50.066Z",
+      "completedAt": "2026-07-22T09:29:51.708Z",
+      "latencyMs": 1642,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8754,9 +8944,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:17.594Z",
-      "completedAt": "2026-07-22T09:10:19.579Z",
-      "latencyMs": 1986,
+      "startedAt": "2026-07-22T09:29:51.708Z",
+      "completedAt": "2026-07-22T09:29:53.283Z",
+      "latencyMs": 1575,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8821,9 +9011,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:19.579Z",
-      "completedAt": "2026-07-22T09:10:21.512Z",
-      "latencyMs": 1933,
+      "startedAt": "2026-07-22T09:29:53.283Z",
+      "completedAt": "2026-07-22T09:29:55.090Z",
+      "latencyMs": 1807,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8888,9 +9078,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:21.512Z",
-      "completedAt": "2026-07-22T09:10:23.684Z",
-      "latencyMs": 2171,
+      "startedAt": "2026-07-22T09:29:55.090Z",
+      "completedAt": "2026-07-22T09:29:57.032Z",
+      "latencyMs": 1942,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -8955,9 +9145,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:23.684Z",
-      "completedAt": "2026-07-22T09:10:25.487Z",
-      "latencyMs": 1803,
+      "startedAt": "2026-07-22T09:29:57.032Z",
+      "completedAt": "2026-07-22T09:29:58.600Z",
+      "latencyMs": 1568,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -9022,9 +9212,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:25.487Z",
-      "completedAt": "2026-07-22T09:10:27.397Z",
-      "latencyMs": 1910,
+      "startedAt": "2026-07-22T09:29:58.600Z",
+      "completedAt": "2026-07-22T09:30:00.714Z",
+      "latencyMs": 2114,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -9089,9 +9279,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:27.398Z",
-      "completedAt": "2026-07-22T09:10:29.250Z",
-      "latencyMs": 1853,
+      "startedAt": "2026-07-22T09:30:00.714Z",
+      "completedAt": "2026-07-22T09:30:02.811Z",
+      "latencyMs": 2097,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -9156,9 +9346,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:29.250Z",
-      "completedAt": "2026-07-22T09:10:31.237Z",
-      "latencyMs": 1987,
+      "startedAt": "2026-07-22T09:30:02.811Z",
+      "completedAt": "2026-07-22T09:30:04.469Z",
+      "latencyMs": 1658,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,
@@ -9223,9 +9413,9 @@
           "exportDecodesAndReopens": true
         }
       ],
-      "startedAt": "2026-07-22T09:10:31.237Z",
-      "completedAt": "2026-07-22T09:10:33.147Z",
-      "latencyMs": 1910,
+      "startedAt": "2026-07-22T09:30:04.470Z",
+      "completedAt": "2026-07-22T09:30:06.339Z",
+      "latencyMs": 1870,
       "costUsd": 0,
       "exportDecodesAndReopens": true,
       "rightsPassed": true,

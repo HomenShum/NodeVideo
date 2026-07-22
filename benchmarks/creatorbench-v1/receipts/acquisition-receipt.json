@@ -1,19 +1,19 @@
 {
   "schemaVersion": "nodevideo.creatorbench-acquisition-receipt.v1",
-  "benchmarkVersion": "creatorbench-v1.2",
-  "generatedAt": "2026-07-22T09:05:23.932Z",
+  "benchmarkVersion": "creatorbench-v1.3",
+  "generatedAt": "2026-07-22T09:20:13.587Z",
   "requestedClips": 250,
   "benchmarkTargetClips": 250,
-  "acquiredClips": 226,
-  "publicCatalogRecords": 180,
-  "privateCatalogRecords": 46,
-  "creators": 181,
+  "acquiredClips": 250,
+  "publicCatalogRecords": 200,
+  "privateCatalogRecords": 50,
+  "creators": 205,
   "domains": 16,
   "splitCounts": {
-    "development": 110,
-    "public-test": 47,
-    "private-heldout": 46,
-    "adversarial": 23
+    "development": 125,
+    "public-test": 50,
+    "private-heldout": 50,
+    "adversarial": 25
   },
   "allowedLicenses": [
     "CC0",
@@ -30,27 +30,20 @@
     "CC BY 3.0": 5,
     "CC BY 4.0": 1,
     "NASA SVS public domain": 106,
-    "Public domain": 110,
+    "Public domain": 134,
     "NodeVideo generated fixture with provenance": 4
   },
   "providerCounts": {
     "wikimedia": 6,
     "nasa-svs": 106,
-    "nasa-images": 110,
+    "nasa-images": 134,
     "nodevideo-repository": 4
   },
-  "privateCatalogSha256": "sha256:f0b5594896d35e06faa42455471782fd813a4dab820177d6bc525c09ca98f5f2",
-  "publicCatalogSha256": "sha256:1192037b2374c016fb437f00ed0f19c03742ef02838601e2a653ac7e7440b9f7",
+  "privateCatalogSha256": "sha256:558fc26c0d63e43fd0e0340c6a250ba306eb5bda8fb7c148801ec834a7dbf1d2",
+  "publicCatalogSha256": "sha256:85e1af6cde4901918ec6c028ab7f2fecd9c8bc60e4627ca178efcba9131f2215",
   "cacheRootClass": ".qa/evidence/creatorbench-v1/media",
-  "acquisitionGap": 24,
-  "failureCount": 64,
-  "failureCategories": {
-    "media-decode": 2,
-    "source-http": 3,
-    "source-host-rate-limit": 59
-  },
-  "gapReasons": [
-    "CreatorBench v1 requires 250 distinct clips; this corpus currently contains 226. Generated fixtures are counted separately and do not establish unseen external-creator performance.",
-    "Rights-cleared candidates that could not be normalized are excluded; source-host throttling and decode failures remain visible in this receipt."
-  ]
+  "acquisitionGap": 0,
+  "failureCount": 0,
+  "failureCategories": {},
+  "gapReasons": []
 }

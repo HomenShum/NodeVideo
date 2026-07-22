@@ -1619,7 +1619,7 @@ function App() {
               cases={(report.reviewCases ?? []).filter(
                 (reviewCase) => reviewCase.visibility !== 'private',
               )}
-              benchmarkVersion={report.benchmarkVersion ?? 'creatorbench-v1.2'}
+              benchmarkVersion={report.benchmarkVersion ?? 'creatorbench-v1.3'}
             />
           )}
         </section>

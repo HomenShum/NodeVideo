@@ -34,7 +34,7 @@ export const claimAssignment = mutation({
   },
   handler: async (ctx, args) => {
     assertPseudonymousReviewerRef(args.reviewerRef);
-    if (args.benchmarkVersion !== 'creatorbench-v1.2')
+    if (args.benchmarkVersion !== 'creatorbench-v1.3')
       throw new Error('Unsupported benchmark version.');
     const existing = await ctx.db
       .query('creatorBenchReviews')

@@ -1,8 +1,52 @@
 {
   "schemaVersion": "nodevideo.creatorbench-source-catalog.v1",
-  "benchmarkVersion": "creatorbench-v1.2",
-  "generatedAt": "2026-07-22T09:05:23.909Z",
+  "benchmarkVersion": "creatorbench-v1.3",
+  "generatedAt": "2026-07-22T09:20:13.567Z",
   "records": [
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0004-7bfc3a17",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AReviewing_The_Age_of_Disclosure_%E2%80%93_Amazon_Prime%E2%80%99s_New_UFO_Documentary.webm",
+      "creatorOwnerId": "creator:0780ba03c9e51a21",
+      "relatedSourceGroupId": "commons:179448481",
+      "title": "Reviewing The Age of Disclosure – Amazon Prime’s New UFO Documentary.webm",
+      "rights": {
+        "status": "cc-by",
+        "licenseName": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+        "attribution": "That UFO Podcast",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T04:48:24.081Z",
+      "sourceSha256": "sha256:bb02268619696f229324c66e0e691e8e2bd31eb0165c38f9b145aaac9e997106",
+      "durationMs": 6014.333,
+      "media": {
+        "width": 426,
+        "height": 240,
+        "fps": 59.94006309148265,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review."
+      ]
+    },
     {
       "schemaVersion": "nodevideo.creatorbench-source/v1",
       "id": "cb-0009-beb98f01",
@@ -2201,7 +2245,7 @@
         "The normalized six-second source is admissible for visual tracking and reframing only.",
         "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
       ],
-      "split": "public-test",
+      "split": "development",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -2634,6 +2678,53 @@
     },
     {
       "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0067-cd4a485c",
+      "sourceUrl": "https://svs.gsfc.nasa.gov/14983/",
+      "creatorOwnerId": "creator:bad17b55901f12fc",
+      "relatedSourceGroupId": "nasa-svs:14983",
+      "title": "“Cosmic Echoes” Audio Activation",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "NASA SVS public domain",
+        "licenseUrl": "https://svs.gsfc.nasa.gov/help/",
+        "attribution": "NASA Scientific Visualization Studio; Erin Roberts",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T06:00:06.163Z",
+      "sourceSha256": "sha256:a3ac986aa5d9bae1029aad51ea1ac20a6e7c565602c26c6d918a8e95c6196047",
+      "durationMs": 6000,
+      "media": {
+        "width": 640,
+        "height": 360,
+        "fps": 30,
+        "codec": "h264",
+        "hasAudio": false
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review.",
+        "NASA SVS states its visual content is public domain unless otherwise noted.",
+        "Audio is removed because some SVS items contain separately licensed music.",
+        "Use must not imply NASA endorsement; NASA marks and identifiable-person rights remain separate."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
       "id": "cb-0068-020c2a0a",
       "sourceUrl": "https://svs.gsfc.nasa.gov/15011/",
       "creatorOwnerId": "creator:23e276ebbf6de115",
@@ -3000,7 +3091,7 @@
         "The normalized six-second source is admissible for visual tracking and reframing only.",
         "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
       ],
-      "split": "adversarial",
+      "split": "public-test",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -3517,7 +3608,7 @@
         "The normalized six-second source is admissible for visual tracking and reframing only.",
         "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
       ],
-      "split": "public-test",
+      "split": "development",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -4457,7 +4548,7 @@
         "The normalized six-second source is admissible for visual tracking and reframing only.",
         "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
       ],
-      "split": "public-test",
+      "split": "development",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -4747,7 +4838,7 @@
         "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
         "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
       ],
-      "split": "public-test",
+      "split": "development",
       "knownLimitations": [
         "24-second normalized derivative; source semantics require human review.",
         "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
@@ -5531,7 +5622,7 @@
         "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
         "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
       ],
-      "split": "adversarial",
+      "split": "public-test",
       "knownLimitations": [
         "24-second normalized derivative; source semantics require human review.",
         "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
@@ -5813,7 +5904,7 @@
         "Synthetic public fixture created from FFmpeg test sources with a retained proof receipt.",
         "It exercises launch-story contracts but is not evidence of real creator usability."
       ],
-      "split": "public-test",
+      "split": "development",
       "knownLimitations": [
         "6-second normalized derivative; source semantics require human review.",
         "Generated-with-provenance fixture; exclude it from claims about unseen external creators."
@@ -5860,7 +5951,7 @@
         "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
         "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
       ],
-      "split": "public-test",
+      "split": "development",
       "knownLimitations": [
         "24-second normalized derivative; source semantics require human review.",
         "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
@@ -6301,7 +6392,7 @@
         "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
         "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
       ],
-      "split": "public-test",
+      "split": "development",
       "knownLimitations": [
         "24-second normalized derivative; source semantics require human review.",
         "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
@@ -6791,7 +6882,7 @@
         "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
         "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
       ],
-      "split": "adversarial",
+      "split": "public-test",
       "knownLimitations": [
         "24-second normalized derivative; source semantics require human review.",
         "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
@@ -7036,7 +7127,7 @@
         "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
         "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
       ],
-      "split": "public-test",
+      "split": "development",
       "knownLimitations": [
         "24-second normalized derivative; source semantics require human review.",
         "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
@@ -8163,7 +8254,7 @@
         "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
         "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
       ],
-      "split": "public-test",
+      "split": "development",
       "knownLimitations": [
         "24-second normalized derivative; source semantics require human review.",
         "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
@@ -8212,7 +8303,7 @@
         "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
         "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
       ],
-      "split": "public-test",
+      "split": "development",
       "knownLimitations": [
         "24-second normalized derivative; source semantics require human review.",
         "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
@@ -8360,6 +8451,55 @@
         "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
       ],
       "split": "public-test",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0216-91319de8",
+      "sourceUrl": "https://images.nasa.gov/details/GSFC_20201019_M13740_DaleHowell",
+      "creatorOwnerId": "creator:f0d41d198b9b2386",
+      "relatedSourceGroupId": "nasa-images:GSFC_20201019_M13740_DaleHowell",
+      "title": "OSIRIS-REx Flight Operations Interviews Dale Howell",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T08:07:57.347Z",
+      "sourceSha256": "sha256:556a5dac109296ad3b7420556a3862fce3a03e8eac982e427f0cc4fa08c8d573",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "adversarial",
       "knownLimitations": [
         "24-second normalized derivative; source semantics require human review.",
         "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
@@ -8555,7 +8695,7 @@
         "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
         "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
       ],
-      "split": "adversarial",
+      "split": "public-test",
       "knownLimitations": [
         "24-second normalized derivative; source semantics require human review.",
         "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
@@ -8604,7 +8744,840 @@
         "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
         "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
       ],
+      "split": "public-test",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0227-583f3179",
+      "sourceUrl": "https://images.nasa.gov/details/iss069m262691033_Expedition69_Andreas_Mogensen_Answers_Danish_Student__Questions_230926",
+      "creatorOwnerId": "creator:ec78f593c71c417b",
+      "relatedSourceGroupId": "nasa-images:iss069m262691033_Expedition69_Andreas_Mogensen_Answers_Danish_Student__Questions_230926",
+      "title": "Expedition 69 Astronaut Andreas Mogensen Answers Danish Student, Teacher Questions - Sept. 26, 2023",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:10.038Z",
+      "sourceSha256": "sha256:f19fdd83e92b795ef43d0f9193efbc649f6f8207ff42681e4a57cd52dcedb128",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0228-06500f08",
+      "sourceUrl": "https://images.nasa.gov/details/iss065m261321424-Expedition_65_WeatherNation_210512_1475076",
+      "creatorOwnerId": "creator:1d38a50205ac3750",
+      "relatedSourceGroupId": "nasa-images:iss065m261321424-Expedition_65_WeatherNation_210512_1475076",
+      "title": "Space Station Crew Talks with WeatherNation",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:10.054Z",
+      "sourceSha256": "sha256:dd38bc1ee4409d5ecca0c6fb2c03db68ab6b125a917b443070afe41da0214216",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0229-5829859e",
+      "sourceUrl": "https://images.nasa.gov/details/iss063m261421458_EXP_63_InFlight_Discovery_Cbs_Chronicle_200521",
+      "creatorOwnerId": "creator:3278b45d9d87a231",
+      "relatedSourceGroupId": "nasa-images:iss063m261421458_EXP_63_InFlight_Discovery_Cbs_Chronicle_200521",
+      "title": "iss063m261421458_EXP_63_InFlight_Discovery_Cbs_Chronicle_200521",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:10.326Z",
+      "sourceSha256": "sha256:0986066891ae0f42dbb39586ceb4528c1843968084ef781a0e1137aa57de3d34",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0230-dac6c67e",
+      "sourceUrl": "https://images.nasa.gov/details/iss061m263611103_2019_1227_Christina_Koch_Record_Breaking_Spaceflight_Live_Interviews",
+      "creatorOwnerId": "creator:a859c9818d7115bc",
+      "relatedSourceGroupId": "nasa-images:iss061m263611103_2019_1227_Christina_Koch_Record_Breaking_Spaceflight_Live_Interviews",
+      "title": "iss061m263611103_2019_1227_Christina_Koch_Record_Breaking_Spaceflight_Live_Interviews",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:10.344Z",
+      "sourceSha256": "sha256:667e1b27ab44e77b4ce1178709e3da924490f92cb65cc71ff0059f50dc90da44",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0231-124460bc",
+      "sourceUrl": "https://images.nasa.gov/details/iss069m262231429_Expedition_69_InFlight_Good_Morning_America_081123",
+      "creatorOwnerId": "creator:dbb8049458939a0c",
+      "relatedSourceGroupId": "nasa-images:iss069m262231429_Expedition_69_InFlight_Good_Morning_America_081123",
+      "title": "Expedition 69 Astronaut Frank Rubio Talks with ABC’s Good Morning America - Aug. 11, 2023",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:10.604Z",
+      "sourceSha256": "sha256:0d3c1e8a0440192d0b5db6c428d7e2fc839cea80072c03180f0cef9768b8b05e",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
       "split": "adversarial",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0232-07ff9cc1",
+      "sourceUrl": "https://images.nasa.gov/details/jsc2021m000205_NASA_Astronaut_Mark_Vande_Hei_on_Spaceflight_Record_210914",
+      "creatorOwnerId": "creator:0d52cbfb4ae1184f",
+      "relatedSourceGroupId": "nasa-images:jsc2021m000205_NASA_Astronaut_Mark_Vande_Hei_on_Spaceflight_Record_210914",
+      "title": "jsc2021m000205_NASA_Astronaut_Mark_Vande_Hei_on_Spaceflight_Record_210914",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:10.619Z",
+      "sourceSha256": "sha256:7674dece5b4389707768bf1a4aa71ab5917a77e0561c19941140be1d93f537ad",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0233-494463bf",
+      "sourceUrl": "https://images.nasa.gov/details/iss069m261941544_Expedition_69_InFlight_with_CongressionalHispanicCaucus_230713",
+      "creatorOwnerId": "creator:fea20b5cfdf5f68c",
+      "relatedSourceGroupId": "nasa-images:iss069m261941544_Expedition_69_InFlight_with_CongressionalHispanicCaucus_230713",
+      "title": "Expedition 69 Astronaut Frank Rubio Talks with the Congressional Hispanic Caucus - July 13, 2023 ",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:10.864Z",
+      "sourceSha256": "sha256:2cd944aec721e0c6bdea84e74e1e380cca28e5e1c16efda523eed34d21ac1729",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0234-c03a62f8",
+      "sourceUrl": "https://images.nasa.gov/details/iss066m260831429_Expedition_66_Vande_Hei_PAO_Interview_220324",
+      "creatorOwnerId": "creator:2a8f27f5fb7cdc3c",
+      "relatedSourceGroupId": "nasa-images:iss066m260831429_Expedition_66_Vande_Hei_PAO_Interview_220324",
+      "title": "Expedition 66 Astronaut Mark Vande Hei Talks About One-Year Mission - March 24, 2022",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:10.897Z",
+      "sourceSha256": "sha256:4ffc72e9ebda669604448138e769fb94bf9addbd8c7b32a30fc507e0f991d883",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0235-75d6a54e",
+      "sourceUrl": "https://images.nasa.gov/details/iss071m261621459_NASA_Astronaut_Suni_Williams_Answers_Needham_Massachussetts_Student_Question_240610",
+      "creatorOwnerId": "creator:43173cf3efbeb344",
+      "relatedSourceGroupId": "nasa-images:iss071m261621459_NASA_Astronaut_Suni_Williams_Answers_Needham_Massachussetts_Student_Question_240610",
+      "title": "NASA Astronaut Suni Williams Answers Needham Massachussetts Student Question – June 10, 2024",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:11.129Z",
+      "sourceSha256": "sha256:55232e7de64482e6a2960f9cd6addc0b4ac89f1d5a4c2aa4213c7e977ad9be64",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0238-f9d06420",
+      "sourceUrl": "https://images.nasa.gov/details/jsc2024m000078_2021_Astronaut_Candidate_Class_Resource_Reel-4K-240228-MP4",
+      "creatorOwnerId": "creator:923ca409805dc862",
+      "relatedSourceGroupId": "nasa-images:jsc2024m000078_2021_Astronaut_Candidate_Class_Resource_Reel-4K-240228-MP4",
+      "title": "2021 Astronaut Candidate Class Resource Reel (4K-UHD)",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:11.419Z",
+      "sourceSha256": "sha256:c940ea8ebce31a564634002c35dd1c962167f1abb18bf61743f413b2be126a7c",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0241-d5ce9d5c",
+      "sourceUrl": "https://images.nasa.gov/details/iss069m261801444_Expedition_69_InFlight_WBTS-TV_and_AccuWeather_230629",
+      "creatorOwnerId": "creator:98e6f851710b0d1f",
+      "relatedSourceGroupId": "nasa-images:iss069m261801444_Expedition_69_InFlight_WBTS-TV_and_AccuWeather_230629",
+      "title": "Expedition 69 Space Station Crew Talks with WBTS-TV Boston, AccuWeather June 29, 2023",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:11.892Z",
+      "sourceSha256": "sha256:8885d88ccf82c1f384c3c24e9c04c3f86968671e193259fac84110d157bc0f6d",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0242-b13136a3",
+      "sourceUrl": "https://images.nasa.gov/details/iss070m260021459_Expedition_70_Astronaut_Loral_O%E2%80%99Hara_Talks_with_KAKE-TV_Wichita_Kansas_240102",
+      "creatorOwnerId": "creator:e03a9297bbc9e1b7",
+      "relatedSourceGroupId": "nasa-images:iss070m260021459_Expedition_70_Astronaut_Loral_O’Hara_Talks_with_KAKE-TV_Wichita_Kansas_240102",
+      "title": "Expedition 70 Astronaut Loral O’Hara Talks with KAKE-TV, Wichita, Kansas - Jan. 2, 2024 ",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:11.957Z",
+      "sourceSha256": "sha256:b731f7524b10ebbc3b314c12787f54ec93c3cfd5b654bcd0772d16d81e0f1bcd",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0243-964d9bc4",
+      "sourceUrl": "https://images.nasa.gov/details/Iss073m261401418_Space_Station_Astronauts_Discuss_Life_In_Space_With_New_York_Students_250520",
+      "creatorOwnerId": "creator:c1115f4645db4851",
+      "relatedSourceGroupId": "nasa-images:Iss073m261401418_Space_Station_Astronauts_Discuss_Life_In_Space_With_New_York_Students_250520",
+      "title": "Space Station Astronauts Discuss Life In Space With New York Students – Tuesday, May 20, 2025",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:12.188Z",
+      "sourceSha256": "sha256:c793c66730b4d4cb43af5478c358340d68fd09303fbd4fb543397741cc2cf788",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "development",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0245-ef1deafe",
+      "sourceUrl": "https://images.nasa.gov/details/iss069m261441449_Expedition_69_Inflight_with_AP_and_NBC6_23052",
+      "creatorOwnerId": "creator:1194fca9507a989c",
+      "relatedSourceGroupId": "nasa-images:iss069m261441449_Expedition_69_Inflight_with_AP_and_NBC6_23052",
+      "title": "Expedition 69 - Space Station Crew Talks with Associated Press, NBC 6 South Florida May 23, 2023",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:12.490Z",
+      "sourceSha256": "sha256:9e9d5ee8efee53c7b992744b24c8bfeb91e371a816b9f6d77b6d99184bdbd65d",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0248-f514d898",
+      "sourceUrl": "https://images.nasa.gov/details/iss070m260641453_Expedition_70_Space_Station_Crew_Talks_with_NPR%E2%80%99s_Short_Wave_Podcast_240304",
+      "creatorOwnerId": "creator:7871c6879dad3e34",
+      "relatedSourceGroupId": "nasa-images:iss070m260641453_Expedition_70_Space_Station_Crew_Talks_with_NPR’s_Short_Wave_Podcast_240304",
+      "title": "Expedition 70 Space Station Crew Talks with NPR’s Short Wave Podcast - March 4, 2024",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:12.940Z",
+      "sourceSha256": "sha256:b551120372e0908a91cf077c8b4b5da911468df9413d74ea0243a54d50b04a5f",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "public-test",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0249-c928d731",
+      "sourceUrl": "https://images.nasa.gov/details/iss066m260051408_Expedition_66_PAO_Grant_Larson_220105",
+      "creatorOwnerId": "creator:e4dc84ac096bbe36",
+      "relatedSourceGroupId": "nasa-images:iss066m260051408_Expedition_66_PAO_Grant_Larson_220105",
+      "title": "iss066m260051408_Expedition_66_PAO_Grant_Larson_220105",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:13.180Z",
+      "sourceSha256": "sha256:2f3e964b182e4b15102d8ed458b2d2c92e661a0a06a43bc4973129dc1f5b8bce",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "24-second normalized derivative; source semantics require human review.",
+        "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
+        "Use must not imply NASA endorsement.",
+        "CreatorBench therefore keeps normalized interview derivatives out of the public artifact gallery by default."
+      ]
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0250-f50589b7",
+      "sourceUrl": "https://images.nasa.gov/details/iss069m261011449_Expedition_69_Inflight_with_Finding_Mastery_Podcast_230411",
+      "creatorOwnerId": "creator:95b893b196f0490a",
+      "relatedSourceGroupId": "nasa-images:iss069m261011449_Expedition_69_Inflight_with_Finding_Mastery_Podcast_230411",
+      "title": "Expedition 69 Astronaut Woody Hoburg Talks with Finding Mastery Podcast - April 11, 2023 ",
+      "rights": {
+        "status": "public-domain",
+        "licenseName": "Public domain",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+        "attribution": "NASA Image and Video Library",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review"
+        ],
+        "permittedRedistribution": false
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T09:20:13.247Z",
+      "sourceSha256": "sha256:f7443cf0b59e1f0aeae4eca26a40d0b13ecd44972865de7668eee6268f03822f",
+      "durationMs": 24000,
+      "media": {
+        "width": 320,
+        "height": 180,
+        "fps": 15,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "speech-long-form",
+      "admissibleWorkflows": [
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "captioned-multi-format"
+      ],
+      "admissibilityNotes": [
+        "Official NASA interview or presentation source with an audio track, normalized for speech workflow evaluation.",
+        "Public metadata may be listed, but derived media is not published by CreatorBench without an additional redistribution review."
+      ],
+      "split": "development",
       "knownLimitations": [
         "24-second normalized derivative; source semantics require human review.",
         "NASA content is generally not subject to copyright in the United States, but third-party material, music, trademarks, and identifiable-person rights require separate review.",
