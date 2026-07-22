@@ -33,4 +33,19 @@ test.describe('NodeVideo tracking Artifact Atlas', () => {
     await expect(page.getByLabel('NodeVideo Atlas guide')).toContainText('rights-cleared fixture');
     await expect(page.getByLabel('NodeVideo Atlas guide')).toContainText('no egress');
   });
+
+  test('serves the compiled proof media through the public media contract', async ({ request }) => {
+    const compilation = await request.get(
+      '/media/tracking-atlas-v1/nodevideo-tracking-artifact-atlas.mp4',
+    );
+    expect(compilation.ok()).toBe(true);
+    expect(compilation.headers()['content-type']).toContain('video/mp4');
+    expect((await compilation.body()).byteLength).toBeGreaterThan(2_000_000);
+
+    const comparisonFrame = await request.get(
+      '/media/tracking-atlas-v1/group-performance/before.jpg',
+    );
+    expect(comparisonFrame.ok()).toBe(true);
+    expect(comparisonFrame.headers()['content-type']).toContain('image/jpeg');
+  });
 });
