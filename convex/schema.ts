@@ -1,6 +1,14 @@
 import { defineSchema, defineTable } from 'convex/server';
 import { v } from 'convex/values';
 import {
+  caseflowCaseStatus,
+  caseflowDecision,
+  caseflowExceptionStatus,
+  caseflowProposalStatus,
+  caseflowRunStatus,
+  caseflowStage,
+} from './caseflowValidators';
+import {
   jobEventKind,
   jobStatus,
   proposalStatus,
@@ -151,4 +159,133 @@ export default defineSchema({
     deployment: v.optional(v.string()),
     updatedAt: v.number(),
   }).index('by_layer', ['layer']),
+
+  // Application-owned authorization and domain binding records. These stay
+  // outside the portable Caseflow lifecycle boundary.
+  nodeVideoProjects: defineTable({
+    ownerIdentity: v.string(),
+    title: v.string(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index('by_owner_updatedAt', ['ownerIdentity', 'updatedAt']),
+
+  nodeVideoCaseflowBindings: defineTable({
+    projectId: v.id('nodeVideoProjects'),
+    idempotencyKey: v.string(),
+    requestHash: v.string(),
+    caseflowCaseId: v.id('caseflowCases'),
+    caseflowRunId: v.id('caseflowRuns'),
+    sourceOnlyCaseId: v.id('sourceOnlyCases'),
+    jobId: v.id('jobs'),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_project_idempotency', ['projectId', 'idempotencyKey'])
+    .index('by_project_case', ['projectId', 'caseflowCaseId'])
+    .index('by_caseflow_case', ['caseflowCaseId'])
+    .index('by_job', ['jobId']),
+
+  // Portable Caseflow lifecycle state. This is the candidate component-owned
+  // boundary; it intentionally contains no auth subject, project membership,
+  // media, provider credential, or hidden evaluator payload.
+  caseflowCases: defineTable({
+    title: v.string(),
+    primaryJob: v.string(),
+    status: caseflowCaseStatus,
+    currentRunId: v.optional(v.id('caseflowRuns')),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }),
+
+  caseflowRuns: defineTable({
+    caseId: v.id('caseflowCases'),
+    status: caseflowRunStatus,
+    currentStageId: v.string(),
+    nextAction: v.string(),
+    nextActionOwner: v.string(),
+    stages: v.array(caseflowStage),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index('by_case_updatedAt', ['caseId', 'updatedAt']),
+
+  caseflowArtifacts: defineTable({
+    caseId: v.id('caseflowCases'),
+    runId: v.id('caseflowRuns'),
+    kind: v.string(),
+    title: v.string(),
+    canonicalVersion: v.number(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_case', ['caseId'])
+    .index('by_run', ['runId']),
+
+  caseflowArtifactVersions: defineTable({
+    artifactId: v.id('caseflowArtifacts'),
+    version: v.number(),
+    contentJson: v.string(),
+    contentHash: v.string(),
+    proposalId: v.optional(v.id('caseflowProposals')),
+    createdAt: v.number(),
+  }).index('by_artifact_version', ['artifactId', 'version']),
+
+  caseflowProposals: defineTable({
+    artifactId: v.id('caseflowArtifacts'),
+    baseVersion: v.number(),
+    patchJson: v.string(),
+    rationale: v.string(),
+    status: caseflowProposalStatus,
+    approvalId: v.optional(v.id('caseflowApprovals')),
+    createdAt: v.number(),
+    decidedAt: v.optional(v.number()),
+  }).index('by_artifact_createdAt', ['artifactId', 'createdAt']),
+
+  caseflowApprovals: defineTable({
+    proposalId: v.id('caseflowProposals'),
+    comment: v.string(),
+    decision: caseflowDecision,
+    decidedAt: v.number(),
+  }).index('by_proposal', ['proposalId']),
+
+  caseflowExceptions: defineTable({
+    runId: v.id('caseflowRuns'),
+    code: v.string(),
+    message: v.string(),
+    preservedStateJson: v.string(),
+    status: caseflowExceptionStatus,
+    resolution: v.optional(v.string()),
+    raisedAt: v.number(),
+    resolvedAt: v.optional(v.number()),
+  }).index('by_run_status', ['runId', 'status']),
+
+  caseflowReceipts: defineTable({
+    runId: v.id('caseflowRuns'),
+    artifactIds: v.array(v.id('caseflowArtifacts')),
+    eventIds: v.array(v.id('caseflowEvents')),
+    proposalIds: v.array(v.id('caseflowProposals')),
+    generatedAt: v.number(),
+    status: v.literal('completed'),
+    receiptHash: v.string(),
+  }).index('by_run', ['runId']),
+
+  caseflowEvents: defineTable({
+    aggregateType: v.string(),
+    aggregateId: v.string(),
+    sequence: v.number(),
+    eventType: v.string(),
+    actorJson: v.string(),
+    payloadJson: v.string(),
+    occurredAt: v.number(),
+  }).index('by_aggregate_sequence', ['aggregateId', 'sequence']),
+
+  caseflowExternalRefs: defineTable({
+    caseId: v.id('caseflowCases'),
+    runId: v.optional(v.id('caseflowRuns')),
+    namespace: v.string(),
+    kind: v.string(),
+    externalId: v.string(),
+    createdAt: v.number(),
+  })
+    .index('by_case', ['caseId'])
+    .index('by_namespace_external', ['namespace', 'externalId']),
 });

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "nodevideo.nodekit-caseflow-consumer-verdict/v1",
+  "status": "passed",
+  "generatedAt": "2026-07-22T08:46:24.134Z",
+  "nodekit": {
+    "commit": "5cc61578b3c1bd5b5c8195b83347b91f8b83242b",
+    "packageIntegrity": "sha512-3U0vlV6CMycTP1GtFKePMGisGKgEbaxti2svMLXDBmFumdQXmLuc7QUTNlxIUmVT1fFeJecHTriMsg5QHiy7LA==",
+    "packageSpec": "https://github.com/HomenShum/node-platform/archive/5cc61578b3c1bd5b5c8195b83347b91f8b83242b.tar.gz",
+    "supportedImport": "@homenshum/nodekit/caseflow"
+  },
+  "consumer": {
+    "repository": "https://github.com/HomenShum/NodeVideo.git",
+    "branch": "codex/nodekit-caseflow-consumer",
+    "baseCommit": "7a741cb606ac64a05bb1eb5ed57429082b97ed5e",
+    "commit": "WORKTREE_COMMIT_PENDING",
+    "sourcePaths": [
+      "convex/caseflowRuntime.ts",
+      "convex/caseflowValidators.ts",
+      "convex/nodeVideoCaseflow.ts",
+      "convex/schema.ts",
+      "convex/workflow.ts",
+      "tests/nodekit-caseflow-conformance.test.ts"
+    ]
+  },
+  "commands": [
+    {
+      "command": "npm ci",
+      "passed": true,
+      "result": "823 packages installed from the committed lockfile"
+    },
+    {
+      "command": "npm run lint",
+      "passed": true,
+      "result": "293 files checked"
+    },
+    {
+      "command": "npm run typecheck",
+      "passed": true,
+      "result": "TypeScript noEmit completed"
+    },
+    {
+      "command": "npx tsc -p convex/tsconfig.json --noEmit --pretty false",
+      "passed": true,
+      "result": "Convex functions typechecked"
+    },
+    {
+      "command": "npx vitest run tests/nodekit-caseflow-conformance.test.ts --reporter=verbose",
+      "passed": true,
+      "result": "1 file passed, 6 tests passed"
+    },
+    {
+      "command": "npm test",
+      "passed": true,
+      "result": "37 files passed, 190 tests passed"
+    },
+    {
+      "command": "npm run build",
+      "passed": true,
+      "result": "TypeScript and Vite production build completed"
+    }
+  ],
+  "assertions": {
+    "packagedConformancePassed": true,
+    "activeRunStartIsIdempotent": true,
+    "canonicalVersionAdvancedOnce": true,
+    "contentAddressedReceipt": true,
+    "exceptionStatePreserved": true,
+    "nextActionOwnerExplicit": true,
+    "oneAuthoritativeCase": true,
+    "repeatedCompletionIsIdempotent": true,
+    "repeatedDecisionIsIdempotent": true,
+    "staleProposalFailedClosed": true,
+    "crossOwnerAccessDenied": true,
+    "differentInputIdempotencyConflictDenied": true,
+    "reloadSnapshotPreserved": true,
+    "receiptTamperingDetected": true,
+    "domainWorkflowPreservedAndBound": true,
+    "workerAndEvaluatorCredentialsRemainSeparate": true,
+    "deployed": false,
+    "published": false
+  },
+  "evidenceHash": "e0ed069af7d147e3a532c7ba90cceff7d1a1c0a47a6a3d68b30f078b1246730b"
+}

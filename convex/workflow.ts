@@ -1,5 +1,6 @@
 import { v } from 'convex/values';
-import { internalMutation, internalQuery } from './_generated/server';
+import type { Id } from './_generated/dataModel';
+import { type MutationCtx, internalMutation, internalQuery } from './_generated/server';
 import {
   assertBoundedString,
   assertIdempotentInput,
@@ -36,6 +37,38 @@ export const STAGES = [
 const CASE_INPUT_MAX_BYTES = 96 * 1024;
 const CHECKPOINT_MAX_BYTES = 32 * 1024;
 
+export async function createSourceOnlyCaseRecord(
+  ctx: MutationCtx,
+  args: { projectId: string; idempotencyKey: string; inputDigest: string; input: unknown },
+) {
+  const projectId = assertBoundedString(args.projectId, 128, 'project_id');
+  const idempotencyKey = assertBoundedString(args.idempotencyKey, 256, 'idempotency_key');
+  const inputDigest = assertSha256Digest(args.inputDigest);
+  const inputJson = boundedCanonicalJson(args.input, CASE_INPUT_MAX_BYTES, 'case_input');
+  if ((await sha256Digest(inputJson)) !== inputDigest)
+    throw new Error('case_input_digest_mismatch');
+  const existing = await ctx.db
+    .query('sourceOnlyCases')
+    .withIndex('by_project_idempotency', (query) =>
+      query.eq('projectId', projectId).eq('idempotencyKey', idempotencyKey),
+    )
+    .unique();
+  if (existing !== null) {
+    assertIdempotentInput(existing.inputDigest, inputDigest);
+    return { caseId: existing._id, reused: true as const };
+  }
+  const now = Date.now();
+  const caseId = await ctx.db.insert('sourceOnlyCases', {
+    projectId,
+    idempotencyKey,
+    inputDigest,
+    inputJson,
+    createdAt: now,
+    updatedAt: now,
+  });
+  return { caseId, reused: false as const };
+}
+
 export const createCase = internalMutation({
   args: {
     projectId: v.string(),
@@ -43,34 +76,7 @@ export const createCase = internalMutation({
     inputDigest: v.string(),
     input: v.any(),
   },
-  handler: async (ctx, args) => {
-    const projectId = assertBoundedString(args.projectId, 128, 'project_id');
-    const idempotencyKey = assertBoundedString(args.idempotencyKey, 256, 'idempotency_key');
-    const inputDigest = assertSha256Digest(args.inputDigest);
-    const inputJson = boundedCanonicalJson(args.input, CASE_INPUT_MAX_BYTES, 'case_input');
-    if ((await sha256Digest(inputJson)) !== inputDigest)
-      throw new Error('case_input_digest_mismatch');
-    const existing = await ctx.db
-      .query('sourceOnlyCases')
-      .withIndex('by_project_idempotency', (query) =>
-        query.eq('projectId', projectId).eq('idempotencyKey', idempotencyKey),
-      )
-      .unique();
-    if (existing !== null) {
-      assertIdempotentInput(existing.inputDigest, inputDigest);
-      return { caseId: existing._id, reused: true as const };
-    }
-    const now = Date.now();
-    const caseId = await ctx.db.insert('sourceOnlyCases', {
-      projectId,
-      idempotencyKey,
-      inputDigest,
-      inputJson,
-      createdAt: now,
-      updatedAt: now,
-    });
-    return { caseId, reused: false as const };
-  },
+  handler: createSourceOnlyCaseRecord,
 });
 
 export const admitAsset = internalMutation({
@@ -113,6 +119,66 @@ export const admitAsset = internalMutation({
   },
 });
 
+export async function startJobRecord(
+  ctx: MutationCtx,
+  args: {
+    caseId: Id<'sourceOnlyCases'>;
+    idempotencyKey: string;
+    inputDigest: string;
+    maxAttempts?: number;
+  },
+) {
+  const ownerCase = await ctx.db.get(args.caseId);
+  if (ownerCase === null) throw new Error('case_not_found');
+  const idempotencyKey = assertBoundedString(args.idempotencyKey, 256, 'idempotency_key');
+  const inputDigest = assertSha256Digest(args.inputDigest);
+  const existing = await ctx.db
+    .query('jobs')
+    .withIndex('by_project_idempotency', (query) =>
+      query.eq('projectId', ownerCase.projectId).eq('idempotencyKey', idempotencyKey),
+    )
+    .unique();
+  if (existing !== null) {
+    assertIdempotentInput(existing.inputDigest, inputDigest);
+    return { jobId: existing._id, reused: true as const };
+  }
+  const maxAttempts = args.maxAttempts ?? 3;
+  if (!Number.isSafeInteger(maxAttempts) || maxAttempts < 1 || maxAttempts > 10) {
+    throw new Error('invalid_max_attempts');
+  }
+  const now = Date.now();
+  const jobId = await ctx.db.insert('jobs', {
+    caseId: args.caseId,
+    projectId: ownerCase.projectId,
+    idempotencyKey,
+    inputDigest,
+    status: 'queued',
+    attempt: 0,
+    maxAttempts,
+    leaseToken: 0,
+    nextEventSequence: 1,
+    currentStage: STAGES[0],
+    createdAt: now,
+    updatedAt: now,
+  });
+  for (const [ordinal, name] of STAGES.entries()) {
+    await ctx.db.insert('jobStages', {
+      jobId,
+      ordinal,
+      name,
+      status: 'pending',
+      attempt: 0,
+      maxAttempts,
+      inputDigest,
+      outputArtifactIds: [],
+      leaseToken: 0,
+      updatedAt: now,
+    });
+  }
+  await appendJobEvent(ctx, jobId, 'job.created', { caseId: args.caseId, inputDigest }, now);
+  return { jobId, reused: false as const };
+}
+
 export const startJob = internalMutation({
   args: {
     caseId: v.id('sourceOnlyCases'),
@@ -120,57 +186,7 @@ export const startJob = internalMutation({
     inputDigest: v.string(),
     maxAttempts: v.optional(v.number()),
   },
-  handler: async (ctx, args) => {
-    const ownerCase = await ctx.db.get(args.caseId);
-    if (ownerCase === null) throw new Error('case_not_found');
-    const idempotencyKey = assertBoundedString(args.idempotencyKey, 256, 'idempotency_key');
-    const inputDigest = assertSha256Digest(args.inputDigest);
-    const existing = await ctx.db
-      .query('jobs')
-      .withIndex('by_project_idempotency', (query) =>
-        query.eq('projectId', ownerCase.projectId).eq('idempotencyKey', idempotencyKey),
-      )
-      .unique();
-    if (existing !== null) {
-      assertIdempotentInput(existing.inputDigest, inputDigest);
-      return { jobId: existing._id, reused: true as const };
-    }
-    const maxAttempts = args.maxAttempts ?? 3;
-    if (!Number.isSafeInteger(maxAttempts) || maxAttempts < 1 || maxAttempts > 10) {
-      throw new Error('invalid_max_attempts');
-    }
-    const now = Date.now();
-    const jobId = await ctx.db.insert('jobs', {
-      caseId: args.caseId,
-      projectId: ownerCase.projectId,
-      idempotencyKey,
-      inputDigest,
-      status: 'queued',
-      attempt: 0,
-      maxAttempts,
-      leaseToken: 0,
-      nextEventSequence: 1,
-      currentStage: STAGES[0],
-      createdAt: now,
-      updatedAt: now,
-    });
-    for (const [ordinal, name] of STAGES.entries()) {
-      await ctx.db.insert('jobStages', {
-        jobId,
-        ordinal,
-        name,
-        status: 'pending',
-        attempt: 0,
-        maxAttempts,
-        inputDigest,
-        outputArtifactIds: [],
-        leaseToken: 0,
-        updatedAt: now,
-      });
-    }
-    await appendJobEvent(ctx, jobId, 'job.created', { caseId: args.caseId, inputDigest }, now);
-    return { jobId, reused: false as const };
-  },
+  handler: startJobRecord,
 });
 
 export const claimStage = internalMutation({
