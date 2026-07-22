@@ -145,14 +145,14 @@ test.describe('CreatorBench public evidence and reviewer UI', () => {
     page,
   }) => {
     await page.goto('/creatorbench');
-    await expect(page.getByLabel('Dataset coverage')).toContainText('15');
-    await expect(page.getByText('36/36')).toBeVisible();
+    await expect(page.getByLabel('Dataset coverage')).toContainText('111');
+    await expect(page.getByText('264/264')).toBeVisible();
 
     const reviewButton = page.getByRole('button', { name: 'Review lab' }).first();
     await reviewButton.scrollIntoViewIfNeeded();
     await reviewButton.click();
     const review = page.getByTestId('review-lab');
-    await expect(review).toContainText(/case 1 of 12/iu);
+    await expect(review).toContainText(/case 1 of 88/iu);
     await expect(review).toContainText('Additional requested formats');
     await expect(review).not.toContainText('Deterministic center-crop baseline');
     await expect(review.locator('img')).toHaveCount(4);

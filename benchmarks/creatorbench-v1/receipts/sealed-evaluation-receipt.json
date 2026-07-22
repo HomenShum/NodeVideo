@@ -1,79 +1,79 @@
 {
   "schemaVersion": "nodevideo.creatorbench-sealed-evaluation-receipt/v1",
   "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T05:25:48.468Z",
+  "generatedAt": "2026-07-22T06:15:39.385Z",
   "population": {
-    "instanceCount": 24,
-    "sourceCount": 3,
-    "creatorCount": 3,
-    "domainCount": 3,
-    "workflowCount": 8
+    "instanceCount": 46,
+    "sourceCount": 23,
+    "creatorCount": 23,
+    "domainCount": 13,
+    "workflowCount": 2
   },
   "outcomes": {
     "automatic_usable": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 1.1962983316807505e-17,
-        "upper": 0.1379762046749802
+        "lower": 0,
+        "upper": 0.07707356308558039
       }
     },
     "assisted_usable": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 1.1962983316807505e-17,
-        "upper": 0.1379762046749802
+        "lower": 0,
+        "upper": 0.07707356308558039
       }
     },
     "review_required": {
       "numerator": 12,
-      "denominator": 24,
-      "rate": 0.5,
+      "denominator": 46,
+      "rate": 0.2608695652173913,
       "confidenceInterval": {
-        "lower": 0.31427425819573357,
-        "upper": 0.6857257418042665
+        "lower": 0.15600886445642598,
+        "upper": 0.40259153528015595
       }
     },
     "safely_abstained": {
-      "numerator": 12,
-      "denominator": 24,
-      "rate": 0.5,
+      "numerator": 34,
+      "denominator": 46,
+      "rate": 0.7391304347826086,
       "confidenceInterval": {
-        "lower": 0.31427425819573357,
-        "upper": 0.6857257418042665
+        "lower": 0.5974084647198441,
+        "upper": 0.843991135543574
       }
     },
     "unsupported": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 1.1962983316807505e-17,
-        "upper": 0.1379762046749802
+        "lower": 0,
+        "upper": 0.07707356308558039
       }
     },
     "technical_failure": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 1.1962983316807505e-17,
-        "upper": 0.1379762046749802
+        "lower": 0,
+        "upper": 0.07707356308558039
       }
     },
     "silent_failure": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 1.1962983316807505e-17,
-        "upper": 0.1379762046749802
+        "lower": 0,
+        "upper": 0.07707356308558039
       }
     }
   },
-  "resultsSha256": "sha256:fa3e1136dbbd4f1f5e38c50480fba6871d14edc76dc36b7df1cb7c3333efaec3",
+  "resultsSha256": "sha256:53e3ca75a1cc277680c8c5c85faf8147856701c80973e22630e5905d660a50b1",
   "privateMediaExposed": false
 }

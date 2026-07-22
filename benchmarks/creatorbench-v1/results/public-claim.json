@@ -1,54 +1,54 @@
 {
   "schemaVersion": "nodevideo.creatorbench-public-claim/v1",
   "benchmarkVersion": "creatorbench-v1",
-  "freezeReceiptId": "creatorbench-freeze:733e4618972ad304388a811f",
-  "generatedAt": "2026-07-22T05:42:08.023Z",
+  "freezeReceiptId": "creatorbench-freeze:37b596c88293fbab06b9d9fb",
+  "generatedAt": "2026-07-22T06:17:55.168Z",
   "population": {
     "split": "private-heldout",
-    "instanceCount": 24,
-    "sourceCount": 3,
-    "creatorDisjointSourceCount": 3,
-    "domainCount": 3,
-    "workflowCount": 8
+    "instanceCount": 46,
+    "sourceCount": 23,
+    "creatorDisjointSourceCount": 23,
+    "domainCount": 13,
+    "workflowCount": 2
   },
   "outcomes": {
     "automatic_usable": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0
     },
     "assisted_usable": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0
     },
     "review_required": {
       "numerator": 12,
-      "denominator": 24,
-      "rate": 0.5
+      "denominator": 46,
+      "rate": 0.2608695652173913
     },
     "safely_abstained": {
-      "numerator": 12,
-      "denominator": 24,
-      "rate": 0.5
+      "numerator": 34,
+      "denominator": 46,
+      "rate": 0.7391304347826086
     },
     "unsupported": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0
     },
     "technical_failure": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0
     },
     "silent_failure": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0
     }
   },
-  "statement": "On creatorbench-v1, covering 24 private held-out workflow instances from 3 creator-disjoint sources across 8 workflows, NodeVideo produced a usable first-pass result automatically in 0.0%, after bounded assistance in 0.0%, and safely abstained in 50.0%. Silent failures occurred in 0.0%.",
+  "statement": "On creatorbench-v1, covering 46 private held-out workflow instances from 23 creator-disjoint sources across 2 workflows, NodeVideo produced a usable first-pass result automatically in 0.0%, after bounded assistance in 0.0%, and safely abstained in 73.9%. Silent failures occurred in 0.0%.",
   "limitations": [
     "No result is classified usable until a rendered artifact is blindly reviewed by a human.",
     "This baseline measures request ingestion, rights validation, route eligibility, and honest non-success states—not editing quality."

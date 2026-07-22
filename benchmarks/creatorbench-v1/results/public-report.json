@@ -2,58 +2,58 @@
   "schemaVersion": "nodevideo.creatorbench-public-report/v1",
   "benchmarkVersion": "creatorbench-v1",
   "status": "evaluated",
-  "generatedAt": "2026-07-22T05:42:08.023Z",
+  "generatedAt": "2026-07-22T06:17:55.168Z",
   "claim": {
     "schemaVersion": "nodevideo.creatorbench-public-claim/v1",
     "benchmarkVersion": "creatorbench-v1",
-    "freezeReceiptId": "creatorbench-freeze:733e4618972ad304388a811f",
-    "generatedAt": "2026-07-22T05:42:08.023Z",
+    "freezeReceiptId": "creatorbench-freeze:37b596c88293fbab06b9d9fb",
+    "generatedAt": "2026-07-22T06:17:55.168Z",
     "population": {
       "split": "private-heldout",
-      "instanceCount": 24,
-      "sourceCount": 3,
-      "creatorDisjointSourceCount": 3,
-      "domainCount": 3,
-      "workflowCount": 8
+      "instanceCount": 46,
+      "sourceCount": 23,
+      "creatorDisjointSourceCount": 23,
+      "domainCount": 13,
+      "workflowCount": 2
     },
     "outcomes": {
       "automatic_usable": {
         "numerator": 0,
-        "denominator": 24,
+        "denominator": 46,
         "rate": 0
       },
       "assisted_usable": {
         "numerator": 0,
-        "denominator": 24,
+        "denominator": 46,
         "rate": 0
       },
       "review_required": {
         "numerator": 12,
-        "denominator": 24,
-        "rate": 0.5
+        "denominator": 46,
+        "rate": 0.2608695652173913
       },
       "safely_abstained": {
-        "numerator": 12,
-        "denominator": 24,
-        "rate": 0.5
+        "numerator": 34,
+        "denominator": 46,
+        "rate": 0.7391304347826086
       },
       "unsupported": {
         "numerator": 0,
-        "denominator": 24,
+        "denominator": 46,
         "rate": 0
       },
       "technical_failure": {
         "numerator": 0,
-        "denominator": 24,
+        "denominator": 46,
         "rate": 0
       },
       "silent_failure": {
         "numerator": 0,
-        "denominator": 24,
+        "denominator": 46,
         "rate": 0
       }
     },
-    "statement": "On creatorbench-v1, covering 24 private held-out workflow instances from 3 creator-disjoint sources across 8 workflows, NodeVideo produced a usable first-pass result automatically in 0.0%, after bounded assistance in 0.0%, and safely abstained in 50.0%. Silent failures occurred in 0.0%.",
+    "statement": "On creatorbench-v1, covering 46 private held-out workflow instances from 23 creator-disjoint sources across 2 workflows, NodeVideo produced a usable first-pass result automatically in 0.0%, after bounded assistance in 0.0%, and safely abstained in 73.9%. Silent failures occurred in 0.0%.",
     "limitations": [
       "No result is classified usable until a rendered artifact is blindly reviewed by a human.",
       "This baseline measures request ingestion, rights validation, route eligibility, and honest non-success states—not editing quality."
@@ -62,91 +62,108 @@
   "outcomes": {
     "automatic_usable": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 1.1962983316807505e-17,
-        "upper": 0.1379762046749802
+        "lower": 0,
+        "upper": 0.07707356308558039
       }
     },
     "assisted_usable": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 1.1962983316807505e-17,
-        "upper": 0.1379762046749802
+        "lower": 0,
+        "upper": 0.07707356308558039
       }
     },
     "review_required": {
       "numerator": 12,
-      "denominator": 24,
-      "rate": 0.5,
+      "denominator": 46,
+      "rate": 0.2608695652173913,
       "confidenceInterval": {
-        "lower": 0.31427425819573357,
-        "upper": 0.6857257418042665
+        "lower": 0.15600886445642598,
+        "upper": 0.40259153528015595
       }
     },
     "safely_abstained": {
-      "numerator": 12,
-      "denominator": 24,
-      "rate": 0.5,
+      "numerator": 34,
+      "denominator": 46,
+      "rate": 0.7391304347826086,
       "confidenceInterval": {
-        "lower": 0.31427425819573357,
-        "upper": 0.6857257418042665
+        "lower": 0.5974084647198441,
+        "upper": 0.843991135543574
       }
     },
     "unsupported": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 1.1962983316807505e-17,
-        "upper": 0.1379762046749802
+        "lower": 0,
+        "upper": 0.07707356308558039
       }
     },
     "technical_failure": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 1.1962983316807505e-17,
-        "upper": 0.1379762046749802
+        "lower": 0,
+        "upper": 0.07707356308558039
       }
     },
     "silent_failure": {
       "numerator": 0,
-      "denominator": 24,
+      "denominator": 46,
       "rate": 0,
       "confidenceInterval": {
-        "lower": 1.1962983316807505e-17,
-        "upper": 0.1379762046749802
+        "lower": 0,
+        "upper": 0.07707356308558039
       }
     }
   },
   "dataset": {
-    "clips": 15,
-    "creators": 13,
-    "domains": 8,
-    "workflows": 8,
-    "instances": 24,
+    "clips": 111,
+    "creators": 68,
+    "domains": 14,
+    "workflows": 2,
+    "instances": 46,
     "splits": {
-      "development": 7,
-      "public-test": 3,
-      "private-heldout": 3,
-      "adversarial": 2
+      "development": 51,
+      "public-test": 24,
+      "private-heldout": 23,
+      "adversarial": 13
     },
     "licenseCounts": {
       "CC BY 3.0": 4,
       "CC BY 4.0": 1,
-      "NASA SVS public domain": 10
+      "NASA SVS public domain": 106
     },
-    "acquisitionGap": 0,
-    "acquisitionFailureCategories": {}
+    "acquisitionGap": 1,
+    "acquisitionFailureCategories": {
+      "source-http": 1
+    }
   },
   "counts": {
     "reviewedInstances": 0,
     "excludedInstances": 0
+  },
+  "workflowCoverage": {
+    "declared": 8,
+    "represented": 2,
+    "missing": [
+      "talking-head-cleanup",
+      "golden-quote-variants",
+      "reference-template",
+      "dance-choreography",
+      "captioned-multi-format",
+      "founder-product-launch"
+    ],
+    "corpusTierCounts": {
+      "motion-short": 111
+    }
   },
   "metrics": {
     "latencyMs": {
@@ -160,80 +177,150 @@
       "median": null
     },
     "exportReopen": {
-      "numerator": 36,
-      "denominator": 36,
+      "numerator": 264,
+      "denominator": 264,
       "rate": 1
     },
     "reviewerAgreement": null
   },
-  "missingDataTreatment": "Unevaluated editing quality remains review_required, safely_abstained, or unsupported; it is never counted as usable.",
+  "missingDataTreatment": "Only workflow-admissible sources enter a denominator. Unevaluated editing quality remains review_required, safely_abstained, or unsupported; it is never counted as usable.",
   "subgroups": [
     {
       "kind": "domain",
       "id": "animals",
-      "count": 8,
+      "count": 2,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
           }
         },
         "review_required": {
-          "numerator": 5,
-          "denominator": 8,
-          "rate": 0.625,
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1,
           "confidenceInterval": {
-            "lower": 0.3057423946026273,
-            "upper": 0.8631557141764027
+            "lower": 0.3423802275066531,
+            "upper": 1
           }
         },
         "safely_abstained": {
-          "numerator": 3,
-          "denominator": 8,
-          "rate": 0.375,
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
           "confidenceInterval": {
-            "lower": 0.13684428582359737,
-            "upper": 0.6942576053973727
+            "lower": 0,
+            "upper": 0.6576197724933469
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "basketball",
+      "count": 2,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "review_required": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.3423802275066531,
+            "upper": 1
+          }
+        },
+        "safely_abstained": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
           }
         }
       }
@@ -241,69 +328,559 @@
     {
       "kind": "domain",
       "id": "dance",
-      "count": 8,
+      "count": 2,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
           }
         },
         "review_required": {
-          "numerator": 5,
-          "denominator": 8,
-          "rate": 0.625,
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1,
           "confidenceInterval": {
-            "lower": 0.3057423946026273,
-            "upper": 0.8631557141764027
+            "lower": 0.3423802275066531,
+            "upper": 1
           }
         },
         "safely_abstained": {
-          "numerator": 3,
-          "denominator": 8,
-          "rate": 0.375,
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
           "confidenceInterval": {
-            "lower": 0.13684428582359737,
-            "upper": 0.6942576053973727
+            "lower": 0,
+            "upper": 0.6576197724933469
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "education-lecture",
+      "count": 2,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "safely_abstained": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.3423802275066531,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "events-presentations",
+      "count": 2,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "safely_abstained": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.3423802275066531,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "field-sports",
+      "count": 2,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "review_required": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.3423802275066531,
+            "upper": 1
+          }
+        },
+        "safely_abstained": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "general-documentary",
+      "count": 4,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "safely_abstained": {
+          "numerator": 4,
+          "denominator": 4,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.5101091635454027,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "manufacturing",
+      "count": 4,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "safely_abstained": {
+          "numerator": 4,
+          "denominator": 4,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.5101091635454027,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "nature-landscape",
+      "count": 12,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 12,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 2.1025014877572554e-17,
+            "upper": 0.24249400665524087
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 12,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 2.1025014877572554e-17,
+            "upper": 0.24249400665524087
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 12,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 2.1025014877572554e-17,
+            "upper": 0.24249400665524087
+          }
+        },
+        "safely_abstained": {
+          "numerator": 12,
+          "denominator": 12,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.7575059933447591,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 12,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 2.1025014877572554e-17,
+            "upper": 0.24249400665524087
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 12,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 2.1025014877572554e-17,
+            "upper": 0.24249400665524087
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 12,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 2.1025014877572554e-17,
+            "upper": 0.24249400665524087
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "product-launch",
+      "count": 4,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "review_required": {
+          "numerator": 4,
+          "denominator": 4,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.5101091635454027,
+            "upper": 1
+          }
+        },
+        "safely_abstained": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 4,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.4898908364545973
           }
         }
       }
@@ -311,69 +888,209 @@
     {
       "kind": "domain",
       "id": "public-speech",
-      "count": 8,
+      "count": 2,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
           }
         },
         "review_required": {
-          "numerator": 2,
-          "denominator": 8,
-          "rate": 0.25,
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
           "confidenceInterval": {
-            "lower": 0.07147921275210901,
-            "upper": 0.5907245696898311
+            "lower": 0,
+            "upper": 0.6576197724933469
           }
         },
         "safely_abstained": {
-          "numerator": 6,
-          "denominator": 8,
-          "rate": 0.75,
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1,
           "confidenceInterval": {
-            "lower": 0.40927543031016894,
-            "upper": 0.928520787247891
+            "lower": 0.3423802275066531,
+            "upper": 1
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 8,
+          "denominator": 2,
           "rate": 0,
           "confidenceInterval": {
             "lower": 0,
-            "upper": 0.32440756488388023
+            "upper": 0.6576197724933469
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "science-demonstration",
+      "count": 6,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 6,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 3.384324554477539e-17,
+            "upper": 0.39033428790216534
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 6,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 3.384324554477539e-17,
+            "upper": 0.39033428790216534
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 6,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 3.384324554477539e-17,
+            "upper": 0.39033428790216534
+          }
+        },
+        "safely_abstained": {
+          "numerator": 6,
+          "denominator": 6,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.6096657120978346,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 6,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 3.384324554477539e-17,
+            "upper": 0.39033428790216534
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 6,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 3.384324554477539e-17,
+            "upper": 0.39033428790216534
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 6,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 3.384324554477539e-17,
+            "upper": 0.39033428790216534
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "tutorial",
+      "count": 2,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "safely_abstained": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.3423802275066531,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.6576197724933469
           }
         }
       }
@@ -381,419 +1098,69 @@
     {
       "kind": "workflow",
       "id": "action-subject-following",
-      "count": 3,
+      "count": 23,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 3,
+          "denominator": 23,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
+            "lower": 0,
+            "upper": 0.14311661845042686
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 3,
+          "denominator": 23,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
+            "lower": 0,
+            "upper": 0.14311661845042686
           }
         },
         "review_required": {
-          "numerator": 2,
-          "denominator": 3,
-          "rate": 0.6666666666666666,
+          "numerator": 6,
+          "denominator": 23,
+          "rate": 0.2608695652173913,
           "confidenceInterval": {
-            "lower": 0.20765960080204768,
-            "upper": 0.9385080552796037
+            "lower": 0.12548616044986347,
+            "upper": 0.4647000483742537
           }
         },
         "safely_abstained": {
-          "numerator": 1,
-          "denominator": 3,
-          "rate": 0.3333333333333333,
+          "numerator": 17,
+          "denominator": 23,
+          "rate": 0.7391304347826086,
           "confidenceInterval": {
-            "lower": 0.061491944720396215,
-            "upper": 0.7923403991979523
+            "lower": 0.5352999516257462,
+            "upper": 0.8745138395501365
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 3,
+          "denominator": 23,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
+            "lower": 0,
+            "upper": 0.14311661845042686
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 3,
+          "denominator": 23,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
+            "lower": 0,
+            "upper": 0.14311661845042686
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 3,
+          "denominator": 23,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        }
-      }
-    },
-    {
-      "kind": "workflow",
-      "id": "captioned-multi-format",
-      "count": 3,
-      "outcomes": {
-        "automatic_usable": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "assisted_usable": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "review_required": {
-          "numerator": 3,
-          "denominator": 3,
-          "rate": 1,
-          "confidenceInterval": {
-            "lower": 0.4385029682449545,
-            "upper": 1
-          }
-        },
-        "safely_abstained": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "unsupported": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "technical_failure": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "silent_failure": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        }
-      }
-    },
-    {
-      "kind": "workflow",
-      "id": "dance-choreography",
-      "count": 3,
-      "outcomes": {
-        "automatic_usable": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "assisted_usable": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "review_required": {
-          "numerator": 2,
-          "denominator": 3,
-          "rate": 0.6666666666666666,
-          "confidenceInterval": {
-            "lower": 0.20765960080204768,
-            "upper": 0.9385080552796037
-          }
-        },
-        "safely_abstained": {
-          "numerator": 1,
-          "denominator": 3,
-          "rate": 0.3333333333333333,
-          "confidenceInterval": {
-            "lower": 0.061491944720396215,
-            "upper": 0.7923403991979523
-          }
-        },
-        "unsupported": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "technical_failure": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "silent_failure": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        }
-      }
-    },
-    {
-      "kind": "workflow",
-      "id": "founder-product-launch",
-      "count": 3,
-      "outcomes": {
-        "automatic_usable": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "assisted_usable": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "review_required": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "safely_abstained": {
-          "numerator": 3,
-          "denominator": 3,
-          "rate": 1,
-          "confidenceInterval": {
-            "lower": 0.4385029682449545,
-            "upper": 1
-          }
-        },
-        "unsupported": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "technical_failure": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "silent_failure": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        }
-      }
-    },
-    {
-      "kind": "workflow",
-      "id": "golden-quote-variants",
-      "count": 3,
-      "outcomes": {
-        "automatic_usable": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "assisted_usable": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "review_required": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "safely_abstained": {
-          "numerator": 3,
-          "denominator": 3,
-          "rate": 1,
-          "confidenceInterval": {
-            "lower": 0.4385029682449545,
-            "upper": 1
-          }
-        },
-        "unsupported": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "technical_failure": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "silent_failure": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        }
-      }
-    },
-    {
-      "kind": "workflow",
-      "id": "reference-template",
-      "count": 3,
-      "outcomes": {
-        "automatic_usable": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "assisted_usable": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "review_required": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "safely_abstained": {
-          "numerator": 3,
-          "denominator": 3,
-          "rate": 1,
-          "confidenceInterval": {
-            "lower": 0.4385029682449545,
-            "upper": 1
-          }
-        },
-        "unsupported": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "technical_failure": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "silent_failure": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
+            "lower": 0,
+            "upper": 0.14311661845042686
           }
         }
       }
@@ -801,139 +1168,69 @@
     {
       "kind": "workflow",
       "id": "smart-reframe",
-      "count": 3,
+      "count": 23,
       "outcomes": {
         "automatic_usable": {
           "numerator": 0,
-          "denominator": 3,
+          "denominator": 23,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
+            "lower": 0,
+            "upper": 0.14311661845042686
           }
         },
         "assisted_usable": {
           "numerator": 0,
-          "denominator": 3,
+          "denominator": 23,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
+            "lower": 0,
+            "upper": 0.14311661845042686
           }
         },
         "review_required": {
-          "numerator": 2,
-          "denominator": 3,
-          "rate": 0.6666666666666666,
+          "numerator": 6,
+          "denominator": 23,
+          "rate": 0.2608695652173913,
           "confidenceInterval": {
-            "lower": 0.20765960080204768,
-            "upper": 0.9385080552796037
+            "lower": 0.12548616044986347,
+            "upper": 0.4647000483742537
           }
         },
         "safely_abstained": {
-          "numerator": 1,
-          "denominator": 3,
-          "rate": 0.3333333333333333,
+          "numerator": 17,
+          "denominator": 23,
+          "rate": 0.7391304347826086,
           "confidenceInterval": {
-            "lower": 0.061491944720396215,
-            "upper": 0.7923403991979523
+            "lower": 0.5352999516257462,
+            "upper": 0.8745138395501365
           }
         },
         "unsupported": {
           "numerator": 0,
-          "denominator": 3,
+          "denominator": 23,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
+            "lower": 0,
+            "upper": 0.14311661845042686
           }
         },
         "technical_failure": {
           "numerator": 0,
-          "denominator": 3,
+          "denominator": 23,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
+            "lower": 0,
+            "upper": 0.14311661845042686
           }
         },
         "silent_failure": {
           "numerator": 0,
-          "denominator": 3,
+          "denominator": 23,
           "rate": 0,
           "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        }
-      }
-    },
-    {
-      "kind": "workflow",
-      "id": "talking-head-cleanup",
-      "count": 3,
-      "outcomes": {
-        "automatic_usable": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "assisted_usable": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "review_required": {
-          "numerator": 3,
-          "denominator": 3,
-          "rate": 1,
-          "confidenceInterval": {
-            "lower": 0.4385029682449545,
-            "upper": 1
-          }
-        },
-        "safely_abstained": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "unsupported": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "technical_failure": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
-          }
-        },
-        "silent_failure": {
-          "numerator": 0,
-          "denominator": 3,
-          "rate": 0,
-          "confidenceInterval": {
-            "lower": 4.8683609171202235e-17,
-            "upper": 0.5614970317550455
+            "lower": 0,
+            "upper": 0.14311661845042686
           }
         }
       }
@@ -942,40 +1239,20 @@
   "routes": [
     {
       "executorId": "none",
-      "count": 12,
+      "count": 34,
       "dispositions": {
         "automatic": 0,
         "assisted": 0,
         "review": 0,
-        "abstain": 12
-      }
-    },
-    {
-      "executorId": "executor.ffmpeg-silencedetect",
-      "count": 3,
-      "dispositions": {
-        "automatic": 0,
-        "assisted": 0,
-        "review": 3,
-        "abstain": 0
-      }
-    },
-    {
-      "executorId": "executor.ffmpeg-edit-plan",
-      "count": 3,
-      "dispositions": {
-        "automatic": 0,
-        "assisted": 0,
-        "review": 3,
-        "abstain": 0
+        "abstain": 34
       }
     },
     {
       "executorId": "executor.opencv-subject-tracker",
-      "count": 6,
+      "count": 12,
       "dispositions": {
         "automatic": 0,
-        "assisted": 6,
+        "assisted": 12,
         "review": 0,
         "abstain": 0
       }
@@ -983,11 +1260,11 @@
   ],
   "representativeFailures": [],
   "freezeReceipt": {
-    "receiptId": "creatorbench-freeze:733e4618972ad304388a811f",
-    "frozenAt": "2026-07-22T05:25:38.991Z",
-    "sourceCommit": "bb9c7ca337f4f993750517141dd34aed2e4d02d4",
+    "receiptId": "creatorbench-freeze:37b596c88293fbab06b9d9fb",
+    "frozenAt": "2026-07-22T06:15:17.730Z",
+    "sourceCommit": "a42851e1a60e8d5847287fba2277985e6a678ea7",
     "configHash": "sha256:20929e9cc64c3bf88a6018bede9a4ee81d0e2375d1c9c593c4db32174fe1872c",
-    "manifestHash": "sha256:57720bff7ba12a245a43b8074566fb38a4bfa54e2f1f6d68848aa9b4b2d48047",
+    "manifestHash": "sha256:2fdb4411debf43016843251b8ad471709e74d63ba53c4c667d2c69cd24a46623",
     "evaluatorVersion": "creatorbench-evaluator-v1",
     "thresholdPolicy": "sha256:5338c6b661fe925a617b21c98a9601ea79cfc3b07e1bee18d431c1181577387d",
     "status": "verified"
@@ -1001,22 +1278,22 @@
         "public-test",
         "adversarial"
       ],
-      "sourceCount": 12,
-      "outputCount": 12,
-      "artifactCount": 36
+      "sourceCount": 88,
+      "outputCount": 88,
+      "artifactCount": 264
     },
     "metrics": {
       "latencyMs": {
-        "p50": 1334,
-        "p95": 1536
+        "p50": 1347,
+        "p95": 1603
       },
       "costUsd": {
         "total": 0,
         "perOutput": 0
       },
       "exportReopen": {
-        "numerator": 36,
-        "denominator": 36,
+        "numerator": 264,
+        "denominator": 264,
         "rate": 1
       }
     },
@@ -1027,110 +1304,6 @@
     ]
   },
   "reviewCases": [
-    {
-      "id": "instance:cb-0001-b0952255:smart-reframe",
-      "visibility": "public",
-      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
-      "sourcePoster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-source.jpg",
-      "outputPoster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-9x16.jpg",
-      "outputs": [
-        {
-          "id": "16:9",
-          "label": "16:9",
-          "poster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-16x9.jpg"
-        },
-        {
-          "id": "1:1",
-          "label": "1:1",
-          "poster": "/media/creatorbench-v1/public/2d744e4b2294f6cf-1x1.jpg"
-        }
-      ],
-      "publicSourceLabel": "CC BY 3.0 · Wikimania 2016 - How to make a short documentary with a smartphone.webm",
-      "route": "local-ffmpeg-center-reframe-v1",
-      "machineFindings": [
-        "Deterministic center-crop baseline; no subject detector was used.",
-        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
-        "Human review is required before any usability claim."
-      ]
-    },
-    {
-      "id": "instance:cb-0004-7bfc3a17:smart-reframe",
-      "visibility": "public",
-      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
-      "sourcePoster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-source.jpg",
-      "outputPoster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-9x16.jpg",
-      "outputs": [
-        {
-          "id": "16:9",
-          "label": "16:9",
-          "poster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-16x9.jpg"
-        },
-        {
-          "id": "1:1",
-          "label": "1:1",
-          "poster": "/media/creatorbench-v1/public/fdcb712bc07d6d12-1x1.jpg"
-        }
-      ],
-      "publicSourceLabel": "CC BY 3.0 · Reviewing The Age of Disclosure – Amazon Prime’s New UFO Documentary.webm",
-      "route": "local-ffmpeg-center-reframe-v1",
-      "machineFindings": [
-        "Deterministic center-crop baseline; no subject detector was used.",
-        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
-        "Human review is required before any usability claim."
-      ]
-    },
-    {
-      "id": "instance:cb-0009-beb98f01:smart-reframe",
-      "visibility": "public",
-      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
-      "sourcePoster": "/media/creatorbench-v1/public/5c2318cf7148893c-source.jpg",
-      "outputPoster": "/media/creatorbench-v1/public/5c2318cf7148893c-9x16.jpg",
-      "outputs": [
-        {
-          "id": "16:9",
-          "label": "16:9",
-          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-16x9.jpg"
-        },
-        {
-          "id": "1:1",
-          "label": "1:1",
-          "poster": "/media/creatorbench-v1/public/5c2318cf7148893c-1x1.jpg"
-        }
-      ],
-      "publicSourceLabel": "CC BY 3.0 · McKinley's Late Grandmother is an Inspiration.webm",
-      "route": "local-ffmpeg-center-reframe-v1",
-      "machineFindings": [
-        "Deterministic center-crop baseline; no subject detector was used.",
-        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
-        "Human review is required before any usability claim."
-      ]
-    },
-    {
-      "id": "instance:cb-0040-591140b7:smart-reframe",
-      "visibility": "public",
-      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
-      "sourcePoster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-source.jpg",
-      "outputPoster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-9x16.jpg",
-      "outputs": [
-        {
-          "id": "16:9",
-          "label": "16:9",
-          "poster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-16x9.jpg"
-        },
-        {
-          "id": "1:1",
-          "label": "1:1",
-          "poster": "/media/creatorbench-v1/public/adc5fb398b6c51dd-1x1.jpg"
-        }
-      ],
-      "publicSourceLabel": "CC BY 3.0 · Demonstration of a 2-step.webm",
-      "route": "local-ffmpeg-center-reframe-v1",
-      "machineFindings": [
-        "Deterministic center-crop baseline; no subject detector was used.",
-        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
-        "Human review is required before any usability claim."
-      ]
-    },
     {
       "id": "instance:cb-0006-493a02f5:smart-reframe",
       "visibility": "public",
@@ -1158,24 +1331,24 @@
       ]
     },
     {
-      "id": "instance:cb-0007-bd64b3cf:smart-reframe",
+      "id": "instance:cb-0008-b952fc45:smart-reframe",
       "visibility": "public",
-      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
-      "sourcePoster": "/media/creatorbench-v1/public/88a72a383a42a1f3-source.jpg",
-      "outputPoster": "/media/creatorbench-v1/public/88a72a383a42a1f3-9x16.jpg",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/dd96975fb13c2a24-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/dd96975fb13c2a24-9x16.jpg",
       "outputs": [
         {
           "id": "16:9",
           "label": "16:9",
-          "poster": "/media/creatorbench-v1/public/88a72a383a42a1f3-16x9.jpg"
+          "poster": "/media/creatorbench-v1/public/dd96975fb13c2a24-16x9.jpg"
         },
         {
           "id": "1:1",
           "label": "1:1",
-          "poster": "/media/creatorbench-v1/public/88a72a383a42a1f3-1x1.jpg"
+          "poster": "/media/creatorbench-v1/public/dd96975fb13c2a24-1x1.jpg"
         }
       ],
-      "publicSourceLabel": "NASA SVS public domain · Hubble Celebrates World Wildlife Day",
+      "publicSourceLabel": "NASA SVS public domain · Bird's-eye View of Biodiversity with Landsat",
       "route": "local-ffmpeg-center-reframe-v1",
       "machineFindings": [
         "Deterministic center-crop baseline; no subject detector was used.",
@@ -1262,50 +1435,24 @@
       ]
     },
     {
-      "id": "instance:cb-0013-e3145068:smart-reframe",
+      "id": "instance:cb-0012-87d1ef2a:smart-reframe",
       "visibility": "public",
       "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
-      "sourcePoster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-source.jpg",
-      "outputPoster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-9x16.jpg",
+      "sourcePoster": "/media/creatorbench-v1/public/de898fddf7eee928-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/de898fddf7eee928-9x16.jpg",
       "outputs": [
         {
           "id": "16:9",
           "label": "16:9",
-          "poster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-16x9.jpg"
+          "poster": "/media/creatorbench-v1/public/de898fddf7eee928-16x9.jpg"
         },
         {
           "id": "1:1",
           "label": "1:1",
-          "poster": "/media/creatorbench-v1/public/8ff6a3b8ee9f7f56-1x1.jpg"
+          "poster": "/media/creatorbench-v1/public/de898fddf7eee928-1x1.jpg"
         }
       ],
-      "publicSourceLabel": "NASA SVS public domain · Eclipse Poems",
-      "route": "local-ffmpeg-center-reframe-v1",
-      "machineFindings": [
-        "Deterministic center-crop baseline; no subject detector was used.",
-        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
-        "Human review is required before any usability claim."
-      ]
-    },
-    {
-      "id": "instance:cb-0014-a6e58d23:smart-reframe",
-      "visibility": "public",
-      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
-      "sourcePoster": "/media/creatorbench-v1/public/392ce4566b4a627c-source.jpg",
-      "outputPoster": "/media/creatorbench-v1/public/392ce4566b4a627c-9x16.jpg",
-      "outputs": [
-        {
-          "id": "16:9",
-          "label": "16:9",
-          "poster": "/media/creatorbench-v1/public/392ce4566b4a627c-16x9.jpg"
-        },
-        {
-          "id": "1:1",
-          "label": "1:1",
-          "poster": "/media/creatorbench-v1/public/392ce4566b4a627c-1x1.jpg"
-        }
-      ],
-      "publicSourceLabel": "NASA SVS public domain · Hubble Archive - Servicing Mission 4, STS-125",
+      "publicSourceLabel": "NASA SVS public domain · Helio Big Year: How Sonifications Connect to Performance Art",
       "route": "local-ffmpeg-center-reframe-v1",
       "machineFindings": [
         "Deterministic center-crop baseline; no subject detector was used.",
@@ -1316,7 +1463,7 @@
     {
       "id": "instance:cb-0015-0a22e6b8:smart-reframe",
       "visibility": "public",
-      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
       "sourcePoster": "/media/creatorbench-v1/public/2248624bdd122e08-source.jpg",
       "outputPoster": "/media/creatorbench-v1/public/2248624bdd122e08-9x16.jpg",
       "outputs": [
@@ -1338,9 +1485,2115 @@
         "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
         "Human review is required before any usability claim."
       ]
+    },
+    {
+      "id": "instance:cb-0016-4bbd64b0:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/b60900db8a4391ce-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/b60900db8a4391ce-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/b60900db8a4391ce-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/b60900db8a4391ce-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA Tech on SpaceX Falcon Heavy Launch - Media Telecon Resources",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0017-cc8702fa:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/607a5e5c5264206e-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/607a5e5c5264206e-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/607a5e5c5264206e-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/607a5e5c5264206e-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Long-range Transport of 2026 Canadian Wildfire Smoke into the United States (July 14-20, 2026)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0018-0932f238:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/5edd490583c79b85-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/5edd490583c79b85-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/5edd490583c79b85-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/5edd490583c79b85-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Long-range Transport of 2026 Canadian Wildfire Smoke into the United States (July 14-17, 2026)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0019-9e58ef72:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/7eda2c9921df3ed2-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/7eda2c9921df3ed2-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/7eda2c9921df3ed2-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/7eda2c9921df3ed2-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Geoid",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0020-8804a7db:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/a591bc89a3a79d91-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/a591bc89a3a79d91-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/a591bc89a3a79d91-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/a591bc89a3a79d91-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Super Typhoon Bavi",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0021-31f5bb01:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/5c6aa590be006ee6-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/5c6aa590be006ee6-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/5c6aa590be006ee6-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/5c6aa590be006ee6-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Animations of the August 12, 2026, Total Solar Eclipse",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0022-b933f478:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/4c40cc1e9a41427c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/4c40cc1e9a41427c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/4c40cc1e9a41427c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/4c40cc1e9a41427c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Moon Passes In and Out of Earth's Magnetosphere",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0023-cf31f183:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/e758d53cbfd7840f-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/e758d53cbfd7840f-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/e758d53cbfd7840f-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/e758d53cbfd7840f-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Earth Data User: ROFFS Fishing",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0024-85653153:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/d005c778c7b4f12a-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/d005c778c7b4f12a-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/d005c778c7b4f12a-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/d005c778c7b4f12a-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Tracking Timber in Washington’s Wynoochee Valley",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0025-36d4e43b:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/3876defedf8bb361-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/3876defedf8bb361-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/3876defedf8bb361-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/3876defedf8bb361-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Retreating Alsek Glacier, Alaska",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0026-7c1b2383:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/90c5f36261b220d4-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/90c5f36261b220d4-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/90c5f36261b220d4-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/90c5f36261b220d4-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Four Days of Solar Dynamics in 16 Minutes",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0027-0cc0ba2b:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/a69203b73fb4f965-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/a69203b73fb4f965-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/a69203b73fb4f965-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/a69203b73fb4f965-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Sea Surface Height Anomaly, 2026",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0028-fd71efcf:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/ce7e45a6459b0695-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/ce7e45a6459b0695-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/ce7e45a6459b0695-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/ce7e45a6459b0695-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Global Smoke Forecast Visualization (Daily Updated)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0029-ceb75f1d:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/7b57e6014fdbdde8-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/7b57e6014fdbdde8-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/7b57e6014fdbdde8-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/7b57e6014fdbdde8-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Testing for the Katalyst-NASA Swift Boost Mission",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0030-f6dba17c:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/719621e2ce5cda9c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/719621e2ce5cda9c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/719621e2ce5cda9c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/719621e2ce5cda9c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · How NASA Uses Light to Detect Waste From Mines",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0031-6f0b437d:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/28dfe7b0ae311cc5-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/28dfe7b0ae311cc5-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/28dfe7b0ae311cc5-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/28dfe7b0ae311cc5-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA's Fermi Spies a Supercharged Supernova",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0032-2ce7cec5:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/134b650f30ac240d-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/134b650f30ac240d-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/134b650f30ac240d-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/134b650f30ac240d-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Nancy Grace Roman Telescope's Final Solar Panel and Deployable Aperture Cover Deployments",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0033-b4a20a60:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/0ad77535381aa70e-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/0ad77535381aa70e-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/0ad77535381aa70e-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/0ad77535381aa70e-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA Interview Opportunity: Catch Last Look at NASA’s Newest Space Telescope",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0034-16ed90ac:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/28940ce0a23ec858-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/28940ce0a23ec858-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/28940ce0a23ec858-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/28940ce0a23ec858-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Ring Current in Earth's Magnetosphere",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0036-60582816:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/8aa3c555ec48fe4d-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/8aa3c555ec48fe4d-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/8aa3c555ec48fe4d-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/8aa3c555ec48fe4d-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Undamming the Klamath",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0037-acd7511c:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/fa6953fb76e914b0-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/fa6953fb76e914b0-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/fa6953fb76e914b0-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/fa6953fb76e914b0-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · PACE Data Tour - Visualizations",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0038-6a3339c2:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/884fe887246f6aab-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/884fe887246f6aab-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/884fe887246f6aab-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/884fe887246f6aab-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · On Tour Around the Globe with PACE",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0039-884266ba:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/8acbfd2ae05f1f00-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/8acbfd2ae05f1f00-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/8acbfd2ae05f1f00-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/8acbfd2ae05f1f00-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Powerful Typhoon Sinlaku strikes the Northern Marianas",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0040-51f4ed21:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/c169161926759ff1-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/c169161926759ff1-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/c169161926759ff1-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/c169161926759ff1-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Arctic Sea Ice Maximum 2026",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0042-e291b18d:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/ed768df53a63dc44-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/ed768df53a63dc44-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/ed768df53a63dc44-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/ed768df53a63dc44-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · GUARDIAN Warns Hawaii Early of Incoming Kamchatka Tsunami (Vertical version)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0043-b1d571bb:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/ff03628b7c32cb13-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/ff03628b7c32cb13-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/ff03628b7c32cb13-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/ff03628b7c32cb13-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · See How NASA’s GUARDIAN Tsunami Detection System Works",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0044-ee96dc05:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/b4b1189c4a20a321-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/b4b1189c4a20a321-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/b4b1189c4a20a321-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/b4b1189c4a20a321-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · SWOT Mission Unlocks a New View of Our Waterways",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0045-c0fdc2d9:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/fa4c3387aa2a950e-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/fa4c3387aa2a950e-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/fa4c3387aa2a950e-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/fa4c3387aa2a950e-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Global Views of ICESat-2 Data",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0046-482f5e97:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/77307f12a48f650c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/77307f12a48f650c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/77307f12a48f650c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/77307f12a48f650c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · SWOT River Volume Variations",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0047-1aa70c3c:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/0d1ba59c63caa5dc-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/0d1ba59c63caa5dc-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/0d1ba59c63caa5dc-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/0d1ba59c63caa5dc-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · SWOT River Volume Variations (rivers only)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0050-44f3a3ff:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/25a4ed9f65e67200-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/25a4ed9f65e67200-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/25a4ed9f65e67200-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/25a4ed9f65e67200-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Earth System Science Spheres",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0051-4bcd095f:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/8c1109ecf73c4375-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/8c1109ecf73c4375-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/8c1109ecf73c4375-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/8c1109ecf73c4375-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Shifting Distribution of Land Temperature Anomalies, 1964-2025",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0052-eb5546f0:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/e93e636e349320bf-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/e93e636e349320bf-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/e93e636e349320bf-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/e93e636e349320bf-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Global Temperature Anomalies from 1880 to 2025",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0053-adc83a29:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/849998005f389269-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/849998005f389269-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/849998005f389269-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/849998005f389269-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · ICESat-2 Land Ice Height Change (2020-2025)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0054-e3b9440b:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/d3c107658325efb2-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/d3c107658325efb2-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/d3c107658325efb2-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/d3c107658325efb2-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · ICESat-2 Winter Sea Ice Thickness (2020-2025)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0056-ae949169:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/0e7ca4e4f5b26c39-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/0e7ca4e4f5b26c39-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/0e7ca4e4f5b26c39-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/0e7ca4e4f5b26c39-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · GEOS Aerosols",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0057-1d87ea0e:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/e430da52d52b0fde-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/e430da52d52b0fde-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/e430da52d52b0fde-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/e430da52d52b0fde-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA's Fleet of Active Satellites (July 2025)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0058-ca9b5d55:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/a2928d85c045c0ae-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/a2928d85c045c0ae-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/a2928d85c045c0ae-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/a2928d85c045c0ae-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Deserts of Africa and the Middle East",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0059-c3b960e2:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/e09c298c2543dca7-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/e09c298c2543dca7-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/e09c298c2543dca7-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/e09c298c2543dca7-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Northward Shift of Boreal Tree Cover Confirmed By Satellite Record",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0060-4ef7b32c:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/9766b987799404b7-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/9766b987799404b7-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/9766b987799404b7-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/9766b987799404b7-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · ESCAPADE Theoretical Flight Through Active Mars Magnetosphere",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0061-68183569:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/efb86e0d520a6814-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/efb86e0d520a6814-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/efb86e0d520a6814-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/efb86e0d520a6814-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · At Land's Edge - Tracking Coastal Ecosystem with Landsat",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0062-7554e85b:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/22389b748d245802-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/22389b748d245802-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/22389b748d245802-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/22389b748d245802-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA Flew Over a Fire — to Better Understand Future Ones",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0063-b55329da:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/5485f73ab5276b2e-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/5485f73ab5276b2e-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/5485f73ab5276b2e-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/5485f73ab5276b2e-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Arctic Sea Ice Minimum 2025",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0066-9e65c59b:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/29a8ac42889fc760-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/29a8ac42889fc760-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/29a8ac42889fc760-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/29a8ac42889fc760-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · STORIE Launch and Install on the Space Station",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0068-020c2a0a:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/47fdd277e3c562c4-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/47fdd277e3c562c4-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/47fdd277e3c562c4-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/47fdd277e3c562c4-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA Experiment to Track Space ‘Doughnut’ Encircling Earth",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0069-e0f2d14d:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/c788c06c9b9586f0-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/c788c06c9b9586f0-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/c788c06c9b9586f0-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/c788c06c9b9586f0-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Moon Passes Through Earth's Magnetotail",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0071-21cbaa5c:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/826002db00ad8c64-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/826002db00ad8c64-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/826002db00ad8c64-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/826002db00ad8c64-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · ISS views Aurora from the November 11-13, 2025 Geomagnetic Storm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0072-4ed91916:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/7961561ccf254435-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/7961561ccf254435-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/7961561ccf254435-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/7961561ccf254435-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · XRISM Clocks Hot Wind of Galaxy M82",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0073-001f1f6b:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/18a017153e0411c2-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/18a017153e0411c2-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/18a017153e0411c2-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/18a017153e0411c2-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Lunar Near and Far Side Phases",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0074-57484d54:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/86371ef8bf267dfa-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/86371ef8bf267dfa-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/86371ef8bf267dfa-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/86371ef8bf267dfa-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Artemis II: Into the Path of Solar Eruptions",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0075-cafd8dd1:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/9beed89a18a17d7c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/9beed89a18a17d7c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/9beed89a18a17d7c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/9beed89a18a17d7c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Artemis II: Sending Humans Beyond the Magnetosphere",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0077-76d6a7e7:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/38f102ccdbb5c5e8-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/38f102ccdbb5c5e8-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/38f102ccdbb5c5e8-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/38f102ccdbb5c5e8-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Universe Needs Your Eyes! Hubble's Citizen Scientists",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0078-5dcaeb49:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/9faf06d82b44f3ec-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/9faf06d82b44f3ec-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/9faf06d82b44f3ec-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/9faf06d82b44f3ec-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Simulating the Artemis II Lunar Flyby on April 6, 2026",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0079-b3bf6506:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/9a7f99f850840750-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/9a7f99f850840750-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/9a7f99f850840750-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/9a7f99f850840750-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Artemis II mission trajectory",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0080-3073e3ec:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/41dceb0e5730740f-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/41dceb0e5730740f-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/41dceb0e5730740f-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/41dceb0e5730740f-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA Interview Opportunity: Moonbound! NASA’s Artemis II Mission Days From Launch — First Crewed Journey Around the Moon in More Than 50 Years!",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0081-5a513c7a:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/6ed46b2c9b633502-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/6ed46b2c9b633502-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/6ed46b2c9b633502-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/6ed46b2c9b633502-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Lucy Observations of Asteroid Donaldjohanson",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0082-0a72ef24:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/385d33ad787f6ede-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/385d33ad787f6ede-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/385d33ad787f6ede-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/385d33ad787f6ede-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA's Swift Mission Gets a Boost",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0083-20fd73aa:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/b22b01731c78d9f6-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/b22b01731c78d9f6-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/b22b01731c78d9f6-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/b22b01731c78d9f6-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Global Navigation Satellite System (GNSS) Fleet",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0084-5ce9e814:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/fdc287691012f2f6-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/fdc287691012f2f6-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/fdc287691012f2f6-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/fdc287691012f2f6-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Committee on Earth Observation Satellites (CEOS) - Fleet - 2026",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0085-7768f9ac:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/ff55768c7e658012-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/ff55768c7e658012-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/ff55768c7e658012-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/ff55768c7e658012-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · See the Sun's Active Region: The Source of the Early-February Flares",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0086-85a79a17:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/4b02ea604c878a76-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/4b02ea604c878a76-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/4b02ea604c878a76-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/4b02ea604c878a76-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Long-Span Bridge Inspection Prioritization",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0088-9b30a3c3:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/66a4bddf8a7b1e81-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/66a4bddf8a7b1e81-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/66a4bddf8a7b1e81-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/66a4bddf8a7b1e81-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Kathy Sullivan: American Pioneers and the Hubble Space Telescope",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0089-a5140cae:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/fc617a3f1fb38b7b-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/fc617a3f1fb38b7b-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/fc617a3f1fb38b7b-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/fc617a3f1fb38b7b-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · To an Asteroid and Back Trailer",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0090-8d000e84:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/67b35a974192506b-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/67b35a974192506b-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/67b35a974192506b-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/67b35a974192506b-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA’s Incredible Discovery Machine: The Story of the Hubble Space Telescope",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0092-75e3169a:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/6c2dba0ce1f9a0a1-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/6c2dba0ce1f9a0a1-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/6c2dba0ce1f9a0a1-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/6c2dba0ce1f9a0a1-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Apollo 11: This Is Goddard",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0093-454e2d61:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/8cc0f2f9c63f3841-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/8cc0f2f9c63f3841-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/8cc0f2f9c63f3841-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/8cc0f2f9c63f3841-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Moonlight (Clair de Lune)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0094-ac666c8f:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/720dbcc7cf0ebb78-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/720dbcc7cf0ebb78-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/720dbcc7cf0ebb78-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/720dbcc7cf0ebb78-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Behold, A Whirlwind Came: The Science of Tracking Hurricanes",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0096-bbc6d99c:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/cc1a66d10266c416-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/cc1a66d10266c416-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/cc1a66d10266c416-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/cc1a66d10266c416-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Artemis II Flight Path Animations",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0097-b78025cb:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/269f34134de192b5-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/269f34134de192b5-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/269f34134de192b5-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/269f34134de192b5-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · A Pathway to Protocells on Titan – Animations",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0098-98ab8feb:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/45274a975c5e2469-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/45274a975c5e2469-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/45274a975c5e2469-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/45274a975c5e2469-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · TROPICS Eyes Hurricane Erin",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0100-dcd76e76:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/be561790609acd6a-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/be561790609acd6a-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/be561790609acd6a-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/be561790609acd6a-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · IMAP Beauty Passes",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0101-28404cbc:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/160646dfd994d434-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/160646dfd994d434-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/160646dfd994d434-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/160646dfd994d434-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Carruthers Geocorona Animation",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0102-0024dcf8:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/3d9cbf1f656be538-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/3d9cbf1f656be538-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/3d9cbf1f656be538-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/3d9cbf1f656be538-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · EZIE – Electrojet Zeeman Imaging Explorer",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0106-fd128f45:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/eb20f7e8a605f987-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/eb20f7e8a605f987-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/eb20f7e8a605f987-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/eb20f7e8a605f987-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Brazil and Novo Progresso Land Use Data Over Time",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0107-06e107d2:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/f59823ead25cf0f5-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/f59823ead25cf0f5-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/f59823ead25cf0f5-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/f59823ead25cf0f5-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Northern Brazil Land Use Data Over Time",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0108-0f94ea96:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/c3214032165b0c12-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/c3214032165b0c12-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/c3214032165b0c12-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/c3214032165b0c12-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Measuring the Seas from Space! U.S.-European Satellite Launching THIS SATURDAY Seeks to Answer Vital Climate Questions Live Shots",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0109-9955efd2:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/cf1b488de7e58f97-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/cf1b488de7e58f97-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/cf1b488de7e58f97-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/cf1b488de7e58f97-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · OSIRIS-REx TAG Event: Real-time Animation",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0110-c17e1c3f:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/6961a9ff264731ab-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/6961a9ff264731ab-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/6961a9ff264731ab-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/6961a9ff264731ab-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · OSIRIS-REx Science and Engineering Briefing",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0111-1460dea9:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+      "sourcePoster": "/media/creatorbench-v1/public/4a4977fab05fc064-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/4a4977fab05fc064-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/4a4977fab05fc064-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/4a4977fab05fc064-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Webb Global Contributor Map",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0112-c462e74c:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/b8aa7c59c6e187f0-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/b8aa7c59c6e187f0-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/b8aa7c59c6e187f0-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/b8aa7c59c6e187f0-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Flying Through LIDAR Canopy Data",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0111-c8656e5e:smart-reframe",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
+      "sourcePoster": "/media/creatorbench-v1/public/6aa3c797799dde50-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/6aa3c797799dde50-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/6aa3c797799dde50-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/6aa3c797799dde50-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · GUARDIAN Warns Hawaii Early of Incoming Kamchatka Tsunami",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
     }
   ],
-  "publicSourceCount": 12,
+  "publicSourceCount": 88,
   "downloads": {
     "json": "/benchmarks/creatorbench-v1/results/public-report.json",
     "csv": "/benchmarks/creatorbench-v1/results/public-report.csv"

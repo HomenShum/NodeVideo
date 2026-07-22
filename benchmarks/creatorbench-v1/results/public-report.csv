@@ -1,8 +1,8 @@
 classification,numerator,denominator,rate
-automatic_usable,0,24,0
-assisted_usable,0,24,0
-review_required,12,24,0.5
-safely_abstained,12,24,0.5
-unsupported,0,24,0
-technical_failure,0,24,0
-silent_failure,0,24,0
+automatic_usable,0,46,0
+assisted_usable,0,46,0
+review_required,12,46,0.2608695652173913
+safely_abstained,34,46,0.7391304347826086
+unsupported,0,46,0
+technical_failure,0,46,0
+silent_failure,0,46,0
