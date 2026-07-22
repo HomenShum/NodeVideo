@@ -201,6 +201,6 @@ export default defineConfig({
   },
   test: {
     environment: 'node',
-    exclude: ['tests/e2e/**', '**/node_modules/**', '**/dist/**'],
+    exclude: ['tests/e2e/**', '.qa/cache/**', '**/node_modules/**', '**/dist/**'],
   },
 });
