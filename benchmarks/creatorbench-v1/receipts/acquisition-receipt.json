@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-acquisition-receipt.v1",
+  "benchmarkVersion": "creatorbench-v1",
+  "generatedAt": "2026-07-22T04:22:02.794Z",
+  "requestedClips": 10,
+  "acquiredClips": 2,
+  "publicCatalogRecords": 1,
+  "privateCatalogRecords": 1,
+  "creators": 2,
+  "domains": 2,
+  "splitCounts": {
+    "development": 0,
+    "public-test": 0,
+    "private-heldout": 1,
+    "adversarial": 1
+  },
+  "allowedLicenses": [
+    "CC0",
+    "Public domain",
+    "CC BY 1.0",
+    "CC BY 2.0",
+    "CC BY 2.5",
+    "CC BY 3.0",
+    "CC BY 4.0"
+  ],
+  "privateCatalogSha256": "sha256:bd9d215c8b0244ab7529eb47fddb5eb851e1b998f80d928793a25cbe03846762",
+  "publicCatalogSha256": "sha256:794d1f91c1128c41e81714de21a2299577d9c98e05e56d89dbf4c772ccda09b8",
+  "cacheRootClass": ".qa/evidence/creatorbench-v1/media",
+  "acquisitionGap": 8
+}

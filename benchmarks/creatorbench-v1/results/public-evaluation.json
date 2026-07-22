@@ -1,0 +1,747 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-evaluation/v1",
+  "benchmarkVersion": "creatorbench-v1",
+  "evaluationMode": "public-routing-and-ingestion",
+  "generatedAt": "2026-07-22T04:24:57.507Z",
+  "population": {
+    "instanceCount": 8,
+    "sourceCount": 1,
+    "creatorCount": 1,
+    "domainCount": 1,
+    "workflowCount": 8
+  },
+  "outcomes": {
+    "automatic_usable": {
+      "numerator": 0,
+      "denominator": 8,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.32440756488388023
+      }
+    },
+    "assisted_usable": {
+      "numerator": 0,
+      "denominator": 8,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.32440756488388023
+      }
+    },
+    "review_required": {
+      "numerator": 2,
+      "denominator": 8,
+      "rate": 0.25,
+      "confidenceInterval": {
+        "lower": 0.07147921275210901,
+        "upper": 0.5907245696898311
+      }
+    },
+    "safely_abstained": {
+      "numerator": 6,
+      "denominator": 8,
+      "rate": 0.75,
+      "confidenceInterval": {
+        "lower": 0.40927543031016894,
+        "upper": 0.928520787247891
+      }
+    },
+    "unsupported": {
+      "numerator": 0,
+      "denominator": 8,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.32440756488388023
+      }
+    },
+    "technical_failure": {
+      "numerator": 0,
+      "denominator": 8,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.32440756488388023
+      }
+    },
+    "silent_failure": {
+      "numerator": 0,
+      "denominator": 8,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.32440756488388023
+      }
+    }
+  },
+  "subgroups": [
+    {
+      "kind": "domain",
+      "id": "general-documentary",
+      "count": 8,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        },
+        "review_required": {
+          "numerator": 2,
+          "denominator": 8,
+          "rate": 0.25,
+          "confidenceInterval": {
+            "lower": 0.07147921275210901,
+            "upper": 0.5907245696898311
+          }
+        },
+        "safely_abstained": {
+          "numerator": 6,
+          "denominator": 8,
+          "rate": 0.75,
+          "confidenceInterval": {
+            "lower": 0.40927543031016894,
+            "upper": 0.928520787247891
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.32440756488388023
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "action-subject-following",
+      "count": 1,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "safely_abstained": {
+          "numerator": 1,
+          "denominator": 1,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.20654931437723742,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "captioned-multi-format",
+      "count": 1,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "review_required": {
+          "numerator": 1,
+          "denominator": 1,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.20654931437723742,
+            "upper": 1
+          }
+        },
+        "safely_abstained": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "dance-choreography",
+      "count": 1,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "safely_abstained": {
+          "numerator": 1,
+          "denominator": 1,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.20654931437723742,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "founder-product-launch",
+      "count": 1,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "safely_abstained": {
+          "numerator": 1,
+          "denominator": 1,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.20654931437723742,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "golden-quote-variants",
+      "count": 1,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "safely_abstained": {
+          "numerator": 1,
+          "denominator": 1,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.20654931437723742,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "reference-template",
+      "count": 1,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "safely_abstained": {
+          "numerator": 1,
+          "denominator": 1,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.20654931437723742,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "smart-reframe",
+      "count": 1,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "safely_abstained": {
+          "numerator": 1,
+          "denominator": 1,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.20654931437723742,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "talking-head-cleanup",
+      "count": 1,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "review_required": {
+          "numerator": 1,
+          "denominator": 1,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.20654931437723742,
+            "upper": 1
+          }
+        },
+        "safely_abstained": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.7934506856227626
+          }
+        }
+      }
+    }
+  ],
+  "routeDistribution": [
+    {
+      "executorId": "none",
+      "count": 6,
+      "dispositions": {
+        "automatic": 0,
+        "assisted": 0,
+        "review": 0,
+        "abstain": 6
+      }
+    },
+    {
+      "executorId": "executor.ffmpeg-silencedetect",
+      "count": 1,
+      "dispositions": {
+        "automatic": 0,
+        "assisted": 0,
+        "review": 1,
+        "abstain": 0
+      }
+    },
+    {
+      "executorId": "executor.ffmpeg-edit-plan",
+      "count": 1,
+      "dispositions": {
+        "automatic": 0,
+        "assisted": 0,
+        "review": 1,
+        "abstain": 0
+      }
+    }
+  ],
+  "limitations": [
+    "No result is classified usable until a rendered artifact is blindly reviewed by a human.",
+    "This baseline measures request ingestion, rights validation, route eligibility, and honest non-success states—not editing quality."
+  ],
+  "resultsSha256": "sha256:b38b10e7f4b88998b6c3664653f31224f25c9dc0899abeb5353acf2077bbf0ac"
+}

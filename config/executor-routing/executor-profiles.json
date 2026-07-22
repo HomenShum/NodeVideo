@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "nodevideo.executor-routing-profiles.v1",
+  "profiles": [
+    {
+      "executorId": "executor.opencv-subject-tracker",
+      "domains": ["group", "object", "animal", "sport"],
+      "defaultDisposition": "assisted",
+      "assistance": {
+        "kind": "manual-seed",
+        "instruction": "Select the intended subject once on the first usable frame."
+      }
+    },
+    {
+      "executorId": "executor.ffmpeg-silencedetect",
+      "domains": ["*"],
+      "defaultDisposition": "automatic"
+    },
+    {
+      "executorId": "executor.ffmpeg-edit-plan",
+      "domains": ["*"],
+      "defaultDisposition": "automatic"
+    }
+  ]
+}

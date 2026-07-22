@@ -1,0 +1,431 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-instance-manifest.v1",
+  "benchmarkVersion": "creatorbench-v1",
+  "generatedAt": "2026-07-22T04:24:52.036Z",
+  "instances": [
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0007-7e696883:smart-reframe",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": ["cb-0007-7e696883"],
+      "domain": "general-documentary",
+      "workflow": "smart-reframe",
+      "split": "adversarial",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0007-7e696883:smart-reframe",
+        "createdAt": "2026-07-22T04:24:52.035Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0007-7e696883",
+            "role": "primary",
+            "sha256": "sha256:7db21da48be14f452c45552c66d0f1edf95bb01f2197286bbbfd70cf7e9bfdcb",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": ["review"],
+          "targetDurationsMs": [30000],
+          "aspectRatios": ["16:9", "9:16", "1:1"]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "cc-by",
+          "ownerOrLicensorId": "creator:4b611b22428907f5",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "smart-reframe",
+          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+          "preserve": ["source meaning", "selected subject", "rights lineage"],
+          "avoid": ["silent subject switches", "unsupported claims", "unapproved egress"]
+        },
+        "requiredHumanApprovalPoints": ["before-render", "before-canonical-apply", "before-publish"]
+      },
+      "adversarialConditions": [
+        "Target leaves and re-enters after occlusion; retain identity or request assistance."
+      ],
+      "createdAt": "2026-07-22T04:24:52.036Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0007-7e696883:talking-head-cleanup",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": ["cb-0007-7e696883"],
+      "domain": "general-documentary",
+      "workflow": "talking-head-cleanup",
+      "split": "adversarial",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0007-7e696883:talking-head-cleanup",
+        "createdAt": "2026-07-22T04:24:52.036Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0007-7e696883",
+            "role": "primary",
+            "sha256": "sha256:7db21da48be14f452c45552c66d0f1edf95bb01f2197286bbbfd70cf7e9bfdcb",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": ["review"],
+          "targetDurationsMs": [30000],
+          "aspectRatios": ["16:9", "9:16", "1:1"]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "cc-by",
+          "ownerOrLicensorId": "creator:4b611b22428907f5",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "talking-head-cleanup",
+          "instruction": "Remove only accidental silence and review filler edits without truncating speech or intentional pauses. Two similar subjects cross; do not silently switch identity.",
+          "preserve": ["source meaning", "selected subject", "rights lineage"],
+          "avoid": ["silent subject switches", "unsupported claims", "unapproved egress"]
+        },
+        "requiredHumanApprovalPoints": ["before-render", "before-canonical-apply", "before-publish"]
+      },
+      "adversarialConditions": ["Two similar subjects cross; do not silently switch identity."],
+      "createdAt": "2026-07-22T04:24:52.036Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0007-7e696883:golden-quote-variants",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": ["cb-0007-7e696883"],
+      "domain": "general-documentary",
+      "workflow": "golden-quote-variants",
+      "split": "adversarial",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0007-7e696883:golden-quote-variants",
+        "createdAt": "2026-07-22T04:24:52.036Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0007-7e696883",
+            "role": "primary",
+            "sha256": "sha256:7db21da48be14f452c45552c66d0f1edf95bb01f2197286bbbfd70cf7e9bfdcb",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": ["review"],
+          "targetDurationsMs": [15000, 30000, 60000],
+          "aspectRatios": ["16:9", "9:16", "1:1"]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "cc-by",
+          "ownerOrLicensorId": "creator:4b611b22428907f5",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "golden-quote-variants",
+          "instruction": "Find a source-grounded quote and propose 15-, 30-, and 60-second variants with exact lineage. Rapid camera movement and low confidence; hold safely or abstain.",
+          "preserve": ["source meaning", "selected subject", "rights lineage"],
+          "avoid": ["silent subject switches", "unsupported claims", "unapproved egress"]
+        },
+        "requiredHumanApprovalPoints": ["before-render", "before-canonical-apply", "before-publish"]
+      },
+      "adversarialConditions": [
+        "Rapid camera movement and low confidence; hold safely or abstain."
+      ],
+      "createdAt": "2026-07-22T04:24:52.036Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0007-7e696883:reference-template",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": ["cb-0007-7e696883"],
+      "domain": "general-documentary",
+      "workflow": "reference-template",
+      "split": "adversarial",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0007-7e696883:reference-template",
+        "createdAt": "2026-07-22T04:24:52.036Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0007-7e696883",
+            "role": "primary",
+            "sha256": "sha256:7db21da48be14f452c45552c66d0f1edf95bb01f2197286bbbfd70cf7e9bfdcb",
+            "locatorClass": "public-url"
+          }
+        ],
+        "reference": {
+          "artifactId": "template:creatorbench-permitted-structure-v1",
+          "permittedUse": "structural-inspiration"
+        },
+        "output": {
+          "destinations": ["review"],
+          "targetDurationsMs": [30000],
+          "aspectRatios": ["16:9", "9:16", "1:1"]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "cc-by",
+          "ownerOrLicensorId": "creator:4b611b22428907f5",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "reference-template",
+          "instruction": "Apply a permitted structural template without copying protected footage, branding, music, or scripts. Selected object changes orientation; preserve the selected instance.",
+          "preserve": ["source meaning", "selected subject", "rights lineage"],
+          "avoid": ["silent subject switches", "unsupported claims", "unapproved egress"]
+        },
+        "requiredHumanApprovalPoints": ["before-render", "before-canonical-apply", "before-publish"]
+      },
+      "adversarialConditions": [
+        "Selected object changes orientation; preserve the selected instance."
+      ],
+      "createdAt": "2026-07-22T04:24:52.036Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0007-7e696883:dance-choreography",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": ["cb-0007-7e696883"],
+      "domain": "general-documentary",
+      "workflow": "dance-choreography",
+      "split": "adversarial",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0007-7e696883:dance-choreography",
+        "createdAt": "2026-07-22T04:24:52.036Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0007-7e696883",
+            "role": "primary",
+            "sha256": "sha256:7db21da48be14f452c45552c66d0f1edf95bb01f2197286bbbfd70cf7e9bfdcb",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": ["review"],
+          "targetDurationsMs": [30000],
+          "aspectRatios": ["16:9", "9:16", "1:1"]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "cc-by",
+          "ownerOrLicensorId": "creator:4b611b22428907f5",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "dance-choreography",
+          "instruction": "Preserve movement phrases and compile reviewable cut and alignment proposals. Input may have poor audio or a corrupt tail; report the exact degraded state.",
+          "preserve": ["source meaning", "selected subject", "rights lineage"],
+          "avoid": ["silent subject switches", "unsupported claims", "unapproved egress"]
+        },
+        "requiredHumanApprovalPoints": ["before-render", "before-canonical-apply", "before-publish"]
+      },
+      "adversarialConditions": [
+        "Input may have poor audio or a corrupt tail; report the exact degraded state."
+      ],
+      "createdAt": "2026-07-22T04:24:52.036Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0007-7e696883:captioned-multi-format",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": ["cb-0007-7e696883"],
+      "domain": "general-documentary",
+      "workflow": "captioned-multi-format",
+      "split": "adversarial",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0007-7e696883:captioned-multi-format",
+        "createdAt": "2026-07-22T04:24:52.036Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0007-7e696883",
+            "role": "primary",
+            "sha256": "sha256:7db21da48be14f452c45552c66d0f1edf95bb01f2197286bbbfd70cf7e9bfdcb",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": ["review"],
+          "targetDurationsMs": [30000],
+          "aspectRatios": ["16:9", "9:16", "1:1"]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "cc-by",
+          "ownerOrLicensorId": "creator:4b611b22428907f5",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "captioned-multi-format",
+          "instruction": "Produce captioned horizontal, vertical, and square variants with safe caption placement. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+          "preserve": ["source meaning", "selected subject", "rights lineage"],
+          "avoid": ["silent subject switches", "unsupported claims", "unapproved egress"]
+        },
+        "requiredHumanApprovalPoints": ["before-render", "before-canonical-apply", "before-publish"]
+      },
+      "adversarialConditions": [
+        "Target leaves and re-enters after occlusion; retain identity or request assistance."
+      ],
+      "createdAt": "2026-07-22T04:24:52.036Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0007-7e696883:founder-product-launch",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": ["cb-0007-7e696883"],
+      "domain": "general-documentary",
+      "workflow": "founder-product-launch",
+      "split": "adversarial",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0007-7e696883:founder-product-launch",
+        "createdAt": "2026-07-22T04:24:52.036Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0007-7e696883",
+            "role": "primary",
+            "sha256": "sha256:7db21da48be14f452c45552c66d0f1edf95bb01f2197286bbbfd70cf7e9bfdcb",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": ["review"],
+          "targetDurationsMs": [30000],
+          "aspectRatios": ["16:9", "9:16", "1:1"]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "cc-by",
+          "ownerOrLicensorId": "creator:4b611b22428907f5",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "founder-product-launch",
+          "instruction": "Build hook, problem, product, demonstration, evidence, and CTA variants without inventing claims. Two similar subjects cross; do not silently switch identity.",
+          "preserve": ["source meaning", "selected subject", "rights lineage"],
+          "avoid": ["silent subject switches", "unsupported claims", "unapproved egress"]
+        },
+        "requiredHumanApprovalPoints": ["before-render", "before-canonical-apply", "before-publish"]
+      },
+      "adversarialConditions": ["Two similar subjects cross; do not silently switch identity."],
+      "createdAt": "2026-07-22T04:24:52.036Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0007-7e696883:action-subject-following",
+      "benchmarkVersion": "creatorbench-v1",
+      "sourceIds": ["cb-0007-7e696883"],
+      "domain": "general-documentary",
+      "workflow": "action-subject-following",
+      "split": "adversarial",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0007-7e696883:action-subject-following",
+        "createdAt": "2026-07-22T04:24:52.036Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0007-7e696883",
+            "role": "primary",
+            "sha256": "sha256:7db21da48be14f452c45552c66d0f1edf95bb01f2197286bbbfd70cf7e9bfdcb",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": ["review"],
+          "targetDurationsMs": [30000],
+          "aspectRatios": ["16:9", "9:16", "1:1"]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "cc-by",
+          "ownerOrLicensorId": "creator:4b611b22428907f5",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "action-subject-following",
+          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty. Rapid camera movement and low confidence; hold safely or abstain.",
+          "preserve": ["source meaning", "selected subject", "rights lineage"],
+          "avoid": ["silent subject switches", "unsupported claims", "unapproved egress"]
+        },
+        "requiredHumanApprovalPoints": ["before-render", "before-canonical-apply", "before-publish"]
+      },
+      "adversarialConditions": [
+        "Rapid camera movement and low confidence; hold safely or abstain."
+      ],
+      "createdAt": "2026-07-22T04:24:52.036Z"
+    }
+  ]
+}

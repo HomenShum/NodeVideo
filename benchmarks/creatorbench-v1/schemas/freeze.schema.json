@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nodevideo.creatorbench-freeze/v1",
+  "title": "CreatorBench sealed-evaluation freeze receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "benchmarkVersion",
+    "frozenAt",
+    "sourceCommitSha",
+    "configHash",
+    "capabilityManifestHash",
+    "routerPolicyHash",
+    "thresholdPolicyHash",
+    "benchmarkManifestHash",
+    "evaluatorVersion",
+    "evaluatorHash",
+    "modelVersions",
+    "executorVersions",
+    "privateSplit"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "nodevideo.creatorbench-freeze/v1" },
+    "id": { "type": "string", "minLength": 1 },
+    "benchmarkVersion": { "type": "string", "minLength": 1 },
+    "frozenAt": { "type": "string", "format": "date-time" },
+    "sourceCommitSha": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "configHash": { "$ref": "#/$defs/hash" },
+    "capabilityManifestHash": { "$ref": "#/$defs/hash" },
+    "routerPolicyHash": { "$ref": "#/$defs/hash" },
+    "thresholdPolicyHash": { "$ref": "#/$defs/hash" },
+    "benchmarkManifestHash": { "$ref": "#/$defs/hash" },
+    "evaluatorVersion": { "type": "string", "minLength": 1 },
+    "evaluatorHash": { "$ref": "#/$defs/hash" },
+    "modelVersions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "executorVersions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "privateSplit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["catalogHash", "mediaStoredOutsideRepository", "developmentCredentialsDenied"],
+      "properties": {
+        "catalogHash": { "$ref": "#/$defs/hash" },
+        "mediaStoredOutsideRepository": { "const": true },
+        "developmentCredentialsDenied": { "const": true },
+        "evaluatorCredentialsEnabledAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "$defs": {
+    "hash": { "type": "string", "pattern": "^(sha256:)?[a-f0-9]{64}$" }
+  }
+}

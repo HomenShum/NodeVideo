@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nodevideo.creatorbench-review/v1",
+  "title": "CreatorBench reviewer assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "instanceId",
+    "resultId",
+    "reviewerPseudonym",
+    "assignmentId",
+    "blind",
+    "usability",
+    "correctionTimeSeconds",
+    "correctnessIssues",
+    "missedSubjectOrContent",
+    "unwantedEdits",
+    "reasonCodes",
+    "submittedAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "nodevideo.creatorbench-review/v1" },
+    "id": { "type": "string", "minLength": 1 },
+    "instanceId": { "type": "string", "minLength": 1 },
+    "resultId": { "type": "string", "minLength": 1 },
+    "reviewerPseudonym": { "type": "string", "pattern": "^[^@\\s]+$" },
+    "assignmentId": { "type": "string", "minLength": 1 },
+    "variantId": { "type": "string", "minLength": 1 },
+    "blind": { "type": "boolean" },
+    "usability": {
+      "enum": [
+        "usable_as_is",
+        "usable_after_minor_correction",
+        "requires_major_correction",
+        "unusable",
+        "unsafe_or_rights_invalid"
+      ]
+    },
+    "correctionTimeSeconds": { "type": "number", "minimum": 0 },
+    "correctnessIssues": { "type": "array", "items": { "type": "string" } },
+    "missedSubjectOrContent": { "type": "array", "items": { "type": "string" } },
+    "unwantedEdits": { "type": "array", "items": { "type": "string" } },
+    "reasonCodes": { "type": "array", "items": { "type": "string" } },
+    "preferredVariantId": { "type": "string", "minLength": 1 },
+    "submittedAt": { "type": "string", "format": "date-time" }
+  }
+}

@@ -1,4 +1,4 @@
-import { createReadStream, existsSync } from 'node:fs';
+import { copyFileSync, createReadStream, existsSync, mkdirSync } from 'node:fs';
 import type { ServerResponse } from 'node:http';
 import path from 'node:path';
 import tailwindcss from '@tailwindcss/vite';
@@ -26,6 +26,21 @@ function mediapipeWasm(): Plugin {
           fs.createReadStream(file).pipe(res);
         });
       });
+    },
+  };
+}
+
+function creatorbenchPublicEvidence(): Plugin {
+  return {
+    name: 'nodevideo-creatorbench-public-evidence',
+    closeBundle() {
+      const sourceDir = path.resolve(__dirname, 'benchmarks/creatorbench-v1/results');
+      const outputDir = path.resolve(__dirname, 'dist/benchmarks/creatorbench-v1/results');
+      mkdirSync(outputDir, { recursive: true });
+      for (const name of ['public-report.json', 'public-report.csv']) {
+        const source = path.join(sourceDir, name);
+        if (existsSync(source)) copyFileSync(source, path.join(outputDir, name));
+      }
     },
   };
 }
@@ -124,6 +139,8 @@ function browserFfmpegAssets(): Plugin {
           request.url = '/creator.html';
         }
         if (pathname === '/atlas' || pathname === '/atlas/') request.url = '/atlas.html';
+        if (pathname === '/creatorbench' || pathname === '/creatorbench/')
+          request.url = '/creatorbench.html';
         applyBrowserFfmpegHeaders(pathname, response);
         const asset = files.get(pathname);
         if (!asset || !existsSync(asset.file)) return next();
@@ -138,6 +155,8 @@ function browserFfmpegAssets(): Plugin {
           request.url = '/creator.html';
         }
         if (pathname === '/atlas' || pathname === '/atlas/') request.url = '/atlas.html';
+        if (pathname === '/creatorbench' || pathname === '/creatorbench/')
+          request.url = '/creatorbench.html';
         applyBrowserFfmpegHeaders(pathname, response);
         next();
       });
@@ -167,6 +186,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     mediapipeWasm(),
+    creatorbenchPublicEvidence(),
   ],
   publicDir: 'fixtures',
   worker: {
@@ -193,6 +213,7 @@ export default defineConfig({
         edit: path.resolve(__dirname, 'edit.html'),
         creator: path.resolve(__dirname, 'creator.html'),
         atlas: path.resolve(__dirname, 'atlas.html'),
+        creatorbench: path.resolve(__dirname, 'creatorbench.html'),
         practice: path.resolve(__dirname, 'practice.html'),
         'chrome-extension-sidepanel': path.resolve(
           __dirname,

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nodevideo.creatorbench-result/v1",
+  "title": "CreatorBench result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "benchmarkVersion",
+    "instanceId",
+    "split",
+    "classification",
+    "routeReceiptId",
+    "systemDeclaredSuccess",
+    "userInterventionCount",
+    "outputArtifactIds",
+    "execution",
+    "checks",
+    "limitationCodes"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "nodevideo.creatorbench-result/v1" },
+    "id": { "type": "string", "minLength": 1 },
+    "benchmarkVersion": { "type": "string", "minLength": 1 },
+    "instanceId": { "type": "string", "minLength": 1 },
+    "split": { "enum": ["development", "public-test", "private-heldout", "adversarial"] },
+    "classification": { "$ref": "#/$defs/resultClass" },
+    "routeReceiptId": { "type": "string", "minLength": 1 },
+    "systemDeclaredSuccess": { "type": "boolean" },
+    "userInterventionCount": { "type": "integer", "minimum": 0 },
+    "outputArtifactIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["startedAt", "completedAt", "latencyMs", "costUsd", "executorVersions"],
+      "properties": {
+        "startedAt": { "type": "string", "format": "date-time" },
+        "completedAt": { "type": "string", "format": "date-time" },
+        "latencyMs": { "type": "number", "minimum": 0 },
+        "costUsd": { "type": "number", "minimum": 0 },
+        "executorVersions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "correctSubjectOrContent",
+        "intendedSemanticsPreserved",
+        "audioSynchronized",
+        "exportDecodesAndReopens",
+        "noUnsupportedSyntheticContent",
+        "rightsPassed",
+        "privacyPassed",
+        "noUndeclaredExecutorSubstitution",
+        "provenanceComplete"
+      ],
+      "properties": {
+        "correctSubjectOrContent": { "type": ["boolean", "null"] },
+        "intendedSemanticsPreserved": { "type": ["boolean", "null"] },
+        "audioSynchronized": { "type": ["boolean", "null"] },
+        "exportDecodesAndReopens": { "type": ["boolean", "null"] },
+        "noUnsupportedSyntheticContent": { "type": "boolean" },
+        "rightsPassed": { "type": "boolean" },
+        "privacyPassed": { "type": "boolean" },
+        "noUndeclaredExecutorSubstitution": { "type": "boolean" },
+        "provenanceComplete": { "type": "boolean" }
+      }
+    },
+    "review": { "$ref": "reviewer.schema.json" },
+    "limitationCodes": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "resultClass": {
+      "enum": [
+        "automatic_usable",
+        "assisted_usable",
+        "review_required",
+        "safely_abstained",
+        "unsupported",
+        "technical_failure",
+        "silent_failure"
+      ]
+    }
+  }
+}

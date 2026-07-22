@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-split-catalog/v1",
+  "benchmarkVersion": "creatorbench-v1",
+  "generatedAt": "2026-07-22T04:22:02.792Z",
+  "assignments": [
+    {
+      "schemaVersion": "nodevideo.creatorbench-split/v1",
+      "sourceId": "cb-0007-7e696883",
+      "split": "adversarial",
+      "creatorOwnerId": "creator:4b611b22428907f5",
+      "relatedSourceGroupId": "commons:56938697",
+      "perceptualHash": "sha256:bd5d05fa1b9dbffca64aa5fa758240200b2493b88b029904b22420494a5fd029",
+      "audioFingerprint": "sha256:194b55093b91db0d42c8676f0a4112083d6843bda20740346f6a9ecd4bab6809",
+      "assignedAt": "2026-07-22T04:21:54.498Z",
+      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
+    }
+  ]
+}

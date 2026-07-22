@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-source-catalog.v1",
+  "benchmarkVersion": "creatorbench-v1",
+  "generatedAt": "2026-07-22T04:22:02.791Z",
+  "records": [
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0007-7e696883",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AOvercoming_Diabetes._Documentary_-_Science_-_Health.webm",
+      "creatorOwnerId": "creator:4b611b22428907f5",
+      "relatedSourceGroupId": "commons:56938697",
+      "title": "Overcoming Diabetes. Documentary - Science - Health.webm",
+      "rights": {
+        "status": "cc-by",
+        "licenseName": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+        "attribution": "Pete Couste",
+        "permittedBenchmarkUses": ["analysis", "derivatives", "human-review", "publication"],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T04:21:54.498Z",
+      "sourceSha256": "sha256:7db21da48be14f452c45552c66d0f1edf95bb01f2197286bbbfd70cf7e9bfdcb",
+      "durationMs": 6010,
+      "media": {
+        "width": 320,
+        "height": 240,
+        "fps": 29.97002997002997,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nodevideo.creator-request/v1",
+  "title": "NodeVideo Creator Request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "createdAt",
+    "sourceAssets",
+    "output",
+    "constraints",
+    "rights",
+    "intent",
+    "requiredHumanApprovalPoints"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "nodevideo.creator-request/v1" },
+    "id": { "type": "string", "minLength": 1 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "sourceAssets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["artifactId", "role", "sha256", "locatorClass"],
+        "properties": {
+          "artifactId": { "type": "string", "minLength": 1 },
+          "role": { "enum": ["primary", "supporting", "audio", "image", "screen-recording"] },
+          "sha256": { "$ref": "#/$defs/hash" },
+          "locatorClass": {
+            "enum": ["public-url", "repository-fixture", "private-vault", "browser-session"]
+          }
+        }
+      }
+    },
+    "transcript": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifactId", "generated"],
+      "properties": {
+        "artifactId": { "type": "string", "minLength": 1 },
+        "language": { "type": "string", "minLength": 1 },
+        "generated": { "type": "boolean" }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifactId", "permittedUse"],
+      "properties": {
+        "artifactId": { "type": "string", "minLength": 1 },
+        "permittedUse": {
+          "enum": ["structural-inspiration", "explicit-template", "comparison-only"]
+        }
+      }
+    },
+    "selectedSubject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "enum": ["text", "point", "box", "track", "speaker"] },
+        "value": {
+          "oneOf": [
+            { "type": "string", "minLength": 1 },
+            {
+              "type": "array",
+              "prefixItems": [{ "type": "number" }, { "type": "number" }],
+              "items": false
+            },
+            {
+              "type": "array",
+              "prefixItems": [
+                { "type": "number" },
+                { "type": "number" },
+                { "type": "number" },
+                { "type": "number" }
+              ],
+              "items": false
+            }
+          ]
+        },
+        "frameMs": { "type": "number", "minimum": 0 }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["destinations", "targetDurationsMs", "aspectRatios"],
+      "properties": {
+        "destinations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["download", "workspace", "review", "publish-proposal"] }
+        },
+        "targetDurationsMs": {
+          "type": "array",
+          "items": { "type": "number", "exclusiveMinimum": 0 }
+        },
+        "aspectRatios": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["16:9", "9:16", "1:1", "4:5", "source"] }
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "privacy",
+        "localOnly",
+        "maxCostUsd",
+        "maxLatencyMs",
+        "permittedExecutors",
+        "prohibitedExecutors",
+        "mediaEgress"
+      ],
+      "properties": {
+        "privacy": { "enum": ["public", "private", "sensitive"] },
+        "localOnly": { "type": "boolean" },
+        "maxCostUsd": { "type": "number", "minimum": 0 },
+        "maxLatencyMs": { "type": "number", "minimum": 0 },
+        "permittedExecutors": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "prohibitedExecutors": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "mediaEgress": { "enum": ["prohibited", "approved-providers-only", "allowed"] }
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "permittedDerivativeUse", "permittedModelProcessing"],
+      "properties": {
+        "status": { "$ref": "#/$defs/acceptedRights" },
+        "ownerOrLicensorId": { "type": "string", "minLength": 1 },
+        "permittedDerivativeUse": { "const": true },
+        "permittedModelProcessing": { "const": true }
+      }
+    },
+    "intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workflow", "instruction", "preserve", "avoid"],
+      "properties": {
+        "workflow": { "$ref": "#/$defs/workflow" },
+        "instruction": { "type": "string", "minLength": 1 },
+        "preserve": { "type": "array", "items": { "type": "string" } },
+        "avoid": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "requiredHumanApprovalPoints": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "before-media-egress",
+          "before-hosted-executor",
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "hash": { "type": "string", "pattern": "^(sha256:)?[a-f0-9]{64}$" },
+    "acceptedRights": {
+      "enum": [
+        "cc0",
+        "public-domain",
+        "cc-by",
+        "owner-consented",
+        "generated-with-provenance",
+        "restricted-private"
+      ]
+    },
+    "workflow": {
+      "enum": [
+        "smart-reframe",
+        "talking-head-cleanup",
+        "golden-quote-variants",
+        "reference-template",
+        "dance-choreography",
+        "captioned-multi-format",
+        "founder-product-launch",
+        "action-subject-following"
+      ]
+    }
+  }
+}

@@ -294,4 +294,38 @@ export default defineSchema({
     deployment: v.optional(v.string()),
     updatedAt: v.number(),
   }).index('by_layer', ['layer']),
+
+  creatorBenchReviews: defineTable({
+    benchmarkVersion: v.string(),
+    instanceId: v.string(),
+    resultId: v.string(),
+    split: v.union(v.literal('development'), v.literal('public-test'), v.literal('adversarial')),
+    reviewerRef: v.string(),
+    assignmentId: v.string(),
+    variantId: v.optional(v.string()),
+    blind: v.boolean(),
+    status: v.union(v.literal('assigned'), v.literal('completed')),
+    usability: v.optional(
+      v.union(
+        v.literal('usable_as_is'),
+        v.literal('usable_after_minor_correction'),
+        v.literal('requires_major_correction'),
+        v.literal('unusable'),
+        v.literal('unsafe_or_rights_invalid'),
+      ),
+    ),
+    correctionTimeSeconds: v.optional(v.number()),
+    reasonCodes: v.array(v.string()),
+    correctnessIssues: v.array(v.string()),
+    missedSubjectOrContent: v.array(v.string()),
+    unwantedEdits: v.array(v.string()),
+    preferredVariantId: v.optional(v.string()),
+    blindedVariantOrderJson: v.string(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+    completedAt: v.optional(v.number()),
+  })
+    .index('by_instance', ['benchmarkVersion', 'instanceId'])
+    .index('by_reviewer_status', ['reviewerRef', 'status'])
+    .index('by_assignment', ['assignmentId']),
 });
