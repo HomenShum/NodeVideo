@@ -1,8 +1,53 @@
 {
   "schemaVersion": "nodevideo.creatorbench-source-catalog.v1",
-  "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T06:03:45.167Z",
+  "benchmarkVersion": "creatorbench-v1.1",
+  "generatedAt": "2026-07-22T06:47:49.452Z",
   "records": [
+    {
+      "schemaVersion": "nodevideo.creatorbench-source/v1",
+      "id": "cb-0009-beb98f01",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMcKinley's_Late_Grandmother_is_an_Inspiration.webm",
+      "creatorOwnerId": "creator:76f0b85c344c40eb",
+      "relatedSourceGroupId": "commons:70108843",
+      "title": "McKinley's Late Grandmother is an Inspiration.webm",
+      "rights": {
+        "status": "cc-by",
+        "licenseName": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+        "attribution": "Atlanta Falcons",
+        "permittedBenchmarkUses": [
+          "analysis",
+          "derivatives",
+          "human-review",
+          "publication"
+        ],
+        "permittedRedistribution": true
+      },
+      "privacy": "public",
+      "acquiredAt": "2026-07-22T04:48:24.547Z",
+      "sourceSha256": "sha256:e39a2f9200a406b1ecccde259d72edd0e50a6c122c62897cb7123b83e0adaf0f",
+      "durationMs": 6006,
+      "media": {
+        "width": 426,
+        "height": 240,
+        "fps": 23.976023976023978,
+        "codec": "h264",
+        "hasAudio": true
+      },
+      "corpusTier": "motion-short",
+      "admissibleWorkflows": [
+        "smart-reframe",
+        "action-subject-following"
+      ],
+      "admissibilityNotes": [
+        "The normalized six-second source is admissible for visual tracking and reframing only.",
+        "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
+      ],
+      "split": "adversarial",
+      "knownLimitations": [
+        "Six-second normalized derivative; source semantics require human review."
+      ]
+    },
     {
       "schemaVersion": "nodevideo.creatorbench-source/v1",
       "id": "cb-0006-493a02f5",
@@ -139,7 +184,7 @@
         "The normalized six-second source is admissible for visual tracking and reframing only.",
         "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
       ],
-      "split": "public-test",
+      "split": "development",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -187,7 +232,7 @@
         "The normalized six-second source is admissible for visual tracking and reframing only.",
         "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
       ],
-      "split": "public-test",
+      "split": "development",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -235,7 +280,7 @@
         "The normalized six-second source is admissible for visual tracking and reframing only.",
         "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
       ],
-      "split": "public-test",
+      "split": "development",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -1483,7 +1528,7 @@
         "The normalized six-second source is admissible for visual tracking and reframing only.",
         "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
       ],
-      "split": "adversarial",
+      "split": "public-test",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",
@@ -2395,7 +2440,7 @@
         "The normalized six-second source is admissible for visual tracking and reframing only.",
         "Speech, quote, choreography, template, and launch workflows require dedicated longer-form or multi-asset source tiers."
       ],
-      "split": "adversarial",
+      "split": "public-test",
       "knownLimitations": [
         "Six-second normalized derivative; source semantics require human review.",
         "NASA SVS states its visual content is public domain unless otherwise noted.",

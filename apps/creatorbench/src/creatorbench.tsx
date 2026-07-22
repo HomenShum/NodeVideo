@@ -11,8 +11,10 @@ import {
   CircleHelp,
   ClipboardCheck,
   Clock3,
+  CloudOff,
   Database,
   Download,
+  FileDown,
   FileJson,
   Film,
   FlaskConical,
@@ -25,6 +27,7 @@ import {
   ShieldAlert,
   ShieldCheck,
   Sun,
+  Trash2,
   TriangleAlert,
   Users,
   XCircle,
@@ -32,6 +35,7 @@ import {
 import { StrictMode, useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './creatorbench.css';
+import { CreatorBenchReviewClient, createConvexReviewBackend } from './creatorbench-review-client';
 
 const REPORT_URL = '/benchmarks/creatorbench-v1/results/public-report.json';
 const CSV_URL = '/benchmarks/creatorbench-v1/results/public-report.csv';
@@ -88,6 +92,12 @@ type FailureRecord = {
 
 type ReviewCase = {
   id: string;
+  resultId?: string;
+  split?: 'development' | 'public-test' | 'adversarial';
+  variantId?: string;
+  blindedVariantIds?: string[];
+  agreementMode?: boolean;
+  agreementRoundId?: string;
   visibility?: 'public' | 'private';
   request?: string;
   sourcePoster?: string;
@@ -137,6 +147,7 @@ type PublicReport = {
   p95LatencyMs?: number;
   costPerUsableOutputUsd?: number;
   exportReopen?: Metric | number;
+  exportReopenScope?: string;
   missingDataTreatment?: string;
   exclusions?: string[];
   workflowCoverage?: {
@@ -180,13 +191,15 @@ type RawPublicReport = PublicReport & {
     domains?: number;
     workflows?: number;
     instances?: number;
+    privateHeldoutInstances?: number;
     splits?: Record<string, number>;
   };
   metrics?: {
     latencyMs?: { p50?: number | null; p95?: number | null };
     costUsd?: { perUsableOutput?: number | null };
     correctionTimeSeconds?: { median?: number | null };
-    exportReopen?: Metric | number;
+    exportReopen?: (Metric & { scope?: string; label?: string }) | number;
+    exportReopenScope?: string;
   };
   downloads?: { json?: string; csv?: string };
 };
@@ -336,6 +349,10 @@ function normalizePublicReport(input: RawPublicReport): PublicReport {
       domains: input.counts?.domains ?? dataset?.domains ?? population?.domainCount,
       workflows: input.counts?.workflows ?? dataset?.workflows ?? population?.workflowCount,
       instances: input.counts?.instances ?? dataset?.instances ?? population?.instanceCount,
+      privateHeldoutInstances:
+        input.counts?.privateHeldoutInstances ??
+        dataset?.privateHeldoutInstances ??
+        population?.instanceCount,
       splits: input.counts?.splits ?? dataset?.splits,
     },
     outcomes: normalizedOutcomes,
@@ -350,6 +367,12 @@ function normalizePublicReport(input: RawPublicReport): PublicReport {
       input.costPerUsableOutputUsd ?? input.metrics?.costUsd?.perUsableOutput,
     ),
     exportReopen: input.exportReopen ?? input.metrics?.exportReopen,
+    exportReopenScope:
+      input.exportReopenScope ??
+      input.metrics?.exportReopenScope ??
+      (typeof input.metrics?.exportReopen === 'object'
+        ? (input.metrics.exportReopen.scope ?? input.metrics.exportReopen.label)
+        : undefined),
     freezeReceipt: rawFreeze
       ? {
           ...rawFreeze,
@@ -446,6 +469,7 @@ function DatasetStrip({ report }: { report: PublicReport }) {
     ['Domains', report.counts?.domains],
     ['Workflows', report.counts?.workflows],
     ['Instances', report.counts?.instances],
+    ['Private held-out population', report.counts?.privateHeldoutInstances],
   ] as const;
   return (
     <section className="cb-dataset-strip" aria-label="Dataset coverage">
@@ -479,8 +503,26 @@ function HonestEmpty({ report }: { report: PublicReport }) {
 
 function Overview({ report }: { report: PublicReport }) {
   if (isUnevaluated(report)) return <HonestEmpty report={report} />;
+  const exportMetric = metric(report.exportReopen);
+  const exportScope =
+    report.exportReopenScope ??
+    (exportMetric.numerator === 264 && exportMetric.denominator === 264
+      ? 'Public center-crop render pilot'
+      : 'Scope not reported');
   return (
     <div className="cb-overview" data-testid="creatorbench-overview">
+      {report.counts?.reviewedInstances === 0 && (
+        <section className="cb-unverified-quality" role="note" data-testid="unverified-quality">
+          <AlertTriangle />
+          <div>
+            <b>Human editing quality and silent-failure incidence are unverified</b>
+            <p>
+              This release contains zero completed human reviews. Machine classifications cannot
+              establish creator usability or silent-failure incidence.
+            </p>
+          </div>
+        </section>
+      )}
       <section className="cb-metric-grid" aria-label="Benchmark outcome rates">
         {OUTCOMES.map(([key, label, tone]) => (
           <MetricCard key={key} label={label} value={outcome(report, key)} tone={tone} />
@@ -515,7 +557,9 @@ function Overview({ report }: { report: PublicReport }) {
           <GitCompareArrows />
           <span>Export + reopen</span>
           <b>{percent(estimate(report.exportReopen))}</b>
-          <small>{ratio(report.exportReopen)}</small>
+          <small>
+            {ratio(report.exportReopen)} · {exportScope}
+          </small>
         </article>
         <article>
           <Database />
@@ -829,7 +873,7 @@ function Freeze({ report }: { report: PublicReport }) {
   );
 }
 
-function ReviewLab({ cases }: { cases: ReviewCase[] }) {
+function ReviewLab({ cases, benchmarkVersion }: { cases: ReviewCase[]; benchmarkVersion: string }) {
   const [index, setIndex] = useState(0);
   const [category, setCategory] = useState<ReviewCategory>();
   const [seconds, setSeconds] = useState('');
@@ -837,6 +881,19 @@ function ReviewLab({ cases }: { cases: ReviewCase[] }) {
   const [notes, setNotes] = useState('');
   const [variant, setVariant] = useState<'a' | 'b' | 'tie' | ''>('');
   const [submitted, setSubmitted] = useState<Record<string, ReviewCategory>>({});
+  const [savedAssignments, setSavedAssignments] = useState<Record<string, string>>({});
+  const [explicitOptIn, setExplicitOptIn] = useState(false);
+  const [persistence, setPersistence] = useState<'idle' | 'submitting' | 'saved' | 'error'>('idle');
+  const [persistenceMessage, setPersistenceMessage] = useState('');
+  const [deleteArmed, setDeleteArmed] = useState(false);
+  const reviewClient = useMemo(
+    () =>
+      new CreatorBenchReviewClient(
+        createConvexReviewBackend(import.meta.env.VITE_CONVEX_URL),
+        window.localStorage,
+      ),
+    [],
+  );
   const reviewCase = cases[index];
   const reset = () => {
     setCategory(undefined);
@@ -844,10 +901,95 @@ function ReviewLab({ cases }: { cases: ReviewCase[] }) {
     setReasons([]);
     setNotes('');
     setVariant('');
+    setExplicitOptIn(false);
+    setPersistence('idle');
+    setPersistenceMessage('');
   };
-  const submit = () => {
+  const submit = async () => {
     if (!reviewCase || !category || seconds === '' || Number(seconds) < 0) return;
-    setSubmitted((current) => ({ ...current, [reviewCase.id]: category }));
+    const persistable = Boolean(reviewCase.resultId && reviewCase.split);
+    if (!persistable) {
+      setSubmitted((current) => ({ ...current, [reviewCase.id]: category }));
+      setPersistenceMessage('Held as a local draft only; this case has no durable assignment.');
+      return;
+    }
+    setPersistence('submitting');
+    setPersistenceMessage('Claiming a blinded assignment and verifying the completed write…');
+    try {
+      const selectedVariant = variant && variant !== 'tie' ? variant : undefined;
+      const result = await reviewClient.submit({
+        benchmarkVersion,
+        instanceId: reviewCase.id,
+        resultId: reviewCase.resultId ?? '',
+        split: reviewCase.split ?? 'public-test',
+        variantId: reviewCase.variantId,
+        blindedVariantIds:
+          reviewCase.blindedVariantIds ??
+          (reviewCase.variantAPoster || reviewCase.variantBPoster
+            ? ['variant:a', 'variant:b']
+            : []),
+        usability: category,
+        correctionTimeSeconds: Number(seconds),
+        reasonCodes: reasons,
+        correctnessIssues: notes ? [notes] : [],
+        missedSubjectOrContent: reasons.filter(
+          (reason) => reason === 'wrong_subject' || reason === 'missed_content',
+        ),
+        unwantedEdits: reasons.filter(
+          (reason) => reason !== 'wrong_subject' && reason !== 'missed_content',
+        ),
+        preferredVariantId: selectedVariant,
+        agreementMode: Boolean(reviewCase.agreementMode),
+        agreementRoundId: reviewCase.agreementRoundId,
+        explicitOptIn,
+      });
+      setSubmitted((current) => ({ ...current, [reviewCase.id]: category }));
+      setSavedAssignments((current) => ({
+        ...current,
+        [reviewCase.id]: result.assignmentId,
+      }));
+      setPersistence('saved');
+      setPersistenceMessage('Durable review verified against the pseudonymous reviewer history.');
+    } catch (error) {
+      setPersistence('error');
+      setPersistenceMessage(
+        error instanceof Error ? error.message : 'Review backend failed. Draft was not saved.',
+      );
+    }
+  };
+  const exportHistory = async () => {
+    try {
+      const contents = await reviewClient.exportHistory();
+      const url = URL.createObjectURL(new Blob([contents], { type: 'application/json' }));
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = `creatorbench-review-history-${new Date().toISOString().slice(0, 10)}.json`;
+      anchor.click();
+      URL.revokeObjectURL(url);
+      setPersistenceMessage('Pseudonymous review history exported.');
+    } catch (error) {
+      setPersistence('error');
+      setPersistenceMessage(error instanceof Error ? error.message : 'Review export failed.');
+    }
+  };
+  const deleteHistory = async () => {
+    if (!deleteArmed) return;
+    setPersistence('submitting');
+    try {
+      const receipt = await reviewClient.deleteAll();
+      setSubmitted({});
+      setSavedAssignments({});
+      setDeleteArmed(false);
+      setPersistence('idle');
+      setPersistenceMessage(
+        `${receipt.deletedCount} server review${receipt.deletedCount === 1 ? '' : 's'} deleted and verified. Local identity removed.`,
+      );
+    } catch (error) {
+      setPersistence('error');
+      setPersistenceMessage(
+        error instanceof Error ? error.message : 'Reviewer deletion failed closed.',
+      );
+    }
   };
   if (!reviewCase) {
     return (
@@ -863,6 +1005,8 @@ function ReviewLab({ cases }: { cases: ReviewCase[] }) {
     );
   }
   const complete = submitted[reviewCase.id];
+  const persistable = Boolean(reviewCase.resultId && reviewCase.split);
+  const durablySaved = Boolean(savedAssignments[reviewCase.id]);
   return (
     <div className="cb-review" data-testid="review-lab">
       <header className="cb-review-header">
@@ -873,10 +1017,12 @@ function ReviewLab({ cases }: { cases: ReviewCase[] }) {
           <h2>Would a creator use this result?</h2>
           <p>
             Route, confidence, and machine findings stay hidden until judgment. Draft state exists
-            in this browser session only; it is not durable or submitted to a server.
+            in this browser session until you explicitly opt in to a pseudonymous durable review.
           </p>
         </div>
-        <span className="cb-local-badge">LOCAL DRAFT · NOT SAVED</span>
+        <span className={`cb-local-badge ${durablySaved ? 'is-saved' : ''}`}>
+          {durablySaved ? 'DURABLE · VERIFIED' : 'LOCAL DRAFT · NOT SAVED'}
+        </span>
       </header>
       <section className="cb-review-request">
         <span>Creator request</span>
@@ -1001,30 +1147,80 @@ function ReviewLab({ cases }: { cases: ReviewCase[] }) {
               onChange={(event) => setNotes(event.target.value)}
               placeholder="Describe the smallest correction that would make this usable."
             />
+            <small>Do not include names, private locators, or identifying information.</small>
           </label>
+          {persistable && (
+            <label className="cb-review-optin">
+              <input
+                type="checkbox"
+                checked={explicitOptIn}
+                onChange={(event) => setExplicitOptIn(event.target.checked)}
+              />
+              <span>
+                <b>Save this review pseudonymously</b>
+                <small>
+                  Creates a local random reviewer hash, stores the blinded judgment in the review
+                  backend, and verifies the completed write. No raw identity is submitted.
+                </small>
+              </span>
+            </label>
+          )}
+          {persistable && !reviewClient.available && (
+            <div className="cb-review-backend-warning" role="alert">
+              <CloudOff />
+              <span>
+                <b>Review backend unavailable</b>
+                <small>Your draft remains local and is not counted.</small>
+              </span>
+            </div>
+          )}
           <button
             type="button"
             className="cb-review-submit"
-            disabled={!category || seconds === '' || Number(seconds) < 0 || Boolean(complete)}
+            disabled={
+              !category ||
+              seconds === '' ||
+              Number(seconds) < 0 ||
+              Boolean(complete) ||
+              persistence === 'submitting' ||
+              (persistable && (!explicitOptIn || !reviewClient.available))
+            }
             onClick={submit}
           >
-            {complete ? (
+            {persistence === 'submitting' ? (
               <>
-                <CheckCircle2 /> Judgment held locally
+                <RefreshCcw className="cb-spin" /> Verifying durable review…
+              </>
+            ) : complete ? (
+              <>
+                <CheckCircle2 />{' '}
+                {durablySaved ? 'Durable review verified' : 'Judgment held locally'}
               </>
             ) : (
               <>
-                <ClipboardCheck /> Hold local judgment
+                <ClipboardCheck /> {persistable ? 'Submit durable review' : 'Hold local judgment'}
               </>
             )}
           </button>
+          {persistenceMessage && (
+            <p
+              className={`cb-persistence-message ${persistence === 'error' ? 'is-error' : ''}`}
+              role={persistence === 'error' ? 'alert' : 'status'}
+            >
+              {persistenceMessage}
+            </p>
+          )}
         </div>
       </section>
       {complete && (
         <section className="cb-post-judgment" aria-live="polite">
           <ShieldCheck />
           <div>
-            <b>Judgment recorded in local memory only</b>
+            <b>
+              {durablySaved
+                ? 'Pseudonymous judgment saved and verified'
+                : 'Judgment recorded in local memory only'}
+            </b>
             <p>
               Route: {reviewCase.route ?? 'not disclosed'} · Confidence:{' '}
               {reviewCase.confidence === undefined
@@ -1064,6 +1260,39 @@ function ReviewLab({ cases }: { cases: ReviewCase[] }) {
           </div>
         </section>
       )}
+      <section className="cb-review-privacy" aria-label="Review data controls">
+        <div>
+          <ShieldCheck />
+          <p>
+            <b>Your review data</b>
+            <span>
+              Export the pseudonymous server history, or permanently delete every associated review
+              and this browser’s local reviewer identity.
+            </span>
+          </p>
+        </div>
+        <div className="cb-review-data-actions">
+          <button type="button" onClick={exportHistory} disabled={!reviewClient.available}>
+            <FileDown /> Export history
+          </button>
+          <label>
+            <input
+              type="checkbox"
+              checked={deleteArmed}
+              onChange={(event) => setDeleteArmed(event.target.checked)}
+            />
+            Confirm permanent deletion
+          </label>
+          <button
+            type="button"
+            className="is-danger"
+            onClick={deleteHistory}
+            disabled={!deleteArmed || !reviewClient.available || persistence === 'submitting'}
+          >
+            <Trash2 /> Delete all review data
+          </button>
+        </div>
+      </section>
       <footer className="cb-review-pagination">
         <span>{Object.keys(submitted).length} reviewed in this session</span>
         <button
@@ -1318,6 +1547,7 @@ function App() {
               cases={(report.reviewCases ?? []).filter(
                 (reviewCase) => reviewCase.visibility !== 'private',
               )}
+              benchmarkVersion={report.benchmarkVersion ?? 'creatorbench-v1.1'}
             />
           )}
         </section>

@@ -1,9 +1,9 @@
 {
   "schemaVersion": "nodevideo.creatorbench-deduplication-receipt.v1",
-  "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T06:11:31.687Z",
-  "sourceCount": 111,
-  "creatorCount": 68,
+  "benchmarkVersion": "creatorbench-v1.1",
+  "generatedAt": "2026-07-22T06:53:11.136Z",
+  "sourceCount": 112,
+  "creatorCount": 69,
   "visualAlgorithm": "first-frame-dhash-64",
   "visualHammingThreshold": 4,
   "audioAlgorithm": "sha256-normalized-mono-pcm-8khz-six-seconds",
@@ -12,8 +12,8 @@
       "kind": "visual-near-duplicate",
       "leftId": "cb-0009-4f1d6956",
       "rightId": "cb-0010-565d0079",
-      "leftSplit": "public-test",
-      "rightSplit": "public-test",
+      "leftSplit": "development",
+      "rightSplit": "development",
       "visualDistance": 0,
       "crossesSplit": false
     },
@@ -983,5 +983,5 @@
   ],
   "blockingFindingCount": 0,
   "passed": true,
-  "catalogSetSha256": "sha256:2e22b31d222314bb2d6f426f49fb1667598a106c296af79d5f5551e27f30335f"
+  "catalogSetSha256": "sha256:a8dbbef31fd883e48ad2fe8b32f85557f87ff5083e9737e06ecfb1f38575353a"
 }

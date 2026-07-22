@@ -134,6 +134,7 @@ export function routeExecutor(input: {
   candidates: ExecutorRouteCandidate[];
   fallbackHistory?: RouteFallbackAttempt[];
   policy?: RoutingPolicy;
+  receiptId?: string;
   createdAt?: string;
 }): RouteReceipt {
   const policy = input.policy ?? DEFAULT_ROUTING_POLICY;
@@ -175,7 +176,7 @@ export function routeExecutor(input: {
 
   return validateRouteReceipt({
     schemaVersion: ROUTE_RECEIPT_SCHEMA,
-    id: `route:${input.request.id}`,
+    id: input.receiptId ?? `route:${input.request.id}`,
     requestId: input.request.id,
     createdAt: input.createdAt ?? new Date().toISOString(),
     request: {

@@ -324,6 +324,9 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
     completedAt: v.optional(v.number()),
+    agreementMode: v.optional(v.boolean()),
+    agreementRoundId: v.optional(v.string()),
+    consentVersion: v.optional(v.string()),
   })
     .index('by_instance', ['benchmarkVersion', 'instanceId'])
     .index('by_reviewer_status', ['reviewerRef', 'status'])

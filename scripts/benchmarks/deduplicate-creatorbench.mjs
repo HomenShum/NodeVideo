@@ -81,7 +81,7 @@ const blocking = findings.filter(
 );
 const receipt = {
   schemaVersion: 'nodevideo.creatorbench-deduplication-receipt.v1',
-  benchmarkVersion: 'creatorbench-v1',
+  benchmarkVersion: 'creatorbench-v1.1',
   generatedAt: new Date().toISOString(),
   sourceCount: sources.length,
   creatorCount: new Set(sources.map((source) => source.creatorOwnerId)).size,

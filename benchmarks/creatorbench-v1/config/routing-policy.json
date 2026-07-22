@@ -1,6 +1,6 @@
 {
   "schemaVersion": "nodevideo.creatorbench-routing-policy.v1",
-  "benchmarkVersion": "creatorbench-v1",
+  "benchmarkVersion": "creatorbench-v1.1",
   "minimumSamplesForPromotion": 30,
   "usableRateLowerBound": 0.8,
   "maximumSilentFailureUpperBound": 0.01,

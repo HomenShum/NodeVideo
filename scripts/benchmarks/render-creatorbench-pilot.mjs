@@ -227,6 +227,8 @@ const evidence = {
   ],
   reviewCases: results.map((result) => ({
     id: result.instanceId,
+    resultId: result.resultId,
+    split: result.split,
     visibility: 'public',
     request: result.request,
     sourcePoster: result.sourcePoster,

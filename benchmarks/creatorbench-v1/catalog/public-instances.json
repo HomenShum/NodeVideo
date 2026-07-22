@@ -1,12 +1,162 @@
 {
   "schemaVersion": "nodevideo.creatorbench-instance-manifest.v1",
-  "benchmarkVersion": "creatorbench-v1",
-  "generatedAt": "2026-07-22T06:11:31.306Z",
+  "benchmarkVersion": "creatorbench-v1.1",
+  "generatedAt": "2026-07-22T06:53:10.722Z",
   "instances": [
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0009-beb98f01:smart-reframe",
+      "benchmarkVersion": "creatorbench-v1.1",
+      "sourceIds": [
+        "cb-0009-beb98f01"
+      ],
+      "domain": "field-sports",
+      "workflow": "smart-reframe",
+      "split": "adversarial",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0009-beb98f01:smart-reframe",
+        "createdAt": "2026-07-22T06:53:10.719Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0009-beb98f01",
+            "role": "primary",
+            "sha256": "sha256:e39a2f9200a406b1ecccde259d72edd0e50a6c122c62897cb7123b83e0adaf0f",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "cc-by",
+          "ownerOrLicensorId": "creator:76f0b85c344c40eb",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "smart-reframe",
+          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [
+        "Target leaves and re-enters after occlusion; retain identity or request assistance."
+      ],
+      "createdAt": "2026-07-22T06:53:10.720Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
+      "id": "instance:cb-0009-beb98f01:action-subject-following",
+      "benchmarkVersion": "creatorbench-v1.1",
+      "sourceIds": [
+        "cb-0009-beb98f01"
+      ],
+      "domain": "field-sports",
+      "workflow": "action-subject-following",
+      "split": "adversarial",
+      "request": {
+        "schemaVersion": "nodevideo.creator-request/v1",
+        "id": "request:cb-0009-beb98f01:action-subject-following",
+        "createdAt": "2026-07-22T06:53:10.720Z",
+        "sourceAssets": [
+          {
+            "artifactId": "cb-0009-beb98f01",
+            "role": "primary",
+            "sha256": "sha256:e39a2f9200a406b1ecccde259d72edd0e50a6c122c62897cb7123b83e0adaf0f",
+            "locatorClass": "public-url"
+          }
+        ],
+        "output": {
+          "destinations": [
+            "review"
+          ],
+          "targetDurationsMs": [
+            30000
+          ],
+          "aspectRatios": [
+            "16:9",
+            "9:16",
+            "1:1"
+          ]
+        },
+        "constraints": {
+          "privacy": "public",
+          "localOnly": false,
+          "maxCostUsd": 0,
+          "maxLatencyMs": 120000,
+          "permittedExecutors": [],
+          "prohibitedExecutors": [],
+          "mediaEgress": "prohibited"
+        },
+        "rights": {
+          "status": "cc-by",
+          "ownerOrLicensorId": "creator:76f0b85c344c40eb",
+          "permittedDerivativeUse": true,
+          "permittedModelProcessing": true
+        },
+        "intent": {
+          "workflow": "action-subject-following",
+          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty. Two similar subjects cross; do not silently switch identity.",
+          "preserve": [
+            "source meaning",
+            "selected subject",
+            "rights lineage"
+          ],
+          "avoid": [
+            "silent subject switches",
+            "unsupported claims",
+            "unapproved egress"
+          ]
+        },
+        "requiredHumanApprovalPoints": [
+          "before-render",
+          "before-canonical-apply",
+          "before-publish"
+        ]
+      },
+      "adversarialConditions": [
+        "Two similar subjects cross; do not silently switch identity."
+      ],
+      "createdAt": "2026-07-22T06:53:10.720Z"
+    },
+    {
+      "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0006-493a02f5:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0006-493a02f5"
       ],
@@ -16,7 +166,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0006-493a02f5:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.303Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0006-493a02f5",
@@ -74,12 +224,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.303Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0006-493a02f5:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0006-493a02f5"
       ],
@@ -89,7 +239,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0006-493a02f5:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.303Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0006-493a02f5",
@@ -147,12 +297,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.303Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0008-b952fc45:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0008-b952fc45"
       ],
@@ -162,7 +312,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0008-b952fc45:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.303Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0008-b952fc45",
@@ -220,12 +370,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.303Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0008-b952fc45:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0008-b952fc45"
       ],
@@ -235,7 +385,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0008-b952fc45:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.303Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0008-b952fc45",
@@ -293,22 +443,22 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.303Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0009-4f1d6956:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0009-4f1d6956"
       ],
       "domain": "animals",
       "workflow": "smart-reframe",
-      "split": "public-test",
+      "split": "development",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0009-4f1d6956:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.303Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0009-4f1d6956",
@@ -366,22 +516,22 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.303Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0009-4f1d6956:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0009-4f1d6956"
       ],
       "domain": "animals",
       "workflow": "action-subject-following",
-      "split": "public-test",
+      "split": "development",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0009-4f1d6956:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.303Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0009-4f1d6956",
@@ -439,22 +589,22 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0010-565d0079:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0010-565d0079"
       ],
       "domain": "animals",
       "workflow": "smart-reframe",
-      "split": "public-test",
+      "split": "development",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0010-565d0079:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0010-565d0079",
@@ -512,22 +662,22 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0010-565d0079:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0010-565d0079"
       ],
       "domain": "animals",
       "workflow": "action-subject-following",
-      "split": "public-test",
+      "split": "development",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0010-565d0079:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0010-565d0079",
@@ -585,22 +735,22 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0011-85b2e35f:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0011-85b2e35f"
       ],
       "domain": "animals",
       "workflow": "smart-reframe",
-      "split": "public-test",
+      "split": "development",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0011-85b2e35f:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0011-85b2e35f",
@@ -658,22 +808,22 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0011-85b2e35f:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0011-85b2e35f"
       ],
       "domain": "animals",
       "workflow": "action-subject-following",
-      "split": "public-test",
+      "split": "development",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0011-85b2e35f:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0011-85b2e35f",
@@ -731,12 +881,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0012-87d1ef2a:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0012-87d1ef2a"
       ],
@@ -746,7 +896,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0012-87d1ef2a:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0012-87d1ef2a",
@@ -804,12 +954,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0012-87d1ef2a:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0012-87d1ef2a"
       ],
@@ -819,7 +969,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0012-87d1ef2a:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0012-87d1ef2a",
@@ -877,12 +1027,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0015-0a22e6b8:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0015-0a22e6b8"
       ],
@@ -892,7 +1042,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0015-0a22e6b8:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0015-0a22e6b8",
@@ -950,12 +1100,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0015-0a22e6b8:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0015-0a22e6b8"
       ],
@@ -965,7 +1115,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0015-0a22e6b8:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0015-0a22e6b8",
@@ -1023,12 +1173,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0016-4bbd64b0:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0016-4bbd64b0"
       ],
@@ -1038,7 +1188,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0016-4bbd64b0:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0016-4bbd64b0",
@@ -1096,12 +1246,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0016-4bbd64b0:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0016-4bbd64b0"
       ],
@@ -1111,7 +1261,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0016-4bbd64b0:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0016-4bbd64b0",
@@ -1169,12 +1319,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0017-cc8702fa:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0017-cc8702fa"
       ],
@@ -1184,7 +1334,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0017-cc8702fa:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0017-cc8702fa",
@@ -1242,12 +1392,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0017-cc8702fa:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0017-cc8702fa"
       ],
@@ -1257,7 +1407,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0017-cc8702fa:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0017-cc8702fa",
@@ -1315,12 +1465,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0018-0932f238:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0018-0932f238"
       ],
@@ -1330,7 +1480,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0018-0932f238:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0018-0932f238",
@@ -1388,12 +1538,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0018-0932f238:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0018-0932f238"
       ],
@@ -1403,7 +1553,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0018-0932f238:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0018-0932f238",
@@ -1461,12 +1611,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0019-9e58ef72:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0019-9e58ef72"
       ],
@@ -1476,7 +1626,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0019-9e58ef72:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0019-9e58ef72",
@@ -1534,12 +1684,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0019-9e58ef72:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0019-9e58ef72"
       ],
@@ -1549,7 +1699,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0019-9e58ef72:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0019-9e58ef72",
@@ -1607,12 +1757,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0020-8804a7db:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0020-8804a7db"
       ],
@@ -1622,7 +1772,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0020-8804a7db:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0020-8804a7db",
@@ -1680,12 +1830,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0020-8804a7db:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0020-8804a7db"
       ],
@@ -1695,7 +1845,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0020-8804a7db:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0020-8804a7db",
@@ -1753,12 +1903,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0021-31f5bb01:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0021-31f5bb01"
       ],
@@ -1768,7 +1918,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0021-31f5bb01:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0021-31f5bb01",
@@ -1826,12 +1976,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0021-31f5bb01:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0021-31f5bb01"
       ],
@@ -1841,7 +1991,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0021-31f5bb01:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0021-31f5bb01",
@@ -1899,12 +2049,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0022-b933f478:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0022-b933f478"
       ],
@@ -1914,7 +2064,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0022-b933f478:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0022-b933f478",
@@ -1972,12 +2122,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0022-b933f478:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0022-b933f478"
       ],
@@ -1987,7 +2137,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0022-b933f478:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0022-b933f478",
@@ -2045,12 +2195,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0023-cf31f183:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0023-cf31f183"
       ],
@@ -2060,7 +2210,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0023-cf31f183:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0023-cf31f183",
@@ -2118,12 +2268,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0023-cf31f183:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0023-cf31f183"
       ],
@@ -2133,7 +2283,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0023-cf31f183:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0023-cf31f183",
@@ -2191,12 +2341,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0024-85653153:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0024-85653153"
       ],
@@ -2206,7 +2356,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0024-85653153:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0024-85653153",
@@ -2264,12 +2414,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0024-85653153:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0024-85653153"
       ],
@@ -2279,7 +2429,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0024-85653153:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0024-85653153",
@@ -2337,12 +2487,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0025-36d4e43b:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0025-36d4e43b"
       ],
@@ -2352,7 +2502,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0025-36d4e43b:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0025-36d4e43b",
@@ -2410,12 +2560,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0025-36d4e43b:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0025-36d4e43b"
       ],
@@ -2425,7 +2575,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0025-36d4e43b:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0025-36d4e43b",
@@ -2483,12 +2633,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.720Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0026-7c1b2383:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0026-7c1b2383"
       ],
@@ -2498,7 +2648,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0026-7c1b2383:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.720Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0026-7c1b2383",
@@ -2558,12 +2708,12 @@
       "adversarialConditions": [
         "Target leaves and re-enters after occlusion; retain identity or request assistance."
       ],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0026-7c1b2383:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0026-7c1b2383"
       ],
@@ -2573,7 +2723,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0026-7c1b2383:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0026-7c1b2383",
@@ -2633,12 +2783,12 @@
       "adversarialConditions": [
         "Two similar subjects cross; do not silently switch identity."
       ],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0027-0cc0ba2b:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0027-0cc0ba2b"
       ],
@@ -2648,7 +2798,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0027-0cc0ba2b:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0027-0cc0ba2b",
@@ -2706,12 +2856,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.304Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0027-0cc0ba2b:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0027-0cc0ba2b"
       ],
@@ -2721,7 +2871,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0027-0cc0ba2b:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.304Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0027-0cc0ba2b",
@@ -2779,12 +2929,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0028-fd71efcf:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0028-fd71efcf"
       ],
@@ -2794,7 +2944,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0028-fd71efcf:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0028-fd71efcf",
@@ -2852,12 +3002,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0028-fd71efcf:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0028-fd71efcf"
       ],
@@ -2867,7 +3017,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0028-fd71efcf:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0028-fd71efcf",
@@ -2925,12 +3075,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0029-ceb75f1d:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0029-ceb75f1d"
       ],
@@ -2940,7 +3090,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0029-ceb75f1d:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0029-ceb75f1d",
@@ -2998,12 +3148,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0029-ceb75f1d:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0029-ceb75f1d"
       ],
@@ -3013,7 +3163,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0029-ceb75f1d:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0029-ceb75f1d",
@@ -3071,12 +3221,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0030-f6dba17c:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0030-f6dba17c"
       ],
@@ -3086,7 +3236,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0030-f6dba17c:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0030-f6dba17c",
@@ -3144,12 +3294,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0030-f6dba17c:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0030-f6dba17c"
       ],
@@ -3159,7 +3309,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0030-f6dba17c:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0030-f6dba17c",
@@ -3217,12 +3367,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0031-6f0b437d:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0031-6f0b437d"
       ],
@@ -3232,7 +3382,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0031-6f0b437d:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0031-6f0b437d",
@@ -3290,12 +3440,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0031-6f0b437d:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0031-6f0b437d"
       ],
@@ -3305,7 +3455,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0031-6f0b437d:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0031-6f0b437d",
@@ -3363,12 +3513,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0032-2ce7cec5:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0032-2ce7cec5"
       ],
@@ -3378,7 +3528,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0032-2ce7cec5:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0032-2ce7cec5",
@@ -3436,12 +3586,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0032-2ce7cec5:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0032-2ce7cec5"
       ],
@@ -3451,7 +3601,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0032-2ce7cec5:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0032-2ce7cec5",
@@ -3509,12 +3659,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0033-b4a20a60:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0033-b4a20a60"
       ],
@@ -3524,7 +3674,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0033-b4a20a60:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0033-b4a20a60",
@@ -3582,12 +3732,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0033-b4a20a60:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0033-b4a20a60"
       ],
@@ -3597,7 +3747,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0033-b4a20a60:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0033-b4a20a60",
@@ -3655,12 +3805,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0034-16ed90ac:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0034-16ed90ac"
       ],
@@ -3670,7 +3820,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0034-16ed90ac:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0034-16ed90ac",
@@ -3728,12 +3878,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0034-16ed90ac:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0034-16ed90ac"
       ],
@@ -3743,7 +3893,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0034-16ed90ac:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0034-16ed90ac",
@@ -3801,12 +3951,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0036-60582816:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0036-60582816"
       ],
@@ -3816,7 +3966,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0036-60582816:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0036-60582816",
@@ -3874,12 +4024,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0036-60582816:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0036-60582816"
       ],
@@ -3889,7 +4039,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0036-60582816:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0036-60582816",
@@ -3947,12 +4097,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0037-acd7511c:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0037-acd7511c"
       ],
@@ -3962,7 +4112,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0037-acd7511c:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0037-acd7511c",
@@ -4020,12 +4170,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0037-acd7511c:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0037-acd7511c"
       ],
@@ -4035,7 +4185,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0037-acd7511c:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0037-acd7511c",
@@ -4093,12 +4243,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0038-6a3339c2:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0038-6a3339c2"
       ],
@@ -4108,7 +4258,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0038-6a3339c2:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0038-6a3339c2",
@@ -4166,12 +4316,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0038-6a3339c2:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0038-6a3339c2"
       ],
@@ -4181,7 +4331,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0038-6a3339c2:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0038-6a3339c2",
@@ -4239,12 +4389,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0039-884266ba:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0039-884266ba"
       ],
@@ -4254,7 +4404,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0039-884266ba:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0039-884266ba",
@@ -4312,12 +4462,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0039-884266ba:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0039-884266ba"
       ],
@@ -4327,7 +4477,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0039-884266ba:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0039-884266ba",
@@ -4385,22 +4535,22 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0040-51f4ed21:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0040-51f4ed21"
       ],
       "domain": "nature-landscape",
       "workflow": "smart-reframe",
-      "split": "adversarial",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0040-51f4ed21:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0040-51f4ed21",
@@ -4439,7 +4589,7 @@
         },
         "intent": {
           "workflow": "smart-reframe",
-          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
           "preserve": [
             "source meaning",
             "selected subject",
@@ -4457,25 +4607,23 @@
           "before-publish"
         ]
       },
-      "adversarialConditions": [
-        "Target leaves and re-enters after occlusion; retain identity or request assistance."
-      ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0040-51f4ed21:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0040-51f4ed21"
       ],
       "domain": "nature-landscape",
       "workflow": "action-subject-following",
-      "split": "adversarial",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0040-51f4ed21:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0040-51f4ed21",
@@ -4514,7 +4662,7 @@
         },
         "intent": {
           "workflow": "action-subject-following",
-          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty. Two similar subjects cross; do not silently switch identity.",
+          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty.",
           "preserve": [
             "source meaning",
             "selected subject",
@@ -4532,15 +4680,13 @@
           "before-publish"
         ]
       },
-      "adversarialConditions": [
-        "Two similar subjects cross; do not silently switch identity."
-      ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0042-e291b18d:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0042-e291b18d"
       ],
@@ -4550,7 +4696,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0042-e291b18d:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0042-e291b18d",
@@ -4608,12 +4754,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0042-e291b18d:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0042-e291b18d"
       ],
@@ -4623,7 +4769,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0042-e291b18d:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0042-e291b18d",
@@ -4681,12 +4827,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0043-b1d571bb:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0043-b1d571bb"
       ],
@@ -4696,7 +4842,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0043-b1d571bb:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0043-b1d571bb",
@@ -4756,12 +4902,12 @@
       "adversarialConditions": [
         "Target leaves and re-enters after occlusion; retain identity or request assistance."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0043-b1d571bb:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0043-b1d571bb"
       ],
@@ -4771,7 +4917,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0043-b1d571bb:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0043-b1d571bb",
@@ -4831,12 +4977,12 @@
       "adversarialConditions": [
         "Two similar subjects cross; do not silently switch identity."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0044-ee96dc05:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0044-ee96dc05"
       ],
@@ -4846,7 +4992,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0044-ee96dc05:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0044-ee96dc05",
@@ -4904,12 +5050,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0044-ee96dc05:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0044-ee96dc05"
       ],
@@ -4919,7 +5065,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0044-ee96dc05:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0044-ee96dc05",
@@ -4977,12 +5123,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0045-c0fdc2d9:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0045-c0fdc2d9"
       ],
@@ -4992,7 +5138,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0045-c0fdc2d9:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0045-c0fdc2d9",
@@ -5050,12 +5196,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0045-c0fdc2d9:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0045-c0fdc2d9"
       ],
@@ -5065,7 +5211,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0045-c0fdc2d9:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0045-c0fdc2d9",
@@ -5123,12 +5269,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0046-482f5e97:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0046-482f5e97"
       ],
@@ -5138,7 +5284,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0046-482f5e97:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0046-482f5e97",
@@ -5196,12 +5342,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0046-482f5e97:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0046-482f5e97"
       ],
@@ -5211,7 +5357,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0046-482f5e97:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0046-482f5e97",
@@ -5269,12 +5415,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0047-1aa70c3c:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0047-1aa70c3c"
       ],
@@ -5284,7 +5430,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0047-1aa70c3c:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0047-1aa70c3c",
@@ -5342,12 +5488,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0047-1aa70c3c:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0047-1aa70c3c"
       ],
@@ -5357,7 +5503,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0047-1aa70c3c:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0047-1aa70c3c",
@@ -5415,12 +5561,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0050-44f3a3ff:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0050-44f3a3ff"
       ],
@@ -5430,7 +5576,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0050-44f3a3ff:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0050-44f3a3ff",
@@ -5488,12 +5634,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0050-44f3a3ff:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0050-44f3a3ff"
       ],
@@ -5503,7 +5649,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0050-44f3a3ff:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0050-44f3a3ff",
@@ -5561,12 +5707,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0051-4bcd095f:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0051-4bcd095f"
       ],
@@ -5576,7 +5722,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0051-4bcd095f:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0051-4bcd095f",
@@ -5634,12 +5780,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0051-4bcd095f:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0051-4bcd095f"
       ],
@@ -5649,7 +5795,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0051-4bcd095f:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0051-4bcd095f",
@@ -5707,12 +5853,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0052-eb5546f0:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0052-eb5546f0"
       ],
@@ -5722,7 +5868,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0052-eb5546f0:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0052-eb5546f0",
@@ -5780,12 +5926,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0052-eb5546f0:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0052-eb5546f0"
       ],
@@ -5795,7 +5941,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0052-eb5546f0:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0052-eb5546f0",
@@ -5853,12 +5999,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0053-adc83a29:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0053-adc83a29"
       ],
@@ -5868,7 +6014,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0053-adc83a29:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0053-adc83a29",
@@ -5926,12 +6072,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0053-adc83a29:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0053-adc83a29"
       ],
@@ -5941,7 +6087,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0053-adc83a29:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0053-adc83a29",
@@ -5999,12 +6145,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0054-e3b9440b:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0054-e3b9440b"
       ],
@@ -6014,7 +6160,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0054-e3b9440b:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0054-e3b9440b",
@@ -6072,12 +6218,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0054-e3b9440b:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0054-e3b9440b"
       ],
@@ -6087,7 +6233,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0054-e3b9440b:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0054-e3b9440b",
@@ -6145,12 +6291,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0056-ae949169:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0056-ae949169"
       ],
@@ -6160,7 +6306,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0056-ae949169:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0056-ae949169",
@@ -6220,12 +6366,12 @@
       "adversarialConditions": [
         "Target leaves and re-enters after occlusion; retain identity or request assistance."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0056-ae949169:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0056-ae949169"
       ],
@@ -6235,7 +6381,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0056-ae949169:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0056-ae949169",
@@ -6295,12 +6441,12 @@
       "adversarialConditions": [
         "Two similar subjects cross; do not silently switch identity."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0057-1d87ea0e:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0057-1d87ea0e"
       ],
@@ -6310,7 +6456,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0057-1d87ea0e:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0057-1d87ea0e",
@@ -6368,12 +6514,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0057-1d87ea0e:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0057-1d87ea0e"
       ],
@@ -6383,7 +6529,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0057-1d87ea0e:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0057-1d87ea0e",
@@ -6441,12 +6587,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0058-ca9b5d55:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0058-ca9b5d55"
       ],
@@ -6456,7 +6602,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0058-ca9b5d55:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0058-ca9b5d55",
@@ -6514,12 +6660,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0058-ca9b5d55:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0058-ca9b5d55"
       ],
@@ -6529,7 +6675,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0058-ca9b5d55:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0058-ca9b5d55",
@@ -6587,12 +6733,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0059-c3b960e2:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0059-c3b960e2"
       ],
@@ -6602,7 +6748,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0059-c3b960e2:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0059-c3b960e2",
@@ -6660,12 +6806,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0059-c3b960e2:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0059-c3b960e2"
       ],
@@ -6675,7 +6821,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0059-c3b960e2:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0059-c3b960e2",
@@ -6733,12 +6879,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0060-4ef7b32c:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0060-4ef7b32c"
       ],
@@ -6748,7 +6894,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0060-4ef7b32c:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0060-4ef7b32c",
@@ -6808,12 +6954,12 @@
       "adversarialConditions": [
         "Target leaves and re-enters after occlusion; retain identity or request assistance."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0060-4ef7b32c:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0060-4ef7b32c"
       ],
@@ -6823,7 +6969,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0060-4ef7b32c:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0060-4ef7b32c",
@@ -6883,12 +7029,12 @@
       "adversarialConditions": [
         "Two similar subjects cross; do not silently switch identity."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0061-68183569:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0061-68183569"
       ],
@@ -6898,7 +7044,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0061-68183569:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0061-68183569",
@@ -6956,12 +7102,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0061-68183569:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0061-68183569"
       ],
@@ -6971,7 +7117,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0061-68183569:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0061-68183569",
@@ -7029,12 +7175,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0062-7554e85b:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0062-7554e85b"
       ],
@@ -7044,7 +7190,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0062-7554e85b:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0062-7554e85b",
@@ -7102,12 +7248,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0062-7554e85b:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0062-7554e85b"
       ],
@@ -7117,7 +7263,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0062-7554e85b:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0062-7554e85b",
@@ -7175,22 +7321,22 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0063-b55329da:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0063-b55329da"
       ],
       "domain": "nature-landscape",
       "workflow": "smart-reframe",
-      "split": "adversarial",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0063-b55329da:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0063-b55329da",
@@ -7229,7 +7375,7 @@
         },
         "intent": {
           "workflow": "smart-reframe",
-          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance.",
+          "instruction": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context.",
           "preserve": [
             "source meaning",
             "selected subject",
@@ -7247,25 +7393,23 @@
           "before-publish"
         ]
       },
-      "adversarialConditions": [
-        "Target leaves and re-enters after occlusion; retain identity or request assistance."
-      ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0063-b55329da:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0063-b55329da"
       ],
       "domain": "nature-landscape",
       "workflow": "action-subject-following",
-      "split": "adversarial",
+      "split": "public-test",
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0063-b55329da:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0063-b55329da",
@@ -7304,7 +7448,7 @@
         },
         "intent": {
           "workflow": "action-subject-following",
-          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty. Two similar subjects cross; do not silently switch identity.",
+          "instruction": "Follow the intended subject while preserving relevant action context and surfacing uncertainty.",
           "preserve": [
             "source meaning",
             "selected subject",
@@ -7322,15 +7466,13 @@
           "before-publish"
         ]
       },
-      "adversarialConditions": [
-        "Two similar subjects cross; do not silently switch identity."
-      ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "adversarialConditions": [],
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0066-9e65c59b:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0066-9e65c59b"
       ],
@@ -7340,7 +7482,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0066-9e65c59b:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0066-9e65c59b",
@@ -7398,12 +7540,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0066-9e65c59b:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0066-9e65c59b"
       ],
@@ -7413,7 +7555,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0066-9e65c59b:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0066-9e65c59b",
@@ -7471,12 +7613,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0068-020c2a0a:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0068-020c2a0a"
       ],
@@ -7486,7 +7628,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0068-020c2a0a:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0068-020c2a0a",
@@ -7544,12 +7686,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0068-020c2a0a:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0068-020c2a0a"
       ],
@@ -7559,7 +7701,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0068-020c2a0a:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0068-020c2a0a",
@@ -7617,12 +7759,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0069-e0f2d14d:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0069-e0f2d14d"
       ],
@@ -7632,7 +7774,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0069-e0f2d14d:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0069-e0f2d14d",
@@ -7690,12 +7832,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0069-e0f2d14d:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0069-e0f2d14d"
       ],
@@ -7705,7 +7847,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0069-e0f2d14d:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0069-e0f2d14d",
@@ -7763,12 +7905,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0071-21cbaa5c:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0071-21cbaa5c"
       ],
@@ -7778,7 +7920,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0071-21cbaa5c:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0071-21cbaa5c",
@@ -7836,12 +7978,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0071-21cbaa5c:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0071-21cbaa5c"
       ],
@@ -7851,7 +7993,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0071-21cbaa5c:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0071-21cbaa5c",
@@ -7909,12 +8051,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0072-4ed91916:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0072-4ed91916"
       ],
@@ -7924,7 +8066,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0072-4ed91916:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0072-4ed91916",
@@ -7982,12 +8124,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0072-4ed91916:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0072-4ed91916"
       ],
@@ -7997,7 +8139,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0072-4ed91916:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0072-4ed91916",
@@ -8055,12 +8197,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0073-001f1f6b:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0073-001f1f6b"
       ],
@@ -8070,7 +8212,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0073-001f1f6b:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0073-001f1f6b",
@@ -8130,12 +8272,12 @@
       "adversarialConditions": [
         "Target leaves and re-enters after occlusion; retain identity or request assistance."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0073-001f1f6b:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0073-001f1f6b"
       ],
@@ -8145,7 +8287,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0073-001f1f6b:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0073-001f1f6b",
@@ -8205,12 +8347,12 @@
       "adversarialConditions": [
         "Two similar subjects cross; do not silently switch identity."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0074-57484d54:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0074-57484d54"
       ],
@@ -8220,7 +8362,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0074-57484d54:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0074-57484d54",
@@ -8278,12 +8420,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0074-57484d54:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0074-57484d54"
       ],
@@ -8293,7 +8435,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0074-57484d54:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0074-57484d54",
@@ -8351,12 +8493,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0075-cafd8dd1:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0075-cafd8dd1"
       ],
@@ -8366,7 +8508,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0075-cafd8dd1:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0075-cafd8dd1",
@@ -8424,12 +8566,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0075-cafd8dd1:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0075-cafd8dd1"
       ],
@@ -8439,7 +8581,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0075-cafd8dd1:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0075-cafd8dd1",
@@ -8497,12 +8639,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0077-76d6a7e7:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0077-76d6a7e7"
       ],
@@ -8512,7 +8654,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0077-76d6a7e7:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0077-76d6a7e7",
@@ -8570,12 +8712,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0077-76d6a7e7:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0077-76d6a7e7"
       ],
@@ -8585,7 +8727,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0077-76d6a7e7:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0077-76d6a7e7",
@@ -8643,12 +8785,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0078-5dcaeb49:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0078-5dcaeb49"
       ],
@@ -8658,7 +8800,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0078-5dcaeb49:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0078-5dcaeb49",
@@ -8716,12 +8858,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0078-5dcaeb49:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0078-5dcaeb49"
       ],
@@ -8731,7 +8873,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0078-5dcaeb49:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0078-5dcaeb49",
@@ -8789,12 +8931,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0079-b3bf6506:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0079-b3bf6506"
       ],
@@ -8804,7 +8946,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0079-b3bf6506:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0079-b3bf6506",
@@ -8862,12 +9004,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0079-b3bf6506:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0079-b3bf6506"
       ],
@@ -8877,7 +9019,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0079-b3bf6506:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0079-b3bf6506",
@@ -8935,12 +9077,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0080-3073e3ec:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0080-3073e3ec"
       ],
@@ -8950,7 +9092,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0080-3073e3ec:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0080-3073e3ec",
@@ -9008,12 +9150,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0080-3073e3ec:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0080-3073e3ec"
       ],
@@ -9023,7 +9165,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0080-3073e3ec:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0080-3073e3ec",
@@ -9081,12 +9223,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0081-5a513c7a:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0081-5a513c7a"
       ],
@@ -9096,7 +9238,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0081-5a513c7a:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0081-5a513c7a",
@@ -9156,12 +9298,12 @@
       "adversarialConditions": [
         "Target leaves and re-enters after occlusion; retain identity or request assistance."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0081-5a513c7a:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0081-5a513c7a"
       ],
@@ -9171,7 +9313,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0081-5a513c7a:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0081-5a513c7a",
@@ -9231,12 +9373,12 @@
       "adversarialConditions": [
         "Two similar subjects cross; do not silently switch identity."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0082-0a72ef24:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0082-0a72ef24"
       ],
@@ -9246,7 +9388,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0082-0a72ef24:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0082-0a72ef24",
@@ -9304,12 +9446,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0082-0a72ef24:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0082-0a72ef24"
       ],
@@ -9319,7 +9461,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0082-0a72ef24:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0082-0a72ef24",
@@ -9377,12 +9519,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0083-20fd73aa:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0083-20fd73aa"
       ],
@@ -9392,7 +9534,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0083-20fd73aa:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0083-20fd73aa",
@@ -9450,12 +9592,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0083-20fd73aa:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0083-20fd73aa"
       ],
@@ -9465,7 +9607,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0083-20fd73aa:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0083-20fd73aa",
@@ -9523,12 +9665,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0084-5ce9e814:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0084-5ce9e814"
       ],
@@ -9538,7 +9680,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0084-5ce9e814:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0084-5ce9e814",
@@ -9596,12 +9738,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0084-5ce9e814:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0084-5ce9e814"
       ],
@@ -9611,7 +9753,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0084-5ce9e814:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0084-5ce9e814",
@@ -9669,12 +9811,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0085-7768f9ac:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0085-7768f9ac"
       ],
@@ -9684,7 +9826,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0085-7768f9ac:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0085-7768f9ac",
@@ -9742,12 +9884,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0085-7768f9ac:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0085-7768f9ac"
       ],
@@ -9757,7 +9899,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0085-7768f9ac:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0085-7768f9ac",
@@ -9815,12 +9957,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0086-85a79a17:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0086-85a79a17"
       ],
@@ -9830,7 +9972,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0086-85a79a17:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0086-85a79a17",
@@ -9890,12 +10032,12 @@
       "adversarialConditions": [
         "Target leaves and re-enters after occlusion; retain identity or request assistance."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0086-85a79a17:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0086-85a79a17"
       ],
@@ -9905,7 +10047,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0086-85a79a17:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0086-85a79a17",
@@ -9965,12 +10107,12 @@
       "adversarialConditions": [
         "Two similar subjects cross; do not silently switch identity."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0088-9b30a3c3:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0088-9b30a3c3"
       ],
@@ -9980,7 +10122,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0088-9b30a3c3:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0088-9b30a3c3",
@@ -10038,12 +10180,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0088-9b30a3c3:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0088-9b30a3c3"
       ],
@@ -10053,7 +10195,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0088-9b30a3c3:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0088-9b30a3c3",
@@ -10111,12 +10253,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0089-a5140cae:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0089-a5140cae"
       ],
@@ -10126,7 +10268,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0089-a5140cae:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0089-a5140cae",
@@ -10184,12 +10326,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0089-a5140cae:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0089-a5140cae"
       ],
@@ -10199,7 +10341,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0089-a5140cae:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0089-a5140cae",
@@ -10257,12 +10399,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0090-8d000e84:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0090-8d000e84"
       ],
@@ -10272,7 +10414,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0090-8d000e84:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0090-8d000e84",
@@ -10330,12 +10472,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0090-8d000e84:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0090-8d000e84"
       ],
@@ -10345,7 +10487,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0090-8d000e84:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0090-8d000e84",
@@ -10403,12 +10545,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0092-75e3169a:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0092-75e3169a"
       ],
@@ -10418,7 +10560,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0092-75e3169a:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0092-75e3169a",
@@ -10476,12 +10618,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0092-75e3169a:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0092-75e3169a"
       ],
@@ -10491,7 +10633,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0092-75e3169a:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0092-75e3169a",
@@ -10549,12 +10691,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0093-454e2d61:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0093-454e2d61"
       ],
@@ -10564,7 +10706,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0093-454e2d61:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0093-454e2d61",
@@ -10622,12 +10764,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0093-454e2d61:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0093-454e2d61"
       ],
@@ -10637,7 +10779,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0093-454e2d61:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0093-454e2d61",
@@ -10695,12 +10837,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0094-ac666c8f:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0094-ac666c8f"
       ],
@@ -10710,7 +10852,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0094-ac666c8f:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0094-ac666c8f",
@@ -10768,12 +10910,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0094-ac666c8f:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0094-ac666c8f"
       ],
@@ -10783,7 +10925,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0094-ac666c8f:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0094-ac666c8f",
@@ -10841,12 +10983,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0096-bbc6d99c:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0096-bbc6d99c"
       ],
@@ -10856,7 +10998,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0096-bbc6d99c:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0096-bbc6d99c",
@@ -10914,12 +11056,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0096-bbc6d99c:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0096-bbc6d99c"
       ],
@@ -10929,7 +11071,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0096-bbc6d99c:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0096-bbc6d99c",
@@ -10987,12 +11129,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0097-b78025cb:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0097-b78025cb"
       ],
@@ -11002,7 +11144,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0097-b78025cb:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0097-b78025cb",
@@ -11060,12 +11202,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0097-b78025cb:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0097-b78025cb"
       ],
@@ -11075,7 +11217,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0097-b78025cb:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0097-b78025cb",
@@ -11133,12 +11275,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0098-98ab8feb:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0098-98ab8feb"
       ],
@@ -11148,7 +11290,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0098-98ab8feb:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0098-98ab8feb",
@@ -11208,12 +11350,12 @@
       "adversarialConditions": [
         "Target leaves and re-enters after occlusion; retain identity or request assistance."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0098-98ab8feb:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0098-98ab8feb"
       ],
@@ -11223,7 +11365,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0098-98ab8feb:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0098-98ab8feb",
@@ -11283,12 +11425,12 @@
       "adversarialConditions": [
         "Two similar subjects cross; do not silently switch identity."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0100-dcd76e76:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0100-dcd76e76"
       ],
@@ -11298,7 +11440,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0100-dcd76e76:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0100-dcd76e76",
@@ -11356,12 +11498,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0100-dcd76e76:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0100-dcd76e76"
       ],
@@ -11371,7 +11513,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0100-dcd76e76:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0100-dcd76e76",
@@ -11429,12 +11571,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0101-28404cbc:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0101-28404cbc"
       ],
@@ -11444,7 +11586,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0101-28404cbc:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0101-28404cbc",
@@ -11502,12 +11644,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0101-28404cbc:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0101-28404cbc"
       ],
@@ -11517,7 +11659,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0101-28404cbc:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0101-28404cbc",
@@ -11575,12 +11717,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0102-0024dcf8:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0102-0024dcf8"
       ],
@@ -11590,7 +11732,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0102-0024dcf8:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0102-0024dcf8",
@@ -11650,12 +11792,12 @@
       "adversarialConditions": [
         "Target leaves and re-enters after occlusion; retain identity or request assistance."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0102-0024dcf8:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0102-0024dcf8"
       ],
@@ -11665,7 +11807,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0102-0024dcf8:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0102-0024dcf8",
@@ -11725,12 +11867,12 @@
       "adversarialConditions": [
         "Two similar subjects cross; do not silently switch identity."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0106-fd128f45:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0106-fd128f45"
       ],
@@ -11740,7 +11882,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0106-fd128f45:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0106-fd128f45",
@@ -11798,12 +11940,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0106-fd128f45:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0106-fd128f45"
       ],
@@ -11813,7 +11955,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0106-fd128f45:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0106-fd128f45",
@@ -11871,12 +12013,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0107-06e107d2:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0107-06e107d2"
       ],
@@ -11886,7 +12028,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0107-06e107d2:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0107-06e107d2",
@@ -11944,12 +12086,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0107-06e107d2:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0107-06e107d2"
       ],
@@ -11959,7 +12101,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0107-06e107d2:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0107-06e107d2",
@@ -12017,12 +12159,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0108-0f94ea96:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0108-0f94ea96"
       ],
@@ -12032,7 +12174,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0108-0f94ea96:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0108-0f94ea96",
@@ -12090,12 +12232,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0108-0f94ea96:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0108-0f94ea96"
       ],
@@ -12105,7 +12247,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0108-0f94ea96:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0108-0f94ea96",
@@ -12163,12 +12305,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0109-9955efd2:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0109-9955efd2"
       ],
@@ -12178,7 +12320,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0109-9955efd2:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0109-9955efd2",
@@ -12238,12 +12380,12 @@
       "adversarialConditions": [
         "Target leaves and re-enters after occlusion; retain identity or request assistance."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0109-9955efd2:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0109-9955efd2"
       ],
@@ -12253,7 +12395,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0109-9955efd2:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0109-9955efd2",
@@ -12313,12 +12455,12 @@
       "adversarialConditions": [
         "Two similar subjects cross; do not silently switch identity."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0110-c17e1c3f:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0110-c17e1c3f"
       ],
@@ -12328,7 +12470,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0110-c17e1c3f:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0110-c17e1c3f",
@@ -12386,12 +12528,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0110-c17e1c3f:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0110-c17e1c3f"
       ],
@@ -12401,7 +12543,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0110-c17e1c3f:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0110-c17e1c3f",
@@ -12459,12 +12601,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0111-1460dea9:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0111-1460dea9"
       ],
@@ -12474,7 +12616,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0111-1460dea9:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0111-1460dea9",
@@ -12534,12 +12676,12 @@
       "adversarialConditions": [
         "Target leaves and re-enters after occlusion; retain identity or request assistance."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0111-1460dea9:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0111-1460dea9"
       ],
@@ -12549,7 +12691,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0111-1460dea9:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0111-1460dea9",
@@ -12609,12 +12751,12 @@
       "adversarialConditions": [
         "Two similar subjects cross; do not silently switch identity."
       ],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0112-c462e74c:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0112-c462e74c"
       ],
@@ -12624,7 +12766,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0112-c462e74c:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0112-c462e74c",
@@ -12682,12 +12824,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0112-c462e74c:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0112-c462e74c"
       ],
@@ -12697,7 +12839,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0112-c462e74c:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0112-c462e74c",
@@ -12755,12 +12897,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0111-c8656e5e:smart-reframe",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0111-c8656e5e"
       ],
@@ -12770,7 +12912,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0111-c8656e5e:smart-reframe",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0111-c8656e5e",
@@ -12828,12 +12970,12 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-instance/v1",
       "id": "instance:cb-0111-c8656e5e:action-subject-following",
-      "benchmarkVersion": "creatorbench-v1",
+      "benchmarkVersion": "creatorbench-v1.1",
       "sourceIds": [
         "cb-0111-c8656e5e"
       ],
@@ -12843,7 +12985,7 @@
       "request": {
         "schemaVersion": "nodevideo.creator-request/v1",
         "id": "request:cb-0111-c8656e5e:action-subject-following",
-        "createdAt": "2026-07-22T06:11:31.305Z",
+        "createdAt": "2026-07-22T06:53:10.721Z",
         "sourceAssets": [
           {
             "artifactId": "cb-0111-c8656e5e",
@@ -12901,7 +13043,7 @@
         ]
       },
       "adversarialConditions": [],
-      "createdAt": "2026-07-22T06:11:31.305Z"
+      "createdAt": "2026-07-22T06:53:10.721Z"
     }
   ]
 }

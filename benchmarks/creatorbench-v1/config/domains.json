@@ -1,6 +1,6 @@
 {
   "schemaVersion": "nodevideo.creatorbench-domains.v1",
-  "benchmarkVersion": "creatorbench-v1",
+  "benchmarkVersion": "creatorbench-v1.1",
   "targetClips": 250,
   "minimumCreators": 75,
   "maximumClipsPerCreator": 3,

@@ -1,3 +1,4 @@
+import AxeBuilder from '@axe-core/playwright';
 import { type Page, expect, test } from 'playwright/test';
 
 const report = {
@@ -145,8 +146,16 @@ test.describe('CreatorBench public evidence and reviewer UI', () => {
     page,
   }) => {
     await page.goto('/creatorbench');
-    await expect(page.getByLabel('Dataset coverage')).toContainText('111');
+    const dataset = page.getByLabel('Dataset coverage');
+    await expect(dataset).toContainText('111');
+    await expect(dataset).toContainText('222');
+    await expect(dataset).toContainText('Private held-out population');
+    await expect(dataset).toContainText('46');
     await expect(page.getByText('264/264')).toBeVisible();
+    await expect(page.getByText(/Public deterministic center-crop render pilot/i)).toBeVisible();
+    await expect(page.getByTestId('unverified-quality')).toContainText(
+      'Human editing quality and silent-failure incidence are unverified',
+    );
 
     const coverageButton = page.getByRole('button', { name: 'Coverage' }).first();
     await coverageButton.scrollIntoViewIfNeeded();
@@ -307,5 +316,19 @@ test.describe('CreatorBench public evidence and reviewer UI', () => {
     ).toBe(true);
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     expect(await page.evaluate(() => document.characterSet)).toBe('UTF-8');
+  });
+
+  test('passes focused Axe smoke on the evidence overview and blind review form', async ({
+    page,
+  }) => {
+    await mockReport(page);
+    await page.goto('/creatorbench');
+    const overview = await new AxeBuilder({ page }).include('.cb-main').analyze();
+    expect(overview.violations, JSON.stringify(overview.violations, null, 2)).toEqual([]);
+
+    await page.getByRole('button', { name: 'Review lab' }).first().click();
+    await expect(page.getByTestId('review-lab')).toBeVisible();
+    const reviewer = await new AxeBuilder({ page }).include('[data-testid="review-lab"]').analyze();
+    expect(reviewer.violations, JSON.stringify(reviewer.violations, null, 2)).toEqual([]);
   });
 });

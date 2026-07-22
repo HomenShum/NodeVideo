@@ -30,6 +30,13 @@ const instanceReceipt = await readJson(resolve(benchmarkRoot, 'receipts/instance
 const renderPilot = await readJson(
   resolve(benchmarkRoot, 'results/public-render-pilot.json'),
 ).catch(() => undefined);
+const hardTargets = {
+  clips: 250,
+  creators: 75,
+  domains: 15,
+  workflows: 8,
+  instances: 2_000,
+};
 const report = {
   schemaVersion: 'nodevideo.creatorbench-public-report/v1',
   benchmarkVersion: claim.benchmarkVersion,
@@ -41,11 +48,24 @@ const report = {
     clips: acquisition.acquiredClips,
     creators: acquisition.creators,
     domains: acquisition.domains,
-    workflows: claim.population.workflowCount,
-    instances: claim.population.instanceCount,
+    workflows: instanceReceipt.representedWorkflowCount,
+    instances: instanceReceipt.instanceCount,
+    privateHeldoutInstances: claim.population.instanceCount,
     splits: acquisition.splitCounts,
     licenseCounts: acquisition.licenseCounts,
-    acquisitionGap: acquisition.acquisitionGap,
+    acquisitionRun: {
+      requestedClips: acquisition.requestedClips,
+      acquiredClips: acquisition.acquiredClips,
+      normalizationGap: acquisition.acquisitionGap,
+    },
+    hardTargets,
+    targetGaps: {
+      clips: Math.max(0, hardTargets.clips - acquisition.acquiredClips),
+      creators: Math.max(0, hardTargets.creators - acquisition.creators),
+      domains: Math.max(0, hardTargets.domains - acquisition.domains),
+      workflows: Math.max(0, hardTargets.workflows - instanceReceipt.representedWorkflowCount),
+      instances: Math.max(0, hardTargets.instances - instanceReceipt.instanceCount),
+    },
     acquisitionFailureCategories: acquisition.failureCategories,
   },
   counts: {
@@ -73,7 +93,7 @@ const report = {
     corpusTierCounts: instanceReceipt.corpusTierCounts,
   },
   metrics: {
-    latencyMs: { p50: 0, p95: 0 },
+    latencyMs: { p50: null, p95: null, scope: 'not-measured-for-sealed-routing' },
     costUsd: { perUsableOutput: null },
     correctionTimeSeconds: { median: null },
     exportReopen: renderPilot?.metrics?.exportReopen ?? {
@@ -81,6 +101,9 @@ const report = {
       denominator: 0,
       rate: null,
     },
+    exportReopenScope: renderPilot
+      ? 'public deterministic center-crop render pilot; not private-heldout editing quality'
+      : 'not measured',
     reviewerAgreement: null,
   },
   missingDataTreatment:
@@ -105,7 +128,17 @@ const report = {
         limitations: renderPilot.limitations,
       }
     : null,
-  reviewCases: renderPilot?.reviewCases ?? [],
+  reviewCases:
+    renderPilot?.reviewCases.map((reviewCase) => {
+      const pilotResult = renderPilot.results?.find(
+        (result) => result.instanceId === reviewCase.id,
+      );
+      return {
+        ...reviewCase,
+        resultId: reviewCase.resultId ?? pilotResult?.resultId,
+        split: reviewCase.split ?? pilotResult?.split,
+      };
+    }) ?? [],
   publicSourceCount: publicSources.records.length,
   downloads: {
     json: '/benchmarks/creatorbench-v1/results/public-report.json',
@@ -117,17 +150,114 @@ await mkdir(outputRoot, { recursive: true });
 await writeJson(resolve(outputRoot, 'public-claim.json'), claim);
 await writeJson(resolve(outputRoot, 'public-report.json'), report);
 const rows = [
-  ['classification', 'numerator', 'denominator', 'rate'],
+  [
+    'record_type',
+    'scope',
+    'group_kind',
+    'group_id',
+    'metric',
+    'numerator',
+    'denominator',
+    'rate',
+    'value',
+    'unit_or_note',
+  ],
   ...Object.entries(claim.outcomes).map(([classification, value]) => [
+    'outcome',
+    'private-heldout routing evaluation',
+    '',
+    '',
     classification,
     value.numerator,
     value.denominator,
     value.rate,
+    '',
+    'No human usability labels are present.',
+  ]),
+  ...sealed.subgroups.flatMap((subgroup) =>
+    Object.entries(subgroup.outcomes).map(([classification, value]) => [
+      'subgroup-outcome',
+      'private-heldout routing evaluation',
+      subgroup.kind,
+      subgroup.id,
+      classification,
+      value.numerator,
+      value.denominator,
+      value.rate,
+      '',
+      '',
+    ]),
+  ),
+  ...sealed.routeDistribution.flatMap((route) => [
+    [
+      'route',
+      'private-heldout routing evaluation',
+      'executor',
+      route.executorId,
+      'count',
+      '',
+      '',
+      '',
+      route.count,
+      'instances',
+    ],
+    ...Object.entries(route.dispositions).map(([disposition, count]) => [
+      'route-disposition',
+      'private-heldout routing evaluation',
+      'executor',
+      route.executorId,
+      disposition,
+      count,
+      route.count,
+      route.count > 0 ? count / route.count : 0,
+      '',
+      '',
+    ]),
+  ]),
+  [
+    'metric',
+    report.metrics.exportReopenScope,
+    '',
+    '',
+    'export_reopen',
+    report.metrics.exportReopen.numerator,
+    report.metrics.exportReopen.denominator,
+    report.metrics.exportReopen.rate,
+    '',
+    '',
+  ],
+  ...Object.entries(report.dataset.targetGaps).map(([metricName, gap]) => [
+    'target-gap',
+    'creatorbench-v1 hard target',
+    '',
+    '',
+    metricName,
+    '',
+    report.dataset.hardTargets[metricName],
+    '',
+    gap,
+    'remaining',
+  ]),
+  ...claim.limitations.map((limitation) => [
+    'limitation',
+    'public claim',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    limitation,
+    '',
   ]),
 ];
+const csvCell = (value) => {
+  const text = value === null || value === undefined ? '' : String(value);
+  return /[",\r\n]/u.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
+};
 await writeFile(
   resolve(outputRoot, 'public-report.csv'),
-  `${rows.map((row) => row.join(',')).join('\n')}\n`,
+  `${rows.map((row) => row.map(csvCell).join(',')).join('\n')}\n`,
 );
 console.log(
   JSON.stringify(

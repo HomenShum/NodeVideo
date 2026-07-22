@@ -2,12 +2,12 @@
   "schemaVersion": "nodevideo.creatorbench-public-report/v1",
   "benchmarkVersion": "creatorbench-v1",
   "status": "evaluated",
-  "generatedAt": "2026-07-22T06:17:55.168Z",
+  "generatedAt": "2026-07-22T06:45:25.439Z",
   "claim": {
     "schemaVersion": "nodevideo.creatorbench-public-claim/v1",
     "benchmarkVersion": "creatorbench-v1",
     "freezeReceiptId": "creatorbench-freeze:37b596c88293fbab06b9d9fb",
-    "generatedAt": "2026-07-22T06:17:55.168Z",
+    "generatedAt": "2026-07-22T06:45:25.439Z",
     "population": {
       "split": "private-heldout",
       "instanceCount": 46,
@@ -129,7 +129,8 @@
     "creators": 68,
     "domains": 14,
     "workflows": 2,
-    "instances": 46,
+    "instances": 222,
+    "privateHeldoutInstances": 46,
     "splits": {
       "development": 51,
       "public-test": 24,
@@ -141,7 +142,25 @@
       "CC BY 4.0": 1,
       "NASA SVS public domain": 106
     },
-    "acquisitionGap": 1,
+    "acquisitionRun": {
+      "requestedClips": 112,
+      "acquiredClips": 111,
+      "normalizationGap": 1
+    },
+    "hardTargets": {
+      "clips": 250,
+      "creators": 75,
+      "domains": 15,
+      "workflows": 8,
+      "instances": 2000
+    },
+    "targetGaps": {
+      "clips": 139,
+      "creators": 7,
+      "domains": 1,
+      "workflows": 6,
+      "instances": 1778
+    },
     "acquisitionFailureCategories": {
       "source-http": 1
     }
@@ -167,8 +186,9 @@
   },
   "metrics": {
     "latencyMs": {
-      "p50": 0,
-      "p95": 0
+      "p50": null,
+      "p95": null,
+      "scope": "not-measured-for-sealed-routing"
     },
     "costUsd": {
       "perUsableOutput": null
@@ -181,6 +201,7 @@
       "denominator": 264,
       "rate": 1
     },
+    "exportReopenScope": "public deterministic center-crop render pilot; not private-heldout editing quality",
     "reviewerAgreement": null
   },
   "missingDataTreatment": "Only workflow-admissible sources enter a denominator. Unevaluated editing quality remains review_required, safely_abstained, or unsupported; it is never counted as usable.",
