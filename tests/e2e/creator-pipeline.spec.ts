@@ -512,7 +512,10 @@ test('live OpenRouter free planner resolves a model before deterministic compila
   const sendButton = page.getByRole('button', { name: 'Send message' });
   await expect(sendButton).toBeEnabled({ timeout: 30_000 });
   await sendButton.click();
-  await expect(page.getByText(/planned · openrouter\/free →/u)).toBeVisible({ timeout: 90_000 });
+  await expect(page.getByText(/(?:iterative|degraded) · openrouter\/free →/u)).toBeVisible({
+    timeout: 90_000,
+  });
+  await expect(page.getByText(/(?:2-pass agent loop|single-pass degraded)/u)).toBeVisible();
   await expect(page.getByTestId('agent-proposal-card')).toBeVisible();
   await expect(page.getByTestId('creator-workspace')).toHaveAttribute('data-project-version', '1');
 });
