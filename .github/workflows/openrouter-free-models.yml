@@ -14,6 +14,7 @@ on:
     types: [openrouter-health-failure]
 
 permissions:
+  actions: write
   contents: write
   pull-requests: write
 
@@ -87,3 +88,7 @@ jobs:
           body='Automated Class B routing refresh. Trigger: catalog change, scheduled canary failure, manual dispatch, or production health dispatch. Review the receipt-backed rankings before merge; rollback is reverting this manifest commit.'
           gh pr create --base "${{ github.event.repository.default_branch }}" --head "$branch" --title 'Refresh OpenRouter free-model routing' --body "$body" ||
             gh pr edit "$branch" --title 'Refresh OpenRouter free-model routing' --body "$body"
+          # Pushes made with GITHUB_TOKEN do not start other workflows, so attach
+          # the same merge gates explicitly to the generated promotion branch.
+          gh workflow run quality.yml --ref "$branch"
+          gh workflow run node-platform-conformance.yml --ref "$branch"
