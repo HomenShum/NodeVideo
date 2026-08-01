@@ -26,8 +26,10 @@ import {
   Sparkles,
   User,
   Wrench,
+  Zap,
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import type { CreatorApprovalMode } from './creator-autonomy';
 import type { CreatorPreset, runCreatorPipeline } from './creator-pipeline';
 
 type CreatorResult = ReturnType<typeof runCreatorPipeline>;
@@ -37,6 +39,8 @@ export type CreatorAgentRequest = {
   route: CreatorExecutionRoute;
   scope: CreatorWriteScope;
   externalConsent: boolean;
+  approvalMode: CreatorApprovalMode;
+  resumeExecutionKey?: string;
 };
 export type ChatMessage = {
   id: string;
@@ -88,13 +92,16 @@ export function CreatorAgentPanel(props: {
   exportRatio: number;
   messages: ChatMessage[];
   caseflowReady: boolean;
+  currentAction?: string;
   runStatus?: string;
+  resumableRun?: { executionKey: string; phase: string; updatedAt: number };
   proposalDigest?: string;
   proposalStatus?: string;
   executorProposal?: ExecutorProposalView;
   onPreset: (preset: CreatorPreset) => void;
   onTranscript: (transcript: string) => void;
   onSend: (message: string, request: CreatorAgentRequest) => Promise<CreatorAgentReply>;
+  onResume: () => Promise<CreatorAgentReply>;
   onApprove: () => void;
   onReject: () => void;
   onRestore: () => void;
@@ -111,6 +118,7 @@ export function CreatorAgentPanel(props: {
   const [activity, setActivity] = useState<CreatorAgentReply['tools']>([]);
   const [route, setRoute] = useState<CreatorExecutionRoute>('auto');
   const [scope, setScope] = useState<CreatorWriteScope>('selected-variant');
+  const [approvalMode, setApprovalMode] = useState<CreatorApprovalMode>('auto-safe');
   const [externalConsent, setExternalConsent] = useState(false);
   const [detailView, setDetailView] = useState<DetailView>('chat');
   const feedRef = useRef<HTMLDivElement>(null);
@@ -154,7 +162,7 @@ export function CreatorAgentPanel(props: {
     setWorking(true);
     setActivity([{ name: 'Understanding request', detail: 'Reading source and campaign context' }]);
     try {
-      const reply = await props.onSend(text, { route, scope, externalConsent });
+      const reply = await props.onSend(text, { route, scope, externalConsent, approvalMode });
       setActivity(reply.tools);
     } catch (error) {
       setActivity([
@@ -177,17 +185,22 @@ export function CreatorAgentPanel(props: {
       className="flex min-h-[680px] flex-col overflow-hidden rounded-xl bg-card ring-1 ring-foreground/10 xl:sticky xl:top-4 xl:h-[calc(100vh-2rem)]"
       aria-label="NodeVideo agent"
     >
-      <header className="flex items-center justify-between border-b px-4 py-3">
-        <div className="flex items-center gap-2">
+      <header className="creator-agent-header flex items-center justify-between border-b px-4 py-3">
+        <div className="creator-agent-heading flex min-w-0 items-center gap-2">
           <span className="grid size-8 place-items-center rounded-lg bg-brand/15 text-brand">
             <Bot className="size-4" />
           </span>
           <div>
             <h2 className="text-sm font-semibold">NodeAgent</h2>
-            <p className="text-[11px] text-muted-foreground">Private media collaborator</p>
+            <p
+              className="line-clamp-2 text-[11px] text-muted-foreground"
+              data-testid="current-action"
+            >
+              {props.currentAction ? `Now · ${props.currentAction}` : 'Private media collaborator'}
+            </p>
           </div>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="creator-agent-actions flex items-center gap-1">
           <Button
             size="sm"
             variant={detailView === 'proposal' ? 'secondary' : 'ghost'}
@@ -303,10 +316,47 @@ export function CreatorAgentPanel(props: {
               </div>
             )}
 
+            {props.resumableRun && !working && (
+              <div className="ml-10 rounded-xl border border-brand/35 bg-brand/5 p-3">
+                <p className="text-sm font-medium">Durable review checkpoint ready</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Resume the {props.resumableRun.phase} pass from its persisted draft and thread
+                  memory. The source video remains local.
+                </p>
+                <Button
+                  className="mt-3"
+                  size="sm"
+                  variant="secondary"
+                  onClick={async () => {
+                    setWorking(true);
+                    setActivity([
+                      { name: 'Resuming checkpoint', detail: 'Recovering durable agent state' },
+                    ]);
+                    try {
+                      const reply = await props.onResume();
+                      setActivity(reply.tools);
+                    } catch (error) {
+                      setActivity([
+                        {
+                          name: 'Resume failed',
+                          detail: error instanceof Error ? error.message : 'Resume failed safely.',
+                        },
+                      ]);
+                    } finally {
+                      setWorking(false);
+                    }
+                  }}
+                >
+                  <RotateCcw className="size-3" /> Resume NodeAgent
+                </Button>
+              </div>
+            )}
+
             {props.result && (
               <div
                 className="ml-10 rounded-xl border border-brand/30 bg-brand/5 p-3"
                 data-testid="agent-proposal-card"
+                data-agent-decision={isApproved ? 'accepted' : isRejected ? 'rejected' : 'pending'}
               >
                 <div className="flex items-center justify-between">
                   <div>
@@ -351,6 +401,7 @@ export function CreatorAgentPanel(props: {
               <div
                 className="ml-10 rounded-xl border border-amber-500/40 bg-amber-500/5 p-3"
                 data-testid="executor-proposal-card"
+                data-agent-decision={props.executorProposal.status}
               >
                 <div className="flex items-center justify-between gap-2">
                   <div>
@@ -431,6 +482,35 @@ export function CreatorAgentPanel(props: {
                 ))}
               </div>
             )}
+            <div
+              className="mb-2 flex items-center justify-between gap-2 rounded-lg border bg-muted/25 px-2 py-1.5"
+              data-agent-approval-mode={approvalMode}
+            >
+              <span className="flex min-w-0 items-center gap-1.5 text-[10px] text-muted-foreground">
+                <Zap className="size-3 shrink-0 text-brand" />
+                {approvalMode === 'auto-safe'
+                  ? 'Auto applies safe local edits'
+                  : 'Ask before every edit'}
+              </span>
+              <div className="flex shrink-0 gap-1" aria-label="Approval mode">
+                <Button
+                  size="sm"
+                  variant={approvalMode === 'auto-safe' ? 'secondary' : 'ghost'}
+                  aria-pressed={approvalMode === 'auto-safe'}
+                  onClick={() => setApprovalMode('auto-safe')}
+                >
+                  Auto
+                </Button>
+                <Button
+                  size="sm"
+                  variant={approvalMode === 'ask' ? 'secondary' : 'ghost'}
+                  aria-pressed={approvalMode === 'ask'}
+                  onClick={() => setApprovalMode('ask')}
+                >
+                  Ask
+                </Button>
+              </div>
+            </div>
             <div className="rounded-xl border bg-background p-2 focus-within:ring-2 focus-within:ring-ring/40">
               <Textarea
                 aria-label="Message NodeAgent"
@@ -508,7 +588,10 @@ export function CreatorAgentPanel(props: {
               {route === 'higgsfield' && ' · cost and egress approval required before execution'}
             </div>
             {route === 'openrouter-free' && (
-              <label className="mt-2 flex items-start gap-2 rounded-lg border p-2 text-[11px] text-muted-foreground">
+              <label
+                className="mt-2 flex items-start gap-2 rounded-lg border p-2 text-[11px] text-muted-foreground"
+                data-agent-web-consent={externalConsent ? 'granted' : 'required'}
+              >
                 <input
                   type="checkbox"
                   checked={externalConsent}

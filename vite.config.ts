@@ -215,6 +215,7 @@ export default defineConfig({
         atlas: path.resolve(__dirname, 'atlas.html'),
         creatorbench: path.resolve(__dirname, 'creatorbench.html'),
         practice: path.resolve(__dirname, 'practice.html'),
+        vision: path.resolve(__dirname, 'vision.html'),
         'chrome-extension-sidepanel': path.resolve(
           __dirname,
           'apps/chrome-extension/sidepanel.html',
@@ -225,6 +226,7 @@ export default defineConfig({
   server: {
     host: true,
     port: 4173,
+    allowedHosts: ['.trycloudflare.com'],
   },
   preview: {
     host: true,

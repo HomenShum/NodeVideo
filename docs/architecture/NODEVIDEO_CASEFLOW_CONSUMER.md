@@ -10,7 +10,7 @@ Case → Run → Stage → ArtifactVersion → Proposal → Approval → Receipt
 
 | Lane | Shared contract | NodeVideo specialization |
 | --- | --- | --- |
-| Components | Case header, progress, current action, proposal review, receipt view | source vault, video canvas, timeline, variant comparison |
+| Components | Case header, durable conversation state, proposal review, receipt view | project files, video canvas, contextual timeline and variant comparison |
 | Server | durable thread, proposal/approval state, timeline events | creator planner API and executor routing |
 | Database | cases, runs, messages, versions, approvals, exceptions, receipts | video campaign snapshots and executor manifests |
 | Integration | exact-digest approval and proof boundaries | browser FFmpeg and Higgsfield adapters |
@@ -38,6 +38,10 @@ parity with NodeRoom or NodeSlide.
 - Malformed planner output is rejected and falls back visibly to deterministic planning.
 - No proposal acceptance means no canonical artifact change.
 - Approval is exactly once and tied to a proposal digest and base version.
+- Default Auto mode may record that exact approval only for reversible local, single-variant
+  proposals with no meaning-sensitive approval requirements. Ask mode keeps every proposal pending.
+- External-model output, campaign-wide changes, media egress, and paid execution are never
+  auto-approved.
 - A stale acceptance becomes a conflict and preserves the canonical artifact.
 - A changed executor quote invalidates prior approval.
 - Approving an executor quote does not submit a job or spend credits.

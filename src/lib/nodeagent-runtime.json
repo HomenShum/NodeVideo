@@ -1,0 +1,26 @@
+{
+  "limits": {
+    "maxToolIterations": 8,
+    "maxHistoryTurns": 8,
+    "maxPromptCharacters": 4000,
+    "maxModelMessageCharacters": 2000,
+    "maxTranscriptCharacters": 12000,
+    "maxPlannerOperations": 8,
+    "maxTraceSteps": 8,
+    "maxDurableExecutionsPerRun": 20,
+    "maxUpstreamBytes": 1000000,
+    "maxInteractiveRunMs": 180000,
+    "durableLeaseMs": 120000,
+    "plannerPassTimeoutMs": 28000,
+    "plannerTotalBudgetMs": 82000,
+    "plannerMinReviewBudgetMs": 8000
+  },
+  "creatorPlanningOperations": [
+    "remove_silence",
+    "review_fillers",
+    "extract_quote",
+    "compose_variants",
+    "add_transitions",
+    "preserve_meaning"
+  ]
+}

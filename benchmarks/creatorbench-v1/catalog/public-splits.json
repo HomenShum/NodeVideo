@@ -1,19 +1,8 @@
 {
   "schemaVersion": "nodevideo.creatorbench-split-catalog/v1",
-  "benchmarkVersion": "creatorbench-v1.4",
-  "generatedAt": "2026-07-22T09:34:46.196Z",
+  "benchmarkVersion": "creatorbench-v1.2",
+  "generatedAt": "2026-07-22T11:14:07.394Z",
   "assignments": [
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0004-7bfc3a17",
-      "split": "adversarial",
-      "creatorOwnerId": "creator:0780ba03c9e51a21",
-      "relatedSourceGroupId": "commons:179448481",
-      "perceptualHash": "sha256:88a94d9c477ac582e592236b9dbc1879dc8442c9889d08c21d9deeae1b211e0e",
-      "audioFingerprint": "sha256:d37b8315a31e1133ae40a46d71118d8b54d4550747700a058993cf64c1537d20",
-      "assignedAt": "2026-07-22T04:48:24.081Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0009-beb98f01",
@@ -478,7 +467,7 @@
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0056-ae949169",
-      "split": "development",
+      "split": "public-test",
       "creatorOwnerId": "creator:2c5b5301a2efa041",
       "relatedSourceGroupId": "nasa-svs:5572",
       "perceptualHash": "sha256:6396d095f3151bb4aeb9657caeb876ce323f466af222604260672b6ea311a27c",
@@ -968,7 +957,7 @@
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0111-1460dea9",
-      "split": "development",
+      "split": "public-test",
       "creatorOwnerId": "creator:064faefc6941e019",
       "relatedSourceGroupId": "nasa-svs:13371",
       "perceptualHash": "sha256:a437673f289410316966a94007c78842d4c2a0067e351465447b8d8627a2f9ec",
@@ -1031,7 +1020,7 @@
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0116-17024424",
-      "split": "development",
+      "split": "public-test",
       "creatorOwnerId": "creator:976276f35244cb19",
       "relatedSourceGroupId": "nasa-images:iss063m261222124_NASA_SpaceX_Demo2_Robert_Behnken_Interviews",
       "perceptualHash": "sha256:6b05ce0631cd705824fb59e27ccba6020488fe5621c000e418e610d1123287ca",
@@ -1207,7 +1196,7 @@
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0134-b782aa46",
-      "split": "public-test",
+      "split": "adversarial",
       "creatorOwnerId": "creator:4e49f415f117fe6c",
       "relatedSourceGroupId": "nasa-images:jsc2020m000249_Crew-1_Interview_Reel_Shannon_Walker_MP4_1080",
       "perceptualHash": "sha256:6e35820397df2f61d6eafd72518bdd53a4ff90f066256cc8ac4608a0cddeb3b7",
@@ -1284,12 +1273,12 @@
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0141-bada7e4e",
-      "split": "development",
+      "split": "public-test",
       "creatorOwnerId": "creator:e0eaaa198008b925",
       "relatedSourceGroupId": "nasa-images:iss064m263651519_Expedition_64_Inflight with_KCAL_LA_201230",
       "perceptualHash": "sha256:8c87931b7d52300969ecc8fc1d46e5ffeafb3d04460b63a1b64e540b6b14467b",
       "audioFingerprint": "sha256:51bb05de045bd24db87080f5bb288252990c9224ebc17476a7d849b0a83d2d2b",
-      "assignedAt": "2026-07-22T08:05:35.897Z",
+      "assignedAt": "2026-07-22T08:24:30.160Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1300,7 +1289,7 @@
       "relatedSourceGroupId": "nasa-images:iss063m261631434_Expedition_63_KNX_Radio_and_Chris_Cassidy_200611",
       "perceptualHash": "sha256:52be29bc28d1434be54b3bbc072d820c70546e49397c4ce37370870dafadd994",
       "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T08:05:36.153Z",
+      "assignedAt": "2026-07-22T08:24:30.183Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1311,7 +1300,7 @@
       "relatedSourceGroupId": "nasa-images:iss063m261331634_EXP_63_InFlight_Cassidy_CNN_At_Home_200512",
       "perceptualHash": "sha256:f92791b6e73ae12553cfbead2729772fb222dde17de179884ba50404a932a454",
       "audioFingerprint": "sha256:878ffb99d96d6e14ceba3208230c9290cf644a84c67c2967fcbf6dd579b988ec",
-      "assignedAt": "2026-07-22T08:05:40.342Z",
+      "assignedAt": "2026-07-22T08:24:31.518Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1322,7 +1311,7 @@
       "relatedSourceGroupId": "nasa-images:iss061m260432020_2-12-2020_Christina_Koch_Fox_News_Interview",
       "perceptualHash": "sha256:85f66eb8b4baf9d40cf4e9ee320b133f44ccf912c6cad311dfc5427206a72c63",
       "audioFingerprint": "sha256:541f2c5ef52f6c2a2e9534dce8b4f0ccc50c7718197abd3bd1b637e1f9fbd7e1",
-      "assignedAt": "2026-07-22T08:05:40.321Z",
+      "assignedAt": "2026-07-22T08:24:31.547Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1333,7 +1322,7 @@
       "relatedSourceGroupId": "nasa-images:iss065m261891729_Expedition_65_WFLA_210708",
       "perceptualHash": "sha256:fa18541a5dd0a204ff8684d6d12b933674bfb5922bff624d40534cc75d4650f1",
       "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T08:05:46.678Z",
+      "assignedAt": "2026-07-22T08:24:33.270Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1344,7 +1333,7 @@
       "relatedSourceGroupId": "nasa-images:iss063m261761709_Late_Late_Show_and_NPR_Morning_Edition_200624",
       "perceptualHash": "sha256:484310fb2041f658fe00da6f2108a2bfcd656b5b38c4aeca8d08433156cee348",
       "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T08:05:46.661Z",
+      "assignedAt": "2026-07-22T08:24:33.321Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1355,7 +1344,7 @@
       "relatedSourceGroupId": "nasa-images:iss071m261631914_NASA_Astronaut_Butch_Willmore_Answers_Tennessee_Student_Questions_240611",
       "perceptualHash": "sha256:7db8af1ad8d57cccc39681f330736c79376b0c7d55b0908b8dcd2c4b6960dd76",
       "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T08:05:49.613Z",
+      "assignedAt": "2026-07-22T08:24:33.890Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1366,7 +1355,7 @@
       "relatedSourceGroupId": "nasa-images:jsc2023m000098_Artemis_II_Crew_Talks_with_Media_230404",
       "perceptualHash": "sha256:fcdb4b423f4e5283afa249d762ef6aef150e91fccd810d43e5e719d14512dec7",
       "audioFingerprint": "sha256:89485e2b78b88a4883c175d65d599fcf952ab30e916ede9f949e41ed5202df0f",
-      "assignedAt": "2026-07-22T08:05:49.597Z",
+      "assignedAt": "2026-07-22T08:24:33.989Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1377,18 +1366,18 @@
       "relatedSourceGroupId": "nasa-images:iss070m262711214_Expedition_70_Astronaut_Mogensen_Talks_with_Business_Summitt_Herning_Denmark_230928",
       "perceptualHash": "sha256:fcdb4b423f4e5283afa249d762ef6aef150e91fccd810d43e5e719d14512dec7",
       "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T08:05:52.916Z",
+      "assignedAt": "2026-07-22T08:24:34.342Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0152-0f4e5340",
-      "split": "development",
+      "split": "public-test",
       "creatorOwnerId": "creator:f95d9ca8d9be5473",
       "relatedSourceGroupId": "nasa-images:iss065m262501534_Expedition_65_ESA_European_Commission_210907",
       "perceptualHash": "sha256:d7076c51e5ef4ec50f40beeb958ca82bdac1a8ae69986cb5b73dc88199fde4a8",
       "audioFingerprint": "sha256:ac707243ea419b61547917c173d4a6913ced5d07b46f1b3989a7ffe7ac6b292c",
-      "assignedAt": "2026-07-22T08:05:52.940Z",
+      "assignedAt": "2026-07-22T08:24:34.425Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1399,7 +1388,7 @@
       "relatedSourceGroupId": "nasa-images:iss073m262591328_NASA_Astronauts_Discuss_Life_In_Space_Fast_Company_Innovation_Festival_Attendees_250916",
       "perceptualHash": "sha256:cb366ac9c79541b6886b8e2756fcbf28d14bd2c8e45e7ce959dcd239e1111d93",
       "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T08:05:55.986Z",
+      "assignedAt": "2026-07-22T08:24:34.738Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1410,7 +1399,7 @@
       "relatedSourceGroupId": "nasa-images:iss065m262791344_Expedition_65_ESA_CNES_Education_211006",
       "perceptualHash": "sha256:17877de674a967e03a6ae3337f7ca85132c11991f8497962f69ae266d43f1966",
       "audioFingerprint": "sha256:ffb3b8e6ea98187e02487d7d6597265a517245fba50624fa3dcb6c83cfd05343",
-      "assignedAt": "2026-07-22T08:05:55.932Z",
+      "assignedAt": "2026-07-22T08:24:34.817Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1421,7 +1410,7 @@
       "relatedSourceGroupId": "nasa-images:iss065m262751539_Expedition_65_Expo_2020_211002",
       "perceptualHash": "sha256:d7e428a3df8bd34d8638e048e8bb70236075763eec2a3ba380ca50cc96a6baef",
       "audioFingerprint": "sha256:265cd904aa60c6aa2a395915e9a46c49f366f576fede9c17638f06ebf4b50ea5",
-      "assignedAt": "2026-07-22T08:05:59.331Z",
+      "assignedAt": "2026-07-22T08:24:35.110Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1432,7 +1421,7 @@
       "relatedSourceGroupId": "nasa-images:iss071m261621839_NASA's_Boeing_Crew_Flight_Test_Astronauts_Talk_with_National_Space_Council_Representatives_240610",
       "perceptualHash": "sha256:e29dfe6f89830b898082c5838bb8ad9cee2fa26797a95795c3a7cbfd32152dd6",
       "audioFingerprint": "sha256:75b161e0d0d398ed5cfc90a9ecaa3a22eeaa86c6a9ef458d48d9694261e1f7eb",
-      "assignedAt": "2026-07-22T08:05:59.381Z",
+      "assignedAt": "2026-07-22T08:24:35.196Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1443,7 +1432,7 @@
       "relatedSourceGroupId": "nasa-images:iss061m260281119_EXP_61_PAO_ABC_NEWS_AP_Koch_2020_0128",
       "perceptualHash": "sha256:4c4e3aeb04e22ae4f068e01f4360c161b9002c39d3d848e26997e031e1913afc",
       "audioFingerprint": "sha256:a3e4cefd26a26f6f476a16c7fc73f0fe4d53c5cd4a51738b1f7bed9fba4928de",
-      "assignedAt": "2026-07-22T08:06:03.410Z",
+      "assignedAt": "2026-07-22T08:24:35.526Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1454,7 +1443,7 @@
       "relatedSourceGroupId": "nasa-images:GSFC_20250401_Artemis_II_Tanking",
       "perceptualHash": "sha256:313adb2b8aebf88fb7258d09650657e01ab082a2b179d00b15d3fbd2b60c9cea",
       "audioFingerprint": "sha256:c4a99e76527c035e6b0d5a144a7b2351ce2430d3641c320f642b0702b9fc7b51",
-      "assignedAt": "2026-07-22T08:06:07.805Z",
+      "assignedAt": "2026-07-22T08:24:35.983Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1465,7 +1454,7 @@
       "relatedSourceGroupId": "nasa-images:iss073m263241603_NASA_Astronaut_Discuss_Life_In_Space_With_The_Washington_Post’s_Global_Summit_Meeting_Attendees_251120",
       "perceptualHash": "sha256:41457c539807779ad4161e3627a4192cba1d247d0fe2dc39eb199a214f7ef1f0",
       "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T08:06:07.361Z",
+      "assignedAt": "2026-07-22T08:24:36.079Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1476,7 +1465,7 @@
       "relatedSourceGroupId": "nasa-images:iss071m262191509_Expedition71_NASA_Astronauts_Dyson_and_Williams_Talk_with_Society_of_Women_Engineers_240806",
       "perceptualHash": "sha256:49661071510bfd9445b31d7fc8a6ff7cb6bfd6f4d5dcdedef7416167f2a606e9",
       "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T08:06:11.248Z",
+      "assignedAt": "2026-07-22T08:24:36.609Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1487,18 +1476,18 @@
       "relatedSourceGroupId": "nasa-images:iss074m260231458__NASA_Astronaut_Discusses_Life_In_Space_With_Columbia_Space_Initiative_260123",
       "perceptualHash": "sha256:a286fcbc083db4fa1da37d7cb4512a80743513d876f1758472879a78e00ff8a4",
       "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T08:06:15.075Z",
+      "assignedAt": "2026-07-22T08:24:36.989Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0166-4dda45e3",
-      "split": "public-test",
+      "split": "adversarial",
       "creatorOwnerId": "creator:d67068baeea4fb00",
       "relatedSourceGroupId": "nasa-images:iss065m262791529_Expedition_65_Fox_Weather_211006",
       "perceptualHash": "sha256:40791d99988cbe09b6028affd3b6d6302120b45a575cab1828e90a0c0d3238c0",
       "audioFingerprint": "sha256:039cc3828195eaff2daba73e7cec7f278072eb9e1bc8fcce403f767333911766",
-      "assignedAt": "2026-07-22T08:06:20.408Z",
+      "assignedAt": "2026-07-22T08:24:38.068Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1509,7 +1498,7 @@
       "relatedSourceGroupId": "nasa-images:iss059m261701108_Expedition_59_Inflight_Interview_with_CBS_News_and_Fox_Business_News_2019_0619",
       "perceptualHash": "sha256:12f97cb8125f427d7b5c5d7b92f717250ec2b535c509ca6b0d3edfefdecfde28",
       "audioFingerprint": "sha256:20195b80a8c323f92c1b38529a95913b3a8b6adbe1b64a69d541056e339ac5aa",
-      "assignedAt": "2026-07-22T08:06:24.194Z",
+      "assignedAt": "2026-07-22T08:24:38.468Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1520,7 +1509,7 @@
       "relatedSourceGroupId": "nasa-images:iss072m263521849_NASA_Astronaut_Don_Pettit_Talks_with_the_Everyday_Astronaut_241217",
       "perceptualHash": "sha256:011891851d8f4c409a69f379af9c296c3c4c413ea5dfb7012a3bca40159d9ce0",
       "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T08:06:24.149Z",
+      "assignedAt": "2026-07-22T08:24:38.783Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1531,7 +1520,7 @@
       "relatedSourceGroupId": "nasa-images:iss059m261141453_Expedition_59_Inflight_Army_News_Service_KCTS_KUOW_2019_0424_1195589",
       "perceptualHash": "sha256:bf1c823ff2b22373180fedd06b5e39658a8efa69c387c9db97639da2bf6330b5",
       "audioFingerprint": "sha256:a356709c7062fd3647601f9d203fa5584bc2374dd62729d20811a4e83d586344",
-      "assignedAt": "2026-07-22T08:06:30.471Z",
+      "assignedAt": "2026-07-22T08:24:40.823Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1542,7 +1531,7 @@
       "relatedSourceGroupId": "nasa-images:iss067m262361309_Expedition_67_Frank_Rubio_Live_Shots_220824",
       "perceptualHash": "sha256:bf89d91aa797173e2ca6b9e761431aa35b39c5390e449ed47eff1247814562a9",
       "audioFingerprint": "sha256:9aaad4d3bcaea5151386087ecd689f08c95cc912ae65d7aeba349ba0e7aee7f4",
-      "assignedAt": "2026-07-22T08:06:30.478Z",
+      "assignedAt": "2026-07-22T08:24:40.727Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1553,7 +1542,7 @@
       "relatedSourceGroupId": "nasa-images:iss063m261811604_Expedition_63_InFlight_WashingtonPost_AP_NBC_200629",
       "perceptualHash": "sha256:6014bd461e34976525902797e335c984399313fc0bacb13e4ab769886f93a4ac",
       "audioFingerprint": "sha256:c2e2eca9a65724f31736018694831b20f20969797cba36206d2974ada45aeba3",
-      "assignedAt": "2026-07-22T08:06:34.851Z",
+      "assignedAt": "2026-07-22T08:24:41.680Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1564,7 +1553,7 @@
       "relatedSourceGroupId": "nasa-images:iss063m261891628_Exp.63_Inflight_New_York_Times_Fox_News_USA_Today_200707",
       "perceptualHash": "sha256:891def60eca7649b0b46207419b3764a4f27685ebb58a95df2ecf6bb34dacf02",
       "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T08:06:37.702Z",
+      "assignedAt": "2026-07-22T08:24:42.569Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1575,7 +1564,7 @@
       "relatedSourceGroupId": "nasa-images:iss066m263080859_Expedition_66_ESA_Macron_Pesquet_211104",
       "perceptualHash": "sha256:61ff5d5de49db7a1a10174141e77394613e98ba71552f30af8f536399f5f902f",
       "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T08:06:41.004Z",
+      "assignedAt": "2026-07-22T08:24:43.796Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1586,7 +1575,7 @@
       "relatedSourceGroupId": "nasa-images:AFRC-2023-14046-2-ecoDemonstrator VF Interviews_1",
       "perceptualHash": "sha256:42a5e7634f2acbe90ea01c2e33df154d806d6c6cfe362158576b34c17a8fdb01",
       "audioFingerprint": "sha256:ddc034816604ddc5f486318ffce03c04f56cc007136972ce7cb80a994e504793",
-      "assignedAt": "2026-07-22T08:06:41.005Z",
+      "assignedAt": "2026-07-22T08:24:44.002Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1597,7 +1586,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-5_Linda_Moore",
       "perceptualHash": "sha256:0f2cc1a5df4532849f69b932535f42a7b78eb71173981925232bcfa6b009a5a4",
       "audioFingerprint": "sha256:19eefddbdf03e809748abd648fda35e64df7d1af13e462a6e7f8a165e4b31226",
-      "assignedAt": "2026-07-22T08:06:44.018Z",
+      "assignedAt": "2026-07-22T08:24:44.337Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1608,7 +1597,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-7_Phyllis_Alexander",
       "perceptualHash": "sha256:fa5be0b90a2fe009634d1a13d5ff172317b46f3c8815e49310e7487bdeb83c66",
       "audioFingerprint": "sha256:8ea8b2edbbb0d52d5a0a316362e0ab3a5ace9eecc5e9cb36c73eac82464113ef",
-      "assignedAt": "2026-07-22T08:06:47.085Z",
+      "assignedAt": "2026-07-22T08:24:44.923Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1619,7 +1608,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-24_Vicki_Hagerman",
       "perceptualHash": "sha256:49f02f857f6e443ae9171de3181dff5b50965f24fb823bbb4912525e1104f4c2",
       "audioFingerprint": "sha256:5b3afcda97cc8aa975791f74e7def065a98078e4e2bbc9dd6c071f6fe492bd9b",
-      "assignedAt": "2026-07-22T08:06:53.505Z",
+      "assignedAt": "2026-07-22T08:24:45.525Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1630,7 +1619,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-21_BarbWilson",
       "perceptualHash": "sha256:5602a5f27ca8eb93529482a8f1dc8fc3e360cb5fa4138550fd42a8ef884d8575",
       "audioFingerprint": "sha256:219a16edabde550d182ece6ffad8eb274ff2db414bf173fa14c3fca13da64bab",
-      "assignedAt": "2026-07-22T08:06:53.552Z",
+      "assignedAt": "2026-07-22T08:24:45.609Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1641,7 +1630,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-2_Jacquelynne_Houts",
       "perceptualHash": "sha256:e57391e101de526d6cad04ac7431275691743b5ff8b7aa968337aae5a5ce98c5",
       "audioFingerprint": "sha256:7b39158df5f0385e3bcefbd8f37814fdb851ac46b781c539e8575ffd5892edb9",
-      "assignedAt": "2026-07-22T08:06:56.538Z",
+      "assignedAt": "2026-07-22T08:24:45.836Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1652,7 +1641,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-22_Lauren_Demirjian",
       "perceptualHash": "sha256:27b26af05972a93c92ae26a88fa582217053556d950f55510d957c28d8af5a53",
       "audioFingerprint": "sha256:a1792e0e8110b04b2945613a6f577a2b88bc30e7a7ea747677ebd83b12cc735c",
-      "assignedAt": "2026-07-22T08:06:56.573Z",
+      "assignedAt": "2026-07-22T08:24:45.949Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1663,7 +1652,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-9_Audrey_Gonzalez",
       "perceptualHash": "sha256:faa5e352674559d1db4eb7abe5068f959374ea0ad290509010a6e1ac2ff45f27",
       "audioFingerprint": "sha256:88e68065244d3d8c5f771c940bce484a4825d3973b17ab51d819f78d83949358",
-      "assignedAt": "2026-07-22T08:07:00.499Z",
+      "assignedAt": "2026-07-22T08:24:46.203Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1674,7 +1663,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-10_Janet_Lane",
       "perceptualHash": "sha256:8a2b81db40c6cd62bcb97a5865afe5a2e787e86ae2630f64340194b2e73ac6b7",
       "audioFingerprint": "sha256:ac8b69365c18ecf386350ae24ca71d90ac664f6a15c2594c0866a9001d2c61d2",
-      "assignedAt": "2026-07-22T08:07:00.516Z",
+      "assignedAt": "2026-07-22T08:24:46.314Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1685,7 +1674,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-27_Joyce_Dever",
       "perceptualHash": "sha256:8b54e208eaeac6db4315b4db0385a6efaeadf7ffb909ce936166ea1bc9e7b163",
       "audioFingerprint": "sha256:161ccb54c7e9f66644667854cbb171d8fbc35e8521b18a30020a4221b86a17a9",
-      "assignedAt": "2026-07-22T08:07:05.226Z",
+      "assignedAt": "2026-07-22T08:24:46.552Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1696,7 +1685,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-13_Mary_Lobo",
       "perceptualHash": "sha256:c592eeadc4d8d924c66dba9e462964d808b69d040996cb972963f847f06d2ee5",
       "audioFingerprint": "sha256:1e6f77665eafffca79a992d7150ab02daa57d7ccfb2fb0d3148a7ccca6c4c1f2",
-      "assignedAt": "2026-07-22T08:07:05.082Z",
+      "assignedAt": "2026-07-22T08:24:46.672Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1707,7 +1696,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-4_Tina_Jicha",
       "perceptualHash": "sha256:6d6a73341ced36a16cc0d88a154931c8eaa3d53cba57b4a5cec3081191ffff25",
       "audioFingerprint": "sha256:879fff805faf9c79f3cc64e99caacfcffc590de20626ae409f691c8bd5988f68",
-      "assignedAt": "2026-07-22T08:07:09.657Z",
+      "assignedAt": "2026-07-22T08:24:46.940Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1718,7 +1707,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-23_Sue_Motil",
       "perceptualHash": "sha256:1a99496706b7d20769a53a67f052a9e08d5d7a58a0878fe524da81e774c5b9bc",
       "audioFingerprint": "sha256:24c5fdefc5ce46b75c28ced8cbceca19a6c5d49c11cc324efbde07116dae1500",
-      "assignedAt": "2026-07-22T08:07:09.649Z",
+      "assignedAt": "2026-07-22T08:24:47.079Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1729,7 +1718,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-18_Rochelle_May",
       "perceptualHash": "sha256:fdc2db590d2e720aa293a4222511a2aca7a8a3f8321e69141b7923bc8d16cb84",
       "audioFingerprint": "sha256:fb8a807ff3d2cde9ba4c1062f6cae9a7812250216c71cd7d0b9154167eb6214e",
-      "assignedAt": "2026-07-22T08:07:15.266Z",
+      "assignedAt": "2026-07-22T08:24:47.484Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1740,7 +1729,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-29_Anne_McNelis",
       "perceptualHash": "sha256:9c9ff4266a5f32d2323974646b43fc1c19943ccc8a0d928e2fbe3f6fc8695359",
       "audioFingerprint": "sha256:65fcaf942855d198f5b08f6988b0e0d1c9639fbbec2e978a88481759c2980452",
-      "assignedAt": "2026-07-22T08:07:19.307Z",
+      "assignedAt": "2026-07-22T08:24:48.081Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1751,7 +1740,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-19_Amy_Jankovsky",
       "perceptualHash": "sha256:4b08a9b6ea560b08670acb4f8b8aafed52a964032b77946b7a62b9f5202e1fe4",
       "audioFingerprint": "sha256:8dbd70a412f848c8d1740baa32278b66ddf4165d4ca4c41449d052a93074b605",
-      "assignedAt": "2026-07-22T08:07:24.391Z",
+      "assignedAt": "2026-07-22T08:24:48.477Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1762,7 +1751,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-3_Maria_Choi",
       "perceptualHash": "sha256:77ce02b7382470b7192e183f7e78fe53f9ab547f62b674c6040e9633f6876d19",
       "audioFingerprint": "sha256:011755ebe46eb2abdf9a2e0aec8c7dc4f849e29c6e162205597747f6f3198f31",
-      "assignedAt": "2026-07-22T08:07:29.467Z",
+      "assignedAt": "2026-07-22T08:24:49.098Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1773,7 +1762,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-30_Abigail_Rodriguez",
       "perceptualHash": "sha256:366a73090f0863a6dc1edb14bc630be8d0de572ab72b512e80ba0529ea58c758",
       "audioFingerprint": "sha256:a086212722e6ede3f1eef386ea7ab7e479e0290c52a55c157e621b26364463a4",
-      "assignedAt": "2026-07-22T08:07:29.718Z",
+      "assignedAt": "2026-07-22T08:24:49.518Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1784,7 +1773,7 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-16_Bridget_Caswell",
       "perceptualHash": "sha256:d4454c9a65f1cd35cfc6bf759e1b8850e316947461879c25864f5292357808e4",
       "audioFingerprint": "sha256:8f77ed5ac5bff7b1b5b30e18c292463c14d181496a1a079edcb08618ef57b982",
-      "assignedAt": "2026-07-22T08:07:35.496Z",
+      "assignedAt": "2026-07-22T08:24:50.752Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1795,29 +1784,29 @@
       "relatedSourceGroupId": "nasa-images:GRC-2018-CM-0183-25_Xynique_Sims",
       "perceptualHash": "sha256:abad973b08a528937fc15df01049837416f347250f0a00b7945e454575bb7af9",
       "audioFingerprint": "sha256:b4028c396f2115d7793a463d01d9bc8711fabcb16b3dbb147ba3b1bf4d2bbbce",
-      "assignedAt": "2026-07-22T08:07:35.835Z",
+      "assignedAt": "2026-07-22T08:24:50.996Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0208-0140994b",
-      "split": "development",
+      "split": "public-test",
       "creatorOwnerId": "creator:10a1836342e065e6",
       "relatedSourceGroupId": "nasa-images:ksc_021110_sdo_close1",
       "perceptualHash": "sha256:ef625f3bc8717482d8941e9e6d5d8af965afd456b89eed8130508e2abc467ab9",
       "audioFingerprint": "sha256:57ce89774efb9f19c15685f4fe63033866982f95b0b8aaf05ff92ce22a0916f9",
-      "assignedAt": "2026-07-22T08:07:38.798Z",
+      "assignedAt": "2026-07-22T08:24:51.852Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0210-e28af50e",
-      "split": "development",
+      "split": "public-test",
       "creatorOwnerId": "creator:c4a781dac676493c",
       "relatedSourceGroupId": "nasa-images:ksc_031509_sts119_payne",
       "perceptualHash": "sha256:5789bdcc90f96365260c5919de8e68521972d8272729abe465f7dcdf33b04b47",
       "audioFingerprint": "sha256:541e1f209008d713be5be4115f488e7b90d26637d05d4f2cd14948cd09709e06",
-      "assignedAt": "2026-07-22T08:07:42.097Z",
+      "assignedAt": "2026-07-22T08:24:52.341Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1828,7 +1817,7 @@
       "relatedSourceGroupId": "nasa-images:van_121409_wise_close",
       "perceptualHash": "sha256:6abaf3e0d2025603d30d8962506801027a6e481b82157c527ca90d2dfb85b3a2",
       "audioFingerprint": "sha256:7b5a6c344c81ac70ab4dfe422f7d24a6a9d39f5b1b257ec484f5631ef23b40e5",
-      "assignedAt": "2026-07-22T08:07:45.265Z",
+      "assignedAt": "2026-07-22T08:24:52.568Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1839,7 +1828,7 @@
       "relatedSourceGroupId": "nasa-images:GSFC_20121001_GPM_m11102_Dalia",
       "perceptualHash": "sha256:247aaf487d6bff75ee8479f62ebbcf70f91890907d21e19c7feb6582227c301e",
       "audioFingerprint": "sha256:030ca9a8929b4af781808848e044b7c4b4763859c1fc5cf4f20426e26c1f2b5f",
-      "assignedAt": "2026-07-22T08:07:45.619Z",
+      "assignedAt": "2026-07-22T08:24:52.770Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1850,18 +1839,7 @@
       "relatedSourceGroupId": "nasa-images:ksc_061809_lrolcross_dovale",
       "perceptualHash": "sha256:b848d825e746a94b53bef92bb96cbcfe54dc8f586f0552c34b17e7e00d83ab29",
       "audioFingerprint": "sha256:514ae6f4f72b41d5848196307f394027f89b9da3ddef60ad9a141729146d833b",
-      "assignedAt": "2026-07-22T08:07:51.984Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0216-91319de8",
-      "split": "adversarial",
-      "creatorOwnerId": "creator:f0d41d198b9b2386",
-      "relatedSourceGroupId": "nasa-images:GSFC_20201019_M13740_DaleHowell",
-      "perceptualHash": "sha256:1a9a2a3c46ae4e9347d7084f5b47fd9195d758509684f0b705c16fd2f0894cf6",
-      "audioFingerprint": "sha256:c12c0bc40e631d3699bb70514b385cd41d2c39d76e5eea63ea4d01c9fc6bb0ff",
-      "assignedAt": "2026-07-22T08:07:57.347Z",
+      "assignedAt": "2026-07-22T08:24:52.939Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1872,7 +1850,7 @@
       "relatedSourceGroupId": "nasa-images:van_052005_noaa_halter2",
       "perceptualHash": "sha256:f21c8107beaa664f8111998a1a7ca792c149206fe471b0dd3d1cf303307abaab",
       "audioFingerprint": "sha256:3f149c718ff643bd3d94a1cdfc1927221d9f78b3d476b4ac66c11ad9f9333a43",
-      "assignedAt": "2026-07-22T08:08:01.722Z",
+      "assignedAt": "2026-07-22T08:24:53.757Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1883,7 +1861,7 @@
       "relatedSourceGroupId": "nasa-images:iss063m262101429_Expedition_63_In-flight_Live_with_Kelly_and_Ryan_Discovery_Channel_200728",
       "perceptualHash": "sha256:c7c0c12c34f7efba22a9edcaf25f61535d7dab8f7b01e1d517968bd6d6404c56",
       "audioFingerprint": "sha256:617fdb6fcc2d5b421d2821ffdafefe300124ccac0dc6c2410c7e2dbfd66811e3",
-      "assignedAt": "2026-07-22T08:08:05.769Z",
+      "assignedAt": "2026-07-22T08:24:54.065Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1894,18 +1872,18 @@
       "relatedSourceGroupId": "nasa-images:KSC-20200729-VP-CDC01-0001-Mars_2020_NASA Administrator_Briefing-3254342",
       "perceptualHash": "sha256:d197bd1a321e63ad542ae99f1669fce212fc429afaa53670fcce284d21860706",
       "audioFingerprint": "sha256:c7787c0347a523f7c7057ac81834710921af185b7a23efa99a509882d6cf054e",
-      "assignedAt": "2026-07-22T08:08:09.908Z",
+      "assignedAt": "2026-07-22T08:24:54.367Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
       "sourceId": "cb-0223-d09a1e6a",
-      "split": "public-test",
+      "split": "adversarial",
       "creatorOwnerId": "creator:98f9dee912bb7b38",
       "relatedSourceGroupId": "nasa-images:GSFC_20240620_Asteroid_Threat_Briefing",
       "perceptualHash": "sha256:0d2c78c988a9b7adb8552a4ae34a80fd2969dda85b5e4b7760b9c5574e17e6db",
       "audioFingerprint": "sha256:df64af9e58df69d2d3d47f31c3b2cd39972518f92af7b919350ed04203e29c5e",
-      "assignedAt": "2026-07-22T08:08:14.077Z",
+      "assignedAt": "2026-07-22T08:24:54.487Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
@@ -1916,194 +1894,18 @@
       "relatedSourceGroupId": "nasa-images:KSC_2022_0426_NASA Administrator Briefing for the SpaceX Crew-4 Launch",
       "perceptualHash": "sha256:11e05b90f2e403a87b2d444b6ab418ae6cd935692a66fa48a68e1ab43670a809",
       "audioFingerprint": "sha256:39e39e40faa36e5da661115448a8c7044fc26b18a2cbe7790543444c5150d6f6",
-      "assignedAt": "2026-07-22T08:08:18.266Z",
+      "assignedAt": "2026-07-22T08:24:54.986Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     },
     {
       "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0227-583f3179",
-      "split": "public-test",
-      "creatorOwnerId": "creator:ec78f593c71c417b",
-      "relatedSourceGroupId": "nasa-images:iss069m262691033_Expedition69_Andreas_Mogensen_Answers_Danish_Student__Questions_230926",
-      "perceptualHash": "sha256:b4acfc734e2c520a1e8af43b63844b1199cf336b3b621d91b7afd470c1d451f5",
-      "audioFingerprint": "sha256:8424f6944bc84b8c974a4243b57d0f8a1684fd4f4b9d79f1a4cc1ac45f311280",
-      "assignedAt": "2026-07-22T09:20:10.038Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0228-06500f08",
-      "split": "public-test",
-      "creatorOwnerId": "creator:1d38a50205ac3750",
-      "relatedSourceGroupId": "nasa-images:iss065m261321424-Expedition_65_WeatherNation_210512_1475076",
-      "perceptualHash": "sha256:0d4fe298f75a0e7d41b4df29f7722cbdf0573298255101e7ee1ce21b8223b1d1",
-      "audioFingerprint": "sha256:49488c408aa6f4bdeb9a2779b5eb103a2aba602d92735228030cfbfe7a7cd7c8",
-      "assignedAt": "2026-07-22T09:20:10.054Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0229-5829859e",
-      "split": "development",
-      "creatorOwnerId": "creator:3278b45d9d87a231",
-      "relatedSourceGroupId": "nasa-images:iss063m261421458_EXP_63_InFlight_Discovery_Cbs_Chronicle_200521",
-      "perceptualHash": "sha256:0a3e2b583b1663f680938765e073eb6ed263c7dc3437a17cd249abedfb02d9be",
-      "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T09:20:10.326Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0230-dac6c67e",
-      "split": "public-test",
-      "creatorOwnerId": "creator:a859c9818d7115bc",
-      "relatedSourceGroupId": "nasa-images:iss061m263611103_2019_1227_Christina_Koch_Record_Breaking_Spaceflight_Live_Interviews",
-      "perceptualHash": "sha256:c098a9e5adde13b4af0e4b2d43759260d2215da0e53292515eb8ce10bdfe5882",
-      "audioFingerprint": "sha256:86a29767fac79acf7bf6aa5ff1f911a3422c01ee684cb0da5c5de324bc5bc413",
-      "assignedAt": "2026-07-22T09:20:10.344Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0231-124460bc",
+      "sourceId": "cb-0392-2f808e65",
       "split": "adversarial",
-      "creatorOwnerId": "creator:dbb8049458939a0c",
-      "relatedSourceGroupId": "nasa-images:iss069m262231429_Expedition_69_InFlight_Good_Morning_America_081123",
-      "perceptualHash": "sha256:27e49137846118ae7c9ce0ca292677ac35e6e409c4c794ab58dd55e0a165266e",
-      "audioFingerprint": "sha256:b270ed52be54bba22440be2e9419cbbe06592087a8b56bb3d69340a6e1ea9615",
-      "assignedAt": "2026-07-22T09:20:10.604Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0232-07ff9cc1",
-      "split": "adversarial",
-      "creatorOwnerId": "creator:0d52cbfb4ae1184f",
-      "relatedSourceGroupId": "nasa-images:jsc2021m000205_NASA_Astronaut_Mark_Vande_Hei_on_Spaceflight_Record_210914",
-      "perceptualHash": "sha256:ed0d52c5a6b88c3960a7a119767c78ae04a955fb8804df9bbb3835db2cf28144",
-      "audioFingerprint": "sha256:65c85d6d9f6627963a226e432540cba6672e1de7a4fea9accae7aa7507619fde",
-      "assignedAt": "2026-07-22T09:20:10.619Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0233-494463bf",
-      "split": "adversarial",
-      "creatorOwnerId": "creator:fea20b5cfdf5f68c",
-      "relatedSourceGroupId": "nasa-images:iss069m261941544_Expedition_69_InFlight_with_CongressionalHispanicCaucus_230713",
-      "perceptualHash": "sha256:fbe2d175af686068ccf1e1ccfa03064674a4194b408cc0bc53ca0f329ee5361c",
-      "audioFingerprint": "sha256:d8777d2275bf0a3bfa300f4f7ea37949b352764439f79961535280e5f9b73245",
-      "assignedAt": "2026-07-22T09:20:10.864Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0234-c03a62f8",
-      "split": "public-test",
-      "creatorOwnerId": "creator:2a8f27f5fb7cdc3c",
-      "relatedSourceGroupId": "nasa-images:iss066m260831429_Expedition_66_Vande_Hei_PAO_Interview_220324",
-      "perceptualHash": "sha256:03cc68e92f73abb04bc4143067ee1fcbaeb06eaccce2461be1e8dd47404a5919",
-      "audioFingerprint": "sha256:dc4fe6205c2e3a89b7ff881a55178c39f3f430d3ec6506b690c3273c2237f8d3",
-      "assignedAt": "2026-07-22T09:20:10.897Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0235-75d6a54e",
-      "split": "development",
-      "creatorOwnerId": "creator:43173cf3efbeb344",
-      "relatedSourceGroupId": "nasa-images:iss071m261621459_NASA_Astronaut_Suni_Williams_Answers_Needham_Massachussetts_Student_Question_240610",
-      "perceptualHash": "sha256:3edafed6fd26c1264922f09285404d1839d27acbb46e26c8f47469c17e274e4f",
-      "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T09:20:11.129Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0238-f9d06420",
-      "split": "public-test",
-      "creatorOwnerId": "creator:923ca409805dc862",
-      "relatedSourceGroupId": "nasa-images:jsc2024m000078_2021_Astronaut_Candidate_Class_Resource_Reel-4K-240228-MP4",
-      "perceptualHash": "sha256:5548c2d4bb5e78cd941621e5a8ab861be214410a627a8f6a0621d18115cc86ce",
-      "audioFingerprint": "sha256:22ea46e2ab5c588044fc8c9ce6f91c8dab6e63b0c128489b2789e11eaad1ee0b",
-      "assignedAt": "2026-07-22T09:20:11.419Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0241-d5ce9d5c",
-      "split": "public-test",
-      "creatorOwnerId": "creator:98e6f851710b0d1f",
-      "relatedSourceGroupId": "nasa-images:iss069m261801444_Expedition_69_InFlight_WBTS-TV_and_AccuWeather_230629",
-      "perceptualHash": "sha256:86742ff290e235f2c7c13a68696c560a372607785e7fedb0dcdb2d223139e13d",
-      "audioFingerprint": "sha256:7a145849f2f56c39a1419f5b1bd81df812d8442c89d16a6942564b44f06fc28d",
-      "assignedAt": "2026-07-22T09:20:11.892Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0242-b13136a3",
-      "split": "development",
-      "creatorOwnerId": "creator:e03a9297bbc9e1b7",
-      "relatedSourceGroupId": "nasa-images:iss070m260021459_Expedition_70_Astronaut_Loral_O’Hara_Talks_with_KAKE-TV_Wichita_Kansas_240102",
-      "perceptualHash": "sha256:58393ef498830657e634c2195406c0de0090b48942f1807e6d217ec4342b9c75",
-      "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T09:20:11.957Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0243-964d9bc4",
-      "split": "development",
-      "creatorOwnerId": "creator:c1115f4645db4851",
-      "relatedSourceGroupId": "nasa-images:Iss073m261401418_Space_Station_Astronauts_Discuss_Life_In_Space_With_New_York_Students_250520",
-      "perceptualHash": "sha256:524e85c8438950eebd10b271f586cf137b1e10333ad974873858c122f4c3dad7",
-      "audioFingerprint": "sha256:fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b",
-      "assignedAt": "2026-07-22T09:20:12.188Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0245-ef1deafe",
-      "split": "public-test",
-      "creatorOwnerId": "creator:1194fca9507a989c",
-      "relatedSourceGroupId": "nasa-images:iss069m261441449_Expedition_69_Inflight_with_AP_and_NBC6_23052",
-      "perceptualHash": "sha256:03b119e5e08f516bd4db0cb111c621ba9e971e1085321343ddeb15255b40b552",
-      "audioFingerprint": "sha256:83ad9671ee54e969598b3f750704f4a6643d062d22546ff0642aa8db8efca867",
-      "assignedAt": "2026-07-22T09:20:12.490Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0248-f514d898",
-      "split": "public-test",
-      "creatorOwnerId": "creator:7871c6879dad3e34",
-      "relatedSourceGroupId": "nasa-images:iss070m260641453_Expedition_70_Space_Station_Crew_Talks_with_NPR’s_Short_Wave_Podcast_240304",
-      "perceptualHash": "sha256:bbd6b5037c26582516b0713f6468587e74069f5339bb6af23ce5635b5c05063f",
-      "audioFingerprint": "sha256:887b3654a7bccdbf57ce491425b0ba3331ea9b3811716f18500ac45cbd741f76",
-      "assignedAt": "2026-07-22T09:20:12.940Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0249-c928d731",
-      "split": "adversarial",
-      "creatorOwnerId": "creator:e4dc84ac096bbe36",
-      "relatedSourceGroupId": "nasa-images:iss066m260051408_Expedition_66_PAO_Grant_Larson_220105",
-      "perceptualHash": "sha256:f3c3da5dbb2d573a86a2ddc11e57807eb46d347a4c2bc74115fc9a92b898a7a1",
-      "audioFingerprint": "sha256:11d37c3afebe478440d2315dd970ec4525c669c7c15d8ba36217526d4d1875e7",
-      "assignedAt": "2026-07-22T09:20:13.180Z",
-      "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
-    },
-    {
-      "schemaVersion": "nodevideo.creatorbench-split/v1",
-      "sourceId": "cb-0250-f50589b7",
-      "split": "development",
-      "creatorOwnerId": "creator:95b893b196f0490a",
-      "relatedSourceGroupId": "nasa-images:iss069m261011449_Expedition_69_Inflight_with_Finding_Mastery_Podcast_230411",
-      "perceptualHash": "sha256:a88805379437b662f09d1de9eee245e215ee657807ca7c885b42a4c9ff4d4ec7",
-      "audioFingerprint": "sha256:e7c1f813eee57c4b1ab14962405ed2806f5a410fbd8a6eaea059796f55ba6cae",
-      "assignedAt": "2026-07-22T09:20:13.247Z",
+      "creatorOwnerId": "creator:6672a88e3695fca7",
+      "relatedSourceGroupId": "commons:151248786",
+      "perceptualHash": "sha256:65a75ec88b7c261461ec74f35cc243ace0b03132c96a080a943462c058c84400",
+      "audioFingerprint": "sha256:11c8cd7217fa247ac5b33b8289935a62a6baf578b37c8df885d86042c8d355fa",
+      "assignedAt": "2026-07-22T11:12:37.407Z",
       "assignmentPolicyVersion": "creator-source-disjoint-hash-v1"
     }
   ]

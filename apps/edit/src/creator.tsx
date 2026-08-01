@@ -1,4 +1,5 @@
 import './edit.css';
+import type { NodeAgentDepthMode, NodeAgentTraceStep } from '@/lib/nodeagent-contract';
 import {
   type FramingPolicy,
   type ReframeCritic,
@@ -14,6 +15,7 @@ import { createRoot } from 'react-dom/client';
 import { exportBrowserEditPlan } from './browser-export';
 import { trackLocalPoseSubjects } from './browser-subject-tracker';
 import type { CreatorAgentRequest } from './creator-agent-panel';
+import { decideCreatorAutoApproval } from './creator-autonomy';
 import type { PlanningReceipt } from './creator-caseflow';
 import { useCreatorCaseflow } from './creator-caseflow';
 import {
@@ -312,9 +314,82 @@ function CreatorPipeline() {
     );
   };
 
+  const applyProposalApproval = async (input: {
+    variant: NonNullable<typeof selected>;
+    proposalId: Parameters<typeof caseflow.decideProposal>[0];
+    proposalDigest: string;
+    automatic: boolean;
+  }) => {
+    try {
+      const decision = await caseflow.decideProposal(
+        input.proposalId,
+        input.proposalDigest,
+        'approved',
+      );
+      if (!decision.applied) {
+        setStatus(
+          `Approval failed closed: this proposal was based on an older artifact version. Project version ${decision.version} remains canonical.`,
+        );
+        return false;
+      }
+      setResult((current) =>
+        current
+          ? {
+              ...current,
+              variants: current.variants.map((variant) =>
+                variant.id === input.variant.id
+                  ? {
+                      ...variant,
+                      semanticPlan: {
+                        ...variant.semanticPlan,
+                        approvals: variant.semanticPlan.approvals.map((approval) => ({
+                          ...approval,
+                          status: 'approved' as const,
+                        })),
+                      },
+                    }
+                  : variant,
+              ),
+              variantSet: {
+                ...current.variantSet,
+                variants: current.variantSet.variants.map((variant) =>
+                  variant.id === input.variant.id
+                    ? { ...variant, status: 'accepted' as const }
+                    : variant,
+                ),
+              },
+            }
+          : current,
+      );
+      setApproved((current) => new Set(current).add(input.variant.id));
+      setVersion(decision.version);
+      setStatus(
+        input.automatic
+          ? `${input.variant.title} applied automatically as project version ${decision.version}. Restore remains available.`
+          : `${input.variant.title} approved as project version ${decision.version}.`,
+      );
+      return true;
+    } catch (error) {
+      setStatus(
+        error instanceof Error
+          ? `Approval failed closed: ${error.message}`
+          : 'Approval failed closed before the canonical artifact changed.',
+      );
+      return false;
+    }
+  };
+
   const sendAgentRequest = async (message: string, request: CreatorAgentRequest) => {
+    const isResume = Boolean(request.resumeExecutionKey);
+    const promptDigest = await sha256(new Blob([message], { type: 'text/plain' }));
     setPrompt(message);
-    await caseflow.appendMessage('user', message, { route: request.route, scope: request.scope });
+    if (!isResume) {
+      await caseflow.appendMessage('user', message, {
+        route: request.route,
+        scope: request.scope,
+        executionKey: request.route === 'openrouter-free' ? promptDigest : undefined,
+      });
+    }
     if (request.route === 'openrouter-free' && !request.externalConsent) {
       const blocked = {
         text: 'External planning consent was not granted. No OpenRouter request was sent and the canonical artifact is unchanged.',
@@ -324,7 +399,7 @@ function CreatorPipeline() {
       await caseflow.appendMessage('assistant', blocked.text, { meta: blocked.meta });
       return blocked;
     }
-    if (!source) {
+    if (!source && !isResume) {
       const blocked = {
         text: 'Attach a source from the vault first. I will keep it local while indexing and will show any proposed external executor before media leaves the device.',
         tools: [],
@@ -333,7 +408,7 @@ function CreatorPipeline() {
       await caseflow.appendMessage('assistant', blocked.text, { meta: blocked.meta });
       return blocked;
     }
-    if (preset === 'reframe' && !reframePlans.length) {
+    if (preset === 'reframe' && !reframePlans.length && !isResume) {
       const blocked = {
         text: 'Smart Reframe needs a selected subject and a generated crop path before I can create a trustworthy proposal. Run local subject detection, select the intended person, and generate the path first.',
         tools: [],
@@ -351,6 +426,14 @@ function CreatorPipeline() {
           outputTokens: number;
           latencyMs: number;
           costUsd: number;
+          runId: string;
+          iterations: number;
+          depthMode: NodeAgentDepthMode;
+          resumed: boolean;
+          resumable: boolean;
+          degradedReason?: string;
+          trace: NodeAgentTraceStep[];
+          schemaRepaired: boolean;
           operations: Array<{ kind: string; reason: string }>;
         }
       | undefined;
@@ -363,13 +446,32 @@ function CreatorPipeline() {
           body: JSON.stringify({
             request: message,
             transcript: transcript.slice(0, 12_000),
-            source: {
-              fileName: source.fileName,
-              durationMs: source.durationMs,
-              width: source.width,
-              height: source.height,
-            },
+            ...(source
+              ? {
+                  source: {
+                    fileName: source.fileName,
+                    durationMs: source.durationMs,
+                    width: source.width,
+                    height: source.height,
+                  },
+                }
+              : {}),
             scope: request.scope,
+            memory: caseflow.remote?.messages
+              .filter((entry) => entry.role === 'user' || entry.role === 'assistant')
+              .slice(-8)
+              .map((entry) => ({ role: entry.role, text: entry.text.slice(0, 2_000) })),
+            ...(caseflow.locator && caseflow.remote?.run
+              ? {
+                  durability: {
+                    caseId: caseflow.locator.caseId,
+                    runId: caseflow.remote.run._id,
+                    ownerKey: caseflow.locator.ownerKey,
+                    executionKey: request.resumeExecutionKey ?? promptDigest,
+                    requestDigest: promptDigest,
+                  },
+                }
+              : {}),
           }),
         });
         const payload = (await response.json()) as {
@@ -383,6 +485,13 @@ function CreatorPipeline() {
           latencyMs?: number;
           costUsd?: number;
           schemaRepaired?: boolean;
+          runId?: string;
+          iterations?: number;
+          depthMode?: NodeAgentDepthMode;
+          resumed?: boolean;
+          resumable?: boolean;
+          degradedReason?: string;
+          trace?: NodeAgentTraceStep[];
           error?: string;
         };
         const operations = payload.plan?.operations?.flatMap((operation) =>
@@ -408,6 +517,13 @@ function CreatorPipeline() {
           outputTokens: payload.outputTokens ?? 0,
           latencyMs: payload.latencyMs ?? 0,
           costUsd: payload.costUsd ?? 0,
+          runId: payload.runId ?? 'unavailable',
+          iterations: payload.iterations ?? 1,
+          depthMode: payload.depthMode ?? 'single_pass_degraded',
+          resumed: payload.resumed ?? false,
+          resumable: payload.resumable ?? false,
+          degradedReason: payload.degradedReason,
+          trace: payload.trace ?? [],
           schemaRepaired: payload.schemaRepaired ?? false,
           operations,
         };
@@ -416,6 +532,22 @@ function CreatorPipeline() {
           error instanceof Error ? error.message : 'The OpenRouter free route was unavailable.';
       }
     }
+    if (!source) {
+      if (!planner) throw new Error(plannerFailure || 'The durable review could not resume.');
+      const reply = {
+        text: `${planner.text}\n\nThe durable review ${planner.depthMode === 'iterative' ? 'completed' : 'checkpoint remains resumable'}. Reattach the local source when you want to compile another proposal; no media was persisted or uploaded.`,
+        tools: planner.trace.map((step) => ({
+          name: `${step.kind === 'model' ? 'Model' : step.kind === 'tool' ? 'Grounding tool' : 'Agent status'} · ${step.status}`,
+          detail: step.detail,
+        })),
+        meta: `${planner.depthMode} · durable resume · ${planner.model}`,
+      };
+      await caseflow.appendMessage('assistant', reply.text, {
+        meta: reply.meta,
+        tools: reply.tools,
+      });
+      return reply;
+    }
     const typedPlanningInput = planner
       ? `${message}\n\nValidated planning operations:\n${planner.operations
           .map((operation) => `${operation.kind}: ${operation.reason}`)
@@ -423,7 +555,6 @@ function CreatorPipeline() {
       : message;
     const next = await compile(typedPlanningInput);
     if (!next) throw new Error('The source could not be compiled.');
-    const promptDigest = await sha256(new Blob([message], { type: 'text/plain' }));
     const planningReceipt: PlanningReceipt = {
       requestedRoute:
         request.route === 'openrouter-free' ? 'openrouter/free' : 'local/deterministic',
@@ -440,11 +571,37 @@ function CreatorPipeline() {
       tokensOut: planner?.outputTokens ?? 0,
       costUsd: planner?.costUsd ?? 0,
       latencyMs: planner?.latencyMs ?? 0,
+      runId: planner?.runId,
+      agentDepth: planner?.depthMode ?? 'deterministic',
+      iterations: planner?.iterations ?? 0,
+      resumed: planner?.resumed ?? false,
+      resumable: planner?.resumable ?? false,
+      trace: planner?.trace,
       result:
         request.route === 'openrouter-free' && !planner ? 'fallback_used' : 'proposal_created',
-      ...(plannerFailure ? { fallbackReason: plannerFailure } : {}),
+      ...(plannerFailure || planner?.degradedReason
+        ? { fallbackReason: plannerFailure || planner?.degradedReason }
+        : {}),
     };
     const proposal = await caseflow.createProposal(next, planningReceipt);
+    const proposedVariant = next.variants[0];
+    const autoDecision = decideCreatorAutoApproval({
+      mode: request.approvalMode,
+      route: request.route,
+      scope: request.scope,
+      pendingMeaningApprovals:
+        proposedVariant?.semanticPlan.approvals.filter((item) => item.status === 'required')
+          .length ?? 0,
+    });
+    const autoApplied =
+      autoDecision.action === 'apply' && proposedVariant
+        ? await applyProposalApproval({
+            variant: proposedVariant,
+            proposalId: proposal.proposalId,
+            proposalDigest: proposal.proposalDigest,
+            automatic: true,
+          })
+        : false;
     if (request.route === 'higgsfield') {
       const executorPrompt =
         'A clean cinematic macro shot of a luminous modular video-editing timeline assembling itself from source clips into three aspect-ratio variants, dark studio background, chartreuse interface accents, no people, no logos, no text, smooth controlled camera move';
@@ -483,14 +640,19 @@ function CreatorPipeline() {
         },
       );
     }
-    const replyText =
+    const proposalReply =
       request.route === 'higgsfield'
         ? `I analyzed the source locally and prepared ${next.variants.length} reviewable variants. Higgsfield is only a proposed executor: no media was uploaded and no credits were spent. Review the edit and obtain a fresh cost-and-egress approval before any cloud generation.`
         : request.route === 'openrouter-free' && planner
-          ? `${planner.text}\n\nI validated that plan against NodeVideo’s local media contract and prepared ${next.variants.length} reviewable variants. Nothing has been applied or exported.`
+          ? `${planner.text}\n\n${planner.depthMode === 'iterative' ? 'I reviewed the draft against deterministic source and scope checks' : `The model review pass degraded (${planner.degradedReason}); I retained the schema-valid first pass`} and prepared ${next.variants.length} reviewable variants. Nothing has been applied or exported.`
           : request.route === 'openrouter-free'
             ? `The free planning route was unavailable, so I fell back to deterministic local planning: ${plannerFailure} I still prepared ${next.variants.length} reviewable variants without changing or uploading the source.`
-            : `I analyzed the source once and prepared ${next.variants.length} reviewable variants. I have not exported or uploaded anything. Accept, reject, or inspect the proposal directly in this thread.`;
+            : `I analyzed the source once and prepared ${next.variants.length} reviewable variants. I have not exported or uploaded anything.`;
+    const replyText = `${proposalReply}\n\n${
+      autoApplied
+        ? `Auto mode applied ${proposedVariant?.title ?? 'the safe local variant'} as a reversible project version. You can restore it from Review.`
+        : `The proposal remains reviewable: ${autoDecision.reason}`
+    }`;
     const tools = [
       { name: 'Media index', detail: 'Source metadata and transcript context indexed locally' },
       { name: 'Story planner', detail: 'Source-grounded quote and edit intent compiled' },
@@ -511,9 +673,13 @@ function CreatorPipeline() {
             {
               name: 'Free model router',
               detail: planner
-                ? `${planner.model} resolved in ${planner.latencyMs} ms · ${planner.inputTokens} → ${planner.outputTokens} tokens · $0.00${planner.schemaRepaired ? ' · allowlist schema repaired' : ''}`
+                ? `${planner.model} · ${planner.depthMode === 'iterative' ? `${planner.iterations}-pass agent loop` : 'single-pass degraded'} · ${planner.latencyMs} ms · ${planner.inputTokens} → ${planner.outputTokens} tokens · $0.00${planner.schemaRepaired ? ' · allowlist schema repaired' : ''}`
                 : `Deterministic fallback · ${plannerFailure}`,
             },
+            ...(planner?.trace.map((step) => ({
+              name: `${step.kind === 'model' ? 'Model' : step.kind === 'tool' ? 'Grounding tool' : 'Agent status'} · ${step.status}`,
+              detail: `${step.detail}${step.model ? ` · ${step.model}` : ''}${step.latencyMs ? ` · ${step.latencyMs} ms` : ''}`,
+            })) ?? []),
           ]
         : []),
       {
@@ -524,7 +690,7 @@ function CreatorPipeline() {
             : `${next.compiledRecipe.stages.length} stages routed with $${next.compiledRecipe.estimatedCostUsd.toFixed(2)} estimated local cost`,
       },
     ];
-    const meta = `${request.route === 'higgsfield' ? 'proposal-only · Higgsfield gated' : request.route === 'openrouter-free' && planner ? `planned · openrouter/free → ${planner.model}` : request.route === 'openrouter-free' ? 'completed · deterministic fallback' : 'completed · deterministic local'} · ${request.scope === 'campaign-variants' ? 'all campaign variants' : 'selected variant'}`;
+    const meta = `${request.route === 'higgsfield' ? 'proposal-only · Higgsfield gated' : request.route === 'openrouter-free' && planner ? `${planner.depthMode === 'iterative' ? 'iterative' : 'degraded'} · openrouter/free → ${planner.model}` : request.route === 'openrouter-free' ? 'completed · deterministic fallback' : 'completed · deterministic local'} · ${request.scope === 'campaign-variants' ? 'all campaign variants' : 'selected variant'}`;
     await caseflow.appendMessage('assistant', replyText, {
       meta,
       tools,
@@ -538,59 +704,26 @@ function CreatorPipeline() {
     };
   };
 
+  const resumeAgentRequest = async () => {
+    const execution = caseflow.latestResumableExecution;
+    if (!execution) throw new Error('No resumable NodeAgent checkpoint is available.');
+    return sendAgentRequest(execution.requestText, {
+      route: 'openrouter-free',
+      scope: 'campaign-variants',
+      externalConsent: true,
+      approvalMode: 'ask',
+      resumeExecutionKey: execution.executionKey,
+    });
+  };
+
   const approve = async () => {
     if (!selected || !caseflow.latestProposal) return;
-    try {
-      const decision = await caseflow.decideProposal(
-        caseflow.latestProposal._id,
-        caseflow.latestProposal.payloadDigest,
-        'approved',
-      );
-      if (!decision.applied) {
-        setStatus(
-          `Approval failed closed: this proposal was based on an older artifact version. Project version ${decision.version} remains canonical.`,
-        );
-        return;
-      }
-      setResult((current) =>
-        current
-          ? {
-              ...current,
-              variants: current.variants.map((variant) =>
-                variant.id === selected.id
-                  ? {
-                      ...variant,
-                      semanticPlan: {
-                        ...variant.semanticPlan,
-                        approvals: variant.semanticPlan.approvals.map((approval) => ({
-                          ...approval,
-                          status: 'approved' as const,
-                        })),
-                      },
-                    }
-                  : variant,
-              ),
-              variantSet: {
-                ...current.variantSet,
-                variants: current.variantSet.variants.map((variant) =>
-                  variant.id === selected.id
-                    ? { ...variant, status: 'accepted' as const }
-                    : variant,
-                ),
-              },
-            }
-          : current,
-      );
-      setApproved((current) => new Set(current).add(selected.id));
-      setVersion(decision.version);
-      setStatus(`${selected.title} approved as project version ${decision.version}.`);
-    } catch (error) {
-      setStatus(
-        error instanceof Error
-          ? `Approval failed closed: ${error.message}`
-          : 'Approval failed closed before the canonical artifact changed.',
-      );
-    }
+    await applyProposalApproval({
+      variant: selected,
+      proposalId: caseflow.latestProposal._id,
+      proposalDigest: caseflow.latestProposal.payloadDigest,
+      automatic: false,
+    });
   };
 
   const restoreDraft = async () => {
@@ -908,6 +1041,15 @@ function CreatorPipeline() {
         })) ?? []
       }
       caseflowReady={Boolean(caseflow.locator && caseflow.remote?.run)}
+      resumableRun={
+        caseflow.latestResumableExecution
+          ? {
+              executionKey: caseflow.latestResumableExecution.executionKey,
+              phase: caseflow.latestResumableExecution.phase,
+              updatedAt: caseflow.latestResumableExecution.updatedAt,
+            }
+          : undefined
+      }
       proposalDigest={caseflow.latestProposal?.payloadDigest}
       proposalStatus={caseflow.latestProposal?.status}
       executorProposal={executorProposal}
@@ -928,6 +1070,7 @@ function CreatorPipeline() {
       onPrompt={setPrompt}
       onTranscript={setTranscript}
       onAgentSend={sendAgentRequest}
+      onAgentResume={resumeAgentRequest}
       onSelectVariant={setSelectedId}
       onApprove={approve}
       onReject={reject}

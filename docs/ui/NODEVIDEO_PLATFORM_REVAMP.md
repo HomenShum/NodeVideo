@@ -12,26 +12,25 @@ executor routing, proposal review, and proof.
 1. **Editor-first NLE** — precise and familiar, but makes the empty state and agent workflow
    difficult for a new creator.
 2. **Campaign command center** — organizes sources, templates, output variants, execution, and
-   proof around a deliverable. This best matches multi-format creator work.
+   proof around a deliverable, but exposes too much platform structure for occasional creators.
 3. **Chat-first assistant** — easiest to request work, but hides the artifact and governance
    lifecycle behind a conversation.
 4. **Canvas and moodboard** — strong for ideation, but weak for exact cuts and review.
 
 ## Chosen direction
 
-Use the campaign command center as the shell, an editor-style artifact/timeline stage as the
-center, and a persistent Cursor-style private agent rail on the right. The rail is a conversation,
-not a configuration form: artifact context, user requests, assistant replies, tool activity,
-proposal cards, proof, and the composer share one continuous surface.
+Use a calm artifact-and-conversation shell. Projects and files remain visible in one compact rail,
+the video remains dominant, and a persistent Cursor-style NodeAgent conversation owns current
+state, history, proposals, recovery, and the composer. Timeline, proof, routing, and proposal detail
+are revealed only when they are useful.
 
 ```text
-Project + version + durable status
-├── Source & template vault
+Project + files
 ├── Artifact stage
 │   ├── Canvas
-│   ├── Timeline
-│   └── Variants
+│   └── Timeline and variants when available
 └── Private NodeAgent
+    ├── Current state inside the conversation
     ├── Persistent message feed
     ├── Attached source and selected variant
     ├── Inline tool activity
@@ -39,6 +38,11 @@ Project + version + durable status
     ├── Proposal and proof detail views
     └── Pinned composer
 ```
+
+Auto is the default approval policy for reversible local, single-variant changes with no
+meaning-sensitive approval requirements. Ask mode is always available. External-model output,
+campaign-wide mutation, meaning-sensitive cuts, cloud media egress, and paid execution stay behind
+an explicit review or consent boundary.
 
 ## Capability truth
 
@@ -60,13 +64,13 @@ Project + version + durable status
 - Render running/completed/failed
 - Version visible after approval
 - Restore draft returns the selected proposal to review without deleting source work
-- Conversation survives a browser reload through bounded local persistence; server-backed,
-  cross-device conversation remains a later NodeRoom/Convex integration boundary
+- Conversation and bounded execution checkpoints survive reload through Convex. Raw browser media
+  remains local and must be reattached on another device.
 
 ## Acceptance
 
-- The source, template, stage, variant, agent, proposal, executor, and proof surfaces are visible
-  and keyboard-operable.
+- The source, variant, agent, proposal, executor, and proof capabilities are contextually reachable
+  and keyboard-operable without rendering every surface simultaneously.
 - Template selections change the real workflow and request.
 - Timeline lanes are rendered from the selected `EditPlan`, not placeholder data.
 - Approval changes proposal state and version; restore reverses the approval.

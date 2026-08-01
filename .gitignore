@@ -23,6 +23,9 @@ test-results/
 .qa/media/
 .qa/models/
 .qa/showcase/
+.qa/runs/
 .qa/*.log
+.understand-anything/
+/NUL
 
 .vercel

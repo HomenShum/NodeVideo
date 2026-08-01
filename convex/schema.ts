@@ -61,6 +61,36 @@ export default defineSchema({
     updatedAt: v.number(),
   }).index('by_case', ['caseId']),
 
+  agentExecutions: defineTable({
+    caseId: v.id('cases'),
+    runId: v.id('runs'),
+    threadId: v.id('agentThreads'),
+    executionKey: v.string(),
+    requestDigest: v.string(),
+    requestText: v.string(),
+    status: v.union(
+      v.literal('running'),
+      v.literal('awaiting_resume'),
+      v.literal('completed'),
+      v.literal('failed'),
+    ),
+    phase: v.union(
+      v.literal('draft'),
+      v.literal('grounding'),
+      v.literal('review'),
+      v.literal('complete'),
+    ),
+    workerToken: v.string(),
+    leaseUntil: v.number(),
+    checkpointJson: v.optional(v.string()),
+    resultJson: v.optional(v.string()),
+    error: v.optional(v.string()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_run_executionKey', ['runId', 'executionKey'])
+    .index('by_thread_updatedAt', ['threadId', 'updatedAt']),
+
   messages: defineTable({
     threadId: v.id('agentThreads'),
     runId: v.optional(v.id('runs')),

@@ -18,7 +18,11 @@ function convexUrl() {
   return match?.[1]?.trim() || null;
 }
 
-async function startCreatorWithDemo(page: Page, template?: string) {
+async function startCreatorWithDemo(
+  page: Page,
+  template?: string,
+  approvalMode: 'auto' | 'ask' = 'ask',
+) {
   await page.goto('/creator.html');
   await expect(page.getByRole('heading', { name: 'What are you trying to make?' })).toBeVisible();
   await expect(page.getByText('execution graph')).toHaveCount(0);
@@ -30,11 +34,31 @@ async function startCreatorWithDemo(page: Page, template?: string) {
   });
   await page.getByRole('button', { name: /Start creating/u }).click();
   if ((page.viewportSize()?.width ?? 1000) <= 1023) {
-    await page.getByRole('button', { name: 'Agent', exact: true }).click();
+    await page.getByRole('button', { name: 'Chat', exact: true }).click();
   }
   await expect(page.getByRole('heading', { name: 'NodeAgent' })).toBeVisible({ timeout: 15_000 });
-  await expect(page.getByTestId('current-action')).toBeVisible();
+  await expect(page.getByLabel('NodeVideo agent').getByTestId('current-action')).toBeVisible();
+  if (approvalMode === 'ask') {
+    await page.getByRole('button', { name: 'Ask', exact: true }).click();
+  }
 }
+
+test('default Auto mode applies only a safe local single-variant proposal', async ({ page }) => {
+  await startCreatorWithDemo(page, undefined, 'auto');
+  await expect(page.locator('[data-agent-approval-mode="auto-safe"]')).toBeVisible();
+
+  await page.getByRole('button', { name: 'Send message' }).click();
+  const proposal = page.getByTestId('agent-proposal-card');
+  await expect(proposal).toHaveAttribute('data-agent-decision', 'accepted');
+  await expect(proposal).toContainText('approved');
+  await expect(
+    page.getByText(/Auto mode applied .* as a reversible project version/u),
+  ).toBeVisible();
+
+  await page.getByRole('button', { name: 'Proposal', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Export local MP4' })).toBeEnabled();
+  await expect(page.getByRole('button', { name: 'Restore draft' })).toBeVisible();
+});
 
 test('creator pipeline compiles one source into reviewable variants', async ({
   page,
@@ -58,15 +82,16 @@ test('creator pipeline compiles one source into reviewable variants', async ({
   await expect(page.getByText('Primary video artifact')).toBeVisible();
   await expect(page.getByTestId('video-canvas')).toBeVisible();
   if ((page.viewportSize()?.width ?? 1000) <= 1023) {
-    await page.getByRole('button', { name: 'Agent', exact: true }).click();
+    await page.getByRole('button', { name: 'Chat', exact: true }).click();
   }
-  await expect(page.getByText('Private media collaborator')).toBeVisible();
+  await expect(page.getByLabel('NodeVideo agent').getByTestId('current-action')).toContainText(
+    'Now ·',
+  );
+  await expect(page.getByLabel('Message NodeAgent')).toBeVisible();
 
   await page.getByRole('button', { name: 'Send message' }).click();
   if ((page.viewportSize()?.width ?? 1000) > 1023) {
-    await expect(
-      page.getByText('2 variants compiled from one shared MediaIndex. Review before export.'),
-    ).toBeVisible();
+    await expect(page.getByText(/prepared 2 reviewable variants/u)).toBeVisible();
   }
   await expect(page.getByTestId('agent-tool-activity')).toBeVisible();
   await expect(page.getByTestId('agent-proposal-card')).toBeVisible();
@@ -89,20 +114,16 @@ test('creator pipeline compiles one source into reviewable variants', async ({
   ).toBeVisible();
 
   if ((page.viewportSize()?.width ?? 1000) <= 1023) {
-    await page
-      .getByRole('navigation', { name: 'Creator workspace surfaces' })
-      .getByRole('button', { name: 'Review', exact: true })
-      .click();
-  } else {
-    await page.getByRole('button', { name: 'Proposal', exact: true }).click();
+    await page.getByRole('button', { name: 'Chat', exact: true }).click();
   }
+  await page.getByRole('button', { name: 'Proposal', exact: true }).click();
 
   const exportButton = page.getByRole('button', { name: 'Export local MP4' });
   await expect(exportButton).toBeDisabled();
   await page.getByRole('button', { name: 'Approve exact variant' }).click();
   await expect(exportButton).toBeEnabled();
   if ((page.viewportSize()?.width ?? 1000) > 1023) {
-    await expect(page.getByText('Project v2')).toBeVisible();
+    await expect(page.getByText('v2', { exact: true })).toBeVisible();
   }
 
   await page.getByRole('button', { name: 'Run Inspector', exact: true }).click();
@@ -173,34 +194,34 @@ test('creator topology keeps the artifact dominant and mobile surfaces mode-base
   await page.getByRole('button', { name: /Start creating/u }).click();
 
   const mobile = (page.viewportSize()?.width ?? 1000) <= 1023;
-  const actionBox = await page.getByTestId('current-action').boundingBox();
-  expect(actionBox?.y ?? 999).toBeLessThan(150);
   if (mobile) {
     await expect(
       page.getByRole('navigation', { name: 'Creator workspace surfaces' }),
     ).toBeVisible();
     await expect(page.getByTestId('video-canvas')).toBeVisible();
     await page.screenshot({ path: `${evidenceDir}/${testInfo.project.name}-canvas.png` });
-    await page.getByRole('button', { name: 'Agent', exact: true }).click();
+    await page.getByRole('button', { name: 'Files', exact: true }).click();
+    await expect(page.getByTestId('project-files')).toBeVisible();
+    await page.getByRole('button', { name: 'Chat', exact: true }).click();
   } else {
     const artifact = await page.getByRole('region', { name: 'Artifact stage' }).boundingBox();
     expect((artifact?.width ?? 0) / (page.viewportSize()?.width ?? 1)).toBeGreaterThan(0.55);
+    await expect(page.getByTestId('project-files')).toBeVisible();
   }
 
   await expect(page.getByRole('heading', { name: 'NodeAgent' })).toBeVisible();
+  const actionBox = await page
+    .getByLabel('NodeVideo agent')
+    .getByTestId('current-action')
+    .boundingBox();
+  expect(actionBox?.y ?? 999).toBeLessThan(150);
   await expect(page.getByLabel('Executor route')).toBeHidden();
+  await page.getByRole('button', { name: 'Ask', exact: true }).click();
   await page.getByRole('button', { name: 'Send message' }).click();
   await expect(page.getByTestId('agent-proposal-card')).toBeVisible();
   await page.screenshot({ path: `${evidenceDir}/${testInfo.project.name}-agent.png` });
 
-  if (mobile) {
-    await page
-      .getByRole('navigation', { name: 'Creator workspace surfaces' })
-      .getByRole('button', { name: 'Review', exact: true })
-      .click();
-  } else {
-    await page.getByRole('button', { name: 'Proposal', exact: true }).click();
-  }
+  await page.getByRole('button', { name: 'Proposal', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Approve exact variant' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Export local MP4' })).toBeDisabled();
   await page.screenshot({ path: `${evidenceDir}/${testInfo.project.name}-review.png` });
@@ -233,9 +254,7 @@ test('creator pipeline exposes cleanup and quote workflows', async ({ page }) =>
   );
   await page.getByRole('button', { name: 'Send message' }).click();
   if ((page.viewportSize()?.width ?? 1000) > 1023) {
-    await expect(
-      page.getByText('3 variants compiled from one shared MediaIndex. Review before export.'),
-    ).toBeVisible();
+    await expect(page.getByText(/prepared 3 reviewable variants/u)).toBeVisible();
   }
   if ((page.viewportSize()?.width ?? 1000) <= 1023) {
     await page.getByRole('button', { name: 'Canvas', exact: true }).click();
@@ -271,7 +290,7 @@ test('Smart Reframe detects locally, reuses one track, and proposes three crop p
   await page.getByRole('button', { name: 'Edit crop path' }).click();
 
   await page.getByRole('button', { name: 'Send message' }).click();
-  await expect(page.getByText(/3 variants compiled from one shared MediaIndex/u)).toBeVisible();
+  await expect(page.getByText(/prepared 3 reviewable variants/u)).toBeVisible();
   const stage = page.getByRole('region', { name: 'Artifact stage' });
   await expect(stage.getByRole('tab', { name: /reframe square/u })).toBeVisible();
   await expect(stage.getByRole('tab', { name: /reframe landscape/u })).toBeVisible();
@@ -330,8 +349,145 @@ test('agent rail gates cloud execution and supports inline proposal decisions', 
   await page.getByRole('button', { name: 'Send message' }).click();
   await expect(page.getByText(/Higgsfield is only a proposed executor/u)).toHaveCount(2);
   await page.getByTestId('agent-proposal-card').getByRole('button', { name: 'Accept' }).click();
-  await expect(page.getByText('Project v2')).toHaveText('Project v2');
+  await expect(page.getByTestId('creator-workspace')).toHaveAttribute('data-project-version', '2');
   await expect(page.getByText('approved', { exact: true })).toBeVisible();
+});
+
+test('a cautious creator sees the iterative free-model trace before accepting a proposal', async ({
+  page,
+}) => {
+  await page.route('**/api/creator-agent', async (route) => {
+    await route.fulfill({
+      json: {
+        ok: true,
+        runId: 'run-e2e-iterative',
+        text: 'Use the exact source quote and preserve meaning across both requested variants.',
+        plan: {
+          operations: [
+            {
+              kind: 'extract_quote',
+              reason: 'Use the strongest exact quote present in the transcript.',
+            },
+            {
+              kind: 'compose_variants',
+              reason: 'Prepare only the requested campaign formats.',
+            },
+            {
+              kind: 'preserve_meaning',
+              reason: 'Hold uncertain changes for human review.',
+            },
+          ],
+        },
+        provider: 'openrouter',
+        model: 'google/gemma-test:free',
+        inputTokens: 420,
+        outputTokens: 120,
+        latencyMs: 1_250,
+        costUsd: 0,
+        attempts: 2,
+        iterations: 2,
+        depthMode: 'iterative',
+        schemaRepaired: false,
+        trace: [
+          {
+            id: 'draft-1',
+            kind: 'model',
+            status: 'completed',
+            detail: 'Draft plan accepted on attempt 1.',
+            model: 'google/gemma-test:free',
+            latencyMs: 600,
+          },
+          {
+            id: 'grounding-tools',
+            kind: 'tool',
+            status: 'completed',
+            detail: '3 operations checked; 0 unsupported quoted claims; review=true.',
+          },
+          {
+            id: 'model-review',
+            kind: 'model',
+            status: 'completed',
+            detail: 'Final plan reviewed against deterministic tool observations.',
+            model: 'google/gemma-test:free',
+            latencyMs: 650,
+          },
+        ],
+      },
+    });
+  });
+  await startCreatorWithDemo(page, 'Golden quote campaign');
+  await page.getByText('Routing', { exact: true }).click();
+  await page.getByLabel('Executor route').click();
+  await page.getByRole('option', { name: 'OpenRouter Free · external' }).click();
+  await page.getByLabel('Consent to send prompt and transcript context to OpenRouter').check();
+  await page.getByRole('button', { name: 'Send message' }).click();
+
+  await expect(
+    page.getByText(/iterative · openrouter\/free → google\/gemma-test:free/u),
+  ).toBeVisible();
+  await expect(page.getByText(/2-pass agent loop/u)).toBeVisible();
+  await expect(page.getByText('Grounding tool · completed')).toBeVisible();
+  await expect(page.getByText('Model · completed')).toHaveCount(2);
+  await expect(page.getByTestId('agent-proposal-card')).toBeVisible();
+  await expect(
+    page.getByTestId('agent-proposal-card').getByRole('button', { name: 'Accept' }),
+  ).toBeEnabled();
+  await expect(page.getByTestId('creator-workspace')).toHaveAttribute('data-project-version', '1');
+});
+
+test('an overloaded free provider is labeled degraded instead of deep-agent success', async ({
+  page,
+}) => {
+  await page.route('**/api/creator-agent', async (route) => {
+    await route.fulfill({
+      json: {
+        ok: true,
+        runId: 'run-e2e-degraded',
+        text: 'Use the validated first-pass plan and keep uncertain edits under review.',
+        plan: {
+          operations: [
+            {
+              kind: 'preserve_meaning',
+              reason: 'Keep uncertain edits behind an explicit human review.',
+            },
+          ],
+        },
+        provider: 'openrouter',
+        model: 'google/gemma-test:free',
+        inputTokens: 240,
+        outputTokens: 60,
+        latencyMs: 28_000,
+        costUsd: 0,
+        attempts: 2,
+        iterations: 1,
+        depthMode: 'single_pass_degraded',
+        degradedReason: 'The model review pass timed out.',
+        schemaRepaired: false,
+        trace: [
+          {
+            id: 'model-review',
+            kind: 'status',
+            status: 'degraded',
+            detail: 'The model review pass timed out.',
+          },
+        ],
+      },
+    });
+  });
+  await startCreatorWithDemo(page);
+  await page.getByText('Routing', { exact: true }).click();
+  await page.getByLabel('Executor route').click();
+  await page.getByRole('option', { name: 'OpenRouter Free · external' }).click();
+  await page.getByLabel('Consent to send prompt and transcript context to OpenRouter').check();
+  await page.getByRole('button', { name: 'Send message' }).click();
+
+  await expect(
+    page.getByText(/degraded · openrouter\/free → google\/gemma-test:free/u),
+  ).toBeVisible();
+  await expect(page.getByText(/single-pass degraded/u)).toBeVisible();
+  await expect(page.getByText('Agent status · degraded')).toBeVisible();
+  await expect(page.getByText(/model review pass degraded/u)).toBeVisible();
+  await expect(page.getByTestId('agent-proposal-card')).toBeVisible();
 });
 
 test('live OpenRouter free planner resolves a model before deterministic compilation', async ({
@@ -358,7 +514,7 @@ test('live OpenRouter free planner resolves a model before deterministic compila
   await sendButton.click();
   await expect(page.getByText(/planned · openrouter\/free →/u)).toBeVisible({ timeout: 90_000 });
   await expect(page.getByTestId('agent-proposal-card')).toBeVisible();
-  await expect(page.getByText('Project v1')).toHaveText('Project v1');
+  await expect(page.getByTestId('creator-workspace')).toHaveAttribute('data-project-version', '1');
 });
 
 test('creator template selection and restore are real state transitions', async ({ page }) => {
@@ -368,9 +524,7 @@ test('creator template selection and restore are real state transitions', async 
   );
   await page.getByRole('button', { name: 'Send message' }).click();
   if ((page.viewportSize()?.width ?? 1000) > 1023) {
-    await expect(
-      page.getByText('3 variants compiled from one shared MediaIndex. Review before export.'),
-    ).toBeVisible();
+    await expect(page.getByText(/prepared 3 reviewable variants/u)).toBeVisible();
   }
   await expect(page.getByTestId('agent-tool-activity')).toBeVisible();
   await expect(page.getByTestId('agent-proposal-card')).toBeVisible();
@@ -378,7 +532,10 @@ test('creator template selection and restore are real state transitions', async 
   await page.getByRole('button', { name: 'Approve exact variant' }).click();
   await page.getByRole('button', { name: 'Restore draft' }).click();
   if ((page.viewportSize()?.width ?? 1000) > 1023) {
-    await expect(page.getByText('Project v2')).toBeVisible();
+    await expect(page.getByTestId('creator-workspace')).toHaveAttribute(
+      'data-project-version',
+      '2',
+    );
   }
   await expect(page.getByRole('button', { name: 'Approve exact variant' })).toBeEnabled();
   await expect(page.getByRole('button', { name: 'Export local MP4' })).toBeDisabled();
@@ -445,7 +602,7 @@ test('two sessions react to the same Caseflow and stale approval fails closed', 
   );
   const pageB = await contextB.newPage();
   await pageB.goto('/creator.html');
-  await expect(pageB.getByText('Project v1')).toBeVisible();
+  await expect(pageB.getByTestId('creator-workspace')).toHaveAttribute('data-project-version', '1');
   await client.mutation(api.caseflow.decideProposal, {
     caseId: locator.caseId,
     ownerKey: locator.ownerKey,
@@ -455,7 +612,7 @@ test('two sessions react to the same Caseflow and stale approval fails closed', 
     decision: 'approved',
     actorRef: 'browser-b',
   });
-  await expect(pageB.getByText('Project v2')).toBeVisible();
+  await expect(pageB.getByTestId('creator-workspace')).toHaveAttribute('data-project-version', '2');
   const replay = await client.mutation(api.caseflow.decideProposal, {
     caseId: locator.caseId,
     ownerKey: locator.ownerKey,
@@ -482,10 +639,10 @@ test('two sessions react to the same Caseflow and stale approval fails closed', 
   });
   expect(finalState.case.currentArtifactVersion).toBe(2);
   expect(finalState.timeline.some((entry) => entry.kind === 'proposal.conflicted')).toBe(true);
-  await expect(pageA.getByText('Project v2')).toBeVisible();
+  await expect(pageA.getByTestId('creator-workspace')).toHaveAttribute('data-project-version', '2');
   await expect(pageA.getByText(/Stale proposal rejected/u)).toBeVisible();
   await pageB.reload();
-  await expect(pageB.getByText('Project v2')).toBeVisible();
+  await expect(pageB.getByTestId('creator-workspace')).toHaveAttribute('data-project-version', '2');
   await expect(pageB.getByText(/I analyzed the source once/u)).toBeVisible();
   const evidenceDir = '.qa/evidence/creator-two-session';
   mkdirSync(evidenceDir, { recursive: true });
@@ -512,11 +669,12 @@ test('approved creator variant exports a real local H.264 MP4', async ({ page },
   await page.getByRole('button', { name: /Start creating/u }).click();
   await expect(page.getByRole('heading', { name: 'NodeAgent' })).toBeVisible({ timeout: 15_000 });
   await page.getByRole('button', { name: 'Send message' }).click();
-  await expect(
-    page.getByText('2 variants compiled from one shared MediaIndex. Review before export.'),
-  ).toBeVisible();
+  await expect(page.getByText(/prepared 2 reviewable variants/u)).toBeVisible();
+  await expect(page.getByTestId('agent-proposal-card')).toHaveAttribute(
+    'data-agent-decision',
+    'accepted',
+  );
   await page.getByRole('button', { name: 'Proposal', exact: true }).click();
-  await page.getByRole('button', { name: 'Approve exact variant' }).click();
 
   const downloadPromise = page.waitForEvent('download', { timeout: 90_000 });
   await page.getByRole('button', { name: 'Export local MP4' }).click();

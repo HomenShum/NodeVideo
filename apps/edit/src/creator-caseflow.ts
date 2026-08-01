@@ -1,3 +1,4 @@
+import type { NodeAgentDepthMode, NodeAgentTraceStep } from '@/lib/nodeagent-contract';
 import { useMutation, useQuery } from 'convex/react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { api } from '../../../convex/_generated/api';
@@ -28,6 +29,12 @@ export type PlanningReceipt = {
   costUsd: number;
   latencyMs: number;
   result: 'proposal_created' | 'fallback_used' | 'rejected' | 'failed';
+  runId?: string;
+  agentDepth?: NodeAgentDepthMode;
+  iterations?: number;
+  resumed?: boolean;
+  resumable?: boolean;
+  trace?: NodeAgentTraceStep[];
   fallbackReason?: string;
   proposalDigest?: string;
 };
@@ -263,12 +270,17 @@ export function useCreatorCaseflow(initialize = true) {
         .sort((a, b) => b.version - a.version || b._creationTime - a._creationTime)[0],
     [remote?.versions],
   );
+  const latestResumableExecution = useMemo(
+    () => remote?.agentExecutions.find((execution) => execution.status === 'awaiting_resume'),
+    [remote?.agentExecutions],
+  );
 
   return {
     locator,
     remote,
     latestProposal,
     latestVersion,
+    latestResumableExecution,
     initializationError,
     appendMessage,
     markSourceReady,

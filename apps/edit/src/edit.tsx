@@ -23,6 +23,7 @@ import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
 import type { BrowserFfmpegProgress } from '@/lib/browser-ffmpeg';
+import { NODE_AGENT_LIMITS } from '@/lib/nodeagent-contract';
 import {
   DndContext,
   type DragEndEvent,
@@ -569,7 +570,10 @@ function StitchStudio() {
     const controller = new AbortController();
     const idle = () => window.setTimeout(() => controller.abort('idle'), 30_000);
     let idleTimer = idle();
-    const totalTimer = window.setTimeout(() => controller.abort('timeout'), 180_000);
+    const totalTimer = window.setTimeout(
+      () => controller.abort('timeout'),
+      NODE_AGENT_LIMITS.maxInteractiveRunMs,
+    );
     let sawDone = false;
     try {
       const response = await fetch(`${workerEndpoint.replace(/\/$/, '')}/v1/edit/agent`, {
@@ -580,7 +584,7 @@ function StitchStudio() {
           message: text,
           history: thread
             .filter((t) => t.text)
-            .slice(-8)
+            .slice(-NODE_AGENT_LIMITS.maxHistoryTurns)
             .map((t) => ({ role: t.role, text: t.text })),
         }),
         signal: controller.signal,
@@ -675,7 +679,10 @@ function StitchStudio() {
     const patchTurn = (change: (t: AgentTurn) => AgentTurn) =>
       setThread((current) => current.map((t) => (t.id === turn.id ? change(t) : t)));
     const controller = new AbortController();
-    const budget = window.setTimeout(() => controller.abort('timeout'), 180_000);
+    const budget = window.setTimeout(
+      () => controller.abort('timeout'),
+      NODE_AGENT_LIMITS.maxInteractiveRunMs,
+    );
     try {
       const { runBrowserAgent } = await import('./browser-agent');
       await runBrowserAgent({
@@ -683,7 +690,7 @@ function StitchStudio() {
         message: text,
         history: thread
           .filter((t) => t.text)
-          .slice(-8)
+          .slice(-NODE_AGENT_LIMITS.maxHistoryTurns)
           .map((t) => ({ role: t.role, text: t.text })),
         apiKey: byokKey,
         model: byokModel,

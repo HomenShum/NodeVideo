@@ -1,19 +1,19 @@
 {
   "schemaVersion": "nodevideo.creatorbench-acquisition-receipt.v1",
-  "benchmarkVersion": "creatorbench-v1.4",
-  "generatedAt": "2026-07-22T09:34:46.208Z",
+  "benchmarkVersion": "creatorbench-v1.2",
+  "generatedAt": "2026-07-22T11:14:07.412Z",
   "requestedClips": 250,
   "benchmarkTargetClips": 250,
-  "acquiredClips": 250,
-  "publicCatalogRecords": 200,
-  "privateCatalogRecords": 50,
-  "creators": 205,
-  "domains": 16,
+  "acquiredClips": 228,
+  "publicCatalogRecords": 182,
+  "privateCatalogRecords": 46,
+  "creators": 183,
+  "domains": 17,
   "splitCounts": {
-    "development": 125,
-    "public-test": 50,
-    "private-heldout": 50,
-    "adversarial": 25
+    "development": 113,
+    "public-test": 46,
+    "private-heldout": 46,
+    "adversarial": 23
   },
   "allowedLicenses": [
     "CC0",
@@ -28,22 +28,30 @@
   ],
   "licenseCounts": {
     "CC BY 3.0": 5,
-    "CC BY 4.0": 1,
+    "CC BY 4.0": 2,
     "NASA SVS public domain": 106,
-    "Public domain": 134,
-    "NodeVideo generated fixture with provenance": 4
+    "Public domain": 110,
+    "NodeVideo generated fixture with provenance": 4,
+    "CC0": 1
   },
   "providerCounts": {
-    "wikimedia": 6,
+    "wikimedia": 8,
     "nasa-svs": 106,
-    "nasa-images": 134,
+    "nasa-images": 110,
     "nodevideo-repository": 4
   },
-  "privateCatalogSha256": "sha256:a729f6624b5973d64ead96a9ab4756b843dd0a3e2457e725b127834ef2d39847",
-  "publicCatalogSha256": "sha256:f61a40620517f17fc31fbdece61211a71aa18a2888442a902c46ffd4f18c81df",
+  "privateCatalogSha256": "sha256:1285ee043a5c44744c8f4d5fa45274d0b7e8be95ae3913c3d3af2ee795ab18ab",
+  "publicCatalogSha256": "sha256:7f8fa80ca8d9c87c97feb9ae048940e35b9afb1ac5392af7c549969f00bbb9fb",
   "cacheRootClass": ".qa/evidence/creatorbench-v1/media",
-  "acquisitionGap": 0,
-  "failureCount": 0,
-  "failureCategories": {},
-  "gapReasons": []
+  "acquisitionGap": 22,
+  "failureCount": 164,
+  "failureCategories": {
+    "media-decode": 2,
+    "source-http": 10,
+    "source-host-rate-limit": 152
+  },
+  "gapReasons": [
+    "CreatorBench v1 requires 250 distinct clips; this corpus currently contains 228. Generated fixtures are counted separately and do not establish unseen external-creator performance.",
+    "Rights-cleared candidates that could not be normalized are excluded; source-host throttling and decode failures remain visible in this receipt."
+  ]
 }
