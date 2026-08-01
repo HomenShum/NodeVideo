@@ -3,6 +3,7 @@
 .github/**
 docs/**
 tests/**
+api/**/*.test.ts
 test-results/**
 playwright-report/**
 node_modules/**

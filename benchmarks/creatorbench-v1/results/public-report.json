@@ -1,0 +1,4507 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-public-report/v1",
+  "benchmarkVersion": "creatorbench-v1.4",
+  "status": "evaluated",
+  "generatedAt": "2026-07-22T09:46:44.966Z",
+  "claim": {
+    "schemaVersion": "nodevideo.creatorbench-public-claim/v1",
+    "benchmarkVersion": "creatorbench-v1.4",
+    "freezeReceiptId": "creatorbench-freeze:f3fb72fb06287374e5206fee",
+    "generatedAt": "2026-07-22T09:46:44.966Z",
+    "population": {
+      "split": "private-heldout",
+      "instanceCount": 1392,
+      "sourceCount": 50,
+      "creatorDisjointSourceCount": 50,
+      "domainCount": 14,
+      "workflowCount": 6
+    },
+    "outcomes": {
+      "automatic_usable": {
+        "numerator": 0,
+        "denominator": 1392,
+        "rate": 0
+      },
+      "assisted_usable": {
+        "numerator": 0,
+        "denominator": 1392,
+        "rate": 0
+      },
+      "review_required": {
+        "numerator": 688,
+        "denominator": 1392,
+        "rate": 0.4942528735632184
+      },
+      "safely_abstained": {
+        "numerator": 704,
+        "denominator": 1392,
+        "rate": 0.5057471264367817
+      },
+      "unsupported": {
+        "numerator": 0,
+        "denominator": 1392,
+        "rate": 0
+      },
+      "technical_failure": {
+        "numerator": 0,
+        "denominator": 1392,
+        "rate": 0
+      },
+      "silent_failure": {
+        "numerator": 0,
+        "denominator": 1392,
+        "rate": 0
+      }
+    },
+    "statement": "On creatorbench-v1.4, covering 1392 private held-out workflow instances from 50 creator-disjoint sources across 6 workflows, NodeVideo routed 49.4% to human review and safely abstained in 50.6%. No automatic or assisted usability claim is made because only 0/1392 results have human review. Editing-quality silent-failure incidence remains unverified.",
+    "limitations": [
+      "No result is classified usable until a rendered artifact is blindly reviewed by a human.",
+      "This baseline measures request ingestion, rights validation, route eligibility, and honest non-success states—not editing quality.",
+      "Editing-quality silent-failure incidence is unverified: 0/1392 private held-out results have human review."
+    ]
+  },
+  "outcomes": {
+    "automatic_usable": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.002752073880897378
+      }
+    },
+    "assisted_usable": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.002752073880897378
+      }
+    },
+    "review_required": {
+      "numerator": 688,
+      "denominator": 1392,
+      "rate": 0.4942528735632184,
+      "confidenceInterval": {
+        "lower": 0.46804031192049717,
+        "upper": 0.5204970682390534
+      }
+    },
+    "safely_abstained": {
+      "numerator": 704,
+      "denominator": 1392,
+      "rate": 0.5057471264367817,
+      "confidenceInterval": {
+        "lower": 0.47950293176094666,
+        "upper": 0.531959688079503
+      }
+    },
+    "unsupported": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.002752073880897378
+      }
+    },
+    "technical_failure": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.002752073880897378
+      }
+    },
+    "silent_failure": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0,
+      "confidenceInterval": {
+        "lower": 0,
+        "upper": 0.002752073880897378
+      }
+    }
+  },
+  "dataset": {
+    "clips": 250,
+    "creators": 205,
+    "domains": 16,
+    "workflows": 8,
+    "instances": 6128,
+    "privateHeldoutInstances": 1392,
+    "splits": {
+      "development": 125,
+      "public-test": 50,
+      "private-heldout": 50,
+      "adversarial": 25
+    },
+    "licenseCounts": {
+      "CC BY 3.0": 5,
+      "CC BY 4.0": 1,
+      "NASA SVS public domain": 106,
+      "Public domain": 134,
+      "NodeVideo generated fixture with provenance": 4
+    },
+    "acquisitionRun": {
+      "requestedClips": 250,
+      "acquiredClips": 250,
+      "normalizationGap": 0
+    },
+    "hardTargets": {
+      "clips": 250,
+      "creators": 75,
+      "domains": 15,
+      "workflows": 8,
+      "instances": 2000
+    },
+    "targetGaps": {
+      "clips": 0,
+      "creators": 0,
+      "domains": 0,
+      "workflows": 0,
+      "instances": 0
+    },
+    "acquisitionFailureCategories": {}
+  },
+  "counts": {
+    "reviewedInstances": 0,
+    "excludedInstances": 0
+  },
+  "workflowCoverage": {
+    "declared": 8,
+    "represented": 8,
+    "missing": [
+      "dance-choreography",
+      "founder-product-launch"
+    ],
+    "corpusTierCounts": {
+      "motion-short": 112,
+      "speech-long-form": 134,
+      "multi-take-performance": 2,
+      "reference-pair": 1,
+      "launch-multi-asset": 1
+    }
+  },
+  "workflowExecution": {
+    "talkingHeadCleanup": {
+      "instanceCount": 71,
+      "sourceCount": 71,
+      "renderedArtifactCount": 71,
+      "exportReopenCount": 71,
+      "automaticCutCount": 4,
+      "fillerReviewCount": 2,
+      "silenceReviewCount": 77,
+      "meanSpeechRetention": 1,
+      "wordTruncationCount": 0,
+      "machinePassCount": 0,
+      "reviewRequiredCount": 71,
+      "limitations": [
+        "Official SRT timing is segment-level; word timing is uniformly interpolated inside each segment.",
+        "Intentional-pause false positives and audible join clicks remain unverified pending blinded human review.",
+        "Rendered candidates are not classified usable without human review.",
+        "Non-redistributable source and output media remain in the evaluator vault."
+      ]
+    }
+  },
+  "speechEvidence": {
+    "sourceCount": 134,
+    "indexedCount": 92,
+    "missingTranscriptCount": 42,
+    "totalWords": 3422,
+    "totalQuotes": 717,
+    "totalSilenceRegions": 286,
+    "transcriptTextPublished": false
+  },
+  "metrics": {
+    "latencyMs": {
+      "p50": null,
+      "p95": null,
+      "scope": "not-measured-for-sealed-routing"
+    },
+    "costUsd": {
+      "perUsableOutput": null
+    },
+    "correctionTimeSeconds": {
+      "median": null
+    },
+    "exportReopen": {
+      "numerator": 297,
+      "denominator": 297,
+      "rate": 1
+    },
+    "exportReopenScope": "public deterministic center-crop render pilot; not private-heldout editing quality",
+    "reviewerAgreement": null
+  },
+  "missingDataTreatment": "Only workflow-admissible sources enter a denominator. Unevaluated editing quality remains review_required, safely_abstained, or unsupported; it is never counted as usable.",
+  "subgroups": [
+    {
+      "kind": "domain",
+      "id": "animals",
+      "count": 16,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "review_required": {
+          "numerator": 16,
+          "denominator": 16,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.8063923194655636,
+            "upper": 1
+          }
+        },
+        "safely_abstained": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "basketball",
+      "count": 16,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "review_required": {
+          "numerator": 16,
+          "denominator": 16,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.8063923194655636,
+            "upper": 1
+          }
+        },
+        "safely_abstained": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "dance",
+      "count": 16,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "review_required": {
+          "numerator": 16,
+          "denominator": 16,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.8063923194655636,
+            "upper": 1
+          }
+        },
+        "safely_abstained": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "events-presentations",
+      "count": 96,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 96,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 3.335957940936178e-18,
+            "upper": 0.038475587857675686
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 96,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 3.335957940936178e-18,
+            "upper": 0.038475587857675686
+          }
+        },
+        "review_required": {
+          "numerator": 48,
+          "denominator": 96,
+          "rate": 0.5,
+          "confidenceInterval": {
+            "lower": 0.401924024529863,
+            "upper": 0.598075975470137
+          }
+        },
+        "safely_abstained": {
+          "numerator": 48,
+          "denominator": 96,
+          "rate": 0.5,
+          "confidenceInterval": {
+            "lower": 0.401924024529863,
+            "upper": 0.598075975470137
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 96,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 3.335957940936178e-18,
+            "upper": 0.038475587857675686
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 96,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 3.335957940936178e-18,
+            "upper": 0.038475587857675686
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 96,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 3.335957940936178e-18,
+            "upper": 0.038475587857675686
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "field-sports",
+      "count": 16,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "review_required": {
+          "numerator": 16,
+          "denominator": 16,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.8063923194655636,
+            "upper": 1
+          }
+        },
+        "safely_abstained": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "general-documentary",
+      "count": 16,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "safely_abstained": {
+          "numerator": 16,
+          "denominator": 16,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.8063923194655636,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "interview",
+      "count": 576,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 576,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.0066250157905353045
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 576,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.0066250157905353045
+          }
+        },
+        "review_required": {
+          "numerator": 288,
+          "denominator": 576,
+          "rate": 0.5,
+          "confidenceInterval": {
+            "lower": 0.45930290000953594,
+            "upper": 0.540697099990464
+          }
+        },
+        "safely_abstained": {
+          "numerator": 288,
+          "denominator": 576,
+          "rate": 0.5,
+          "confidenceInterval": {
+            "lower": 0.45930290000953594,
+            "upper": 0.540697099990464
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 576,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.0066250157905353045
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 576,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.0066250157905353045
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 576,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.0066250157905353045
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "manufacturing",
+      "count": 16,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "safely_abstained": {
+          "numerator": 16,
+          "denominator": 16,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.8063923194655636,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "nature-landscape",
+      "count": 32,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1071791982550706
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1071791982550706
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1071791982550706
+          }
+        },
+        "safely_abstained": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.8928208017449293,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1071791982550706
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1071791982550706
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1071791982550706
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "product-launch",
+      "count": 32,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1071791982550706
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1071791982550706
+          }
+        },
+        "review_required": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.8928208017449293,
+            "upper": 1
+          }
+        },
+        "safely_abstained": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1071791982550706
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1071791982550706
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1071791982550706
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1071791982550706
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "public-speech",
+      "count": 16,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "safely_abstained": {
+          "numerator": 16,
+          "denominator": 16,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.8063923194655636,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "science-demonstration",
+      "count": 16,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "safely_abstained": {
+          "numerator": 16,
+          "denominator": 16,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.8063923194655636,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "talking-head",
+      "count": 512,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 512,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.007446975722882739
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 512,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.007446975722882739
+          }
+        },
+        "review_required": {
+          "numerator": 256,
+          "denominator": 512,
+          "rate": 0.5,
+          "confidenceInterval": {
+            "lower": 0.4568520692185513,
+            "upper": 0.5431479307814486
+          }
+        },
+        "safely_abstained": {
+          "numerator": 256,
+          "denominator": 512,
+          "rate": 0.5,
+          "confidenceInterval": {
+            "lower": 0.4568520692185513,
+            "upper": 0.5431479307814486
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 512,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.007446975722882739
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 512,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.007446975722882739
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 512,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.007446975722882739
+          }
+        }
+      }
+    },
+    {
+      "kind": "domain",
+      "id": "tutorial",
+      "count": 16,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "safely_abstained": {
+          "numerator": 16,
+          "denominator": 16,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.8063923194655636,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.1936076805344365
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "action-subject-following",
+      "count": 104,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 104,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.03562135437245191
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 104,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.03562135437245191
+          }
+        },
+        "review_required": {
+          "numerator": 48,
+          "denominator": 104,
+          "rate": 0.46153846153846156,
+          "confidenceInterval": {
+            "lower": 0.3688100475176425,
+            "upper": 0.5570069797417768
+          }
+        },
+        "safely_abstained": {
+          "numerator": 56,
+          "denominator": 104,
+          "rate": 0.5384615384615384,
+          "confidenceInterval": {
+            "lower": 0.44299302025822307,
+            "upper": 0.6311899524823574
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 104,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.03562135437245191
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 104,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.03562135437245191
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 104,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.03562135437245191
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "captioned-multi-format",
+      "count": 296,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "review_required": {
+          "numerator": 296,
+          "denominator": 296,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.9871883666928418,
+            "upper": 1
+          }
+        },
+        "safely_abstained": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "golden-quote-variants",
+      "count": 296,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "safely_abstained": {
+          "numerator": 296,
+          "denominator": 296,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.9871883666928418,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "reference-template",
+      "count": 296,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "review_required": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "safely_abstained": {
+          "numerator": 296,
+          "denominator": 296,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.9871883666928418,
+            "upper": 1
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "smart-reframe",
+      "count": 104,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 104,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.03562135437245191
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 104,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.03562135437245191
+          }
+        },
+        "review_required": {
+          "numerator": 48,
+          "denominator": 104,
+          "rate": 0.46153846153846156,
+          "confidenceInterval": {
+            "lower": 0.3688100475176425,
+            "upper": 0.5570069797417768
+          }
+        },
+        "safely_abstained": {
+          "numerator": 56,
+          "denominator": 104,
+          "rate": 0.5384615384615384,
+          "confidenceInterval": {
+            "lower": 0.44299302025822307,
+            "upper": 0.6311899524823574
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 104,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.03562135437245191
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 104,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.03562135437245191
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 104,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.03562135437245191
+          }
+        }
+      }
+    },
+    {
+      "kind": "workflow",
+      "id": "talking-head-cleanup",
+      "count": 296,
+      "outcomes": {
+        "automatic_usable": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "assisted_usable": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "review_required": {
+          "numerator": 296,
+          "denominator": 296,
+          "rate": 1,
+          "confidenceInterval": {
+            "lower": 0.9871883666928418,
+            "upper": 1
+          }
+        },
+        "safely_abstained": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "unsupported": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "technical_failure": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        },
+        "silent_failure": {
+          "numerator": 0,
+          "denominator": 296,
+          "rate": 0,
+          "confidenceInterval": {
+            "lower": 0,
+            "upper": 0.012811633307158257
+          }
+        }
+      }
+    }
+  ],
+  "routes": [
+    {
+      "executorId": "none",
+      "count": 704,
+      "dispositions": {
+        "automatic": 0,
+        "assisted": 0,
+        "review": 0,
+        "abstain": 704
+      }
+    },
+    {
+      "executorId": "executor.opencv-subject-tracker",
+      "count": 96,
+      "dispositions": {
+        "automatic": 0,
+        "assisted": 96,
+        "review": 0,
+        "abstain": 0
+      }
+    },
+    {
+      "executorId": "executor.ffmpeg-silencedetect",
+      "count": 296,
+      "dispositions": {
+        "automatic": 0,
+        "assisted": 0,
+        "review": 296,
+        "abstain": 0
+      }
+    },
+    {
+      "executorId": "executor.ffmpeg-edit-plan",
+      "count": 296,
+      "dispositions": {
+        "automatic": 0,
+        "assisted": 0,
+        "review": 296,
+        "abstain": 0
+      }
+    }
+  ],
+  "representativeFailures": [],
+  "freezeReceipt": {
+    "receiptId": "creatorbench-freeze:f3fb72fb06287374e5206fee",
+    "frozenAt": "2026-07-22T09:45:23.487Z",
+    "sourceCommit": "95850b605cab74946a5cb422fef94ff6858fe5fd",
+    "configHash": "sha256:f2b9b95d371ab1b27605842dc473b59b1df92116fd9f050ad80a73dbf3b53d3e",
+    "manifestHash": "sha256:f9c4a4e4b5e3b2447914066686125a0892c2a73da18b44edc2a31f4aec07f00f",
+    "evaluatorVersion": "creatorbench-evaluator-v1",
+    "thresholdPolicy": "sha256:373341ae310280aa91b3356e28864b2e2df6ed73287f743fd1ec05e9fac3fc8c",
+    "status": "verified"
+  },
+  "publicRenderPilot": {
+    "scope": {
+      "workflow": "smart-reframe",
+      "executorVersion": "local-ffmpeg-center-reframe-v1",
+      "splitClasses": [
+        "development",
+        "public-test",
+        "adversarial"
+      ],
+      "sourceCount": 99,
+      "outputCount": 99,
+      "artifactCount": 297
+    },
+    "metrics": {
+      "latencyMs": {
+        "p50": 2225,
+        "p95": 5118
+      },
+      "costUsd": {
+        "total": 0,
+        "perOutput": 0
+      },
+      "exportReopen": {
+        "numerator": 297,
+        "denominator": 297,
+        "rate": 1
+      }
+    },
+    "limitations": [
+      "This is a deterministic center-crop baseline for one workflow, not a subject-aware reframe claim.",
+      "The public review queue is blind to machine findings until a judgment is recorded.",
+      "No pilot result is counted as usable before human review."
+    ]
+  },
+  "reviewCases": [
+    {
+      "id": "instance:cb-0004-7bfc3a17:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0004-7bfc3a17:smart-reframe:multi-format",
+      "split": "adversarial",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/0f7e6f95fa7c934f-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "CC BY 3.0 · Reviewing The Age of Disclosure – Amazon Prime’s New UFO Documentary.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0009-beb98f01:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0009-beb98f01:smart-reframe:multi-format",
+      "split": "adversarial",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/7f6487e77e241280-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/7f6487e77e241280-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/7f6487e77e241280-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/7f6487e77e241280-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "CC BY 3.0 · McKinley's Late Grandmother is an Inspiration.webm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0006-493a02f5:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0006-493a02f5:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/199cae1d184e3dce-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/199cae1d184e3dce-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/199cae1d184e3dce-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/199cae1d184e3dce-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · How NASA Data Helps Study Animals on the Move",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0008-b952fc45:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0008-b952fc45:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/9089f36b8d98c913-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/9089f36b8d98c913-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/9089f36b8d98c913-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/9089f36b8d98c913-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Bird's-eye View of Biodiversity with Landsat",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0009-4f1d6956:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0009-4f1d6956:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/55719773d1269886-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/55719773d1269886-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/55719773d1269886-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/55719773d1269886-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Vegetation Index Anomalies and Rift Valley fever (RVF) outbreaks in South Africa region: 2008-2011",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0010-565d0079:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0010-565d0079:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/d5e61c5340fd64e6-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/d5e61c5340fd64e6-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/d5e61c5340fd64e6-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/d5e61c5340fd64e6-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Precipitation Anomaly and Rift Valley fever (RVF) outbreaks in South Africa: 2008-2011",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0011-85b2e35f:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0011-85b2e35f:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/bf93b26fcd1152d0-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/bf93b26fcd1152d0-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/bf93b26fcd1152d0-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/bf93b26fcd1152d0-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · ENSO Teleconnections and Rift Valley fever (RVF) Outbreaks",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0012-87d1ef2a:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0012-87d1ef2a:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/3b5cc23234d146e1-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/3b5cc23234d146e1-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/3b5cc23234d146e1-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/3b5cc23234d146e1-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Helio Big Year: How Sonifications Connect to Performance Art",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0015-0a22e6b8:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0015-0a22e6b8:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/df128c2bc598e1e8-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/df128c2bc598e1e8-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/df128c2bc598e1e8-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/df128c2bc598e1e8-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Getting SET - The Mission to Protect Satellites from Radiation",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0016-4bbd64b0:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0016-4bbd64b0:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/08b81c765b5a5787-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/08b81c765b5a5787-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/08b81c765b5a5787-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/08b81c765b5a5787-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA Tech on SpaceX Falcon Heavy Launch - Media Telecon Resources",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0017-cc8702fa:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0017-cc8702fa:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/5e268ac6d08e072d-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/5e268ac6d08e072d-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/5e268ac6d08e072d-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/5e268ac6d08e072d-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Long-range Transport of 2026 Canadian Wildfire Smoke into the United States (July 14-20, 2026)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0018-0932f238:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0018-0932f238:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/3f79e50e6a325636-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/3f79e50e6a325636-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/3f79e50e6a325636-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/3f79e50e6a325636-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Long-range Transport of 2026 Canadian Wildfire Smoke into the United States (July 14-17, 2026)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0019-9e58ef72:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0019-9e58ef72:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/59016f36d60886b4-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/59016f36d60886b4-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/59016f36d60886b4-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/59016f36d60886b4-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Geoid",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0020-8804a7db:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0020-8804a7db:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/0b7641182ccdde0e-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/0b7641182ccdde0e-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/0b7641182ccdde0e-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/0b7641182ccdde0e-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Super Typhoon Bavi",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0021-31f5bb01:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0021-31f5bb01:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/e952145b1588cf57-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/e952145b1588cf57-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/e952145b1588cf57-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/e952145b1588cf57-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Animations of the August 12, 2026, Total Solar Eclipse",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0022-b933f478:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0022-b933f478:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/61cc5ee4ac45be84-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/61cc5ee4ac45be84-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/61cc5ee4ac45be84-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/61cc5ee4ac45be84-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Moon Passes In and Out of Earth's Magnetosphere",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0023-cf31f183:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0023-cf31f183:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/eb00a329b7d0d972-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/eb00a329b7d0d972-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/eb00a329b7d0d972-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/eb00a329b7d0d972-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Earth Data User: ROFFS Fishing",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0024-85653153:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0024-85653153:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/9d357849c54a1172-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/9d357849c54a1172-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/9d357849c54a1172-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/9d357849c54a1172-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Tracking Timber in Washington’s Wynoochee Valley",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0025-36d4e43b:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0025-36d4e43b:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/6aeb179a4c5e7312-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/6aeb179a4c5e7312-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/6aeb179a4c5e7312-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/6aeb179a4c5e7312-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Retreating Alsek Glacier, Alaska",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0026-7c1b2383:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0026-7c1b2383:smart-reframe:multi-format",
+      "split": "public-test",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/57628ae2c10b68bf-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/57628ae2c10b68bf-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/57628ae2c10b68bf-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/57628ae2c10b68bf-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Four Days of Solar Dynamics in 16 Minutes",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0027-0cc0ba2b:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0027-0cc0ba2b:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/2600729de852e376-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/2600729de852e376-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/2600729de852e376-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/2600729de852e376-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Sea Surface Height Anomaly, 2026",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0028-fd71efcf:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0028-fd71efcf:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/9f7929b0b52b66a4-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/9f7929b0b52b66a4-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/9f7929b0b52b66a4-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/9f7929b0b52b66a4-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Global Smoke Forecast Visualization (Daily Updated)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0029-ceb75f1d:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0029-ceb75f1d:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/7a35e448d93f32c3-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/7a35e448d93f32c3-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/7a35e448d93f32c3-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/7a35e448d93f32c3-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Testing for the Katalyst-NASA Swift Boost Mission",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0030-f6dba17c:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0030-f6dba17c:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/c8a5f0ec30d1465f-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/c8a5f0ec30d1465f-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/c8a5f0ec30d1465f-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/c8a5f0ec30d1465f-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · How NASA Uses Light to Detect Waste From Mines",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0031-6f0b437d:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0031-6f0b437d:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/336dfb83eebafa7c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/336dfb83eebafa7c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/336dfb83eebafa7c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/336dfb83eebafa7c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA's Fermi Spies a Supercharged Supernova",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0032-2ce7cec5:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0032-2ce7cec5:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/9c65d17232faa602-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/9c65d17232faa602-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/9c65d17232faa602-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/9c65d17232faa602-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Nancy Grace Roman Telescope's Final Solar Panel and Deployable Aperture Cover Deployments",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0033-b4a20a60:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0033-b4a20a60:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/a539525c5cec4fe5-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/a539525c5cec4fe5-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/a539525c5cec4fe5-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/a539525c5cec4fe5-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA Interview Opportunity: Catch Last Look at NASA’s Newest Space Telescope",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0034-16ed90ac:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0034-16ed90ac:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/4b3ca3e6f341f2d8-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/4b3ca3e6f341f2d8-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/4b3ca3e6f341f2d8-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/4b3ca3e6f341f2d8-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Ring Current in Earth's Magnetosphere",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0035-7db87399:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0035-7db87399:smart-reframe:multi-format",
+      "split": "adversarial",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/12e2736b01d5e04d-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/12e2736b01d5e04d-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/12e2736b01d5e04d-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/12e2736b01d5e04d-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Pegasus XL Rocket Mated to Stargazer for Swift Boost Mission",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0036-60582816:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0036-60582816:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/003de3501973e56f-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/003de3501973e56f-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/003de3501973e56f-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/003de3501973e56f-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Undamming the Klamath",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0037-acd7511c:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0037-acd7511c:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/99ae0fe5161a68cf-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/99ae0fe5161a68cf-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/99ae0fe5161a68cf-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/99ae0fe5161a68cf-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · PACE Data Tour - Visualizations",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0038-6a3339c2:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0038-6a3339c2:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/27b010d1fcaa2485-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/27b010d1fcaa2485-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/27b010d1fcaa2485-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/27b010d1fcaa2485-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · On Tour Around the Globe with PACE",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0039-884266ba:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0039-884266ba:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/3d81f73bd8b47a2e-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/3d81f73bd8b47a2e-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/3d81f73bd8b47a2e-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/3d81f73bd8b47a2e-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Powerful Typhoon Sinlaku strikes the Northern Marianas",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0040-51f4ed21:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0040-51f4ed21:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/5b6cb224dca0fbbb-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/5b6cb224dca0fbbb-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/5b6cb224dca0fbbb-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/5b6cb224dca0fbbb-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Arctic Sea Ice Maximum 2026",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0042-e291b18d:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0042-e291b18d:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/160adb3dd4e41cdd-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/160adb3dd4e41cdd-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/160adb3dd4e41cdd-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/160adb3dd4e41cdd-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · GUARDIAN Warns Hawaii Early of Incoming Kamchatka Tsunami (Vertical version)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0043-b1d571bb:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0043-b1d571bb:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/3d320f9fbbdff9aa-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/3d320f9fbbdff9aa-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/3d320f9fbbdff9aa-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/3d320f9fbbdff9aa-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · See How NASA’s GUARDIAN Tsunami Detection System Works",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0044-ee96dc05:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0044-ee96dc05:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/7786f427231aa4f6-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/7786f427231aa4f6-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/7786f427231aa4f6-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/7786f427231aa4f6-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · SWOT Mission Unlocks a New View of Our Waterways",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0045-c0fdc2d9:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0045-c0fdc2d9:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/adc7ffcea82d096b-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/adc7ffcea82d096b-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/adc7ffcea82d096b-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/adc7ffcea82d096b-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Global Views of ICESat-2 Data",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0046-482f5e97:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0046-482f5e97:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/b1fdae8836b456f9-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/b1fdae8836b456f9-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/b1fdae8836b456f9-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/b1fdae8836b456f9-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · SWOT River Volume Variations",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0047-1aa70c3c:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0047-1aa70c3c:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/c7e38f7f031d3bbf-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/c7e38f7f031d3bbf-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/c7e38f7f031d3bbf-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/c7e38f7f031d3bbf-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · SWOT River Volume Variations (rivers only)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0048-b46d15c3:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0048-b46d15c3:smart-reframe:multi-format",
+      "split": "adversarial",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/22e96da0ce78ac9e-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/22e96da0ce78ac9e-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/22e96da0ce78ac9e-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/22e96da0ce78ac9e-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Sea Level Through a Porthole (2026)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0049-41fe7727:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0049-41fe7727:smart-reframe:multi-format",
+      "split": "public-test",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/326a60e99c924c25-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/326a60e99c924c25-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/326a60e99c924c25-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/326a60e99c924c25-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · GRACE FO Soil Moisture Within Continental United States: Monitoring Drought",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0050-44f3a3ff:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0050-44f3a3ff:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/d8df3ef8826f0369-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/d8df3ef8826f0369-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/d8df3ef8826f0369-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/d8df3ef8826f0369-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Earth System Science Spheres",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0051-4bcd095f:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0051-4bcd095f:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/06a4ed82d622d0e7-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/06a4ed82d622d0e7-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/06a4ed82d622d0e7-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/06a4ed82d622d0e7-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Shifting Distribution of Land Temperature Anomalies, 1964-2025",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0052-eb5546f0:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0052-eb5546f0:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/8e747efe8ed77138-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/8e747efe8ed77138-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/8e747efe8ed77138-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/8e747efe8ed77138-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Global Temperature Anomalies from 1880 to 2025",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0053-adc83a29:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0053-adc83a29:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/367327742b23a96b-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/367327742b23a96b-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/367327742b23a96b-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/367327742b23a96b-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · ICESat-2 Land Ice Height Change (2020-2025)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0054-e3b9440b:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0054-e3b9440b:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/e84659652217541f-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/e84659652217541f-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/e84659652217541f-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/e84659652217541f-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · ICESat-2 Winter Sea Ice Thickness (2020-2025)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0056-ae949169:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0056-ae949169:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/91653f04c83168c3-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/91653f04c83168c3-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/91653f04c83168c3-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/91653f04c83168c3-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · GEOS Aerosols",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0057-1d87ea0e:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0057-1d87ea0e:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/96423ecbfe13240a-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/96423ecbfe13240a-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/96423ecbfe13240a-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/96423ecbfe13240a-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA's Fleet of Active Satellites (July 2025)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0058-ca9b5d55:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0058-ca9b5d55:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/fdde73b97f2f7c37-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/fdde73b97f2f7c37-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/fdde73b97f2f7c37-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/fdde73b97f2f7c37-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Deserts of Africa and the Middle East",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0059-c3b960e2:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0059-c3b960e2:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/62b44a6279b7e71c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/62b44a6279b7e71c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/62b44a6279b7e71c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/62b44a6279b7e71c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Northward Shift of Boreal Tree Cover Confirmed By Satellite Record",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0060-4ef7b32c:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0060-4ef7b32c:smart-reframe:multi-format",
+      "split": "public-test",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/6016de564b0386c5-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/6016de564b0386c5-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/6016de564b0386c5-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/6016de564b0386c5-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · ESCAPADE Theoretical Flight Through Active Mars Magnetosphere",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0061-68183569:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0061-68183569:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/c9ca7d97a65cfa8d-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/c9ca7d97a65cfa8d-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/c9ca7d97a65cfa8d-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/c9ca7d97a65cfa8d-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · At Land's Edge - Tracking Coastal Ecosystem with Landsat",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0062-7554e85b:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0062-7554e85b:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/aec99fc2b1aa8ecb-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/aec99fc2b1aa8ecb-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/aec99fc2b1aa8ecb-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/aec99fc2b1aa8ecb-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA Flew Over a Fire — to Better Understand Future Ones",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0063-b55329da:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0063-b55329da:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/6ed66ddb1bc4ba22-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/6ed66ddb1bc4ba22-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/6ed66ddb1bc4ba22-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/6ed66ddb1bc4ba22-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Arctic Sea Ice Minimum 2025",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0064-151c8a39:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0064-151c8a39:smart-reframe:multi-format",
+      "split": "public-test",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/1d267c045263dbf4-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/1d267c045263dbf4-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/1d267c045263dbf4-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/1d267c045263dbf4-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Leopard Spots",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0066-9e65c59b:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0066-9e65c59b:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/19e291fff5cd5acf-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/19e291fff5cd5acf-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/19e291fff5cd5acf-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/19e291fff5cd5acf-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · STORIE Launch and Install on the Space Station",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0067-cd4a485c:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0067-cd4a485c:smart-reframe:multi-format",
+      "split": "adversarial",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/b8664036e94feada-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/b8664036e94feada-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/b8664036e94feada-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/b8664036e94feada-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · “Cosmic Echoes” Audio Activation",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0068-020c2a0a:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0068-020c2a0a:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/4e6adfe6859a9774-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/4e6adfe6859a9774-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/4e6adfe6859a9774-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/4e6adfe6859a9774-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA Experiment to Track Space ‘Doughnut’ Encircling Earth",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0069-e0f2d14d:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0069-e0f2d14d:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/a399de67549ee43c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/a399de67549ee43c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/a399de67549ee43c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/a399de67549ee43c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Moon Passes Through Earth's Magnetotail",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0071-21cbaa5c:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0071-21cbaa5c:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/1c6d40359a7eaaa7-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/1c6d40359a7eaaa7-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/1c6d40359a7eaaa7-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/1c6d40359a7eaaa7-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · ISS views Aurora from the November 11-13, 2025 Geomagnetic Storm",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0072-4ed91916:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0072-4ed91916:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/fb6c468a66de6a4e-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/fb6c468a66de6a4e-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/fb6c468a66de6a4e-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/fb6c468a66de6a4e-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · XRISM Clocks Hot Wind of Galaxy M82",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0073-001f1f6b:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0073-001f1f6b:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/40934e7ba8235571-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/40934e7ba8235571-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/40934e7ba8235571-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/40934e7ba8235571-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Lunar Near and Far Side Phases",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0074-57484d54:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0074-57484d54:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/02b51ddf02c99e61-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/02b51ddf02c99e61-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/02b51ddf02c99e61-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/02b51ddf02c99e61-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Artemis II: Into the Path of Solar Eruptions",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0075-cafd8dd1:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0075-cafd8dd1:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/98f8528e855caa03-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/98f8528e855caa03-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/98f8528e855caa03-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/98f8528e855caa03-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Artemis II: Sending Humans Beyond the Magnetosphere",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0076-6576e5d7:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0076-6576e5d7:smart-reframe:multi-format",
+      "split": "public-test",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/8523e36b0f7f03f2-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/8523e36b0f7f03f2-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/8523e36b0f7f03f2-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/8523e36b0f7f03f2-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · What Webb Learns from Light",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0077-76d6a7e7:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0077-76d6a7e7:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/eded02c692ae06b8-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/eded02c692ae06b8-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/eded02c692ae06b8-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/eded02c692ae06b8-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Universe Needs Your Eyes! Hubble's Citizen Scientists",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0078-5dcaeb49:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0078-5dcaeb49:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/29d6becfa4d9a65c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/29d6becfa4d9a65c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/29d6becfa4d9a65c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/29d6becfa4d9a65c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Simulating the Artemis II Lunar Flyby on April 6, 2026",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0079-b3bf6506:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0079-b3bf6506:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/5b670eafd73dc963-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/5b670eafd73dc963-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/5b670eafd73dc963-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/5b670eafd73dc963-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Artemis II mission trajectory",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0080-3073e3ec:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0080-3073e3ec:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/02d34d08cd173fcb-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/02d34d08cd173fcb-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/02d34d08cd173fcb-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/02d34d08cd173fcb-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA Interview Opportunity: Moonbound! NASA’s Artemis II Mission Days From Launch — First Crewed Journey Around the Moon in More Than 50 Years!",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0081-5a513c7a:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0081-5a513c7a:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/98c5155a127176dc-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/98c5155a127176dc-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/98c5155a127176dc-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/98c5155a127176dc-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Lucy Observations of Asteroid Donaldjohanson",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0082-0a72ef24:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0082-0a72ef24:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/4a6eea574962d27b-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/4a6eea574962d27b-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/4a6eea574962d27b-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/4a6eea574962d27b-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA's Swift Mission Gets a Boost",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0083-20fd73aa:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0083-20fd73aa:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/ec1692782d843283-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/ec1692782d843283-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/ec1692782d843283-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/ec1692782d843283-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Global Navigation Satellite System (GNSS) Fleet",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0084-5ce9e814:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0084-5ce9e814:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/1f3ab70a523778c1-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/1f3ab70a523778c1-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/1f3ab70a523778c1-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/1f3ab70a523778c1-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Committee on Earth Observation Satellites (CEOS) - Fleet - 2026",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0085-7768f9ac:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0085-7768f9ac:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/46b3415ac02361b2-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/46b3415ac02361b2-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/46b3415ac02361b2-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/46b3415ac02361b2-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · See the Sun's Active Region: The Source of the Early-February Flares",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0086-85a79a17:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0086-85a79a17:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/f44a5d20d0a5b3ea-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/f44a5d20d0a5b3ea-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/f44a5d20d0a5b3ea-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/f44a5d20d0a5b3ea-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Long-Span Bridge Inspection Prioritization",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0087-0494c2d0:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0087-0494c2d0:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/dfef7a074f4acc78-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/dfef7a074f4acc78-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/dfef7a074f4acc78-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/dfef7a074f4acc78-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NISAR satellite orbit",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0088-9b30a3c3:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0088-9b30a3c3:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/2d0cbb4ebe008602-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/2d0cbb4ebe008602-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/2d0cbb4ebe008602-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/2d0cbb4ebe008602-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Kathy Sullivan: American Pioneers and the Hubble Space Telescope",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0089-a5140cae:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0089-a5140cae:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/c2fb66fe127f43f8-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/c2fb66fe127f43f8-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/c2fb66fe127f43f8-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/c2fb66fe127f43f8-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · To an Asteroid and Back Trailer",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0090-8d000e84:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0090-8d000e84:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/3d76434222cc9f52-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/3d76434222cc9f52-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/3d76434222cc9f52-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/3d76434222cc9f52-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · NASA’s Incredible Discovery Machine: The Story of the Hubble Space Telescope",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0091-2256470e:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0091-2256470e:smart-reframe:multi-format",
+      "split": "public-test",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/7634d23789daf754-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/7634d23789daf754-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/7634d23789daf754-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/7634d23789daf754-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Students Work with NASA to Forecast Dust Storms",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0092-75e3169a:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0092-75e3169a:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/66a88774710a5ff8-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/66a88774710a5ff8-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/66a88774710a5ff8-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/66a88774710a5ff8-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Apollo 11: This Is Goddard",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0093-454e2d61:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0093-454e2d61:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/9924bdf43d127879-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/9924bdf43d127879-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/9924bdf43d127879-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/9924bdf43d127879-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Moonlight (Clair de Lune)",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0094-ac666c8f:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0094-ac666c8f:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/dc02dcdccdb69a32-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/dc02dcdccdb69a32-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/dc02dcdccdb69a32-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/dc02dcdccdb69a32-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Behold, A Whirlwind Came: The Science of Tracking Hurricanes",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0096-bbc6d99c:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0096-bbc6d99c:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/c01f55324ede04e1-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/c01f55324ede04e1-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/c01f55324ede04e1-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/c01f55324ede04e1-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Artemis II Flight Path Animations",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0097-b78025cb:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0097-b78025cb:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/d6dd8371d528211e-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/d6dd8371d528211e-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/d6dd8371d528211e-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/d6dd8371d528211e-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · A Pathway to Protocells on Titan – Animations",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0098-98ab8feb:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0098-98ab8feb:smart-reframe:multi-format",
+      "split": "adversarial",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/4ac0da2d9710b6af-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/4ac0da2d9710b6af-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/4ac0da2d9710b6af-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/4ac0da2d9710b6af-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · TROPICS Eyes Hurricane Erin",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0100-dcd76e76:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0100-dcd76e76:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/a13dde0c69b52fa5-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/a13dde0c69b52fa5-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/a13dde0c69b52fa5-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/a13dde0c69b52fa5-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · IMAP Beauty Passes",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0101-28404cbc:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0101-28404cbc:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/185e7c3b54f81d1a-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/185e7c3b54f81d1a-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/185e7c3b54f81d1a-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/185e7c3b54f81d1a-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Carruthers Geocorona Animation",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0102-0024dcf8:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0102-0024dcf8:smart-reframe:multi-format",
+      "split": "public-test",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/c7a4e0032b75db27-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/c7a4e0032b75db27-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/c7a4e0032b75db27-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/c7a4e0032b75db27-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · EZIE – Electrojet Zeeman Imaging Explorer",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0104-aa0d9a9e:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0104-aa0d9a9e:smart-reframe:multi-format",
+      "split": "adversarial",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Target leaves and re-enters after occlusion; retain identity or request assistance. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/8c309906bf965bfe-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/8c309906bf965bfe-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/8c309906bf965bfe-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/8c309906bf965bfe-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · The Webb Telescope Completes Alignment Phase",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0106-fd128f45:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0106-fd128f45:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/7df3dc362acd7886-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/7df3dc362acd7886-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/7df3dc362acd7886-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/7df3dc362acd7886-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Brazil and Novo Progresso Land Use Data Over Time",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0107-06e107d2:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0107-06e107d2:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/7e91300964df980a-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/7e91300964df980a-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/7e91300964df980a-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/7e91300964df980a-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Northern Brazil Land Use Data Over Time",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0108-0f94ea96:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0108-0f94ea96:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/b3cbcd851421e798-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/b3cbcd851421e798-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/b3cbcd851421e798-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/b3cbcd851421e798-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Measuring the Seas from Space! U.S.-European Satellite Launching THIS SATURDAY Seeks to Answer Vital Climate Questions Live Shots",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0109-9955efd2:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0109-9955efd2:smart-reframe:multi-format",
+      "split": "public-test",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/51aa6f46bf1351f5-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/51aa6f46bf1351f5-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/51aa6f46bf1351f5-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/51aa6f46bf1351f5-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · OSIRIS-REx TAG Event: Real-time Animation",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0110-c17e1c3f:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0110-c17e1c3f:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/646ab95889902038-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/646ab95889902038-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/646ab95889902038-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/646ab95889902038-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · OSIRIS-REx Science and Engineering Briefing",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0111-1460dea9:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0111-1460dea9:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/607583d9cc816cd0-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/607583d9cc816cd0-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/607583d9cc816cd0-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/607583d9cc816cd0-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Webb Global Contributor Map",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0112-c462e74c:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0112-c462e74c:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/c64feb5aed02848c-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/c64feb5aed02848c-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/c64feb5aed02848c-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/c64feb5aed02848c-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · Flying Through LIDAR Canopy Data",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    },
+    {
+      "id": "instance:cb-0111-c8656e5e:smart-reframe:multi-format",
+      "resultId": "result:instance:cb-0111-c8656e5e:smart-reframe:multi-format",
+      "split": "development",
+      "visibility": "public",
+      "request": "Generate 16:9, 9:16, and 1:1 reframes while preserving the intended subject and action context. Return reviewable 16:9, 9:16, and 1:1 variants from the same source lineage.",
+      "sourcePoster": "/media/creatorbench-v1/public/86f6f40689b6e38a-source.jpg",
+      "outputPoster": "/media/creatorbench-v1/public/86f6f40689b6e38a-9x16.jpg",
+      "outputs": [
+        {
+          "id": "16:9",
+          "label": "16:9",
+          "poster": "/media/creatorbench-v1/public/86f6f40689b6e38a-16x9.jpg"
+        },
+        {
+          "id": "1:1",
+          "label": "1:1",
+          "poster": "/media/creatorbench-v1/public/86f6f40689b6e38a-1x1.jpg"
+        }
+      ],
+      "publicSourceLabel": "NASA SVS public domain · GUARDIAN Warns Hawaii Early of Incoming Kamchatka Tsunami",
+      "route": "local-ffmpeg-center-reframe-v1",
+      "machineFindings": [
+        "Deterministic center-crop baseline; no subject detector was used.",
+        "All 16:9, 9:16, and 1:1 outputs decoded, reopened, and matched requested geometry.",
+        "Human review is required before any usability claim."
+      ]
+    }
+  ],
+  "publicSourceCount": 200,
+  "downloads": {
+    "json": "/benchmarks/creatorbench-v1/results/public-report.json",
+    "csv": "/benchmarks/creatorbench-v1/results/public-report.csv"
+  }
+}

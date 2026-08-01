@@ -61,6 +61,36 @@ export default defineSchema({
     updatedAt: v.number(),
   }).index('by_case', ['caseId']),
 
+  agentExecutions: defineTable({
+    caseId: v.id('cases'),
+    runId: v.id('runs'),
+    threadId: v.id('agentThreads'),
+    executionKey: v.string(),
+    requestDigest: v.string(),
+    requestText: v.string(),
+    status: v.union(
+      v.literal('running'),
+      v.literal('awaiting_resume'),
+      v.literal('completed'),
+      v.literal('failed'),
+    ),
+    phase: v.union(
+      v.literal('draft'),
+      v.literal('grounding'),
+      v.literal('review'),
+      v.literal('complete'),
+    ),
+    workerToken: v.string(),
+    leaseUntil: v.number(),
+    checkpointJson: v.optional(v.string()),
+    resultJson: v.optional(v.string()),
+    error: v.optional(v.string()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_run_executionKey', ['runId', 'executionKey'])
+    .index('by_thread_updatedAt', ['threadId', 'updatedAt']),
+
   messages: defineTable({
     threadId: v.id('agentThreads'),
     runId: v.optional(v.id('runs')),
@@ -294,4 +324,41 @@ export default defineSchema({
     deployment: v.optional(v.string()),
     updatedAt: v.number(),
   }).index('by_layer', ['layer']),
+
+  creatorBenchReviews: defineTable({
+    benchmarkVersion: v.string(),
+    instanceId: v.string(),
+    resultId: v.string(),
+    split: v.union(v.literal('development'), v.literal('public-test'), v.literal('adversarial')),
+    reviewerRef: v.string(),
+    assignmentId: v.string(),
+    variantId: v.optional(v.string()),
+    blind: v.boolean(),
+    status: v.union(v.literal('assigned'), v.literal('completed')),
+    usability: v.optional(
+      v.union(
+        v.literal('usable_as_is'),
+        v.literal('usable_after_minor_correction'),
+        v.literal('requires_major_correction'),
+        v.literal('unusable'),
+        v.literal('unsafe_or_rights_invalid'),
+      ),
+    ),
+    correctionTimeSeconds: v.optional(v.number()),
+    reasonCodes: v.array(v.string()),
+    correctnessIssues: v.array(v.string()),
+    missedSubjectOrContent: v.array(v.string()),
+    unwantedEdits: v.array(v.string()),
+    preferredVariantId: v.optional(v.string()),
+    blindedVariantOrderJson: v.string(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+    completedAt: v.optional(v.number()),
+    agreementMode: v.optional(v.boolean()),
+    agreementRoundId: v.optional(v.string()),
+    consentVersion: v.optional(v.string()),
+  })
+    .index('by_instance', ['benchmarkVersion', 'instanceId'])
+    .index('by_reviewer_status', ['reviewerRef', 'status'])
+    .index('by_assignment', ['assignmentId']),
 });

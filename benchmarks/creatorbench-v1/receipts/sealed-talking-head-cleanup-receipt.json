@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-workflow-pilot/v1",
+  "benchmarkVersion": "creatorbench-v1.4",
+  "workflow": "talking-head-cleanup",
+  "evaluationMode": "sealed-private-heldout",
+  "generatedAt": "2026-07-22T09:46:37.068Z",
+  "instanceCount": 21,
+  "sourceCount": 21,
+  "splitCounts": {
+    "private-heldout": 21
+  },
+  "renderedArtifactCount": 21,
+  "exportReopenCount": 21,
+  "machinePassCount": 0,
+  "reviewRequiredCount": 21,
+  "automaticCutCount": 2,
+  "fillerReviewCount": 4,
+  "silenceReviewCount": 42,
+  "meanSpeechRetention": 1,
+  "wordTruncationCount": 0,
+  "skippedCount": 16,
+  "limitations": [
+    "Official SRT timing is segment-level; word timing is uniformly interpolated inside each segment.",
+    "Intentional-pause false positives and audible join clicks remain unverified pending blinded human review.",
+    "Rendered candidates are not classified usable without human review.",
+    "Non-redistributable source and output media remain in the evaluator vault."
+  ],
+  "resultsSha256": "sha256:3ca9852f36421d5fb4aecba639aee961fd26f6175ad4232473046f50d59bf6fc",
+  "privateMediaExposed": false,
+  "privateTranscriptExposed": false
+}

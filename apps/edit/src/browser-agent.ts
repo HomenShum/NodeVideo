@@ -5,6 +5,7 @@
 // studio renders as a patch card and applies only on accept. No server, no
 // SSE bridge — this is the "in-browser from the start" path.
 
+import { NODE_AGENT_LIMITS } from '@/lib/nodeagent-contract';
 import {
   type Plan,
   type PlanPatch,
@@ -135,10 +136,13 @@ export async function runBrowserAgent(options: {
   const messages: ChatMessage[] = [
     { role: 'system', content: SYSTEM },
     ...options.history.map((turn) => ({ role: turn.role, content: turn.text }) as ChatMessage),
-    { role: 'user', content: options.message.slice(0, 2000) },
+    {
+      role: 'user',
+      content: options.message.slice(0, NODE_AGENT_LIMITS.maxModelMessageCharacters),
+    },
   ];
 
-  for (let iteration = 0; iteration < 8; iteration += 1) {
+  for (let iteration = 0; iteration < NODE_AGENT_LIMITS.maxToolIterations; iteration += 1) {
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       signal: options.signal,

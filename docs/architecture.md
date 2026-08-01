@@ -73,6 +73,28 @@ does not pretend a browser request performed heavy transcoding.
 The current Vite/React application selectively reuses source-distributed shadcn and AI Elements
 components. It does not switch frameworks or couple domain state to a chat hook.
 
+### NodeAgent runtime contract
+
+All NodeAgent entry points share `src/lib/nodeagent-runtime.json` for bounded history, prompt,
+iteration, trace, response-size, and time budgets. `src/lib/nodeagent-contract.ts` is the typed
+browser/API contract for depth modes, trace steps, and Creator planning operations. Provider
+adapters may differ, but they must emit those shared states instead of inventing provider-specific
+success labels.
+
+The managed `openrouter/free` Creator route runs a bounded draft → deterministic grounding tools →
+model review loop. If review cannot finish inside the shared budget, it emits
+`single_pass_degraded`; it never labels that run iterative. The Stitch studio BYOK and local-worker
+routes use the same iteration/history limits and proposal-before-mutate boundary, while retaining
+their edit-specific tools. Deterministic media compilation remains outside every model loop.
+
+Managed Creator runs also use the Convex `agentExecutions` ledger. A fenced lease prevents two
+workers from advancing the same request, the schema-valid draft and deterministic grounding result
+are checkpointed before review, and a failed review becomes `awaiting_resume` instead of losing
+work. Completed results are idempotently replayable. The ledger retains at most 20 executions per
+campaign run; the model receives at most the latest 8 persisted user/assistant turns. Checkpoints
+do not contain raw media or the source transcript—only the draft, bounded trace, source metadata,
+and grounding observations required to resume review.
+
 ## Primitive-first media stack
 
 NodeVideo integrates established primitives behind narrow adapters instead of recreating their core

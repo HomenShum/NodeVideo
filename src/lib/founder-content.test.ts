@@ -81,6 +81,29 @@ describe('founder content deterministic workflow', () => {
     expect(candidates[1]).toMatchObject({ startMs: 6_980, endMs: 7_320, approval: 'required' });
   });
 
+  it('requires review when acoustic silence overlaps transcript evidence', () => {
+    const conflicting: MediaIndex = {
+      ...index,
+      speech: {
+        words: [{ text: 'evidence', startMs: 2_200, endMs: 2_800, confidence: 1 }],
+        silenceRegions: [{ startMs: 2_000, endMs: 3_000 }],
+        fillers: [],
+      },
+    };
+    expect(
+      proposeTalkingHeadCleanup(conflicting, {
+        pausePolicy: 'tight',
+        removeFillers: true,
+      }),
+    ).toEqual([
+      expect.objectContaining({
+        kind: 'silence',
+        approval: 'required',
+        reason: expect.stringContaining('overlaps transcript'),
+      }),
+    ]);
+  });
+
   it('ranks a clear self-contained quote above a vague fragment', () => {
     expect(rankGoldenQuotes(index)[0].id).toBe('quote.clear');
   });

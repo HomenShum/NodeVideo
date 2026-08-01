@@ -459,6 +459,9 @@ function AtlasApp() {
           <a href="/creator">
             <ArrowLeft /> Creator workspace
           </a>
+          <a href="/creatorbench">
+            <Gauge /> CreatorBench
+          </a>
           <p>Explore</p>
           {MODES.map(({ id, label, icon: Icon }) => (
             <button

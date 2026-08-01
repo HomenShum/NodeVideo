@@ -1,9 +1,14 @@
 import { v } from 'convex/values';
+import nodeAgentRuntime from '../src/lib/nodeagent-runtime.json';
 import { mutation, query } from './_generated/server';
 import { boundedCanonicalJson, sha256Digest } from './lib/durability';
 
 const JSON_LIMIT = 512 * 1024;
 const JOURNEY = 'founder-launch-video';
+const MAX_CAMPAIGN_ROWS = 100;
+const MAX_TIMELINE_ROWS = 200;
+const MAX_AGENT_EXECUTIONS = nodeAgentRuntime.limits.maxDurableExecutionsPerRun;
+const AGENT_LEASE_MS = nodeAgentRuntime.limits.durableLeaseMs;
 
 function required(value: string, label: string, maximum = 2_000) {
   const normalized = value.trim();
@@ -19,11 +24,12 @@ async function requireCase(ctx: any, caseId: any, ownerKey: string) {
 }
 
 async function nextSequence(ctx: any, caseId: any) {
-  const events = await ctx.db
+  const latest = await ctx.db
     .query('timelineEvents')
     .withIndex('by_case_sequence', (q: any) => q.eq('caseId', caseId))
-    .collect();
-  return events.reduce((maximum: number, event: any) => Math.max(maximum, event.sequence), 0) + 1;
+    .order('desc')
+    .first();
+  return (latest?.sequence ?? 0) + 1;
 }
 
 async function event(
@@ -207,6 +213,213 @@ export const appendMessage = mutation({
       payload: { messageId },
     });
     return { messageId };
+  },
+});
+
+function parseStoredJson(value?: string) {
+  if (!value) return undefined;
+  try {
+    return JSON.parse(value) as unknown;
+  } catch {
+    throw new Error('agent_execution_state_corrupt');
+  }
+}
+
+export const claimAgentExecution = mutation({
+  args: {
+    caseId: v.id('cases'),
+    ownerKey: v.string(),
+    runId: v.id('runs'),
+    executionKey: v.string(),
+    requestDigest: v.string(),
+    requestText: v.string(),
+    workerToken: v.string(),
+  },
+  handler: async (ctx, args) => {
+    await requireCase(ctx, args.caseId, args.ownerKey);
+    const run = await ctx.db.get(args.runId);
+    if (!run || run.caseId !== args.caseId) throw new Error('run_not_found');
+    const executionKey = required(args.executionKey, 'execution_key', 256);
+    const requestDigest = required(args.requestDigest, 'request_digest', 256);
+    const requestText = required(args.requestText, 'request_text', 4_000);
+    const workerToken = required(args.workerToken, 'worker_token', 256);
+    const existing = await ctx.db
+      .query('agentExecutions')
+      .withIndex('by_run_executionKey', (q) =>
+        q.eq('runId', args.runId).eq('executionKey', executionKey),
+      )
+      .unique();
+    const now = Date.now();
+    if (existing) {
+      if (existing.requestDigest !== requestDigest) throw new Error('execution_digest_mismatch');
+      if (existing.requestText !== requestText) throw new Error('execution_request_mismatch');
+      if (existing.status === 'completed') {
+        return {
+          state: 'completed' as const,
+          executionId: existing._id,
+          result: parseStoredJson(existing.resultJson),
+          reused: true,
+        };
+      }
+      if (existing.status === 'running' && existing.leaseUntil > now) {
+        return {
+          state: 'busy' as const,
+          executionId: existing._id,
+          phase: existing.phase,
+          leaseUntil: existing.leaseUntil,
+          reused: true,
+        };
+      }
+      const phase = existing.checkpointJson ? ('review' as const) : ('draft' as const);
+      await ctx.db.patch(existing._id, {
+        status: 'running',
+        phase,
+        workerToken,
+        leaseUntil: now + AGENT_LEASE_MS,
+        error: undefined,
+        updatedAt: now,
+      });
+      return {
+        state: 'claimed' as const,
+        executionId: existing._id,
+        phase,
+        checkpoint: parseStoredJson(existing.checkpointJson),
+        resumed: Boolean(existing.checkpointJson),
+        reused: true,
+      };
+    }
+
+    const executions = await ctx.db
+      .query('agentExecutions')
+      .withIndex('by_thread_updatedAt', (q) => q.eq('threadId', run.threadId))
+      .order('asc')
+      .take(MAX_AGENT_EXECUTIONS + 1);
+    const removable = executions.filter((entry) => ['completed', 'failed'].includes(entry.status));
+    while (executions.length >= MAX_AGENT_EXECUTIONS && removable.length > 0) {
+      const oldest = removable.shift();
+      if (!oldest) break;
+      await ctx.db.delete(oldest._id);
+      executions.shift();
+    }
+    if (executions.length >= MAX_AGENT_EXECUTIONS) {
+      throw new Error('agent_execution_capacity_reached');
+    }
+    const executionId = await ctx.db.insert('agentExecutions', {
+      caseId: args.caseId,
+      runId: args.runId,
+      threadId: run.threadId,
+      executionKey,
+      requestDigest,
+      requestText,
+      status: 'running',
+      phase: 'draft',
+      workerToken,
+      leaseUntil: now + AGENT_LEASE_MS,
+      createdAt: now,
+      updatedAt: now,
+    });
+    await event(ctx, {
+      caseId: args.caseId,
+      runId: args.runId,
+      kind: 'agent.execution_started',
+      payload: { executionId, executionKey },
+    });
+    return {
+      state: 'claimed' as const,
+      executionId,
+      phase: 'draft' as const,
+      resumed: false,
+      reused: false,
+    };
+  },
+});
+
+export const checkpointAgentExecution = mutation({
+  args: {
+    caseId: v.id('cases'),
+    ownerKey: v.string(),
+    executionId: v.id('agentExecutions'),
+    workerToken: v.string(),
+    phase: v.union(v.literal('grounding'), v.literal('review')),
+    status: v.union(v.literal('running'), v.literal('awaiting_resume')),
+    checkpoint: v.any(),
+    error: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    await requireCase(ctx, args.caseId, args.ownerKey);
+    const execution = await ctx.db.get(args.executionId);
+    if (!execution || execution.caseId !== args.caseId)
+      throw new Error('agent_execution_not_found');
+    if (execution.workerToken !== args.workerToken) throw new Error('agent_execution_lease_lost');
+    const now = Date.now();
+    await ctx.db.patch(args.executionId, {
+      status: args.status,
+      phase: args.phase,
+      checkpointJson: boundedCanonicalJson(args.checkpoint, JSON_LIMIT, 'agent_checkpoint'),
+      error: args.error ? required(args.error, 'agent_error', 2_000) : undefined,
+      leaseUntil: args.status === 'running' ? now + AGENT_LEASE_MS : now,
+      updatedAt: now,
+    });
+    return { checkpointed: true, status: args.status, phase: args.phase };
+  },
+});
+
+export const completeAgentExecution = mutation({
+  args: {
+    caseId: v.id('cases'),
+    ownerKey: v.string(),
+    executionId: v.id('agentExecutions'),
+    workerToken: v.string(),
+    result: v.any(),
+  },
+  handler: async (ctx, args) => {
+    await requireCase(ctx, args.caseId, args.ownerKey);
+    const execution = await ctx.db.get(args.executionId);
+    if (!execution || execution.caseId !== args.caseId)
+      throw new Error('agent_execution_not_found');
+    if (execution.workerToken !== args.workerToken) throw new Error('agent_execution_lease_lost');
+    const now = Date.now();
+    await ctx.db.patch(args.executionId, {
+      status: 'completed',
+      phase: 'complete',
+      resultJson: boundedCanonicalJson(args.result, JSON_LIMIT, 'agent_result'),
+      error: undefined,
+      leaseUntil: now,
+      updatedAt: now,
+    });
+    await event(ctx, {
+      caseId: args.caseId,
+      runId: execution.runId,
+      kind: 'agent.execution_completed',
+      payload: { executionId: args.executionId },
+    });
+    return { completed: true };
+  },
+});
+
+export const failAgentExecution = mutation({
+  args: {
+    caseId: v.id('cases'),
+    ownerKey: v.string(),
+    executionId: v.id('agentExecutions'),
+    workerToken: v.string(),
+    error: v.string(),
+  },
+  handler: async (ctx, args) => {
+    await requireCase(ctx, args.caseId, args.ownerKey);
+    const execution = await ctx.db.get(args.executionId);
+    if (!execution || execution.caseId !== args.caseId)
+      throw new Error('agent_execution_not_found');
+    if (execution.status === 'completed') return { failed: false, reused: true };
+    if (execution.workerToken !== args.workerToken) throw new Error('agent_execution_lease_lost');
+    const now = Date.now();
+    await ctx.db.patch(args.executionId, {
+      status: 'failed',
+      error: required(args.error, 'agent_error', 2_000),
+      leaseUntil: now,
+      updatedAt: now,
+    });
+    return { failed: true, reused: false };
   },
 });
 
@@ -675,48 +888,58 @@ export const getCampaign = query({
   args: { caseId: v.id('cases'), ownerKey: v.string() },
   handler: async (ctx, args) => {
     const ownerCase = await requireCase(ctx, args.caseId, args.ownerKey);
-    const runs = await ctx.db
+    const run = await ctx.db
       .query('runs')
       .withIndex('by_case_updatedAt', (q) => q.eq('caseId', args.caseId))
-      .collect();
-    const run = runs.sort((a, b) => b.updatedAt - a.updatedAt)[0];
+      .order('desc')
+      .first();
     if (!run) throw new Error('campaign_run_missing');
     const messages = await ctx.db
       .query('messages')
       .withIndex('by_thread_createdAt', (q) => q.eq('threadId', run.threadId))
-      .collect();
+      .order('desc')
+      .take(MAX_CAMPAIGN_ROWS);
     const proposals = await ctx.db
       .query('proposals')
       .withIndex('by_job_status', (q) => q.eq('jobId', run.jobId))
-      .collect();
+      .take(MAX_CAMPAIGN_ROWS);
     const selectedArtifactId = ownerCase.selectedArtifactId;
     const versions = selectedArtifactId
       ? await ctx.db
           .query('artifactVersions')
           .withIndex('by_artifact_version', (q) => q.eq('artifactId', selectedArtifactId))
-          .collect()
+          .take(MAX_CAMPAIGN_ROWS)
       : [];
     const executorJobs = await ctx.db
       .query('executorJobs')
       .withIndex('by_run_updatedAt', (q) => q.eq('runId', run._id))
-      .collect();
+      .order('desc')
+      .take(MAX_CAMPAIGN_ROWS);
     const receipts = await ctx.db
       .query('receipts')
       .withIndex('by_run_createdAt', (q) => q.eq('runId', run._id))
-      .collect();
+      .order('desc')
+      .take(MAX_CAMPAIGN_ROWS);
+    const agentExecutions = await ctx.db
+      .query('agentExecutions')
+      .withIndex('by_thread_updatedAt', (q) => q.eq('threadId', run.threadId))
+      .order('desc')
+      .take(MAX_AGENT_EXECUTIONS);
     const timeline = await ctx.db
       .query('timelineEvents')
       .withIndex('by_case_sequence', (q) => q.eq('caseId', args.caseId))
-      .collect();
+      .order('desc')
+      .take(MAX_TIMELINE_ROWS);
     return {
       case: ownerCase,
       run,
-      messages,
+      messages: messages.reverse(),
       proposals,
       versions,
       executorJobs,
       receipts,
-      timeline,
+      agentExecutions,
+      timeline: timeline.reverse(),
     };
   },
 });

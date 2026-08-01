@@ -201,4 +201,118 @@ describe('NodeVideo Convex Caseflow consumer', () => {
       true,
     );
   });
+
+  test('a creator can resume one checkpoint after reload while a concurrent worker fails closed', async () => {
+    const t = convexTest(schema, modules);
+    const ownerKey = 'owner_durable_agent';
+    const campaign = await t.mutation(api.caseflow.createCampaign, {
+      ownerKey,
+      idempotencyKey: 'durable-agent:test',
+      title: 'Durable creator run',
+      brief: 'Resume the agent review without repeating the draft.',
+    });
+    const claim = await t.mutation(api.caseflow.claimAgentExecution, {
+      caseId: campaign.caseId,
+      ownerKey,
+      runId: campaign.runId,
+      executionKey: 'digest-1',
+      requestDigest: 'digest-1',
+      requestText: 'Create a concise vertical launch cut.',
+      workerToken: 'worker-a',
+    });
+    expect(claim).toMatchObject({ state: 'claimed', resumed: false });
+    const concurrent = await t.mutation(api.caseflow.claimAgentExecution, {
+      caseId: campaign.caseId,
+      ownerKey,
+      runId: campaign.runId,
+      executionKey: 'digest-1',
+      requestDigest: 'digest-1',
+      requestText: 'Create a concise vertical launch cut.',
+      workerToken: 'worker-b',
+    });
+    expect(concurrent).toMatchObject({ state: 'busy', phase: 'draft' });
+    if (claim.state !== 'claimed') throw new Error('expected claimed execution');
+    await t.mutation(api.caseflow.checkpointAgentExecution, {
+      caseId: campaign.caseId,
+      ownerKey,
+      executionId: claim.executionId,
+      workerToken: 'worker-a',
+      phase: 'review',
+      status: 'awaiting_resume',
+      checkpoint: { schemaVersion: 'nodevideo.agent-checkpoint/v1', marker: 'draft-grounded' },
+      error: 'free review overloaded',
+    });
+    const resumed = await t.mutation(api.caseflow.claimAgentExecution, {
+      caseId: campaign.caseId,
+      ownerKey,
+      runId: campaign.runId,
+      executionKey: 'digest-1',
+      requestDigest: 'digest-1',
+      requestText: 'Create a concise vertical launch cut.',
+      workerToken: 'worker-c',
+    });
+    expect(resumed).toMatchObject({
+      state: 'claimed',
+      resumed: true,
+      checkpoint: { marker: 'draft-grounded' },
+    });
+    if (resumed.state !== 'claimed') throw new Error('expected resumed execution');
+    await t.mutation(api.caseflow.completeAgentExecution, {
+      caseId: campaign.caseId,
+      ownerKey,
+      executionId: resumed.executionId,
+      workerToken: 'worker-c',
+      result: { ok: true, depthMode: 'iterative' },
+    });
+    const reopened = await t.mutation(api.caseflow.claimAgentExecution, {
+      caseId: campaign.caseId,
+      ownerKey,
+      runId: campaign.runId,
+      executionKey: 'digest-1',
+      requestDigest: 'digest-1',
+      requestText: 'Create a concise vertical launch cut.',
+      workerToken: 'worker-d',
+    });
+    expect(reopened).toMatchObject({
+      state: 'completed',
+      result: { ok: true, depthMode: 'iterative' },
+    });
+  });
+
+  test('a long-running creator thread evicts terminal agent executions at the shared bound', async () => {
+    const t = convexTest(schema, modules);
+    const ownerKey = 'owner_bounded_agent';
+    const campaign = await t.mutation(api.caseflow.createCampaign, {
+      ownerKey,
+      idempotencyKey: 'bounded-agent:test',
+      title: 'Bounded creator history',
+      brief: 'Keep durable run history bounded during sustained use.',
+    });
+    for (let index = 0; index < 24; index += 1) {
+      const claimed = await t.mutation(api.caseflow.claimAgentExecution, {
+        caseId: campaign.caseId,
+        ownerKey,
+        runId: campaign.runId,
+        executionKey: `digest-${index}`,
+        requestDigest: `digest-${index}`,
+        requestText: `Prepare creator variant ${index}.`,
+        workerToken: `worker-${index}`,
+      });
+      if (claimed.state !== 'claimed') throw new Error('expected claimed execution');
+      await t.mutation(api.caseflow.failAgentExecution, {
+        caseId: campaign.caseId,
+        ownerKey,
+        executionId: claimed.executionId,
+        workerToken: `worker-${index}`,
+        error: 'synthetic terminal failure',
+      });
+    }
+    const reopened = await t.query(api.caseflow.getCampaign, {
+      caseId: campaign.caseId,
+      ownerKey,
+    });
+    expect(reopened.agentExecutions).toHaveLength(20);
+    expect(reopened.agentExecutions.some((entry) => entry.executionKey === 'digest-0')).toBe(false);
+    expect(reopened.agentExecutions.some((entry) => entry.executionKey === 'digest-23')).toBe(true);
+  });
 });

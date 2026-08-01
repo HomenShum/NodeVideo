@@ -8,6 +8,7 @@
 // stays on its local rules; it never pretends a model ran.
 
 import Anthropic from '@anthropic-ai/sdk';
+import nodeAgentRuntime from '../../src/lib/nodeagent-runtime.json' with { type: 'json' };
 
 const MODEL = process.env.NODEVIDEO_EDIT_AGENT_MODEL ?? 'claude-opus-4-8';
 
@@ -205,13 +206,18 @@ export async function runEditAgent({ plan, message, history, send }) {
   };
 
   const messages = [
-    ...(history ?? []).map((turn) => ({ role: turn.role, content: turn.text })),
-    { role: 'user', content: String(message).slice(0, 2000) },
+    ...(history ?? [])
+      .slice(-nodeAgentRuntime.limits.maxHistoryTurns)
+      .map((turn) => ({ role: turn.role, content: turn.text })),
+    {
+      role: 'user',
+      content: String(message).slice(0, nodeAgentRuntime.limits.maxModelMessageCharacters),
+    },
   ];
 
   // Manual streaming loop: relay thinking summaries and text deltas as our
   // SSE events, execute tool calls between turns.
-  for (let iteration = 0; iteration < 8; iteration += 1) {
+  for (let iteration = 0; iteration < nodeAgentRuntime.limits.maxToolIterations; iteration += 1) {
     const stream = client.messages.stream({
       model: MODEL,
       max_tokens: 4096,

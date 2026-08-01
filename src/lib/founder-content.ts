@@ -25,15 +25,25 @@ export function proposeTalkingHeadCleanup(
   const duration = mediaIndex.technical.durationMs;
   const candidates: CleanupCandidate[] = mediaIndex.speech.silenceRegions
     .filter((range) => range.endMs - range.startMs >= pauseThreshold[options.pausePolicy])
-    .map<CleanupCandidate>((range, index) => ({
-      id: `cleanup:silence:${index}`,
-      kind: 'silence',
-      startMs: Math.min(range.startMs + 120, range.endMs),
-      endMs: Math.max(range.endMs - 120, range.startMs),
-      reason: `${options.pausePolicy} pause policy preserves 120 ms at each speech edge`,
-      confidence: 1,
-      approval: 'automatic',
-    }))
+    .map<CleanupCandidate>((range, index) => {
+      const candidate = {
+        startMs: Math.min(range.startMs + 120, range.endMs),
+        endMs: Math.max(range.endMs - 120, range.startMs),
+      };
+      const overlapsTranscript = mediaIndex.speech?.words.some(
+        (word) => word.startMs < candidate.endMs && word.endMs > candidate.startMs,
+      );
+      return {
+        id: `cleanup:silence:${index}`,
+        kind: 'silence',
+        ...candidate,
+        reason: overlapsTranscript
+          ? 'Acoustic silence overlaps transcript timing; review protects speech and intentional cadence'
+          : `${options.pausePolicy} pause policy preserves 120 ms at each speech edge`,
+        confidence: overlapsTranscript ? 0.5 : 1,
+        approval: overlapsTranscript ? 'required' : 'automatic',
+      };
+    })
     .filter((range) => range.endMs > range.startMs);
   if (options.removeFillers) {
     for (const [index, filler] of mediaIndex.speech.fillers.entries()) {

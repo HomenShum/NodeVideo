@@ -485,6 +485,63 @@
           "forbidTexts": ["/ 100"]
         }
       ]
+    },
+    {
+      "id": "creatorbench",
+      "route": "/creatorbench",
+      "landmark": {
+        "testid": "creatorbench-overview"
+      },
+      "description": "Public measured-evidence surface for CreatorBench. It separates frozen private routing outcomes, workflow-admissible corpus coverage, public deterministic render proof, known gaps, route evidence, and bounded blinded review from the creator editing workspace.",
+      "controls": [
+        {
+          "id": "creatorbench-overview",
+          "role": "button",
+          "name": "Overview"
+        },
+        {
+          "id": "creatorbench-coverage",
+          "role": "button",
+          "name": "Coverage"
+        },
+        {
+          "id": "creatorbench-weaknesses",
+          "role": "button",
+          "name": "Weaknesses"
+        },
+        {
+          "id": "creatorbench-routes",
+          "role": "button",
+          "name": "Route evidence"
+        },
+        {
+          "id": "creatorbench-freeze",
+          "role": "button",
+          "name": "Freeze receipt"
+        },
+        {
+          "id": "creatorbench-review",
+          "role": "button",
+          "name": "Review lab",
+          "meaning": "Blinded reviewer surface. Machine findings and route identity remain hidden until judgment. Durable submission requires explicit review-data consent and a reachable Convex backend."
+        },
+        {
+          "id": "creatorbench-guide-input",
+          "role": "textbox",
+          "name": "Ask CreatorBench"
+        }
+      ],
+      "states": [
+        {
+          "id": "creatorbench-evaluated",
+          "meaning": "Exact counts and confidence intervals are loaded from the public report; zero human labels are disclosed rather than interpreted as editing quality.",
+          "requireTexts": [
+            "See what works, what needs help, and what fails.",
+            "Human editing quality and silent-failure incidence are unverified"
+          ]
+        }
+      ],
+      "agentGuidance": "Use this surface for measured evidence, not editing. Verify every rate against its numerator, denominator, interval, scope, and freeze receipt. Do not infer human usability from routing-only or decode-only results."
     }
   ]
 }

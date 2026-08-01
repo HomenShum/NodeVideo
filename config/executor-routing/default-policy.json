@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "nodevideo.executor-routing-policy.v1",
+  "promotion": {
+    "minimumSamples": 30,
+    "minimumSuccessLowerBound": 0.8,
+    "maximumSilentFailureRate": 0.01,
+    "maximumSilentFailures": 0,
+    "confidenceZ": 1.96
+  },
+  "ranking": {
+    "dispositionOrder": ["automatic", "assisted", "review"],
+    "latencyOrder": ["interactive", "short", "long"],
+    "qualityOrder": ["premium", "standard", "baseline", "experimental"]
+  }
+}

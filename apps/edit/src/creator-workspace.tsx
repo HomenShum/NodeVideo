@@ -4,7 +4,6 @@ import type { FounderVariant } from '@/lib/founder-variant-compiler';
 import type { FramingPolicy, ReframePlan } from '@/lib/smart-reframe';
 import { Player } from '@remotion/player';
 import {
-  Check,
   ChevronLeft,
   CircleDot,
   Film,
@@ -14,7 +13,6 @@ import {
   Play,
   Plus,
   ShieldCheck,
-  Sparkles,
   Upload,
 } from 'lucide-react';
 import { useRef, useState } from 'react';
@@ -35,7 +33,7 @@ import {
 
 type SourceView = { name: string; url: string; durationMs: number; width: number; height: number };
 type CreatorResult = ReturnType<typeof runCreatorPipeline>;
-type MobileSurface = 'canvas' | 'agent' | 'review' | 'sources';
+type MobileSurface = 'canvas' | 'chat' | 'files';
 
 const TEMPLATES: Array<{
   id: CreatorPreset;
@@ -73,14 +71,6 @@ const TEMPLATES: Array<{
   },
 ];
 
-const STAGES = [
-  ['intake', 'Source'],
-  ['planning', 'Plan'],
-  ['review', 'Edit'],
-  ['execution', 'Review'],
-  ['receipt', 'Export'],
-] as const;
-
 function currentAction(stage: string) {
   if (stage === 'intake') return 'Add source media, references, and destinations.';
   if (stage === 'planning') return 'Ask NodeAgent to propose a source-grounded direction.';
@@ -114,6 +104,9 @@ export function CreatorStart(props: {
         </Badge>
         <a className="creator-atlas-link" href="/atlas">
           <Library className="size-3" /> Artifact Atlas
+        </a>
+        <a className="creator-atlas-link" href="/creatorbench">
+          <CircleDot className="size-3" /> CreatorBench
         </a>
       </header>
       <section className="creator-start-stage">
@@ -270,6 +263,7 @@ export function CreatorWorkspace(props: {
   caseStatus: string;
   messages: ChatMessage[];
   caseflowReady: boolean;
+  resumableRun?: { executionKey: string; phase: string; updatedAt: number };
   proposalDigest?: string;
   proposalStatus?: string;
   executorProposal?: ExecutorProposalView;
@@ -281,6 +275,7 @@ export function CreatorWorkspace(props: {
   onPrompt: (prompt: string) => void;
   onTranscript: (transcript: string) => void;
   onAgentSend: (message: string, request: CreatorAgentRequest) => Promise<CreatorAgentReply>;
+  onAgentResume: () => Promise<CreatorAgentReply>;
   onSelectVariant: (id: string) => void;
   onApprove: () => void;
   onReject: () => void;
@@ -306,10 +301,6 @@ export function CreatorWorkspace(props: {
   const [editingCrop, setEditingCrop] = useState(false);
   const [editFrame, setEditFrame] = useState(0);
   const reframeVideoRef = useRef<HTMLVideoElement>(null);
-  const stageIndex = Math.max(
-    0,
-    STAGES.findIndex(([stage]) => stage === props.runStage),
-  );
   const canonical = props.approved.has(props.selected?.id ?? '');
   const selectedReframe = props.smartReframe.plans.find(
     (plan) => plan.intent.aspectRatio === props.selected?.output.aspectRatio,
@@ -317,7 +308,11 @@ export function CreatorWorkspace(props: {
   const activeReframe = selectedReframe ?? props.smartReframe.plans[0];
 
   return (
-    <main className="creator-shell bg-background">
+    <main
+      className="creator-shell bg-background"
+      data-testid="creator-workspace"
+      data-project-version={props.version}
+    >
       <header className="creator-topbar">
         <div className="creator-brand">
           <span>
@@ -325,58 +320,27 @@ export function CreatorWorkspace(props: {
           </span>
           <b>NodeVideo</b>
         </div>
-        <nav className="creator-stage-progress" aria-label="Creation stages">
-          {STAGES.map(([stage, label], index) => (
-            <span
-              key={stage}
-              className={
-                index === stageIndex ? 'is-current' : index < stageIndex ? 'is-complete' : ''
-              }
-            >
-              {index < stageIndex ? <Check className="size-3" /> : index + 1} {label}
-            </span>
-          ))}
-        </nav>
-        <Badge variant="outline">Project v{props.version}</Badge>
+        <div className="creator-topbar-context">
+          <span>{props.caseTitle}</span>
+          <Badge variant="outline">v{props.version}</Badge>
+        </div>
       </header>
 
-      <div className="creator-current-action" data-testid="current-action">
-        <Sparkles className="size-4" />
-        <b>Current action</b>
-        <span>{currentAction(props.runStage)}</span>
-      </div>
-
       <div className={`creator-workspace-grid mobile-${mobileSurface}`}>
-        <aside className="creator-project-rail" aria-label="Project and sources">
+        <aside
+          className="creator-project-rail"
+          aria-label="Project and files"
+          data-testid="project-files"
+        >
           <div>
-            <p className="creator-eyebrow">Campaign</p>
+            <p className="creator-eyebrow">Project</p>
             <h1>{props.caseTitle}</h1>
-            <p>{props.caseStatus}</p>
-          </div>
-          <div className="creator-project-steps" data-testid="caseflow-progress">
-            {STAGES.map(([stage, label], index) => (
-              <div
-                key={stage}
-                className={
-                  index === stageIndex ? 'is-current' : index < stageIndex ? 'is-complete' : ''
-                }
-              >
-                <span>{index < stageIndex ? <Check className="size-3" /> : index + 1}</span>
-                <p>
-                  <b>{label}</b>
-                  <small>
-                    {index === stageIndex
-                      ? currentAction(props.runStage)
-                      : index < stageIndex
-                        ? 'Complete'
-                        : 'Waiting'}
-                  </small>
-                </p>
-              </div>
-            ))}
+            <p>
+              {props.caseStatus} · version {props.version}
+            </p>
           </div>
           <section className="creator-source-vault">
-            <p className="creator-eyebrow">Source vault</p>
+            <p className="creator-eyebrow">Files</p>
             {props.source ? (
               <div>
                 <Film className="size-4" />
@@ -514,6 +478,8 @@ export function CreatorWorkspace(props: {
             exportRatio={props.exportRatio}
             messages={props.messages}
             caseflowReady={props.caseflowReady}
+            currentAction={props.status || currentAction(props.runStage)}
+            resumableRun={props.resumableRun}
             runStatus={`${props.caseStatus} · ${props.runStage}`}
             proposalDigest={props.proposalDigest}
             proposalStatus={props.proposalStatus}
@@ -521,6 +487,7 @@ export function CreatorWorkspace(props: {
             onPreset={props.onPreset}
             onTranscript={props.onTranscript}
             onSend={props.onAgentSend}
+            onResume={props.onAgentResume}
             onApprove={props.onApprove}
             onReject={props.onReject}
             onRestore={props.onRestore}
@@ -530,28 +497,16 @@ export function CreatorWorkspace(props: {
             onApproveExecutor={props.onApproveExecutor}
             onDeclineExecutor={props.onDeclineExecutor}
             onUseLocalExecutor={props.onUseLocalExecutor}
-            requestedView={mobileSurface === 'review' ? 'proposal' : 'chat'}
           />
         </div>
-      </div>
-
-      <div className="creator-run-strip" data-testid="caseflow-activity-strip">
-        <span>
-          <CircleDot className="size-3 text-brand" /> {props.status}
-        </span>
-        <span>
-          canonical v{props.version} ·{' '}
-          {props.proposalDigest ? `proposal ${props.proposalDigest.slice(0, 10)}…` : 'no proposal'}
-        </span>
       </div>
 
       <nav className="creator-mobile-nav" aria-label="Creator workspace surfaces">
         {(
           [
             ['canvas', Film],
-            ['agent', MessageSquare],
-            ['review', ShieldCheck],
-            ['sources', FolderOpen],
+            ['chat', MessageSquare],
+            ['files', FolderOpen],
           ] as const
         ).map(([surface, Icon]) => (
           <button

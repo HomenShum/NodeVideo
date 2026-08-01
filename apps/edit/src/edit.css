@@ -13,7 +13,7 @@
   overflow-x: hidden;
   contain: inline-size;
   display: grid;
-  grid-template-rows: 64px auto minmax(0, 1fr) 34px;
+  grid-template-rows: 64px minmax(0, 1fr);
 }
 
 .creator-topbar {
@@ -59,45 +59,13 @@
   color: var(--foreground);
 }
 
-.creator-stage-progress {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  gap: .2rem;
-}
-
-.creator-stage-progress span {
+.creator-topbar-context {
+  margin-left: auto;
   display: flex;
   align-items: center;
-  gap: .35rem;
-  padding: .42rem .7rem;
-  border-radius: 999px;
+  gap: .5rem;
   color: var(--muted-foreground);
   font-size: .72rem;
-}
-
-.creator-stage-progress .is-current {
-  color: var(--foreground);
-  background: color-mix(in oklab, var(--color-brand) 16%, transparent);
-}
-
-.creator-stage-progress .is-complete {
-  color: var(--color-brand);
-}
-
-.creator-current-action {
-  min-height: 42px;
-  display: flex;
-  align-items: center;
-  gap: .55rem;
-  padding: .55rem 1.1rem;
-  border-bottom: 1px solid var(--border);
-  background: color-mix(in oklab, var(--color-brand) 5%, var(--background));
-  font-size: .76rem;
-}
-
-.creator-current-action span {
-  color: var(--muted-foreground);
 }
 
 .creator-workspace-grid {
@@ -106,7 +74,7 @@
   max-width: 100vw;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 238px minmax(0, 1fr) 390px;
+  grid-template-columns: 210px minmax(0, 1fr) 360px;
 }
 
 .creator-project-rail {
@@ -135,56 +103,6 @@
   margin-top: .3rem;
   color: var(--muted-foreground);
   font-size: .7rem;
-}
-
-.creator-project-steps {
-  display: grid;
-  gap: .25rem;
-  margin-top: 1.2rem;
-}
-.creator-project-steps > div {
-  display: grid;
-  grid-template-columns: 24px 1fr;
-  gap: .55rem;
-  padding: .55rem;
-  border-radius: .55rem;
-  color: var(--muted-foreground);
-}
-.creator-project-steps > div > span {
-  width: 22px;
-  height: 22px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: .62rem;
-}
-.creator-project-steps p {
-  margin: 0;
-  line-height: 1.2;
-}
-.creator-project-steps b {
-  display: block;
-  color: inherit;
-  font-size: .72rem;
-}
-.creator-project-steps small {
-  display: none;
-  margin-top: .28rem;
-  font-size: .62rem;
-  line-height: 1.35;
-}
-.creator-project-steps .is-current {
-  color: var(--foreground);
-  background: var(--muted);
-  box-shadow: inset 2px 0 var(--color-brand);
-}
-.creator-project-steps .is-current small {
-  display: block;
-  color: var(--muted-foreground);
-}
-.creator-project-steps .is-complete {
-  color: var(--color-brand);
 }
 
 .creator-source-vault {
@@ -510,25 +428,6 @@
   box-shadow: none;
   position: static;
 }
-.creator-run-strip {
-  min-height: 34px;
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: .45rem 1rem;
-  border-top: 1px solid var(--border);
-  color: var(--muted-foreground);
-  background: var(--card);
-  font-size: .62rem;
-}
-.creator-run-strip span {
-  display: flex;
-  align-items: center;
-  gap: .4rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 .creator-mobile-nav {
   display: none;
 }
@@ -640,7 +539,7 @@
 
 @media (max-width: 1350px) and (min-width: 1024px) {
   .creator-workspace-grid {
-    grid-template-columns: 210px minmax(0, 1fr) 340px;
+    grid-template-columns: 190px minmax(0, 1fr) 330px;
   }
   .creator-project-rail {
     padding: .75rem;
@@ -648,12 +547,32 @@
 }
 
 @media (max-width: 1023px) {
+  .creator-agent-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .creator-agent-heading {
+    flex: 1 1 100%;
+  }
+
+  .creator-agent-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .creator-agent-actions > button {
+    width: 100%;
+  }
+
   body:has(.creator-shell) {
     height: 100dvh;
     overflow: hidden;
   }
   .creator-shell {
-    grid-template-rows: 54px auto minmax(0, 1fr) 44px;
+    grid-template-rows: 54px minmax(0, 1fr) 44px;
     height: 100dvh;
     overflow: hidden;
   }
@@ -664,24 +583,8 @@
   .creator-brand {
     min-width: auto;
   }
-  .creator-topbar > .creator-brand + .creator-stage-progress {
-    justify-content: flex-end;
-  }
-  .creator-topbar > :last-child {
+  .creator-topbar-context > span {
     display: none;
-  }
-  .creator-stage-progress span {
-    display: none;
-  }
-  .creator-stage-progress .is-current {
-    display: flex;
-  }
-  .creator-current-action {
-    padding: .55rem .75rem;
-    align-items: flex-start;
-  }
-  .creator-current-action span {
-    line-height: 1.25;
   }
   .creator-workspace-grid {
     display: block;
@@ -698,19 +601,11 @@
   .creator-workspace-grid.mobile-canvas .creator-artifact-stage {
     display: grid;
   }
-  .creator-workspace-grid.mobile-agent .creator-agent-rail,
-  .creator-workspace-grid.mobile-review .creator-agent-rail {
+  .creator-workspace-grid.mobile-chat .creator-agent-rail {
     display: block;
   }
-  .creator-workspace-grid.mobile-sources .creator-project-rail {
+  .creator-workspace-grid.mobile-files .creator-project-rail {
     display: block;
-  }
-  .creator-workspace-grid.mobile-review
-    .creator-agent-rail
-    [aria-label="NodeVideo agent"]
-    > header
-    button:first-of-type {
-    outline: 2px solid var(--color-brand);
   }
   .creator-artifact-stage {
     padding: .55rem;
@@ -739,9 +634,6 @@
   }
   .creator-agent-rail > aside {
     min-height: 0;
-  }
-  .creator-run-strip {
-    display: none;
   }
   .creator-mobile-nav {
     display: flex;

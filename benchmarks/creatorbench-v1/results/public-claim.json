@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "nodevideo.creatorbench-public-claim/v1",
+  "benchmarkVersion": "creatorbench-v1.4",
+  "freezeReceiptId": "creatorbench-freeze:f3fb72fb06287374e5206fee",
+  "generatedAt": "2026-07-22T09:46:44.966Z",
+  "population": {
+    "split": "private-heldout",
+    "instanceCount": 1392,
+    "sourceCount": 50,
+    "creatorDisjointSourceCount": 50,
+    "domainCount": 14,
+    "workflowCount": 6
+  },
+  "outcomes": {
+    "automatic_usable": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0
+    },
+    "assisted_usable": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0
+    },
+    "review_required": {
+      "numerator": 688,
+      "denominator": 1392,
+      "rate": 0.4942528735632184
+    },
+    "safely_abstained": {
+      "numerator": 704,
+      "denominator": 1392,
+      "rate": 0.5057471264367817
+    },
+    "unsupported": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0
+    },
+    "technical_failure": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0
+    },
+    "silent_failure": {
+      "numerator": 0,
+      "denominator": 1392,
+      "rate": 0
+    }
+  },
+  "statement": "On creatorbench-v1.4, covering 1392 private held-out workflow instances from 50 creator-disjoint sources across 6 workflows, NodeVideo routed 49.4% to human review and safely abstained in 50.6%. No automatic or assisted usability claim is made because only 0/1392 results have human review. Editing-quality silent-failure incidence remains unverified.",
+  "limitations": [
+    "No result is classified usable until a rendered artifact is blindly reviewed by a human.",
+    "This baseline measures request ingestion, rights validation, route eligibility, and honest non-success states—not editing quality.",
+    "Editing-quality silent-failure incidence is unverified: 0/1392 private held-out results have human review."
+  ]
+}
