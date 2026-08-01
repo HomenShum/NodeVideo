@@ -15,6 +15,7 @@
       ".qa/evidence",
       ".qa/media",
       ".qa/models",
+      ".qa/openrouter-free-models",
       ".qa/runs",
       ".vercel",
       "fixtures/media/tutorial-compare-v1",

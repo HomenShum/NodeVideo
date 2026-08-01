@@ -48,6 +48,8 @@
     "higgsfield:run": "node scripts/providers/higgsfield-cli.mjs run",
     "higgsfield:benchmark:plan": "node scripts/providers/build-higgsfield-benchmark.mjs",
     "higgsfield:benchmark:score": "node scripts/providers/score-higgsfield-benchmark.mjs",
+    "openrouter:benchmark": "node scripts/providers/openrouter-free-benchmark.mjs --mode full --repetitions 2",
+    "openrouter:benchmark:auto": "node scripts/providers/openrouter-free-benchmark.mjs --mode auto --repetitions 2",
     "executors:doctor": "node scripts/quality/doctor-specialist-executors.mjs",
     "asset:approve": "node scripts/artifacts/approve-asset-receipt.mjs",
     "showcase:build": "node scripts/showcase/build-showcase.mjs",

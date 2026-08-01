@@ -1,0 +1,88 @@
+name: OpenRouter free-model routing
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      force_full:
+        description: Run the complete benchmark even if the catalog and canaries are healthy
+        required: false
+        default: false
+        type: boolean
+  repository_dispatch:
+    types: [openrouter-health-failure]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: openrouter-free-model-routing
+  cancel-in-progress: false
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+    steps:
+      - name: Check out default branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Canary current winners or benchmark a changed catalog
+        id: benchmark
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=(--mode auto --repetitions 2)
+          if [[ '${{ inputs.force_full }}' == 'true' || '${{ github.event_name }}' == 'repository_dispatch' ]]; then
+            args+=(--force)
+          fi
+          node scripts/providers/openrouter-free-benchmark.mjs "${args[@]}" | tee openrouter-benchmark-summary.json
+          if ! git diff --quiet -- config/openrouter-free-routing.json; then
+            echo 'routing_changed=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'routing_changed=false' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload benchmark evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: openrouter-free-model-benchmark-${{ github.run_id }}
+          path: |
+            openrouter-benchmark-summary.json
+            .qa/openrouter-free-models/latest-report.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Open or update routing promotion PR
+        if: steps.benchmark.outputs.routing_changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch='automation/openrouter-free-routing'
+          git config user.name 'nodevideo-routing-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git checkout -B "$branch"
+          git add config/openrouter-free-routing.json
+          git commit -m 'chore: refresh OpenRouter free-model routing'
+          git push --force-with-lease origin "$branch"
+          body='Automated Class B routing refresh. Trigger: catalog change, scheduled canary failure, manual dispatch, or production health dispatch. Review the receipt-backed rankings before merge; rollback is reverting this manifest commit.'
+          gh pr create --base "${{ github.event.repository.default_branch }}" --head "$branch" --title 'Refresh OpenRouter free-model routing' --body "$body" ||
+            gh pr edit "$branch" --title 'Refresh OpenRouter free-model routing' --body "$body"

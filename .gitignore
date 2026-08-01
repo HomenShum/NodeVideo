@@ -22,6 +22,7 @@ test-results/
 .qa/evidence/
 .qa/media/
 .qa/models/
+.qa/openrouter-free-models/
 .qa/showcase/
 .qa/runs/
 .qa/*.log

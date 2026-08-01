@@ -1,4 +1,5 @@
 import { describe, expect, test, vi } from 'vitest';
+import openRouterRouting from '../config/openrouter-free-routing.json' with { type: 'json' };
 import {
   inspectPlannerDraft,
   parseBody,
@@ -132,25 +133,61 @@ describe('creator free-route deep-agent scenarios', () => {
 
     const [url, init] = fetchImpl.mock.calls[0];
     const request = JSON.parse(String(init?.body)) as {
-      model: string;
+      model?: string;
       models: string[];
       response_format: { type: string };
     };
     const headers = init?.headers as Record<string, string>;
     expect(url).toBe('https://openrouter.ai/api/v1/chat/completions');
     expect(request).toMatchObject({
-      model: 'openrouter/free',
-      models: [
-        'google/gemma-4-26b-a4b-it:free',
-        'nvidia/nemotron-3-super-120b-a12b:free',
-        'nvidia/nemotron-nano-9b-v2:free',
-      ],
+      models: openRouterRouting.selectedModels,
       response_format: { type: 'json_schema' },
     });
-    expect(request.models).toHaveLength(3);
+    expect(request.model).toBeUndefined();
+    expect(request.models.length).toBeGreaterThan(0);
+    expect(request.models.length).toBeLessThanOrEqual(3);
+    expect(new Set(request.models).size).toBe(request.models.length);
     expect(headers.Authorization).toBe('Bearer test-production-key');
     expect(headers['X-OpenRouter-Title']).toBe('NodeVideo Creator Agent');
     expect(headers).not.toHaveProperty('X-Title');
+  });
+
+  test('a creator falls back to the random free router only after the ranked route fails', async () => {
+    const plan = {
+      summary: 'Prepare a grounded cut while preserving the creator source meaning.',
+      operations: [
+        { kind: 'preserve_meaning', reason: 'Keep uncertain edits behind creator review.' },
+      ],
+    };
+    const fetchImpl = vi
+      .fn<typeof fetch>()
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify({ error: { message: 'ranked model unavailable' } }), {
+          status: 503,
+        }),
+      )
+      .mockResolvedValue(modelResponse(plan));
+
+    await runDeepPlanner(
+      {
+        request: 'Prepare one source-grounded cut.',
+        transcript: 'Every edit remains reviewable before export.',
+      },
+      { apiKey: 'test-production-key', fetchImpl },
+    );
+
+    const ranked = JSON.parse(String(fetchImpl.mock.calls[0]?.[1]?.body)) as Record<
+      string,
+      unknown
+    >;
+    const fallback = JSON.parse(String(fetchImpl.mock.calls[1]?.[1]?.body)) as Record<
+      string,
+      unknown
+    >;
+    expect(ranked).toMatchObject({ models: openRouterRouting.selectedModels });
+    expect(ranked).not.toHaveProperty('model');
+    expect(fallback).toMatchObject({ model: openRouterRouting.fallbackRouter });
+    expect(fallback).not.toHaveProperty('models');
   });
 
   test('a returning creator resumes the persisted grounding checkpoint without redrafting', async () => {
