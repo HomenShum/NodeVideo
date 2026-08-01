@@ -79,6 +79,7 @@ jobs:
           branch='automation/openrouter-free-routing'
           git config user.name 'nodevideo-routing-bot'
           git config user.email 'actions@users.noreply.github.com'
+          git fetch origin "$branch:refs/remotes/origin/$branch" || true
           git checkout -B "$branch"
           git add config/openrouter-free-routing.json
           git commit -m 'chore: refresh OpenRouter free-model routing'
