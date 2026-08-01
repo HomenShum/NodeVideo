@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   pull_request:
+    paths-ignore:
+      - config/openrouter-free-routing.json
   workflow_dispatch:
 
 permissions:
