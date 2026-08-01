@@ -1,0 +1,366 @@
+{
+  "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+  "id": "atlas:animal-companion",
+  "packId": "animal-companion",
+  "source": {
+    "videoId": "FJlFCF38tKE",
+    "url": "https://www.youtube.com/watch?v=FJlFCF38tKE",
+    "title": "Dogs Running On A Snowy Day - Free Stock Creative Commons Video",
+    "uploader": "Freestocks",
+    "license": "Creative Commons Attribution license (reuse allowed)",
+    "sourceSha256": "sha256:a00679114d8af593be2780d34d42615832b9cee77027b83f9f82932e29ee2058",
+    "retrievedAt": "2026-07-22T03:10:11.994038+00:00"
+  },
+  "execution": {
+    "detector": "ultralytics/yolo11n-coco",
+    "tracker": "temporal-envelope-hold-v1",
+    "policy": "animal-safe",
+    "frameCount": 125,
+    "analyzedFrames": 125,
+    "latencyMs": 15434,
+    "costUsd": 0
+  },
+  "evaluation": {
+    "tier": "rights-cleared-fixture",
+    "detectionCoverage": 0.76,
+    "targetCoverage": 1.0,
+    "lowConfidenceHoldRate": 0.24,
+    "trackSwitchCount": 0,
+    "manualCorrections": 0,
+    "previewExportParity": true,
+    "verdict": "pass",
+    "limitations": [
+      "Creative Commons stock fixture; not creator-held-out media.",
+      "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model."
+    ]
+  },
+  "outputs": {
+    "beforeImage": "fixtures/media/tracking-atlas-v1/animal-companion/before.jpg",
+    "afterImage": "fixtures/media/tracking-atlas-v1/animal-companion/after.jpg",
+    "comparisonVideo": "fixtures/media/tracking-atlas-v1/animal-companion/comparison.mp4",
+    "analysisVideo": "fixtures/media/tracking-atlas-v1/animal-companion/analysis.mp4",
+    "receipt": "fixtures/media/tracking-atlas-v1/animal-companion/receipt.json",
+    "sha256": {
+      "beforeImage": "sha256:dd39a63b78b260f4a00ebf9ea3c0c4eac273e938d3aa5ebd07c50a69a16294f8",
+      "afterImage": "sha256:b5676c8ba7930cb168aa9c16db86949a5c9db247c5b6eabe7d7a89c8c295f992",
+      "comparisonVideo": "sha256:eb29721c4fe9cd0ed4ebf1dcd58552e12f48037fc2dbc1be3ad1f3b3c529f7fb",
+      "analysisVideo": "sha256:3556682d266ff0e6686e2e67264566a3c532f530e9210e2a7ebdcebd1649e0eb"
+    }
+  },
+  "observations": [
+    {
+      "timelineFrame": 0,
+      "labels": [
+        "dog"
+      ],
+      "confidence": 0.6758469343185425,
+      "envelope": [
+        0.853125,
+        0.75,
+        0.9921875,
+        0.925
+      ],
+      "fallback": "none",
+      "crop": [
+        0.684375,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 8,
+      "labels": [
+        "dog"
+      ],
+      "confidence": 0.47402897477149963,
+      "envelope": [
+        0.8617494145990381,
+        0.7373453773084924,
+        0.9969194566293056,
+        0.9152501565096167
+      ],
+      "fallback": "none",
+      "crop": [
+        0.684375,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 16,
+      "labels": [
+        "dog"
+      ],
+      "confidence": 0.741426944732666,
+      "envelope": [
+        0.8877575526497621,
+        0.7118279964063711,
+        0.9981633444248945,
+        0.9036520400174427
+      ],
+      "fallback": "none",
+      "crop": [
+        0.684375,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 24,
+      "labels": [
+        "dog"
+      ],
+      "confidence": 0.35809892416000366,
+      "envelope": [
+        0.9139395442611001,
+        0.7046061784516351,
+        0.9983691569984514,
+        0.8877755675753685
+      ],
+      "fallback": "none",
+      "crop": [
+        0.684375,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 32,
+      "labels": [
+        "dog"
+      ],
+      "confidence": 0.21909043192863464,
+      "envelope": [
+        0.9300282319712876,
+        0.7028936241958585,
+        0.9984204630826992,
+        0.8582712362130351
+      ],
+      "fallback": "none",
+      "crop": [
+        0.684375,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 40,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.9300282319712876,
+        0.7028936241958585,
+        0.9984204630826992,
+        0.8582712362130351
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.684375,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 48,
+      "labels": [
+        "dog"
+      ],
+      "confidence": 0.41043537855148315,
+      "envelope": [
+        0.936276393705545,
+        0.7056616517856222,
+        0.9984281063889819,
+        0.8334736949683089
+      ],
+      "fallback": "none",
+      "crop": [
+        0.684375,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 56,
+      "labels": [
+        "dog"
+      ],
+      "confidence": 0.7866469025611877,
+      "envelope": [
+        0.7873211676446391,
+        0.644742653621735,
+        0.8638091956634804,
+        0.7775963242472866
+      ],
+      "fallback": "none",
+      "crop": [
+        0.6671875,
+        0.0,
+        0.9828125,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 64,
+      "labels": [
+        "dog"
+      ],
+      "confidence": 0.5298401713371277,
+      "envelope": [
+        0.536634367743659,
+        0.5495123621356044,
+        0.6556647393613165,
+        0.7253839668324689
+      ],
+      "fallback": "none",
+      "crop": [
+        0.4375,
+        0.0,
+        0.753125,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 72,
+      "labels": [
+        "dog"
+      ],
+      "confidence": 0.8932182192802429,
+      "envelope": [
+        0.4849878951993829,
+        0.5437798857408574,
+        0.6532469452785997,
+        0.772728387137085
+      ],
+      "fallback": "none",
+      "crop": [
+        0.4109375,
+        0.0,
+        0.7265625,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 80,
+      "labels": [
+        "dog"
+      ],
+      "confidence": 0.894977867603302,
+      "envelope": [
+        0.4691434676776617,
+        0.5615961883216746,
+        0.6972183397835653,
+        0.8718215308086681
+      ],
+      "fallback": "none",
+      "crop": [
+        0.425,
+        0.0,
+        0.740625,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 88,
+      "labels": [
+        "dog"
+      ],
+      "confidence": 0.8739302158355713,
+      "envelope": [
+        0.4619358350505711,
+        0.5703267572870621,
+        0.728712272635216,
+        0.9424764237767016
+      ],
+      "fallback": "none",
+      "crop": [
+        0.4375,
+        0.0,
+        0.753125,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 96,
+      "labels": [
+        "dog"
+      ],
+      "confidence": 0.7598825693130493,
+      "envelope": [
+        0.4634721663134853,
+        0.5718347624902115,
+        0.7386309742297278,
+        0.9552166003969466
+      ],
+      "fallback": "none",
+      "crop": [
+        0.4421875,
+        0.0,
+        0.7578125,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 104,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.4634034633891653,
+        0.5733718341406021,
+        0.7401279183475338,
+        0.9585563770966525
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.44375,
+        0.0,
+        0.759375,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 112,
+      "labels": [],
+      "confidence": 0,
+      "envelope": [
+        0.46267833997911556,
+        0.5736649039952938,
+        0.7402173930449778,
+        0.9590162292192552
+      ],
+      "fallback": "hold",
+      "crop": [
+        0.4421875,
+        0.0,
+        0.7578125,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 120,
+      "labels": [
+        "dog"
+      ],
+      "confidence": 0.8900738954544067,
+      "envelope": [
+        0.44288050537562096,
+        0.6237107962480221,
+        0.7223374538785587,
+        0.9601788874929162
+      ],
+      "fallback": "none",
+      "crop": [
+        0.4234375,
+        0.0,
+        0.7390625,
+        1.0
+      ]
+    }
+  ]
+}

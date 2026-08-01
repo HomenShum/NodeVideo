@@ -16,6 +16,109 @@ muting unusable camera audio, and handing the creator a usable export or license
 handoff. Agents choose and explain; versioned primitives measure; typed artifacts control fixed
 render code.
 
+## How NodeVideo understands music and video
+
+NodeVideo does not ask a language model to guess frame math from raw media. Versioned workers turn
+the files into time-indexed evidence; the agent chooses among typed options and explains them; a
+fixed renderer executes only the accepted `EditPlan`.
+
+```text
+music -> BPM / beats / downbeats / onsets / lyrics -------\
+                                                          > candidate cut moments
+video -> normalized pose / motion / holds / framing ------/           |
+                                                                      v
+                                                        global boundary + take search
+                                                                      |
+                                                                      v
+                                                               typed EditPlan
+                                                                      |
+                                            +-------------------------+------------------+
+                                            v                                            v
+                                  agent patch / approval                         fixed render/export
+```
+
+The machine-readable signals correspond to the cues a human editor uses:
+
+| A human editor notices | NodeVideo records |
+| --- | --- |
+| "That is the beat or musical lift." | BPM, beats, downbeats, onset strength, lyric boundaries, and signed offsets |
+| "The move lands or changes direction here." | Pose velocity, gesture apexes, holds/completions, and multi-take direction consensus |
+| "Take B shows this phrase better." | Choreography agreement, landmark completeness, framing, and relative motion energy |
+| "Cut here, but do not make the sequence frantic." | Multimodal boundary evidence plus a global DP/beam sequence score |
+
+The boundary search does not force a fixed beat grammar. It can retain an anticipatory or delayed
+cut when motion evidence is stronger, while recording the exact offset from the nearest musical
+event. For example, the integrated fixture places a boundary at `6.633 s`, `108 ms` after its
+nearest music event, then selects Take B with `fill` framing for the following phrase. Both takes
+were scored; the complete sequence, not one greedy per-shot choice, determined the result.
+
+```text
+raw files
+   -> measured evidence
+   -> candidate boundaries and source ranges
+   -> globally coherent sequence
+   -> reviewable EditPlan
+   -> preview, agent patches, undo, and export
+```
+
+### Who does what
+
+- **Media workers** own decoding, beat/onset detection, pose normalization, temporal alignment,
+  candidate scoring, and rendering.
+- **The agent** owns intent, tool selection, bounded plan changes, and explanations. It does not
+  calculate pose distance, invent an FFmpeg graph, or mutate pixels directly.
+- **The creator** approves every proposed mutation. The accepted plan is the shared state used by
+  the player, undo history, studio renderer, and local browser export.
+
+[Open the production edit studio](https://nodevideo-pi.vercel.app/edit). Its current loop is:
+
+```text
+ask -> inspect tool results -> review patch -> Apply patch -> preview -> undo or export
+```
+
+The browser exporter snapshots only the accepted plan and renders a silent H.264 MP4 locally with
+pinned FFmpeg WASM. The private song master is intentionally omitted from that download.
+
+## General creator pipeline
+
+`/creator.html` is the generalized, local-first orchestration surface. Drop an authorized video,
+optionally paste a transcript, choose cleanup, golden-quote variants, or founder launch, and compile
+one shared `MediaIndex` into reviewable output variants. Each variant exposes its source lineage,
+semantic EditPlan v2 operations, approval requirements, selected executors, and estimated cost
+before local export.
+
+```powershell
+npm run creator:dev
+npm run test:creator
+npm run proof:creator
+```
+
+The agent owns intent and routing; replaceable executors own transcription, VAD, shot detection,
+semantic selection, reframing, transitions, and rendering. The browser proof uses metadata, an
+optional low-confidence untimed transcript index, and a video-only H.264 renderer. The production
+local path now adds FFprobe/FFmpeg, optional Whisper, PySceneDetect, OpenCV sampling, approval-gated
+audio-preserving renders, and proof receipts. A pinned Higgsfield CLI adapter supplies optional
+specialist generation behind login, egress, cost, and rights gates; it is never reported as live
+until a provider job receipt exists.
+
+```powershell
+npm run media:index:doctor
+npm run executors:doctor
+npm run creator:local -- path/to/owned-source.mp4 --output .qa/evidence/my-run --preset variants
+```
+
+See [the generalized architecture](docs/architecture/GENERALIZED_CREATOR_PIPELINE.md), [executor
+integration contract](docs/architecture/EXECUTOR_INTEGRATION.md), [Higgsfield runbook](docs/operations/HIGGSFIELD_RUNBOOK.md),
+and [copy-ready end-to-end prompt suite](docs/testing/CREATOR_PIPELINE_TEST_PROMPTS.md).
+
+### Music rights modes
+
+| Music input | NodeVideo behavior |
+| --- | --- |
+| Owned or otherwise authorized audio | Bind its rights/provenance, analyze the declared excerpt, and route it through the studio render. |
+| Instagram or another licensed-platform catalog | Export no commercial bytes; provide track identity, search text, phrase anchors, and alignment instructions for in-platform confirmation. |
+| Disclosed calibration oracle | Use the supplied timing/audio only for that calibration and label it as non-blind evidence, never as proof of song selection or generalized taste. |
+
 ## Deployment replay
 
 [Open the NodeVideo production entry point](https://nodevideo-pi.vercel.app/). When this branch is
@@ -86,18 +189,17 @@ fixed renderer width-fits each cue, emits an inspectable glyph box, and `npm run
 checks that box against Pose Landmarker evidence from the rendered timeline. More than five percent
 body overlap blocks approval, including collisions that occur only near a cut boundary.
 
-## How the edit is interpreted
+## Evidence and artifact boundaries
 
-The source-only analyzer aligns time-indexed normalized poses from each take to the original dance,
-maps the user-chosen song's beats and downbeats, and builds a choreography candidate lattice. A
-global DP/beam search chooses phrase boundaries and takes from motion completion, gesture apex,
-lyric, onset, beat, and downbeat evidence. A fixed beat grammar is not an optimizer input.
+For each proposed phrase, the source-only dance analyzer currently weights choreography agreement
+at `40%`, landmark completeness at `20%`, framing at `15%`, and relative movement energy at `25%`.
+These are observable source-quality signals, not claims about artistry, confidence, or talent. A
+quality gate allows visual contrast between takes without silently selecting a materially worse
+performance.
 
-Every phrase candidate records choreography agreement, completeness, framing, expression/quality,
-and embodied-layout evidence. A quality gate allows contrast between takes without selecting a
-materially worse performance. Optional timed lyrics are placed in normalized safe zones outside the
-grounded body/face; missing or ambiguous grounding stops for manual review instead of inventing a
-result.
+Optional timed lyrics are represented as discrete overlay events and placed in normalized safe
+zones outside the grounded body and face. Missing or ambiguous grounding stops for manual review
+instead of inventing a valid result.
 
 Generation produces four canonical boundaries:
 
@@ -109,7 +211,8 @@ Generation produces four canonical boundaries:
 The EditPlan routes the chosen song and explicitly mutes audio from every take. It drives the fixed
 renderer in [`scripts/workers/edit-plan-renderer.mjs`](scripts/workers/edit-plan-renderer.mjs); an
 agent cannot inject JSX, CSS, shell commands, or a bespoke FFmpeg graph. The evaluator verifies all
-frozen hashes before it can open a held-out target plan.
+frozen hashes before it can open a held-out target plan, keeping generation evidence separate from
+evaluation-only ground truth.
 
 Read the full workflow, artifact contracts, rights boundary, proof ledger, and exact evaluator
 command in [`docs/song-conditioned-pipeline.md`](docs/song-conditioned-pipeline.md).

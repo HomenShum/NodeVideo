@@ -1,0 +1,388 @@
+{
+  "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+  "id": "atlas:sport-soccer",
+  "packId": "sport-soccer",
+  "source": {
+    "videoId": "O1x9Nrp5TTU",
+    "url": "https://www.youtube.com/watch?v=O1x9Nrp5TTU",
+    "title": "Soccer Players Training l Free Stock Footage | No Copyright Videos | Creative Common !",
+    "uploader": "Video Gallery - No Copyright Footage",
+    "license": "Creative Commons Attribution license (reuse allowed)",
+    "sourceSha256": "sha256:cd2954d9e4fdc14fadfa24eb0636adc56d8b36866cb58e2b0068b7689fc6c442",
+    "retrievedAt": "2026-07-22T03:12:48.776605+00:00"
+  },
+  "execution": {
+    "detector": "ultralytics/yolo11n-coco",
+    "tracker": "temporal-envelope-hold-v1",
+    "policy": "ball-action",
+    "frameCount": 125,
+    "analyzedFrames": 125,
+    "latencyMs": 18034,
+    "costUsd": 0
+  },
+  "evaluation": {
+    "tier": "rights-cleared-fixture",
+    "detectionCoverage": 1.0,
+    "targetCoverage": 1.0,
+    "lowConfidenceHoldRate": 0.0,
+    "trackSwitchCount": 0,
+    "manualCorrections": 0,
+    "previewExportParity": true,
+    "verdict": "pass",
+    "limitations": [
+      "Creative Commons stock fixture; not creator-held-out media.",
+      "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model."
+    ]
+  },
+  "outputs": {
+    "beforeImage": "fixtures/media/tracking-atlas-v1/sport-soccer/before.jpg",
+    "afterImage": "fixtures/media/tracking-atlas-v1/sport-soccer/after.jpg",
+    "comparisonVideo": "fixtures/media/tracking-atlas-v1/sport-soccer/comparison.mp4",
+    "analysisVideo": "fixtures/media/tracking-atlas-v1/sport-soccer/analysis.mp4",
+    "receipt": "fixtures/media/tracking-atlas-v1/sport-soccer/receipt.json",
+    "sha256": {
+      "beforeImage": "sha256:cce161358353614773aa0422bec5471b9fffa4f60313219df24de1d0ef8e78f1",
+      "afterImage": "sha256:e21b9fad077844f911348f585a5d075eca2e904f8ae2331f169914f41dad3af5",
+      "comparisonVideo": "sha256:c0c21b8fa46c4b16bbb9f7cf75f0bc4ae2d81e9a6d8e46f833c195711ebbcce4",
+      "analysisVideo": "sha256:34120b1dfe07740e9cad82d8a3d1a3c240949efd5798dba2d3b5a5b160237fa5"
+    }
+  },
+  "observations": [
+    {
+      "timelineFrame": 0,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.9097399115562439,
+      "envelope": [
+        0.4484777517564403,
+        0.2791666666666667,
+        0.5515222482435597,
+        0.875
+      ],
+      "fallback": "none",
+      "crop": [
+        0.36065573770491804,
+        0.0,
+        0.6768149882903981,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 8,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.9158228039741516,
+      "envelope": [
+        0.4498553984074943,
+        0.2779681090122198,
+        0.5515222482435597,
+        0.875
+      ],
+      "fallback": "none",
+      "crop": [
+        0.36065573770491804,
+        0.0,
+        0.6768149882903981,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 16,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.9152361750602722,
+      "envelope": [
+        0.4530374249012096,
+        0.278882652604929,
+        0.5507072677651336,
+        0.875
+      ],
+      "fallback": "none",
+      "crop": [
+        0.3618266978922717,
+        0.0,
+        0.6779859484777517,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 24,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.9223152995109558,
+      "envelope": [
+        0.45283262287847426,
+        0.27864969719186367,
+        0.5495449984969603,
+        0.8758411679485373
+      ],
+      "fallback": "none",
+      "crop": [
+        0.3618266978922717,
+        0.0,
+        0.6779859484777517,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 32,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.9071817398071289,
+      "envelope": [
+        0.4420480543260473,
+        0.2690859772155174,
+        0.5485180330908387,
+        0.8740684724705066
+      ],
+      "fallback": "none",
+      "crop": [
+        0.3559718969555035,
+        0.0,
+        0.6721311475409836,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 40,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.8969426155090332,
+      "envelope": [
+        0.43448552800650375,
+        0.23284326022811166,
+        0.5468506826727504,
+        0.8740413749971532
+      ],
+      "fallback": "none",
+      "crop": [
+        0.351288056206089,
+        0.0,
+        0.667447306791569,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 48,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.8942180871963501,
+      "envelope": [
+        0.43685675997155266,
+        0.26373040212294735,
+        0.5453839870717152,
+        0.8742516484948925
+      ],
+      "fallback": "none",
+      "crop": [
+        0.351288056206089,
+        0.0,
+        0.667447306791569,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 56,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.8839062452316284,
+      "envelope": [
+        0.4270648784277765,
+        0.2758979958122473,
+        0.5440363610043311,
+        0.8731895557567305
+      ],
+      "fallback": "none",
+      "crop": [
+        0.34543325526932084,
+        0.0,
+        0.6615925058548009,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 64,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.9042803049087524,
+      "envelope": [
+        0.4172614171441485,
+        0.27880707740316546,
+        0.542945501218392,
+        0.8736017876435388
+      ],
+      "fallback": "none",
+      "crop": [
+        0.3407494145199063,
+        0.0,
+        0.6569086651053864,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 72,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.9050871133804321,
+      "envelope": [
+        0.4347391639489545,
+        0.282060282210528,
+        0.5414371880661107,
+        0.8737392150448613
+      ],
+      "fallback": "none",
+      "crop": [
+        0.34894613583138173,
+        0.0,
+        0.6651053864168618,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 80,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.9125558137893677,
+      "envelope": [
+        0.44713805186445865,
+        0.2840077537518051,
+        0.5410763250068505,
+        0.8747422777959224
+      ],
+      "fallback": "none",
+      "crop": [
+        0.3548009367681499,
+        0.0,
+        0.6709601873536299,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 88,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.9189976453781128,
+      "envelope": [
+        0.4463196447351044,
+        0.28512866502111117,
+        0.5396873535260213,
+        0.8749473179512463
+      ],
+      "fallback": "none",
+      "crop": [
+        0.35362997658079626,
+        0.0,
+        0.6697892271662763,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 96,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.9129512906074524,
+      "envelope": [
+        0.4404150528330851,
+        0.28951390433099367,
+        0.5388554353167805,
+        0.8747362011041787
+      ],
+      "fallback": "none",
+      "crop": [
+        0.35011709601873536,
+        0.0,
+        0.6662763466042154,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 104,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.9242193698883057,
+      "envelope": [
+        0.4363534050675428,
+        0.2891016644587505,
+        0.5377537800854529,
+        0.8749460757898585
+      ],
+      "fallback": "none",
+      "crop": [
+        0.3477751756440281,
+        0.0,
+        0.6639344262295082,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 112,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.9334986209869385,
+      "envelope": [
+        0.4330492930810438,
+        0.28254796002252347,
+        0.5367136057599758,
+        0.8736574980215568
+      ],
+      "fallback": "none",
+      "crop": [
+        0.34543325526932084,
+        0.0,
+        0.6615925058548009,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 120,
+      "labels": [
+        "person",
+        "sports ball"
+      ],
+      "confidence": 0.9209574460983276,
+      "envelope": [
+        0.43570444495327054,
+        0.27862379505591917,
+        0.5363843605234481,
+        0.8734906786338411
+      ],
+      "fallback": "none",
+      "crop": [
+        0.34660421545667447,
+        0.0,
+        0.6627634660421545,
+        1.0
+      ]
+    }
+  ]
+}

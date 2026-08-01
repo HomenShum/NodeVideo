@@ -1,0 +1,17 @@
+{
+  "schema": "nodevideo.capability-eval.v1",
+  "pack": "nodevideo.object-product@0.1.0",
+  "profile": "object-product-cc-fixture-v1",
+  "cases": [
+    {
+      "id": "FxXC-Rnq2Zw",
+      "status": "passed",
+      "proof": "fixtures/media/tracking-atlas-v1/object-product/receipt.json"
+    },
+    {
+      "id": "object-product-held-out",
+      "status": "planned"
+    }
+  ],
+  "claimBoundary": "The passing claim covers the named rights-cleared Creative Commons fixture and common contract only. Creator-held-out generalization remains a promotion gate."
+}

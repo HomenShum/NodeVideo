@@ -1,0 +1,45 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.sport-basketball",
+  "version": "0.1.0",
+  "implementationStatus": "rights-cleared-specialist-fixture-validated",
+  "title": "Basketball",
+  "description": "Follows the ball, hoop, and nearest action envelope rather than centering one player blindly.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json"
+  },
+  "inputs": ["video/authorized", "video/target-selection", "video/framing-intent"],
+  "outputs": [
+    "video/detection-track",
+    "video/action-envelope",
+    "video/reframe-plan",
+    "video/reframe-critic"
+  ],
+  "tools": [
+    "sport-basketball.detect",
+    "sport-basketball.track",
+    "sport-basketball.build_action_envelope",
+    "sport-basketball.plan_reframe",
+    "sport-basketball.validate"
+  ],
+  "permissions": ["read_authorized_video", "write_private_derived_artifacts"],
+  "uiRenderers": ["TrackingAtlasCard", "DetectorArenaComparison", "CropPathOverlay"],
+  "evalSuite": "evals/contract-v1.json",
+  "validation": {
+    "status": "passed",
+    "profile": "sport-basketball-cc-fixture-v1",
+    "fixture": "TWLLv2ikavc",
+    "excludes": ["generalized-held-out-creator-coverage", "autonomous-publication"]
+  },
+  "execution": {
+    "kind": "specialist-detector-to-common-reframe-contract",
+    "detectorChain": ["yolo11n-coco", "bytetrack", "court-landmarks-optional"],
+    "framingPolicy": "ball-action",
+    "rawMediaEgress": "none",
+    "modelRequired": false,
+    "applicationWriteAuthority": "proposal-validation-approval-apply"
+  }
+}

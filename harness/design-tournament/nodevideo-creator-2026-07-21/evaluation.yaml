@@ -1,0 +1,46 @@
+schemaVersion: nodekit.design-tournament/v1
+fixture: authorized-real-v2
+directions:
+  A:
+    concealedLabel: direction-17
+    concept: NodeRoom campaign workspace
+  B:
+    concealedLabel: direction-42
+    concept: NodeSlide creator studio
+  C:
+    concealedLabel: direction-68
+    concept: CapCut x Cursor hybrid
+requiredFrames:
+  - desktop-first-arrival
+  - desktop-active-workspace
+  - desktop-proposal-review
+  - mobile-canvas
+  - mobile-agent
+  - mobile-review
+criteria:
+  - first-run-clarity
+  - artifact-dominance
+  - creator-efficiency
+  - agent-legibility
+  - review-safety
+  - mobile-usability
+  - visual-quality
+scores:
+  direction-17: [8, 7, 7, 8, 9, 7, 8]
+  direction-42: [8, 9, 8, 8, 8, 8, 9]
+  direction-68: [9, 10, 10, 9, 9, 9, 9]
+pairwise:
+  - [direction-17, direction-42, direction-42]
+  - [direction-17, direction-68, direction-68]
+  - [direction-42, direction-68, direction-68]
+decision:
+  winner: direction-68
+  combine:
+    - direction-17 campaign and durable stage rail
+    - direction-42 selection-aware artifact hierarchy and comparison
+    - direction-68 video-first canvas, timeline, minimal chrome, and persistent agent rail
+  rejected:
+    direction-17: campaign structure can overtake the editing artifact
+    direction-42: studio model is strong but does not make timeline manipulation fast enough
+  reason: The hybrid is the only direction that simultaneously maximizes artifact dominance, editing speed, agent adjacency, and mobile mode clarity while preserving governed review.
+

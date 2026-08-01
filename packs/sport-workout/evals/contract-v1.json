@@ -1,0 +1,17 @@
+{
+  "schema": "nodevideo.capability-eval.v1",
+  "pack": "nodevideo.sport-workout@0.1.0",
+  "profile": "sport-workout-cc-fixture-v1",
+  "cases": [
+    {
+      "id": "6wO8hWIJT_4",
+      "status": "passed",
+      "proof": "fixtures/media/tracking-atlas-v1/sport-workout/receipt.json"
+    },
+    {
+      "id": "sport-workout-held-out",
+      "status": "planned"
+    }
+  ],
+  "claimBoundary": "The passing claim covers the named rights-cleared Creative Commons fixture and common contract only. Creator-held-out generalization remains a promotion gate."
+}

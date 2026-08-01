@@ -1,0 +1,30 @@
+id: nodevideo-ui-negative-001
+
+failureClasses:
+  - PRODUCT_TOPOLOGY_MISS
+  - GENERIC_DASHBOARD_FALLBACK
+  - REFERENCE_DISCOVERY_FAILURE
+  - UI_OPERABILITY_FAILURE
+  - MOBILE_TOPOLOGY_FAILURE
+  - BACKSTAGE_COMPLEXITY_LEAK
+
+whyItFailed:
+  - onboarding, editing, proof, and settings share one page
+  - no persistent agent/review rail
+  - primary artifact does not control the layout
+  - mobile stacks every desktop region vertically
+  - internal executor details dominate the normal workflow
+  - approval is visually subordinate to export
+
+preserve:
+  - honest source lineage
+  - local-first disclosure
+  - exact executor readiness
+  - variant compilation
+  - durable Caseflow and version safety
+
+replacement:
+  primaryRoute: /creator
+  diagnosticRoute: /creator/runs/:runId/proof
+  topology: artifact-workspace
+

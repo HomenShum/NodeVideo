@@ -53,6 +53,7 @@ describe('browser edit-plan compiler', () => {
       audio: 'omitted',
       overlayAnimation: 'fixed-plan-animations',
       gradeHandling: 'browser-proxy-sdr',
+      cropHandling: 'none',
       videoClipCount: 7,
       textOverlayCount: 14,
     });
@@ -76,7 +77,7 @@ describe('browser edit-plan compiler', () => {
     if (!videoTrack) throw new Error('fixture video track missing');
     videoTrack.clips[0].fit = 'crop';
 
-    expect(() => compileBrowserEditPlan(cropPlan, bindings)).toThrow(/fit\/fill only/u);
+    expect(() => compileBrowserEditPlan(cropPlan, bindings)).toThrow(/requires crop keyframes/u);
     expect(() => compileBrowserEditPlan(cloneFixture(), { 'asset.take-a': 'take-a.mp4' })).toThrow(
       /Missing browser media binding for asset\.take-b/u,
     );
@@ -86,5 +87,23 @@ describe('browser edit-plan compiler', () => {
         'asset.take-b': '../take-b.mp4',
       }),
     ).toThrow(/safe MEMFS filename/u);
+  });
+
+  it('compiles a bounded Smart Reframe crop path into the browser FFmpeg graph', () => {
+    const plan = cloneFixture();
+    const videoTrack = mutableTracks(plan).find((track) => track.kind === 'video');
+    if (!videoTrack) throw new Error('fixture video track missing');
+    const clip = videoTrack.clips[0];
+    clip.fit = 'crop';
+    clip.cropKeyframes = [
+      { timelineFrame: 0, box: { x: 0.1, y: 0.05, width: 0.5, height: 0.9 } },
+      { timelineFrame: 30, box: { x: 0.2, y: 0.05, width: 0.5, height: 0.9 } },
+    ];
+
+    const compiled = compileBrowserEditPlan(plan, bindings);
+    const filterGraph = compiled.args[compiled.args.indexOf('-filter_complex') + 1];
+    expect(filterGraph).toContain("crop=w='trunc(iw*0.5/2)*2'");
+    expect(filterGraph).toContain('if(lte(n,30)');
+    expect(compiled.manifest.cropHandling).toBe('edit-plan-keyframes');
   });
 });

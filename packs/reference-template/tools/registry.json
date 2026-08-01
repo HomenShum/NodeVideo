@@ -1,0 +1,26 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.reference-template@0.1.0",
+  "tools": [
+    {
+      "id": "reference.analyze-structure",
+      "accepts": ["media/reference-index"],
+      "produces": ["reference/structural-fingerprint"]
+    },
+    {
+      "id": "template.derive",
+      "accepts": ["reference/structural-fingerprint"],
+      "produces": ["template/spec"]
+    },
+    {
+      "id": "template.rights-validate",
+      "accepts": ["template/spec", "reference/rights-attestation"],
+      "produces": ["validation/template-rights"]
+    },
+    {
+      "id": "template.validate",
+      "accepts": ["template/spec"],
+      "produces": ["validation/template-structure"]
+    }
+  ]
+}

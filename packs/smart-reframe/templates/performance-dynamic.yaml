@@ -1,0 +1,5 @@
+policy: performance-dynamic
+motionPreset: responsive
+movementMargin: 0.04
+allowBodyClipping: true
+anchor: rule-of-thirds-left

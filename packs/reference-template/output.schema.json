@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["templateSpecId", "structuralInspirationOnly", "copiedAssetIds"],
+  "properties": {
+    "templateSpecId": { "type": "string" },
+    "structuralInspirationOnly": { "const": true },
+    "copiedAssetIds": { "type": "array", "maxItems": 0 },
+    "provenanceReceiptId": { "type": "string" }
+  },
+  "additionalProperties": false
+}

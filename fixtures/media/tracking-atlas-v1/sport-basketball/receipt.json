@@ -1,0 +1,353 @@
+{
+  "schemaVersion": "nodevideo.tracking-atlas-receipt.v1",
+  "id": "atlas:sport-basketball",
+  "packId": "sport-basketball",
+  "source": {
+    "videoId": "TWLLv2ikavc",
+    "url": "https://www.youtube.com/watch?v=TWLLv2ikavc",
+    "title": "Basketball - Free Stock Creative Commons Video",
+    "uploader": "Freestocks",
+    "license": "Creative Commons Attribution license (reuse allowed)",
+    "sourceSha256": "sha256:281c2ab4e025521392752b4d54a9d25660f29f6ebd1aa47b88edb58fe7ba1d82",
+    "retrievedAt": "2026-07-22T03:12:30.706968+00:00"
+  },
+  "execution": {
+    "detector": "manual-first-frame-seed+opencv-template",
+    "tracker": "opencv-template+temporal-envelope-hold-v1",
+    "policy": "ball-action",
+    "frameCount": 149,
+    "analyzedFrames": 149,
+    "latencyMs": 33637,
+    "costUsd": 0
+  },
+  "evaluation": {
+    "tier": "rights-cleared-fixture",
+    "detectionCoverage": 1.0,
+    "targetCoverage": 1.0,
+    "lowConfidenceHoldRate": 0.0,
+    "trackSwitchCount": 0,
+    "manualCorrections": 0,
+    "previewExportParity": true,
+    "verdict": "pass",
+    "limitations": [
+      "Creative Commons stock fixture; not creator-held-out media.",
+      "YOLO11n COCO detections are a low-cost specialist baseline, not a universal domain model.",
+      "This fixture uses an explicit first-frame target seed plus local template tracking; it does not prove automatic target discovery."
+    ]
+  },
+  "outputs": {
+    "beforeImage": "fixtures/media/tracking-atlas-v1/sport-basketball/before.jpg",
+    "afterImage": "fixtures/media/tracking-atlas-v1/sport-basketball/after.jpg",
+    "comparisonVideo": "fixtures/media/tracking-atlas-v1/sport-basketball/comparison.mp4",
+    "analysisVideo": "fixtures/media/tracking-atlas-v1/sport-basketball/analysis.mp4",
+    "receipt": "fixtures/media/tracking-atlas-v1/sport-basketball/receipt.json",
+    "sha256": {
+      "beforeImage": "sha256:1a30219e1b0fd7cea3f857912baaded6134cde36f38509ccc0636f56bea0d9d1",
+      "afterImage": "sha256:645107150fa435c877dde6330ed31f4472c8e748222423073ef0cb439e9d909d",
+      "comparisonVideo": "sha256:1c8369936ee5cdbbedcf54cfc2cb14399f7fb4d261d8f969384c9a2dc6a63fd5",
+      "analysisVideo": "sha256:516bf324b3b02a4071b1611a50fd98e7e7681df30f328c13ff32ce10d7f9a0ed"
+    }
+  },
+  "observations": [
+    {
+      "timelineFrame": 0,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.2203125,
+        0.019444444444444445,
+        0.8203125,
+        0.8194444444444444
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 10,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.221485491452238,
+        0.02305164658175645,
+        0.8214854914522383,
+        0.8230516465817566
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 20,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.2216323503169216,
+        0.028566254573844325,
+        0.8216323503169218,
+        0.8285662545738445
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 30,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.2218416482787566,
+        0.03434224284741325,
+        0.8218416482787572,
+        0.8343422428474135
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 40,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.2194351888446359,
+        0.03586798365057319,
+        0.8194351888446361,
+        0.8358679836505732
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 50,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.21970023760778865,
+        0.03661441415371791,
+        0.8197002376077887,
+        0.8366144141537181
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 60,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.22147144873036465,
+        0.03428431143274938,
+        0.8214714487303649,
+        0.8342843114327497
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 70,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.22376362316328074,
+        0.03536002109167513,
+        0.8237636231632807,
+        0.8353600210916753
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 80,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.22635441542863877,
+        0.02818443789425011,
+        0.8263544154286389,
+        0.8281844378942503
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 90,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.22948100121225265,
+        0.019710198891430872,
+        0.8294810012122528,
+        0.8197101988914312
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 100,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.23258869905167331,
+        0.014999676041956064,
+        0.8325886990516735,
+        0.8149996760419562
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 110,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.23591795352717898,
+        0.015974879197911254,
+        0.835917953527179,
+        0.8159748791979116
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 120,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.2383700404027288,
+        0.014361620968387511,
+        0.838370040402729,
+        0.8143616209683876
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 130,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.2404566540374106,
+        0.013668507717849176,
+        0.8404566540374108,
+        0.8136685077178493
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "timelineFrame": 140,
+      "labels": [
+        "manual-seed:ball-and-hoop"
+      ],
+      "confidence": 0.55,
+      "envelope": [
+        0.2507244427546172,
+        0.02826082719691654,
+        0.8264419098746254,
+        0.7999882067544848
+      ],
+      "fallback": "none",
+      "crop": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    }
+  ]
+}

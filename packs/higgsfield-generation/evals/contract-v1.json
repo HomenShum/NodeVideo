@@ -1,0 +1,11 @@
+{
+  "schema": "nodevideo.eval-suite.v1",
+  "id": "higgsfield-generation-contract-v1",
+  "cases": [
+    { "id": "parameter-shell-injection-rejected", "expected": "pass" },
+    { "id": "promotion-not-inferred-for-cli", "expected": "pass" },
+    { "id": "provider-job-id-persisted-before-poll", "expected": "pass" },
+    { "id": "output-hash-and-rights-receipt-required", "expected": "pass" },
+    { "id": "private-media-egress-rejected", "expected": "pass" }
+  ]
+}

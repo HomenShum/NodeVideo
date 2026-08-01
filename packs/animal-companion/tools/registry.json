@@ -1,0 +1,31 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.animal-companion@0.1.0",
+  "tools": [
+    {
+      "id": "animal-companion.detect",
+      "accepts": ["video/authorized"],
+      "produces": ["video/detections"]
+    },
+    {
+      "id": "animal-companion.track",
+      "accepts": ["video/detections"],
+      "produces": ["video/detection-track"]
+    },
+    {
+      "id": "animal-companion.build_action_envelope",
+      "accepts": ["video/detection-track"],
+      "produces": ["video/action-envelope"]
+    },
+    {
+      "id": "animal-companion.plan_reframe",
+      "accepts": ["video/action-envelope", "video/framing-intent"],
+      "produces": ["video/reframe-plan"]
+    },
+    {
+      "id": "animal-companion.validate",
+      "accepts": ["video/reframe-plan"],
+      "produces": ["video/reframe-critic"]
+    }
+  ]
+}

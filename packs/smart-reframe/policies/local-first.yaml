@@ -1,0 +1,9 @@
+mediaProcessing: local
+rawVideoEgress: none
+derivedFrameEgress: none
+analytics: off-by-default
+remoteExecutor: exact-approval-required
+identitySwitch: fail-closed
+lowConfidence: hold
+manualOverrides: authoritative
+

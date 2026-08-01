@@ -1,0 +1,15 @@
+{
+  "schema": "nodevideo.eval-suite.v1",
+  "id": "talking-head-cleanup-contract-v1",
+  "cases": [
+    {
+      "id": "long-silence",
+      "assertions": ["long silence is proposed", "sentence-edge padding is preserved"]
+    },
+    { "id": "intentional-pause", "assertions": ["short emphasis pause is preserved"] },
+    {
+      "id": "filler-boundary",
+      "assertions": ["adjacent words are not truncated", "removal requires review"]
+    }
+  ]
+}

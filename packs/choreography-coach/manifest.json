@@ -27,6 +27,7 @@
     "choreography.score-observable-motion",
     "render.skeleton-comparison"
   ],
+  "evalSuite": "evals/contract-v1.json",
   "execution": {
     "kind": "private-local-worker-graph",
     "modelRequired": true,

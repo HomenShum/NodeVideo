@@ -1,6 +1,814 @@
 @import "../../../src/styles.css";
 @source ".";
 
+/* NodeVideo creator: artifact-first agent-workspace composition. */
+.creator-shell,
+.creator-start {
+  color: var(--foreground);
+}
+
+.creator-shell {
+  min-height: 100dvh;
+  max-width: 100vw;
+  overflow-x: hidden;
+  contain: inline-size;
+  display: grid;
+  grid-template-rows: 64px auto minmax(0, 1fr) 34px;
+}
+
+.creator-topbar {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in oklab, var(--card) 92%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.creator-brand {
+  min-width: 180px;
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  font-size: .95rem;
+}
+
+.creator-brand > span {
+  width: 2rem;
+  height: 2rem;
+  border-radius: .55rem;
+  display: grid;
+  place-items: center;
+  background: var(--color-brand);
+  color: var(--primary-foreground);
+}
+
+.creator-atlas-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  color: var(--muted-foreground);
+  font-size: .67rem;
+  text-decoration: none;
+}
+
+.creator-atlas-link:hover,
+.creator-atlas-link:focus-visible {
+  color: var(--foreground);
+}
+
+.creator-stage-progress {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: .2rem;
+}
+
+.creator-stage-progress span {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .42rem .7rem;
+  border-radius: 999px;
+  color: var(--muted-foreground);
+  font-size: .72rem;
+}
+
+.creator-stage-progress .is-current {
+  color: var(--foreground);
+  background: color-mix(in oklab, var(--color-brand) 16%, transparent);
+}
+
+.creator-stage-progress .is-complete {
+  color: var(--color-brand);
+}
+
+.creator-current-action {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .55rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in oklab, var(--color-brand) 5%, var(--background));
+  font-size: .76rem;
+}
+
+.creator-current-action span {
+  color: var(--muted-foreground);
+}
+
+.creator-workspace-grid {
+  min-height: 0;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 238px minmax(0, 1fr) 390px;
+}
+
+.creator-project-rail {
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1rem;
+  border-right: 1px solid var(--border);
+  background: color-mix(in oklab, var(--card) 72%, var(--background));
+}
+
+.creator-eyebrow {
+  margin: 0 0 .35rem;
+  color: var(--muted-foreground);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.creator-project-rail h1 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.creator-project-rail > div > p:last-child {
+  margin-top: .3rem;
+  color: var(--muted-foreground);
+  font-size: .7rem;
+}
+
+.creator-project-steps {
+  display: grid;
+  gap: .25rem;
+  margin-top: 1.2rem;
+}
+.creator-project-steps > div {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: .55rem;
+  padding: .55rem;
+  border-radius: .55rem;
+  color: var(--muted-foreground);
+}
+.creator-project-steps > div > span {
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: .62rem;
+}
+.creator-project-steps p {
+  margin: 0;
+  line-height: 1.2;
+}
+.creator-project-steps b {
+  display: block;
+  color: inherit;
+  font-size: .72rem;
+}
+.creator-project-steps small {
+  display: none;
+  margin-top: .28rem;
+  font-size: .62rem;
+  line-height: 1.35;
+}
+.creator-project-steps .is-current {
+  color: var(--foreground);
+  background: var(--muted);
+  box-shadow: inset 2px 0 var(--color-brand);
+}
+.creator-project-steps .is-current small {
+  display: block;
+  color: var(--muted-foreground);
+}
+.creator-project-steps .is-complete {
+  color: var(--color-brand);
+}
+
+.creator-source-vault {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.creator-source-vault > div {
+  display: flex;
+  gap: .5rem;
+  padding: .65rem;
+  border: 1px solid var(--border);
+  border-radius: .6rem;
+}
+.creator-source-vault span {
+  min-width: 0;
+}
+.creator-source-vault b,
+.creator-source-vault small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.creator-source-vault b {
+  font-size: .7rem;
+}
+.creator-source-vault small {
+  margin-top: .2rem;
+  color: var(--muted-foreground);
+  font-size: .6rem;
+}
+.creator-source-vault label {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  margin-top: .55rem;
+  cursor: pointer;
+  color: var(--muted-foreground);
+  font-size: .65rem;
+}
+
+.creator-artifact-stage {
+  min-width: 0;
+  min-height: 0;
+  padding: .9rem 1rem;
+  display: grid;
+  grid-template-rows: auto minmax(260px, 1fr) minmax(150px, 28%);
+  gap: .65rem;
+  overflow: hidden;
+}
+.creator-artifact-stage.has-smart-reframe {
+  grid-template-rows: auto auto minmax(260px, 1fr) minmax(150px, 28%);
+}
+
+.creator-artifact-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+}
+.creator-artifact-header h2 {
+  margin: 0;
+  font-size: .95rem;
+  text-transform: capitalize;
+}
+.creator-artifact-header > div > span {
+  color: var(--muted-foreground);
+  font-size: .65rem;
+}
+.creator-variant-switcher {
+  display: flex;
+  gap: .35rem;
+  max-width: 60%;
+  overflow-x: auto;
+}
+.creator-variant-switcher button {
+  min-width: 74px;
+  padding: .42rem .55rem;
+  border: 1px solid var(--border);
+  border-radius: .55rem;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-size: .68rem;
+}
+.creator-variant-switcher button[aria-selected="true"] {
+  background: var(--foreground);
+  color: var(--background);
+}
+.creator-variant-switcher small {
+  display: block;
+  max-width: 82px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: .55rem;
+}
+
+.creator-video-canvas {
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: .75rem;
+  background: #050608;
+}
+.creator-video-canvas > div:not(.creator-canvas-empty) {
+  width: 100%;
+  height: 100%;
+}
+.creator-video-canvas video {
+  object-fit: contain;
+}
+.smart-reframe-source-preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+.smart-reframe-source-preview video {
+  width: 100%;
+  height: 100%;
+}
+.smart-reframe-bar {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  overflow-x: auto;
+  padding: .42rem .5rem;
+  border: 1px solid var(--border);
+  border-radius: .65rem;
+  background: color-mix(in oklab, var(--card) 82%, transparent);
+}
+.smart-reframe-title {
+  min-width: 132px;
+}
+.smart-reframe-title span,
+.smart-reframe-title small {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  white-space: nowrap;
+}
+.smart-reframe-title span {
+  font-size: .68rem;
+  font-weight: 650;
+}
+.smart-reframe-title small {
+  color: var(--muted-foreground);
+  font-size: .55rem;
+}
+.smart-reframe-subjects {
+  display: flex;
+  gap: .3rem;
+}
+.smart-reframe-subjects > button:not([data-slot]) {
+  min-width: 84px;
+  padding: .3rem .45rem;
+  border: 1px solid var(--border);
+  border-radius: .45rem;
+  background: var(--muted);
+  font-size: .62rem;
+  text-align: left;
+}
+.smart-reframe-subjects > button.is-selected {
+  border-color: var(--color-brand);
+  background: color-mix(in oklab, var(--color-brand) 12%, var(--card));
+}
+.smart-reframe-subjects small {
+  display: block;
+  color: var(--muted-foreground);
+  font-size: .5rem;
+}
+.smart-crop-frame {
+  position: absolute;
+  border: 2px solid var(--color-brand);
+  background: color-mix(in oklab, var(--color-brand) 6%, transparent);
+  box-shadow: 0 0 0 9999px rgb(0 0 0 / 0.42);
+  color: white;
+  cursor: default;
+}
+.smart-crop-frame.is-editable {
+  cursor: move;
+}
+.smart-crop-frame span {
+  position: absolute;
+  top: .3rem;
+  left: .3rem;
+  padding: .15rem .3rem;
+  border-radius: .25rem;
+  background: rgb(0 0 0 / 0.72);
+  font-size: .55rem;
+}
+.smart-crop-scrubber {
+  position: absolute;
+  right: .75rem;
+  bottom: .75rem;
+  left: .75rem;
+  z-index: 2;
+  display: grid;
+  gap: .25rem;
+  padding: .45rem .6rem;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  border-radius: .5rem;
+  background: rgb(0 0 0 / 0.78);
+  color: white;
+  font-size: .58rem;
+}
+.smart-crop-scrubber input {
+  width: 100%;
+  accent-color: var(--color-brand);
+}
+.creator-canvas-empty {
+  text-align: center;
+  color: var(--muted-foreground);
+}
+.creator-canvas-empty svg {
+  margin: 0 auto .7rem;
+}
+.creator-canvas-empty h3 {
+  margin: 0;
+  color: var(--foreground);
+  font-size: .9rem;
+}
+.creator-canvas-empty p {
+  margin: .35rem 0 0;
+  font-size: .7rem;
+}
+
+.creator-timeline,
+.creator-timeline-empty {
+  min-height: 0;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: .7rem;
+  background: color-mix(in oklab, var(--card) 60%, var(--background));
+  padding: .7rem;
+}
+.creator-timeline-empty {
+  display: grid;
+  place-items: center;
+  color: var(--muted-foreground);
+  font-size: .72rem;
+}
+.creator-time-ruler {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted-foreground);
+  font: .58rem ui-monospace, monospace;
+}
+.creator-track {
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  align-items: center;
+  gap: .55rem;
+  margin-top: .45rem;
+}
+.creator-track > div:first-child b,
+.creator-track > div:first-child span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: .6rem;
+}
+.creator-track > div:first-child span {
+  color: var(--muted-foreground);
+}
+.creator-track-lane {
+  height: 34px;
+  position: relative;
+  overflow: hidden;
+  border-radius: .35rem;
+  background: var(--muted);
+}
+.creator-track-lane button {
+  position: absolute;
+  inset-block: 3px;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--color-brand) 45%, var(--border));
+  border-radius: .3rem;
+  background: color-mix(in oklab, var(--color-brand) 14%, var(--card));
+  color: var(--foreground);
+  padding: 0 .35rem;
+  text-align: left;
+  font: .55rem ui-monospace, monospace;
+}
+.smart-reframe-track .creator-track-lane i {
+  position: absolute;
+  top: 9px;
+  width: 2px;
+  height: 16px;
+  background: var(--color-brand);
+}
+.smart-reframe-track .creator-track-lane i.is-manual {
+  width: 5px;
+  background: #f6c453;
+}
+.creator-audio-route {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  margin-top: .5rem;
+  padding-top: .45rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: .58rem;
+}
+
+.creator-agent-rail {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-left: 1px solid var(--border);
+  background: var(--card);
+}
+.creator-agent-rail > aside {
+  height: 100%;
+  min-height: 0;
+  border-radius: 0;
+  box-shadow: none;
+  position: static;
+}
+.creator-run-strip {
+  min-height: 34px;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .45rem 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted-foreground);
+  background: var(--card);
+  font-size: .62rem;
+}
+.creator-run-strip span {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.creator-mobile-nav {
+  display: none;
+}
+
+.creator-start-stage {
+  min-height: calc(100dvh - 64px);
+  display: grid;
+  place-items: center;
+  padding: 3rem 1rem;
+  background: radial-gradient(
+    circle at 50% 0,
+    color-mix(in oklab, var(--color-brand) 13%, transparent),
+    transparent 42%
+  );
+}
+.creator-start-copy {
+  width: min(780px, 100%);
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+.creator-start-copy h1 {
+  margin: 1rem 0 .75rem;
+  font-size: clamp(2.3rem, 6vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: -.045em;
+}
+.creator-start-copy > p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: var(--muted-foreground);
+  font-size: 1rem;
+}
+.creator-outcome-composer {
+  margin-top: 2rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 22%, var(--border));
+  border-radius: 1rem;
+  padding: .8rem;
+  text-align: left;
+  background: var(--card);
+  box-shadow: 0 30px 90px color-mix(in oklab, black 35%, transparent);
+}
+.creator-outcome-composer textarea {
+  width: 100%;
+  min-height: 108px;
+  resize: vertical;
+  border: 0;
+  outline: 0;
+  padding: .55rem;
+  background: transparent;
+  color: var(--foreground);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.creator-start-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: .7rem;
+}
+.creator-file-action {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  min-height: 2.25rem;
+  padding: .45rem .8rem;
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+  cursor: pointer;
+  font-size: .78rem;
+}
+.creator-template-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .55rem;
+  margin-top: .8rem;
+}
+.creator-template-row button {
+  padding: .8rem;
+  border: 1px solid var(--border);
+  border-radius: .7rem;
+  background: color-mix(in oklab, var(--card) 75%, transparent);
+  color: var(--foreground);
+  text-align: left;
+}
+.creator-template-row button.is-selected {
+  border-color: color-mix(in oklab, var(--color-brand) 65%, var(--border));
+  background: color-mix(in oklab, var(--color-brand) 8%, var(--card));
+}
+.creator-template-row b,
+.creator-template-row span {
+  display: block;
+}
+.creator-template-row b {
+  font-size: .72rem;
+}
+.creator-template-row span {
+  margin-top: .25rem;
+  color: var(--muted-foreground);
+  font-size: .62rem;
+}
+.creator-start-status {
+  margin-top: 1rem !important;
+  font-size: .7rem !important;
+}
+
+@media (max-width: 1350px) and (min-width: 1024px) {
+  .creator-workspace-grid {
+    grid-template-columns: 210px minmax(0, 1fr) 340px;
+  }
+  .creator-project-rail {
+    padding: .75rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  body:has(.creator-shell) {
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .creator-shell {
+    grid-template-rows: 54px auto minmax(0, 1fr) 44px;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .creator-topbar {
+    min-height: 54px;
+    padding: 0 .75rem;
+  }
+  .creator-brand {
+    min-width: auto;
+  }
+  .creator-topbar > .creator-brand + .creator-stage-progress {
+    justify-content: flex-end;
+  }
+  .creator-topbar > :last-child {
+    display: none;
+  }
+  .creator-stage-progress span {
+    display: none;
+  }
+  .creator-stage-progress .is-current {
+    display: flex;
+  }
+  .creator-current-action {
+    padding: .55rem .75rem;
+    align-items: flex-start;
+  }
+  .creator-current-action span {
+    line-height: 1.25;
+  }
+  .creator-workspace-grid {
+    display: block;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .creator-project-rail,
+  .creator-artifact-stage,
+  .creator-agent-rail {
+    display: none;
+    height: 100%;
+    border: 0;
+  }
+  .creator-workspace-grid.mobile-canvas .creator-artifact-stage {
+    display: grid;
+  }
+  .creator-workspace-grid.mobile-agent .creator-agent-rail,
+  .creator-workspace-grid.mobile-review .creator-agent-rail {
+    display: block;
+  }
+  .creator-workspace-grid.mobile-sources .creator-project-rail {
+    display: block;
+  }
+  .creator-workspace-grid.mobile-review
+    .creator-agent-rail
+    [aria-label="NodeVideo agent"]
+    > header
+    button:first-of-type {
+    outline: 2px solid var(--color-brand);
+  }
+  .creator-artifact-stage {
+    padding: .55rem;
+    grid-template-rows: auto minmax(220px, 1fr) 142px;
+  }
+  .creator-artifact-stage.has-smart-reframe {
+    grid-template-rows: auto auto minmax(220px, 1fr) 142px;
+  }
+  .creator-artifact-header {
+    align-items: start;
+  }
+  .creator-artifact-header > div:first-child > span {
+    display: none;
+  }
+  .creator-variant-switcher {
+    max-width: 58%;
+  }
+  .creator-video-canvas {
+    border-radius: .55rem;
+  }
+  .creator-timeline {
+    padding: .45rem;
+  }
+  .creator-track {
+    grid-template-columns: 46px 1fr;
+  }
+  .creator-agent-rail > aside {
+    min-height: 0;
+  }
+  .creator-run-strip {
+    display: none;
+  }
+  .creator-mobile-nav {
+    display: flex;
+    align-items: stretch;
+    border-top: 1px solid var(--border);
+    background: var(--card);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .creator-mobile-nav button {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: .15rem;
+    border: 0;
+    background: transparent;
+    color: var(--muted-foreground);
+    font-size: .58rem;
+  }
+  .creator-mobile-nav button.is-current {
+    color: var(--color-brand);
+  }
+  .creator-start .creator-topbar {
+    justify-content: space-between;
+  }
+  .creator-start .creator-topbar > :last-child {
+    display: inline-flex;
+  }
+  .creator-start-stage {
+    min-height: calc(100dvh - 54px);
+    padding: 1.5rem .75rem;
+    align-items: start;
+  }
+  .creator-start {
+    overflow-x: hidden;
+  }
+  .creator-start-copy h1 {
+    margin-top: .8rem;
+    font-size: 2.6rem;
+  }
+  .creator-start-copy > p {
+    font-size: .85rem;
+  }
+  .creator-outcome-composer {
+    margin-top: 1.25rem;
+  }
+  .creator-start-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .creator-start-actions > div,
+  .creator-start-actions > button {
+    width: 100%;
+  }
+  .creator-start-actions > div > * {
+    flex: 1;
+  }
+  .creator-template-row {
+    display: flex;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .creator-template-row button {
+    min-width: 180px;
+  }
+}
+
 /* Wavesurfer regions carry lane identity: take A cuts render in brand lime,
    take B cuts in neutral; downbeat markers are hairlines. */
 .stitch-region-a > ::part(region) {

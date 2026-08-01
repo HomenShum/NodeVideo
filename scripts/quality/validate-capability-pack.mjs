@@ -1,11 +1,16 @@
 import { createHash } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
+import { access, readFile, readdir } from 'node:fs/promises';
 import { basename, resolve } from 'node:path';
 import addFormats from 'ajv-formats';
 import Ajv2020 from 'ajv/dist/2020.js';
 
 const root = resolve(import.meta.dirname, '..', '..');
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
+const exists = async (path) =>
+  access(resolve(root, path)).then(
+    () => true,
+    () => false,
+  );
 const digest = async (path) =>
   createHash('sha256')
     .update(await readFile(resolve(root, path)))
@@ -375,7 +380,52 @@ const coachChecks = [
   ],
 ];
 
+const packDirectories = (await readdir(resolve(root, 'packs'), { withFileTypes: true })).filter(
+  (entry) => entry.isDirectory(),
+);
+const discoveredPacks = [];
+for (const directory of packDirectories) {
+  const manifestPath = `packs/${directory.name}/manifest.json`;
+  if (!(await exists(manifestPath))) continue;
+  const manifest = await readJson(manifestPath);
+  const base = `packs/${directory.name}`;
+  const entrypoints = Object.values(manifest.entrypoints ?? {});
+  const entrypointsExist = (
+    await Promise.all(entrypoints.map((entrypoint) => exists(`${base}/${entrypoint}`)))
+  ).every(Boolean);
+  const evalExists = manifest.evalSuite ? await exists(`${base}/${manifest.evalSuite}`) : false;
+  let registryMatches = false;
+  if (manifest.entrypoints?.toolRegistry) {
+    const registry = await readJson(`${base}/${manifest.entrypoints.toolRegistry}`);
+    const declared = [...(manifest.tools ?? [])].sort();
+    const registered = [...(registry.tools ?? []).map((tool) => tool.id)].sort();
+    registryMatches = JSON.stringify(declared) === JSON.stringify(registered);
+  }
+  discoveredPacks.push({ manifest, entrypointsExist, evalExists, registryMatches });
+}
+const discoveredIds = discoveredPacks.map(({ manifest }) => manifest.id);
+const discoveryChecks = [
+  ['capability packs have unique IDs', new Set(discoveredIds).size === discoveredIds.length],
+  [
+    'all discovered capability packs use the canonical manifest schema',
+    discoveredPacks.every(({ manifest }) => manifest.schema === 'nodevideo.capability-pack.v1'),
+  ],
+  [
+    'all discovered capability-pack entrypoints exist',
+    discoveredPacks.every(({ entrypointsExist }) => entrypointsExist),
+  ],
+  [
+    'all discovered capability-pack eval suites exist',
+    discoveredPacks.every(({ evalExists }) => evalExists),
+  ],
+  [
+    'all discovered capability-pack tool registries match their manifests',
+    discoveredPacks.every(({ registryMatches }) => registryMatches),
+  ],
+];
+
 const checks = [
+  ...discoveryChecks,
   ...tutorialChecks,
   ...authorizedChecks,
   ...groundingChecks,

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["candidateRanges", "preservedRanges", "validatorIds"],
+  "properties": {
+    "candidateRanges": { "type": "array", "items": { "$ref": "#/$defs/range" } },
+    "preservedRanges": { "type": "array", "items": { "$ref": "#/$defs/range" } },
+    "validatorIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+  },
+  "$defs": {
+    "range": {
+      "type": "object",
+      "required": ["startMs", "endMs", "reason"],
+      "properties": {
+        "startMs": { "type": "number", "minimum": 0 },
+        "endMs": { "type": "number", "exclusiveMinimum": 0 },
+        "reason": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

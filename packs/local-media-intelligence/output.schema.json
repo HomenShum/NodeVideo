@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nodevideo.local-media-intelligence.output.v1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "assetId",
+    "sourceHash",
+    "technical",
+    "visual",
+    "audio",
+    "semantics",
+    "provenance"
+  ]
+}

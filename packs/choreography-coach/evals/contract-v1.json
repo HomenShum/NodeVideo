@@ -1,0 +1,14 @@
+{
+  "schema": "nodevideo.eval-suite.v1",
+  "id": "choreography-coach-contract-v1",
+  "cases": [
+    {
+      "id": "private-human-calibration",
+      "assertions": [
+        "observable motion is scored separately from artistry",
+        "low-confidence pose evidence causes abstention",
+        "generalized expert validation remains unclaimed"
+      ]
+    }
+  ]
+}

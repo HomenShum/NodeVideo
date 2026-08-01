@@ -1,0 +1,17 @@
+{
+  "schema": "nodevideo.capability-eval.v1",
+  "pack": "nodevideo.group-performance@0.1.0",
+  "profile": "group-performance-cc-fixture-v1",
+  "cases": [
+    {
+      "id": "vLQ7wIeHSMM",
+      "status": "passed",
+      "proof": "fixtures/media/tracking-atlas-v1/group-performance/receipt.json"
+    },
+    {
+      "id": "group-performance-held-out",
+      "status": "planned"
+    }
+  ],
+  "claimBoundary": "The passing claim covers the named rights-cleared Creative Commons fixture and common contract only. Creator-held-out generalization remains a promotion gate."
+}

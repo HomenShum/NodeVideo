@@ -1,0 +1,35 @@
+{
+  "schema": "nodevideo.capability-pack.v1",
+  "id": "nodevideo.higgsfield-generation",
+  "version": "0.1.0",
+  "implementationStatus": "cli-adapter-replay-validated-live-auth-required",
+  "title": "Higgsfield generation",
+  "description": "Routes image, video, audio, reference-analysis, and enhancement jobs through the official Higgsfield CLI with durable job and asset receipts.",
+  "entrypoints": {
+    "skill": "skill.md",
+    "inputSchema": "input.schema.json",
+    "outputSchema": "output.schema.json",
+    "toolRegistry": "tools/registry.json",
+    "executorCatalog": "executors/catalog.json"
+  },
+  "inputs": ["generation/request", "media/reference", "provider/entitlement-snapshot"],
+  "outputs": ["provider/job", "media/generated-asset", "asset/receipt"],
+  "tools": [
+    "higgsfield.account-status",
+    "higgsfield.list-models",
+    "higgsfield.estimate-cost",
+    "higgsfield.create-generation",
+    "higgsfield.get-generation",
+    "higgsfield.wait-generation",
+    "higgsfield.upload"
+  ],
+  "permissions": ["network_higgsfield", "read_approved_media", "write_artifact_store"],
+  "uiRenderers": ["ProviderEntitlementCard", "GenerationJobCard", "AssetReceiptCard"],
+  "evalSuite": "evals/contract-v1.json",
+  "validation": { "status": "passed", "profile": "replay-provider-contract-v1" },
+  "execution": {
+    "kind": "official-cli-json",
+    "modelRequired": true,
+    "applicationWriteAuthority": "reviewed-asset-receipt"
+  }
+}

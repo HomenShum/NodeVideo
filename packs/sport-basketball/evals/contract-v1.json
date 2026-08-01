@@ -1,0 +1,17 @@
+{
+  "schema": "nodevideo.capability-eval.v1",
+  "pack": "nodevideo.sport-basketball@0.1.0",
+  "profile": "sport-basketball-cc-fixture-v1",
+  "cases": [
+    {
+      "id": "TWLLv2ikavc",
+      "status": "passed",
+      "proof": "fixtures/media/tracking-atlas-v1/sport-basketball/receipt.json"
+    },
+    {
+      "id": "sport-basketball-held-out",
+      "status": "planned"
+    }
+  ],
+  "claimBoundary": "The passing claim covers the named rights-cleared Creative Commons fixture and common contract only. Creator-held-out generalization remains a promotion gate."
+}

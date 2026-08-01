@@ -91,10 +91,38 @@ function TextOverlay({ clip, plan }: { clip: PlanClip; plan: Plan }) {
   );
 }
 
-function VideoLayer({ clip }: { clip: PlanClip }) {
+function VideoLayer({ clip, assetUrls }: { clip: PlanClip; assetUrls: Record<string, string> }) {
+  const frame = useCurrentFrame();
   const duration = clip.timelineRange.endFrameExclusive - clip.timelineRange.startFrame;
-  const src = clip.assetId ? EDIT_ASSET_URLS[clip.assetId] : undefined;
+  const src = clip.assetId ? assetUrls[clip.assetId] : undefined;
   const objectFit = clip.fit === 'fit' ? 'contain' : 'cover';
+  const keyframes = clip.cropKeyframes ?? [];
+  const before =
+    [...keyframes].reverse().find((item) => item.timelineFrame <= frame) ?? keyframes[0];
+  const after = keyframes.find((item) => item.timelineFrame >= frame) ?? keyframes.at(-1);
+  const progress =
+    before && after && after.timelineFrame > before.timelineFrame
+      ? (frame - before.timelineFrame) / (after.timelineFrame - before.timelineFrame)
+      : 0;
+  const crop =
+    before && after
+      ? {
+          x: before.box.x + (after.box.x - before.box.x) * progress,
+          y: before.box.y + (after.box.y - before.box.y) * progress,
+          width: before.box.width + (after.box.width - before.box.width) * progress,
+          height: before.box.height + (after.box.height - before.box.height) * progress,
+        }
+      : undefined;
+  const videoStyle = crop
+    ? {
+        position: 'absolute' as const,
+        width: `${100 / crop.width}%`,
+        height: `${100 / crop.height}%`,
+        left: `${(-crop.x / crop.width) * 100}%`,
+        top: `${(-crop.y / crop.height) * 100}%`,
+        objectFit: 'fill' as const,
+      }
+    : { width: '100%', height: '100%', objectFit };
 
   if (clip.kind === 'black') {
     return (
@@ -107,12 +135,7 @@ function VideoLayer({ clip }: { clip: PlanClip }) {
     return (
       <Sequence durationInFrames={duration} from={clip.timelineRange.startFrame}>
         <Freeze frame={0}>
-          <Video
-            muted
-            src={src}
-            startFrom={clip.sourceFrame}
-            style={{ width: '100%', height: '100%', objectFit }}
-          />
+          <Video muted src={src} startFrom={clip.sourceFrame} style={videoStyle} />
         </Freeze>
       </Sequence>
     );
@@ -120,17 +143,18 @@ function VideoLayer({ clip }: { clip: PlanClip }) {
   if (clip.kind !== 'source' || !src || !clip.sourceRange) return null;
   return (
     <Sequence durationInFrames={duration} from={clip.timelineRange.startFrame}>
-      <Video
-        muted
-        src={src}
-        startFrom={clip.sourceRange.startFrame}
-        style={{ width: '100%', height: '100%', objectFit }}
-      />
+      <Video muted src={src} startFrom={clip.sourceRange.startFrame} style={videoStyle} />
     </Sequence>
   );
 }
 
-export function PlanComposition({ plan }: { plan: Plan }) {
+export function PlanComposition({
+  plan,
+  assetUrls = EDIT_ASSET_URLS,
+}: {
+  plan: Plan;
+  assetUrls?: Record<string, string>;
+}) {
   const video = plan.tracks.find((track) => track.kind === 'video');
   const overlays = plan.tracks
     .filter((track) => track.kind === 'overlay')
@@ -140,7 +164,7 @@ export function PlanComposition({ plan }: { plan: Plan }) {
   return (
     <AbsoluteFill style={{ backgroundColor: '#0c0e0a' }}>
       {video?.clips.map((clip) => (
-        <VideoLayer clip={clip} key={clip.id} />
+        <VideoLayer assetUrls={assetUrls} clip={clip} key={clip.id} />
       ))}
       {overlays.map((clip) => (
         <Sequence

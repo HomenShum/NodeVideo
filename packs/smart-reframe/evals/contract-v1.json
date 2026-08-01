@@ -1,0 +1,19 @@
+{
+  "schema": "nodevideo.capability-eval.v1",
+  "pack": "nodevideo.smart-reframe@0.1.0",
+  "profile": "local-browser-single-person-v1",
+  "cases": [
+    { "id": "dance-solo", "status": "passed", "proof": "src/lib/smart-reframe.test.ts" },
+    { "id": "browser-demo", "status": "passed", "proof": "tests/e2e/creator-pipeline.spec.ts" },
+    {
+      "id": "export-plan-parity",
+      "status": "passed",
+      "proof": "tests/unit/browser-edit-plan-compiler.test.ts"
+    },
+    { "id": "dance-group", "status": "planned" },
+    { "id": "climbing", "status": "planned" },
+    { "id": "workout", "status": "planned" },
+    { "id": "speaker", "status": "planned" }
+  ],
+  "claimBoundary": "Production evidence covers one locally tracked visible person. Other policies remain templates until specialized fixtures and detectors pass."
+}

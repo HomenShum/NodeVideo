@@ -1,0 +1,41 @@
+schemaVersion: nodekit.ui-topology/v1
+
+topology: artifact-workspace
+
+requiredDesktopSurfaces:
+  - case-navigation
+  - stage-progress
+  - primary-artifact
+  - agent-review-rail
+  - current-action
+  - ephemeral-activity
+
+requiredMobileSurfaces:
+  - stage-progress
+  - canvas-tab
+  - agent-tab
+  - review-tab
+  - sources-tab
+  - sticky-primary-action
+
+forbiddenPatterns:
+  - all-workflow-stages-expanded-at-once
+  - proof-dashboard-as-primary-product
+  - browser-local-state-labeled-durable
+  - export-primary-before-approval
+  - desktop-columns-stacked-without-mobile-navigation
+  - provider-settings-always-visible
+  - raw-executor-ids-in-primary-view
+
+artifactRules:
+  minimumDesktopAreaRatio: 0.55
+  timelineVisibleAfterPlanning: true
+  selectedVariantAlwaysVisible: true
+  canonicalVersionAlwaysVisible: true
+
+agentRules:
+  persistentOnDesktop: true
+  selectedArtifactContext: required
+  proposalsInline: true
+  stickyComposer: true
+

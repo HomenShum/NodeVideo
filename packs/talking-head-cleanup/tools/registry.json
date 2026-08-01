@@ -1,0 +1,26 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.talking-head-cleanup@0.1.0",
+  "tools": [
+    {
+      "id": "speech.find-pauses",
+      "accepts": ["media/index"],
+      "produces": ["speech/pause-candidates"]
+    },
+    {
+      "id": "speech.find-fillers",
+      "accepts": ["media/index"],
+      "produces": ["speech/filler-candidates"]
+    },
+    {
+      "id": "edit.propose-cleanup",
+      "accepts": ["speech/pause-candidates", "speech/filler-candidates"],
+      "produces": ["edit/plan-proposal"]
+    },
+    {
+      "id": "speech-continuity.validate",
+      "accepts": ["edit/plan-proposal", "media/index"],
+      "produces": ["validation/speech-continuity"]
+    }
+  ]
+}

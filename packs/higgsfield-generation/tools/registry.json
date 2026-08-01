@@ -1,0 +1,37 @@
+{
+  "schema": "nodevideo.tool-registry.v1",
+  "pack": "nodevideo.higgsfield-generation@0.1.0",
+  "tools": [
+    { "id": "higgsfield.account-status", "accepts": [], "produces": ["provider/account-status"] },
+    {
+      "id": "higgsfield.list-models",
+      "accepts": ["provider/model-filter"],
+      "produces": ["provider/model-list"]
+    },
+    {
+      "id": "higgsfield.estimate-cost",
+      "accepts": ["generation/request"],
+      "produces": ["provider/cost-estimate"]
+    },
+    {
+      "id": "higgsfield.create-generation",
+      "accepts": ["generation/request", "provider/cost-approval"],
+      "produces": ["provider/job"]
+    },
+    {
+      "id": "higgsfield.get-generation",
+      "accepts": ["provider/job-id"],
+      "produces": ["provider/job"]
+    },
+    {
+      "id": "higgsfield.wait-generation",
+      "accepts": ["provider/job-id"],
+      "produces": ["provider/job", "media/generated-asset"]
+    },
+    {
+      "id": "higgsfield.upload",
+      "accepts": ["media/approved-local-asset"],
+      "produces": ["provider/upload-id"]
+    }
+  ]
+}

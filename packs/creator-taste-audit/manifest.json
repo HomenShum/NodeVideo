@@ -32,7 +32,8 @@
     "production-decisions.audit",
     "creator-intent.learn",
     "target-spec.validate",
-    "creative-fidelity.evaluate"
+    "creative-fidelity.evaluate",
+    "embodied-overlay.audit"
   ],
   "permissions": [
     "read_authorized_derived_production_evidence",
