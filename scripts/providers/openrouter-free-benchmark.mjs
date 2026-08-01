@@ -395,6 +395,18 @@ export function buildManifest({ candidates, rankings, catalogDigest, generatedAt
   };
 }
 
+export function formatManifestJson(manifest) {
+  const serialized = JSON.stringify(manifest, null, 2);
+  const repositoryFormatted =
+    manifest.selectedModels.length === 1
+      ? serialized.replace(
+          / {2}"selectedModels": \[\n {4}("(?:[^"\\]|\\.)*")\n {2}\],/u,
+          '  "selectedModels": [$1],',
+        )
+      : serialized;
+  return `${repositoryFormatted}\n`;
+}
+
 function parseArgs(argv) {
   const value = (name, fallback) => {
     const index = argv.indexOf(name);
@@ -487,7 +499,7 @@ export async function main(argv = process.argv.slice(2), dependencies = {}) {
   if (!options.dryRun) {
     await mkdir(dirname(options.manifestPath), { recursive: true });
     await mkdir(dirname(options.reportPath), { recursive: true });
-    await writeFile(options.manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+    await writeFile(options.manifestPath, formatManifestJson(manifest));
     await writeFile(options.reportPath, `${JSON.stringify(report, null, 2)}\n`);
   }
   console.log(JSON.stringify({ ...report, attempts: undefined }, null, 2));

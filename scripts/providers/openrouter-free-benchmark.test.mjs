@@ -7,6 +7,7 @@ import {
   aggregateResults,
   buildManifest,
   discoverCandidates,
+  formatManifestJson,
   main,
   parsePlan,
   scorePlan,
@@ -108,6 +109,17 @@ describe('OpenRouter free-model benchmark scenarios', () => {
     });
     expect(manifest.selectedModels).toEqual(['first:free', 'second:free']);
     expect(manifest.fallbackRouter).toBe('openrouter/free');
+  });
+
+  it('an automated one-winner manifest is repository-formatted and remains valid JSON', () => {
+    const manifest = {
+      schemaVersion: 'nodevideo.openrouter-free-routing.v1',
+      selectedModels: ['google/gemma-4-26b-a4b-it:free'],
+      fallbackRouter: 'openrouter/free',
+    };
+    const formatted = formatManifestJson(manifest);
+    expect(formatted).toContain('"selectedModels": ["google/gemma-4-26b-a4b-it:free"]');
+    expect(JSON.parse(formatted)).toEqual(manifest);
   });
 
   it('an operator gets a full refresh when a scheduled canary detects a selected-model failure', async () => {
