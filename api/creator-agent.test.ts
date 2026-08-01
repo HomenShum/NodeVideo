@@ -144,10 +144,10 @@ describe('creator free-route deep-agent scenarios', () => {
         'google/gemma-4-26b-a4b-it:free',
         'nvidia/nemotron-3-super-120b-a12b:free',
         'nvidia/nemotron-nano-9b-v2:free',
-        'openai/gpt-oss-20b:free',
       ],
       response_format: { type: 'json_schema' },
     });
+    expect(request.models).toHaveLength(3);
     expect(headers.Authorization).toBe('Bearer test-production-key');
     expect(headers['X-OpenRouter-Title']).toBe('NodeVideo Creator Agent');
     expect(headers).not.toHaveProperty('X-Title');
