@@ -17,6 +17,7 @@ permissions:
   actions: write
   contents: write
   pull-requests: write
+  statuses: write
 
 concurrency:
   group: openrouter-free-model-routing
@@ -88,7 +89,46 @@ jobs:
           body='Automated Class B routing refresh. Trigger: catalog change, scheduled canary failure, manual dispatch, or production health dispatch. Review the receipt-backed rankings before merge; rollback is reverting this manifest commit.'
           gh pr create --base "${{ github.event.repository.default_branch }}" --head "$branch" --title 'Refresh OpenRouter free-model routing' --body "$body" ||
             gh pr edit "$branch" --title 'Refresh OpenRouter free-model routing' --body "$body"
-          # Pushes made with GITHUB_TOKEN do not start other workflows, so attach
-          # the same merge gates explicitly to the generated promotion branch.
-          gh workflow run quality.yml --ref "$branch"
-          gh workflow run node-platform-conformance.yml --ref "$branch"
+          # Pushes made with GITHUB_TOKEN do not start other workflows. Dispatch
+          # the merge gates explicitly, then mirror their real conclusions onto
+          # the generated commit because workflow_dispatch runs are not attached
+          # to a pull request's status rollup by GitHub.
+          head_sha=$(git rev-parse HEAD)
+          quality_url=$(gh workflow run quality.yml --ref "$branch")
+          conformance_url=$(gh workflow run node-platform-conformance.yml --ref "$branch")
+
+          verify_gate() {
+            local label="$1"
+            local run_url="$2"
+            local run_id="${run_url##*/}"
+            local deadline=$((SECONDS + 1200))
+            local status='queued'
+            local conclusion=''
+
+            while [[ "$status" != 'completed' && $SECONDS -lt $deadline ]]; do
+              read -r status conclusion < <(
+                gh run view "$run_id" --json status,conclusion --jq '[.status, (.conclusion // "")] | @tsv'
+              )
+              [[ "$status" == 'completed' ]] || sleep 10
+            done
+
+            local state='error'
+            local description="$label timed out"
+            if [[ "$status" == 'completed' && "$conclusion" == 'success' ]]; then
+              state='success'
+              description="$label passed"
+            elif [[ "$status" == 'completed' ]]; then
+              state='failure'
+              description="$label concluded: $conclusion"
+            fi
+
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/$head_sha" \
+              -f state="$state" \
+              -f target_url="$run_url" \
+              -f description="$description" \
+              -f context="Routing promotion / $label"
+            [[ "$state" == 'success' ]]
+          }
+
+          verify_gate 'Quality' "$quality_url"
+          verify_gate 'Node Platform conformance' "$conformance_url"
