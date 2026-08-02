@@ -433,6 +433,519 @@
   border-left: 1px solid var(--border);
   background: var(--card);
 }
+
+/* Stitch Studio: one quiet editor surface, one real timeline, one proposal lane. */
+.stitch-studio-shell {
+  display: flex;
+  width: 100%;
+  height: 100dvh;
+  min-height: 0;
+  max-width: 100vw;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--background);
+}
+.studio-project-bar {
+  display: flex;
+  min-height: 52px;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding: .45rem .8rem;
+  background: color-mix(in oklab, var(--card) 72%, var(--background));
+}
+.studio-project-identity,
+.studio-project-actions {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: .5rem;
+}
+.studio-project-identity {
+  flex: 1;
+}
+.studio-project-actions {
+  flex: none;
+}
+.studio-wordmark {
+  color: var(--color-brand);
+  font: 700 .68rem ui-monospace, monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.studio-project-identity > span[aria-hidden="true"],
+.studio-local-state {
+  color: var(--muted-foreground);
+  font-size: .68rem;
+}
+.studio-project-identity h1 {
+  overflow: hidden;
+  margin: 0;
+  font-size: .82rem;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.studio-layout {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  grid-template-areas:
+    "canvas agent"
+    "timeline timeline";
+  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: .65rem;
+  overflow: hidden;
+  padding: .65rem;
+}
+.studio-panel {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: .65rem;
+  box-shadow: none;
+}
+.studio-preview-card {
+  grid-area: canvas;
+}
+.studio-agent-card {
+  grid-area: agent;
+}
+.studio-timeline-card {
+  grid-area: timeline;
+}
+.studio-preview-content,
+.studio-agent-content,
+.studio-timeline-content {
+  height: 100%;
+  min-height: 0;
+  padding: .7rem;
+}
+.studio-preview-content {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: .5rem;
+}
+.studio-panel-heading {
+  display: flex;
+  min-width: 0;
+  min-height: 1.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  font-size: .76rem;
+  font-weight: 650;
+}
+.studio-player-shell {
+  position: relative;
+  container-type: inline-size;
+  align-self: center;
+  height: 100%;
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
+}
+.studio-player-shell.is-editing {
+  width: auto;
+}
+.studio-canvas-tools {
+  display: flex;
+  min-height: 2rem;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  color: var(--muted-foreground);
+  font-size: .68rem;
+}
+.studio-agent-content {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  overflow-y: auto;
+}
+.studio-agent-composer textarea {
+  min-height: 72px;
+}
+.studio-disclosure {
+  border-top: 1px solid var(--border);
+  padding-top: .55rem;
+  color: var(--muted-foreground);
+  font-size: .7rem;
+}
+.studio-disclosure > summary,
+.studio-agent-settings details > summary {
+  cursor: pointer;
+  user-select: none;
+}
+.studio-agent-history > div {
+  margin-top: .5rem;
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+}
+.studio-settings-grid {
+  display: grid;
+  gap: .55rem;
+  margin-top: .55rem;
+}
+.studio-agent-settings details {
+  border-top: 1px solid var(--border);
+  padding-top: .5rem;
+}
+.studio-timeline-content {
+  display: grid;
+  gap: .45rem;
+}
+.studio-timeline-help {
+  color: var(--muted-foreground);
+  font-size: .62rem;
+  font-weight: 400;
+}
+.plan-lanes {
+  display: grid;
+  gap: .4rem;
+  padding: .45rem;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+  background: color-mix(in oklab, var(--background) 72%, var(--card));
+}
+.clip-command-bar {
+  display: flex;
+  min-width: 670px;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding-bottom: .4rem;
+  border-bottom: 1px solid var(--border);
+}
+.clip-command-identity {
+  display: flex;
+  min-width: 92px;
+  flex-direction: column;
+  gap: .08rem;
+}
+.clip-command-identity strong {
+  font-size: .68rem;
+}
+.clip-command-identity span {
+  color: var(--muted-foreground);
+  font: .58rem ui-monospace, monospace;
+}
+.clip-command-actions {
+  display: flex;
+  min-width: 0;
+  gap: .35rem;
+  overflow-x: auto;
+}
+.clip-command-actions button {
+  flex: none;
+}
+.clip-command-actions .clip-delete-command:not(:disabled) {
+  border-color: color-mix(in oklab, var(--destructive) 45%, var(--border));
+  color: var(--destructive);
+}
+.clip-command-actions .clip-delete-command:not(:disabled):hover,
+.clip-command-actions .clip-delete-command:not(:disabled):focus-visible {
+  background: color-mix(in oklab, var(--destructive) 12%, var(--card));
+}
+.timeline-command-error {
+  color: var(--destructive);
+  font-size: .65rem;
+}
+.plan-lane {
+  display: grid;
+  grid-template-columns: 92px minmax(560px, 1fr);
+  align-items: center;
+  gap: .5rem;
+  min-width: 670px;
+}
+.plan-lane-label strong,
+.plan-lane-label span {
+  display: block;
+}
+.plan-lane-label strong {
+  font-size: .68rem;
+}
+.plan-lane-label span {
+  margin-top: .1rem;
+  color: var(--muted-foreground);
+  font: .58rem ui-monospace, monospace;
+}
+.plan-lane-track {
+  position: relative;
+  height: 42px;
+  min-inline-size: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: .45rem;
+  padding: 0;
+  background: color-mix(in oklab, var(--muted) 65%, black);
+}
+.manual-clip-track {
+  display: flex;
+  gap: 2px;
+  height: 42px;
+  min-inline-size: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: .45rem;
+  padding: 3px;
+  background: color-mix(in oklab, var(--muted) 65%, black);
+}
+.timeline-clip-button {
+  min-width: 42px;
+  max-width: 100%;
+  flex-grow: 0;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  border-radius: .28rem;
+  padding-inline: .45rem;
+}
+.plan-lane-clip {
+  position: absolute;
+  inset-block: 3px;
+  display: flex;
+  min-width: 34px;
+  align-items: center;
+  gap: .3rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  padding: 0 .45rem;
+  color: var(--foreground);
+  font: .68rem ui-monospace, monospace;
+}
+.plan-lane-clip.take-a {
+  border-color: color-mix(in oklab, var(--color-brand) 55%, var(--border));
+  background: color-mix(in oklab, var(--color-brand) 16%, var(--card));
+}
+.plan-lane-clip.take-b {
+  background: color-mix(in oklab, var(--muted) 78%, var(--card));
+}
+.plan-lane-clip small {
+  opacity: 0.72;
+}
+.plan-lane.is-proposal .plan-lane-track {
+  outline: 1px dashed color-mix(in oklab, var(--color-brand) 65%, var(--border));
+  outline-offset: -1px;
+}
+.plan-lane.is-proposal .plan-lane-clip {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 7px,
+    rgb(255 255 255 / 0.045) 7px 14px
+  );
+}
+.plan-lane-clip.is-changed {
+  z-index: 1;
+  border-color: var(--color-brand);
+  box-shadow: inset 0 0 0 1px var(--color-brand), 0 0 18px
+    color-mix(in oklab, var(--color-brand) 24%, transparent);
+}
+.overlay-lane-track {
+  min-height: 30px;
+}
+.overlay-lane-clip {
+  position: absolute;
+  display: flex;
+  min-width: 24px;
+  height: 24px;
+  align-items: center;
+  gap: .25rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--color-brand) 38%, var(--border));
+  border-radius: .28rem;
+  padding: 0 .35rem;
+  background: color-mix(in oklab, var(--color-brand) 10%, var(--card));
+  color: var(--foreground);
+  font: .6rem ui-monospace, monospace;
+  text-align: left;
+  white-space: nowrap;
+}
+.overlay-lane-clip > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.overlay-lane-clip.is-selected {
+  z-index: 2;
+  outline: 2px solid var(--color-brand);
+  outline-offset: -2px;
+}
+.overlay-lane-clip.is-changed {
+  z-index: 2;
+  border-color: var(--color-brand);
+  box-shadow: inset 0 0 0 1px var(--color-brand);
+}
+.agent-change-block.overlay-block {
+  max-width: min(320px, 38vw);
+  border-color: color-mix(in oklab, var(--color-brand) 45%, var(--border));
+  background: color-mix(in oklab, var(--color-brand) 10%, var(--card));
+}
+.proposal-change-role,
+.accepted-agent-label {
+  margin-left: auto;
+  border-radius: .2rem;
+  padding: .08rem .2rem;
+  background: var(--color-brand);
+  color: #11150a;
+  font-style: normal;
+  font-size: .62rem;
+  font-weight: 800;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.accepted-agent-label {
+  flex: none;
+}
+.agent-change-map {
+  display: flex;
+  min-width: 0;
+  min-inline-size: 0;
+  margin: 0;
+  align-items: center;
+  gap: .4rem;
+  border: 0;
+  padding: 0;
+  color: var(--muted-foreground);
+  font: .68rem ui-monospace, monospace;
+}
+.agent-change-block {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: .28rem;
+  padding: .25rem .4rem;
+  color: var(--foreground);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.agent-change-block.take-a {
+  border-color: color-mix(in oklab, var(--color-brand) 55%, var(--border));
+  background: color-mix(in oklab, var(--color-brand) 16%, var(--card));
+}
+.agent-change-block.take-b {
+  background: color-mix(in oklab, var(--muted) 78%, var(--card));
+}
+.agent-change-block.is-added {
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-brand) 70%, transparent);
+}
+.agent-change-block.is-shifted {
+  border-style: dashed;
+}
+.agent-change-map strong {
+  color: var(--color-brand);
+  white-space: nowrap;
+}
+.plan-lane-playhead {
+  position: absolute;
+  z-index: 3;
+  inset-block: 0;
+  left: 0;
+  width: 2px;
+  background: #eef0e8;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.45);
+}
+.proposal-lane-wrap {
+  display: grid;
+  gap: .5rem;
+  padding-top: .4rem;
+  border-top: 1px solid color-mix(in oklab, var(--color-brand) 38%, var(--border));
+}
+.proposal-lane-heading {
+  display: flex;
+  min-width: 670px;
+  align-items: center;
+  gap: .6rem;
+  color: var(--muted-foreground);
+  font-size: .68rem;
+}
+.proposal-lane-heading strong {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--foreground);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.proposal-lane-heading > div {
+  display: flex;
+  gap: .4rem;
+  margin-left: auto;
+}
+.timeline-edit-receipt {
+  overflow: hidden;
+  color: var(--color-brand);
+  font: .62rem ui-monospace, monospace;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.studio-waveform {
+  min-height: 88px;
+  overflow: hidden;
+  border-radius: .4rem;
+}
+.studio-mobile-nav {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .timeline-clip-button span:not(.font-semibold),
+  .plan-lane-clip small {
+    display: none;
+  }
+  .plan-lanes {
+    margin-inline: -.25rem;
+  }
+  .clip-command-bar {
+    min-width: 0;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .35rem;
+  }
+  .clip-command-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    padding-bottom: .15rem;
+  }
+  .plan-lane {
+    grid-template-columns: 66px minmax(210px, 1fr);
+    gap: .4rem;
+    min-width: 0;
+  }
+  .overlay-plan-lane {
+    grid-template-columns: 66px minmax(560px, 1fr);
+    min-width: 630px;
+  }
+  .plan-lane-label strong,
+  .plan-lane-label span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .proposal-lane-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .proposal-lane-heading > div {
+    margin-left: 0;
+  }
+  .agent-change-map {
+    flex-wrap: wrap;
+  }
+  .proposal-change-role {
+    display: none;
+  }
+}
 .creator-agent-rail > aside {
   height: 100%;
   min-height: 0;
@@ -759,12 +1272,84 @@
 }
 
 @media (max-width: 1023px) {
-  .stitch-studio-shell {
-    padding-bottom: calc(8rem + env(safe-area-inset-bottom));
+  body:has(.stitch-studio-shell) {
+    height: 100dvh;
+    overflow: hidden;
   }
-
-  .thumb-agent-bar {
-    bottom: max(0.75rem, env(safe-area-inset-bottom));
+  .stitch-studio-shell {
+    height: 100dvh;
+    padding: 0;
+  }
+  .studio-project-bar {
+    min-height: 50px;
+    gap: .4rem;
+    padding: .35rem .5rem;
+  }
+  .studio-wordmark,
+  .studio-project-identity > span[aria-hidden="true"],
+  .studio-project-identity > [data-slot="badge"],
+  .studio-project-actions > [data-slot="badge"],
+  .studio-local-state {
+    display: none;
+  }
+  .studio-project-actions {
+    gap: .35rem;
+  }
+  .studio-project-actions button {
+    min-height: 2rem;
+    padding-inline: .55rem;
+  }
+  .studio-layout {
+    display: block;
+    min-height: 0;
+    padding: .5rem;
+  }
+  .studio-panel {
+    display: none;
+    height: 100%;
+  }
+  .studio-layout.mobile-canvas .studio-preview-card,
+  .studio-layout.mobile-agent .studio-agent-card,
+  .studio-layout.mobile-timeline .studio-timeline-card {
+    display: block;
+  }
+  .studio-preview-content,
+  .studio-agent-content,
+  .studio-timeline-content {
+    padding: .65rem;
+  }
+  .studio-player-shell {
+    width: auto;
+  }
+  .studio-agent-composer textarea {
+    min-height: 88px;
+  }
+  .studio-timeline-content {
+    align-content: start;
+    overflow-y: auto;
+  }
+  .studio-mobile-nav {
+    display: flex;
+    min-height: 50px;
+    flex: none;
+    border-top: 1px solid var(--border);
+    padding-bottom: env(safe-area-inset-bottom);
+    background: color-mix(in oklab, var(--card) 88%, var(--background));
+  }
+  .studio-mobile-nav button {
+    flex: 1;
+    border: 0;
+    background: transparent;
+    color: var(--muted-foreground);
+    font-size: .68rem;
+    font-weight: 600;
+  }
+  .studio-mobile-nav button.is-current {
+    color: var(--color-brand);
+  }
+  .studio-mobile-nav button:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: -3px;
   }
 }
 

@@ -467,7 +467,7 @@ def discover_attempt_window(reference: Track, attempt: Track) -> tuple[Track, di
     reference_people = active_people(reference)
     attempt_people = active_people(attempt)
     if (reference_duration < 5 or reference_duration > 90 or
-            attempt_duration <= reference_duration * 1.2 or len(attempt_people) != 1):
+            attempt_duration <= reference_duration * 1.2 or not attempt_people):
         return attempt, {}
     attempt_step = float(np.median(np.diff(attempt.times)))
     window_samples = min(len(attempt.times), max(3, round(reference_duration / attempt_step) + 1))
@@ -480,15 +480,18 @@ def discover_attempt_window(reference: Track, attempt: Track) -> tuple[Track, di
     candidates = []
     start_step = max(1, round(1 / attempt_step))
     for mirrored in (False, True):
-        attempt_descriptor, attempt_mask = performer_descriptor(attempt, attempt_people[0], mirrored)
+        attempt_descriptors = [
+            performer_descriptor(attempt, person, mirrored) for person in attempt_people
+        ]
         for start in range(0, len(attempt.times) - window_samples + 1, start_step):
             costs = []
             for reference_index, offset in zip(reference_indices, attempt_offsets):
                 attempt_index = start + offset
                 costs.append(min(
-                    masked_cost(descriptor[reference_index], mask[reference_index],
+                    masked_cost(reference_descriptor[reference_index], reference_mask[reference_index],
                                 attempt_descriptor[attempt_index], attempt_mask[attempt_index])
-                    for descriptor, mask in reference_descriptors
+                    for reference_descriptor, reference_mask in reference_descriptors
+                    for attempt_descriptor, attempt_mask in attempt_descriptors
                 ))
             candidates.append((float(np.median(costs)), start, mirrored))
     if not candidates:

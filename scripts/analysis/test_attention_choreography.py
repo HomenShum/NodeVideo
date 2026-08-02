@@ -31,7 +31,12 @@ def test_attention_choreography_uses_pose_and_exposes_intent() -> None:
     )
     cues = [
         {"id": "lyric.1", "text": "Tick", "startSeconds": 0.5, "endSeconds": 1.0},
-        {"id": "lyric.2", "text": "Tock", "startSeconds": 1.0, "endSeconds": 1.5},
+        {
+            "id": "lyric.2",
+            "text": "EVERY CUT > SOURCE FRAMES",
+            "startSeconds": 1.0,
+            "endSeconds": 1.5,
+        },
     ]
     phrases = [
         {
@@ -54,6 +59,8 @@ def test_attention_choreography_uses_pose_and_exposes_intent() -> None:
     assert result[0]["requiresOwnerReview"] is True
     assert result[0]["saliencyCompetition"] <= 0.05
     assert result[0]["clearancePolicy"] == "framewise-dilated-pose-silhouette-v1"
+    assert result[1]["box"]["width"] == 0.72
+    assert result[1]["box"]["height"] == 0.10
     assert result[1]["eyeTravel"] in {"none", "up", "down", "left", "right", "diagonal"}
 
     identity = plan_identity_choreography(

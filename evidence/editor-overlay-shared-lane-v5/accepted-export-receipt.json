@@ -1,0 +1,19 @@
+{
+  "acceptedEdits": ["NodeAgent duplicate clip #0", "Human caption text -> PROOF CUT"],
+  "probe": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 180,
+        "height": 320
+      }
+    ],
+    "format": {
+      "duration": "2.000000"
+    }
+  },
+  "ocr": "PROOF CUT",
+  "audioPolicy": "omitted"
+}

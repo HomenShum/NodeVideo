@@ -90,8 +90,14 @@ def candidate_boxes(cue: dict[str, Any]) -> list[dict[str, float]]:
         width, height = 0.27, 0.045
     else:
         length = len(cue["text"])
-        width = 0.30 if length <= 10 else 0.36 if length <= 16 else 0.42
-        height = 0.075
+        if length <= 10:
+            width, height = 0.42, 0.09
+        elif length <= 16:
+            width, height = 0.52, 0.095
+        elif length <= 32:
+            width, height = 0.72, 0.10
+        else:
+            width, height = 0.84, 0.11
     x_positions = sorted({0.03, round((1 - width) / 2, 6), round(0.97 - width, 6)})
     y_positions = [0.05, 0.18, 0.32, 0.46, 0.60, 0.74, 0.87]
     return [

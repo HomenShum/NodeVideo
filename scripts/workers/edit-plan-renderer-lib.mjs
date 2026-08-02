@@ -538,6 +538,9 @@ export function compileEditPlan(input, bindingsInput, options = {}) {
       usedAssetIds: boundAssets.map((record) => record.assetId).sort(),
       targetDerivedRenderAssetIds: [...plan.lineage.targetDerivedRenderAssetIds],
       decisionArtifactIds: [...(plan.lineage.decisionArtifactIds ?? [])],
+      activeEditorialProfile: plan.lineage.activeEditorialProfile
+        ? structuredClone(plan.lineage.activeEditorialProfile)
+        : null,
       calibration: plan.lineage.calibration ? structuredClone(plan.lineage.calibration) : null,
       rendererAssets: [
         {

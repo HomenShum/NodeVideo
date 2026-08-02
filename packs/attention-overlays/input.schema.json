@@ -1,15 +1,23 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://nodevideo.local/schemas/attention-overlays/input.v1.json",
+  "$id": "https://nodevideo.local/schemas/attention-overlays/input.v2.json",
   "title": "Attention overlay generation request",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "requestId", "videoArtifactId", "poseArtifactId", "cues"],
+  "required": [
+    "schemaVersion",
+    "requestId",
+    "videoArtifactId",
+    "poseArtifactId",
+    "activeEditorialProfile",
+    "cues"
+  ],
   "properties": {
-    "schemaVersion": { "const": "nodevideo.attention-overlay-request.v1" },
+    "schemaVersion": { "const": "nodevideo.attention-overlay-request.v2" },
     "requestId": { "$ref": "#/$defs/id" },
     "videoArtifactId": { "$ref": "#/$defs/id" },
     "poseArtifactId": { "$ref": "#/$defs/id" },
+    "activeEditorialProfile": { "$ref": "#/$defs/activeEditorialProfile" },
     "gradeKind": {
       "enum": [
         "auto",
@@ -27,6 +35,7 @@
     "cues": {
       "type": "array",
       "minItems": 1,
+      "maxItems": 512,
       "items": { "$ref": "#/$defs/cue" }
     }
   },
@@ -48,6 +57,69 @@
         "endSeconds": { "type": "number", "exclusiveMinimum": 0 },
         "role": { "enum": ["attention", "identity"], "default": "attention" },
         "animation": { "enum": ["none", "fade", "pop", "slide-up"] }
+      }
+    },
+    "activeEditorialProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "id",
+        "version",
+        "activatedAt",
+        "activationApprovalId",
+        "overlayPolicy",
+        "profileDigest"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "nodevideo.active-editorial-profile.v1" },
+        "id": { "$ref": "#/$defs/id" },
+        "version": { "type": "integer", "minimum": 1 },
+        "activatedAt": { "type": "string", "format": "date-time" },
+        "activationApprovalId": { "$ref": "#/$defs/id" },
+        "profileDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+        "overlayPolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "allowedRoles",
+            "allowedAnimations",
+            "allowedTemplateIds",
+            "maxBodyOverlapRatio",
+            "minimumFontSizePx",
+            "requireCausalProof"
+          ],
+          "properties": {
+            "allowedRoles": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 32,
+              "uniqueItems": true,
+              "items": { "enum": ["attention", "identity"] }
+            },
+            "allowedAnimations": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 32,
+              "uniqueItems": true,
+              "items": { "enum": ["none", "fade", "pop", "slide-up"] }
+            },
+            "allowedTemplateIds": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 32,
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/id" }
+            },
+            "maxBodyOverlapRatio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.05
+            },
+            "minimumFontSizePx": { "type": "integer", "minimum": 12, "maximum": 256 },
+            "requireCausalProof": { "const": true }
+          }
+        }
       }
     }
   }

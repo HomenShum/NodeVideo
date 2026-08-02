@@ -32,7 +32,7 @@ function estimateTextWidth(text: string) {
   );
 }
 
-function overlayFontSize(clip: PlanClip, plan: Plan) {
+export function overlayFontSize(clip: PlanClip, plan: Plan) {
   const box = clip.box ?? { x: 0.1, y: 0.8, width: 0.8, height: 0.075 };
   const template = TEXT_TEMPLATES[clip.templateId ?? 'text.cue'] ?? TEXT_TEMPLATES['text.cue'];
   const width = box.width * plan.canvas.width;

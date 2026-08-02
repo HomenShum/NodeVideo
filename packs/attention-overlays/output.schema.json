@@ -1,15 +1,57 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://nodevideo.local/schemas/attention-overlays/output.v1.json",
+  "$id": "https://nodevideo.local/schemas/attention-overlays/output.v2.json",
   "title": "Attention overlay pipeline receipt",
   "type": "object",
   "additionalProperties": true,
-  "required": ["schemaVersion", "id", "status", "input", "delivery", "bodySafety", "artifacts"],
+  "required": [
+    "schemaVersion",
+    "id",
+    "status",
+    "input",
+    "governance",
+    "delivery",
+    "bodySafety",
+    "causalProof",
+    "artifacts"
+  ],
   "properties": {
-    "schemaVersion": { "const": "nodevideo.attention-overlay-pipeline-receipt.v1" },
+    "schemaVersion": { "const": "nodevideo.attention-overlay-pipeline-receipt.v2" },
     "id": { "type": "string", "minLength": 1 },
     "status": { "const": "pass" },
-    "input": { "type": "object" },
+    "input": {
+      "type": "object",
+      "required": ["activeEditorialProfileId", "activeEditorialProfileDigest"],
+      "properties": {
+        "activeEditorialProfileId": { "type": "string", "minLength": 1 },
+        "activeEditorialProfileDigest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "required": ["status", "activeEditorialProfile", "minimumFontSizePx", "causalProofRequired"],
+      "properties": {
+        "status": { "const": "pass" },
+        "activeEditorialProfile": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["profileId", "profileDigest", "activationApprovalId"],
+          "properties": {
+            "profileId": { "type": "string", "minLength": 1 },
+            "profileDigest": {
+              "type": "string",
+              "pattern": "^sha256:[a-f0-9]{64}$"
+            },
+            "activationApprovalId": { "type": "string", "minLength": 1 }
+          }
+        },
+        "minimumFontSizePx": { "type": "integer", "minimum": 12, "maximum": 256 },
+        "causalProofRequired": { "const": true }
+      }
+    },
     "delivery": {
       "type": "object",
       "required": ["gradeKind", "audioPreserved", "outputSha256"]
@@ -23,6 +65,25 @@
         "maxObservedOverlapRatio": { "type": "number", "minimum": 0, "maximum": 0.05 }
       }
     },
-    "artifacts": { "type": "object", "minProperties": 6 }
+    "causalProof": {
+      "type": "object",
+      "required": [
+        "status",
+        "normalRenderSha256",
+        "knockoutRenderSha256",
+        "meanInsideDelta",
+        "outsideToInsideRatio",
+        "meanInactiveDelta"
+      ],
+      "properties": {
+        "status": { "const": "pass" },
+        "normalRenderSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "knockoutRenderSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "meanInsideDelta": { "type": "number", "minimum": 1 },
+        "outsideToInsideRatio": { "type": "number", "minimum": 0, "maximum": 0.25 },
+        "meanInactiveDelta": { "type": "number", "minimum": 0, "maximum": 1.5 }
+      }
+    },
+    "artifacts": { "type": "object", "minProperties": 10 }
   }
 }

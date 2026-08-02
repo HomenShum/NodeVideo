@@ -7,12 +7,17 @@
 
 import { NODE_AGENT_LIMITS } from '@/lib/nodeagent-contract';
 import {
+  ONE_EDIT_PER_PROPOSAL_ERROR,
   type Plan,
   type PlanPatch,
+  deleteClipRipple,
+  duplicateClipRipple,
+  moveOverlay,
   nudgeBoundary,
   planSummary,
   reorderClips,
   setOverlayText,
+  splitClipOnNearestBeat,
   swapClipSource,
 } from './plan-tools';
 
@@ -41,6 +46,48 @@ Make the smallest edit that satisfies the request. Never invent clips, overlays,
 Keep replies to a few sentences; the tool cards carry the detail.`;
 
 const TOOLS = [
+  {
+    type: 'function',
+    function: {
+      name: 'duplicate_clip',
+      description:
+        'Duplicate a selected source clip and ripple every timed track by the same duration.',
+      parameters: {
+        type: 'object',
+        properties: { clipIndex: { type: 'integer' } },
+        required: ['clipIndex'],
+        additionalProperties: false,
+      },
+    },
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'delete_clip',
+      description:
+        'Delete a selected source clip and ripple every timed track. Refuses the last source clip.',
+      parameters: {
+        type: 'object',
+        properties: { clipIndex: { type: 'integer' } },
+        required: ['clipIndex'],
+        additionalProperties: false,
+      },
+    },
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'split_clip',
+      description:
+        'Split a clip at its nearest safe beat. NodeVideo chooses the exact frame deterministically.',
+      parameters: {
+        type: 'object',
+        properties: { clipIndex: { type: 'integer' } },
+        required: ['clipIndex'],
+        additionalProperties: false,
+      },
+    },
+  },
   {
     type: 'function',
     function: {
@@ -93,6 +140,23 @@ const TOOLS = [
   {
     type: 'function',
     function: {
+      name: 'move_overlay',
+      description:
+        'Move one existing overlay earlier (negative) or later (positive) by whole beats without changing its duration.',
+      parameters: {
+        type: 'object',
+        properties: {
+          overlayId: { type: 'string' },
+          beats: { type: 'integer', description: 'non-zero whole beats' },
+        },
+        required: ['overlayId', 'beats'],
+        additionalProperties: false,
+      },
+    },
+  },
+  {
+    type: 'function',
+    function: {
       name: 'set_overlay_text',
       description: 'Rewrite a lyric overlay (id from get_plan_summary), max 80 chars.',
       parameters: {
@@ -115,21 +179,34 @@ export async function runBrowserAgent(options: {
   emit: (event: AgentEvent) => void;
 }): Promise<void> {
   let workingPlan = options.plan;
+  let mutationProposed = false;
   const runTool = (name: string, args: Record<string, unknown>) => {
     if (name === 'get_plan_summary') return { summary: planSummary(workingPlan) };
+    if (mutationProposed) return { error: ONE_EDIT_PER_PROPOSAL_ERROR };
     const result =
       name === 'swap_clip_source'
         ? swapClipSource(workingPlan, Number(args.clipIndex))
-        : name === 'nudge_boundary'
-          ? nudgeBoundary(workingPlan, Number(args.clipIndex), Number(args.beats))
-          : name === 'reorder_clips'
-            ? reorderClips(workingPlan, Number(args.fromIndex), Number(args.toIndex))
-            : name === 'set_overlay_text'
-              ? setOverlayText(workingPlan, String(args.overlayId), String(args.text))
-              : { error: `unknown tool ${name}` };
+        : name === 'duplicate_clip'
+          ? duplicateClipRipple(workingPlan, Number(args.clipIndex))
+          : name === 'delete_clip'
+            ? deleteClipRipple(workingPlan, Number(args.clipIndex))
+            : name === 'split_clip'
+              ? splitClipOnNearestBeat(workingPlan, Number(args.clipIndex))
+              : name === 'nudge_boundary'
+                ? nudgeBoundary(workingPlan, Number(args.clipIndex), Number(args.beats))
+                : name === 'reorder_clips'
+                  ? reorderClips(workingPlan, Number(args.fromIndex), Number(args.toIndex))
+                  : name === 'set_overlay_text'
+                    ? setOverlayText(workingPlan, String(args.overlayId), String(args.text))
+                    : name === 'move_overlay'
+                      ? moveOverlay(workingPlan, String(args.overlayId), Number(args.beats))
+                      : { error: `unknown tool ${name}` };
     if (result.error) return { error: result.error };
     if (result.plan) workingPlan = result.plan;
-    if (result.patch) options.emit({ type: 'proposal', proposal: result.patch });
+    if (result.patch) {
+      mutationProposed = true;
+      options.emit({ type: 'proposal', proposal: result.patch });
+    }
     return { applied: 'pending user acceptance', clips: planSummary(workingPlan).clips };
   };
 

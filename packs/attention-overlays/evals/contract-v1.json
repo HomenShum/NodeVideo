@@ -1,14 +1,30 @@
 {
-  "schemaVersion": "nodevideo.attention-overlay-eval.v1",
+  "schemaVersion": "nodevideo.attention-overlay-eval.v2",
   "status": "contract-defined-private-real-media-executed",
   "cases": [
     {
       "id": "body-safe-bright-default",
       "input": {
-        "schemaVersion": "nodevideo.attention-overlay-request.v1",
+        "schemaVersion": "nodevideo.attention-overlay-request.v2",
         "requestId": "request.attention-overlay.one",
         "videoArtifactId": "artifact.video.one",
         "poseArtifactId": "artifact.pose.one",
+        "activeEditorialProfile": {
+          "schemaVersion": "nodevideo.active-editorial-profile.v1",
+          "id": "editorial.profile.one",
+          "version": 1,
+          "activatedAt": "2026-08-01T23:30:00.000Z",
+          "activationApprovalId": "approval.editorial.one",
+          "overlayPolicy": {
+            "allowedRoles": ["attention", "identity"],
+            "allowedAnimations": ["none", "fade", "pop", "slide-up"],
+            "allowedTemplateIds": ["text.creator-commentary", "text.creator-title"],
+            "maxBodyOverlapRatio": 0.05,
+            "minimumFontSizePx": 32,
+            "requireCausalProof": true
+          },
+          "profileDigest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+        },
         "gradeKind": "auto",
         "numPoses": 6,
         "canvasMode": "source",
@@ -27,6 +43,8 @@
       "assertions": [
         "overlay planning is independent from grade selection",
         "rendered glyph body clearance passes conjunctively",
+        "active editorial profile digest survives planning and rendering",
+        "normal-versus-knockout render proves causal visible output",
         "source audio is preserved when present"
       ]
     }

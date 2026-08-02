@@ -1,6 +1,6 @@
 {
   "schema": "nodevideo.tool-registry.v1",
-  "pack": "nodevideo.attention-overlays@0.1.0",
+  "pack": "nodevideo.attention-overlays@0.2.0",
   "implementationStatus": "private-real-media-and-contract-validated",
   "tools": [
     {
@@ -14,7 +14,12 @@
       "id": "attention-overlays.plan",
       "stage": "composing-editorial-overlays",
       "dependsOn": ["pose.extract"],
-      "accepts": ["video/edit-plan", "video/pose-track", "text/timed-cues"],
+      "accepts": [
+        "video/edit-plan",
+        "video/pose-track",
+        "text/timed-cues",
+        "editorial/active-profile"
+      ],
       "produces": ["production/attention-overlay-plan", "production/attention-overlay-plan-receipt"]
     },
     {
@@ -30,6 +35,17 @@
       "dependsOn": ["render.edit-plan"],
       "accepts": ["production/attention-overlay-preview", "video/pose-track"],
       "produces": ["production/embodied-overlay-audit", "production/attention-overlay-receipt"]
+    },
+    {
+      "id": "overlay-causality.audit",
+      "stage": "evaluating-preview",
+      "dependsOn": ["render.edit-plan"],
+      "accepts": [
+        "production/attention-overlay-preview",
+        "production/overlay-knockout-preview",
+        "production/renderer-manifest"
+      ],
+      "produces": ["production/overlay-causal-proof"]
     }
   ],
   "semanticValidators": [
@@ -41,6 +57,15 @@
         "use renderer-estimated glyph boxes for the final audit",
         "fail closed when any cue exceeds five percent body overlap",
         "keep grade selection independent from overlay placement"
+      ]
+    },
+    {
+      "id": "attention-overlays.causal-render",
+      "rules": [
+        "bind every plan and renderer manifest to the active editorial profile digest",
+        "render the same plan with declared overlays removed",
+        "require visible change inside declared glyph regions",
+        "bound change outside declared regions and during inactive frames"
       ]
     }
   ]

@@ -903,11 +903,18 @@ def plan_attention_choreography(
             offsets=offsets,
         )
         text_length = len(str(cue.get("text", "")))
-        box_width = 0.30 if text_length <= 10 else 0.36 if text_length <= 16 else 0.42
+        if text_length <= 10:
+            box_width, box_height = 0.42, 0.09
+        elif text_length <= 16:
+            box_width, box_height = 0.52, 0.095
+        elif text_length <= 32:
+            box_width, box_height = 0.72, 0.10
+        else:
+            box_width, box_height = 0.84, 0.11
         x_positions = sorted({0.03, round((1 - box_width) / 2, 6), round(0.97 - box_width, 6)})
         y_positions = [0.05, 0.18, 0.32, 0.46, 0.60, 0.74, 0.87]
         candidates = [
-            {"x": x, "y": y, "width": box_width, "height": 0.075}
+            {"x": x, "y": y, "width": box_width, "height": box_height}
             for y in y_positions
             for x in x_positions
         ]

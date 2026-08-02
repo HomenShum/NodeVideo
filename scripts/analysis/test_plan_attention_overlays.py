@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 
 from audit_overlay_body_clearance import body_mask, pose_tracks
-from plan_attention_overlays import plan_cue
+from plan_attention_overlays import candidate_boxes, plan_cue
 
 
 def pose(frame: int) -> tuple[int, np.ndarray]:
@@ -34,10 +34,27 @@ def test_plan_cue_uses_framewise_silhouette_and_returns_evidence() -> None:
     }
     box, evidence, _ = plan_cue(cue, [pose(frame) for frame in range(8)], None, 0.05)
 
-    assert box["width"] == 0.30
+    assert box["width"] == 0.42
     assert evidence["maxBodyOverlapRatio"] <= 0.05
     assert evidence["sampleCount"] == 8
     assert evidence["policy"] == "framewise-dilated-pose-silhouette-v1"
+
+
+def test_phone_viewer_gets_wide_caption_box_without_covering_central_dancer() -> None:
+    cue = {
+        "id": "cue.phone-proof",
+        "text": "EVERY CUT > SOURCE FRAMES",
+        "role": "attention",
+    }
+
+    candidates = candidate_boxes(cue)
+    box, evidence, _ = plan_cue(cue, [pose(frame) for frame in range(60)], None, 0.05)
+
+    assert {candidate["width"] for candidate in candidates} == {0.72}
+    assert {candidate["height"] for candidate in candidates} == {0.10}
+    assert box["width"] == 0.72
+    assert evidence["sampleCount"] == 60
+    assert evidence["maxBodyOverlapRatio"] <= 0.05
 
 
 def test_plan_cue_fails_without_pose_evidence() -> None:

@@ -1,8 +1,17 @@
 #!/usr/bin/env node
 
 import { execFileSync } from 'node:child_process';
-import { mkdir, readFile } from 'node:fs/promises';
+import { mkdir, readFile, stat } from 'node:fs/promises';
 import { basename, join, resolve } from 'node:path';
+import {
+  assertActiveEditorialProfileDigest,
+  assertActiveEditorialProfilesMatch,
+  assertPlanUsesActiveEditorialProfile,
+  bindActiveEditorialProfile,
+  planningBodyOverlapRatio,
+  validateActiveEditorialProfile,
+  validateGovernedTimedCues,
+} from '../../src/lib/editorial-governance-contracts.ts';
 import {
   probeMedia,
   rationalNumber,
@@ -13,6 +22,8 @@ import {
 import { renderEditPlan } from './edit-plan-renderer-lib.mjs';
 
 const FRAME_RATE = 30;
+const MAX_JSON_INPUT_BYTES = 1024 * 1024;
+const ANALYSIS_TIMEOUT_MS = 10 * 60 * 1000;
 const options = parseArguments(process.argv.slice(2));
 const outputRoot = resolve(options.outputDirectory);
 await mkdir(outputRoot, { recursive: true });
@@ -24,8 +35,36 @@ const paths = {
   rendererManifest: join(outputRoot, 'renderer-manifest.json'),
   audit: join(outputRoot, 'embodied-overlay-audit.json'),
   preview: join(outputRoot, 'attention-overlay-preview.mp4'),
+  knockoutPlan: join(outputRoot, 'attention-overlay-knockout-plan.json'),
+  knockoutManifest: join(outputRoot, 'knockout-renderer-manifest.json'),
+  knockout: join(outputRoot, 'attention-overlay-knockout.mp4'),
+  causalProof: join(outputRoot, 'overlay-causal-proof.json'),
   receipt: join(outputRoot, 'attention-overlay-pipeline-receipt.json'),
 };
+
+const [profile, cueRequest] = await Promise.all([
+  readJson(options.editorialProfile),
+  readJson(options.cues),
+]);
+validateActiveEditorialProfile(profile);
+await assertActiveEditorialProfileDigest(profile);
+if (cueRequest.schemaVersion !== 'nodevideo.attention-overlay-request.v2') {
+  throw new Error('Governed attention overlays require a v2 cue request.');
+}
+validateActiveEditorialProfile(cueRequest.activeEditorialProfile);
+await assertActiveEditorialProfileDigest(cueRequest.activeEditorialProfile);
+assertActiveEditorialProfilesMatch(profile, cueRequest.activeEditorialProfile);
+if (
+  cueRequest.maxBodyOverlapRatio !== undefined &&
+  cueRequest.maxBodyOverlapRatio !== options.maxOverlapRatio
+) {
+  throw new Error('Cue request body-overlap threshold does not match the render threshold.');
+}
+validateGovernedTimedCues(profile, cueRequest.cues, options.maxOverlapRatio);
+const planningMaxOverlapRatio = planningBodyOverlapRatio(
+  options.maxOverlapRatio,
+  profile.overlayPolicy.maxBodyOverlapRatio,
+);
 
 const probe = sanitizeProbe(probeMedia(options.video, options.ffprobe));
 if (!probe.video || !probe.format.durationSeconds) throw new Error('Input must be a probed video.');
@@ -112,10 +151,18 @@ runPython(options.python, resolve('scripts/analysis/plan_attention_overlays.py')
   '--receipt',
   paths.planningReceipt,
   '--max-overlap-ratio',
-  String(options.maxOverlapRatio),
+  String(planningMaxOverlapRatio),
 ]);
 
-const plan = JSON.parse(await readFile(paths.plan, 'utf8'));
+const ungovernedPlan = JSON.parse(await readFile(paths.plan, 'utf8'));
+const plan = await bindActiveEditorialProfile(ungovernedPlan, profile);
+assertPlanUsesActiveEditorialProfile(plan, profile);
+await writeJson(paths.plan, plan);
+const planningReceipt = JSON.parse(await readFile(paths.planningReceipt, 'utf8'));
+planningReceipt.ungovernedOutputPlanSha256 = planningReceipt.outputPlanSha256;
+planningReceipt.outputPlanSha256 = await sha256File(paths.plan);
+planningReceipt.activeEditorialProfile = structuredClone(plan.lineage.activeEditorialProfile);
+await writeJson(paths.planningReceipt, planningReceipt);
 const renderResult = await renderEditPlan({
   plan,
   bindings: { [assetId]: options.video },
@@ -123,7 +170,22 @@ const renderResult = await renderEditPlan({
   auxiliaryDirectory: join(outputRoot, '.render-work'),
   ffmpeg: options.ffmpeg,
 });
+assertRendererObeysProfile(renderResult.manifest, profile);
 await writeJson(paths.rendererManifest, renderResult.manifest);
+const knockoutPlan = structuredClone(plan);
+knockoutPlan.id = `${plan.id}.knockout`;
+for (const track of knockoutPlan.tracks) {
+  if (track.kind === 'overlay') track.clips = [];
+}
+await writeJson(paths.knockoutPlan, knockoutPlan);
+const knockoutResult = await renderEditPlan({
+  plan: knockoutPlan,
+  bindings: { [assetId]: options.video },
+  outputPath: paths.knockout,
+  auxiliaryDirectory: join(outputRoot, '.knockout-render-work'),
+  ffmpeg: options.ffmpeg,
+});
+await writeJson(paths.knockoutManifest, knockoutResult.manifest);
 runPython(options.python, resolve('scripts/analysis/audit_overlay_body_clearance.py'), [
   '--plan',
   paths.plan,
@@ -142,8 +204,22 @@ const audit = JSON.parse(await readFile(paths.audit, 'utf8'));
 if (audit.status !== 'pass' || audit.score !== 1) {
   throw new Error(`Rendered overlay audit failed with score ${audit.score}.`);
 }
+runPython(options.python, resolve('scripts/analysis/audit_overlay_causal_proof.py'), [
+  '--render',
+  paths.preview,
+  '--knockout',
+  paths.knockout,
+  '--plan',
+  paths.plan,
+  '--renderer-manifest',
+  paths.rendererManifest,
+  '--output',
+  paths.causalProof,
+]);
+const causalProof = JSON.parse(await readFile(paths.causalProof, 'utf8'));
+if (causalProof.status !== 'pass') throw new Error('Overlay causal proof failed.');
 const receipt = {
-  schemaVersion: 'nodevideo.attention-overlay-pipeline-receipt.v1',
+  schemaVersion: 'nodevideo.attention-overlay-pipeline-receipt.v2',
   id: options.runId,
   status: 'pass',
   input: {
@@ -151,6 +227,14 @@ const receipt = {
     videoSha256: await sha256File(options.video),
     poseSha256: await sha256File(options.pose),
     timedTextSha256: await sha256File(options.cues),
+    activeEditorialProfileId: profile.id,
+    activeEditorialProfileDigest: profile.profileDigest,
+  },
+  governance: {
+    status: 'pass',
+    activeEditorialProfile: structuredClone(plan.lineage.activeEditorialProfile),
+    minimumFontSizePx: profile.overlayPolicy.minimumFontSizePx,
+    causalProofRequired: profile.overlayPolicy.requireCausalProof,
   },
   delivery: {
     gradeKind,
@@ -163,6 +247,14 @@ const receipt = {
     status: audit.status,
     score: audit.score,
     maxObservedOverlapRatio: Math.max(...audit.overlays.map((item) => item.maxBodyOverlapRatio)),
+  },
+  causalProof: {
+    status: causalProof.status,
+    normalRenderSha256: causalProof.normalRenderSha256,
+    knockoutRenderSha256: causalProof.knockoutRenderSha256,
+    meanInsideDelta: causalProof.metrics.meanInsideDelta,
+    outsideToInsideRatio: causalProof.metrics.outsideToInsideRatio,
+    meanInactiveDelta: causalProof.metrics.meanInactiveDelta,
   },
   artifacts: Object.fromEntries(
     await Promise.all(
@@ -178,9 +270,17 @@ const receipt = {
 await writeJson(paths.receipt, receipt);
 console.log(`Rendered ${paths.preview}`);
 console.log(`Body-safe overlays passed at ${receipt.bodySafety.maxObservedOverlapRatio}.`);
+console.log(
+  `Causal overlay proof passed at ${receipt.causalProof.meanInsideDelta.toFixed(3)} mean in-region delta.`,
+);
 
 function runPython(command, script, args) {
-  execFileSync(command, [script, ...args], { stdio: 'inherit' });
+  execFileSync(command, [script, ...args], {
+    stdio: 'inherit',
+    timeout: ANALYSIS_TIMEOUT_MS,
+    maxBuffer: 16 * 1024 * 1024,
+    windowsHide: true,
+  });
 }
 
 function parseArguments(args) {
@@ -188,6 +288,7 @@ function parseArguments(args) {
     '--video',
     '--pose',
     '--cues',
+    '--editorial-profile',
     '--output-dir',
     '--run-id',
     '--source-start-seconds',
@@ -223,6 +324,7 @@ function parseArguments(args) {
     video: resolve(requiredValue(args, '--video')),
     pose: resolve(requiredValue(args, '--pose')),
     cues: resolve(requiredValue(args, '--cues')),
+    editorialProfile: resolve(requiredValue(args, '--editorial-profile')),
     outputDirectory: requiredValue(args, '--output-dir'),
     runId: optionalValue(args, '--run-id') ?? 'attention-overlay-v1',
     sourceStartSeconds: numberValue(args, '--source-start-seconds', 0),
@@ -235,6 +337,45 @@ function parseArguments(args) {
     ffmpeg: optionalValue(args, '--ffmpeg') ?? 'ffmpeg',
     ffprobe: optionalValue(args, '--ffprobe') ?? 'ffprobe',
   };
+}
+
+async function readJson(path) {
+  const metadata = await stat(path);
+  if (!metadata.isFile() || metadata.size > MAX_JSON_INPUT_BYTES) {
+    throw new Error(
+      `JSON input must be a file no larger than ${MAX_JSON_INPUT_BYTES} bytes: ${path}`,
+    );
+  }
+  return JSON.parse(await readFile(path, 'utf8'));
+}
+
+function assertRendererObeysProfile(manifest, profile) {
+  const allowedTemplates = new Set(profile.overlayPolicy.allowedTemplateIds);
+  const unsupportedTemplate = manifest.overlayTemplates.find(
+    (templateId) => !allowedTemplates.has(templateId),
+  );
+  if (unsupportedTemplate) {
+    throw new Error(
+      `Renderer used template not allowed by the active profile: ${unsupportedTemplate}.`,
+    );
+  }
+  const undersized = manifest.textPlacements.find(
+    (placement) => placement.fontSize < profile.overlayPolicy.minimumFontSizePx,
+  );
+  if (undersized) {
+    throw new Error(
+      `Rendered overlay ${undersized.clipId} is ${undersized.fontSize}px; active profile requires ${profile.overlayPolicy.minimumFontSizePx}px.`,
+    );
+  }
+  const binding = manifest.activeEditorialProfile;
+  if (
+    !binding ||
+    binding.profileId !== profile.id ||
+    binding.profileDigest !== profile.profileDigest ||
+    binding.activationApprovalId !== profile.activationApprovalId
+  ) {
+    throw new Error('Renderer manifest lost the active editorial profile binding.');
+  }
 }
 
 function deliveryCanvas(video, mode) {

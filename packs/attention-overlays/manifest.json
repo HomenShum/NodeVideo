@@ -1,7 +1,7 @@
 {
   "schema": "nodevideo.capability-pack.v1",
   "id": "nodevideo.attention-overlays",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "implementationStatus": "private-real-media-and-contract-validated",
   "title": "Embodied Attention Text Overlays",
   "description": "Plans timed text as attention events against the union of framewise pose silhouettes, renders through the canonical EditPlan renderer, and fails closed when the rendered typography cannot clear every detected performer.",
@@ -11,18 +11,21 @@
     "outputSchema": "output.schema.json",
     "toolRegistry": "tools/registry.json"
   },
-  "inputs": ["video/authorized", "video/pose-track", "text/timed-cues"],
+  "inputs": ["video/authorized", "video/pose-track", "text/timed-cues", "editorial/active-profile"],
   "outputs": [
     "production/attention-overlay-plan",
     "production/attention-overlay-preview",
     "production/embodied-overlay-audit",
-    "production/attention-overlay-receipt"
+    "production/attention-overlay-receipt",
+    "production/overlay-knockout-preview",
+    "production/overlay-causal-proof"
   ],
   "tools": [
     "pose.extract",
     "attention-overlays.plan",
     "render.edit-plan",
-    "embodied-overlays.audit"
+    "embodied-overlays.audit",
+    "overlay-causality.audit"
   ],
   "permissions": ["read_authorized_video", "write_private_derived_artifacts"],
   "uiRenderers": ["AttentionOverlayTimeline", "EmbodiedOverlayAudit"],

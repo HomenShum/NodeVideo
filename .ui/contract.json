@@ -208,7 +208,7 @@
         {
           "id": "browser-export",
           "role": "button",
-          "name": "Export silent MP4",
+          "name": "Export",
           "gated": "disabled until the plan has loaded and while an export is already running",
           "meaning": "Snapshots the currently accepted plan, then fetches the two same-origin authorized proxies and runs the pinned self-hosted ffmpeg.wasm core entirely in this tab. The output is silent because the private song master is not distributed. Progress is visible, cancellation terminates the worker, and no media uploads."
         },
@@ -250,7 +250,7 @@
         {
           "id": "undo-patch",
           "role": "button",
-          "name": "Undo last patch",
+          "name": "Undo",
           "gated": "disabled until a patch or timeline drag has been applied"
         },
         {
@@ -265,7 +265,7 @@
         },
         {
           "id": "clip-order",
-          "css": "[aria-label='Clip order']",
+          "css": "[aria-label='Current cut timeline']",
           "meaning": "Drag-to-reorder clip chips (dnd-kit; keyboard: Enter picks up, arrows move, Enter drops). Reordering re-lays the timeline contiguously; each clip keeps its own source frames. A plain tap on a chip (under the 6px drag threshold) seeks the preview player to that clip; the current frame is mirrored on the preview wrapper as data-frame."
         },
         {
@@ -296,7 +296,7 @@
         {
           "id": "stitch-first-run",
           "meaning": "Honest boundaries visible before any interaction: local-only agent, local silent MP4 export, no uploads, and the waveform's provenance (take A audio, not the undistributed Sign master).",
-          "requireTexts": ["Edit the Sign cut, on the beat.", "No cloud model", "Nothing uploads."],
+          "requireTexts": ["Sign · Cut v1", "Canvas", "Export"],
           "forbidTexts": ["Owner access key", "Service token"]
         }
       ],
@@ -488,7 +488,7 @@
     },
     {
       "id": "creatorbench",
-      "route": "/creatorbench",
+      "route": "/creatorbench.html",
       "landmark": {
         "testid": "creatorbench-overview"
       },

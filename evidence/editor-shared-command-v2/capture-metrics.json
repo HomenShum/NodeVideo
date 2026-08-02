@@ -1,0 +1,11 @@
+{
+  "desktop": {
+    "viewport": 1440,
+    "document": 1440
+  },
+  "mobile": {
+    "viewport": 390,
+    "document": 390
+  },
+  "consoleErrors": []
+}

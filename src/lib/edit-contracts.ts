@@ -311,6 +311,11 @@ export interface EditLineage {
   evaluationOnlyAssetIds: string[];
   targetDerivedRenderAssetIds: string[];
   decisionArtifactIds?: string[];
+  activeEditorialProfile?: {
+    profileId: string;
+    profileDigest: `sha256:${string}`;
+    activationApprovalId: string;
+  };
   calibration?: {
     targetAccess: 'none' | 'authorized-profile-learning' | 'post-freeze-evaluation';
     targetArtifactIds: string[];
@@ -1373,7 +1378,7 @@ export function validateEditPlan(value: unknown): asserts value is EditPlan {
     lineage,
     'EditPlan.lineage',
     ['renderAssetIds', 'evaluationOnlyAssetIds', 'targetDerivedRenderAssetIds'],
-    ['decisionArtifactIds', 'calibration'],
+    ['decisionArtifactIds', 'activeEditorialProfile', 'calibration'],
   );
   assertUniqueStrings(lineage.renderAssetIds, 'EditPlan.lineage.renderAssetIds');
   assertUniqueStrings(lineage.evaluationOnlyAssetIds, 'EditPlan.lineage.evaluationOnlyAssetIds');
@@ -1383,6 +1388,27 @@ export function validateEditPlan(value: unknown): asserts value is EditPlan {
   );
   if (lineage.decisionArtifactIds !== undefined) {
     assertUniqueStrings(lineage.decisionArtifactIds, 'EditPlan.lineage.decisionArtifactIds');
+  }
+  if (lineage.activeEditorialProfile !== undefined) {
+    const profile = asRecord(
+      lineage.activeEditorialProfile,
+      'EditPlan.lineage.activeEditorialProfile',
+    );
+    assertExactKeys(profile, 'EditPlan.lineage.activeEditorialProfile', [
+      'profileId',
+      'profileDigest',
+      'activationApprovalId',
+    ]);
+    assertString(profile.profileId, 'EditPlan.lineage.activeEditorialProfile.profileId');
+    assert(
+      typeof profile.profileDigest === 'string' &&
+        /^sha256:[a-f0-9]{64}$/u.test(profile.profileDigest),
+      'EditPlan.lineage.activeEditorialProfile.profileDigest must be a canonical sha256 digest',
+    );
+    assertString(
+      profile.activationApprovalId,
+      'EditPlan.lineage.activeEditorialProfile.activationApprovalId',
+    );
   }
   if (lineage.calibration !== undefined) {
     const calibration = asRecord(lineage.calibration, 'EditPlan.lineage.calibration');

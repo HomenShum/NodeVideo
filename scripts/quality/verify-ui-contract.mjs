@@ -16,7 +16,7 @@ import { join, resolve } from 'node:path';
 import { chromium } from 'playwright';
 
 const root = resolve(import.meta.dirname, '..', '..');
-const port = Number(process.env.NODEVIDEO_CONTRACT_PORT ?? 4327);
+const port = await findAvailablePort(Number(process.env.NODEVIDEO_CONTRACT_PORT ?? 4327));
 const contract = JSON.parse(readFileSync(join(root, '.ui', 'contract.json'), 'utf8'));
 const publicCopy = readFileSync(join(root, 'fixtures', '.well-known', 'agent-ui.json'), 'utf8');
 const failures = [];
@@ -25,6 +25,18 @@ const fail = (line) => {
   failures.push(line);
   console.error(`  FAIL ${line}`);
 };
+
+async function findAvailablePort(preferredPort) {
+  for (let candidate = preferredPort; candidate < preferredPort + 20; candidate += 1) {
+    const available = await new Promise((resolveAvailability) => {
+      const probe = createServer();
+      probe.once('error', () => resolveAvailability(false));
+      probe.listen(candidate, '127.0.0.1', () => probe.close(() => resolveAvailability(true)));
+    });
+    if (available) return candidate;
+  }
+  throw new Error(`No contract verification port available from ${preferredPort}.`);
+}
 
 if (publicCopy !== readFileSync(join(root, '.ui', 'contract.json'), 'utf8')) {
   fail('fixtures/.well-known/agent-ui.json is not byte-identical to .ui/contract.json');

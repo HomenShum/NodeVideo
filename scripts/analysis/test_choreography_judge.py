@@ -105,6 +105,31 @@ class JudgeTests(unittest.TestCase):
         )
         self.assertGreater(result["overall"], 90)
 
+    def test_crowded_reference_finds_identical_phrase_inside_longer_group_upload(self):
+        full_attempt = fixture(frames=180, people=3)
+        phrase_start = 32
+        phrase_frames = 90
+        reference = Track(
+            full_attempt.times[phrase_start:phrase_start + phrase_frames]
+            - full_attempt.times[phrase_start],
+            full_attempt.poses[phrase_start:phrase_start + phrase_frames].copy(),
+        )
+
+        result = score(reference, full_attempt)
+
+        self.assertEqual(result["status"], "completed")
+        self.assertEqual(
+            result["measurements"]["attemptSegmentationMode"],
+            "pose-window-from-reference-duration",
+        )
+        self.assertAlmostEqual(
+            result["measurements"]["attemptCandidateWindow"]["startSeconds"],
+            full_attempt.times[phrase_start],
+            delta=1.1,
+        )
+        self.assertEqual(result["measurements"]["comparisonMode"], "team")
+        self.assertGreater(result["overall"], 90)
+
     def test_solo_attempt_selects_performer_from_group_before_alignment(self):
         reference = fixture(frames=120, people=3)
         delay = 4
