@@ -67,6 +67,19 @@ test('default Auto mode applies only a safe local single-variant proposal', asyn
   await expect(page.getByRole('button', { name: 'Restore draft' })).toBeVisible();
 });
 
+test('a returning creator can restore browser-local demo media from Files', async ({ page }) => {
+  await startCreatorWithDemo(page, undefined, 'auto');
+  await expect(page.getByRole('button', { name: 'Send message' })).toBeEnabled();
+
+  await page.reload();
+  if ((page.viewportSize()?.width ?? 1000) <= 1023) {
+    await page.getByRole('button', { name: 'Files', exact: true }).click();
+  }
+  await expect(page.getByTestId('project-files')).toContainText('No source attached.');
+  await page.getByRole('button', { name: 'Use rights-cleared demo' }).click();
+  await expect(page.getByTestId('project-files')).toContainText('nodevideo-demo.mp4');
+});
+
 test('creator pipeline compiles one source into reviewable variants', async ({
   page,
 }, testInfo) => {

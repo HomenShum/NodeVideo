@@ -353,7 +353,12 @@ export function CreatorWorkspace(props: {
                 </span>
               </div>
             ) : (
-              <p>No source attached.</p>
+              <div className="space-y-3">
+                <p>No source attached.</p>
+                <Button size="sm" variant="secondary" onClick={props.onLoadDemo}>
+                  Use rights-cleared demo
+                </Button>
+              </div>
             )}
             <label htmlFor="creator-source">
               <Plus className="size-3" /> Replace source

@@ -136,9 +136,17 @@ export async function runAndroidQa(options) {
   });
 
   await page.goto(options.url, { waitUntil: 'domcontentloaded', timeout: 30_000 });
-  await page.getByRole('button', { name: 'Use rights-cleared demo' }).click();
-  await page.getByText(/nodevideo-demo\.mp4 .* ready in this browser/u).waitFor();
-  await page.getByRole('button', { name: /Start creating/u }).click();
+  const demoButton = page.getByRole('button', { name: 'Use rights-cleared demo' });
+  if (await demoButton.isVisible()) {
+    await demoButton.click();
+    await page.getByText(/nodevideo-demo\.mp4 .* ready in this browser/u).waitFor();
+    await page.getByRole('button', { name: /Start creating/u }).click();
+  } else {
+    await page.getByRole('button', { name: 'Files', exact: true }).click();
+    await page.getByTestId('project-files').waitFor();
+    await demoButton.click();
+    await page.getByText('nodevideo-demo.mp4', { exact: true }).first().waitFor();
+  }
   await page.getByRole('button', { name: 'Chat', exact: true }).click();
   await page.getByRole('heading', { name: 'NodeAgent' }).waitFor();
   await page.getByText('nodevideo-demo.mp4', { exact: true }).first().waitFor();
