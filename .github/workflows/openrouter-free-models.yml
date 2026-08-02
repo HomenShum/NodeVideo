@@ -26,7 +26,7 @@ concurrency:
 jobs:
   benchmark:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     env:
       OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
     steps:
@@ -68,6 +68,7 @@ jobs:
           path: |
             openrouter-benchmark-summary.json
             .qa/openrouter-free-models/latest-report.json
+            .qa/openrouter-free-models/latest-deep-dive.md
           if-no-files-found: ignore
           retention-days: 30
 
@@ -86,9 +87,15 @@ jobs:
           git add config/openrouter-free-routing.json
           git commit -m 'chore: refresh OpenRouter free-model routing'
           git push --force-with-lease origin "$branch"
-          body='Automated Class B routing refresh. Trigger: catalog change, scheduled canary failure, manual dispatch, or production health dispatch. Review the receipt-backed rankings before merge; rollback is reverting this manifest commit.'
-          gh pr create --base "${{ github.event.repository.default_branch }}" --head "$branch" --title 'Refresh OpenRouter free-model routing' --body "$body" ||
-            gh pr edit "$branch" --title 'Refresh OpenRouter free-model routing' --body "$body"
+          {
+            echo 'Automated Class B routing refresh. Trigger: catalog change, scheduled canary failure, manual dispatch, or production health dispatch.'
+            echo
+            echo 'Review the causal evidence and bounded repair outcomes below before merge; rollback is reverting this manifest commit.'
+            echo
+            cat .qa/openrouter-free-models/latest-deep-dive.md
+          } > routing-pr-body.md
+          gh pr create --base "${{ github.event.repository.default_branch }}" --head "$branch" --title 'Refresh OpenRouter free-model routing' --body-file routing-pr-body.md ||
+            gh pr edit "$branch" --title 'Refresh OpenRouter free-model routing' --body-file routing-pr-body.md
           # Pushes made with GITHUB_TOKEN do not start other workflows. Dispatch
           # the merge gates explicitly, then mirror their real conclusions onto
           # the generated commit because workflow_dispatch runs are not attached

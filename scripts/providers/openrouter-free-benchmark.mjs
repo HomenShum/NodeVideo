@@ -2,7 +2,7 @@
 
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import nodeAgentRuntime from '../../src/lib/nodeagent-runtime.json' with { type: 'json' };
 
@@ -25,7 +25,6 @@ export const DEFAULT_REPORT_PATH = resolve(
   'openrouter-free-models',
   'latest-report.json',
 );
-
 export const PLANNER_OPERATIONS = nodeAgentRuntime.creatorPlanningOperations;
 
 export const BENCHMARK_SCENARIOS = [
@@ -105,7 +104,42 @@ export function discoverCandidates(payload) {
     }));
 }
 
-export function buildPlannerRequest(model, scenario) {
+export function analyzeCatalog(payload) {
+  const rows = Array.isArray(payload?.data) ? payload.data : [];
+  const zeroCostText = rows.filter(
+    (model) =>
+      Number(model.pricing?.prompt) === 0 &&
+      Number(model.pricing?.completion) === 0 &&
+      model.architecture?.output_modalities?.includes('text'),
+  );
+  const routes = zeroCostText.map((model) => {
+    const parameters = new Set(model.supported_parameters ?? []);
+    const reasons = [];
+    if (model.id === 'openrouter/free') reasons.push('dynamic_router_not_stable_model');
+    if (typeof model.id !== 'string' || !model.id.endsWith(':free'))
+      reasons.push('not_explicit_free_model');
+    if (!parameters.has('structured_outputs')) reasons.push('no_structured_outputs');
+    if (!parameters.has('max_tokens')) reasons.push('no_max_tokens');
+    return {
+      id: model.id,
+      eligibleForBenchmark: reasons.length === 0,
+      exclusionReasons: reasons,
+    };
+  });
+  return {
+    totalCatalogModels: rows.length,
+    zeroCostTextRoutes: zeroCostText.length,
+    structuredTextRoutes: routes.filter(
+      (route) => !route.exclusionReasons.includes('no_structured_outputs'),
+    ).length,
+    explicitBenchmarkCandidates: routes.filter((route) => route.eligibleForBenchmark).length,
+    routes,
+  };
+}
+
+export function buildPlannerRequest(model, scenario, options = {}) {
+  const repair = options.repair === true;
+  const responsePolicy = nodeAgentRuntime.plannerResponsePolicy;
   return {
     model,
     provider: { require_parameters: true },
@@ -138,8 +172,13 @@ export function buildPlannerRequest(model, scenario) {
         },
       },
     },
-    max_tokens: 500,
-    temperature: 0.2,
+    max_tokens: repair ? responsePolicy.repairMaxTokens : responsePolicy.maxTokens,
+    temperature: responsePolicy.temperature,
+    reasoning: {
+      effort: responsePolicy.reasoningEffort,
+      exclude: responsePolicy.excludeReasoning,
+    },
+    ...(responsePolicy.responseHealing ? { plugins: [{ id: 'response-healing' }] } : {}),
     messages: [
       {
         role: 'system',
@@ -147,7 +186,11 @@ export function buildPlannerRequest(model, scenario) {
       },
       {
         role: 'user',
-        content: `Creator request:\n${scenario.request}\n\nSource transcript:\n${scenario.transcript}`,
+        content: `Creator request:\n${scenario.request}\n\nSource transcript:\n${scenario.transcript}${
+          repair
+            ? '\n\nRepair instruction: the prior response failed validation. Return one complete JSON object only and include every explicitly requested operation.'
+            : ''
+        }`,
       },
     ],
   };
@@ -210,7 +253,7 @@ export function scorePlan(plan, scenario) {
   const groundingPass = quotes.every((quote) =>
     scenario.transcript.toLowerCase().includes(quote.toLowerCase()),
   );
-  const score = 40 + requiredRatio * 30 + (forbiddenPass ? 10 : 0) + (groundingPass ? 20 : 0);
+  const score = 20 + requiredRatio * 40 + (forbiddenPass ? 20 : 0) + (groundingPass ? 20 : 0);
   return {
     score,
     schemaPass: true,
@@ -228,13 +271,105 @@ async function readBoundedJson(response) {
   return JSON.parse(new TextDecoder().decode(bytes));
 }
 
-export async function runAttempt({
-  apiKey,
-  model,
-  scenario,
-  fetchImpl = fetch,
-  timeoutMs = REQUEST_TIMEOUT_MS,
-}) {
+function responseEvidence(payload) {
+  const choice = payload?.choices?.[0];
+  const content = choice?.message?.content;
+  const reasoning = choice?.message?.reasoning;
+  return {
+    finishReason: choice?.finish_reason ?? null,
+    nativeFinishReason: choice?.native_finish_reason ?? null,
+    contentLength: typeof content === 'string' ? content.length : 0,
+    reasoningLength: typeof reasoning === 'string' ? reasoning.length : 0,
+    contentPreview:
+      typeof content === 'string' ? content.replace(/\s+/gu, ' ').trim().slice(0, 500) : '',
+  };
+}
+
+function diagnoseFailure({ response, payload, plan, evaluation, evidence }) {
+  if (!response.ok) {
+    return {
+      code: 'upstream_http_error',
+      mechanism: `OpenRouter returned HTTP ${response.status}.`,
+      likelyCause: payload.error?.message ?? 'The selected free provider rejected the request.',
+      remediation:
+        'Retry once within the request budget, then remove the route if failures persist.',
+    };
+  }
+  if (!payload.model) {
+    return {
+      code: 'missing_resolved_model',
+      mechanism: 'OpenRouter returned no resolved model identifier.',
+      likelyCause: 'The router response was incomplete and cannot prove which model executed.',
+      remediation: 'Retry once and reject any response whose executing model is not identified.',
+    };
+  }
+  if (evidence.contentLength === 0) {
+    return {
+      code: 'missing_content',
+      mechanism: 'The provider returned HTTP 200 but no assistant content.',
+      likelyCause:
+        evidence.reasoningLength > 0 || evidence.finishReason === 'length'
+          ? 'Reasoning or truncation consumed the completion budget before the JSON answer.'
+          : 'The provider emitted an empty structured-output message.',
+      remediation:
+        'Use low reasoning effort, exclude reasoning text, increase the bounded answer budget, and retry once.',
+    };
+  }
+  if (!plan) {
+    return {
+      code: 'invalid_structured_output',
+      mechanism: 'The provider returned HTTP 200 content that failed the NodeVideo plan schema.',
+      likelyCause:
+        evidence.finishReason === 'length'
+          ? 'The JSON answer was truncated at the completion limit.'
+          : 'The provider did not honor strict structured output exactly.',
+      remediation:
+        'Enable response healing and retry once with a JSON-only repair instruction and larger bounded output budget.',
+    };
+  }
+  if (!evaluation.requiredPass) {
+    return {
+      code: 'required_operations_missing',
+      mechanism: 'The plan was valid JSON but omitted at least one explicitly requested operation.',
+      likelyCause:
+        'The planner did not map every creator action to the corresponding operation enum.',
+      remediation:
+        'Use explicit action-to-operation mapping in the shared planner prompt and retry once.',
+    };
+  }
+  if (!evaluation.forbiddenPass) {
+    return {
+      code: 'forbidden_operation_added',
+      mechanism: 'The plan introduced an operation the creator explicitly prohibited.',
+      likelyCause: 'The planner expanded scope beyond the creator request.',
+      remediation:
+        'Restate the prohibited operations in the repair prompt and reject unresolved output.',
+    };
+  }
+  return {
+    code: 'invented_or_unsupported_quote',
+    mechanism: 'The plan quoted text that was not present in the supplied transcript.',
+    likelyCause:
+      'The planner generated unsupported wording instead of extracting source text exactly.',
+    remediation: 'Restate the source-grounding constraint and reject unresolved output.',
+  };
+}
+
+function retryStrategy(code) {
+  return {
+    upstream_http_error: 'bounded_provider_retry',
+    missing_resolved_model: 'bounded_provider_retry',
+    missing_content: 'low_reasoning_larger_budget_retry',
+    invalid_structured_output: 'response_healing_json_only_retry',
+    required_operations_missing: 'explicit_operation_mapping_retry',
+    forbidden_operation_added: 'scope_constraint_retry',
+    invented_or_unsupported_quote: 'source_grounding_retry',
+    timeout: 'bounded_timeout_retry',
+    transport_or_parse_error: 'bounded_transport_retry',
+  }[code];
+}
+
+async function runSingleAttempt({ apiKey, model, scenario, fetchImpl, timeoutMs, repair }) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
   const started = performance.now();
@@ -248,17 +383,22 @@ export async function runAttempt({
         'HTTP-Referer': 'https://nodevideo-pi.vercel.app',
         'X-OpenRouter-Title': 'NodeVideo Free Model Benchmark',
       },
-      body: JSON.stringify(buildPlannerRequest(model, scenario)),
+      body: JSON.stringify(buildPlannerRequest(model, scenario, { repair })),
     });
     const payload = await readBoundedJson(response);
+    const evidence = responseEvidence(payload);
     const plan = parsePlan(payload.choices?.[0]?.message?.content);
     const evaluation = scorePlan(plan, scenario);
     const success =
       response.ok &&
       Boolean(payload.model) &&
       evaluation.schemaPass &&
+      evaluation.requiredPass &&
       evaluation.forbiddenPass &&
       evaluation.groundingPass;
+    const diagnosis = success
+      ? null
+      : diagnoseFailure({ response, payload, plan, evaluation, evidence });
     return {
       model,
       resolvedModel: payload.model ?? null,
@@ -267,12 +407,25 @@ export async function runAttempt({
       httpStatus: response.status,
       latencyMs: Math.round(performance.now() - started),
       ...evaluation,
-      error: success
-        ? null
-        : (payload.error?.message ??
-          (plan ? 'scenario_requirements_failed' : 'invalid_structured_output')),
+      responseEvidence: evidence,
+      diagnosis,
+      error: success ? null : (payload.error?.message ?? diagnosis.code),
     };
   } catch (error) {
+    const diagnosis = {
+      code: controller.signal.aborted ? 'timeout' : 'transport_or_parse_error',
+      mechanism: controller.signal.aborted
+        ? `No bounded response completed within ${timeoutMs}ms.`
+        : 'The benchmark could not read a valid bounded OpenRouter response.',
+      likelyCause: controller.signal.aborted
+        ? 'The free provider was overloaded or its generation exceeded the request budget.'
+        : error instanceof Error
+          ? error.message
+          : 'Unknown transport failure.',
+      remediation: controller.signal.aborted
+        ? 'Retry once with low reasoning effort, then reject the route if it still exceeds the budget.'
+        : 'Retry once; reject repeated malformed, oversized, or unreadable responses.',
+    };
     return {
       model,
       resolvedModel: null,
@@ -285,15 +438,59 @@ export async function runAttempt({
       requiredPass: false,
       forbiddenPass: false,
       groundingPass: false,
-      error: controller.signal.aborted
-        ? 'timeout'
-        : error instanceof Error
-          ? error.message
-          : 'unknown_error',
+      responseEvidence: null,
+      diagnosis,
+      error: diagnosis.code,
     };
   } finally {
     clearTimeout(timeout);
   }
+}
+
+export async function runAttempt({
+  apiKey,
+  model,
+  scenario,
+  fetchImpl = fetch,
+  timeoutMs = REQUEST_TIMEOUT_MS,
+}) {
+  const first = await runSingleAttempt({
+    apiKey,
+    model,
+    scenario,
+    fetchImpl,
+    timeoutMs,
+    repair: false,
+  });
+  if (first.success) {
+    return {
+      ...first,
+      resolution: { attempted: false, strategy: null, outcome: 'not_needed' },
+    };
+  }
+  const repaired = await runSingleAttempt({
+    apiKey,
+    model,
+    scenario,
+    fetchImpl,
+    timeoutMs,
+    repair: true,
+  });
+  return {
+    ...repaired,
+    latencyMs: first.latencyMs + repaired.latencyMs,
+    initialFailure: {
+      error: first.error,
+      diagnosis: first.diagnosis,
+      responseEvidence: first.responseEvidence,
+    },
+    resolution: {
+      attempted: true,
+      strategy: retryStrategy(first.diagnosis.code),
+      outcome: repaired.success ? 'resolved' : 'unresolved',
+      finalFailure: repaired.success ? null : repaired.diagnosis,
+    },
+  };
 }
 
 export function aggregateResults(candidates, attempts, repetitions) {
@@ -336,6 +533,119 @@ export function aggregateResults(candidates, attempts, repetitions) {
         (a.p95LatencyMs ?? Number.MAX_SAFE_INTEGER) - (b.p95LatencyMs ?? Number.MAX_SAFE_INTEGER) ||
         a.id.localeCompare(b.id),
     );
+}
+
+export function buildFailureDeepDives(candidates, attempts) {
+  return candidates.map((candidate) => {
+    const samples = attempts.filter((attempt) => attempt.model === candidate.id);
+    const initialFailures = samples.filter((attempt) => attempt.initialFailure);
+    const unresolvedFailures = samples.filter((attempt) => !attempt.success);
+    const causeCodes = [
+      ...new Set(
+        samples
+          .flatMap((attempt) => [attempt.initialFailure?.diagnosis, attempt.diagnosis])
+          .filter(Boolean)
+          .map((diagnosis) => diagnosis.code),
+      ),
+    ];
+    const rootCauses = causeCodes.map((code) => {
+      const matching = samples.flatMap((attempt) =>
+        [attempt.initialFailure?.diagnosis, attempt.diagnosis]
+          .filter((diagnosis) => diagnosis?.code === code)
+          .map((diagnosis) => ({ attempt, diagnosis })),
+      );
+      const exemplar = matching[0];
+      return {
+        code,
+        observedCount: matching.length,
+        mechanism: exemplar.diagnosis.mechanism,
+        likelyCause: exemplar.diagnosis.likelyCause,
+        confidence: code === 'timeout' || code === 'upstream_http_error' ? 'observed' : 'inferred',
+        evidence: matching.slice(0, 3).map(({ attempt }) => ({
+          scenarioId: attempt.scenarioId,
+          httpStatus: attempt.httpStatus,
+          error: attempt.error,
+          responseEvidence:
+            attempt.initialFailure?.diagnosis?.code === code
+              ? attempt.initialFailure.responseEvidence
+              : attempt.responseEvidence,
+        })),
+        remediation: exemplar.diagnosis.remediation,
+      };
+    });
+    const resolutions = samples
+      .filter((attempt) => attempt.resolution?.attempted)
+      .map((attempt) => ({
+        scenarioId: attempt.scenarioId,
+        strategy: attempt.resolution.strategy,
+        outcome: attempt.resolution.outcome,
+      }));
+    return {
+      model: candidate.id,
+      status:
+        unresolvedFailures.length > 0
+          ? 'unresolved_failures'
+          : initialFailures.length > 0
+            ? 'recovered_by_bounded_repair'
+            : 'passed_without_repair',
+      samples: samples.length,
+      initialFailures: initialFailures.length,
+      resolvedFailures: resolutions.filter((resolution) => resolution.outcome === 'resolved')
+        .length,
+      unresolvedFailures: unresolvedFailures.length,
+      rootCauses,
+      resolutions,
+    };
+  });
+}
+
+export function formatFailureDeepDiveMarkdown(report) {
+  const coverage = report.catalogCoverage;
+  const lines = [
+    '# OpenRouter free-model failure deep dive',
+    '',
+    `Generated: ${report.generatedAt}`,
+    '',
+    '## Supply and eligibility',
+    '',
+    `OpenRouter exposed ${coverage.zeroCostTextRoutes} zero-cost text routes; ${coverage.structuredTextRoutes} advertised structured outputs, and ${coverage.explicitBenchmarkCandidates} were stable explicit-model candidates for this benchmark.`,
+    '',
+  ];
+  for (const model of report.failureDeepDives) {
+    lines.push(`## ${model.model}`, '');
+    lines.push(
+      `Status: **${model.status}**. Initial failures: ${model.initialFailures}; resolved by bounded repair: ${model.resolvedFailures}; unresolved: ${model.unresolvedFailures}.`,
+      '',
+    );
+    if (model.rootCauses.length === 0) {
+      lines.push('No failures were observed.', '');
+      continue;
+    }
+    for (const cause of model.rootCauses) {
+      const sample = cause.evidence[0];
+      lines.push(
+        `- **${cause.code}** (${cause.confidence}, ${cause.observedCount} observations)`,
+        `  - Mechanism: ${cause.mechanism}`,
+        `  - Why: ${cause.likelyCause}`,
+        `  - Evidence: scenario \`${sample.scenarioId}\`, HTTP ${sample.httpStatus ?? 'none'}, error \`${sample.error}\`, finish \`${sample.responseEvidence?.finishReason ?? 'none'}\`, content ${sample.responseEvidence?.contentLength ?? 0} chars, reasoning ${sample.responseEvidence?.reasoningLength ?? 0} chars.`,
+        `  - Resolution: ${cause.remediation}`,
+      );
+    }
+    if (model.resolutions.length > 0) {
+      lines.push('', 'Resolution attempts:');
+      for (const resolution of model.resolutions) {
+        lines.push(
+          `- \`${resolution.scenarioId}\`: \`${resolution.strategy}\` → **${resolution.outcome}**`,
+        );
+      }
+    }
+    lines.push('');
+  }
+  lines.push(
+    'A resolution is marked resolved only when the same scenario produced a schema-valid, complete, scope-safe, source-grounded plan on the bounded repair attempt.',
+    '',
+  );
+  return lines.join('\n');
 }
 
 async function mapBounded(items, concurrency, worker) {
@@ -412,11 +722,13 @@ function parseArgs(argv) {
     const index = argv.indexOf(name);
     return index >= 0 ? argv[index + 1] : fallback;
   };
+  const reportPath = resolve(value('--report', DEFAULT_REPORT_PATH));
   return {
     mode: value('--mode', 'auto'),
     repetitions: Number(value('--repetitions', String(DEFAULT_REPETITIONS))),
     manifestPath: resolve(value('--manifest', DEFAULT_MANIFEST_PATH)),
-    reportPath: resolve(value('--report', DEFAULT_REPORT_PATH)),
+    reportPath,
+    deepDivePath: resolve(value('--deep-dive', join(dirname(reportPath), 'latest-deep-dive.md'))),
     dryRun: argv.includes('--dry-run'),
     force: argv.includes('--force'),
   };
@@ -434,6 +746,7 @@ export async function main(argv = process.argv.slice(2), dependencies = {}) {
   const now = dependencies.now ?? (() => new Date().toISOString());
   const catalog = await fetchCatalog(fetchImpl);
   const candidates = discoverCandidates(catalog);
+  const catalogCoverage = analyzeCatalog(catalog);
   if (candidates.length === 0)
     throw new Error('No free structured-output text models were discovered.');
   const catalogDigest = stableDigest(candidates);
@@ -449,6 +762,8 @@ export async function main(argv = process.argv.slice(2), dependencies = {}) {
         runAttempt({ apiKey, model, scenario: BENCHMARK_SCENARIOS[0], fetchImpl }),
       );
       if (canaryAttempts.some((attempt) => !attempt.success)) reason = 'selected_model_failed';
+      else if (canaryAttempts.some((attempt) => attempt.resolution?.attempted))
+        reason = 'selected_model_degraded';
     }
   }
   if (options.mode === 'canary' || (!reason && options.mode === 'auto')) {
@@ -459,6 +774,7 @@ export async function main(argv = process.argv.slice(2), dependencies = {}) {
       action: reason ? 'full_benchmark_required' : 'no_change',
       reason,
       catalogDigest,
+      catalogCoverage,
       attempts: canaryAttempts,
     };
     console.log(JSON.stringify(report, null, 2));
@@ -478,6 +794,7 @@ export async function main(argv = process.argv.slice(2), dependencies = {}) {
     ...(await runAttempt({ apiKey, model: job.model, scenario: job.scenario, fetchImpl })),
   }));
   const rankings = aggregateResults(candidates, attempts, options.repetitions);
+  const failureDeepDives = buildFailureDeepDives(candidates, attempts);
   const generatedAt = now();
   const manifest = buildManifest({
     candidates,
@@ -492,8 +809,10 @@ export async function main(argv = process.argv.slice(2), dependencies = {}) {
     mode: 'full',
     reason: reason ?? 'requested',
     catalogDigest,
+    catalogCoverage,
     attempts,
     rankings,
+    failureDeepDives,
     selectedModels: manifest.selectedModels,
   };
   if (!options.dryRun) {
@@ -501,6 +820,7 @@ export async function main(argv = process.argv.slice(2), dependencies = {}) {
     await mkdir(dirname(options.reportPath), { recursive: true });
     await writeFile(options.manifestPath, formatManifestJson(manifest));
     await writeFile(options.reportPath, `${JSON.stringify(report, null, 2)}\n`);
+    await writeFile(options.deepDivePath, formatFailureDeepDiveMarkdown(report));
   }
   console.log(JSON.stringify({ ...report, attempts: undefined }, null, 2));
   if (manifest.selectedModels.length === 0) process.exitCode = 2;

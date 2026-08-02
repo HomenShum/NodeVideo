@@ -5,11 +5,15 @@ import { describe, expect, it } from 'vitest';
 import {
   BENCHMARK_SCENARIOS,
   aggregateResults,
+  analyzeCatalog,
+  buildFailureDeepDives,
   buildManifest,
   discoverCandidates,
+  formatFailureDeepDiveMarkdown,
   formatManifestJson,
   main,
   parsePlan,
+  runAttempt,
   scorePlan,
   stableDigest,
 } from './openrouter-free-benchmark.mjs';
@@ -41,6 +45,20 @@ describe('OpenRouter free-model benchmark scenarios', () => {
         data: Array.from({ length: 12 }, (_, index) => model(`m${index}:free`)),
       }),
     ).toHaveLength(8);
+    const coverage = analyzeCatalog({
+      data: [
+        model('new/free:free'),
+        { ...model('plain/free:free'), supported_parameters: ['max_tokens'] },
+        model('openrouter/free'),
+      ],
+    });
+    expect(coverage).toMatchObject({
+      zeroCostTextRoutes: 3,
+      explicitBenchmarkCandidates: 1,
+    });
+    expect(
+      coverage.routes.find((route) => route.id === 'plain/free:free')?.exclusionReasons,
+    ).toContain('no_structured_outputs');
   });
 
   it('a creator-facing evaluator rejects invented quotes and missing required operations', () => {
@@ -52,11 +70,83 @@ describe('OpenRouter free-model benchmark scenarios', () => {
       }),
     );
     expect(scorePlan(invented, scenario)).toMatchObject({
-      score: 50,
+      score: 40,
       schemaPass: true,
       requiredPass: false,
       groundingPass: false,
     });
+  });
+
+  it('a deep-agent benchmark does not call a plan successful when a requested operation is missing', () => {
+    const scenario = BENCHMARK_SCENARIOS[1];
+    const incomplete = parsePlan(
+      JSON.stringify({
+        summary: 'Prepare campaign variants while keeping the result reviewable.',
+        operations: [
+          { kind: 'compose_variants', reason: 'Create the requested vertical campaign variants.' },
+        ],
+      }),
+    );
+    expect(scorePlan(incomplete, scenario)).toMatchObject({ requiredPass: false, score: 80 });
+  });
+
+  it('a malformed HTTP-200 plan is diagnosed, repaired once, and retained as causal evidence', async () => {
+    const scenario = BENCHMARK_SCENARIOS[0];
+    let calls = 0;
+    const result = await runAttempt({
+      apiKey: 'test',
+      model: 'repairable:free',
+      scenario,
+      fetchImpl: async () => {
+        calls += 1;
+        if (calls === 1) {
+          return Response.json({
+            model: 'repairable:free',
+            choices: [{ finish_reason: 'stop', message: { content: 'not valid json' } }],
+          });
+        }
+        return Response.json({
+          model: 'repairable:free',
+          choices: [
+            {
+              finish_reason: 'stop',
+              message: {
+                content: JSON.stringify({
+                  summary: 'Extract the exact source quote while preserving the speaker meaning.',
+                  operations: scenario.requiredOperations.map((kind) => ({
+                    kind,
+                    reason: 'Apply the requested source-grounded operation after creator review.',
+                  })),
+                }),
+              },
+            },
+          ],
+        });
+      },
+    });
+    expect(result).toMatchObject({
+      success: true,
+      initialFailure: { diagnosis: { code: 'invalid_structured_output' } },
+      resolution: { attempted: true, outcome: 'resolved' },
+    });
+    const deepDive = buildFailureDeepDives([{ id: 'repairable:free' }], [result]);
+    expect(deepDive[0]).toMatchObject({
+      status: 'recovered_by_bounded_repair',
+      initialFailures: 1,
+      resolvedFailures: 1,
+      unresolvedFailures: 0,
+    });
+    expect(
+      formatFailureDeepDiveMarkdown({
+        generatedAt: '2026-08-01T00:00:00.000Z',
+        catalogCoverage: {
+          zeroCostTextRoutes: 17,
+          structuredTextRoutes: 5,
+          explicitBenchmarkCandidates: 4,
+        },
+        failureDeepDives: deepDive,
+      }),
+    ).toContain('Why: The provider did not honor strict structured output exactly.');
   });
 
   it('a creator-facing evaluator does not mistake a possessive apostrophe for a quote', () => {
@@ -174,9 +264,12 @@ describe('OpenRouter free-model benchmark scenarios', () => {
         ],
         { apiKey: 'test', fetchImpl, now: () => '2026-08-01T00:00:00.000Z' },
       );
-      expect(result.report).toMatchObject({ mode: 'full', reason: 'selected_model_failed' });
+      expect(result.report).toMatchObject({ mode: 'full', reason: 'selected_model_degraded' });
       expect(result.manifest.selectedModels).toEqual(['candidate/free:free']);
       expect(JSON.parse(await readFile(reportPath, 'utf8')).attempts).toHaveLength(4);
+      expect(await readFile(join(scratch, 'latest-deep-dive.md'), 'utf8')).toContain(
+        'OpenRouter free-model failure deep dive',
+      );
     } finally {
       await rm(scratch, { recursive: true, force: true });
     }
@@ -236,6 +329,56 @@ describe('OpenRouter free-model benchmark scenarios', () => {
       expect(maximumActive).toBe(2);
       expect(result.manifest.selectedModels).toHaveLength(2);
     } finally {
+      await rm(scratch, { recursive: true, force: true });
+    }
+  });
+
+  it('a sustained degraded catalog bounds every causal repair to one retry without widening concurrency', async () => {
+    const scratch = await mkdtemp(join(tmpdir(), 'nodevideo-openrouter-degraded-load-'));
+    const manifestPath = join(scratch, 'routing.json');
+    const reportPath = join(scratch, 'report.json');
+    const catalog = Array.from({ length: 8 }, (_, index) => model(`degraded-${index}:free`));
+    let active = 0;
+    let maximumActive = 0;
+    let chatCalls = 0;
+    const fetchImpl = async (url) => {
+      if (String(url).includes('/models?')) return Response.json({ data: catalog });
+      active += 1;
+      maximumActive = Math.max(maximumActive, active);
+      chatCalls += 1;
+      await new Promise((resolveWait) => setTimeout(resolveWait, 1));
+      active -= 1;
+      return Response.json({
+        model: 'degraded:free',
+        choices: [{ finish_reason: 'stop', message: { content: 'invalid plan' } }],
+      });
+    };
+    const previousExitCode = process.exitCode;
+    try {
+      const result = await main(
+        [
+          '--mode',
+          'full',
+          '--repetitions',
+          '3',
+          '--manifest',
+          manifestPath,
+          '--report',
+          reportPath,
+        ],
+        { apiKey: 'test', fetchImpl, now: () => '2026-08-01T00:00:00.000Z' },
+      );
+      expect(chatCalls).toBe(192);
+      expect(maximumActive).toBe(2);
+      expect(result.manifest.selectedModels).toEqual([]);
+      expect(result.report.failureDeepDives).toHaveLength(8);
+      expect(
+        result.report.failureDeepDives.every(
+          (deepDive) => deepDive.status === 'unresolved_failures',
+        ),
+      ).toBe(true);
+    } finally {
+      process.exitCode = previousExitCode;
       await rm(scratch, { recursive: true, force: true });
     }
   });
