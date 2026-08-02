@@ -388,7 +388,11 @@ test('agent rail gates cloud execution and supports inline proposal decisions', 
   ).toBeVisible();
   await page.getByRole('button', { name: 'Approve exact variant' }).click();
   await expect(page.getByTestId('creator-workspace')).toHaveAttribute('data-project-version', '2');
+  await page.getByRole('button', { name: 'Back to chat' }).click();
   await expect(page.getByText('approved', { exact: true })).toBeVisible();
+  await expect(
+    page.getByTestId('agent-proposal-card').getByRole('button', { name: 'View applied changes' }),
+  ).toBeVisible();
 });
 
 test('a cautious creator sees the iterative free-model trace before accepting a proposal', async ({
