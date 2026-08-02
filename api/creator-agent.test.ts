@@ -318,6 +318,12 @@ describe('creator free-route deep-agent scenarios', () => {
       ['model', 'completed'],
     ]);
     expect(fetchImpl).toHaveBeenCalledTimes(2);
+    const firstRequest = JSON.parse(String(fetchImpl.mock.calls[0]?.[1]?.body));
+    expect(firstRequest).toMatchObject({
+      max_tokens: 900,
+      reasoning: { effort: 'low', exclude: true },
+      plugins: [{ id: 'response-healing' }],
+    });
   });
 
   test('a deadline-driven editor receives an honestly degraded draft when the review pass fails', async () => {

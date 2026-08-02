@@ -318,8 +318,15 @@ function plannerRequest(
         },
       },
     },
-    max_tokens: 500,
-    temperature: 0.2,
+    max_tokens: nodeAgentRuntime.plannerResponsePolicy.maxTokens,
+    temperature: nodeAgentRuntime.plannerResponsePolicy.temperature,
+    reasoning: {
+      effort: nodeAgentRuntime.plannerResponsePolicy.reasoningEffort,
+      exclude: nodeAgentRuntime.plannerResponsePolicy.excludeReasoning,
+    },
+    ...(nodeAgentRuntime.plannerResponsePolicy.responseHealing
+      ? { plugins: [{ id: 'response-healing' }] }
+      : {}),
     messages,
     metadata: { scope: body.scope ?? 'selected-variant' },
   };

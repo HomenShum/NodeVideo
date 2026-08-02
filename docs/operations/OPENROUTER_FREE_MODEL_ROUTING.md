@@ -18,6 +18,23 @@ is capped at two, each request times out after 25 seconds, and each response is 
 megabyte. The workflow stores the detailed report as a 30-day artifact and opens or updates a
 promotion PR containing only the routing manifest.
 
+## Failure diagnosis and bounded repair
+
+The catalog report distinguishes all zero-cost text routes from explicit models that can satisfy
+NodeVideo's required structured-output contract. Dynamic routers and models that do not advertise
+`structured_outputs` plus `max_tokens` remain visible with their exclusion reasons; they are not
+silently omitted.
+
+Every failed attempt records the observed mechanism, bounded response-shape evidence, the inferred
+or observed upstream cause, and a concrete remediation. NodeVideo retries once using its shared
+low-reasoning, response-healing, JSON-only repair policy. A failure is labeled resolved only when
+the same scenario then produces a complete schema-valid plan with every required operation, no
+forbidden operation, and no unsupported quote. Repeated failures remain ineligible.
+
+The workflow writes `latest-deep-dive.md` beside the JSON report and embeds that causal analysis in
+the promotion PR. A failure count or aggregate score without this explanation is incomplete
+evidence and must not be used for promotion.
+
 ## Promotion and rollback
 
 This is a Class B provider-routing change. Review the generated candidate rows and confirm that each
