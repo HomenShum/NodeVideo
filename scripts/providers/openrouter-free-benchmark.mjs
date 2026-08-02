@@ -6,8 +6,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import nodeAgentRuntime from '../../src/lib/nodeagent-runtime.json' with { type: 'json' };
 
-export const OPENROUTER_MODELS_URL =
-  'https://openrouter.ai/api/v1/models?supported_parameters=structured_outputs&sort=newest';
+export const OPENROUTER_MODELS_URL = 'https://openrouter.ai/api/v1/models';
 export const OPENROUTER_CHAT_URL = 'https://openrouter.ai/api/v1/chat/completions';
 export const ROUTING_SCHEMA_VERSION = 'nodevideo.openrouter-free-routing.v1';
 export const BENCHMARK_SCHEMA_VERSION = 'nodevideo.openrouter-free-benchmark.v1';
@@ -95,13 +94,14 @@ export function discoverCandidates(payload) {
         parameters.has('max_tokens')
       );
     })
-    .slice(0, MAX_CANDIDATES)
     .map((model) => ({
       id: model.id,
       name: model.name ?? model.id,
       created: Number(model.created ?? 0),
       contextLength: Number(model.context_length ?? 0),
-    }));
+    }))
+    .sort((a, b) => b.created - a.created || a.id.localeCompare(b.id))
+    .slice(0, MAX_CANDIDATES);
 }
 
 export function analyzeCatalog(payload) {
@@ -186,9 +186,9 @@ export function buildPlannerRequest(model, scenario, options = {}) {
       },
       {
         role: 'user',
-        content: `Creator request:\n${scenario.request}\n\nSource transcript:\n${scenario.transcript}${
+        content: `Creator request:\n${scenario.request}\n\nRequired operations derived from that request: ${scenario.requiredOperations.join(', ')}.\nForbidden operations: ${scenario.forbiddenOperations.join(', ') || 'none'}.\n\nSource transcript:\n${scenario.transcript}${
           repair
-            ? '\n\nRepair instruction: the prior response failed validation. Return one complete JSON object only and include every explicitly requested operation.'
+            ? `\n\nRepair instruction: the prior response failed validation. Return one complete JSON object only. It must include: ${scenario.requiredOperations.join(', ')}.`
             : ''
         }`,
       },
@@ -481,6 +481,8 @@ export async function runAttempt({
     latencyMs: first.latencyMs + repaired.latencyMs,
     initialFailure: {
       error: first.error,
+      httpStatus: first.httpStatus,
+      latencyMs: first.latencyMs,
       diagnosis: first.diagnosis,
       responseEvidence: first.responseEvidence,
     },
@@ -549,11 +551,28 @@ export function buildFailureDeepDives(candidates, attempts) {
       ),
     ];
     const rootCauses = causeCodes.map((code) => {
-      const matching = samples.flatMap((attempt) =>
-        [attempt.initialFailure?.diagnosis, attempt.diagnosis]
-          .filter((diagnosis) => diagnosis?.code === code)
-          .map((diagnosis) => ({ attempt, diagnosis })),
-      );
+      const matching = samples.flatMap((attempt) => {
+        const observations = [];
+        if (attempt.initialFailure?.diagnosis?.code === code) {
+          observations.push({
+            diagnosis: attempt.initialFailure.diagnosis,
+            scenarioId: attempt.scenarioId,
+            httpStatus: attempt.initialFailure.httpStatus,
+            error: attempt.initialFailure.error,
+            responseEvidence: attempt.initialFailure.responseEvidence,
+          });
+        }
+        if (attempt.diagnosis?.code === code) {
+          observations.push({
+            diagnosis: attempt.diagnosis,
+            scenarioId: attempt.scenarioId,
+            httpStatus: attempt.httpStatus,
+            error: attempt.error,
+            responseEvidence: attempt.responseEvidence,
+          });
+        }
+        return observations;
+      });
       const exemplar = matching[0];
       return {
         code,
@@ -561,14 +580,11 @@ export function buildFailureDeepDives(candidates, attempts) {
         mechanism: exemplar.diagnosis.mechanism,
         likelyCause: exemplar.diagnosis.likelyCause,
         confidence: code === 'timeout' || code === 'upstream_http_error' ? 'observed' : 'inferred',
-        evidence: matching.slice(0, 3).map(({ attempt }) => ({
-          scenarioId: attempt.scenarioId,
-          httpStatus: attempt.httpStatus,
-          error: attempt.error,
-          responseEvidence:
-            attempt.initialFailure?.diagnosis?.code === code
-              ? attempt.initialFailure.responseEvidence
-              : attempt.responseEvidence,
+        evidence: matching.slice(0, 3).map((observation) => ({
+          scenarioId: observation.scenarioId,
+          httpStatus: observation.httpStatus,
+          error: observation.error,
+          responseEvidence: observation.responseEvidence,
         })),
         remediation: exemplar.diagnosis.remediation,
       };
@@ -814,6 +830,10 @@ export async function main(argv = process.argv.slice(2), dependencies = {}) {
     rankings,
     failureDeepDives,
     selectedModels: manifest.selectedModels,
+    routingStatus:
+      manifest.selectedModels.length > 0
+        ? 'eligible_models_selected'
+        : 'fallback_only_no_eligible_stable_model',
   };
   if (!options.dryRun) {
     await mkdir(dirname(options.manifestPath), { recursive: true });
@@ -823,7 +843,6 @@ export async function main(argv = process.argv.slice(2), dependencies = {}) {
     await writeFile(options.deepDivePath, formatFailureDeepDiveMarkdown(report));
   }
   console.log(JSON.stringify({ ...report, attempts: undefined }, null, 2));
-  if (manifest.selectedModels.length === 0) process.exitCode = 2;
   return { report, manifest };
 }
 

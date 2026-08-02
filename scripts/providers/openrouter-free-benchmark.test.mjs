@@ -135,6 +135,11 @@ describe('OpenRouter free-model benchmark scenarios', () => {
       initialFailures: 1,
       resolvedFailures: 1,
       unresolvedFailures: 0,
+      rootCauses: [
+        expect.objectContaining({
+          evidence: [expect.objectContaining({ error: 'invalid_structured_output' })],
+        }),
+      ],
     });
     expect(
       formatFailureDeepDiveMarkdown({
@@ -228,7 +233,7 @@ describe('OpenRouter free-model benchmark scenarios', () => {
     );
     let chatCalls = 0;
     const fetchImpl = async (url, init) => {
-      if (String(url).includes('/models?')) {
+      if (String(url).includes('/models')) {
         return Response.json({ data: [model('candidate/free:free')] });
       }
       chatCalls += 1;
@@ -284,7 +289,7 @@ describe('OpenRouter free-model benchmark scenarios', () => {
     let maximumActive = 0;
     let chatCalls = 0;
     const fetchImpl = async (url, init) => {
-      if (String(url).includes('/models?')) return Response.json({ data: catalog });
+      if (String(url).includes('/models')) return Response.json({ data: catalog });
       active += 1;
       maximumActive = Math.max(maximumActive, active);
       chatCalls += 1;
@@ -342,7 +347,7 @@ describe('OpenRouter free-model benchmark scenarios', () => {
     let maximumActive = 0;
     let chatCalls = 0;
     const fetchImpl = async (url) => {
-      if (String(url).includes('/models?')) return Response.json({ data: catalog });
+      if (String(url).includes('/models')) return Response.json({ data: catalog });
       active += 1;
       maximumActive = Math.max(maximumActive, active);
       chatCalls += 1;
@@ -371,6 +376,7 @@ describe('OpenRouter free-model benchmark scenarios', () => {
       expect(chatCalls).toBe(192);
       expect(maximumActive).toBe(2);
       expect(result.manifest.selectedModels).toEqual([]);
+      expect(result.report.routingStatus).toBe('fallback_only_no_eligible_stable_model');
       expect(result.report.failureDeepDives).toHaveLength(8);
       expect(
         result.report.failureDeepDives.every(
