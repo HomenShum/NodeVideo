@@ -386,7 +386,10 @@ describe('creator free-route deep-agent scenarios', () => {
   test('a burst of concurrent creator requests keeps run traces isolated and bounded', async () => {
     const plan = {
       summary: 'Prepare one reviewable source-grounded variant.',
-      operations: [{ kind: 'preserve_meaning', reason: 'Keep uncertain edits under review.' }],
+      operations: [
+        { kind: 'compose_variants', reason: 'Prepare the requested creator variant.' },
+        { kind: 'preserve_meaning', reason: 'Keep uncertain edits under review.' },
+      ],
     };
     const fetchImpl = vi.fn<typeof fetch>().mockImplementation(async () => modelResponse(plan));
     let timestamp = 10_000;

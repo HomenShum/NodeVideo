@@ -196,6 +196,20 @@ export function repairPlannerOutput(value: string, request: string): PlannerPlan
   };
 }
 
+export function inferRequestedOperations(request: string): CreatorPlanningOperationKind[] {
+  const intent = request.toLowerCase();
+  const operations: CreatorPlanningOperationKind[] = [];
+  if (/silence|pause|dead air/u.test(intent)) operations.push('remove_silence');
+  if (/filler|\bum\b|\buh\b/u.test(intent)) operations.push('review_fillers');
+  if (/quote|hook|highlight/u.test(intent)) operations.push('extract_quote');
+  if (/variant|version|format|aspect|\b9:16\b|\b1:1\b|\b16:9\b|short|long/u.test(intent))
+    operations.push('compose_variants');
+  if (/transition|fade|crossfade/u.test(intent)) operations.push('add_transitions');
+  if (/preserve|meaning|intent|do not (?:rewrite|change)|without changing/u.test(intent))
+    operations.push('preserve_meaning');
+  return operations.slice(0, NODE_AGENT_LIMITS.maxPlannerOperations);
+}
+
 function validatePlannerCandidate(candidate: unknown): PlannerPlan | null {
   if (!candidate || typeof candidate !== 'object') return null;
   const record = candidate as Record<string, unknown>;
@@ -393,10 +407,15 @@ async function requestPlannerPass(options: {
     const text = payload.choices?.[0]?.message?.content?.trim();
     const parsedPlan = text ? parsePlannerOutput(text) : null;
     const plan = parsedPlan ?? (text ? repairPlannerOutput(text, options.body.request) : null);
-    if (!upstream.ok || !text || !payload.model || !plan) {
+    const requiredOperations = inferRequestedOperations(options.body.request);
+    const returnedOperations = new Set(plan?.operations.map((operation) => operation.kind) ?? []);
+    const missingOperations = requiredOperations.filter((kind) => !returnedOperations.has(kind));
+    if (!upstream.ok || !text || !payload.model || !plan || missingOperations.length > 0) {
       throw new Error(
         payload.error?.message ??
-          'The free router returned a plan that failed NodeVideo schema validation.',
+          (missingOperations.length > 0
+            ? `The free router omitted requested operations: ${missingOperations.join(', ')}.`
+            : 'The free router returned a plan that failed NodeVideo schema validation.'),
       );
     }
     return {
@@ -486,6 +505,7 @@ export async function runDeepPlanner(
   const system = nodeAgentRuntime.plannerSystemPrompt;
   const userContext = JSON.stringify({
     request: body.request,
+    requiredOperations: inferRequestedOperations(body.request),
     scope: body.scope ?? 'selected-variant',
     source: body.source ?? {},
     transcript: (body.transcript ?? '').slice(0, NODE_AGENT_LIMITS.maxTranscriptCharacters),
