@@ -139,6 +139,11 @@ export function CreatorAgentPanel(props: {
   )?.status;
   const isRejected = selectedStatus === 'rejected';
   const proposalReady = props.proposalStatus === 'pending';
+  const proposalViewLabel = isApproved
+    ? 'View applied changes'
+    : isRejected
+      ? 'View requested revision'
+      : 'Review changes';
   const onInspectorPage = /^\/creator\/runs\/[^/]+\/proof\/?$/u.test(location.pathname);
 
   useEffect(() => {
@@ -391,25 +396,17 @@ export function CreatorAgentPanel(props: {
                     {isApproved ? 'approved' : isRejected ? 'revision requested' : 'review'}
                   </Badge>
                 </div>
-                <div className="mt-3 grid grid-cols-3 gap-2">
-                  <Button
-                    size="sm"
-                    onClick={props.onApprove}
-                    disabled={isApproved || isRejected || !proposalReady}
-                  >
-                    Accept
+                <div
+                  className={`mt-3 grid gap-2 ${isApproved || isRejected ? 'grid-cols-1' : 'grid-cols-[minmax(0,1fr)_auto]'}`}
+                >
+                  <Button size="sm" onClick={() => setDetailView('proposal')}>
+                    {proposalViewLabel}
                   </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={props.onReject}
-                    disabled={isRejected}
-                  >
-                    Reject
-                  </Button>
-                  <Button size="sm" variant="secondary" onClick={() => setDetailView('proposal')}>
-                    Review
-                  </Button>
+                  {!isApproved && !isRejected && (
+                    <Button size="sm" variant="outline" onClick={props.onReject}>
+                      Reject
+                    </Button>
+                  )}
                 </div>
                 {props.proposalDigest && (
                   <details className="mt-2 text-[10px] text-muted-foreground">

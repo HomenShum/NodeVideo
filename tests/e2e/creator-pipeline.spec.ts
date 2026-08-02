@@ -367,14 +367,26 @@ test('agent rail gates cloud execution and supports inline proposal decisions', 
   await page.getByTestId('agent-proposal-card').getByRole('button', { name: 'Reject' }).click();
   await expect(page.getByText('revision requested', { exact: true })).toBeVisible();
   await expect(
-    page.getByTestId('agent-proposal-card').getByRole('button', { name: 'Accept' }),
-  ).toBeDisabled();
+    page.getByTestId('agent-proposal-card').getByRole('button', {
+      name: 'View requested revision',
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByTestId('agent-proposal-card').getByRole('button', { name: 'Reject' }),
+  ).toHaveCount(0);
   await page
     .getByLabel('Message NodeAgent')
     .fill('Revise the founder launch proposal while preserving the approved source scope.');
   await page.getByRole('button', { name: 'Send message' }).click();
   await expect(page.getByText(/Higgsfield is only a proposed executor/u)).toHaveCount(2);
-  await page.getByTestId('agent-proposal-card').getByRole('button', { name: 'Accept' }).click();
+  await page
+    .getByTestId('agent-proposal-card')
+    .getByRole('button', { name: 'Review changes' })
+    .click();
+  await expect(
+    page.getByText('Exact proposed operations against the current source version.'),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Approve exact variant' }).click();
   await expect(page.getByTestId('creator-workspace')).toHaveAttribute('data-project-version', '2');
   await expect(page.getByText('approved', { exact: true })).toBeVisible();
 });
@@ -456,8 +468,11 @@ test('a cautious creator sees the iterative free-model trace before accepting a 
   await expect(page.getByText('Model · completed')).toHaveCount(2);
   await expect(page.getByTestId('agent-proposal-card')).toBeVisible();
   await expect(
-    page.getByTestId('agent-proposal-card').getByRole('button', { name: 'Accept' }),
+    page.getByTestId('agent-proposal-card').getByRole('button', { name: 'Review changes' }),
   ).toBeEnabled();
+  await expect(
+    page.getByTestId('agent-proposal-card').getByRole('button', { name: 'Accept' }),
+  ).toHaveCount(0);
   await expect(page.getByTestId('creator-workspace')).toHaveAttribute('data-project-version', '1');
 });
 
