@@ -98,8 +98,12 @@ test('creator pipeline compiles one source into reviewable variants', async ({
 
   if ((page.viewportSize()?.width ?? 1000) <= 1023) {
     await page.getByRole('button', { name: 'Canvas', exact: true }).click();
+    await expect(page.getByText('Primary video artifact')).toBeHidden();
+    await expect(page.getByTestId('artifact-timeline')).toBeHidden();
+    await expect(page.getByTestId('mobile-timeline-trigger')).toContainText(/Timeline/u);
+  } else {
+    await expect(page.getByText('Primary video artifact')).toBeVisible();
   }
-  await expect(page.getByText('Primary video artifact')).toBeVisible();
   await expect(page.getByTestId('video-canvas')).toBeVisible();
   if ((page.viewportSize()?.width ?? 1000) <= 1023) {
     await page.getByRole('button', { name: 'Chat', exact: true }).click();
@@ -125,6 +129,8 @@ test('creator pipeline compiles one source into reviewable variants', async ({
 
   if ((page.viewportSize()?.width ?? 1000) <= 1023) {
     await page.getByRole('button', { name: 'Canvas', exact: true }).click();
+    await expect(page.getByTestId('artifact-timeline')).toBeHidden();
+    await page.getByTestId('mobile-timeline-trigger').click();
   }
   await expect(page.getByTestId('artifact-timeline')).toBeVisible();
   await expect(

@@ -1,9 +1,11 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import type { FounderVariant } from '@/lib/founder-variant-compiler';
 import type { FramingPolicy, ReframePlan } from '@/lib/smart-reframe';
 import { Player } from '@remotion/player';
 import {
+  ChevronDown,
   ChevronLeft,
   CircleDot,
   Film,
@@ -298,6 +300,7 @@ export function CreatorWorkspace(props: {
   ) => void;
 }) {
   const [mobileSurface, setMobileSurface] = useState<MobileSurface>('canvas');
+  const [timelineOpen, setTimelineOpen] = useState(false);
   const [editingCrop, setEditingCrop] = useState(false);
   const [editFrame, setEditFrame] = useState(0);
   const reframeVideoRef = useRef<HTMLVideoElement>(null);
@@ -379,7 +382,7 @@ export function CreatorWorkspace(props: {
         >
           <div className="creator-artifact-header">
             <div>
-              <p className="creator-eyebrow">Primary video artifact</p>
+              <p className="creator-eyebrow creator-artifact-eyebrow">Primary video artifact</p>
               <h2>{props.selected?.title ?? 'Planning first cut'}</h2>
               <span>
                 canonical v{props.version}
@@ -389,6 +392,7 @@ export function CreatorWorkspace(props: {
             <div className="creator-variant-switcher" role="tablist" aria-label="Video variants">
               {props.result?.variants.map((variant) => (
                 <button
+                  aria-label={`${variant.output.aspectRatio} · ${variant.title}`}
                   type="button"
                   role="tab"
                   aria-selected={variant.id === props.selected?.id}
@@ -468,7 +472,32 @@ export function CreatorWorkspace(props: {
               </div>
             )}
           </div>
-          <Timeline variant={props.selected} reframe={selectedReframe} />
+          <Collapsible
+            className="creator-timeline-disclosure"
+            onOpenChange={setTimelineOpen}
+            open={timelineOpen}
+          >
+            <CollapsibleTrigger asChild>
+              <Button
+                className="creator-timeline-trigger"
+                data-testid="mobile-timeline-trigger"
+                variant="outline"
+              >
+                <span>
+                  <b>Timeline</b>
+                  <small>
+                    {props.selected
+                      ? `${props.selected.rendererPlan.tracks.length} tracks · ${(props.selected.rendererPlan.durationFrames / props.selected.rendererPlan.frameRate).toFixed(1)}s`
+                      : 'Waiting for an edit plan'}
+                  </small>
+                </span>
+                <ChevronDown className={timelineOpen ? 'rotate-180' : ''} aria-hidden="true" />
+              </Button>
+            </CollapsibleTrigger>
+            <CollapsibleContent forceMount>
+              <Timeline variant={props.selected} reframe={selectedReframe} />
+            </CollapsibleContent>
+          </Collapsible>
         </section>
 
         <div className="creator-agent-rail">
