@@ -217,6 +217,19 @@ describe('OpenRouter free-model benchmark scenarios', () => {
     expect(JSON.parse(formatted)).toEqual(manifest);
   });
 
+  it('an automated two-winner manifest remains repository-formatted and valid JSON', () => {
+    const manifest = {
+      schemaVersion: 'nodevideo.openrouter-free-routing.v1',
+      selectedModels: ['nvidia/nemotron-3-super-120b-a12b:free', 'google/gemma-4-26b-a4b-it:free'],
+      fallbackRouter: 'openrouter/free',
+    };
+    const formatted = formatManifestJson(manifest);
+    expect(formatted).toContain(
+      '"selectedModels": ["nvidia/nemotron-3-super-120b-a12b:free", "google/gemma-4-26b-a4b-it:free"]',
+    );
+    expect(JSON.parse(formatted)).toEqual(manifest);
+  });
+
   it('an operator gets a full refresh when a scheduled canary detects a selected-model failure', async () => {
     const scratch = await mkdtemp(join(tmpdir(), 'nodevideo-openrouter-benchmark-'));
     const manifestPath = join(scratch, 'routing.json');

@@ -723,11 +723,12 @@ export function buildManifest({ candidates, rankings, catalogDigest, generatedAt
 
 export function formatManifestJson(manifest) {
   const serialized = JSON.stringify(manifest, null, 2);
+  const inlineSelectedModels = `[${manifest.selectedModels.map((model) => JSON.stringify(model)).join(', ')}]`;
   const repositoryFormatted =
-    manifest.selectedModels.length === 1
+    manifest.selectedModels.length > 0
       ? serialized.replace(
-          / {2}"selectedModels": \[\n {4}("(?:[^"\\]|\\.)*")\n {2}\],/u,
-          '  "selectedModels": [$1],',
+          / {2}"selectedModels": \[\n(?: {4}"(?:[^"\\]|\\.)*"(?:,\n|\n))+ {2}\],/u,
+          `  "selectedModels": ${inlineSelectedModels},`,
         )
       : serialized;
   return `${repositoryFormatted}\n`;
