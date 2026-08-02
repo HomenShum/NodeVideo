@@ -95,10 +95,6 @@ async function runVisionQa(options) {
   }
 
   await mkdir(options.artifactDir, { recursive: true });
-  await page.screenshot({
-    path: resolve(options.artifactDir, 'vision-live-latest.png'),
-    timeout: 15_000,
-  });
   const receipt = {
     schemaVersion: 'nodevideo.android-device-qa.v1',
     generatedAt: new Date().toISOString(),
@@ -116,6 +112,9 @@ async function runVisionQa(options) {
     'utf8',
   );
   await browser.close();
+  if (consoleErrors.length > 0) {
+    throw new Error(`Vision emitted ${consoleErrors.length} console error(s); see the receipt.`);
+  }
   return receipt;
 }
 
@@ -145,17 +144,19 @@ export async function runAndroidQa(options) {
     await page.getByRole('button', { name: 'Files', exact: true }).click();
     await page.getByTestId('project-files').waitFor();
     await demoButton.click();
-    await page.getByText('nodevideo-demo.mp4', { exact: true }).first().waitFor();
+    await page
+      .getByTestId('project-files')
+      .getByText('nodevideo-demo.mp4', { exact: true })
+      .waitFor();
   }
   await page.getByRole('button', { name: 'Chat', exact: true }).click();
   await page.getByRole('heading', { name: 'NodeAgent' }).waitFor();
-  await page.getByText('nodevideo-demo.mp4', { exact: true }).first().waitFor();
+  await page
+    .getByLabel('NodeVideo agent')
+    .getByText('nodevideo-demo.mp4', { exact: true })
+    .waitFor();
 
   await mkdir(options.artifactDir, { recursive: true });
-  await page.screenshot({
-    path: resolve(options.artifactDir, 'before-empty-latest.png'),
-    timeout: 15_000,
-  });
 
   const auto = page.getByRole('button', { name: 'Auto', exact: true });
   if ((await auto.getAttribute('aria-pressed')) !== 'true') {
@@ -168,6 +169,7 @@ export async function runAndroidQa(options) {
   let iterations = 0;
   let operations = [];
   let httpStatus = null;
+  const messageCountBefore = await page.getByTestId('agent-message').count();
 
   if (options.external) {
     const optionsPanel = page.getByTestId('agent-options');
@@ -209,12 +211,27 @@ export async function runAndroidQa(options) {
     const missing = required.filter((operation) => !operations.includes(operation));
     if (missing.length > 0)
       throw new Error(`Agent omitted required operations: ${missing.join(', ')}`);
+    await page.waitForFunction(
+      (previousCount) =>
+        document.querySelectorAll('[data-testid="agent-message"]').length >= previousCount + 2,
+      messageCountBefore,
+      { timeout: RUN_TIMEOUT_MS },
+    );
     await page.getByText('Free model router', { exact: true }).waitFor();
     if (await consent.isChecked())
       throw new Error('OpenRouter consent did not reset after the run.');
   } else {
     await page.getByRole('button', { name: 'Send message' }).click();
-    await page.getByText(/completed · deterministic local/u).waitFor({ timeout: RUN_TIMEOUT_MS });
+    await page.waitForFunction(
+      (previousCount) =>
+        document.querySelectorAll('[data-testid="agent-message"]').length >= previousCount + 2,
+      messageCountBefore,
+      { timeout: RUN_TIMEOUT_MS },
+    );
+    const latestReply = await page.getByTestId('agent-message').last().innerText();
+    if (!/completed · deterministic local/u.test(latestReply)) {
+      throw new Error('The latest local reply did not prove deterministic completion.');
+    }
   }
 
   await page.getByText('Edit proposal ready', { exact: true }).waitFor();
@@ -241,16 +258,15 @@ export async function runAndroidQa(options) {
   };
 
   const prefix = options.external ? 'openrouter' : 'local';
-  await page.screenshot({
-    path: resolve(options.artifactDir, `${prefix}-latest.png`),
-    timeout: 15_000,
-  });
   await writeFile(
     resolve(options.artifactDir, `${prefix}-latest.json`),
     `${JSON.stringify(receipt, null, 2)}\n`,
     'utf8',
   );
   await browser.close();
+  if (consoleErrors.length > 0) {
+    throw new Error(`Creator emitted ${consoleErrors.length} console error(s); see the receipt.`);
+  }
   return receipt;
 }
 

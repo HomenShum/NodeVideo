@@ -58,8 +58,14 @@ positive latency proves camera playback and model inference both started.
 node scripts/mobile/android-nodevideo-qa.mjs --vision
 ```
 
-Receipts and full-page screenshots are written under `.qa/android-emulator/`. Receipt URLs omit the
-case/access fragment, and proposal digests are redacted.
+Receipts are written under `.qa/android-emulator/`. Receipt URLs omit the case/access fragment, and
+proposal digests are redacted. Pixel capture is a separate ADB step because Android Chrome's CDP
+screenshot command can stall even while the page remains healthy:
+
+```powershell
+adb -s emulator-5554 shell screencap -p /sdcard/nodevideo-qa.png
+adb -s emulator-5554 pull /sdcard/nodevideo-qa.png .qa/android-emulator/nodevideo-qa.png
+```
 
 ## Stop
 
