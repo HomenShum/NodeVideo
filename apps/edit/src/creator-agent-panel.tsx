@@ -14,6 +14,7 @@ import type { FounderVariant } from '@/lib/founder-variant-compiler';
 import {
   Bot,
   Check,
+  ChevronDown,
   ChevronLeft,
   Clock3,
   Download,
@@ -22,6 +23,7 @@ import {
   Paperclip,
   RotateCcw,
   Send,
+  Settings2,
   ShieldCheck,
   Sparkles,
   User,
@@ -122,6 +124,13 @@ export function CreatorAgentPanel(props: {
   const [externalConsent, setExternalConsent] = useState(false);
   const [detailView, setDetailView] = useState<DetailView>('chat');
   const feedRef = useRef<HTMLDivElement>(null);
+  const optionsRef = useRef<HTMLDetailsElement>(null);
+  const routeLabel: Record<CreatorExecutionRoute, string> = {
+    auto: 'local first',
+    local: 'local only',
+    'openrouter-free': 'OpenRouter',
+    higgsfield: 'Higgsfield',
+  };
   const pendingApprovals =
     props.selected?.semanticPlan.approvals.filter((item) => item.status === 'required').length ?? 0;
   const isApproved = Boolean(props.selected && props.approved.has(props.selected.id));
@@ -185,32 +194,36 @@ export function CreatorAgentPanel(props: {
       className="flex min-h-[680px] flex-col overflow-hidden rounded-xl bg-card ring-1 ring-foreground/10 xl:sticky xl:top-4 xl:h-[calc(100vh-2rem)]"
       aria-label="NodeVideo agent"
     >
-      <header className="creator-agent-header flex items-center justify-between border-b px-4 py-3">
-        <div className="creator-agent-heading flex min-w-0 items-center gap-2">
-          <span className="grid size-8 place-items-center rounded-lg bg-brand/15 text-brand">
+      <header className="creator-agent-header flex !flex-nowrap !items-center justify-between gap-2 border-b px-3 py-2.5 sm:px-4 sm:py-3">
+        <div className="creator-agent-heading flex min-w-0 !flex-1 items-center gap-2">
+          <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-brand/15 text-brand">
             <Bot className="size-4" />
           </span>
           <div>
             <h2 className="text-sm font-semibold">NodeAgent</h2>
             <p
-              className="line-clamp-2 text-[11px] text-muted-foreground"
+              className="line-clamp-1 text-[11px] text-muted-foreground sm:line-clamp-2"
               data-testid="current-action"
             >
               {props.currentAction ? `Now · ${props.currentAction}` : 'Private media collaborator'}
             </p>
           </div>
         </div>
-        <div className="creator-agent-actions flex items-center gap-1">
+        <div className="creator-agent-actions !flex !w-auto shrink-0 items-center gap-1">
           <Button
             size="sm"
+            className="!w-auto"
+            aria-label="Proposal"
             variant={detailView === 'proposal' ? 'secondary' : 'ghost'}
             onClick={() => setDetailView('proposal')}
             disabled={!props.selected}
           >
-            Proposal
+            Review
           </Button>
           <Button
             size="sm"
+            className="!w-auto"
+            aria-label={onInspectorPage ? 'Proof' : 'Run Inspector'}
             variant={detailView === 'proof' ? 'secondary' : 'ghost'}
             onClick={() => {
               if (onInspectorPage) {
@@ -223,25 +236,27 @@ export function CreatorAgentPanel(props: {
             }}
             disabled={!props.result}
           >
-            {onInspectorPage ? 'Proof' : 'Run Inspector'}
+            Proof
           </Button>
         </div>
       </header>
 
-      <div className="flex flex-wrap gap-1.5 border-b px-4 py-2 text-[11px]">
+      <div className="flex gap-1.5 overflow-x-auto border-b px-3 py-2 text-[11px] sm:flex-wrap sm:px-4">
         {props.sourceName ? (
-          <Badge variant="secondary">
-            <Paperclip className="size-3" /> {props.sourceName}
+          <Badge variant="secondary" className="max-w-[180px] shrink-0">
+            <Paperclip className="size-3" /> <span className="truncate">{props.sourceName}</span>
           </Badge>
         ) : (
-          <Badge variant="outline">No source attached</Badge>
+          <Badge variant="outline" className="shrink-0">
+            No source attached
+          </Badge>
         )}
         {props.selected && (
-          <Badge variant="outline">
+          <Badge variant="outline" className="hidden shrink-0 sm:inline-flex">
             <Film className="size-3" /> {props.selected.title}
           </Badge>
         )}
-        <Badge variant="outline">
+        <Badge variant="outline" className="shrink-0">
           <ShieldCheck className="size-3" /> local context
         </Badge>
       </div>
@@ -294,26 +309,32 @@ export function CreatorAgentPanel(props: {
             )}
 
             {activity.length > 0 && !working && (
-              <div
-                className="ml-10 rounded-lg border bg-background/40 p-3"
+              <details
+                className="rounded-lg border bg-background/40 sm:ml-10"
                 data-testid="agent-tool-activity"
+                open={route === 'openrouter-free'}
               >
-                <div className="mb-2 flex items-center gap-2 text-xs font-medium">
+                <summary className="flex cursor-pointer list-none items-center gap-2 p-3 text-xs font-medium">
                   <Wrench className="size-3" /> Tool activity
-                </div>
-                {activity.map((tool) => (
-                  <div
-                    className="flex items-start gap-2 border-t py-2 text-[11px] first:border-0"
-                    key={`${tool.name}:${tool.detail}`}
-                  >
-                    <Check className="mt-0.5 size-3 shrink-0 text-brand" />
-                    <div>
-                      <p className="font-medium">{tool.name}</p>
-                      <p className="text-muted-foreground">{tool.detail}</p>
+                  <Badge variant="outline" className="ml-auto">
+                    {activity.length}
+                  </Badge>
+                </summary>
+                <div className="border-t px-3">
+                  {activity.map((tool) => (
+                    <div
+                      className="flex items-start gap-2 border-t py-2 text-[11px] first:border-0"
+                      key={`${tool.name}:${tool.detail}`}
+                    >
+                      <Check className="mt-0.5 size-3 shrink-0 text-brand" />
+                      <div>
+                        <p className="font-medium">{tool.name}</p>
+                        <p className="text-muted-foreground">{tool.detail}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              </details>
             )}
 
             {props.resumableRun && !working && (
@@ -354,7 +375,7 @@ export function CreatorAgentPanel(props: {
 
             {props.result && (
               <div
-                className="ml-10 rounded-xl border border-brand/30 bg-brand/5 p-3"
+                className="rounded-xl border border-brand/30 bg-brand/5 p-3 sm:ml-10"
                 data-testid="agent-proposal-card"
                 data-agent-decision={isApproved ? 'accepted' : isRejected ? 'rejected' : 'pending'}
               >
@@ -391,9 +412,10 @@ export function CreatorAgentPanel(props: {
                   </Button>
                 </div>
                 {props.proposalDigest && (
-                  <p className="mt-2 truncate font-mono text-[10px] text-muted-foreground">
-                    digest {props.proposalDigest}
-                  </p>
+                  <details className="mt-2 text-[10px] text-muted-foreground">
+                    <summary className="cursor-pointer">Proposal ID</summary>
+                    <p className="mt-1 truncate font-mono">digest {props.proposalDigest}</p>
+                  </details>
                 )}
               </div>
             )}
@@ -482,36 +504,34 @@ export function CreatorAgentPanel(props: {
                 ))}
               </div>
             )}
-            <div
-              className="mb-2 flex items-center justify-between gap-2 rounded-lg border bg-muted/25 px-2 py-1.5"
-              data-agent-approval-mode={approvalMode}
-            >
-              <span className="flex min-w-0 items-center gap-1.5 text-[10px] text-muted-foreground">
-                <Zap className="size-3 shrink-0 text-brand" />
-                {approvalMode === 'auto-safe'
-                  ? 'Auto applies safe local edits'
-                  : 'Ask before every edit'}
-              </span>
-              <div className="flex shrink-0 gap-1" aria-label="Approval mode">
-                <Button
-                  size="sm"
-                  variant={approvalMode === 'auto-safe' ? 'secondary' : 'ghost'}
-                  aria-pressed={approvalMode === 'auto-safe'}
-                  onClick={() => setApprovalMode('auto-safe')}
-                >
-                  Auto
-                </Button>
-                <Button
-                  size="sm"
-                  variant={approvalMode === 'ask' ? 'secondary' : 'ghost'}
-                  aria-pressed={approvalMode === 'ask'}
-                  onClick={() => setApprovalMode('ask')}
-                >
-                  Ask
-                </Button>
-              </div>
-            </div>
             <div className="rounded-xl border bg-background p-2 focus-within:ring-2 focus-within:ring-ring/40">
+              <div
+                className="flex items-center justify-between gap-2 px-1 pb-1"
+                data-agent-approval-mode={approvalMode}
+              >
+                <span className="flex min-w-0 items-center gap-1.5 text-[10px] text-muted-foreground">
+                  <Zap className="size-3 shrink-0 text-brand" />
+                  {approvalMode === 'auto-safe' ? 'Safe edits auto-apply' : 'Approval required'}
+                </span>
+                <div className="flex shrink-0 gap-0.5" aria-label="Approval mode">
+                  <Button
+                    size="sm"
+                    variant={approvalMode === 'auto-safe' ? 'secondary' : 'ghost'}
+                    aria-pressed={approvalMode === 'auto-safe'}
+                    onClick={() => setApprovalMode('auto-safe')}
+                  >
+                    Auto
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant={approvalMode === 'ask' ? 'secondary' : 'ghost'}
+                    aria-pressed={approvalMode === 'ask'}
+                    onClick={() => setApprovalMode('ask')}
+                  >
+                    Ask
+                  </Button>
+                </div>
+              </div>
               <Textarea
                 aria-label="Message NodeAgent"
                 value={draft}
@@ -523,39 +543,51 @@ export function CreatorAgentPanel(props: {
                   }
                 }}
                 placeholder="Ask NodeAgent to edit this video…"
-                rows={3}
-                className="min-h-16 resize-none border-0 bg-transparent shadow-none focus-visible:ring-0"
+                rows={2}
+                className="min-h-14 resize-none border-0 bg-transparent shadow-none focus-visible:ring-0 sm:min-h-16"
               />
-              <div className="flex items-center justify-between gap-2 pt-2">
-                <div className="flex min-w-0 items-center gap-1.5">
-                  <Select
-                    value={scope}
-                    onValueChange={(value) => setScope(value as CreatorWriteScope)}
-                  >
-                    <SelectTrigger
-                      className="h-7 w-[132px] text-[10px]"
-                      aria-label="Agent write scope"
-                    >
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="selected-variant">Selected variant</SelectItem>
-                      <SelectItem value="campaign-variants">All variants</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <details className="relative text-[10px]">
-                    <summary className="flex h-7 cursor-pointer items-center rounded-md border px-2 text-muted-foreground">
-                      Routing
-                    </summary>
-                    <div className="absolute bottom-9 left-0 z-30 rounded-lg border bg-popover p-2 shadow-xl">
+              <div className="flex items-end justify-between gap-2 pt-1">
+                <details
+                  ref={optionsRef}
+                  className="group min-w-0 flex-1 text-[11px]"
+                  data-testid="agent-options"
+                >
+                  <summary className="flex h-8 w-fit cursor-pointer list-none items-center gap-1 rounded-md px-1.5 text-muted-foreground hover:bg-muted/60 hover:text-foreground">
+                    <Settings2 className="size-3" />
+                    Options
+                    <span className="hidden text-[10px] opacity-70 min-[380px]:inline">
+                      {routeLabel[route]}
+                    </span>
+                    <ChevronDown className="size-3 transition-transform group-open:rotate-180" />
+                  </summary>
+                  <div className="mt-2 grid gap-3 rounded-lg border bg-muted/20 p-3 sm:grid-cols-2">
+                    <Field>
+                      <FieldLabel>Scope</FieldLabel>
+                      <Select
+                        value={scope}
+                        onValueChange={(value) => setScope(value as CreatorWriteScope)}
+                      >
+                        <SelectTrigger className="w-full" aria-label="Agent write scope">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="selected-variant">Selected variant</SelectItem>
+                          <SelectItem value="campaign-variants">All variants</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </Field>
+                    <Field>
+                      <FieldLabel>Routing</FieldLabel>
                       <Select
                         value={route}
-                        onValueChange={(value) => setRoute(value as CreatorExecutionRoute)}
+                        onValueChange={(value) => {
+                          setRoute(value as CreatorExecutionRoute);
+                          window.setTimeout(() => {
+                            if (optionsRef.current) optionsRef.current.open = false;
+                          }, 0);
+                        }}
                       >
-                        <SelectTrigger
-                          className="h-8 w-[180px] text-[10px]"
-                          aria-label="Executor route"
-                        >
+                        <SelectTrigger className="w-full" aria-label="Executor route">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -567,9 +599,34 @@ export function CreatorAgentPanel(props: {
                           <SelectItem value="higgsfield">Higgsfield · gated</SelectItem>
                         </SelectContent>
                       </Select>
-                    </div>
-                  </details>
-                </div>
+                    </Field>
+                    <Field>
+                      <FieldLabel htmlFor="creator-workflow">Workflow</FieldLabel>
+                      <Select
+                        value={props.preset}
+                        onValueChange={(value) => props.onPreset(value as CreatorPreset)}
+                      >
+                        <SelectTrigger id="creator-workflow" aria-label="Workflow">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="cleanup">Clean interview</SelectItem>
+                          <SelectItem value="variants">Golden quote variants</SelectItem>
+                          <SelectItem value="founder">Founder launch template</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </Field>
+                    <Field>
+                      <FieldLabel htmlFor="creator-transcript">Transcript</FieldLabel>
+                      <Textarea
+                        id="creator-transcript"
+                        value={props.transcript}
+                        onChange={(event) => props.onTranscript(event.target.value)}
+                        rows={3}
+                      />
+                    </Field>
+                  </div>
+                </details>
                 <Button
                   size="icon-sm"
                   aria-label="Send message"
@@ -589,7 +646,7 @@ export function CreatorAgentPanel(props: {
             </div>
             {route === 'openrouter-free' && (
               <label
-                className="mt-2 flex items-start gap-2 rounded-lg border p-2 text-[11px] text-muted-foreground"
+                className="mt-2 flex items-start gap-2 rounded-xl border border-amber-500/40 bg-amber-500/5 p-3 text-[11px] text-muted-foreground"
                 data-agent-web-consent={externalConsent ? 'granted' : 'required'}
               >
                 <input
@@ -605,36 +662,6 @@ export function CreatorAgentPanel(props: {
                 </span>
               </label>
             )}
-            <details className="mt-2 text-xs text-muted-foreground">
-              <summary className="cursor-pointer py-1">Workflow and transcript context</summary>
-              <div className="mt-2 space-y-3 rounded-lg border p-3">
-                <Field>
-                  <FieldLabel htmlFor="creator-workflow">Workflow</FieldLabel>
-                  <Select
-                    value={props.preset}
-                    onValueChange={(value) => props.onPreset(value as CreatorPreset)}
-                  >
-                    <SelectTrigger id="creator-workflow" aria-label="Workflow">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="cleanup">Clean interview</SelectItem>
-                      <SelectItem value="variants">Golden quote variants</SelectItem>
-                      <SelectItem value="founder">Founder launch template</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </Field>
-                <Field>
-                  <FieldLabel htmlFor="creator-transcript">Transcript</FieldLabel>
-                  <Textarea
-                    id="creator-transcript"
-                    value={props.transcript}
-                    onChange={(event) => props.onTranscript(event.target.value)}
-                    rows={5}
-                  />
-                </Field>
-              </div>
-            </details>
           </div>
         </>
       )}

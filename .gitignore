@@ -18,6 +18,7 @@ test-results/
 
 # QA evidence stays local unless an explicitly authorized case publishes selected sanitized derivatives.
 .qa/cache/
+.qa/android-emulator/
 .qa/creator-build/
 .qa/evidence/
 .qa/media/

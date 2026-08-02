@@ -43,6 +43,13 @@ async function startCreatorWithDemo(
   }
 }
 
+async function openAgentOptions(page: Page) {
+  const options = page.getByTestId('agent-options');
+  if ((await options.getAttribute('open')) === null) {
+    await options.locator('summary').click();
+  }
+}
+
 test('default Auto mode applies only a safe local single-variant proposal', async ({ page }) => {
   await startCreatorWithDemo(page, undefined, 'auto');
   await expect(page.locator('[data-agent-approval-mode="auto-safe"]')).toBeVisible();
@@ -312,9 +319,9 @@ test('agent rail gates cloud execution and supports inline proposal decisions', 
 }, testInfo) => {
   await startCreatorWithDemo(page);
 
+  await openAgentOptions(page);
   await page.getByLabel('Agent write scope').click();
   await page.getByRole('option', { name: 'All variants' }).click();
-  await page.getByText('Routing', { exact: true }).click();
   await page.getByLabel('Executor route').click();
   await page.getByRole('option', { name: 'Higgsfield · gated' }).click();
   await expect(page.getByText(/cost and egress approval required/u)).toBeVisible();
@@ -416,7 +423,7 @@ test('a cautious creator sees the iterative free-model trace before accepting a 
     });
   });
   await startCreatorWithDemo(page, 'Golden quote campaign');
-  await page.getByText('Routing', { exact: true }).click();
+  await openAgentOptions(page);
   await page.getByLabel('Executor route').click();
   await page.getByRole('option', { name: 'OpenRouter Free · external' }).click();
   await page.getByLabel('Consent to send prompt and transcript context to OpenRouter').check();
@@ -475,7 +482,7 @@ test('an overloaded free provider is labeled degraded instead of deep-agent succ
     });
   });
   await startCreatorWithDemo(page);
-  await page.getByText('Routing', { exact: true }).click();
+  await openAgentOptions(page);
   await page.getByLabel('Executor route').click();
   await page.getByRole('option', { name: 'OpenRouter Free · external' }).click();
   await page.getByLabel('Consent to send prompt and transcript context to OpenRouter').check();
@@ -499,7 +506,7 @@ test('live OpenRouter free planner resolves a model before deterministic compila
     'Live free-router proof is opt-in and runs only against the configured production endpoint.',
   );
   await startCreatorWithDemo(page);
-  await page.getByText('Routing', { exact: true }).click();
+  await openAgentOptions(page);
   await page.getByLabel('Executor route').click();
   await page.getByRole('option', { name: 'OpenRouter Free · external' }).click();
   await expect(page.getByText(/prompt and transcript context leave this device/u)).toBeVisible();
