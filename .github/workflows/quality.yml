@@ -104,10 +104,10 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      - name: Install FFmpeg browser-proof tools
+      - name: Install media browser-proof tools
         run: |
           sudo apt-get update
-          sudo apt-get install --yes ffmpeg
+          sudo apt-get install --yes ffmpeg tesseract-ocr
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
