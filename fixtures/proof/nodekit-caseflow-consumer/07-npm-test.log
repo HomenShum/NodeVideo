@@ -1,0 +1,18 @@
+$ npm test
+
+
+> nodevideo@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.10 D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.worktrees/nodevideo-nodekit-caseflow-consumer
+
+
+ Test Files  38 passed (38)
+      Tests  189 passed (189)
+   Start at  03:51:58
+   Duration  4.91s (transform 16.26s, setup 0ms, import 25.82s, tests 5.91s, environment 9ms)
+
+
+
+exitCode=0

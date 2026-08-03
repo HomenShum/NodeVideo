@@ -1,84 +1,195 @@
 {
-  "schemaVersion": "nodevideo.nodekit-caseflow-consumer-verdict/v1",
-  "status": "passed",
-  "generatedAt": "2026-07-22T08:46:24.134Z",
-  "nodekit": {
-    "commit": "5cc61578b3c1bd5b5c8195b83347b91f8b83242b",
-    "packageIntegrity": "sha512-3U0vlV6CMycTP1GtFKePMGisGKgEbaxti2svMLXDBmFumdQXmLuc7QUTNlxIUmVT1fFeJecHTriMsg5QHiy7LA==",
-    "packageSpec": "https://github.com/HomenShum/node-platform/archive/5cc61578b3c1bd5b5c8195b83347b91f8b83242b.tar.gz",
-    "sourceHash": "0ced0adf6e0f719be9a5fabefd69754a79102f39b6b6a54b20daeb60ceba7c0b",
-    "supportedImport": "@homenshum/nodekit/caseflow"
-  },
-  "consumer": {
-    "repository": "https://github.com/HomenShum/NodeVideo.git",
-    "branch": "codex/nodekit-caseflow-consumer",
-    "baseCommit": "7a741cb606ac64a05bb1eb5ed57429082b97ed5e",
-    "commit": "5562337b69ffd022642012d593470d8c417748f2",
-    "sourcePaths": [
-      "convex/caseflowRuntime.ts",
-      "convex/caseflowValidators.ts",
-      "convex/nodeVideoCaseflow.ts",
-      "convex/schema.ts",
-      "convex/workflow.ts",
-      "tests/nodekit-caseflow-conformance.test.ts"
-    ]
+  "assertions": {
+    "actualPackedComponentInstalled": true,
+    "authenticatedProductionProof": false,
+    "cancelAndFailSafeExplicit": true,
+    "deployed": false,
+    "exceptionRecoveryPreservesCheckpoint": true,
+    "fullRegressionSuite": true,
+    "hostOwnedAuthAndScope": true,
+    "idempotentRetries": true,
+    "localComponentRuntime": true,
+    "nodeVideoDomainLifecycle": true,
+    "ownerIsolation": true,
+    "published": false,
+    "receiptIntegrity": true,
+    "staleProposalFailedClosed": true
   },
   "commands": [
     {
       "command": "npm ci",
-      "passed": true,
-      "result": "823 packages installed from the committed lockfile"
+      "evidencePath": "fixtures/proof/nodekit-caseflow-consumer/01-npm-ci.log",
+      "evidenceSha256": "1353ec70e17b4faa9992529dc53a6eec662f7ed902345b1ead32c6cda5826d7a",
+      "passed": true
     },
     {
       "command": "npm run lint",
-      "passed": true,
-      "result": "293 files checked"
+      "evidencePath": "fixtures/proof/nodekit-caseflow-consumer/02-npm-run-lint.log",
+      "evidenceSha256": "b04c8aded51e47f704a6f84928f29278be7f5b0a7070cff615d0353c2baba241",
+      "passed": true
     },
     {
       "command": "npm run typecheck",
-      "passed": true,
-      "result": "TypeScript noEmit completed"
+      "evidencePath": "fixtures/proof/nodekit-caseflow-consumer/03-npm-run-typecheck.log",
+      "evidenceSha256": "dac7166f0fb14f11431ffead49ca617d5daf38873de74d2334cd3277975bbc20",
+      "passed": true
     },
     {
       "command": "npx tsc -p convex/tsconfig.json --noEmit --pretty false",
-      "passed": true,
-      "result": "Convex functions typechecked"
+      "evidencePath": "fixtures/proof/nodekit-caseflow-consumer/04-npx-tsc-p-convex-tsconfig-json-noEmit-pretty-false.log",
+      "evidenceSha256": "5da71e66b9dee382470b235f250e0a0d4bc1ccdb1fcf5db76d81afc96c4a2ef9",
+      "passed": true
     },
     {
       "command": "npx vitest run tests/nodekit-caseflow-conformance.test.ts --reporter=verbose",
-      "passed": true,
-      "result": "1 file passed, 6 tests passed"
-    },
-    {
-      "command": "npm test",
-      "passed": true,
-      "result": "37 files passed, 190 tests passed"
+      "evidencePath": "fixtures/proof/nodekit-caseflow-consumer/05-npx-vitest-run-tests-nodekit-caseflow-conformance-test-ts-reporter-verbose.log",
+      "evidenceSha256": "8ab2e0f35f2b2eac89abdb61a46941c0b0d1e7f0c794c3a79aed288061ac3738",
+      "passed": true
     },
     {
       "command": "npm run build",
-      "passed": true,
-      "result": "TypeScript and Vite production build completed"
+      "evidencePath": "fixtures/proof/nodekit-caseflow-consumer/06-npm-run-build.log",
+      "evidenceSha256": "b31fb5aaa9c420fedf7fbc620fb5102fe3e6bf8a00fa133582dc6c93e73bd2e8",
+      "passed": true
+    },
+    {
+      "command": "npm test",
+      "evidencePath": "fixtures/proof/nodekit-caseflow-consumer/07-npm-test.log",
+      "evidenceSha256": "7d09c4c8d3be87c77c6f32c6866c6e061bf2278f03d145317f7c72bdce14a650",
+      "passed": true
     }
   ],
-  "assertions": {
-    "packagedConformancePassed": true,
-    "activeRunStartIsIdempotent": true,
-    "canonicalVersionAdvancedOnce": true,
-    "contentAddressedReceipt": true,
-    "exceptionStatePreserved": true,
-    "nextActionOwnerExplicit": true,
-    "oneAuthoritativeCase": true,
-    "repeatedCompletionIsIdempotent": true,
-    "repeatedDecisionIsIdempotent": true,
-    "staleProposalFailedClosed": true,
-    "crossOwnerAccessDenied": true,
-    "differentInputIdempotencyConflictDenied": true,
-    "reloadSnapshotPreserved": true,
-    "receiptTamperingDetected": true,
-    "domainWorkflowPreservedAndBound": true,
-    "workerAndEvaluatorCredentialsRemainSeparate": true,
-    "deployed": false,
-    "published": false
+  "consumer": {
+    "branch": "codex/nodekit-caseflow-consumer",
+    "implementationCommit": "9ae8b99edff08bb6e0643cea751af8b6e35b82a3",
+    "repository": "https://github.com/HomenShum/NodeVideo.git",
+    "sourceManifestHash": "b74656584fed08ee5f18e7143f32fde5bdee9d00e75c80ce05c76e3d33d50f4b"
   },
-  "evidenceHash": "8916850351238b8ba2fd74b9cd88a25c72bb39de13dbdced65dacb31d5fab9ad"
+  "evidence": [
+    {
+      "path": "convex/convex.config.ts",
+      "sha256": "a2a5115bb652d727cef297f7dc61d6fc1beab1f0375bb57c8c03502a9cae5a55"
+    },
+    {
+      "path": "convex/nodeVideoCaseflow.ts",
+      "sha256": "959386f40e89fd4b5922c1f4322983a8d4b6b567c09de605d871ada6dacd828c"
+    },
+    {
+      "path": "convex/schema.ts",
+      "sha256": "414c583640a550e1c78c0558dd1ae6528ebe1d2b576857c95a38f66d935285cd"
+    },
+    {
+      "path": "docs/nodekit-caseflow-consumer.md",
+      "sha256": "bb892a6958716ec9f21891c723c62fcb72d96fff6045bd6fcdbc3de506fa7350"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "77ce96d2cb22620ab4bf09b5c55591d415b3927bb31bb508aab25eb44b5d45fb"
+    },
+    {
+      "path": "package.json",
+      "sha256": "0a2d2cae0790af6d268401f900330749694034fb2fd0107719c5a73104469266"
+    },
+    {
+      "path": "scripts/quality/prepare-nodekit-package.mjs",
+      "sha256": "98990fea7d737b166143429e2eff2f23f124f57d3c8d03d0584e6151b1db386d"
+    },
+    {
+      "path": "scripts/quality/prove-nodekit-caseflow-consumer.mjs",
+      "sha256": "4af9b8e901a552145314f6f0abf1cbfbdc909ec62babbbce3623e3375c1b0155"
+    },
+    {
+      "path": "tests/nodekit-caseflow-conformance.test.ts",
+      "sha256": "87da38f268c4ae4dbca3a586ec3513f479d1fd420ca55d151ff187a8dd174f7b"
+    },
+    {
+      "path": "tests/nodekit-caseflow-proof.test.ts",
+      "sha256": "f78ed34ca07c37b24e2fc2c2700e5de2a948588e766671f2470f9f49c7406037"
+    },
+    {
+      "path": "vendor/homenshum-nodekit-0.2.1.tgz",
+      "sha256": "8d6088579e17894cb09c62796707d7d63f8d040ed40955a9366e4c78c6d2075e"
+    },
+    {
+      "path": "vendor/nodekit-package-manifest.json",
+      "sha256": "ecb0917d362cef2bfabfbcba39029fb84edcc8b515ebef892d86356c09c3d436"
+    },
+    {
+      "path": "fixtures/proof/nodekit-caseflow-consumer/01-npm-ci.log",
+      "sha256": "1353ec70e17b4faa9992529dc53a6eec662f7ed902345b1ead32c6cda5826d7a"
+    },
+    {
+      "path": "fixtures/proof/nodekit-caseflow-consumer/02-npm-run-lint.log",
+      "sha256": "b04c8aded51e47f704a6f84928f29278be7f5b0a7070cff615d0353c2baba241"
+    },
+    {
+      "path": "fixtures/proof/nodekit-caseflow-consumer/03-npm-run-typecheck.log",
+      "sha256": "dac7166f0fb14f11431ffead49ca617d5daf38873de74d2334cd3277975bbc20"
+    },
+    {
+      "path": "fixtures/proof/nodekit-caseflow-consumer/04-npx-tsc-p-convex-tsconfig-json-noEmit-pretty-false.log",
+      "sha256": "5da71e66b9dee382470b235f250e0a0d4bc1ccdb1fcf5db76d81afc96c4a2ef9"
+    },
+    {
+      "path": "fixtures/proof/nodekit-caseflow-consumer/05-npx-vitest-run-tests-nodekit-caseflow-conformance-test-ts-reporter-verbose.log",
+      "sha256": "8ab2e0f35f2b2eac89abdb61a46941c0b0d1e7f0c794c3a79aed288061ac3738"
+    },
+    {
+      "path": "fixtures/proof/nodekit-caseflow-consumer/06-npm-run-build.log",
+      "sha256": "b31fb5aaa9c420fedf7fbc620fb5102fe3e6bf8a00fa133582dc6c93e73bd2e8"
+    },
+    {
+      "path": "fixtures/proof/nodekit-caseflow-consumer/07-npm-test.log",
+      "sha256": "7d09c4c8d3be87c77c6f32c6866c6e061bf2278f03d145317f7c72bdce14a650"
+    }
+  ],
+  "externalProofRequired": [
+    "authenticated production deployment using this exact package tarball",
+    "fresh-user browser screenshots and export/reopen proof",
+    "independent ProofLoop verification of the deployed revision"
+  ],
+  "generatedAt": "2026-07-22T10:52:03.220Z",
+  "nodekit": {
+    "packageIntegrity": "sha512-LmVzyV9gKwW8gVPAIDyyzATIJVBZzPYKipR0eET64FMQy5MJltVY7paME88WW+EF3ekG9J381fjUtMWDlythEA==",
+    "installedPackageFiles": [
+      {
+        "path": "dist/client/index.js",
+        "sha256": "a32f088d9dec8873dd3a1e0e74a68001239cb611bbf4cda6b5d0f72c581516bc"
+      },
+      {
+        "path": "dist/component/caseflow.js",
+        "sha256": "931725efad0260793022e52873c4ccad40265d89ba19fe6e1b8e76d6934b6ca8"
+      },
+      {
+        "path": "dist/component/_generated/component.d.ts",
+        "sha256": "70db1bae92ec21243129f521f1e06aea74e0587ee8294463255711cbbd94506a"
+      },
+      {
+        "path": "dist/convex-test.js",
+        "sha256": "d0cf9b776f645d2715e663a0f3b803111cb505ab705de24cbe9f298c98ba2267"
+      },
+      {
+        "path": "package.json",
+        "sha256": "7a985006d3e951978707406bf13023c4734814f030739c125318c7a01aa2c1c7"
+      }
+    ],
+    "lockfileIntegrity": "sha512-LmVzyV9gKwW8gVPAIDyyzATIJVBZzPYKipR0eET64FMQy5MJltVY7paME88WW+EF3ekG9J381fjUtMWDlythEA==",
+    "packageManifestHash": "10de3c97b75209a96ff129d119fb03ccc871f165f0029582eae179db4a810809",
+    "packagePath": "vendor/homenshum-nodekit-0.2.1.tgz",
+    "packageSha1": "f344f6786cd5a00af4fa0370d0df2debec4aa670",
+    "packageSha256": "8d6088579e17894cb09c62796707d7d63f8d040ed40955a9366e4c78c6d2075e",
+    "packageSpec": "file:vendor/homenshum-nodekit-0.2.1.tgz",
+    "packageVersion": "0.2.1",
+    "sourceCommit": "4407b70c616c89b022e0d3d36ba02f00519b1688",
+    "sourceHash": "ae96ea8e2a8b882e44d41e47991aaac2fcf8ce1fbadf44ec53ce6997cbbb7c87",
+    "sourceWorkingTreeCleanAtPackTime": false,
+    "supportedImports": [
+      "@homenshum/nodekit/convex-caseflow",
+      "@homenshum/nodekit/convex.config.js",
+      "@homenshum/nodekit/test"
+    ]
+  },
+  "schemaVersion": "nodevideo.nodekit-caseflow-consumer-verdict/v2",
+  "status": "passed_local_only",
+  "evidenceHash": "9e5ade1ae3974c32983063380a88eeb25c9d084d892f98f9069befadf47730a5"
 }

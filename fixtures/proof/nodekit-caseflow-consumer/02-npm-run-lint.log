@@ -1,0 +1,10 @@
+$ npm run lint
+
+
+> nodevideo@0.1.0 lint
+> biome check .
+
+Checked 296 files in 482ms. No fixes applied.
+
+
+exitCode=0

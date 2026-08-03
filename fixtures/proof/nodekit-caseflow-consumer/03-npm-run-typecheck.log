@@ -1,0 +1,9 @@
+$ npm run typecheck
+
+
+> nodevideo@0.1.0 typecheck
+> tsc --noEmit
+
+
+
+exitCode=0

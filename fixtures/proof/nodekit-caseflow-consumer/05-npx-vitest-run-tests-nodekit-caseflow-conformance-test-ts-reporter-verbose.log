@@ -1,0 +1,17 @@
+$ npx vitest run tests/nodekit-caseflow-conformance.test.ts --reporter=verbose
+
+
+ RUN  v4.1.10 D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.worktrees/nodevideo-nodekit-caseflow-consumer
+
+ ✓ tests/nodekit-caseflow-conformance.test.ts > NodeVideo consumes the packed NodeKit Convex component > registers the installed component and keeps auth and project scope in the host 499ms
+ ✓ tests/nodekit-caseflow-conformance.test.ts > NodeVideo consumes the packed NodeKit Convex component > executes a NodeVideo artifact lifecycle with retry, conflict, recovery, and receipt proof 145ms
+ ✓ tests/nodekit-caseflow-conformance.test.ts > NodeVideo consumes the packed NodeKit Convex component > terminates interrupted video work explicitly and idempotently 78ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  03:51:04
+   Duration  3.61s (transform 225ms, setup 0ms, import 1.77s, tests 725ms, environment 0ms)
+
+
+
+exitCode=0

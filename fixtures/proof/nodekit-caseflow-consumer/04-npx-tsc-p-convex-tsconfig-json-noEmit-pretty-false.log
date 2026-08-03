@@ -1,0 +1,5 @@
+$ npx tsc -p convex/tsconfig.json --noEmit --pretty false
+
+
+
+exitCode=0
