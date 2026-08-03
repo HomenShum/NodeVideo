@@ -23,8 +23,8 @@ const live = (over: Partial<Frame> = {}): Frame => ({
 
 const generated = (over: Partial<Frame> = {}): Frame => ({
   frameId: 'f-gen-1',
-  kind: 'generated',
-  presentedAs: 'generated',
+  kind: 'generated-illustration',
+  presentedAs: 'generated-illustration',
   sha256: hash('b'),
   shotId: 'shot-5',
   provenance: { provider: 'local', model: 'sdxl', prompt: 'a calm dashboard', inputAssets: [] },

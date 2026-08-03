@@ -1,21 +1,29 @@
 [
   {
-    "frameId": "f-live-hero",
+    "frameId": "f-hook-title",
+    "kind": "motion-graphic",
+    "presentedAs": "motion-graphic",
+    "shotId": "shot-01-hook",
+    "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "composition": { "sourceRef": "remotion:HookTitle" }
+  },
+  {
+    "frameId": "f-live-upload",
     "kind": "live-product",
     "presentedAs": "live-product",
-    "shotId": "shot-01-hero",
+    "shotId": "shot-03-start",
     "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "bindings": {
       "deploymentRevision": "7a741cb",
-      "browserTraceId": "trace-hero-01",
+      "browserTraceId": "trace-start-01",
       "journeyState": "populated",
       "screenshotSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     }
   },
   {
     "frameId": "f-gen-backdrop",
-    "kind": "generated",
-    "presentedAs": "generated",
+    "kind": "generated-illustration",
+    "presentedAs": "generated-illustration",
     "shotId": "shot-04-backdrop",
     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
     "provenance": {
