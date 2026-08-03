@@ -219,6 +219,31 @@ fixed renderer width-fits each cue, emits an inspectable glyph box, and `npm run
 checks that box against Pose Landmarker evidence from the rendered timeline. More than five percent
 body overlap blocks approval, including collisions that occur only near a cut boundary.
 
+## Where product-demo frames come from
+
+`src/lib/frame-evidence.ts` decides whether a frame may be *presented as* the running product. It
+does not produce frames. For a product walkthrough they come from FeatureClipStudio
+(`feature-walkthrough-gif/`), and the two halves only work together:
+
+```bash
+npm run capture                     # Playwright drives the live flow, one frame per UI state
+npm run render                      # Remotion adds cursor, ripple, captions, zoom-to-focus
+node find-references.mjs "<query>"  # build/extend the reference corpus (cached, cumulative)
+node judge-video.mjs out/demo.mp4   # Gemini scores the render against that corpus
+```
+
+A frame captured from a live deployment is `kind: "live-product"`, and this module then requires it
+to carry `deploymentRevision`, `browserTraceId`, `journeyState` and `screenshotSha256` — a claim
+about the running application must name the exact deployment it came from. A Remotion-composited
+frame is `motion-graphic` and owes its `sourceRef` instead. Presenting either as the other is the
+failure `presentedAs` exists to make checkable, and it is the likely one: the composited frame
+usually looks better.
+
+The reference corpus is observations, never footage. `find-references.mjs` uses yt-dlp to SEARCH
+only and Gemini watches the URL, so references are cited by URL plus timestamp and nothing is
+re-hosted. Its ledger reuses anything already observed under the same prompt and model, and records
+what it rejected and why, so a second run costs nothing and still discovers.
+
 ## Evidence and artifact boundaries
 
 For each proposed phrase, the source-only dance analyzer currently weights choreography agreement

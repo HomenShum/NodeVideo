@@ -5,6 +5,13 @@
 // reaches for. These checks are cheap, deterministic and bindable, and a model's opinion never
 // overturns one of the hard zeros below.
 //
+// Frames for a product walkthrough come from FeatureClipStudio (feature-walkthrough-gif/): Playwright
+// captures one frame per UI state from the live deployment, Remotion composites cursor, captions and
+// zoom-to-focus over them. That split is exactly the distinction below — a captured frame is
+// live-product and owes its deployment bindings; a composited one is motion-graphic and owes its
+// sourceRef. They arrive in the same render, which is why `presentedAs` has to be checkable rather
+// than assumed.
+//
 // Real product footage proves the product; everything else explains the idea. So exactly one kind
 // may be presented as the running application, and it must bind to the exact deployment it came
 // from. `presentedAs` is what makes that checkable — without a field recording what the AUDIENCE is
