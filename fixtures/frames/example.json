@@ -1,0 +1,28 @@
+[
+  {
+    "frameId": "f-live-hero",
+    "kind": "live-product",
+    "presentedAs": "live-product",
+    "shotId": "shot-01-hero",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "bindings": {
+      "deploymentRevision": "7a741cb",
+      "browserTraceId": "trace-hero-01",
+      "journeyState": "populated",
+      "screenshotSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  },
+  {
+    "frameId": "f-gen-backdrop",
+    "kind": "generated",
+    "presentedAs": "generated",
+    "shotId": "shot-04-backdrop",
+    "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "provenance": {
+      "provider": "local",
+      "model": "sdxl-turbo",
+      "prompt": "soft gradient backdrop, no UI",
+      "inputAssets": []
+    }
+  }
+]
