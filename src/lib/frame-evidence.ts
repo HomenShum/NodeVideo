@@ -5,29 +5,44 @@
 // reaches for. These checks are cheap, deterministic and bindable, and a model's opinion never
 // overturns one of the hard zeros below.
 //
-// Two frame kinds, and conflating them is the failure:
-//
-//   live-product  a capture of the real application. Binds to the deployment revision, the browser
-//                 trace, the journey state, and its own screenshot hash. Unbound: 0.
-//   generated     an illustration. Carries provider, model, prompt and input assets, and may never
-//                 be presented as the running application. Mislabelled: 0.
-//
-// `presentedAs` is what makes the second zero checkable at all. Without a field recording what the
-// AUDIENCE is told a frame is, a generated mockup and a real capture are just pixels — and the
-// mockup usually looks better, which is why it gets shipped by accident.
+// Real product footage proves the product; everything else explains the idea. So exactly one kind
+// may be presented as the running application, and it must bind to the exact deployment it came
+// from. `presentedAs` is what makes that checkable — without a field recording what the AUDIENCE is
+// told a frame is, a made frame and a real capture are just pixels, and the made one usually looks
+// better, which is why it ships by accident.
 
-export type FrameKind = 'live-product' | 'generated';
+// Six kinds, matching the delivery spec. Collapsing them breaks in both directions: a motion
+// graphic forced into "generated" is asked for a provider, model and prompt it never had, and
+// escaping that demand by labelling it live-product is the loophole.
+export type FrameKind =
+  | 'live-product'
+  | 'generated-illustration'
+  | 'motion-graphic'
+  | 'source-media'
+  | 'stock-media'
+  | 'text-or-diagram';
 
-export const FRAME_KINDS: readonly FrameKind[] = ['live-product', 'generated'] as const;
-
-export const LIVE_PRODUCT_BINDINGS = [
-  'deploymentRevision',
-  'browserTraceId',
-  'journeyState',
-  'screenshotSha256',
+export const FRAME_KINDS: readonly FrameKind[] = [
+  'live-product',
+  'generated-illustration',
+  'motion-graphic',
+  'source-media',
+  'stock-media',
+  'text-or-diagram',
 ] as const;
 
-export const GENERATED_PROVENANCE = ['provider', 'model', 'prompt', 'inputAssets'] as const;
+/** What each kind owes. The point is that they owe DIFFERENT things. */
+const REQUIREMENTS: Record<FrameKind, { field: string | null; keys: string[]; why: string }> = {
+  'live-product': { field: 'bindings', keys: ['deploymentRevision', 'browserTraceId', 'journeyState', 'screenshotSha256'], why: 'a claim about the running application must name the exact deployment it came from' },
+  'generated-illustration': { field: 'provenance', keys: ['provider', 'model', 'prompt', 'inputAssets'], why: 'which model, with what prompt, is the only thing that makes it auditable later' },
+  'motion-graphic': { field: 'composition', keys: ['sourceRef'], why: 'deterministic composition is reproducible, so it owes its source — not a model it never used' },
+  'source-media': { field: 'origin', keys: ['originRef', 'rights'], why: 'material the creator already had still owes where it came from and on what terms' },
+  'stock-media': { field: 'origin', keys: ['originRef', 'licenseId'], why: 'the licence is the whole basis for using it' },
+  'text-or-diagram': { field: null, keys: [], why: 'authored directly; being labelled is all it owes' },
+};
+
+export const LIVE_PRODUCT_BINDINGS = REQUIREMENTS['live-product'].keys;
+export const GENERATED_PROVENANCE = REQUIREMENTS['generated-illustration'].keys;
 
 export interface Frame {
   frameId: string;
@@ -36,7 +51,9 @@ export interface Frame {
   presentedAs: FrameKind;
   sha256: string;
   shotId?: string;
-  bindings?: Partial<Record<(typeof LIVE_PRODUCT_BINDINGS)[number], string>>;
+  bindings?: Record<string, string>;
+  composition?: { sourceRef?: string };
+  origin?: { originRef?: string; rights?: string; licenseId?: string };
   provenance?: {
     provider?: string;
     model?: string;
@@ -91,29 +108,26 @@ export function evaluateFrameEvidence(input: unknown): FrameEvidenceVerdict {
   };
 
   for (const frame of frames) {
+    const requirement = REQUIREMENTS[frame.kind];
+    const bag = requirement.field ? ((frame as unknown as Record<string, Record<string, unknown>>)[requirement.field] ?? {}) : {};
+    const missing = requirement.keys.filter((key) =>
+      key === 'inputAssets' ? !Array.isArray(bag[key]) : !isNonEmptyString(bag[key]),
+    );
+    if (missing.length > 0) {
+      blame(frame, `${frame.frameId} (${frame.kind}) is missing ${requirement.field}.${missing.join(', ')} — ${requirement.why}`);
+    }
+
     if (frame.kind === 'live-product') {
-      const missing = LIVE_PRODUCT_BINDINGS.filter((key) => !isNonEmptyString(frame.bindings?.[key]));
-      if (missing.length > 0) {
-        blame(frame, `unbound live-product frame ${frame.frameId}: missing ${missing.join(', ')}`);
-      }
-      // Every field present, pointing at a different image. Looks bound; binds nothing.
       const shot = frame.bindings?.screenshotSha256;
       if (shot && shot !== frame.sha256) {
         blame(frame, `live-product frame ${frame.frameId}: screenshotSha256 does not match the frame's own hash`);
       }
     }
 
-    if (frame.kind === 'generated') {
-      const missing = GENERATED_PROVENANCE.filter((key) => {
-        const value = frame.provenance?.[key];
-        return key === 'inputAssets' ? !Array.isArray(value) : !isNonEmptyString(value);
-      });
-      if (missing.length > 0) {
-        blame(frame, `generated frame ${frame.frameId} without provenance: missing ${missing.join(', ')}`);
-      }
-      if (frame.presentedAs === 'live-product') {
-        blame(frame, `frame ${frame.frameId} is generated but presented as the running application`);
-      }
+    // Every non-live kind, not just generated. A stock clip or motion graphic presented as the
+    // running application is the same false claim about what the viewer is seeing.
+    if (frame.kind !== 'live-product' && frame.presentedAs === 'live-product') {
+      blame(frame, `frame ${frame.frameId} is ${frame.kind} but presented as the running application`);
     }
   }
 
@@ -124,7 +138,7 @@ export function evaluateFrameEvidence(input: unknown): FrameEvidenceVerdict {
     blockers,
     checked: frames.length,
     liveProduct: frames.filter((frame) => frame.kind === 'live-product').length,
-    generated: frames.filter((frame) => frame.kind === 'generated').length,
+    generated: frames.filter((frame) => frame.kind !== 'live-product').length,
     failedShots: [...failedShots].sort(),
   };
 }
