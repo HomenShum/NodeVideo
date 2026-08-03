@@ -69,8 +69,9 @@
     "ui:policy": "node scripts/quality/check-ui-policy.mjs",
     "ui:budget": "node scripts/quality/check-ui-budget.mjs",
     "check:ui": "npm run ui:policy && npm run ui:budget",
-    "check": "npm run lint && npm run typecheck && npm run test && npm run check:ui && npm run capability:validate && npm run grounding:doctor && npm run grounding:proof:verify && npm run worker:verify && npm run worker:song:verify && npm run proof:song:real:verify && npm run worker:authorized:verify && npm run build && npm run check:contract",
-    "qa": "npm run check && npm run proof:synthetic && npm run test:e2e"
+    "check": "npm run lint && npm run typecheck && npm run test && npm run check:ui && npm run capability:validate && npm run grounding:doctor && npm run grounding:proof:verify && npm run worker:verify && npm run worker:song:verify && npm run proof:song:real:verify && npm run worker:authorized:verify && npm run build && npm run check:contract && npm run frames:evaluate --if-present -- --frames fixtures/frames/example.json",
+    "qa": "npm run check && npm run proof:synthetic && npm run test:e2e",
+    "frames:evaluate": "node scripts/quality/evaluate-frame-evidence.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.112.3",
