@@ -1,6 +1,7 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { makeFunctionReference } from 'convex/server';
 import openRouterRouting from '../config/openrouter-free-routing.json' with { type: 'json' };
+import { backoffDelayMs, backoffSleep } from '../src/lib/backoff';
 import type {
   CreatorPlanningOperation,
   CreatorPlanningOperationKind,
@@ -516,6 +517,12 @@ export async function runDeepPlanner(
   let lastError = 'The free router was unavailable.';
   let modelCalls = options.checkpoint?.modelCalls ?? 0;
   for (let attempt = 1; attempt <= 2 && !draft; attempt += 1) {
+    if (attempt > 1) {
+      // Bounded exponential backoff before retrying a transient router failure.
+      const budgetLeft = NODE_AGENT_LIMITS.plannerTotalBudgetMs - (now() - startedAt);
+      if (backoffDelayMs(attempt - 1) >= budgetLeft) break;
+      await backoffSleep(attempt - 1);
+    }
     const remaining = NODE_AGENT_LIMITS.plannerTotalBudgetMs - (now() - startedAt);
     if (remaining <= 0) break;
     modelCalls += 1;
@@ -583,8 +590,12 @@ export async function runDeepPlanner(
 
   let finalPass = draft;
   let degradedReason = '';
+  const runTokensUsed = draft.inputTokens + draft.outputTokens;
   const remaining = NODE_AGENT_LIMITS.plannerTotalBudgetMs - (now() - startedAt);
-  if (remaining >= NODE_AGENT_LIMITS.plannerMinReviewBudgetMs) {
+  if (runTokensUsed >= NODE_AGENT_LIMITS.maxRunTokens) {
+    degradedReason =
+      'The model review pass was skipped because the per-run token ceiling was reached.';
+  } else if (remaining >= NODE_AGENT_LIMITS.plannerMinReviewBudgetMs) {
     modelCalls += 1;
     try {
       finalPass = await requestPlannerPass({

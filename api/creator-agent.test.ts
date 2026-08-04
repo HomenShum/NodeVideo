@@ -364,6 +364,46 @@ describe('creator free-route deep-agent scenarios', () => {
     expect(result.trace.at(-1)).toMatchObject({ status: 'degraded' });
   });
 
+  test('a run that burns the per-run token ceiling while drafting skips the review pass instead of spending more', async () => {
+    const draft = {
+      summary: 'Remove dead air while preserving the speaker meaning.',
+      operations: [
+        { kind: 'remove_silence', reason: 'Remove only confirmed timing gaps.' },
+        { kind: 'preserve_meaning', reason: 'Keep uncertain cuts behind human review.' },
+      ],
+    };
+    const fetchImpl = vi.fn<typeof fetch>().mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          model: 'google/gemma-free',
+          choices: [{ message: { content: JSON.stringify(draft) } }],
+          usage: { prompt_tokens: 23_500, completion_tokens: 900 },
+        }),
+        { status: 200, headers: { 'content-type': 'application/json' } },
+      ),
+    );
+    let timestamp = 3_000;
+    const now = () => {
+      timestamp += 25;
+      return timestamp;
+    };
+    const result = await runDeepPlanner(
+      {
+        request: 'Remove dead air without changing meaning.',
+        transcript: 'Keep this exact claim.',
+      },
+      { apiKey: 'test', fetchImpl, now, runId: 'run-token-ceiling' },
+    );
+
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    expect(result).toMatchObject({
+      ok: true,
+      depthMode: 'single_pass_degraded',
+      degradedReason:
+        'The model review pass was skipped because the per-run token ceiling was reached.',
+    });
+  });
+
   test('a hostile transcript is treated as data and unsupported quote claims are surfaced to review', () => {
     const observations = inspectPlannerDraft(
       {

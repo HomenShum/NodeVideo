@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "production-agent/v1",
+  "application": "nodevideo-creator-agent",
+  "declaredAt": "2026-08-04",
+  "goalTranslation": {
+    "businessGoal": "A creator turns raw footage into publishable, source-grounded edits without the agent making silent semantic changes or unreviewed renders.",
+    "quantifiedTarget": {
+      "metric": "planner-benchmark-success-rate",
+      "comparator": "at-least",
+      "value": 0.75,
+      "rationale": "config/openrouter-free-routing.json thresholds.minimumSuccessRate gates which models the planner may use."
+    },
+    "decomposition": [
+      "validate_inputs",
+      "ingest_reference",
+      "learn_creator_profile",
+      "normalize_media",
+      "align_reference_song",
+      "extract_reference_motion",
+      "analyze_takes",
+      "ground_subjects",
+      "interpret_production",
+      "match_phrases",
+      "plan_sequence",
+      "place_lyrics",
+      "compose_editorial_overlays",
+      "compile_plan",
+      "render_preview",
+      "validate_preview",
+      "await_review",
+      "freeze",
+      "evaluate_hidden_target"
+    ]
+  },
+  "hitl": {
+    "tiers": [
+      {
+        "action": "Read-only planning passes against the free router (draft + review plan JSON, no media side effects)",
+        "risk": "low",
+        "mode": "auto"
+      },
+      {
+        "action": "Apply an agent-proposed timeline edit in the browser editor: every mutating tool call becomes a patch card the user must accept before the plan changes",
+        "risk": "low",
+        "mode": "suspend-approve",
+        "resumeAfterApproval": true
+      },
+      {
+        "action": "Advance the render workflow past await_review toward freeze/publish: the stage row is patched to awaiting_approval (convex/workflow.ts:266) and only approveReview resumes it",
+        "risk": "high",
+        "mode": "suspend-approve",
+        "resumeAfterApproval": true
+      },
+      {
+        "action": "Execute a compiled recipe whose intent sets requireHumanApproval or whose stages carry approval=required (paid render / media egress; src/lib/recipe-compiler.ts:167 requiresApproval)",
+        "risk": "high",
+        "mode": "suspend-approve",
+        "resumeAfterApproval": true
+      }
+    ]
+  },
+  "toolFaultTolerance": {
+    "interception": {
+      "rawErrorsReachUser": false,
+      "how": "The planner catches upstream failures into trace steps and typed degraded results (api/creator-agent.ts); the browser agent maps failures to typed error events (model_auth_failed, openrouter_<status> with detail truncated to 120 chars, openrouter_unreachable)."
+    },
+    "retry": {
+      "maxAttempts": 3,
+      "backoff": "exponential",
+      "baseDelayMs": 1000,
+      "maxDelayMs": 30000,
+      "jitter": false
+    },
+    "fallback": {
+      "kind": "degraded-ui",
+      "description": "When the review pass fails or budgets are exhausted, the run returns the accepted draft plan with depthMode single_pass_degraded, a degradedReason, and a resumable durable checkpoint (nodevideo.agent-checkpoint/v1)."
+    },
+    "toolContract": {
+      "descriptionsUnambiguous": true,
+      "fewShotForComplexParams": false
+    }
+  },
+  "context": {
+    "strategies": ["sliding-window"],
+    "tokenBudgetPerRun": 24000
+  },
+  "slos": [
+    {
+      "metric": "task-completion-rate",
+      "comparator": "at-least",
+      "value": 0.75,
+      "rationale": "Declared target mirroring the benchmark gate; not yet measured on production traffic (see production-agent.gaps.md)."
+    },
+    {
+      "metric": "tool-call-error-rate",
+      "comparator": "at-most",
+      "value": 0.25,
+      "rationale": "Declared target; no production measurement pipeline emits this metric yet (see production-agent.gaps.md)."
+    },
+    {
+      "metric": "p99-latency-ms",
+      "comparator": "at-most",
+      "value": 82000,
+      "rationale": "plannerTotalBudgetMs is a hard in-process budget, so run latency cannot exceed it; declared, not measured as a production percentile."
+    }
+  ],
+  "runtimeGuards": {
+    "loopBreaker": {
+      "maxIterations": 8,
+      "maxDepth": 1
+    },
+    "circuitBreaker": {
+      "errorRateThreshold": 1,
+      "windowSeconds": 82,
+      "onTrip": "Per-run only: when every draft attempt inside the 82s plannerTotalBudgetMs fails, the run aborts and surfaces the error/degraded state. There is NO cross-run circuit breaker; a failing provider is re-attempted by every new run (declared gap in production-agent.gaps.md)."
+    },
+    "costFuse": {
+      "maxTokensPerRun": 24000,
+      "onTrip": "When accumulated prompt+completion tokens reach maxRunTokens, the model review pass is skipped and the run returns the draft with a degraded reason (api/creator-agent.ts runDeepPlanner). Individual calls are fused by max_tokens 900, plannerPassTimeoutMs 28000, and maxInteractiveRunMs 180000."
+    }
+  },
+  "release": {
+    "judgeRegression": {
+      "trigger": "manual",
+      "command": "npm run clip:judge / npm run coach:test — run by a maintainer on demand; NOT wired to commit, PR, or deploy triggers (declared gap)."
+    },
+    "canary": {
+      "trafficPercent": 0,
+      "rollbackOn": [
+        {
+          "metric": "canary-success-rate",
+          "comparator": "below",
+          "value": 0.75,
+          "rationale": ".github/workflows/openrouter-free-models.yml canaries the current winners every 6 hours against the benchmark thresholds."
+        }
+      ],
+      "rollbackMode": "manual"
+    },
+    "modelMigration": {
+      "pinnedModel": "google/gemma-4-26b-a4b-it:free and nvidia/nemotron-3-super-120b-a12b:free (config/openrouter-free-routing.json selectedModels; fallbackRouter openrouter/free)",
+      "migrationEvalCommand": "npm run openrouter:benchmark"
+    },
+    "tracing": {
+      "traceIdPropagated": true,
+      "field": "runId"
+    }
+  }
+}

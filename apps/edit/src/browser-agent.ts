@@ -5,6 +5,7 @@
 // studio renders as a patch card and applies only on accept. No server, no
 // SSE bridge — this is the "in-browser from the start" path.
 
+import { RETRY_BACKOFF, backoffSleep } from '@/lib/backoff';
 import { NODE_AGENT_LIMITS } from '@/lib/nodeagent-contract';
 import {
   ONE_EDIT_PER_PROPOSAL_ERROR,
@@ -220,23 +221,39 @@ export async function runBrowserAgent(options: {
   ];
 
   for (let iteration = 0; iteration < NODE_AGENT_LIMITS.maxToolIterations; iteration += 1) {
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      signal: options.signal,
-      headers: {
-        authorization: `Bearer ${options.apiKey}`,
-        'content-type': 'application/json',
-        'http-referer': location.origin,
-        'x-title': 'NodeVideo stitch studio',
-      },
-      body: JSON.stringify({
-        model: options.model,
-        messages,
-        tools: TOOLS,
-        tool_choice: 'auto',
-        max_tokens: 1024,
-      }),
-    });
+    let response: Response | undefined;
+    for (let attempt = 1; attempt <= RETRY_BACKOFF.maxAttempts; attempt += 1) {
+      try {
+        response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+          method: 'POST',
+          signal: options.signal,
+          headers: {
+            authorization: `Bearer ${options.apiKey}`,
+            'content-type': 'application/json',
+            'http-referer': location.origin,
+            'x-title': 'NodeVideo stitch studio',
+          },
+          body: JSON.stringify({
+            model: options.model,
+            messages,
+            tools: TOOLS,
+            tool_choice: 'auto',
+            max_tokens: 1024,
+          }),
+        });
+      } catch (error) {
+        if (options.signal.aborted) throw error;
+        response = undefined; // network failure: transient, retry with backoff
+      }
+      const transient =
+        !response || response.status === 429 || response.status === 408 || response.status >= 500;
+      if (!transient || attempt === RETRY_BACKOFF.maxAttempts) break;
+      await backoffSleep(attempt, options.signal);
+    }
+    if (!response) {
+      options.emit({ type: 'error', error: 'openrouter_unreachable' });
+      return;
+    }
     if (!response.ok) {
       const detail = await response.text().catch(() => '');
       options.emit({

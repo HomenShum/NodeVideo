@@ -9,6 +9,7 @@
     "maxTraceSteps": 8,
     "maxDurableExecutionsPerRun": 20,
     "maxUpstreamBytes": 1000000,
+    "maxRunTokens": 24000,
     "maxInteractiveRunMs": 180000,
     "durableLeaseMs": 120000,
     "plannerPassTimeoutMs": 28000,
