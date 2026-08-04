@@ -2,8 +2,8 @@
 
 `production-agent.json` is filled truthfully. Where the truth violates
 `schemas/production-agent.v1.schema.json`, the declaration keeps the truth and
-the validation error stands as the open item. Current ajv result: **3 errors,
-all in `release`, all intentional**:
+the validation error stands as the open item. Current ajv result: **2 errors,
+both in `release`, both intentional**:
 
 1. `release.judgeRegression.trigger` = `"manual"` — the schema only accepts
    `on-commit | on-pr | pre-deploy`. The judge commands (`npm run clip:judge`,
@@ -13,9 +13,35 @@ all in `release`, all intentional**:
    traffic split. The canary in `.github/workflows/openrouter-free-models.yml`
    is a scheduled probe of the current winner models every 6 hours, not a
    production traffic split; 0% of user traffic is canaried.
-3. `release.canary.rollbackMode` = `"manual"` — the schema requires
-   `automatic`. When a canary fails, a maintainer re-runs the benchmark and
-   commits new routing; no automatic rollback exists.
+
+   A cookie-sticky traffic canary for the web app was considered and not
+   applied: the site is a static Vite multi-page build served by Vercel's Git
+   integration (`vercel.json`, no middleware layer, no server that assigns
+   cookies). Splitting traffic would require two concurrently served builds
+   plus edge middleware (or Vercel's paid canary/skew features) — an
+   architecture change, not a workflow change. The model-routing canary is
+   the traffic split that is real in this architecture, and it now rolls back
+   automatically (below).
+
+Closed 2026-08-04: `release.canary.rollbackMode` is now genuinely
+`"automatic"`. When the canary/benchmark step in
+`.github/workflows/openrouter-free-models.yml` fails, the workflow runs
+`scripts/providers/rollback-routing-manifest.sh`, which restores
+`config/openrouter-free-routing.json` from the commit before the last change
+and pushes the revert (guards: no prior version → no-op; last change already
+a rollback → refuse, to prevent ping-pong). The run still fails loudly.
+
+Post-deploy gate for the web app: `.github/workflows/deploy-verify.yml` runs
+on every push to main (the event that makes Vercel's Git integration deploy
+production), polls the live URL for the `index.html` title signal via
+`scripts/quality/verify-production-deploy.mjs`, and on failure runs
+`vercel rollback` when `VERCEL_TOKEN`/`VERCEL_ORG_ID`/`VERCEL_PROJECT_ID`
+secrets exist. The production URL is parameterized as
+`NODEVIDEO_PRODUCTION_URL` (repo variable/secret or dispatch input) because
+it is not determinable from the repo; until it is configured the gate fails
+loudly rather than pretending to verify. Known ceiling: the signal is
+version-independent, so a stale CDN copy of a previous healthy deploy would
+pass; a per-commit build stamp in the HTML is the upgrade path.
 
 Other gaps that validate but are declarations, not measurements:
 

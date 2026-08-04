@@ -131,10 +131,10 @@
           "metric": "canary-success-rate",
           "comparator": "below",
           "value": 0.75,
-          "rationale": ".github/workflows/openrouter-free-models.yml canaries the current winners every 6 hours against the benchmark thresholds."
+          "rationale": ".github/workflows/openrouter-free-models.yml canaries the current winners every 6 hours against the benchmark thresholds. On canary/benchmark step failure the workflow automatically reverts the last config/openrouter-free-routing.json change and pushes the revert (scripts/providers/rollback-routing-manifest.sh); ping-pong is refused when the last change is itself a rollback."
         }
       ],
-      "rollbackMode": "manual"
+      "rollbackMode": "automatic"
     },
     "modelMigration": {
       "pinnedModel": "google/gemma-4-26b-a4b-it:free and nvidia/nemotron-3-super-120b-a12b:free (config/openrouter-free-routing.json selectedModels; fallbackRouter openrouter/free)",

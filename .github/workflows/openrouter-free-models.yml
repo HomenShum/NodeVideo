@@ -72,6 +72,22 @@ jobs:
           if-no-files-found: ignore
           retention-days: 30
 
+      - name: Automatic rollback — revert the last manifest change after canary failure
+        if: failure() && steps.benchmark.outcome == 'failure'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'nodevideo-routing-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          before=$(git rev-parse HEAD)
+          bash scripts/providers/rollback-routing-manifest.sh
+          if [[ "$(git rev-parse HEAD)" != "$before" ]]; then
+            git push origin "HEAD:${{ github.ref_name }}"
+            echo '::error::Canary/benchmark failed; config/openrouter-free-routing.json was automatically reverted to its previous version and pushed. This run stays red — inspect the benchmark evidence artifact.'
+          else
+            echo '::warning::Canary/benchmark failed but no manifest rollback was applicable (no prior version, or the last change is already a rollback). See the step log.'
+          fi
+
       - name: Open or update routing promotion PR
         if: steps.benchmark.outputs.routing_changed == 'true'
         env:
@@ -90,7 +106,7 @@ jobs:
           {
             echo 'Automated Class B routing refresh. Trigger: catalog change, scheduled canary failure, manual dispatch, or production health dispatch.'
             echo
-            echo 'Review the causal evidence and bounded repair outcomes below before merge; rollback is reverting this manifest commit.'
+            echo 'Review the causal evidence and bounded repair outcomes below before merge; if a later scheduled canary fails, this workflow automatically reverts this manifest commit (scripts/providers/rollback-routing-manifest.sh).'
             echo
             cat .qa/openrouter-free-models/latest-deep-dive.md
           } > routing-pr-body.md

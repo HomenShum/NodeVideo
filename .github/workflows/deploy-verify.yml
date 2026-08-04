@@ -1,0 +1,79 @@
+name: Production deploy verify
+
+# NodeVideo's only production deploy path for the web app is Vercel's Git
+# integration on push to main (vercel.json; no Actions step deploys). This
+# workflow is the post-deploy gate for that path:
+#   1. wait for readiness by polling the live URL,
+#   2. verify a server-rendered content signal from the real app source
+#      (index.html <title>) in the raw HTML,
+#   3. on failure, roll production back with Vercel's own mechanism
+#      (`vercel rollback` to the previous production deployment) and fail
+#      loudly.
+# The production URL is not determinable from the repo, so it is
+# parameterized: NODEVIDEO_PRODUCTION_URL repo variable or secret, or a
+# workflow_dispatch input. Rollback needs VERCEL_TOKEN, VERCEL_ORG_ID, and
+# VERCEL_PROJECT_ID secrets; without them the failure is still loud but the
+# rollback is a documented manual step.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      production_url:
+        description: Production URL override (defaults to the NODEVIDEO_PRODUCTION_URL variable/secret)
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-verify-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PRODUCTION_URL: ${{ inputs.production_url || vars.NODEVIDEO_PRODUCTION_URL || secrets.NODEVIDEO_PRODUCTION_URL }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Wait for readiness and verify the live content signal
+        id: verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${PRODUCTION_URL:-}" ]]; then
+            echo '::error::NODEVIDEO_PRODUCTION_URL is not configured (repo variable, secret, or dispatch input). The post-deploy smoke check cannot run against production.'
+            exit 1
+          fi
+          node scripts/quality/verify-production-deploy.mjs "$PRODUCTION_URL"
+
+      - name: Roll back production (Vercel) and fail loudly
+        if: failure() && steps.verify.outcome == 'failure'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${PRODUCTION_URL:-}" ]]; then
+            echo '::error::Smoke check could not run (no production URL configured); nothing to roll back.'
+            exit 1
+          fi
+          if [[ -z "${VERCEL_TOKEN:-}" || -z "${VERCEL_ORG_ID:-}" || -z "${VERCEL_PROJECT_ID:-}" ]]; then
+            echo '::error::Smoke check FAILED and VERCEL_TOKEN / VERCEL_ORG_ID / VERCEL_PROJECT_ID are not all configured — automatic rollback is impossible. Roll back in the Vercel dashboard now.'
+            exit 1
+          fi
+          npx --yes vercel@latest rollback --yes --token "$VERCEL_TOKEN"
+          echo '::error::Smoke check FAILED; production was rolled back to the previous deployment via `vercel rollback`. Investigate before pushing again.'
+          exit 1
