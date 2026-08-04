@@ -114,7 +114,10 @@
     "check": "npm run lint && npm run typecheck && npm run test && npm run check:ui && npm run capability:validate && npm run atlas:verify && npm run grounding:doctor && npm run grounding:proof:verify && npm run worker:verify && npm run worker:song:verify && npm run proof:song:real:verify && npm run worker:authorized:verify && npm run build && npm run check:contract",
     "qa": "npm run check && npm run proof:synthetic && npm run test:e2e",
     "clip:judge": "node tools/clip-gate/judge-video.mjs",
-    "clip": "node tools/clip-gate/iterate.mjs"
+    "clip": "node tools/clip-gate/iterate.mjs",
+    "clip:readability": "node tools/clip-gate/readability.mjs",
+    "clip:voice": "node tools/clip-gate/voice.mjs",
+    "clip:score": "node tools/clip-gate/score.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.112.3",

@@ -3,38 +3,36 @@
 // stage only human eyes ever check.
 //
 //   node judge-video.mjs out/example.mp4            (writes out/example.judge.md + .judge.json)
-//   node find-references.mjs "<query>"              (build the reference corpus first — it is used
-//                                                    automatically; --no-reference opts out)
-//   GEMINI_JUDGE_MODEL=gemini-3.5-flash node judge-video.mjs renders/feature.mp4   (pin an older judge)
+//   GEMINI_JUDGE_MODEL=gemini-3.6-flash node judge-video.mjs renders/feature.mp4
 //
 // Judge the MP4 (the pre-palette render), not the GIF — GIF is not a supported video MIME for
 // Gemini; the MP4 has identical content plus the audio track if you added narration.
 // Key: GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY (env, or a local .env/.env.local line).
 // Severity policy: P0 blocks publishing · P1 fix before posting · P2 log and ship — do NOT enter
 // a re-render polish loop for P2s the judge already passed.
-import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
-import { COMPREHENSION_RUBRIC, COMPREHENSION_VERSION, evaluateComprehension, formatComprehension } from "./comprehension-rubric.mjs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { rubricPrompt, CRAFT, COMPREHENSION, INTERVIEW, setFor } from "./rubric.mjs";
 
 const argv = process.argv.slice(2);
-const video = argv.find((a) => !a.startsWith("--"));
-// Reference videos are passed as YouTube URLs and never downloaded. Gemini reads a YouTube URI
-// directly — verified: it described the opening seconds and runtime of a real video from the URL
-// alone — so a reference is CITED rather than copied. That is the Mobbin discipline arriving for
-// free: observe and attribute, never re-host, and the locator is the URL plus a timestamp.
-let references = argv.filter((a) => a.startsWith("--reference=")).map((a) => a.slice("--reference=".length));
-// Self-directing by default: with no explicit --reference, use whatever find-references.mjs has
-// already observed. A corpus nobody has to remember to pass is the difference between a bar that
-// applies and a bar that exists. --no-reference opts out.
-if (references.length === 0 && !argv.includes("--no-reference") && existsSync("references/video")) {
-  references = readdirSync("references/video")
-    .filter((f) => f.endsWith(".json"))
-    .map((f) => { try { return JSON.parse(readFileSync(`references/video/${f}`, "utf8")).source?.url; } catch { return null; } })
-    .filter(Boolean)
-    .slice(0, 2);   // two is a comparison; more is mostly token cost
-  if (references.length) console.log(`[judge] using ${references.length} reference(s) from references/video (--no-reference to skip)`);
-}
+const flag = (name, dflt) => {
+  const i = argv.indexOf(`--${name}`);
+  return i >= 0 && argv[i + 1] ? argv[i + 1] : dflt;
+};
+// The audience the COMPREHENSION half is scored from. This is not cosmetic: the
+// same cut is a 2 on lay_sense for a domain expert and a 0 for someone who has
+// never heard the jargon, and the whole point of the second rubric is to make
+// that difference a number instead of an argument.
+const audience = flag("for", process.env.JUDGE_AUDIENCE || "a smart newcomer who has never seen this product and does not know the domain jargon");
+const gate = Number(flag("gate", process.env.JUDGE_GATE || "0"));   // exit 1 below this score
+const samples = Number(flag("samples", process.env.JUDGE_SAMPLES || "3"));
+const reask = argv.includes("--reask");
+// --mode interview swaps the comprehension half for the defensibility half.
+const mode = flag("mode", "demo");
+const SECOND = setFor(mode);
+const MAX = (CRAFT.length + SECOND.length) * 2;
+const video = argv.find((a) => !a.startsWith("--") && argv[argv.indexOf(a) - 1] !== "--for" && argv[argv.indexOf(a) - 1] !== "--gate");
 if (!video || !existsSync(video)) {
-  console.error("usage: node judge-video.mjs <video.mp4|webm|mov> [--reference=<youtube-url> ...]");
+  console.error("usage: node judge-video.mjs <video.mp4|webm|mov> [--for \"<audience>\"] [--gate <n>]");
   process.exit(1);
 }
 
@@ -48,211 +46,198 @@ const key = () => {
   throw new Error("set GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY");
 };
 
-// STAGE A — the only call that sees pixels, and it is forbidden to judge them. The monolithic
-// judge was calibrated against a world-class film, a 30-second static JPEG, and our cut: all three
-// scored identically, 11/22. Its own timeline said "no visual change or cursor" and it still gave
-// cursor_truth a 1, evidence "though no visible cursor" — it rationalizes while watching. An
-// isolated describe-then-score probe returned the correct 0. So watching and judging are now
-// different calls: this one extracts a literal timeline, and the scorer never sees the video.
-const OBSERVE_PROMPT = `Describe this video literally. You are a court reporter, not a critic — no
-opinions, no quality words, only what is observable.
 
-Return STRICT JSON:
-{"timeline":[{"ts":"m:ss","what":"exactly what is on screen and what changed since the last entry"}],
- "cursorEvents":[{"ts":"m:ss","what":"cursor appeared/moved/clicked and on what"}],
- "stateChanges":[{"ts":"m:ss","from":"...","to":"..."}],
- "textShown":[{"ts":"m:ss","text":"captions or prominent UI text, verbatim"}],
- "audio":{"present":true|false,"music":"describe or none","voice":"describe or none","cues":[{"ts":"m:ss","what":"..."}]},
- "waits":[{"ts":"m:ss","seconds":n,"shown":"spinner/progress/nothing"}],
- "static":true|false}
-One timeline entry per 2-3 seconds. If nothing changes for a stretch, say so explicitly. Empty
-arrays are valid and meaningful.`;
+// Reference videos, watched DIRECTLY from YouTube.
+//
+// Gemini accepts a YouTube watch URL as a file_data part and reads the actual
+// video -- verified, not assumed: usageMetadata reports modality VIDEO and ~102k
+// prompt tokens for a 20-minute clip. Nothing is downloaded, hosted, or
+// re-encoded, so there is no licence problem and no storage: you point at a URL.
+//
+// This is why the prose anchors below are the WEAK form and these are the strong
+// one. "Linear ships 45-90s reels" is a claim the judge has to take on faith;
+// a reference video is something it can watch and compare against, and every
+// observation it makes then carries a timestamp into a real artifact.
+//
+// Set REFERENCE_VIDEOS to a comma-separated list of YouTube URLs to enable the
+// comparison. Left empty by default: each reference costs ~100k prompt tokens,
+// which is a real bill, and the calibration prose alone already moved the judge
+// off uniform scoring.
+const REFERENCE_VIDEOS = (process.env.REFERENCE_VIDEOS || "")
+  .split(",").map((u) => u.trim()).filter(Boolean);
 
-const RUBRIC = `You are judging a rendered product-walkthrough video (a feature demo with an
-animated cursor, click ripples, step captions, and a progress bar — possibly with narration).
-The quality bar is STORY-FIRST and ANTI-HERO-SHOT.
+const referenceParts = REFERENCE_VIDEOS.flatMap((url, i) => [
+  { text: `REFERENCE ${i + 1} (a demo held up as best-in-class). Watch it, then judge the SUBJECT video against it. Cite timestamps in BOTH when you compare.` },
+  { file_data: { file_uri: url } },
+]);
 
-STAGE 1 — OBSERVE, before any judgement. Build a literal timeline of the video: one entry roughly
-every 2-3 seconds, each {"ts":"m:ss","what":"exactly what is on screen and what changed"}. Record
-motion, cursor position, state changes, text appearing, waits, audio events. If nothing changes,
-say nothing changed. Do not evaluate anything in this stage.
+// Calibration anchors. Without these the judge scores against its own taste, which
+// drifts run to run and cannot be argued with. These are what the current
+// best-in-class actually does, so a 2 means "as good as these", not "nice".
+const REFERENCES = `
+CALIBRATE AGAINST THESE. They are the working bar, not aspirations.
 
-STAGE 2 — SCORE, from the timeline only. Every score MUST cite the ts of one or more Stage 1
-observations as its evidence. A score with no supporting observation is invalid — write 0 and say
-"no observation supports more". Calibration anchors, and these are not negotiable:
-  - a video where the timeline shows no state changes scores 0 on state_coverage, responsiveness
-    and full_interaction, and 0 on cursor_truth if no cursor appears
-  - a score of 1 means you can cite an observation where the thing HAPPENS but weakly; it is not a
-    default for "probably fine"
-  - use the full 0-2 range; if all your scores are identical, you have stopped observing
+  LINEAR        45-90s per reel. ONE job-to-be-done per video. Dark, dense, almost
+                no narration. The changelog reads like a director's cut: a 30s
+                walkthrough, then the technical detail. Nothing is explained twice.
+  STRIPE        Under 90s. The API is the HERO -- code and payment flows are the
+                motion, not decoration around a talking head. Technical viewers see
+                the primitive; business viewers see the outcome. Same frames.
+  VERCEL        The homepage demo is push-code -> watch-it-deploy. Brevity IS the
+                message: it reproduces the aha moment rather than describing it.
+  ARCADE        Cinematic polish as a floor, not a differentiator: smooth easing,
+                deliberate zoom, no jump cuts between unrelated states.
 
-Score each dimension 0-2 (0=fails, 1=acceptable, 2=strong), each citing timeline entries:
-1. storyboard_clarity - can a first-time viewer state what is being compared, why it matters, and what each scene proves?
-2. state_coverage - does each flow show empty state -> action -> (loading if async) -> result, or does it skip to outcomes (hero-shot smell)?
-3. cursor_truth - does the cursor visibly travel to and land ON the control being used before each state change?
-4. caption_sync - do step captions match what is actually happening on screen (and any narration heard)?
-5. pacing - can a first-time viewer read each caption and register each state? any dead air or rushed beats?
-6. legibility - is app text readable at the rendered size? are captions large and contrasty enough?
-7. proof_feel - does it read as evidence of a real working product (real states, real data motion) rather than staged marketing?
-8. safety - any visible secrets, API keys, tokens, real personal data, or internal URLs that should not ship?
-9. loop_etiquette - if this loops as a GIF, is the total length and final-state hold reasonable (viewers lost on the second loop = too long)?
-10. motion_craft - do camera moves REVEAL evidence rather than decorate? Is the zoom-to-focus landing on the region the caption is talking about, held long enough to read, and eased rather than snapped? Any jitter, drift, competing simultaneous motion, or a move that ends somewhere the viewer did not need to look?
-11. visual_hierarchy - at every moment, is exactly one thing asking for attention? Is the focused region actually distinguished (framing, scale, contrast, dimming of the rest) rather than merely centred? Does anything decorative compete with the evidence?
+THE GOVERNING RULE, from the same body of work:
+  Identify the product's single most impressive moment and build the ENTIRE demo
+  around it. If a first-time viewer's jaw drops inside 30 seconds, it works.
 
-REFERENCE STANDARD. Score against how the best product demos actually work, not against
-"a video was produced":
-- ONE moment carries it. Vercel's demo is push code, watch it deploy — the aha lands in seconds and
-  the brevity IS the message. Ask: what is THIS video's single moment, and does it arrive early?
-- SPEED IS SHOWN, NOT CLAIMED. Linear's demo leans on the product being fast: issue creation,
-  filtering and navigation happen visibly instantly, with the keystrokes and snappy transitions on
-  screen. Latency edited out is a hero shot; latency shown and short is proof.
-- COMPOUND VALUE reads as one conversation. Stripe's tour makes many capabilities feel like a single
-  system rather than a feature list. A demo that is a tour of tabs has no thesis.
-If the video has no identifiable single moment, say so as a P0 under storyboard_clarity — that is
-the defect that makes a technically-correct walkthrough forgettable.
+So when you score, ask specifically:
+  - WHICH single moment is this demo built around? Name it and its timestamp. If you
+    cannot find one, storyboard_clarity is 0 regardless of how polished the rest is.
+  - Does that moment land inside the first 30s? If it is buried at the end behind
+    setup, say so as a P1 with the timestamp it should move to.
+  - Is every second before it EARNING that moment, or is it product tour filler?
+  - Would LINEAR ship this length? If it is over 90s, justify every extra second or
+    call it a defect.
+  - Is the motion revealing evidence (Stripe: the API is the hero) or decorating a
+    static screenshot?
+`;
 
-WHAT YOU CANNOT SEE, and must not claim. You are watching PIXELS. Three different things can be
-true or false independently — what was INTENDED, what the RUNTIME actually did, and what a viewer
-can SEE — and four mismatch classes live between them:
-  intent-runtime      the thing that was supposed to happen never happened
-  runtime-pixel       it happened but was never visible in frame
-  pixel-experience    it was visible but framed or paced so the viewer cannot read it
-  experience-interaction  it reads fine but a user could not actually reach or trigger it
-You can only judge the last two. Never assert that a number is correct, that a backend really ran,
-or that data is real — a convincing render of a fabricated result looks identical to a true one from
-here. When a claim's truth depends on something off-screen, record it in defects with severity P1
-and observed starting "unverifiable-from-video:" so a human knows to check it another way.
-
-Then list DEFECTS: each with timestamp, severity (P0 blocks publishing / P1 fix before posting /
-P2 polish, log and ship), what you observed, and a concrete fix.
-Finally an overall verdict: publish | fix-then-publish | rework.
-
-Return STRICT JSON: {"timeline":[{"ts":"m:ss","what":"..."}],
-"scores":{"storyboard_clarity":{"score":n,"evidence":"cites ts"},"state_coverage":{"score":n,"evidence":"cites ts"},...},
-"defects":[{"ts":"m:ss","severity":"P0|P1|P2","observed":"...","fix":"..."}],
-"singleMoment":"the one moment this video is built around, or null if it has none",
-"verdict":"...","summary":"2-3 sentences"}`;
-
-// Always appended. Comprehension is not an optional lens — a video nobody outside the team can
-// follow has failed whatever its craft score says, and making it opt-in would mean it is asked for
-// only by someone who already suspects the answer.
-const FULL_RUBRIC = `${RUBRIC}
-
-${COMPREHENSION_RUBRIC}`;
-
-/**
- * Added when reference videos are supplied. The candidate is video 1; references follow in order.
- *
- * The point is not "be more like them". It is to convert taste into a comparison a reader can
- * check: the reference is on screen, so a claim about it carries a timestamp and can be disputed.
- */
-const COMPARE = (uris) => `REFERENCE COMPARISON. Video 1 is the CANDIDATE under judgement. Videos 2..${uris.length + 1}
-are REFERENCE videos supplied as exemplars, in this order:
-${uris.map((u, i) => `  video ${i + 2}: ${u}`).join("\n")}
-
-Judge the candidate on its own terms first — the scores and defects above are about video 1 only.
-Then add a "reference" block comparing them on the axes that actually transfer:
-  singleMoment      what is each reference built around, and how early does it land?
-  statePacing       how long does a reference hold a state before moving on, in seconds?
-  motionPurpose     when a reference moves the camera, what is it revealing?
-  whatToSteal       one concrete, transferable technique, with a timestamp in the reference
-  whatNotToSteal    something a reference does that would be dishonest for THIS product, and why
-
-Cite a timestamp in the reference for every claim about it. "Their pacing is good" is not an
-observation; "at 0:12 the loading state holds for about 1.4s before the result" is. If a reference
-cannot be watched, say so in that block rather than describing it from memory.
-
-Add to the JSON: "reference":{"watched":["<uri>"],"unwatched":["<uri>"],"singleMoment":"...",
-"statePacing":"...","motionPurpose":"...","whatToSteal":"...","whatNotToSteal":"..."}`;
-
-/** Bumped whenever the rubric changes, so an old verdict is not read as a current one. */
-const RUBRIC_VERSION = "2026-08-04.two-stage-blind-scorer-v1";
+const RUBRIC = rubricPrompt(audience, mode);
 
 const run = async () => {
   const bytes = readFileSync(video);
   if (bytes.length > 19_000_000) throw new Error(`${(bytes.length / 1048576).toFixed(1)}MB > inline limit — use the Gemini Files API or render a smaller cut`);
   console.log(`[judge] ${video} — ${(bytes.length / 1048576).toFixed(1)}MB → gemini`);
-  // gemini-3.6-flash, GA 2026-07-21. Pinned rather than floating: a judge whose model changes
-  // underneath it produces verdicts that cannot be compared, and rubricVersion + judgedBy in the
-  // receipt only mean something if the model is a stated choice.
-  //
-  // I previously reported this model did not exist, on the evidence of a ListModels response that
-  // did not include it. ListModels is not an existence proof — it was stale for that key, and a
-  // direct generateContent call returns 200 with valid strict JSON. Absence from an index is
-  // absence from an index.
   const model = process.env.GEMINI_JUDGE_MODEL || "gemini-3.6-flash";
   const mime = video.endsWith(".webm") ? "video/webm" : video.endsWith(".mov") ? "video/quicktime" : "video/mp4";
-  const call = async (parts) => {
+  const base = video.replace(/\.(mp4|webm|mov)$/i, "");
+
+  // One call shape, reused by the first judgement and by the anti-uniformity
+  // re-ask. `extra` is appended AFTER the rubric so a follow-up can quote the
+  // previous distribution back without restating the whole rubric.
+  const ask = async (extra = []) => {
     const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key()}`, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ contents: [{ parts }], generationConfig: { temperature: 0.2, response_mime_type: "application/json" } }),
+      body: JSON.stringify({
+        contents: [{ parts: [
+          ...referenceParts,
+          { text: referenceParts.length ? "SUBJECT VIDEO — this is the one being judged:" : "" },
+          { inline_data: { mime_type: mime, data: bytes.toString("base64") } },
+          { text: REFERENCES + RUBRIC },
+          ...extra,
+        ].filter((p) => p.text !== "") }],
+        generationConfig: { temperature: 0.2, response_mime_type: "application/json" },
+      }),
     });
     if (!res.ok) throw new Error(`gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
     const body = await res.json();
-    return JSON.parse((body.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join(""));
+    const raw = (body.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("");
+    let out = null;
+    try { out = JSON.parse(raw); } catch {}
+    if (!out || !out.scores) {
+      writeFileSync(`${base}.judge.raw.txt`, raw || JSON.stringify(body, null, 2));
+      throw new Error(`judge returned no usable scores (finishReason=${body.candidates?.[0]?.finishReason}); raw saved to ${base}.judge.raw.txt`);
+    }
+    return out;
   };
 
-  // Stage A: watch. The only call with the video in it.
-  const observed = await call([
-    { inline_data: { mime_type: mime, data: bytes.toString("base64") } },
-    ...references.map((uri) => ({ file_data: { file_uri: uri } })),
-    { text: references.length
-      ? `${OBSERVE_PROMPT}
+  let judge = await ask();
 
-Also observe the reference videos the same way, under "references":[{"url":"...","timeline":[...],"singleMomentTs":"m:ss","hookSeconds":n}]. Reference order: ${references.join(", ")}`
-      : OBSERVE_PROMPT },
-  ]);
+  writeFileSync(`${base}.judge.json`, JSON.stringify(judge, null, 2));
+  // MEASURED: THIS GATE IS NOT REPEATABLE ON ONE SAMPLE.
+  //
+  // The identical file scored 34/44 and then 22/44 on two runs. That is not a
+  // small wobble, it is 27% of the scale, and every claim of the form "the cut
+  // improved" made from single readings of it was unsupported -- including one
+  // this repo shipped ("comprehension 9 -> 16, the voiceover was the missing
+  // piece"), which was judge variance wearing the costume of a result.
+  //
+  // Two causes, separated by correlating the runs:
+  //
+  // 1. Ordinary sampling variance at temperature 0.2.
+  // 2. THE ANTI-UNIFORMITY RE-ASK ITSELF. Both 22s re-asked; the 34 did not.
+  //    Told "you gave 91% of dimensions the same score, force a spread", the
+  //    model spreads DOWNWARD -- it drops dimensions to 0 and 1 rather than
+  //    also promoting any to 2. So the mechanism added to stop the judge
+  //    shrugging was quietly biasing the number it produced. It is now opt-in
+  //    behind --reask, and off by default, because a debiasing device that
+  //    biases is worse than the shrug it was fixing.
+  //
+  // The fix for (1) is sampling: N independent judgements, per-dimension MEDIAN.
+  // Evidence and prose are taken from the run closest to the median total, so the
+  // report still reads as one coherent judgement rather than a stitched average.
+  const runs = [judge];
+  for (let n = 1; n < samples; n++) runs.push(await ask());
+  if (reask) {
+    const spread = (j2) => {
+      const v = Object.values(j2.scores || {}).map((x) => x.score);
+      return Math.max(...[0, 1, 2].map((q) => v.filter((x) => x === q).length)) / v.length;
+    };
+    if (spread(judge) > 0.7) {
+      console.log(`[judge] --reask: ${Math.round(spread(judge) * 100)}% share one score — re-asking (known to bias low)`);
+      runs.push(await ask([{ text: `Your previous judgement gave the SAME score to most dimensions. Re-judge and FORCE a spread: some dimensions are genuinely 0 and some are genuinely 2. Do NOT simply lower scores -- promote what deserves 2 as readily as you demote. Keep the same JSON shape.` }]));
+    }
+  }
 
-  // Stage B: score. Text only — the scorer cannot be seduced by pixels it never sees, and a score
-  // must trace to a written observation or fall to 0.
-  const judge = await call([
-    { text: `${references.length ? `${FULL_RUBRIC}
+  const med = (xs) => { const a = [...xs].sort((x, y) => x - y); return a[Math.floor(a.length / 2)]; };
+  const totalOf = (j2) => Object.values(j2.scores).reduce((a, v) => a + v.score, 0);
+  if (runs.length > 1) {
+    const keys = new Set(runs.flatMap((r) => Object.keys(r.scores)));
+    const totals = runs.map(totalOf);
+    // Prose comes from the most typical run, so evidence matches the numbers.
+    const centre = runs[totals.indexOf(med(totals))] || runs[0];
+    const merged = {};
+    keys.forEach((k) => {
+      const vals = runs.map((r) => r.scores[k]?.score).filter((v) => v != null);
+      merged[k] = { score: med(vals), evidence: (centre.scores[k] || runs[0].scores[k] || {}).evidence || "" };
+    });
+    console.log(`[judge] ${runs.length} samples: totals ${totals.join(", ")} — median per dimension`);
+    judge = { ...centre, scores: merged, samples: runs.length, sample_totals: totals };
+  }
 
-${COMPARE(references)}` : FULL_RUBRIC}
-
-You are scoring FROM THE OBSERVATION RECORD BELOW. You have not seen the video. If the record does
-not contain evidence that a thing happened, it did not happen — score 0 and say which observation is
-missing. Do not infer generosity from a product looking professional; you cannot see it.
-
-OBSERVATION RECORD:
-${JSON.stringify(observed, null, 1)}` },
-  ]);
-  judge.timeline = observed.timeline;
-  judge.observed = observed;
-
-  const comprehension = evaluateComprehension(judge.comprehension);
-  const base = video.replace(/\.(mp4|webm|mov)$/i, "");
-  // The markdown named the model; the JSON did not, so the machine-readable verdict — the one a gate
-  // would consume — could not say which judge or which bar produced it. A verdict whose rubric
-  // version is unknown cannot be told apart from one scored against a weaker bar.
-  writeFileSync(`${base}.judge.json`, JSON.stringify({
-    ...judge,
-    judgedBy: model,
-    rubricVersion: RUBRIC_VERSION,
-    comprehensionVersion: COMPREHENSION_VERSION,
-    comprehensionVerdict: comprehension,
-    videoBytes: bytes.length,
-    referencesCited: references,
-    judgedAt: new Date().toISOString(),
-  }, null, 2));
   const scores = Object.entries(judge.scores);
   const total = scores.reduce((a, [, v]) => a + v.score, 0);
+  const sub = (list) => list.reduce((a, [k]) => a + (judge.scores[k]?.score ?? 0), 0);
+  const craft = sub(CRAFT), comp = sub(SECOND);
+  const row = ([k]) => `| ${k} | ${judge.scores[k]?.score ?? "-"}/2 | ${(judge.scores[k]?.evidence || "").replace(/\|/g, "\|")} |`;
+
   const md = [
     `# Video judge — ${video}`,
     ``,
-    `**Judge:** ${model} (video understanding) · **Verdict:** ${judge.verdict} · **Score:** ${total}/${scores.length * 2}`,
+    `**Judge:** ${model} · **Audience:** ${audience}`,
+    `**Verdict:** ${judge.verdict} · **Score:** ${total}/${MAX} — craft ${craft}/${CRAFT.length * 2}, ${mode === "interview" ? "defensibility" : "comprehension"} ${comp}/${SECOND.length * 2}`,
     ``,
     `> ${judge.summary}`,
     ``,
-    `| Dimension | Score | Evidence |`,
-    `|---|---|---|`,
-    ...scores.map(([k, v]) => `| ${k} | ${v.score}/2 | ${v.evidence} |`),
+    // The split is printed even when it is flattering, because the gap between
+    // the two halves IS the finding. A cut that is 16/20 craft and 7/20
+    // comprehension is not "a 23" -- it is a well-made video nobody understood.
+    `## Craft — is it well made (${craft}/${CRAFT.length * 2})`,
+    ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...CRAFT.map(row),
+    ``,
+    `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+    `Judged as: *${audience}*`,
+    ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...SECOND.map(row),
+    ``,
+    `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
     ``,
     `## Defects`,
     ...(judge.defects?.length ? judge.defects.map((d) => `- **${d.severity} @ ${d.ts}** — ${d.observed} → *${d.fix}*`) : ["(none found)"]),
+    ``,
+    `## Next cut — the revision brief`,
+    ...(judge.next_cut?.length
+      ? judge.next_cut.map((n) => `- **${n.dimension}** @ ${n.where} — ${n.change}`)
+      : ["(judge returned no next_cut — treat that as a judge defect, not a passing grade)"]),
   ].join("\n");
   writeFileSync(`${base}.judge.md`, md + "\n");
   console.log(md);
+
+  if (gate && total < gate) {
+    console.error(`\n[gate] ${total}/${MAX} < ${gate} — not shippable. Apply the next-cut brief above and re-run.`);
+    process.exit(1);
+  }
 };
 run().catch((e) => { console.error(e.message || e); process.exit(1); });
