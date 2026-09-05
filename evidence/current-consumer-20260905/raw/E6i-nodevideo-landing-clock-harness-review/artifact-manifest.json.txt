@@ -1,0 +1,82 @@
+[
+  {
+    "path": "before-actual-320-negative-start.json",
+    "bytes": 1077,
+    "sha256": "083867cfcf16032ca867afc116e622d4f43abc7678d7fa939010519a1f6f596a"
+  },
+  {
+    "path": "before-actual-390-negative-start.json",
+    "bytes": 1077,
+    "sha256": "b057c64067abce2e66cf950b440a1220c9c30bad3b498565f7e4b636c44f33f1"
+  },
+  {
+    "path": "before-cleanup-before-first-frame.json",
+    "bytes": 870,
+    "sha256": "bc7da95ee3ab29220d84cba0a91448b5769235c6b1b3db5d024d6c3e419985c0"
+  },
+  {
+    "path": "before-delayed-first-paint.json",
+    "bytes": 1024,
+    "sha256": "538c3dd8721322cceea7a2fbe5c15d3854dbcda9332628bb91dca1f016e3deee"
+  },
+  {
+    "path": "before-finite-60-second-callbacks.json",
+    "bytes": 1190,
+    "sha256": "1b8a3c884b9d9b34c6e6747b58fbb874d58efe29867e17b10a4762b1c3ab62cc"
+  },
+  {
+    "path": "before-freeze.json",
+    "bytes": 92394,
+    "sha256": "4fa595a4493e78e5860065453dabfdd0bb6e9402b3cde14e8ee9b99fd02ba568"
+  },
+  {
+    "path": "before-fresh-remount-after-cleanup.json",
+    "bytes": 1080,
+    "sha256": "dc81e89cd6963c4d958e279d583544977828f8894294869e05d5689253571d65"
+  },
+  {
+    "path": "before-pose-and-count-rollovers.json",
+    "bytes": 1080,
+    "sha256": "a518d3c4227a4f8b73fe6fd6426c6bb123e2f22edea623c45e82371198703762"
+  },
+  {
+    "path": "before-reduced-negative-first-timestamp.json",
+    "bytes": 890,
+    "sha256": "f8de6da39bfbeabb8f266920bd5d4a7c08406a415944e4f48bca1cd25bb8619c"
+  },
+  {
+    "path": "before-report.json",
+    "bytes": 8516,
+    "sha256": "6eeaa075e1e3455f7e4fafd8b24b039e8d7520d5c29012fd4d32321865280302"
+  },
+  {
+    "path": "before-source.tsx.txt",
+    "bytes": 11988,
+    "sha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8"
+  },
+  {
+    "path": "before-valid-zero-first-timestamp.json",
+    "bytes": 1089,
+    "sha256": "c55189f22eb229d2bec14243e4bf024607563f5ce2f0e24eb1a10be02fba7082"
+  },
+  {
+    "path": "checks.json",
+    "bytes": 794,
+    "sha256": "aa2a9f47a49a0f71ed041deaa327b3a2c4b4ea7de2139bd6e812e3780289d744"
+  },
+  {
+    "path": "current-transpiler-identity.json",
+    "bytes": 838,
+    "sha256": "ea2ee5d52ac58792e5c9a02f49cb8ea9754c4c280d83e38d5727f0c286794496"
+  },
+  {
+    "path": "frozen-harness.mjs.txt",
+    "bytes": 7532,
+    "sha256": "28b151b39c25c9a9ff296d625c0316a36fd57e7fa77f0880ddefb92f87893d91"
+  },
+  {
+    "path": "raw-bindings.json",
+    "bytes": 4453,
+    "sha256": "bce2f9800c5765a989644a18692f468ad31d550350ec999f10ee5b5afe8e985c"
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "summary": {
+    "name": "cleanup-before-first-frame",
+    "errors": [],
+    "firstFrame": null,
+    "lastFrame": null,
+    "framesDrawn": 0,
+    "strokes": 0,
+    "arcs": 0,
+    "firstCount": null,
+    "lastCount": null,
+    "countRange": null,
+    "pulseRange": null,
+    "callbackCount": 0,
+    "maxPending": 2,
+    "pendingBeforeCleanup": 0,
+    "pendingAfterCleanup": 0,
+    "allFrameIndicesValid": true,
+    "allCountValuesValid": true,
+    "allPulseValuesValid": true,
+    "drawSequenceSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "countsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "pulsesSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "firstObservedIndices": [],
+  "lastObservedIndices": [],
+  "firstObservedCounts": [],
+  "lastObservedCounts": []
+}

@@ -1,0 +1,291 @@
+{
+  "phase": "before",
+  "status": "ORIGINAL_FAILURES_REPRODUCED",
+  "sourceSha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+  "currentOwnerSha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+  "poseSha256": "b2f2ea20a01dbe4815a921c0db6330c24967495dbc7b8b798b6ff82a13488be1",
+  "scenarios": [
+    {
+      "name": "actual-320-negative-start",
+      "errors": [
+        "TypeError: Cannot read properties of undefined (reading '11')"
+      ],
+      "firstFrame": -1,
+      "lastFrame": -1,
+      "framesDrawn": 1,
+      "strokes": 0,
+      "arcs": 0,
+      "firstCount": 0,
+      "lastCount": 1,
+      "countRange": [
+        0,
+        1
+      ],
+      "pulseRange": [
+        0.8998164293333335,
+        1.1295946666666667
+      ],
+      "callbackCount": 4,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 1,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": false,
+      "allCountValuesValid": false,
+      "allPulseValuesValid": false,
+      "drawSequenceSha256": "d124b23c696a85177dac41a7a28c853546e55caa5b4798fb917f2c3dc1b331ce",
+      "countsSha256": "7ead7f2ac1f175e1650b7a7b433f7cbdca3ae29ff06e6ff5c5199d17b731658c",
+      "pulsesSha256": "c0d3dc0c2699b7669b49a022e018481be2de78c63f7897fe39799079094aa619"
+    },
+    {
+      "name": "actual-390-negative-start",
+      "errors": [
+        "TypeError: Cannot read properties of undefined (reading '11')"
+      ],
+      "firstFrame": -1,
+      "lastFrame": -1,
+      "framesDrawn": 1,
+      "strokes": 0,
+      "arcs": 0,
+      "firstCount": 0,
+      "lastCount": 1,
+      "countRange": [
+        0,
+        1
+      ],
+      "pulseRange": [
+        0.8274364293333333,
+        1.0572146666666666
+      ],
+      "callbackCount": 4,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 1,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": false,
+      "allCountValuesValid": false,
+      "allPulseValuesValid": false,
+      "drawSequenceSha256": "d124b23c696a85177dac41a7a28c853546e55caa5b4798fb917f2c3dc1b331ce",
+      "countsSha256": "fcb99bcf1428bb917ed25f2260c182b4054a03c2d762fd70d816c9c34b374477",
+      "pulsesSha256": "6f09faccd308246cc54a1d689aa01191863afc5c39714602b313372d2f6b2491"
+    },
+    {
+      "name": "valid-zero-first-timestamp",
+      "errors": [
+        "TypeError: Cannot read properties of undefined (reading '11')"
+      ],
+      "firstFrame": -1,
+      "lastFrame": -1,
+      "framesDrawn": 1,
+      "strokes": 0,
+      "arcs": 0,
+      "firstCount": 0,
+      "lastCount": 8,
+      "countRange": [
+        0,
+        8
+      ],
+      "pulseRange": [
+        0,
+        1.0689333333333333
+      ],
+      "callbackCount": 6,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 1,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": false,
+      "allCountValuesValid": false,
+      "allPulseValuesValid": false,
+      "drawSequenceSha256": "d124b23c696a85177dac41a7a28c853546e55caa5b4798fb917f2c3dc1b331ce",
+      "countsSha256": "e13e179ddb00827aca4eb7fbba2309dfeff964cca4862344b7beb3234eba800f",
+      "pulsesSha256": "c939d578fe3c87556bbf8cf69cf552b97e00039113d6d4dad7f85f148bdeaefd"
+    },
+    {
+      "name": "delayed-first-paint",
+      "errors": [],
+      "firstFrame": 49,
+      "lastFrame": 16,
+      "framesDrawn": 4,
+      "strokes": 68,
+      "arcs": 119,
+      "firstCount": 1,
+      "lastCount": 1,
+      "countRange": [
+        1,
+        1
+      ],
+      "pulseRange": [
+        0,
+        0
+      ],
+      "callbackCount": 8,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 2,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": true,
+      "allCountValuesValid": true,
+      "allPulseValuesValid": true,
+      "drawSequenceSha256": "c6b35420d8eed3cd06d3f3c4626f5df6cc2268f33d3526edfe2c4bbc9910ebaf",
+      "countsSha256": "ac91b3ec501b23593f3981b92775f32afb157e91b50c4fcc1b9f70164ac1214c",
+      "pulsesSha256": "1c10b03518fff8fc374a20bbf5107c66496656bec0662d6c6db123d4a898f121"
+    },
+    {
+      "name": "pose-and-count-rollovers",
+      "errors": [],
+      "firstFrame": 0,
+      "lastFrame": 0,
+      "framesDrawn": 6,
+      "strokes": 80,
+      "arcs": 135,
+      "firstCount": 1,
+      "lastCount": 4,
+      "countRange": [
+        1,
+        6
+      ],
+      "pulseRange": [
+        0,
+        1
+      ],
+      "callbackCount": 12,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 2,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": true,
+      "allCountValuesValid": true,
+      "allPulseValuesValid": true,
+      "drawSequenceSha256": "d0d078b1535d1dd6eedc588874b43e736484ce5ef9c2f8aae852a088a0bcc4d0",
+      "countsSha256": "5a52997513a1d48144c95e83eaeb6e2421a529411b39393bb302d1084aad1d4b",
+      "pulsesSha256": "3943404c1be53747f40268e44a1c14b28a7c45dddab702afb6acd0069283856a"
+    },
+    {
+      "name": "finite-60-second-callbacks",
+      "errors": [
+        "TypeError: Cannot read properties of undefined (reading '11')"
+      ],
+      "firstFrame": -1,
+      "lastFrame": -1,
+      "framesDrawn": 1,
+      "strokes": 0,
+      "arcs": 0,
+      "firstCount": 0,
+      "lastCount": 8,
+      "countRange": [
+        0,
+        8
+      ],
+      "pulseRange": [
+        0,
+        1.1295946666666667
+      ],
+      "callbackCount": 3602,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 1,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": false,
+      "allCountValuesValid": false,
+      "allPulseValuesValid": false,
+      "drawSequenceSha256": "d124b23c696a85177dac41a7a28c853546e55caa5b4798fb917f2c3dc1b331ce",
+      "countsSha256": "22723a77529e56b134fb695c2cf880603f8df2fb526f6bbeb6ac38cc798549e0",
+      "pulsesSha256": "baba95069147992b13d784af360ea96da57bceec322024812eb449fc3db02c2b"
+    },
+    {
+      "name": "reduced-negative-first-timestamp",
+      "errors": [],
+      "firstFrame": 0,
+      "lastFrame": 0,
+      "framesDrawn": 1,
+      "strokes": 16,
+      "arcs": 26,
+      "firstCount": null,
+      "lastCount": null,
+      "countRange": null,
+      "pulseRange": null,
+      "callbackCount": 1,
+      "maxPending": 1,
+      "pendingBeforeCleanup": 0,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": true,
+      "allCountValuesValid": true,
+      "allPulseValuesValid": true,
+      "drawSequenceSha256": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "countsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "pulsesSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "cleanup-before-first-frame",
+      "errors": [],
+      "firstFrame": null,
+      "lastFrame": null,
+      "framesDrawn": 0,
+      "strokes": 0,
+      "arcs": 0,
+      "firstCount": null,
+      "lastCount": null,
+      "countRange": null,
+      "pulseRange": null,
+      "callbackCount": 0,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 0,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": true,
+      "allCountValuesValid": true,
+      "allPulseValuesValid": true,
+      "drawSequenceSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "countsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "pulsesSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "same-context-cleanup-remount",
+      "errors": [
+        "TypeError: Cannot read properties of undefined (reading '11')"
+      ],
+      "firstFrame": -1,
+      "lastFrame": -1,
+      "framesDrawn": 1,
+      "strokes": 0,
+      "arcs": 0,
+      "firstCount": 0,
+      "lastCount": 1,
+      "countRange": [
+        0,
+        1
+      ],
+      "pulseRange": [
+        0.31066666666666665,
+        1.1171866666666668
+      ],
+      "callbackCount": 4,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 1,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": false,
+      "allCountValuesValid": false,
+      "allPulseValuesValid": false,
+      "drawSequenceSha256": "d124b23c696a85177dac41a7a28c853546e55caa5b4798fb917f2c3dc1b331ce",
+      "countsSha256": "fcb99bcf1428bb917ed25f2260c182b4054a03c2d762fd70d816c9c34b374477",
+      "pulsesSha256": "c04061235a69d598eda4aab620d48ab60e8e1934bd56659723db21c72fb57579",
+      "remount": {
+        "sameVm": true,
+        "sameScheduler": true,
+        "newEffects": 2,
+        "indices": [
+          39,
+          40,
+          41
+        ],
+        "counts": [
+          8,
+          8,
+          8
+        ],
+        "pendingBeforeCleanup": 2,
+        "pendingAfterCleanup": 0
+      }
+    }
+  ],
+  "limitations": [
+    "Transpiled actual-owner callbacks with mock React lifecycle/canvas and controlled scheduler; not native animation or pixel proof.",
+    "Finite60-second simulated timeline, not one minute of wall-clock performance or sustained load."
+  ],
+  "sourceUnchanged": true,
+  "finishedAt": "2026-09-05T19:56:49.497Z"
+}

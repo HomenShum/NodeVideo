@@ -1,0 +1,176 @@
+{
+  "url": "http://127.0.0.1:4983/",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "crossOriginIsolated": false,
+  "overflow": 0,
+  "active": {
+    "tag": "BODY",
+    "label": null,
+    "text": "\n    NodeVideoStudioFor agentsChoreography coach · judged on visible motion onlyLearn the dance you admire.Point NodeVideo at the dancer you are studying, film "
+  },
+  "text": "NodeVideo\nStudio\nFor agents\n\nCHOREOGRAPHY COACH · JUDGED ON VISIBLE MOTION ONLY\n\nLearn the dance you admire.\n\nPoint NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.\n\nOpen the coach\nWatch a real comparison\nPreview a sample verdict — no setup needed\n1\n2\n3\n4\n5\n6\n7\n8\n103.4 bpm · the page keeps count\n\nreal pose track · verified public case\n\nThree ways to use NodeVideo today\nMake a collab edit\n\nPut your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.\n\nOpen the collab editor\nCoach a take\n\nUpload your dance take against the dancer you are studying and get relative motion signals with the moments to review.\n\nOpen the coach\nCut takes into an edit\n\nThe original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.\n\nOpen the stitch studio\nProof console\nPractice live\n\nA camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.\n\nOpen the practice room (early beta)\nForm\n\nJoint angles against the reference pose, frame by frame.\n\nTiming\n\nYour landings against the music grid, in milliseconds.\n\nPath\n\nWhere your body travels compared with the reference.\n\nDynamics\n\nThe sharpness of your hits — pops, locks, accents.\n\nWhen the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.\n\nlocal-first · hash-verified · consent-gated",
+  "controls": [
+    {
+      "tag": "A",
+      "label": null,
+      "text": "Studio",
+      "rect": {
+        "x": 244.53125,
+        "y": -284,
+        "width": 41.296875,
+        "height": 20
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 41,
+      "clientWidth": 41
+    },
+    {
+      "tag": "A",
+      "label": null,
+      "text": "For agents",
+      "rect": {
+        "x": 301.828125,
+        "y": -284,
+        "width": 68.171875,
+        "height": 20
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 68,
+      "clientWidth": 68
+    },
+    {
+      "tag": "A",
+      "label": null,
+      "text": "Open the coach",
+      "rect": {
+        "x": 20,
+        "y": 242.671875,
+        "width": 166.1875,
+        "height": 44
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 166,
+      "clientWidth": 166
+    },
+    {
+      "tag": "A",
+      "label": null,
+      "text": "Watch a real comparison",
+      "rect": {
+        "x": 20,
+        "y": 298.671875,
+        "width": 234.234375,
+        "height": 44
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 232,
+      "clientWidth": 232
+    },
+    {
+      "tag": "A",
+      "label": null,
+      "text": "Preview a sample verdict — no setup needed",
+      "rect": {
+        "x": 20,
+        "y": 372.671875,
+        "width": 286.109375,
+        "height": 20
+      },
+      "display": "inline-block",
+      "visibility": "visible",
+      "scrollWidth": 286,
+      "clientWidth": 286
+    },
+    {
+      "tag": "A",
+      "label": null,
+      "text": "Open the collab editor",
+      "rect": {
+        "x": 41,
+        "y": 1147.671875,
+        "width": 145.359375,
+        "height": 20
+      },
+      "display": "inline-flex",
+      "visibility": "visible",
+      "scrollWidth": 145,
+      "clientWidth": 145
+    },
+    {
+      "tag": "A",
+      "label": null,
+      "text": "Open the coach",
+      "rect": {
+        "x": 41,
+        "y": 1337.921875,
+        "width": 103.421875,
+        "height": 20
+      },
+      "display": "inline-flex",
+      "visibility": "visible",
+      "scrollWidth": 103,
+      "clientWidth": 103
+    },
+    {
+      "tag": "A",
+      "label": null,
+      "text": "Open the stitch studio",
+      "rect": {
+        "x": 41,
+        "y": 1526.171875,
+        "width": 145.0625,
+        "height": 20
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 145,
+      "clientWidth": 145
+    },
+    {
+      "tag": "A",
+      "label": null,
+      "text": "Proof console",
+      "rect": {
+        "x": 202.0625,
+        "y": 1526.171875,
+        "width": 90.5,
+        "height": 20
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 91,
+      "clientWidth": 91
+    },
+    {
+      "tag": "A",
+      "label": null,
+      "text": "Open the practice room (early beta)",
+      "rect": {
+        "x": 41,
+        "y": 1737.171875,
+        "width": 230.828125,
+        "height": 20
+      },
+      "display": "inline-flex",
+      "visibility": "visible",
+      "scrollWidth": 231,
+      "clientWidth": 231
+    }
+  ],
+  "videos": [],
+  "svgs": [],
+  "canvases": [
+    {
+      "width": 560,
+      "height": 560,
+      "nontransparent": 0
+    }
+  ]
+}

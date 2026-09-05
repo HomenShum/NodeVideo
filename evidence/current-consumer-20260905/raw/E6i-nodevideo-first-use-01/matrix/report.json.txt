@@ -1,0 +1,70 @@
+{
+  "proofId": "NODEVIDEO-FIRST-USE-01",
+  "section": "matrix",
+  "startedAt": "2026-09-05T19:42:15.570Z",
+  "cells": [
+    {
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "reducedMotion": "no-preference",
+      "console": [
+        {
+          "type": "warning",
+          "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently"
+        }
+      ],
+      "pageErrors": [
+        "TypeError: Cannot read properties of undefined (reading '11')"
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:4983/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/rolldown-runtime-CNC7AqOf.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/index-Di-CS-ZF.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/jsx-runtime-ChSQvssS.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/index-B_S5QNf7.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/pose-loop-D7I5IRx_.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/client-DsVmXU0u.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+          "status": 200
+        }
+      ],
+      "captures": [
+        {
+          "name": "failure",
+          "overflow": 0,
+          "pngSha256": "c3bee596bdb69876f230466e964091342cf78a73209a5bd88d3f6d04d22ca32b"
+        }
+      ]
+    }
+  ],
+  "external": [],
+  "status": "FAILED",
+  "grades": null,
+  "browser": "149.0.7827.55",
+  "error": "page.waitForFunction: Timeout 15000ms exceeded.\n    at main (C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-first-use-01\\observe.mjs:73:231)\n    at async file:///C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-first-use-01/observe.mjs:105:5",
+  "finishedAt": "2026-09-05T19:42:31.351Z"
+}

@@ -1,0 +1,11 @@
+# NodeVideo landing clock effective harness v2
+
+**Re your request:** independent proof of usable repository behavior — the amended callback harness is approved for the bounded clock repair.
+
+**APPROVED_BOUNDED_EFFECTIVE_V2_HARNESS**, eight read-only checks pass. Frozen hash `4819f1d07796aad1ad98288d622cca908f74457d05b60fc20790ea46a4c61d8b` now asserts the complete timestamp0 index/count sequences and actually cleans up and remounts both effects in the same VM/scheduler. Both prior concrete coverage findings are closed. The original v1 artifacts and review remain historical.
+
+The proposed knockout reverses exactly two origin declarations and two initialization lines, then requires byte-hash equality to the retained original owner before running the failure schedules. Original before-02 reproduces both recorded negative-start errors. Actual after and knockout results remain pending; this audit did not execute them.
+
+Simulation limits are unchanged:3,601simulated60Hzinstants represent60seconds of callback time; canvas calls are counters, and simulated effect lifecycle is not native React StrictMode or rendered pixel evidence. No full-grade claim.
+
+Evidence: [v1-to-v2 diff](E6i-nodevideo-landing-clock-harness-v2-review/v1-to-v2.diff), [checks](E6i-nodevideo-landing-clock-harness-v2-review/checks.json), [frozen v2](E6i-nodevideo-landing-clock-harness-v2-review/frozen-v2-harness.mjs.txt), [before-02 report](E6i-nodevideo-landing-clock-harness-v2-review/before-02-report.json).

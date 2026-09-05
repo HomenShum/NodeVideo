@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "node",
+    "--experimental-vm-modules",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-lint-differential.mjs"
+  ],
+  "cwd": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904",
+  "exitCode": 0
+}

@@ -1,0 +1,266 @@
+[
+  {
+    "path": "package.json",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 11284,
+    "gitSha256": "eb7e03afdf8f2d9a11a10a16fa6a2953cca248ccd559a06717ea6bec3f60c84a",
+    "baselineWorkingSha256": "eb7e03afdf8f2d9a11a10a16fa6a2953cca248ccd559a06717ea6bec3f60c84a",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "playwright.config.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 2723,
+    "gitSha256": "d8fa7774903fd80ec08c4a1cb1a091a27a9e23a737d372c436b29f1d5c413858",
+    "baselineWorkingSha256": "d8fa7774903fd80ec08c4a1cb1a091a27a9e23a737d372c436b29f1d5c413858",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "vite.config.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 8048,
+    "gitSha256": "421b61d609a2d35b84a85c232f37d142916e1416dc0c84aaf6dd4d4beeb8b03f",
+    "baselineWorkingSha256": "421b61d609a2d35b84a85c232f37d142916e1416dc0c84aaf6dd4d4beeb8b03f",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "index.html",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 864,
+    "gitSha256": "3937663923683f5ff15ce87ac7a730da1ca9bafafaaacea090c053cf00c8901b",
+    "baselineWorkingSha256": "3937663923683f5ff15ce87ac7a730da1ca9bafafaaacea090c053cf00c8901b",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "studio.html",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 765,
+    "gitSha256": "6120214662e2a28f7403e3bdcad7b1fcbd46dc26ed019d857f5302595271b34e",
+    "baselineWorkingSha256": "6120214662e2a28f7403e3bdcad7b1fcbd46dc26ed019d857f5302595271b34e",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "edit.html",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 856,
+    "gitSha256": "5e7d305d16439659502aadf1abd114a4b70dcd881e6995858d45f210829e591a",
+    "baselineWorkingSha256": "5e7d305d16439659502aadf1abd114a4b70dcd881e6995858d45f210829e591a",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "src/main.tsx",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 428,
+    "gitSha256": "36dd6d6050249d69767898ef465b497e29cd8772d27313ded6281e233b053693",
+    "baselineWorkingSha256": "36dd6d6050249d69767898ef465b497e29cd8772d27313ded6281e233b053693",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "src/App.tsx",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 2949,
+    "gitSha256": "e4e9dab6548ec9556af601ec1d3c56017a34a461bb5ef6034b6a7b1a912da0a0",
+    "baselineWorkingSha256": "e4e9dab6548ec9556af601ec1d3c56017a34a461bb5ef6034b6a7b1a912da0a0",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "apps/landing/src/landing.tsx",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 11988,
+    "gitSha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+    "baselineWorkingSha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "apps/edit/src/edit.tsx",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 91610,
+    "gitSha256": "e409aa1f9dd95f75c9b5cc5e285238ffa00f1961903460c1b21ec90e175e7072",
+    "baselineWorkingSha256": "e409aa1f9dd95f75c9b5cc5e285238ffa00f1961903460c1b21ec90e175e7072",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "apps/edit/src/plan-composition.tsx",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 6756,
+    "gitSha256": "9ff12802b4d60ce543fb04cb57f5d48601289f53945c2fbdee86df49c41416cf",
+    "baselineWorkingSha256": "9ff12802b4d60ce543fb04cb57f5d48601289f53945c2fbdee86df49c41416cf",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "apps/edit/src/plan-tools.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 19101,
+    "gitSha256": "1a394ec54155b164b5902343e05c42ad52a32759c3bf60ab4b49ba0324667b8c",
+    "baselineWorkingSha256": "1a394ec54155b164b5902343e05c42ad52a32759c3bf60ab4b49ba0324667b8c",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "src/lib/browser-ffmpeg.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 14975,
+    "gitSha256": "0bf763d3045bf6265f9677e574c1638e4643c482cd3777603774f7444b1db09f",
+    "baselineWorkingSha256": "0bf763d3045bf6265f9677e574c1638e4643c482cd3777603774f7444b1db09f",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "src/lib/browser-edit-plan-compiler.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 20175,
+    "gitSha256": "ab9fbb0230e248c98efc3a916d3b2e4fb011ce64c50f2dfb85d79f6b83230346",
+    "baselineWorkingSha256": "ab9fbb0230e248c98efc3a916d3b2e4fb011ce64c50f2dfb85d79f6b83230346",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "src/lib/integrated-inspector.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 5780,
+    "gitSha256": "84c4dc2c27d14b1b6384d3b76f8d98055f4f09cd7f116367bc699d8d303e52af",
+    "baselineWorkingSha256": "84c4dc2c27d14b1b6384d3b76f8d98055f4f09cd7f116367bc699d8d303e52af",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "src/features/nodevideo/frame-inspector.tsx",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 2758,
+    "gitSha256": "6ebf589081e1592d63427e1a12c3e271072440b4c4b4df44acc61bb2d2ff6326",
+    "baselineWorkingSha256": "6ebf589081e1592d63427e1a12c3e271072440b4c4b4df44acc61bb2d2ff6326",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "src/features/nodevideo/verified-frame-inspector.tsx",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 7513,
+    "gitSha256": "309d4aad75a75f2ac868fbb39a7f461f5ca7c8f33edb5a943e74e4543cbaf8b3",
+    "baselineWorkingSha256": "309d4aad75a75f2ac868fbb39a7f461f5ca7c8f33edb5a943e74e4543cbaf8b3",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "scripts/dev/local-private-preview.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 2266,
+    "gitSha256": "6f432f1096c37850c86c5e435d58047f4965c984e35b2057fd61c8be208fa51a",
+    "baselineWorkingSha256": "6f432f1096c37850c86c5e435d58047f4965c984e35b2057fd61c8be208fa51a",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "scripts/quality/copy-ffmpeg-wasm.mjs",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 2045,
+    "gitSha256": "b73a24826048db86101db5c550b90bb105815e433d6dcb8c614261801f9739b4",
+    "baselineWorkingSha256": "b73a24826048db86101db5c550b90bb105815e433d6dcb8c614261801f9739b4",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "scripts/quality/stamp-contract-build.mjs",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 2297,
+    "gitSha256": "949d196d91bf5f57ecdb7e79f4fbdb712885b93886fea5cf4160631ae8d2c034",
+    "baselineWorkingSha256": "949d196d91bf5f57ecdb7e79f4fbdb712885b93886fea5cf4160631ae8d2c034",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "tests/e2e/frame-inspector.spec.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 3926,
+    "gitSha256": "5c48b773b691bb95201151842ef89803cd0fc19a88bd759ee68ff89b5c8083a0",
+    "baselineWorkingSha256": "5c48b773b691bb95201151842ef89803cd0fc19a88bd759ee68ff89b5c8083a0",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "tests/e2e/stitch-studio.spec.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 36958,
+    "gitSha256": "1268c09728cbf2644baed1b4a70f9a894fd19b96eae998dc13732407ae82f875",
+    "baselineWorkingSha256": "1268c09728cbf2644baed1b4a70f9a894fd19b96eae998dc13732407ae82f875",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "fixtures/media/integrated-source-only-v1/manifest.json",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 7205,
+    "gitSha256": "8c76857975bcc2fd67272aaf93ec1d5c456b993434e3b64f0b082fa397b362cc",
+    "baselineWorkingSha256": "8c76857975bcc2fd67272aaf93ec1d5c456b993434e3b64f0b082fa397b362cc",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "fixtures/media/integrated-source-only-v1/edit-plan.json",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 13652,
+    "gitSha256": "45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07",
+    "baselineWorkingSha256": "45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "apps/edit/src/browser-export.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 5365,
+    "gitSha256": "0b175b0f920aa4501a687a7bdf081b1e0690eb2b17aee62821d10f4acf1c469a",
+    "baselineWorkingSha256": "0b175b0f920aa4501a687a7bdf081b1e0690eb2b17aee62821d10f4acf1c469a",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "apps/edit/src/byok.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 1539,
+    "gitSha256": "08c8f6c2b24ce21ca0fd2aa2f0ff3a3ba196d80224030a5c408b02c7c4017af4",
+    "baselineWorkingSha256": "08c8f6c2b24ce21ca0fd2aa2f0ff3a3ba196d80224030a5c408b02c7c4017af4",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "src/features/nodevideo/inspector-evidence.tsx",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 5250,
+    "gitSha256": "0f2b9d414a509ceed640bd1d2ce3bcb3ac9536588a64852639ea047d7f88ae3a",
+    "baselineWorkingSha256": "0f2b9d414a509ceed640bd1d2ce3bcb3ac9536588a64852639ea047d7f88ae3a",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "src/features/nodevideo/local-preview.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 628,
+    "gitSha256": "d1e1ac19add03603e715407432e8b64c9ffa84243d158eb5e01ce998259826ba",
+    "baselineWorkingSha256": "d1e1ac19add03603e715407432e8b64c9ffa84243d158eb5e01ce998259826ba",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "fixtures/media/authorized-real-v1/case-manifest.json",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 4697,
+    "gitSha256": "deca5ac8f08ba9502bbeae379f1db1ba1b895f1a1b96513ddcc3e528ed7c170b",
+    "baselineWorkingSha256": "deca5ac8f08ba9502bbeae379f1db1ba1b895f1a1b96513ddcc3e528ed7c170b",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "apps/landing/src/pose-loop.json",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 54401,
+    "gitSha256": "b2f2ea20a01dbe4815a921c0db6330c24967495dbc7b8b798b6ff82a13488be1",
+    "baselineWorkingSha256": "b2f2ea20a01dbe4815a921c0db6330c24967495dbc7b8b798b6ff82a13488be1",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "scripts/quality/copy-mediapipe-wasm.mjs",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 914,
+    "gitSha256": "cceeb05b36470f164caf8da7bdcc47d0b16dc0a98a748cfeea8bf8679810392f",
+    "baselineWorkingSha256": "cceeb05b36470f164caf8da7bdcc47d0b16dc0a98a748cfeea8bf8679810392f",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "src/lib/frame-evidence.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 7647,
+    "gitSha256": "5442b9248084a97f0ee346e84487accb4aca66d5f5a348a3717bede92c6be51a",
+    "baselineWorkingSha256": "5442b9248084a97f0ee346e84487accb4aca66d5f5a348a3717bede92c6be51a",
+    "rawEqualsGit": true
+  },
+  {
+    "path": "src/lib/frame-evidence.test.ts",
+    "immutableGitMatchesBaseline": true,
+    "gitBytes": 3730,
+    "gitSha256": "25358d47adea56551b5351b247b1c111ea5c24a80df382b5a884f10266c89a3f",
+    "baselineWorkingSha256": "25358d47adea56551b5351b247b1c111ea5c24a80df382b5a884f10266c89a3f",
+    "rawEqualsGit": true
+  }
+]

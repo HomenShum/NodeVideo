@@ -1,0 +1,137 @@
+{
+  "proofId": "NODEVIDEO-PUBLICATION-AND-PERSISTENT-CLOCK-PLAN-01",
+  "role": "Independent nonauthor plan/test review; prior reviewer context reused, no implementation",
+  "at": "2026-09-05T20:50:22.772293+00:00",
+  "verdict": "APPROVED_EXACT_EXTERNAL_PLAN_FOR_TRANSFER_AND_NAMED_CHECKS",
+  "sourceGuard": "CLOSED",
+  "plan": {
+    "path": "E6i_NODEVIDEO_PUBLICATION_OWNER_PLAN.json",
+    "bytes": 4032,
+    "sha256": "be4347a0e12b79d633d1b537531f7d9e8ae09ca393c4942048cdd98a0fae0a2e"
+  },
+  "authoredOwners": [
+    {
+      "path": "README.md",
+      "bytes": 25599,
+      "sha256": "20b0510e27fbda3375c57adc7171d00884737efffc60afe91d52774e3a161bf2",
+      "rawGitBlobSha1": "505e5871bf5d395fd8939b9e1414508ee5592e08"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 6064,
+      "sha256": "513fa67534a70892d334f8485af52918e980d48daa0c463b85276ca9e9a7bcb5",
+      "rawGitBlobSha1": "ee6cfad585ed7a7796a03c0ddab4f0e5d0a8a13b"
+    },
+    {
+      "path": "tests/unit/landing-clock.test.ts",
+      "bytes": 8168,
+      "sha256": "ebbb01b01fa9eb8a7d3bed26df6fbcae04c60578bea0c30ee74d4fc8a6321b0e",
+      "rawGitBlobSha1": "d0e955700795ccc6b88e61c7ff9ea8be2b697803"
+    }
+  ],
+  "packet": {
+    "files": 669,
+    "bytes": 63091817,
+    "manifestSha256": "8025767471ec0edaf5d198d44184d80ee163065b7ab4d161235fcd8cafe2e5a0",
+    "mappedOriginals": 927,
+    "uniqueRawPayloads": 656,
+    "duplicateOrigins": 271,
+    "operatorOnlyOriginals": 230,
+    "operatorOnlyBytes": 38547678,
+    "totalOriginalInventoryRows": 1157,
+    "nativeMediaFiles": 181,
+    "nativeMediaBytes": 30538460,
+    "maximumMediaBytes": 2406056
+  },
+  "verification": {
+    "passed": 27,
+    "total": 27,
+    "checks": {
+      "path": "E6i-nodevideo-publication-plan-judge/checks.json",
+      "bytes": 8204,
+      "sha256": "1d508b52717c8b1f9018fca12612024fdebd2130c60441c991875000aea88664"
+    },
+    "refreezeChecks": {
+      "path": "E6i-nodevideo-publication-plan-judge/refreeze-checks.json",
+      "bytes": 364,
+      "sha256": "f397a60622aca42618d902fdb4717d6aab699c1466330cbbf3471def30e80c3c"
+    },
+    "artifacts": 32,
+    "manifest": {
+      "path": "E6i-nodevideo-publication-plan-judge/artifact-manifest.json",
+      "bytes": 6594,
+      "sha256": "5ecfbf06625cebc6d752b67e914f4c4cfa7d1344d55ddb0e36969d93ea89a912"
+    }
+  },
+  "testAssessment": {
+    "actualOwnerReadAndTranspiled": true,
+    "sourceCopiedIntoTest": false,
+    "newProductionExport": false,
+    "newDependencyOrConfiguration": false,
+    "normalSuiteEligible": true,
+    "normalSuiteSource": "package.json test=vitest run; existing vite.config.ts environment node, excludes only e2e/cache/node_modules/dist",
+    "cases": 9,
+    "timestampZero": "Exact [0,0,1,5,46] frame indices and [1,1,1,2,1] counts fail truthiness-based origin reset.",
+    "remount": "Same VM, owners and scheduler reused after cleanup; two new effects restart at indices[0,0,1]/counts[1,1,1] and both pending callbacks cancel.",
+    "otherScenarios": [
+      "Actual observed negative-start inputs",
+      "Delayed first paint",
+      "Original pose/count cadence wraps",
+      "3601 callbacks over 60 simulated seconds",
+      "Reduced one-frame behavior",
+      "Cleanup before first callback"
+    ],
+    "executedByJudge": false,
+    "newTargetedOrNormalTestPassed": false,
+    "requiredNextProof": [
+      "Actual nine-case normal Vitest collection/pass",
+      "Old-origin mutation failure",
+      "Truthiness mutation failure at zero timestamp",
+      "One unchanged normal npm run check with the added test"
+    ],
+    "limits": [
+      "Mock React lifecycle/canvas does not prove StrictMode or browser pixels.",
+      "Simulated timestamps do not prove wall-clock performance.",
+      "Historical 344-test pass does not include this new test."
+    ]
+  },
+  "publicationAssessment": {
+    "completeOriginalInventoryReconciled": true,
+    "allMappedOriginalsAndPhysicalCopiesExact": true,
+    "all230RetainedLocalOriginalsExact": true,
+    "allActiveLinksResolve": true,
+    "historicalTextInert": true,
+    "rawMediaUnmodified": true,
+    "noBudgetException": true,
+    "sourceSets": "Old1374 landing-build source and dist bindings remain historical. Three proposed-authored bindings explicitly override only README and add HANDOFF/test; post-transfer final universe must be re-bound.",
+    "verifierScope": "Python stdlib exact payload/mapping preservation; optional Git computes raw --no-filters blob IDs. Neither mode proves future clean-filter/index equality, runtime outcomes, omitted data or deployment.",
+    "missingCapability": "Omitted raw DOM means arbitrary hidden attributes/scripts/full DOM and exact prior browser sessions cannot be reconstructed from PNG/structured state alone."
+  },
+  "resolvedReviewFindings": [
+    {
+      "issue": "Node22+ documentation too broad for installed Vite8.1.4",
+      "resolution": "Node22.12+ documented; exact engine/config input bound."
+    },
+    {
+      "issue": "Standalone Biome formatted external test with tabs/double quotes",
+      "resolution": "Only external test reformatted from candidate cwd using unchanged actual project config; idempotent native readback retained."
+    },
+    {
+      "issue": "Packet README repeated its historical-source distinction",
+      "resolution": "One exact duplicate removed; old proposal and manifest preserved."
+    }
+  ],
+  "collectorFailure": {
+    "retained": "checks-before-project-format-refreeze.json",
+    "detail": "Initial collector assumed single-quoted loader text and reported23/24 despite correct double-quoted path; read-only predicate now accepts either quoting style. Separate actual project-format issue is recorded above."
+  },
+  "notClaimed": [
+    "Test execution/pass before transfer",
+    "Future staged/Git-filtered equality",
+    "Shared CI or deployment",
+    "Full UI/readiness grades",
+    "Provider/private-media/camera or durable Creator readiness"
+  ],
+  "fullGrades": null,
+  "requestTrace": "Planner-worker-judge readiness and handoff with actual visual/responsive/interaction evidence and preserved limitations."
+}

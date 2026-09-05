@@ -1,0 +1,27 @@
+diff --git a/apps/landing/src/landing.tsx b/apps/landing/src/landing.tsx
+index e48b37f..c5d02ef 100644
+--- a/apps/landing/src/landing.tsx
++++ b/apps/landing/src/landing.tsx
+@@ -39,8 +39,9 @@ function useCountClock(reduced: boolean) {
+   useEffect(() => {
+     if (reduced) return;
+     let raf = 0;
+-    const started = performance.now();
++    let started: number | undefined;
+     const tick = (now: number) => {
++      started ??= now;
+       const beats = (now - started) / BEAT_MS;
+       setCount((Math.floor(beats) % 8) + 1);
+       const phase = beats % 1;
+@@ -63,9 +64,10 @@ function SkeletonHero({ reduced }: { reduced: boolean }) {
+     if (!canvas) return;
+     const context = canvas.getContext('2d');
+     if (!context) return;
+-    const started = performance.now();
++    let started: number | undefined;
+     let raf = 0;
+     const draw = (now: number) => {
++      started ??= now;
+       const elapsed = reduced ? 0 : (now - started) / 1000;
+       const frame = frames[Math.floor(elapsed * cadence) % frames.length];
+       const scale = Math.min(canvas.width, canvas.height) * 0.92;

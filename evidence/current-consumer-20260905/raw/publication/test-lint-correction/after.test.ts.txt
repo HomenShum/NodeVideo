@@ -1,0 +1,248 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import vm from 'node:vm';
+import ts from 'typescript';
+import { describe, expect, it } from 'vitest';
+
+const source = readFileSync(new URL('../../apps/landing/src/landing.tsx', import.meta.url), 'utf8');
+const pose = JSON.parse(
+  readFileSync(new URL('../../apps/landing/src/pose-loop.json', import.meta.url), 'utf8'),
+) as { frames: Array<Array<[number, number] | null>>; cadenceHz: number };
+const beat = 60_000 / 103.4;
+
+type Scenario = {
+  name: string;
+  effectNow: number;
+  callbacks: number[];
+  reduced?: boolean;
+  cleanupBeforeFirst?: boolean;
+  remount?: boolean;
+};
+
+const scenarios: Scenario[] = [
+  {
+    name: 'visitor receives the observed 320px earlier callback',
+    effectNow: 250.5,
+    callbacks: [231.7, 248.3667, 265.0334],
+  },
+  {
+    name: 'visitor receives the observed 390px earlier callback',
+    effectNow: 51,
+    callbacks: [42.7, 59.3667, 76.0334],
+  },
+  {
+    name: 'zero is a valid first timestamp, not an uninitialized clock',
+    effectNow: 10,
+    callbacks: [0, 100, 200, beat, beat * 8],
+  },
+  {
+    name: 'delayed first paint starts at the first pose and count',
+    effectNow: 10,
+    callbacks: [5010, 5026.6667, 5110, 5010 + beat * 8],
+  },
+  {
+    name: 'pose and count wrap while using their original cadences',
+    effectNow: 100,
+    callbacks: [100, 100 + beat, 100 + beat * 8, 8100, 8110, 16120],
+  },
+  {
+    name: '60 simulated seconds of callbacks stay bounded and valid',
+    effectNow: 250.5,
+    callbacks: Array.from({ length: 3601 }, (_, i) => 231.7 + i * (1000 / 60)),
+  },
+  {
+    name: 'reduced motion paints once without scheduling another frame',
+    effectNow: 250.5,
+    callbacks: [231.7, 248.3667, 265.0334],
+    reduced: true,
+  },
+  {
+    name: 'leaving before the first callback cancels both pending owners',
+    effectNow: 250.5,
+    callbacks: [231.7],
+    cleanupBeforeFirst: true,
+  },
+  {
+    name: 'returning to the page starts new owners in the same scheduler',
+    effectNow: 5000,
+    callbacks: [4983, 5000, 5100],
+    remount: true,
+  },
+];
+
+// Exercise the actual existing owners without adding production exports or copying
+// their clock arithmetic. This models callbacks/lifecycle, not React DOM or pixels.
+function observe(scenario: Scenario) {
+  const pending = new Map<number, (timestamp: number) => void>();
+  const cleanups: Array<() => void> = [];
+  const indices: number[] = [];
+  const counts: number[] = [];
+  const pulses: number[] = [];
+  let id = 0;
+  let maxPending = 0;
+  let clears = 0;
+  let callbackCount = 0;
+  const canvasContext = {
+    clearRect() {
+      clears++;
+    },
+    beginPath() {},
+    moveTo() {},
+    lineTo() {},
+    stroke() {},
+    arc() {},
+    fill() {},
+  };
+  const canvas = { width: 560, height: 560, getContext: () => canvasContext };
+  const frames = new Proxy(pose.frames, {
+    get(target, key, receiver) {
+      if (typeof key === 'string' && /^-?\d+$/.test(key)) indices.push(Number(key));
+      return Reflect.get(target, key, receiver);
+    },
+  });
+  const jsx = (type: unknown, props: unknown) => ({ type, props });
+  const react = {
+    StrictMode: 'strict',
+    useEffect(fn: () => undefined | (() => void)) {
+      const cleanup = fn();
+      if (cleanup) cleanups.push(cleanup);
+    },
+    useRef: () => ({ current: canvas }),
+    useState: (initial: number) => [initial, (value: number) => counts.push(value)],
+  };
+  const globals = {
+    exports: {},
+    require(name: string) {
+      if (name === 'react') return react;
+      if (name === 'react/jsx-runtime') return { jsx, jsxs: jsx };
+      if (name === 'react-dom/client') return { createRoot: () => ({ render() {} }) };
+      if (name === './pose-loop.json') return { ...pose, frames };
+      if (name === './landing.css') return {};
+      throw new Error(`Unexpected landing import: ${name}`);
+    },
+    performance: { now: () => scenario.effectNow },
+    document: {
+      getElementById: () => ({}),
+      documentElement: {
+        style: {
+          setProperty(key: string, value: string) {
+            assert.equal(key, '--count-pulse');
+            pulses.push(Number(value));
+          },
+        },
+      },
+    },
+    getComputedStyle: () => ({ getPropertyValue: () => '#c6f000' }),
+    requestAnimationFrame(fn: (timestamp: number) => void) {
+      assert.ok(pending.size < 4, 'each current owner keeps one pending callback');
+      pending.set(++id, fn);
+      maxPending = Math.max(maxPending, pending.size);
+      return id;
+    },
+    cancelAnimationFrame(key: number) {
+      pending.delete(key);
+    },
+  };
+  const compiled = ts.transpileModule(
+    `${source}\nexport const CLOCK_PROOF = { useCountClock, SkeletonHero };\n`,
+    {
+      compilerOptions: {
+        target: ts.ScriptTarget.ES2022,
+        module: ts.ModuleKind.CommonJS,
+        jsx: ts.JsxEmit.ReactJSX,
+        esModuleInterop: true,
+      },
+    },
+  ).outputText;
+  const context = vm.createContext(globals);
+  vm.runInContext(compiled, context, { timeout: 2000 });
+  const owners = (
+    context.exports as {
+      CLOCK_PROOF: {
+        useCountClock(reduced: boolean): unknown;
+        SkeletonHero(props: { reduced: boolean }): unknown;
+      };
+    }
+  ).CLOCK_PROOF;
+  const mount = () => {
+    owners.useCountClock(Boolean(scenario.reduced));
+    owners.SkeletonHero({ reduced: Boolean(scenario.reduced) });
+  };
+  const run = (timestamps: number[]) => {
+    for (const now of timestamps) {
+      const batch = [...pending.values()];
+      pending.clear();
+      for (const callback of batch) {
+        callbackCount++;
+        callback(now);
+      }
+    }
+  };
+  mount();
+  if (scenario.cleanupBeforeFirst) for (const cleanup of cleanups) cleanup();
+  run(scenario.callbacks);
+  const pendingBeforeCleanup = pending.size;
+  for (const cleanup of cleanups) cleanup();
+  expect(pending.size).toBe(0);
+  const result = {
+    indices: [...indices],
+    counts: [...counts],
+    pulses: [...pulses],
+    clears,
+    callbackCount,
+    maxPending,
+    pendingBeforeCleanup,
+  };
+  if (scenario.remount) {
+    const oldIndices = indices.length;
+    const oldCounts = counts.length;
+    const oldCleanups = cleanups.length;
+    mount();
+    run([65000, 65100, 65200]);
+    expect(cleanups.length - oldCleanups).toBe(2);
+    expect(indices.slice(oldIndices)).toEqual([0, 0, 1]);
+    expect(counts.slice(oldCounts)).toEqual([1, 1, 1]);
+    expect(pending.size).toBe(2);
+    for (const cleanup of cleanups.slice(oldCleanups)) cleanup();
+    expect(pending.size).toBe(0);
+  }
+  return result;
+}
+
+describe('Landing visitor clock lifecycle using the actual source owner', () => {
+  for (const scenario of scenarios)
+    it(scenario.name, () => {
+      const result = observe(scenario);
+      expect(result.indices.every((i) => Number.isInteger(i) && i >= 0 && i < 80)).toBe(true);
+      expect(result.counts.every((i) => Number.isInteger(i) && i >= 1 && i <= 8)).toBe(true);
+      expect(result.pulses.every((value) => value >= 0 && value <= 1)).toBe(true);
+      expect(result.maxPending).toBeLessThanOrEqual(2);
+      if (scenario.cleanupBeforeFirst) {
+        expect(result.callbackCount).toBe(0);
+        return;
+      }
+      expect(result.indices[0]).toBe(0);
+      if (scenario.reduced) {
+        expect(result.clears).toBe(1);
+        expect(result.counts).toEqual([]);
+        expect(result.pendingBeforeCleanup).toBe(0);
+        return;
+      }
+      expect(result.counts[0]).toBe(1);
+      expect(result.clears).toBe(scenario.callbacks.length);
+      expect(result.pendingBeforeCleanup).toBe(2);
+      if (scenario.callbacks[0] === 0) {
+        // A truthiness initializer resets the second callback's origin and fails here.
+        expect(result.indices).toEqual([0, 0, 1, 5, 46]);
+        expect(result.counts).toEqual([1, 1, 1, 2, 1]);
+      }
+      if (scenario.callbacks.length === 3601) {
+        expect(result.clears).toBe(3601);
+        expect(new Set(result.indices).size).toBe(80);
+      }
+      if (scenario.name.startsWith('pose and count wrap')) {
+        expect(result.indices).toEqual([0, 5, 46, 79, 0, 0]);
+        expect(result.counts).toEqual([1, 2, 1, 6, 6, 4]);
+      }
+    });
+});

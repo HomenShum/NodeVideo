@@ -1,0 +1,119 @@
+{
+  "at": "2026-09-05T19:14:02.816014+00:00",
+  "immutableSourceFiles": 33,
+  "baselineSourceFiles": 1374,
+  "namedGitInputsCorrespond": true,
+  "binaryAssetsNotOpenedByThisCollector": true,
+  "tools": [
+    {
+      "tool": "node",
+      "path": "C:\\nvm4w\\nodejs\\node.EXE",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\node.EXE",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "99149e35f76aa1efc846f029c3d2733b3541fe76ac97b74d33883481c0ce8dd9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "versionLine": "v22.22.2"
+    },
+    {
+      "tool": "ffprobe",
+      "path": "C:\\Users\\hshum\\scoop\\shims\\ffprobe.EXE",
+      "argv": [
+        "C:\\Users\\hshum\\scoop\\shims\\ffprobe.EXE",
+        "-version"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "4cac2bf444f8d0c49ba2d8a05a4dd16656b762c24eba79d95a7fe8fc9a672cf9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "versionLine": "ffprobe version 6.0-full_build-www.gyan.dev Copyright (c) 2007-2023 the FFmpeg developers"
+    },
+    {
+      "tool": "ffmpeg",
+      "path": "C:\\Users\\hshum\\scoop\\shims\\ffmpeg.EXE",
+      "argv": [
+        "C:\\Users\\hshum\\scoop\\shims\\ffmpeg.EXE",
+        "-version"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "f4d5c3a47d3592181730b4d37764498c96091f1604066b43ad60db1a480992dd",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "versionLine": "ffmpeg version 6.0-full_build-www.gyan.dev Copyright (c) 2000-2023 the FFmpeg developers"
+    },
+    {
+      "tool": "tesseract",
+      "path": "C:\\Program Files\\Tesseract-OCR\\tesseract.EXE",
+      "argv": [
+        "C:\\Program Files\\Tesseract-OCR\\tesseract.EXE",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdoutSha256": "f174c5aeda4cc140784d0ddc5d5035f344701b1c2ea9ce5687c73fb620c5f1b8",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "versionLine": "tesseract v5.3.3.20231005"
+    }
+  ],
+  "chromium": {
+    "playwrightVersion": "1.61.1",
+    "modulePath": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905\\node_modules\\playwright\\index.js",
+    "chromiumExecutable": "C:\\Users\\hshum\\AppData\\Local\\ms-playwright\\chromium-1228\\chrome-win64\\chrome.exe",
+    "chromiumPresent": true
+  },
+  "builtFilesObservedOnly": [
+    {
+      "path": "dist/index.html",
+      "present": true,
+      "bytes": 1272
+    },
+    {
+      "path": "dist/studio.html",
+      "present": true,
+      "bytes": 2366
+    },
+    {
+      "path": "dist/edit.html",
+      "present": true,
+      "bytes": 4265
+    },
+    {
+      "path": "dist/.well-known/agent-ui.build.json",
+      "present": true,
+      "bytes": 578
+    },
+    {
+      "path": "dist/ffmpeg/0.12.10/st/ffmpeg-core.js",
+      "present": true,
+      "bytes": 111804
+    },
+    {
+      "path": "dist/ffmpeg/0.12.10/st/ffmpeg-core.wasm",
+      "present": true,
+      "bytes": 32232419
+    },
+    {
+      "path": "dist/ffmpeg/0.12.10/mt/ffmpeg-core.js",
+      "present": true,
+      "bytes": 128947
+    },
+    {
+      "path": "dist/ffmpeg/0.12.10/mt/ffmpeg-core.wasm",
+      "present": true,
+      "bytes": 32718323
+    },
+    {
+      "path": "dist/ffmpeg/0.12.10/mt/ffmpeg-core.worker.js",
+      "present": true,
+      "bytes": 2115
+    },
+    {
+      "path": "dist/ffmpeg/0.12.10/Geist-Variable-Latin.ttf",
+      "present": true,
+      "bytes": 65532
+    }
+  ],
+  "buildLimit": "Root may rebuild during lint repair; presence is not a whole-dist frozen guard. Bind the actual final build receipt before execution.",
+  "runtimeLaunched": false,
+  "providerOrEnvRead": false,
+  "installPerformed": false
+}

@@ -1,0 +1,70 @@
+from pathlib import Path
+from PIL import Image
+import datetime,hashlib,json,socket,subprocess
+O=Path(__file__).parent
+P=O.parent
+R=Path('D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905')
+sha=lambda b:hashlib.sha256(b).hexdigest()
+def save(path,obj):path.write_text(json.dumps(obj,indent=2,ensure_ascii=False)+'\n',encoding='utf-8',newline='\n')
+def read(path):return json.loads(path.read_text(encoding='utf-8'))
+def bind(path):
+    assert path.is_file()and not path.is_symlink()
+    b=path.read_bytes();return {'path':path.relative_to(P).as_posix(),'bytes':len(b),'sha256':sha(b)}
+def git(*args):return subprocess.check_output(['git','--no-optional-locks',*args],cwd=R,timeout=30)
+report=read(O/'report.json');command=read(O/'landing-after.command.json');build=read(P/'E6i_NODEVIDEO_LANDING_BUILD_FREEZE.json')
+assert len(report['cells'])==9 and all(c['status'].startswith('PASS_CLOCK')for c in report['cells'])
+assert command['exitCode']==0 and all(command[k]for k in ['sourceUnchanged','distUnchanged','guardsUnchanged','ownedPortReleased'])
+sources={p:sha((R/p).read_bytes())for p in build['allSourceBindings']}
+assert sources==build['allSourceBindings']
+assert all(sha((R/r['path']).read_bytes())==r['sha256']for r in build['dist'])
+before_guard=read(O/'landing-after-before.json')['guards']
+guards={n:sha(git(*a))for n,a in {'head':['rev-parse','HEAD'],'refs':['for-each-ref','--format=%(refname) %(objectname)'],'index':['ls-files','--stage','-z']}.items()}
+assert guards==before_guard
+with socket.socket()as s:assert s.connect_ex(('127.0.0.1',4983))!=0
+save(O/'final-source-guard.json',{'sourceOwnerDigest':build['sourceDigest'],'sourceCount':len(sources),'sourceAllExact':True,'distCount':len(build['dist']),'distAllExact':True,'guards':guards,'guardsExact':True,'port4983Released':True,'workerSourceEdits':False,'stageCommitPush':False})
+raster=[]
+for file in sorted(O.glob('*/*-canvas.png')):
+    with Image.open(file)as image:
+        rgb=image.convert('RGB');coords=[(x,y)for y in range(rgb.height)for x in range(rgb.width)if (lambda v:v[0]>70 and v[1]>120 and v[2]<110 and v[1]>=v[0]) (rgb.getpixel((x,y)))]
+        bounds={'left':min(x for x,y in coords),'top':min(y for x,y in coords),'right':max(x for x,y in coords),'bottom':max(y for x,y in coords)}if coords else None
+        raster.append({**bind(file),'dimensions':list(rgb.size),'savedAccentPixelCount':len(coords),'accentBounds':bounds})
+save(O/'saved-canvas-raster-review.json',{'method':'PIL inspects the exact saved canvas screenshot PNG; RGB red>70,green>120,blue<110,green>=red identifies the existing lime pose, excluding dark background. Zero captures remain zero, not certified painted from DOM.','files':raster})
+videos=[]
+for file in sorted(O.glob('*/*.webm')):
+    result=subprocess.run(['C:/Users/hshum/scoop/shims/ffprobe.exe','-v','error','-show_streams','-show_format','-of','json',str(file)],capture_output=True,timeout=30)
+    assert result.returncode==0
+    data=json.loads(result.stdout);videos.append({**bind(file),'probeExitCode':result.returncode,'streams':[{k:s.get(k)for k in ['codec_name','width','height','duration']}for s in data['streams']],'format':{k:data['format'].get(k)for k in ['duration','size','format_name']}})
+save(O/'saved-video-probes.json',videos)
+pairs=[]
+for width in [320,390,1440]:
+    old=P/'E6i-nodevideo-landing-before-01'/str(width)
+    cell=next(c for c in report['cells']if c['name']==str(width)+'-normal')
+    pairs.append({'viewport':cell['viewport'],'before':{'raw':bind(old/'before.png'),'boundary':bind(old/'change-boundary.png'),'state':bind(old/'before.json')},'after':{name:bind(O/cell['name']/name)for name in ['start.png','mid.png','end.png','change-boundary.png','native-samples.json','cell.json']},'sameScrollAndGeometry':all(c['passed']for c in cell['checks']if c['name']in ['Original viewport and scroll matched','Unchanged canvas geometry','Unchanged count geometry']),'comparisonLimit':'Normal after boundary may capture a real source tracking gap. Actual start/mid/end PNGs and video are distinct observations; a blank PNG is not called painted.'})
+save(O/'before-after-pairs.json',pairs)
+summary=[]
+for c in report['cells']:
+    summary.append({'cell':c['name'],'viewport':c['viewport'],'status':c['status'],'checks':len(c['checks']),'sampleCount':len(c['samples']),'sampleElapsedMilliseconds':c['sampleElapsedMilliseconds'],'uniqueCanvasFingerprints':c['uniqueCanvasFingerprints'],'counts':c['counts'],'trackingGaps':c['trackingGaps'],'pageOverflowPixels':c['start']['overflow'],'canvasRect':c['start']['canvas']['rect'],'countRect':c['start']['count']['rect'],'pageErrors':c['errors'],'externalRequests':c['external'],'navigation':c['navigation'],'video':c['video']})
+save(O/'scoped-results.json',summary)
+note='''# Saved visual observations
+
+A visitor can now see the real public pose move and the count advance instead of losing the animation at the first callback. Start, middle and end PNGs show distinct native poses at the three accepted viewport sizes; normal and reduced geometry matches the exact before boxes. Reduced motion keeps one visible pose and count1. All9 cells navigated through the actual Studio link, returned and reloaded with paint and valid counts.
+
+The public input has five all-null tracking frames. Native animation legitimately clears to blank at these gaps and later paints again. The failed after-01 expected every sample to be painted; its failure PNG,135 samples and video remain exact. After-02 records each zero and recovery or a trailing censored run without extending18seconds. A zero-pixel screenshot remains a zero-pixel screenshot, even when another DOM observation has paint.
+
+The320 normal annotated image happens to show a gap. Its raw start/mid/end images independently show differing poses. The390/1440 normal and all reduced boundary images show the tight existing A canvas/B count boxes. Computed-text200 phone screenshots reveal201px(320) and131px(390) document overflow, a cropped count row and cropped canvas/provenance. Those annotated phone boxes/labels can be clipped by the real viewport and are not accepted as successful reflow. The1440 enlarged screenshot contains the pose but the count region lies below the current viewport;0document overflow does not imply simultaneous count visibility. These are current layout limitations and no UI grade is assigned.
+
+Text200 doubles a single initial computed-font snapshot. It is not browser/OS zoom, and later mounted/reloaded text is not asserted enlarged. No providers, private media, editor journey, export/codec replay, performance or full device/accessibility certification is included. Exact callback indices and cancellation are the separately reviewed actual-owner harness evidence.
+'''
+(O/'visual-observations.md').write_text(note,encoding='utf-8',newline='\n')
+context=[P/name for name in ['E6i_NODEVIDEO_LANDING_BUILD_FREEZE.json','E6i_NODEVIDEO_LANDING_AFFECTED_AFTER_PLAN.json','E6i_NODEVIDEO_LANDING_AFFECTED_AFTER_PLAN.md','E6i_NODEVIDEO_LANDING_BEFORE_RECEIPT.json','E6i_NODEVIDEO_LANDING_BEFORE_RECEIPT.md','E6i_NODEVIDEO_LANDING_CLOCK_DIAGNOSIS.json','E6i_NODEVIDEO_LANDING_CLOCK_HARNESS_V2_REVIEW.json']]
+artifacts=[]
+for directory in [P/'E6i-nodevideo-landing-after-01',O]:
+    for f in sorted(directory.rglob('*')):
+        if f.is_file()and f.name!='artifact-manifest.json':artifacts.append(bind(f))
+manifest={'status':'FROZEN_FOR_INDEPENDENT_JUDGE','artifacts':artifacts,'contextBindings':[bind(f)for f in context],'selfExcluded':['E6i-nodevideo-landing-after-02/artifact-manifest.json','E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.md','E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.json'],'priorBeforePacketUntouched':True,'failedAfter01Retained':True}
+save(O/'artifact-manifest.json',manifest)
+receipt={'proofId':'NODEVIDEO-LANDING-CLOCK-01','status':'WORKER_SCOPED_PASS_WITH_TRACKING_GAPS_AND_LAYOUT_LIMITS_AWAITING_INDEPENDENT_JUDGE','createdAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'candidate':str(R),'baseCommit':git('rev-parse','HEAD').decode().strip(),'buildFreeze':bind(P/'E6i_NODEVIDEO_LANDING_BUILD_FREEZE.json'),'sourceOwnerCount':19,'sourceDigest':build['sourceDigest'],'sourceBindings':1374,'distBindings':1329,'allSourceDistRefsIndexUnchanged':True,'ownedPort4983Released':True,'checks':sum(len(c['checks'])for c in report['cells']),'cells':summary,'savedPngCount':len(list(O.glob('*/*.png'))),'savedVideoCount':len(videos),'savedCanvasRasterCount':len(raster),'manifest':bind(O/'artifact-manifest.json'),'artifactCount':len(artifacts),'artifactBytes':sum(r['bytes']for r in artifacts),'priorFailedRecorder':bind(P/'E6i-nodevideo-landing-after-01/report.json'),'expectationCorrection':bind(O/'expectation-addendum.json'),'grades':None,'limits':['Fatal first-callback failure resolved in current local build; continuous pose visibility is not claimed. Five immutable all-null input frames produce honest tracking gaps.','Each trailing blank run is censored, not extended or described as recovered.','Computed-text200 phone overflow/cropping remains open. No complete responsive, visual, performance, assistive or real-device grade.','Exact frame indices/cleanup belong to separate parent callback proof. Native browser navigation is observed, not callback instrumentation.','Prior editor/codec proof remains historical; no unrelated replay, provider/private media, publish or deployment.'],'commands':{'actual':f'python -X utf8 "{O.as_posix()}/run-after.py"','safeReplay':'Use a new empty sibling output: copy capture.mjs, boundary.mjs and run-after.py; preserve the same current source/build freeze. The launcher refuses an existing command receipt or occupied4983. No build/install needed for this frozen local replay.','boundWholeRunSeconds':360,'perActionSeconds':15,'normalSampleWindowMilliseconds':18000,'reducedSampleWindowMilliseconds':2000}}
+save(P/'E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.json',receipt)
+lines=['# NodeVideo landing clock: affected browser proof','','A visitor can now open the local landing page and see its real pose animation and count start. This closes the observed fatal startup exception in the current build. Intermittent missing tracking data and enlarged-phone layout defects remain visible.','',f"Worker proof: **99checks across9cells passed** at320×800,390×844 and1440×960, each with normal/reduced/computed-text200. All1,374source files,1,329build files and19owner bindings stayed exact; refs/index were preserved and owned4983 closed.",'','- [Exact nine-cell results](E6i-nodevideo-landing-after-02/scoped-results.json)','- [Matched before/after PNG bindings](E6i-nodevideo-landing-after-02/before-after-pairs.json)','- [Actual saved canvas raster review](E6i-nodevideo-landing-after-02/saved-canvas-raster-review.json)','- [Visual findings and limits](E6i-nodevideo-landing-after-02/visual-observations.md)','- [Raw report](E6i-nodevideo-landing-after-02/report.json)','- [Owned runtime closure](E6i-nodevideo-landing-after-02/landing-after.command.json)','- [Preserved original failed expectation](E6i-nodevideo-landing-after-01/report.json)','- [Accepted tracking-gap correction](E6i-nodevideo-landing-after-02/expectation-addendum.json)',f"- [Artifact manifest](E6i-nodevideo-landing-after-02/artifact-manifest.json):{len(artifacts)}files,{sum(r['bytes']for r in artifacts):,}bytes",'', 'Normal/text sampling lasts18seconds without extension. Every zero sample stays in the raw record; closed blank runs show recovery and trailing censored runs remain unknown. Reduced mode stays painted/static atcount1. The three native Studio/back/reload actions work in each cell without page exceptions or external requests.','', 'Computed-text200 exposes201px/131px phone overflow and count/canvas cropping. It is initial computed-font doubling, not native zoom. All full grades remain null. Source callback indices and cancellation are covered separately; editor/export/provider/device behavior was not replayed. No product edits, stage, commit, push or deployment occurred in this worker slice.','', '**Re your request:** make every repo usable with visual, responsiveness and interaction evidence — this packet provides the bounded NodeVideo landing before/after proof and preserves its remaining failures for handoff and independent judgment.']
+(P/'E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.md').write_text('\n'.join(lines)+'\n',encoding='utf-8',newline='\n')
+print(json.dumps({'receiptSha256':sha((P/'E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.json').read_bytes()),'manifestSha256':sha((O/'artifact-manifest.json').read_bytes()),'artifacts':len(artifacts),'bytes':sum(r['bytes']for r in artifacts),'checks':receipt['checks'],'pngs':receipt['savedPngCount'],'videos':len(videos),'trailingCensoredCells':[c['cell']for c in summary if c['trackingGaps']['trailingCensored']]}))

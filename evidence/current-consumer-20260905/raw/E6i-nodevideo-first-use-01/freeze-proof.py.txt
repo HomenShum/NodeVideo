@@ -1,0 +1,65 @@
+from pathlib import Path
+import datetime,hashlib,json,socket,subprocess
+O=Path(__file__).parent;P=O.parent
+R=Path('D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905')
+sha=lambda b:hashlib.sha256(b).hexdigest()
+def read(p):return json.loads(p.read_text(encoding='utf-8-sig'))
+def write(p,value):p.write_text(json.dumps(value,indent=2,ensure_ascii=False)+'\n',encoding='utf-8',newline='\n')
+def git(*a):return subprocess.check_output(['git','--no-optional-locks',*a],cwd=R,timeout=30)
+before=read(O/'special-before.json')
+for row in before['source']+before['dist']:
+ b=(R/row['path']).read_bytes();assert len(b)==row['bytes']and sha(b)==row['sha256'],row['path']
+guards={n:sha(git(*a))for n,a in {'head':['rev-parse','HEAD'],'refs':['for-each-ref','--format=%(refname) %(objectname)'],'index':['ls-files','--stage','-z']}.items()}
+assert guards==before['guards']
+with socket.socket()as port:assert port.connect_ex(('127.0.0.1',4983))!=0
+guard={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'sourceCount':len(before['source']),'distCount':len(before['dist']),'sourceUnchanged':True,'distUnchanged':True,'guards':guards,'owned4983Released':True,'sourceBinding':'special-before.json','approved18':before['approved18OwnerReceipt']}
+write(O/'final-guard.json',guard);(O/'source-at-proof.diff').write_bytes(git('diff','--binary'))
+reports={n:read(O/n/'report.json')for n in ['matrix','editor-inspector','editor-inspector-02','editor-inspector-03','special','codec','diagnostic']}
+commands={n:read(O/(n+'.command.json'))for n in reports}
+assert all(c['sourceUnchanged']and c['distUnchanged']and c['guardsUnchanged']and c['ownedPortReleased']for c in commands.values())
+main=reports['editor-inspector-03'];special=reports['special'];codec=reports['codec'];diagnostic=reports['diagnostic']
+assert commands['editor-inspector-03']['status']==commands['special']['status']==commands['codec']['status']=='PASS'
+assert len(main['cells'])==7
+summary=[]
+for label,report in [('editor-inspector',main),('special',special)]:
+ for cell in report['cells']:
+  summary.append({'lane':label,'viewport':cell['viewport'],'mode':cell.get('mode',cell['reducedMotion']),'captures':len(cell['captures']),'errors':cell['pageErrors'],'overflow':[c for c in cell['captures']if c['overflow']>1],'inspectorAxeViolations':len(cell['inspectorAxe']['violations'])if 'inspectorAxe'in cell else None,'editorAxeViolations':len(cell['editorAxe']['violations'])if 'editorAxe'in cell else None,'tempo':cell.get('tempo')})
+clip=codec['cells'][0]['artifact']
+viewed=['matrix/failure.png','diagnostic/320-no-preference.png','diagnostic/390-no-preference.png','diagnostic/320-reduce.png','codec/decoded-proof-frame.png','editor-inspector/failure.png','editor-inspector-02/failure.png','editor-inspector-03/390-frame-481.png','editor-inspector-03/320-applied.png','editor-inspector-03/1440-restored.png','special/text200-390-edit-entry.png','special/text200-390-proposal.png','special/text200-1440-frame-481.png','special/manifest-blocked.png','special/manifest-reload-recovered.png']
+# Diagnostic images were independently viewed by the nonauthor clock reviewer.
+viewed=[{'path':name,'sha256':sha((O/name).read_bytes()),'viewer':'independent clock reviewer'if name.startswith('diagnostic/')else'implementation worker'}for name in viewed]
+notes='''# Recorder corrections and limits
+
+The first launcher rejected two tracked `.env.example` template filenames before any runtime launch. Their bytes are now hashed for custody only; no environment values were displayed, and real environment files remain prohibited. `launcher-failure-01.json` records the exact tool-result error and the original launcher is retained.
+
+The original matrix stopped honestly on an empty landing pose canvas and an undefined-frame JavaScript exception. It remains FAILED. A separate native pass-through diagnostic recorded negative elapsed time and index -1; no rendering or time correction was injected. Instrumentation has timing overhead, so recurrence is evidence at its recorded timestamps rather than a frequency estimate. The reduced-motion control used index0 and painted.
+
+Two independent editor recorder attempts incorrectly added a visible tempo-badge requirement. The first guessed that opening Timeline would reveal it. Actual CSS deliberately hides the project header badge below1024 on every compact surface, and the existing source scenario asserts DOM count1. Both failures and exact recorder versions remain. The final recorder uses the source scenario's count guard, records compact visibility=false, and requires desktop visibility. No application, original test, timeout or hidden display was changed. The Python launcher can exit0 after recording a child failure; its structured child exitCode/status and raw browser log are authoritative, never interpreted as a pass.
+
+`editor-inspector-03` is the final independent seven-viewport journey. `special` intentionally retains three normal-motion landing exceptions while observing manifest failure/reload, enlarged-text and reduced-motion interactions; its process PASS does not close the landing defect. Computed text doubling is a finite DOM snapshot method, not browser zoom; elements newly rendered after that snapshot can retain native sizes. The saved proposal screenshot makes this limitation visible. Full text-resize conformance is not claimed.
+
+The codec lane invokes the exact existing quickBrowserExportPlan transformation and preserves its function text/hash and transformed input. It proves a two-second180×320silent H264 export, not the original44.5-second720×1280full export. The decoded frame is a valid letterboxed source excerpt with the edited caption, not an aesthetic-quality certificate. The generated inspector video shows a native waiting spinner in some captures even after readyState2/seeking=false; measured seek identity is proven, smooth playback quality is not.
+'''
+(O/'RECORDER_NOTES.md').write_text(notes,encoding='utf-8',newline='\n')
+files=[]
+for f in sorted(O.rglob('*')):
+ if f.is_file()and f.name!='artifact-manifest.json':
+  assert not f.is_symlink();b=f.read_bytes();files.append({'path':f.relative_to(O).as_posix(),'bytes':len(b),'sha256':sha(b)})
+write(O/'artifact-manifest.json',{'schema':'operator-evidence-manifest/v1','files':files,'limits':'Operator-local evidence only; manifest excludes itself. No publication, source approval or full UI grade. Original failures remain failed.'})
+receipt={'proofId':'NODEVIDEO-FIRST-USE-01','status':'SCOPED_USER_JOURNEYS_OBSERVED_WITH_LANDING_BLOCKER','at':guard['at'],'root':str(R),'baseCommit':'42e41b4bb2ec738ef84330dedd7a7ebc9269070f','sourceMutations':[],'guard':guard,'artifactRoot':str(O),'manifestSha256':sha((O/'artifact-manifest.json').read_bytes()),'artifactFiles':len(files),'bytes':sum(f['bytes']for f in files),'observedViews':viewed,'servedInputs':read(O/'served-inputs.json'),'commands':{n:{'status':c['status'],'exitCode':c['exitCode'],'startedAt':c['startedAt'],'finishedAt':c['finishedAt'],'sourceUnchanged':c['sourceUnchanged'],'distUnchanged':c['distUnchanged'],'portReleased':c['ownedPortReleased']}for n,c in commands.items()},'currentIndependentJourney':{'sevenExactViewports':main['cells']and [c['viewport']for c in main['cells']],'captures':sum(len(c['captures'])for c in main['cells']),'localExchanges':10,'visibleHistoryBound':16,'originalFrames':1335,'originalCanvas':{'width':720,'height':1280},'frameBoundary':[480,481,480],'allExternalRequests':main['external']},'special':summary,'actualExport':clip,'findings':[{'id':'LANDING-CLOCK-01','severity':'P1','status':'OPEN','observation':'Normal motion first callback indexes frame -1 and leaves pose canvas blank; actual320 and390 timestamps/index/errors recorded. Reduced-motion index0 paints.','causeOwner':'apps/landing/src/landing.tsx','proof':'diagnostic/report.json'},{'id':'ENLARGED-REFLOW-01','severity':'P2','status':'OPEN','observation':'390 computed-text landing has39px document overflow. Enlarged editor caption intersects player controls; timeline labels/actions truncate or require horizontal scrolling. Current finite method also leaves some new proposal text at native size. No full resize/reflow pass.','proof':'special/text200-390-landing.json and special/text200-390-edit-entry.png'},{'id':'INSPECTOR-PLAYBACK-01','severity':'UNASSESSED','status':'LIMIT','observation':'Exact actual currentTime/readyState/seek and frame/pose input are bound; native waiting spinner visible in some saved frames. Smooth media playback is unverified.','proof':'editor-inspector-03/390-frame-481.png'},{'id':'COMPACT-METADATA-01','severity':'UNASSESSED','status':'LIMIT','observation':'Tempo header badge is intentionally hidden below1024; accepted changed clip can remain outside compact horizontal view and requires scrolling. DOM state checks are not a full visible review usability grade.','proof':'editor-inspector-03/320-applied.png'}],'scopeLimits':['All dimension/overall grades null; independent review pending','No full44.5-second export, full renderer/performance/platform/assistive/native zoom/human general editing certification','Local edits/history are in-memory; reload resets fixture; no durable Creator/provider/worker/camera/upload proof','No private media or env values, model/provider calls, new dependencies, product edits, staging, commits, push or deployment','Manifest failure uses changed exact originalJSON plus whitespace; no inlineRetry exists; actual recovery is full page reload','Original asset publication authorization is repository-supplied provenance, not a rights adjudication','NodeTasks candidate and original user4173/4174 untouched'],'grades':None,'independentJudgePending':True}
+write(P/'E6i_NODEVIDEO_FIRST_USE_RECEIPT.json',receipt)
+(P/'E6i_NODEVIDEO_FIRST_USE_RECEIPT.md').write_text(f'''# NodeVideo current first-use receipt
+
+**Re your request:** make each repository usable and handoff-ready, including actual visual and interaction proof — NodeVideo's public inspector, local Apply/Undo and real short-video export now have source-bound evidence. Its landing motion has a reproduced blocker; full readiness is not claimed.
+
+The final independent inspector/editor lane completed seven exact viewport pairs with57captures, actual480→481→480video seek/frame identities, proposal preservation, accepted swap, Undo restoration, and ten local exchanges retaining16visible messages. Manifest tampering blocked verification and actual full reload recovered. Separate390/1440text-doubling and reduced-motion cells retained their failures and visual limits.
+
+The real downloaded file is H264180×320, exactly2seconds, one video stream and no audio. Native caption editing produced PROOF CUT; active export cancellation produced no file, one explicit retry downloaded the file, FFmpeg decoded the full stream, OCR read the caption and a fresh browser reopened the retained bytes. This is the existing short codec fixture, not the untouched44.5-second720×1280calibration export.
+
+The normal-motion landing canvas is blank: actual rAF231.7ms versus start250.5ms produces−18.8ms, floor−1 and an undefined-frame exception. A second390cell repeats it; reduced motion paints index0. Root and the independent clock judge own its separate correction. Enlarged390landing overflow39px, caption/player collision, compact clipping and smooth playback remain open. All complete grades stay null.
+
+All1,374source and1,329dist files, HEAD/refs/index and the approved18owners were unchanged throughout. Every owned4983runtime has closed. No app edits, commit, push, private input or provider call occurred.
+
+Operator evidence: `E6i-nodevideo-first-use-01/artifact-manifest.json` ({len(files)}files, SHA256 `{receipt['manifestSha256']}`), `final-guard.json`, `RECORDER_NOTES.md`, and the structured receipt. The notes preserve both recorder mistakes and distinguish a process exit from a product pass. This is a local evidence freeze for independent judgment, not a portable publication packet.
+''',encoding='utf-8',newline='\n')
+print(json.dumps({'status':receipt['status'],'files':len(files),'manifestSha256':receipt['manifestSha256'],'receiptSha256':sha((P/'E6i_NODEVIDEO_FIRST_USE_RECEIPT.json').read_bytes()),'sourceGuardClosed':True,'owned4983Released':True}))

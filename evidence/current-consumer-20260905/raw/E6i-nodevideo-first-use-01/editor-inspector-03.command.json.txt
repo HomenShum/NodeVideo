@@ -1,0 +1,293 @@
+{
+  "startedAt": "2026-09-05T19:51:05.582585+00:00",
+  "section": "editor-inspector",
+  "cwd": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905",
+  "sourceCount": 1374,
+  "distCount": 1329,
+  "childRemovedNamesOnly": [],
+  "childOverride": {
+    "NODEVIDEO_URL": "http://127.0.0.1:4983"
+  },
+  "status": "PASS",
+  "argv": [
+    "C:/nvm4w/nodejs/node.exe",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-first-use-01\\observe.mjs",
+    "editor-inspector",
+    "editor-inspector-03"
+  ],
+  "timeoutSeconds": 900,
+  "exitCode": 0,
+  "owned": [
+    [
+      19788,
+      1788637865.587308
+    ],
+    [
+      19756,
+      1788637865.5974317
+    ],
+    [
+      68568,
+      1788637865.7657478
+    ],
+    [
+      20572,
+      1788637865.9700487
+    ],
+    [
+      10920,
+      1788637866.0089176
+    ],
+    [
+      15604,
+      1788637866.66395
+    ],
+    [
+      67432,
+      1788637866.6816428
+    ],
+    [
+      22608,
+      1788637867.008807
+    ],
+    [
+      34876,
+      1788637867.1192596
+    ],
+    [
+      60872,
+      1788637867.1784
+    ],
+    [
+      45332,
+      1788637867.198799
+    ],
+    [
+      30784,
+      1788637867.7654972
+    ],
+    [
+      17488,
+      1788637868.8793347
+    ],
+    [
+      15424,
+      1788637870.1168344
+    ],
+    [
+      30492,
+      1788637871.5166
+    ],
+    [
+      60152,
+      1788637872.534647
+    ],
+    [
+      41656,
+      1788637872.7952907
+    ],
+    [
+      40100,
+      1788637874.075717
+    ],
+    [
+      61012,
+      1788637874.3415086
+    ],
+    [
+      51692,
+      1788637875.64927
+    ],
+    [
+      29416,
+      1788637875.8490143
+    ],
+    [
+      8568,
+      1788637877.4030402
+    ],
+    [
+      32724,
+      1788637878.5037818
+    ],
+    [
+      52616,
+      1788637878.746323
+    ],
+    [
+      32504,
+      1788637879.9382842
+    ],
+    [
+      51768,
+      1788637880.240279
+    ],
+    [
+      40012,
+      1788637881.588864
+    ],
+    [
+      49548,
+      1788637882.8838563
+    ],
+    [
+      26676,
+      1788637883.1696439
+    ],
+    [
+      19968,
+      1788637884.3320217
+    ],
+    [
+      49024,
+      1788637884.6133697
+    ],
+    [
+      32800,
+      1788637886.2059984
+    ],
+    [
+      67628,
+      1788637887.383239
+    ]
+  ],
+  "closure": [
+    {
+      "pid": 67628,
+      "result": "already-exited"
+    },
+    {
+      "pid": 32800,
+      "result": "already-exited"
+    },
+    {
+      "pid": 49024,
+      "result": "already-exited"
+    },
+    {
+      "pid": 19968,
+      "result": "already-exited"
+    },
+    {
+      "pid": 26676,
+      "result": "already-exited"
+    },
+    {
+      "pid": 49548,
+      "result": "already-exited"
+    },
+    {
+      "pid": 40012,
+      "result": "already-exited"
+    },
+    {
+      "pid": 51768,
+      "result": "already-exited"
+    },
+    {
+      "pid": 32504,
+      "result": "already-exited"
+    },
+    {
+      "pid": 52616,
+      "result": "already-exited"
+    },
+    {
+      "pid": 32724,
+      "result": "already-exited"
+    },
+    {
+      "pid": 8568,
+      "result": "already-exited"
+    },
+    {
+      "pid": 29416,
+      "result": "already-exited"
+    },
+    {
+      "pid": 51692,
+      "result": "already-exited"
+    },
+    {
+      "pid": 61012,
+      "result": "already-exited"
+    },
+    {
+      "pid": 40100,
+      "result": "already-exited"
+    },
+    {
+      "pid": 41656,
+      "result": "already-exited"
+    },
+    {
+      "pid": 60152,
+      "result": "already-exited"
+    },
+    {
+      "pid": 30492,
+      "result": "already-exited"
+    },
+    {
+      "pid": 15424,
+      "result": "already-exited"
+    },
+    {
+      "pid": 17488,
+      "result": "already-exited"
+    },
+    {
+      "pid": 30784,
+      "result": "already-exited"
+    },
+    {
+      "pid": 45332,
+      "result": "already-exited"
+    },
+    {
+      "pid": 60872,
+      "result": "already-exited"
+    },
+    {
+      "pid": 34876,
+      "result": "already-exited"
+    },
+    {
+      "pid": 22608,
+      "result": "already-exited"
+    },
+    {
+      "pid": 67432,
+      "result": "already-exited"
+    },
+    {
+      "pid": 15604,
+      "result": "already-exited"
+    },
+    {
+      "pid": 10920,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 20572,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 68568,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 19756,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 19788,
+      "result": "owned-process-closed"
+    }
+  ],
+  "sourceUnchanged": true,
+  "distUnchanged": true,
+  "guardsUnchanged": true,
+  "ownedPortReleased": true,
+  "finishedAt": "2026-09-05T19:51:30.745926+00:00"
+}

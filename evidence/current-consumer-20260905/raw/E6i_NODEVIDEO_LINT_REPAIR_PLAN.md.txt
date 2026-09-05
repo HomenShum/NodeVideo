@@ -1,0 +1,47 @@
+# NodeVideo current lint repair plan
+
+**Re your request:** make each repository usable for developer handoff — repair the existing lint gate in exactly17 source owners, preserving behavior and the current rules. **Read-only plan frozen; no fix or future pass is claimed.**
+
+The exact canonical `42e41b4bb2ec738ef84330dedd7a7ebc9269070f` local log contains **84 errors**, with84 parsed diagnostic headers and the matching footer, across522 checked files. Earlier shared CI33984118568 reported85 at its routing head, but printed only20 and omitted65. That unprinted extra error is unresolved; it must not be invented or attributed to a guessed owner. Root's unchanged npm installation passed separately. This reviewer did not rerun lint or any runtime.
+
+The84 current diagnostics are17 formatting,6 import-order,50 local syntax/style idioms and11 behavior-sensitive changes. Thirteen vendored clip-gate files account for78; the schema, deploy verifier and two frame-evidence files account for6. The current source copies do not satisfy the existing Biome1.9.4 rules. Formatting those copies is a local consumer adaptation; the clip-gate README still names FeatureClipStudio canonical.
+
+| Exact current owner | Diagnostics |
+| --- | ---: |
+| tools/clip-gate/voice.mjs | 9 |
+| schemas/production-agent.v1.schema.json | 1 |
+| tools/clip-gate/score.mjs | 20 |
+| tools/clip-gate/rubric.mjs | 1 |
+| tools/clip-gate/retime.mjs | 3 |
+| tools/clip-gate/readability.mjs | 4 |
+| scripts/quality/verify-production-deploy.mjs | 2 |
+| tools/clip-gate/narrate.mjs | 2 |
+| tools/clip-gate/judge-video.mjs | 22 |
+| src/lib/frame-evidence.test.ts | 2 |
+| tools/clip-gate/iterate.mjs | 9 |
+| src/lib/frame-evidence.ts | 1 |
+| tools/clip-gate/calibration.json | 1 |
+| tools/clip-gate/apply-captions.mjs | 2 |
+| tools/clip-gate/comprehension-rubric.mjs | 1 |
+| tools/clip-gate/clip.mjs | 3 |
+| tools/clip-gate/find-references.mjs | 1 |
+
+1. Freeze one17-owner repair slice on this exact baseline, preserving original logs, source bytes and policy. Keep source schema and frame evidence behavior, clip prompts/thresholds, task ordering, filenames and media/API boundaries unchanged. This is existing gate repair, not creator/UI implementation.
+
+2. Apply formatter output only to the17 named files, then review its raw diff. Sort the six named import lists without dropping or adding imports; clip.mjs moves a Node builtin import, so keep the leading explanation intact and relative-module evaluation order unchanged. Deep-compare both JSON values and preserve literal/template content and Unicode. No repository-wide autofix, unsafe fixer, ignore list or rule changes.
+
+3. Manually resolve the50 local idiom findings: split13 declarations in original evaluation order, convert8 string concatenations without changing resulting strings or comments, replace25 no-interpolation templates with equal string literals, use const for3 never-reassigned bindings, and preserve Math.pow(2, exponent) numeric behavior when using exponentiation. Do not infer semantic equality from the lint label alone.
+
+4. For7 callback loops retain item order, dense input assumptions, nested break/return behavior and mutation order. Do not gratuitously rewrite the existing indexed forEach uses that were not flagged. For2 optional-chain findings preserve Boolean some() behavior and the existing fallback precedence for score evidence, including null/undefined/falsy cases.
+
+5. Replace voice.mjs literal NUL-matching regex with an equivalent character operation such as split(String.fromCharCode(0)).join(''), preserving removal of every NUL and the final slice(0,300). For narrate.mjs rebuild the recovered plain result without its failed property; setting failed=undefined is not an equivalent property-presence contract. Preserve i/file, seconds/synth, freshProcessRetry and exactly two retries, and leave terminal failure as a thrown failure.
+
+6. Before any executable proof, inspect the actual changed owners and freeze a bounded differential harness using synthetic owned inputs. Compare strings, numeric outputs, loop effect order and narration success/recovered/exhausted/invalid-response boundaries while blocking actual subprocess/network/media work. Keep property absence assertions. These prove transformations only; no Piper, FFmpeg, model, upload, deploy or video-quality claim. Do not invoke clip, voice, score, judge-video or deploy-verifier entrypoints merely to lint them.
+
+7. After the patch run unchanged normal lint, syntax checks and the existing frame-evidence scenario tests; then the normal required type/test/build gates appropriate to that source freeze. Coordinate with root baseline/build work to avoid duplicate or overlapping commands. Independent judge reviews raw diff and proof before integration. Original84 local and85 historical shared errors remain preserved; future passing checks are not predicted.
+
+The two most consequential traps are the narration retry's property absence (`delete entry.failed` is not equal to an undefined-valued property), and the literal NUL error sanitizer. Keep these contracts exact, alongside retry count, generated text and sequential effect order. Lint is not proof that media/tool scripts execute successfully. Provider/media/deployment capabilities stay out of this repair proof.
+
+All1,374 baseline source bindings remain exact; named source bodies also match immutable canonical Git objects. Closing candidate HEAD/branch/serialized-index and named-source guards pass. Root may be producing ignored build outputs independently; this review makes no whole-directory/generated-output claim. One read-only collector had an unmatched-parenthesis compile error, retained separately; the corrected named read completed without product execution.
+
+[Structured plan](E6i_NODEVIDEO_LINT_REPAIR_PLAN.json) contains all84 locations and rule counts through [the raw artifact manifest](E6i-nodevideo-lint-plan/artifact-manifest.json), SHA-256 `1cebe20f499e3c4f60f67a78e9dec12ac36ef024c1bb8167a2f6678a36f58040`. Full grades and runtime readiness remain unresolved.

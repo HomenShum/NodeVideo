@@ -1,0 +1,367 @@
+{
+  "proofId": "NODEVIDEO-FIRST-USE-01",
+  "section": "codec",
+  "startedAt": "2026-09-05T19:44:28.521Z",
+  "cells": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "reducedMotion": "no-preference",
+      "console": [],
+      "pageErrors": [],
+      "network": [
+        {
+          "url": "http://127.0.0.1:4983/edit.html",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/rolldown-runtime-CNC7AqOf.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/bundle-mjs-B_AA55HL.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/button-C55PNK8W.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/jsx-runtime-ChSQvssS.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/plan-composition-Dt8YQ1oQ.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/input-IctMKesL.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/createLucideIcon-DsNuATtN.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/progress-BQdAoXZQ.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/client-DsVmXU0u.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chevron-down-BtHmp5ES.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/tooltip-DyLMrQAN.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/badge-C7mh7M1b.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/circle-x-Cvk2E7DL.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/x-D37vk2Q2.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/preload-helper-Czpn1I53.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-Y2CYZVJY-DsF7k-Jl.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/edit-CVJawFwO.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/src-Cz8bXOH0.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/dist-BH9bKIvu.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-VAUOI2AC-C2kMvnI6.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-ICXQ74PX-B5SpVTRg.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-OGEWGWER-B7MpBJJi.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-WYO6CB5R-ayH7yfsr.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-C7G6YPKG-IzwgcLMZ.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/katex-CgY4bQap.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-ZIRB5QZD-C6fEPe3t.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-HOUHSVGY-C-ZkUG0k.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-7BUUIJ7U-Bb538aSH.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/rough.esm-CSKSodPl.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-Q4XR5HBZ-Cl8_taEv.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-ZGVPDNZ5-DDFo4mGr.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/array-BifhSqXX.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/path-BWPyau1x.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/line-8GeAKmOP.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-BO2N2NFS-nmTi_V56.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-52WLFC77-BS5GvggV.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/select-2tr_hmkH.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/download-C6b2hJs0.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/trash-2-BuTvwRVb.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/chunk-FWX5IMBZ-CSyzFPVI.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/card-CrtlD0SJ.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/plan-composition-zdJ3yhB_.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/tool-bpcBbAiU.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/media/integrated-source-only-v1/edit-plan.json",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+          "status": 206
+        },
+        {
+          "url": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/ffmpeg/0.12.10/Geist-Variable-Latin.ttf",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/esm-C6swCY4n.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/ffmpeg/0.12.10/worker-D1KsWRGg.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/ffmpeg/0.12.10/st/ffmpeg-core.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/ffmpeg/0.12.10/st/ffmpeg-core.wasm",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/ffmpeg/0.12.10/Geist-Variable-Latin.ttf",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/ffmpeg/0.12.10/worker-D1KsWRGg.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/ffmpeg/0.12.10/st/ffmpeg-core.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/ffmpeg/0.12.10/st/ffmpeg-core.wasm",
+          "status": 200
+        }
+      ],
+      "captures": [
+        {
+          "name": "accepted-caption",
+          "overflow": 0,
+          "pngSha256": "acf779bfd1a72f34e6830d9fd19fbaf147442d7860263c475e2f25724ba7a52d"
+        },
+        {
+          "name": "export-active-before-cancel",
+          "overflow": 0,
+          "pngSha256": "5fe62222acc1512f15485c8b306da9714d8b07c8e67338215e0ec6488f8f8194"
+        },
+        {
+          "name": "export-cancelled",
+          "overflow": 0,
+          "pngSha256": "2e70193157282c0d3e541abb0f42f031ad567d9b2ce2bf2dcc0951e8c80c3a19"
+        },
+        {
+          "name": "export-ready",
+          "overflow": 0,
+          "pngSha256": "43919912a427838216fa4a36df4a80cc4537ae2addaca4c76b4edfec4d397d99"
+        }
+      ],
+      "mtAvailabilityOnly": {
+        "status": 200,
+        "sha256": "be2c97605366b78f3f13e21b52e81a55a79e1f29c133b03a68ec187b1a2ec41a",
+        "limit": "GET availability only; exporter defaults single-thread"
+      },
+      "artifact": {
+        "file": "nodevideo-sign-edit.mp4",
+        "bytes": 55223,
+        "sha256": "ea98c867b27136df65c5b5c8d6b22ddd43294bfc5881580e8e2ced2cd923317e",
+        "probe": {
+          "programs": [],
+          "streams": [
+            {
+              "codec_name": "h264",
+              "codec_type": "video",
+              "width": 180,
+              "height": 320
+            }
+          ],
+          "format": {
+            "duration": "2.000000"
+          }
+        },
+        "decodedPngSha256": "a3d53477d76ec1c1eb47e485403972b5d213e0da18a71093d784de348a98baa7",
+        "ocr": "PROOF CUT\r\n",
+        "fullDecodeExit": 0
+      },
+      "status": "OBSERVED_REAL_CODEC"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "reducedMotion": "no-preference",
+      "console": [],
+      "pageErrors": [
+        "TypeError: Cannot read properties of undefined (reading '11')"
+      ],
+      "network": [
+        {
+          "url": "http://127.0.0.1:4983/",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/rolldown-runtime-CNC7AqOf.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/index-Di-CS-ZF.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/jsx-runtime-ChSQvssS.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/index-B_S5QNf7.css",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/pose-loop-D7I5IRx_.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/client-DsVmXU0u.js",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/proof-export.mp4",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:4983/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+          "status": 200
+        }
+      ],
+      "captures": [
+        {
+          "name": "actual-file-reopened",
+          "overflow": 0,
+          "pngSha256": "e08d037dc0b49c95625fbc7f89158b1e69affb40fdc95e9ca99c11b9e1bb9742"
+        }
+      ],
+      "artifactSha256": "ea98c867b27136df65c5b5c8d6b22ddd43294bfc5881580e8e2ced2cd923317e",
+      "status": "OBSERVED_REOPEN"
+    }
+  ],
+  "external": [],
+  "status": "OBSERVED_WITH_UNGRADED_FINDINGS",
+  "grades": null,
+  "browser": "149.0.7827.55",
+  "finishedAt": "2026-09-05T19:44:31.767Z"
+}

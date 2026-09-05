@@ -1,0 +1,48 @@
+{
+  "at": "2026-09-05T18:48:54.375403+00:00",
+  "status": "ISOLATED_UNCHANGED_INSTALL_AND_LINT_BASELINE_OBSERVED",
+  "candidate": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905",
+  "branch": "codex/nodevideo-current-consumer-20260905",
+  "head": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "tree": "cab0f9515fe80ed2868a6f9d9a6a7018fcbf4657",
+  "sourceFiles": 1374,
+  "sourceBytes": 128631356,
+  "commands": [
+    {
+      "name": "npm-ci",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\npm.cmd",
+        "ci"
+      ],
+      "startedAt": "2026-09-05T18:48:29.315632+00:00",
+      "finishedAt": "2026-09-05T18:48:51.188919+00:00",
+      "elapsedSeconds": 21.875,
+      "exitCode": 0,
+      "logSha256": "4ef0d1ce9618d49449169845c45c434f7fb37626f1c0867704092cea02a58127"
+    },
+    {
+      "name": "lint-full-diagnostics",
+      "argv": [
+        "C:\\nvm4w\\nodejs\\npm.cmd",
+        "run",
+        "lint",
+        "--",
+        "--max-diagnostics=200"
+      ],
+      "startedAt": "2026-09-05T18:48:51.204153+00:00",
+      "finishedAt": "2026-09-05T18:48:53.307217+00:00",
+      "elapsedSeconds": 2.10999999998603,
+      "exitCode": 1,
+      "logSha256": "1c46986a850d15795dde9a3e19bf6807ad8327507c05ea8f5f7fd44802cbc092"
+    }
+  ],
+  "childRemovedNamesOnly": [],
+  "primaryHeadBranchIndexStatusUnchanged": true,
+  "allPriorRefsPreserved": true,
+  "onlyAddedRef": "refs/heads/codex/nodevideo-current-consumer-20260905",
+  "olderCloneTouched": false,
+  "sourceUnchanged": true,
+  "clean": true,
+  "runtimeStarted": false,
+  "fullGrades": null
+}

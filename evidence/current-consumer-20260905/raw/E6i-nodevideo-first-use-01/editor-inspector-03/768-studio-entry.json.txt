@@ -1,0 +1,195 @@
+{
+  "url": "http://127.0.0.1:4983/studio.html",
+  "viewport": {
+    "width": 768,
+    "height": 1024
+  },
+  "crossOriginIsolated": false,
+  "overflow": 0,
+  "active": {
+    "tag": "BODY",
+    "label": null,
+    "text": "\n    NodeVideo Source-only calibration Public repoCreator profile → source interpretation → frozen edit → gated evaluationInspect how NodeVideo learns taste, pl"
+  },
+  "text": "NodeVideo\nSource-only calibration\nPublic repo\nCreator profile → source interpretation → frozen edit → gated evaluation\nInspect how NodeVideo learns taste, plans the edit, and proves what passed.\n\nThis owner-authorized calibration aligned both raw MOVs to the original choreography, mapped movement to “Sign,” and selected all five source ranges within two frames of the manual edit. NodeVideo now treats creator voice, text placement, grade, identity, and delivery as separate fidelity gates; a timing pass alone is no longer reported as a creative pass.\n\nUpload sources, reuse creator taste, keep the target sealed.\nOwner access key\nOriginal choreography\nCreator take A\nCreator take B\nChosen song\nTimed lyrics\nCreator taste profile (optional)\nStart source-only job\nInspect the calibration cut frame by frame\nOfficial choreography · both takes · MediaPipe · generated edit · held-out final\n\nPublic media is sanitized and the public preview is silent; local development may use the private soundtrack render. Hash-bound analysis, plan, freeze receipt, evaluation, performer selection, pose tracks, and preview are verified before inspection.",
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "label": "Switch to light theme",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 596.953125,
+        "y": 15.5,
+        "width": 28,
+        "height": 28
+      },
+      "display": "inline-flex",
+      "visibility": "visible",
+      "scrollWidth": 26,
+      "clientWidth": 26
+    },
+    {
+      "tag": "A",
+      "label": null,
+      "text": " Public repo",
+      "rect": {
+        "x": 636.953125,
+        "y": 16,
+        "width": 107.046875,
+        "height": 28
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 105,
+      "clientWidth": 105
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 40,
+        "y": 538.25,
+        "width": 688,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 686,
+      "clientWidth": 686
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 40,
+        "y": 617.5,
+        "width": 336,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 334,
+      "clientWidth": 334
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 392,
+        "y": 617.5,
+        "width": 336,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 334,
+      "clientWidth": 334
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 40,
+        "y": 692.75,
+        "width": 336,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 334,
+      "clientWidth": 334
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 392,
+        "y": 692.75,
+        "width": 336,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 334,
+      "clientWidth": 334
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 40,
+        "y": 768,
+        "width": 336,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 334,
+      "clientWidth": 334
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 392,
+        "y": 768,
+        "width": 336,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 334,
+      "clientWidth": 334
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Start source-only job",
+      "disabled": true,
+      "rect": {
+        "x": 40,
+        "y": 820,
+        "width": 181.984375,
+        "height": 32
+      },
+      "display": "inline-flex",
+      "visibility": "visible",
+      "scrollWidth": 180,
+      "clientWidth": 180
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Inspect the calibration cut frame by frameOfficial choreography · both takes · MediaPipe · generated edit · held-out fin",
+      "disabled": false,
+      "rect": {
+        "x": 24,
+        "y": 892,
+        "width": 720,
+        "height": 62
+      },
+      "display": "inline-flex",
+      "visibility": "visible",
+      "scrollWidth": 718,
+      "clientWidth": 718
+    }
+  ],
+  "videos": [],
+  "svgs": [],
+  "canvases": []
+}

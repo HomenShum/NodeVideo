@@ -1,0 +1,1189 @@
+{
+  "status": "FROZEN_FOR_INDEPENDENT_JUDGE",
+  "artifacts": [
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/cell.json",
+      "bytes": 589126,
+      "sha256": "5bd3d2f1660d2b0975668e8f83adce78cded69f3641c88747f596930a4ebdc8e"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/end-canvas.png",
+      "bytes": 3774,
+      "sha256": "f6d7f01bc411836b8268b47d81a61d404435c6307ecf4693642b1ae9386db906"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/end.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/end.json",
+      "bytes": 3624,
+      "sha256": "491d0dba62e4e369c3924966e695c9fbcde78bf38934393700727d4292450434"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/end.png",
+      "bytes": 31945,
+      "sha256": "53c1cfd466ea7066992dc80b03894ed9b8c2ec5529652aa4feea176f58f11df7"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/failure-state.json",
+      "bytes": 3621,
+      "sha256": "7a31a8e5c6b4d56a14af6c8f15522fd093d8f420cf9e509b3ed76ccf44ee6b66"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/failure.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/failure.png",
+      "bytes": 28011,
+      "sha256": "36f9819acade57494b9684c8e274323baff21a05d0de3ae8f2d3ac66c69300fe"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/mid-canvas.png",
+      "bytes": 7555,
+      "sha256": "8c42332a4b8a39a33cee8f35114d79482ffee949ce0facc250b218c7f81e0e67"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/mid.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/mid.json",
+      "bytes": 3623,
+      "sha256": "763e4bf7a3727a17ff4e898fe0d817e29236d5672c91d235f39d4f429afc28d7"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/mid.png",
+      "bytes": 33436,
+      "sha256": "2b8cedee8129328201c93a2cc0088753e217f95b74949fe3a522d935f6044221"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/native-samples.json",
+      "bytes": 533170,
+      "sha256": "31e9c302a559d14d75561fbeb9bcdd3f14ef9bafdfd2fac7fe8c29d01953bcda"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/page@dc136fe76d177bee6abca0a063acae83.webm",
+      "bytes": 965533,
+      "sha256": "112945f12c40198c0d2ca229db0dcb72ad659d8caaaba276459ff789d0789fa3"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/start-canvas.png",
+      "bytes": 7778,
+      "sha256": "7110f4847e749ed71b7265b44cc5f84f0ceb17332bbb5067a15f3f5f1e2e915c"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/start.html",
+      "bytes": 7947,
+      "sha256": "69538acfd8f982949f6c34a80f0a8abac9cdc244eb28c43be3a5607743729f81"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/start.json",
+      "bytes": 3629,
+      "sha256": "7e45fa7acf53933d99d4507255a1ef726bf3a6d20e48713999b97387d2c2dd80"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/start.png",
+      "bytes": 33862,
+      "sha256": "a5e7f17fbd8a9c1bb230216248dfc09ac392c31811ce9e16583fbe8985427224"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/boundary.mjs",
+      "bytes": 3305,
+      "sha256": "8c3b157f53a15930c1d2b4b083123fa7b819b0036acbd437018b067876c85a5f"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/capture.mjs",
+      "bytes": 10996,
+      "sha256": "4e2b844ccf27e00789f5a2cf25cf5aced0b8e7e45fdd28823a4fc663e6ed65d1"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/landing-after-before.json",
+      "bytes": 491959,
+      "sha256": "5821fd1679cf0b0f96e38685f0212ed7bc05822b6bcf28940369521196c72350"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/landing-after-preview.log",
+      "bytes": 124,
+      "sha256": "380a289905a6ae185958c8953c5611cc8cf47adf07b1f296d06eb80afd2f57c7"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/landing-after.command.json",
+      "bytes": 2285,
+      "sha256": "bc78d5b14203fa9668b6a18f1e3172ad3e94f26a4c0b4d2f796ab3684c6a5104"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/landing-after.log",
+      "bytes": 1187,
+      "sha256": "dbd3df1e21d7beff9fe250a4a0b200b2578455cff7729f96d7a926a13579aaeb"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/prepare.py",
+      "bytes": 1513,
+      "sha256": "5800c93fd30d76a608a9c1aaabff5b9adbb31bf7a8a80d469bb11b265a294e63"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/public-tracking-gap-diagnosis.json",
+      "bytes": 911,
+      "sha256": "40e66d93fc7d3141292f0db79a8da18d2f5bc6284b4c899c3edcbe5fc9908eb3"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/report.json",
+      "bytes": 667321,
+      "sha256": "c06288f3164aced3ec4e57e855e8151a5e6eb40497e179154db0877dc31d8c93"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/run-after.py",
+      "bytes": 7596,
+      "sha256": "ae2da40d962ea11a8863da1c7321ead938ed121fa222ff5834d127cbf61ed793"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/after-overlay.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/before-overlay.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/cell.json",
+      "bytes": 602925,
+      "sha256": "240c6528e39e5c0cdfd26b87cd4470a60ef4b17448fa115a4373c664e650dbb9"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/change-boundary.md",
+      "bytes": 725,
+      "sha256": "dcd2e4a38ca6df53de752dd445f6bf12804f6ea127b759296c3a91b1292b9254"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/change-boundary.png",
+      "bytes": 118842,
+      "sha256": "34bb39bc46e0de63e5e3ad8ddaf3bea851664e75c8ab62ceda6640b4069fcd6e"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/end-canvas.png",
+      "bytes": 13910,
+      "sha256": "0bfa444cb5c689a7831910354fa3a8d1c514629649c67c355716dd06176e5783"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/end.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/end.json",
+      "bytes": 3631,
+      "sha256": "f84076a105a87c12990994c09634663a24e61a4fc13631486d19fb3309cb36eb"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/end.png",
+      "bytes": 117853,
+      "sha256": "b694f2cfdd5064e3867c22e207d671306f9fbf14b551dbd03776ce01f54ea12c"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/mid-canvas.png",
+      "bytes": 14498,
+      "sha256": "d77dba0483a16b90a1c2eadcc1de3f031bf780e900f7a55b73302e07bd9858f6"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/mid.html",
+      "bytes": 7945,
+      "sha256": "85205939df75ab8d8572bbd8f12dfc83ff60bae4cc5b340e30d464fa5dc89f4f"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/mid.json",
+      "bytes": 3643,
+      "sha256": "13abc04f1c2353da6d85cfaf600269a35c3f8ea49daf0c13af68ce134b7685d5"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/mid.png",
+      "bytes": 130022,
+      "sha256": "527ee5ed472e4eaa9798d5c87ed544087ff373c0042c195539f68b1e4a6b8985"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/native-samples.json",
+      "bytes": 532468,
+      "sha256": "3ba5c1661f852ddcd3e63f25f209610541bc0adbbd68e92f237785486ad5652d"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/overlay-restoration.json",
+      "bytes": 110,
+      "sha256": "f8b75a90d1eef272b7fcee5975458538e62f7547628b5a1fe332d24e7da81227"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/page@49d6933cee21f78325e0d2ff165da4ef.webm",
+      "bytes": 2317352,
+      "sha256": "5aae54ea2cb87c52025c850883ac1ef0e9706e863b7b86c1de25cdc6b8717b9f"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/start-canvas.png",
+      "bytes": 14672,
+      "sha256": "91022816f79d41b09dba2349bc165f7fcefb3cea3629f04cf5cedf4380786b97"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/start.html",
+      "bytes": 7947,
+      "sha256": "69538acfd8f982949f6c34a80f0a8abac9cdc244eb28c43be3a5607743729f81"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/start.json",
+      "bytes": 3662,
+      "sha256": "43d87c6560b021ce608df9f3426ecc3c725f845e223f0bf9bd9c6206dccaa2c8"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/start.png",
+      "bytes": 128975,
+      "sha256": "d517786eb44889cb88bf19344801119806f18e66891201c1a23ff1db9b9a723b"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/after-overlay.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/before-overlay.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/cell.json",
+      "bytes": 88008,
+      "sha256": "9457935dbc56e9bc42f4617b88f9a8a5bef2ffc13f6eb5cb2102317178a8df25"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/change-boundary.md",
+      "bytes": 726,
+      "sha256": "015e4ee3f6dd8f3e22820d7c127c6c63110dee68d2dd18111d9b80895bc286a9"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/change-boundary.png",
+      "bytes": 120114,
+      "sha256": "5256a253e15e388b9c9d79945c09b46e128f60bde1aae37c909a1fe60eccc565"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/end-canvas.png",
+      "bytes": 15481,
+      "sha256": "3e98fc5284ca426d8181bcdb4239bffb0d37df149142568f30b0ef81837bd851"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/end.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/end.json",
+      "bytes": 3643,
+      "sha256": "a0247243f0ca9aec171ebd64b1cc494d7d00b7349c83ee5579cae781f033b497"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/end.png",
+      "bytes": 118366,
+      "sha256": "e4028299824301b9e235cdf877fa918779b784247ad395fc9b633c7e79085060"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/mid-canvas.png",
+      "bytes": 15481,
+      "sha256": "3e98fc5284ca426d8181bcdb4239bffb0d37df149142568f30b0ef81837bd851"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/mid.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/mid.json",
+      "bytes": 3644,
+      "sha256": "62dc993e886796c4dd2b847f3cc956956b086a0f5cdba198ade35a42bedf9fb6"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/mid.png",
+      "bytes": 118366,
+      "sha256": "e4028299824301b9e235cdf877fa918779b784247ad395fc9b633c7e79085060"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/native-samples.json",
+      "bytes": 55576,
+      "sha256": "51f71e96de85b1fb7b7acb5524c2ddb08d187d7c74f4506586c121a6bb2dbdeb"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/overlay-restoration.json",
+      "bytes": 110,
+      "sha256": "f8b75a90d1eef272b7fcee5975458538e62f7547628b5a1fe332d24e7da81227"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/page@87345ca0c40e88c58eff509adb57dba6.webm",
+      "bytes": 453311,
+      "sha256": "d682dec3eb8933abb461e8bd308e0fd4d179cf1446e3281a6394877cf36d1252"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/start-canvas.png",
+      "bytes": 15481,
+      "sha256": "3e98fc5284ca426d8181bcdb4239bffb0d37df149142568f30b0ef81837bd851"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/start.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/start.json",
+      "bytes": 3644,
+      "sha256": "473b7744c40f68fc3bdfbf7f5422fac179ffa07c8cae75012d7cacc4c5cd297c"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/start.png",
+      "bytes": 118366,
+      "sha256": "e4028299824301b9e235cdf877fa918779b784247ad395fc9b633c7e79085060"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/after-overlay.html",
+      "bytes": 10047,
+      "sha256": "321811a49007da1fbaa7813d6f1c98dd98c07591e05f8d5ac65518b93ef4f9a7"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/before-overlay.html",
+      "bytes": 10047,
+      "sha256": "321811a49007da1fbaa7813d6f1c98dd98c07591e05f8d5ac65518b93ef4f9a7"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/cell.json",
+      "bytes": 608108,
+      "sha256": "a49bcb410338e9348c370f191672502773512af9d053a1392f2525905ddf3a30"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/change-boundary.md",
+      "bytes": 726,
+      "sha256": "27f5652394da2423068d09446fbf80059c42992c4258a00fabfcb1ac403e49a9"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/change-boundary.png",
+      "bytes": 96628,
+      "sha256": "911a1b1d7d9a825a4c0733f14514d4937e3781e05a6c6e5548b0144105c97304"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/computed-fonts.json",
+      "bytes": 6280,
+      "sha256": "9fdca799089e30894fb69576b2148fb9882f50507368b27ccb62125b69f5125b"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/end-canvas.png",
+      "bytes": 9481,
+      "sha256": "79d754f361f8fb0746aca2b6b6bd8cf149fa6d1a10ad4b200d44bc3a12f891ba"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/end.html",
+      "bytes": 10047,
+      "sha256": "321811a49007da1fbaa7813d6f1c98dd98c07591e05f8d5ac65518b93ef4f9a7"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/end.json",
+      "bytes": 3644,
+      "sha256": "23fe7e1ce5626bad82fcf477b406d5d885cbd66725d61724c497e001f33be47e"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/end.png",
+      "bytes": 109446,
+      "sha256": "b7bb4457279957344f161d3fc084475cd4bb3c2ba8c080712858058b7b2a001d"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/mid-canvas.png",
+      "bytes": 21164,
+      "sha256": "5d7da965397a3be56d03a74dd2e7da39cd786c5cfdc89636b654e01f24ae7050"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/mid.html",
+      "bytes": 10064,
+      "sha256": "8cfba860cc3005cb622020d93046b285588f1586a67e570c4b02b52fc09dbf79"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/mid.json",
+      "bytes": 3660,
+      "sha256": "2e63dc2fb22b1ce48847e5f74246e15e81e60b6d6f2967f39e78d4f02381de8d"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/mid.png",
+      "bytes": 127143,
+      "sha256": "eb0c6d65a5b1347cc6d5751a4b99d2cf2c4b4186734d791427680b89a75e521f"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/native-samples.json",
+      "bytes": 532548,
+      "sha256": "ad8ec12f5f98f62ffd4af9f58aa427e2ca2343925d86ab2b7065432731f7bc12"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/overlay-restoration.json",
+      "bytes": 110,
+      "sha256": "f8b75a90d1eef272b7fcee5975458538e62f7547628b5a1fe332d24e7da81227"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/page@dc260682e37825632a7195e64f7e63f1.webm",
+      "bytes": 2406056,
+      "sha256": "54a932a997d06b6c27a3968e3ac200b548a7147936dd1b33cfe5cff3aa32e77e"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/start-canvas.png",
+      "bytes": 21867,
+      "sha256": "ce0135afdc9af63ee03812e5f25139e62e601ac8c99a3dc033d6ab5578c13667"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/start.html",
+      "bytes": 10047,
+      "sha256": "76082d2d47cb7c83ccea4d6beddd870877f660a09988acc663ae53ffe38b3e96"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/start.json",
+      "bytes": 3629,
+      "sha256": "665bd3834d1a06ab927ad8d7cd29586409c87b50163d8462aef2dd7754821745"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/start.png",
+      "bytes": 127209,
+      "sha256": "6cfa99a6ecc2ef01578f10fe14d98687cf209f4bb32c2c53e8e2be34189ee944"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/after-overlay.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/before-overlay.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/cell.json",
+      "bytes": 602180,
+      "sha256": "daa5902e92488039551dbb868564267b9a2ad494d8f9459f5b0aa99d4e6f55da"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/change-boundary.md",
+      "bytes": 724,
+      "sha256": "bb07b4637d61127cae073c7c62525e493aac3e39f2dce99d5d85395a44efa92c"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/change-boundary.png",
+      "bytes": 29610,
+      "sha256": "c0f97b3913ecd070578a7b13a0588c466cac9ee49178930006fe7d5c208c3201"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/end-canvas.png",
+      "bytes": 7794,
+      "sha256": "f08e8e1551b8147a8f0351c0a062327d9dea981df308d283d4de289ad896ad3b"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/end.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/end.json",
+      "bytes": 3624,
+      "sha256": "4424fc20c3f721b81e9f60fd27b3b6b28cbbf93326ff7d638c5a889e1bc33e81"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/end.png",
+      "bytes": 31945,
+      "sha256": "53c1cfd466ea7066992dc80b03894ed9b8c2ec5529652aa4feea176f58f11df7"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/mid-canvas.png",
+      "bytes": 7635,
+      "sha256": "c532d4e033824b7a6076ae0450977b048c4e25c93131ea7ebceb290c41cd9615"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/mid.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/mid.json",
+      "bytes": 3623,
+      "sha256": "151c66100686e836e18cccc8ec42eb33f133f76120a75276ef1ea87842cdeb6b"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/mid.png",
+      "bytes": 31807,
+      "sha256": "1438ec4af808273618c42af2f40457e0273137852fc88c787a4ad35077bf509d"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/native-samples.json",
+      "bytes": 533095,
+      "sha256": "33561e1b88cbff608e44e7cb2ababc92e2a7d946e181360b903a1a339fffa378"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/overlay-restoration.json",
+      "bytes": 110,
+      "sha256": "f8b75a90d1eef272b7fcee5975458538e62f7547628b5a1fe332d24e7da81227"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/page@35b6b6d1db1910f361fa9bc7187c6ab5.webm",
+      "bytes": 1165027,
+      "sha256": "3186207ab0d7d58b452784be242565bde76bacdbf50f63379d0448da239719b9"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/start-canvas.png",
+      "bytes": 8140,
+      "sha256": "ac0e6bb12c58f3727abf08a2bf43828e586875482daabd0e226702db8308085c"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/start.html",
+      "bytes": 7946,
+      "sha256": "3026000b6ddd3e52b312c733ce2fd2313a7d9f898bb34cade05cd88d50e648a1"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/start.json",
+      "bytes": 3640,
+      "sha256": "f4d37a0d9862a64ab07af0fd09a8afdeb8d923eab45977f41a35eed5d11f9cd9"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/start.png",
+      "bytes": 33862,
+      "sha256": "2df9ec898cc0e9d5b50352d30b9e9f2899f92c37dd4bf7adcfc713e888b454f3"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/after-overlay.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/before-overlay.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/cell.json",
+      "bytes": 87580,
+      "sha256": "5b73a096dc5cb8dcb56641a86c6f3d993d023bca60d4229a6ca0543ddd77fe85"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/change-boundary.md",
+      "bytes": 725,
+      "sha256": "411e5c67775e871da4a91acaf32f913cc667198469ed57c54cd3aadd1d11c60c"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/change-boundary.png",
+      "bytes": 33941,
+      "sha256": "5c72788ff9d6f1f38b4d26fa514d2b2e98b83795b2308d48920abacfa20c153b"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/end-canvas.png",
+      "bytes": 8293,
+      "sha256": "0a507dcb3982a5cd7d458c04c8da0a4b66c0efe2a7f1d7e8eded834c883a463a"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/end.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/end.json",
+      "bytes": 3623,
+      "sha256": "f4daddb0712b2a3e9739f7ce47d62720d295552d7ece03ca69fae65051b9497d"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/end.png",
+      "bytes": 32392,
+      "sha256": "5dcb6780fc3f846bd7be035571525caf97de3a0c6026505a8a028b9cf126eac8"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/mid-canvas.png",
+      "bytes": 8293,
+      "sha256": "0a507dcb3982a5cd7d458c04c8da0a4b66c0efe2a7f1d7e8eded834c883a463a"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/mid.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/mid.json",
+      "bytes": 3624,
+      "sha256": "6b9e3aa088e9290c01545df23bf50580212b8a87ea2dac2754d7d5c794234db9"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/mid.png",
+      "bytes": 32392,
+      "sha256": "5dcb6780fc3f846bd7be035571525caf97de3a0c6026505a8a028b9cf126eac8"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/native-samples.json",
+      "bytes": 55287,
+      "sha256": "0094b79e82c80415b54f1329f01a5f846a4b55d1abee5c3ec00dfb3d2cd8e8eb"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/overlay-restoration.json",
+      "bytes": 110,
+      "sha256": "f8b75a90d1eef272b7fcee5975458538e62f7547628b5a1fe332d24e7da81227"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/page@e2f1c50033d5151b8d7e9be015b804fe.webm",
+      "bytes": 238653,
+      "sha256": "4e028070874db28741b2702f4528479e8f4946a1044bb530f52e333cc6468eb1"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/start-canvas.png",
+      "bytes": 8293,
+      "sha256": "0a507dcb3982a5cd7d458c04c8da0a4b66c0efe2a7f1d7e8eded834c883a463a"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/start.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/start.json",
+      "bytes": 3624,
+      "sha256": "c180c0e3cf5620755d284267b6b97060515ed05b2110548b33e91568038ae69b"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/start.png",
+      "bytes": 32392,
+      "sha256": "5dcb6780fc3f846bd7be035571525caf97de3a0c6026505a8a028b9cf126eac8"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/after-overlay.html",
+      "bytes": 10046,
+      "sha256": "a219a24ebdbbca096ae7fbd5ce3a1c7a7ec1b1c3cca4e4686bb5768388714a21"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/before-overlay.html",
+      "bytes": 10046,
+      "sha256": "a219a24ebdbbca096ae7fbd5ce3a1c7a7ec1b1c3cca4e4686bb5768388714a21"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/cell.json",
+      "bytes": 609581,
+      "sha256": "ffd3a48939e0adf34272312336c1b435c99fe83d309d013daf5ff72ff5c7008c"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/change-boundary.md",
+      "bytes": 727,
+      "sha256": "e31a4194e1a39d24c7fc6cd0609a636ddfa3d010e032eeba038510f8d478751f"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/change-boundary.png",
+      "bytes": 9450,
+      "sha256": "1ab31222d6e266db8e49ded692b0e35e5c90f493a3307b37dff04ad27cfc5aac"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/computed-fonts.json",
+      "bytes": 6279,
+      "sha256": "a7e7b46873c406e0cf580123282b1cfbfa4879874a5f55fe74fe5883452a83d8"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/end-canvas.png",
+      "bytes": 16097,
+      "sha256": "c66459252d1a8fc1ea084dc9d1fc75167280ba3b07780e66e8affa080e886c98"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/end.html",
+      "bytes": 10046,
+      "sha256": "a219a24ebdbbca096ae7fbd5ce3a1c7a7ec1b1c3cca4e4686bb5768388714a21"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/end.json",
+      "bytes": 3638,
+      "sha256": "c96dd133d478c9c422d6ca6407aa01604a1590f9c7c07f6b48d3d0cf86a66621"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/end.png",
+      "bytes": 14705,
+      "sha256": "64a3f7770eaf5c873c18289f07dac745da3c41768f96f1f5fb7e116e61e46720"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/mid-canvas.png",
+      "bytes": 16493,
+      "sha256": "e38c390bd4290ac0887de3850b27ec565a6e3562897b29cda59e5ef7e224ea7a"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/mid.html",
+      "bytes": 10063,
+      "sha256": "95c1853ffbac00a0b6dc0a0e39a774fe46c7e3b3f993a6f07a3e3ec8975cd917"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/mid.json",
+      "bytes": 3665,
+      "sha256": "0ac4ab10e30adc0ea6940fc6216aa75943d6384c733716d0963709a0b9346da9"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/mid.png",
+      "bytes": 15917,
+      "sha256": "1e88e917dfb4b2b4caadbc71ba68ef16e660f78ea8c636c4a7a92cbe1394c0a6"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/native-samples.json",
+      "bytes": 533048,
+      "sha256": "e4766f5cac96bdcf7f797b070a7d21dc2db296e05217ee34336c2f50e055cc51"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/overlay-restoration.json",
+      "bytes": 110,
+      "sha256": "f8b75a90d1eef272b7fcee5975458538e62f7547628b5a1fe332d24e7da81227"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/page@92c2eada3928e4946791a3213be96cee.webm",
+      "bytes": 891821,
+      "sha256": "aeff86f075deae517764b14f0b97430b8de9f5bf8c9175fcfaff7efabee3e7ad"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/start-canvas.png",
+      "bytes": 16628,
+      "sha256": "eeb54b91173a8926776b77ca222b1cc9a49186662f6f2256a53ffffc2e47bd5a"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/start.html",
+      "bytes": 10046,
+      "sha256": "fcfd0be2e3fbfc63367e4e7c301cc8a0648a0bbf5986cbb1d60912237cb8e88c"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/start.json",
+      "bytes": 3649,
+      "sha256": "901a0de64511972f8d9ad09b063f06c34e48a4a67fc1db85bc0749596b2dbfc1"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/start.png",
+      "bytes": 16570,
+      "sha256": "23997c825ba10f64ba378e4a30fbc62e61ed8b7d4dc9ed47226779ec0661029b"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/after-overlay.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/before-overlay.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/cell.json",
+      "bytes": 598833,
+      "sha256": "d6d1f260f4b54d9bdef3d1b48d691025d8890be31bc64cf5c1940a7d9157389d"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/change-boundary.md",
+      "bytes": 724,
+      "sha256": "5683d456617e5755dea9a7a169bf613cc67a18ad16399fffd6b087950d1b0907"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/change-boundary.png",
+      "bytes": 48599,
+      "sha256": "f2172ea282f9b091b94aaed5748d4edf29b1d08187fa6065dff3cf6a9c659e16"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/end-canvas.png",
+      "bytes": 10421,
+      "sha256": "4d7883a1dc83fbd44ceec0cddcaca07f21b6b755e64ef4b376007c23a9c945a9"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/end.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/end.json",
+      "bytes": 3624,
+      "sha256": "cc0dbc3bb6430d517408a29416bb885a755fcd8f651689c89bc20981157d4d3a"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/end.png",
+      "bytes": 48165,
+      "sha256": "22138bdf9c952488c710fe2df11101df9a7cbf5be8c5d02cc580b0ef37ba4b30"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/mid-canvas.png",
+      "bytes": 10270,
+      "sha256": "5ac1174464ab1615ee0b0873b7ee9bebd333d353c760d42e25eed726a19db49b"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/mid.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/mid.json",
+      "bytes": 3623,
+      "sha256": "0bca1dada3fc14a0ff88c99d0551e77cd6372a99fe761caabb26239d7fe1a8c5"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/mid.png",
+      "bytes": 48912,
+      "sha256": "f309d9131bf67cfe73b6d90967c449ad40a097fcf6c116950abdf63d07957d56"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/native-samples.json",
+      "bytes": 529591,
+      "sha256": "dc188c42a3c37c68455e4ec1b0b5d0bfe0bb0520ca30b9a3194f18183954a56a"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/overlay-restoration.json",
+      "bytes": 110,
+      "sha256": "f8b75a90d1eef272b7fcee5975458538e62f7547628b5a1fe332d24e7da81227"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/page@a51fef02d723a5b215ca33f339e7058e.webm",
+      "bytes": 1482513,
+      "sha256": "bcb1e907f71bffedd08c5442789f01df682f5f75e53021ec15671e4593b7d342"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/start-canvas.png",
+      "bytes": 10407,
+      "sha256": "f6449c6d1039b547df2b72665f0d031327326ae9b3ed8255ec90959d5069385a"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/start.html",
+      "bytes": 7947,
+      "sha256": "f552348e47f5d6e82ce0071f3ab73309d8de0b497500cfcfaa6c6aba17a3a956"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/start.json",
+      "bytes": 3626,
+      "sha256": "33d2a38907b34fe5dc9785ffeb88c926af3ceb20015a58ea05623d1abbeae03e"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/start.png",
+      "bytes": 49719,
+      "sha256": "9e2b9669fb4742950c5e818237ad4c1fb2d968e2e0f536a6f92dc4a7a50aaf8f"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/after-overlay.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/before-overlay.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/cell.json",
+      "bytes": 87599,
+      "sha256": "f2cc2dfa8b102e4e5f9da7bea45f0895857fb614313ca30e0d37c0c167423fc8"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/change-boundary.md",
+      "bytes": 725,
+      "sha256": "2895d1bbb18a3bf5bd0ce19af060445d70f90369a1b37032bfce798713d15356"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/change-boundary.png",
+      "bytes": 48702,
+      "sha256": "034a6b7991891334940dca4977f0f8f2d512246617d06b10d2cc0a839392ed23"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/end-canvas.png",
+      "bytes": 10755,
+      "sha256": "fdd12b9910eb5db20c926a135ec12bf7706a0a59fd2260dccae01351c4e4d184"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/end.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/end.json",
+      "bytes": 3623,
+      "sha256": "5ce2fa8343cff1ec815ce3406a2adb8c6221da912b2b338407fc742d494a07e8"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/end.png",
+      "bytes": 47205,
+      "sha256": "9c135a852dec5514658151c5e2b3b6b9d81316aef1d05995ef1c001b2427bfd5"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/mid-canvas.png",
+      "bytes": 10755,
+      "sha256": "fdd12b9910eb5db20c926a135ec12bf7706a0a59fd2260dccae01351c4e4d184"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/mid.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/mid.json",
+      "bytes": 3612,
+      "sha256": "6d6a9a19f7bcf25f24006d4093e02f05398aa2448d8b8aec74434ddfd730e916"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/mid.png",
+      "bytes": 47205,
+      "sha256": "9c135a852dec5514658151c5e2b3b6b9d81316aef1d05995ef1c001b2427bfd5"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/native-samples.json",
+      "bytes": 55318,
+      "sha256": "25374750b82c0980d6590dc95a689d68053720754578fea760ac7a95d52c660f"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/overlay-restoration.json",
+      "bytes": 110,
+      "sha256": "f8b75a90d1eef272b7fcee5975458538e62f7547628b5a1fe332d24e7da81227"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/page@34cb94f505bf6897cde9288f3345f124.webm",
+      "bytes": 262185,
+      "sha256": "90208dd12c8e1a63593c5e3b1d1f0f435ba644f480ef02bac6be801847bfc676"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/start-canvas.png",
+      "bytes": 10755,
+      "sha256": "fdd12b9910eb5db20c926a135ec12bf7706a0a59fd2260dccae01351c4e4d184"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/start.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/start.json",
+      "bytes": 3624,
+      "sha256": "5909776dd2387b656a669b8841a4cd4c3180d121c452746819318418bb36e70d"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/start.png",
+      "bytes": 47205,
+      "sha256": "9c135a852dec5514658151c5e2b3b6b9d81316aef1d05995ef1c001b2427bfd5"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/after-overlay.html",
+      "bytes": 10046,
+      "sha256": "a219a24ebdbbca096ae7fbd5ce3a1c7a7ec1b1c3cca4e4686bb5768388714a21"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/before-overlay.html",
+      "bytes": 10046,
+      "sha256": "a219a24ebdbbca096ae7fbd5ce3a1c7a7ec1b1c3cca4e4686bb5768388714a21"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/cell.json",
+      "bytes": 613551,
+      "sha256": "f010c351daebfbca9ea9001eadd2c812a48836a34249cadd48cdd334a2edb35e"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/change-boundary.md",
+      "bytes": 727,
+      "sha256": "1267914bbf0f6190b035582d58c1bf4c5ed0a806cf980b47301ad67772c157b5"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/change-boundary.png",
+      "bytes": 15562,
+      "sha256": "8d8b82fc66e0cca0f9c3de6fc8da4020c48cf126e133e84888fbb370b9a453b7"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/computed-fonts.json",
+      "bytes": 6279,
+      "sha256": "a7e7b46873c406e0cf580123282b1cfbfa4879874a5f55fe74fe5883452a83d8"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/end-canvas.png",
+      "bytes": 9346,
+      "sha256": "51c36fc018d317c4b3d42907e35b15dab5ce36236b2e12ea59958578e78cb902"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/end.html",
+      "bytes": 10046,
+      "sha256": "a219a24ebdbbca096ae7fbd5ce3a1c7a7ec1b1c3cca4e4686bb5768388714a21"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/end.json",
+      "bytes": 3649,
+      "sha256": "0d7e1742089522856a51dda9ab9b8bd0d1c1555b827b46511c7300dd226c7fbe"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/end.png",
+      "bytes": 22100,
+      "sha256": "740ee466e27d14cfbfafbe03122ace473844bd10de67b6c928bbeac6c269cc29"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/mid-canvas.png",
+      "bytes": 16493,
+      "sha256": "e38c390bd4290ac0887de3850b27ec565a6e3562897b29cda59e5ef7e224ea7a"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/mid.html",
+      "bytes": 10063,
+      "sha256": "44460984f13cead9c1715263720a9317dbace1c1f3c95a6c7ae67e8c62803b3f"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/mid.json",
+      "bytes": 3665,
+      "sha256": "b7c0029485a0697f4299357d124ac587b0279cafda0908b711e90bf508d3cd17"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/mid.png",
+      "bytes": 22535,
+      "sha256": "0337f7a0b3b7668f3da198f9800fb2c8010432a6eb9bbc65fb781eb11118805a"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/native-samples.json",
+      "bytes": 537198,
+      "sha256": "d1d5fa22dd5cc8f06e69bba447a536fca1ccf559b03cd450432f95d68271aa6c"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/overlay-restoration.json",
+      "bytes": 110,
+      "sha256": "f8b75a90d1eef272b7fcee5975458538e62f7547628b5a1fe332d24e7da81227"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/page@eddc87a75ad01f8425ce2698ceb6f9b4.webm",
+      "bytes": 989305,
+      "sha256": "740d9e8bf8e21e6184f7a1f4fa25639fafe28deaddeeb8b9729f3b41190a5a12"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/start-canvas.png",
+      "bytes": 16628,
+      "sha256": "eeb54b91173a8926776b77ca222b1cc9a49186662f6f2256a53ffffc2e47bd5a"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/start.html",
+      "bytes": 10046,
+      "sha256": "fcfd0be2e3fbfc63367e4e7c301cc8a0648a0bbf5986cbb1d60912237cb8e88c"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/start.json",
+      "bytes": 3649,
+      "sha256": "ac0702b43cccd7e13e1f8dfa3a94f59fa381f045b5a17c48fd570534937543bc"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/start.png",
+      "bytes": 22915,
+      "sha256": "91aee48a7a8feb5c628a4a5edc992fdeb5fbff99d5008aecabb305e3c27499b3"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/before-after-pairs.json",
+      "bytes": 6751,
+      "sha256": "9257d361dfbe1b07cc650efbc7368dbd06976dd10b14079f730b8ecd8d0d6fab"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/boundary.mjs",
+      "bytes": 3305,
+      "sha256": "8c3b157f53a15930c1d2b4b083123fa7b819b0036acbd437018b067876c85a5f"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/capture.mjs",
+      "bytes": 11683,
+      "sha256": "d43ce26bd008756a62b66536235baf1df0879f4bd8d28507bcfd927a3bc22c35"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/expectation-addendum.json",
+      "bytes": 744,
+      "sha256": "0591fb81dfb5c55ac656630543b601492b533cb4a151c93777bf761da489ca77"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/final-source-guard.json",
+      "bytes": 556,
+      "sha256": "b04b0582c6312eac7e517f4d4ade0478eea4dd5242f08e8901237b65ee9c4b2f"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/freeze.py",
+      "bytes": 12846,
+      "sha256": "6ab17370509055541fc69eb1a2c9dda92e271de680f3c44bbfa501feb2845d8e"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/landing-after-before.json",
+      "bytes": 491959,
+      "sha256": "56fb7c78335ea89ebf9352cd7f59e2834b350386ef8d7befc8ea5616ddfc26f4"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/landing-after-preview.log",
+      "bytes": 124,
+      "sha256": "380a289905a6ae185958c8953c5611cc8cf47adf07b1f296d06eb80afd2f57c7"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/landing-after.command.json",
+      "bytes": 4152,
+      "sha256": "a6bcd1fc8429180be7d5e27254d487cb4ed196e1a33b695078a3a8b3c81533be"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/landing-after.log",
+      "bytes": 1224,
+      "sha256": "3a0e7232f1d23fc37f7c27621aade9419fefee2395312d8f9ed93500d8dae285"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/prepare-followup.py",
+      "bytes": 2326,
+      "sha256": "57b6c9f37b139a4cafe32232726e5a4e8a53c1b4f8ca0dfd7b6bf70ee438e0d9"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/report.json",
+      "bytes": 4412450,
+      "sha256": "0ad90fa802397b60f09808caa7e5d4cf0d39a4c322b3c5c71e42b5ae9ff00804"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/run-after.py",
+      "bytes": 7596,
+      "sha256": "ae2da40d962ea11a8863da1c7321ead938ed121fa222ff5834d127cbf61ed793"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/saved-canvas-raster-review.json",
+      "bytes": 11039,
+      "sha256": "de75c4583c43614042cd4c2439d7430f1566292402389aae92ca21218d876943"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/saved-video-probes.json",
+      "bytes": 4421,
+      "sha256": "4fccc50c07206c1fdc185b716f7ca4a0bcf0effa253cb4d6044e508a1ef01747"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/scoped-results.json",
+      "bytes": 101028,
+      "sha256": "ab59552245fe6291a46f11bca011e547a0dc33694242e487cd06fee1632e216b"
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/visual-observations.md",
+      "bytes": 1977,
+      "sha256": "13960d33b1dcd0906253e034399c5e64be2a484aa0f1a876b241c07b3d27ff35"
+    }
+  ],
+  "contextBindings": [
+    {
+      "path": "E6i_NODEVIDEO_LANDING_BUILD_FREEZE.json",
+      "bytes": 568821,
+      "sha256": "07bcdd809a70218e62b0a4f1f79c5520958ff869cb88eed878c8b252703a12f8"
+    },
+    {
+      "path": "E6i_NODEVIDEO_LANDING_AFFECTED_AFTER_PLAN.json",
+      "bytes": 4033,
+      "sha256": "cc5970ab918dc65fe55b1c3d8c87df85b93a3bdf19713cf09040375c34faa03d"
+    },
+    {
+      "path": "E6i_NODEVIDEO_LANDING_AFFECTED_AFTER_PLAN.md",
+      "bytes": 1393,
+      "sha256": "6f41852588a74c9e225eb14c131e46172fa3a6b78b83bc47ebc6fa8ff340bea6"
+    },
+    {
+      "path": "E6i_NODEVIDEO_LANDING_BEFORE_RECEIPT.json",
+      "bytes": 6064,
+      "sha256": "6d96bef387171d551e3ef44b4428e42e3a56407c65cf1b02b536075a183eea29"
+    },
+    {
+      "path": "E6i_NODEVIDEO_LANDING_BEFORE_RECEIPT.md",
+      "bytes": 1080,
+      "sha256": "417c408a7e429dc90e2065e6a99ef1b0c43e360865520a4edb351b68f21dcae5"
+    },
+    {
+      "path": "E6i_NODEVIDEO_LANDING_CLOCK_DIAGNOSIS.json",
+      "bytes": 6915,
+      "sha256": "343d1a4a4783d5f676c97ad5f29c87283d40d80451652b30ef05d589df1026f3"
+    },
+    {
+      "path": "E6i_NODEVIDEO_LANDING_CLOCK_HARNESS_V2_REVIEW.json",
+      "bytes": 1572,
+      "sha256": "a33e6c8443da0d4d7441061e2170542ed927d5f18d2bce122bbc87bee1691ea8"
+    }
+  ],
+  "selfExcluded": [
+    "E6i-nodevideo-landing-after-02/artifact-manifest.json",
+    "E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.md",
+    "E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.json"
+  ],
+  "priorBeforePacketUntouched": true,
+  "failedAfter01Retained": true
+}

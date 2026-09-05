@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-05T20:28:14.261030+00:00",
+  "head": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "branch": "codex/nodevideo-current-consumer-20260905",
+  "sourceBindings": 1374,
+  "sourceMismatches": [],
+  "distBindings": 1329,
+  "distMismatches": [],
+  "guards": {
+    "head": "4ac45208b6bb9f3544e67636ed077a4441719f4892a09c818aa69589d9641c8f",
+    "refs": "f26538fea9cc8fafcf26de63b533d629fa002e829eeeb726c541a6d03fad09a3",
+    "indexEntries": "3e9c929044933fd852980d1393a64e5b755dcaeb1f6f7e8e22d96c7b8192df62"
+  },
+  "openingGuardsEqual": true,
+  "sourceGuard": "CLOSED",
+  "noProductIndexRefMutation": true,
+  "indexClaim": "Stage/mode/blob/path entries exact; no unsupported claim about raw index cache bytes."
+}

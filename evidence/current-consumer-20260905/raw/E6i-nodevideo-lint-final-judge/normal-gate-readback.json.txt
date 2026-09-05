@@ -1,0 +1,170 @@
+[
+  {
+    "name": "syntax-00",
+    "argv": [
+      "node",
+      "--check",
+      "tools/clip-gate/voice.mjs"
+    ],
+    "exitCode": 0,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact": true
+  },
+  {
+    "name": "syntax-01",
+    "argv": [
+      "node",
+      "--check",
+      "tools/clip-gate/score.mjs"
+    ],
+    "exitCode": 0,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact": true
+  },
+  {
+    "name": "syntax-02",
+    "argv": [
+      "node",
+      "--check",
+      "tools/clip-gate/rubric.mjs"
+    ],
+    "exitCode": 0,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact": true
+  },
+  {
+    "name": "syntax-03",
+    "argv": [
+      "node",
+      "--check",
+      "tools/clip-gate/retime.mjs"
+    ],
+    "exitCode": 0,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact": true
+  },
+  {
+    "name": "syntax-04",
+    "argv": [
+      "node",
+      "--check",
+      "tools/clip-gate/readability.mjs"
+    ],
+    "exitCode": 0,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact": true
+  },
+  {
+    "name": "syntax-05",
+    "argv": [
+      "node",
+      "--check",
+      "scripts/quality/verify-production-deploy.mjs"
+    ],
+    "exitCode": 0,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact": true
+  },
+  {
+    "name": "syntax-06",
+    "argv": [
+      "node",
+      "--check",
+      "tools/clip-gate/narrate.mjs"
+    ],
+    "exitCode": 0,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact": true
+  },
+  {
+    "name": "syntax-07",
+    "argv": [
+      "node",
+      "--check",
+      "tools/clip-gate/judge-video.mjs"
+    ],
+    "exitCode": 0,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact": true
+  },
+  {
+    "name": "syntax-08",
+    "argv": [
+      "node",
+      "--check",
+      "tools/clip-gate/iterate.mjs"
+    ],
+    "exitCode": 0,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact": true
+  },
+  {
+    "name": "syntax-09",
+    "argv": [
+      "node",
+      "--check",
+      "tools/clip-gate/apply-captions.mjs"
+    ],
+    "exitCode": 0,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact": true
+  },
+  {
+    "name": "syntax-10",
+    "argv": [
+      "node",
+      "--check",
+      "tools/clip-gate/comprehension-rubric.mjs"
+    ],
+    "exitCode": 0,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact": true
+  },
+  {
+    "name": "syntax-11",
+    "argv": [
+      "node",
+      "--check",
+      "tools/clip-gate/clip.mjs"
+    ],
+    "exitCode": 0,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact": true
+  },
+  {
+    "name": "syntax-12",
+    "argv": [
+      "node",
+      "--check",
+      "tools/clip-gate/find-references.mjs"
+    ],
+    "exitCode": 0,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exact": true
+  },
+  {
+    "name": "normal-check",
+    "argv": [
+      "C:/nvm4w/nodejs/npm.cmd",
+      "run",
+      "check"
+    ],
+    "exitCode": 0,
+    "bytes": 85328,
+    "sha256": "a47e76f9ea945755822d53d1c6a5d958c8dd50ad15cd77ab0e1d8f69c57168db",
+    "exact": true
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checksPassed": 40,
+  "checksTotal": 40,
+  "pairedScenarios": 32,
+  "failures": [],
+  "sourceFreezeSha256": "250ad771d9cb9a2915f2e71e28fed07ce6f0d0109cff67a4f71c61c8a63e8a45",
+  "harnessSha256": "86fd6d75cccb9eff10ae54287a91af2f369f9ecf8d0dfdec43680647e93bbe20",
+  "realProviderCalls": 0,
+  "realSubprocessCallsFromVm": 0,
+  "realProductFileWrites": 0,
+  "fullGrades": null
+}

@@ -1,0 +1,126 @@
+[
+  {
+    "name": "initial harness frozen before proof and exact identity",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "actual differential40 checks pass",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "supplement frozen exact current identity",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "actual bounded supplement10 checks pass",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "prior supplemental9of10 collector failure retained",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "all17 current source bytes exact judged freeze",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "all17 preserved before bytes exact canonical baseline",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "all1357 protected tracked files unchanged",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "closing head exact start guard",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "closing branch exact start guard",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "closing index exact start guard",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "closing diff exact start guard",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "exact17 changed tracked owners and no staged changes",
+    "passed": true,
+    "detail": [
+      "schemas/production-agent.v1.schema.json",
+      "scripts/quality/verify-production-deploy.mjs",
+      "src/lib/frame-evidence.test.ts",
+      "src/lib/frame-evidence.ts",
+      "tools/clip-gate/apply-captions.mjs",
+      "tools/clip-gate/calibration.json",
+      "tools/clip-gate/clip.mjs",
+      "tools/clip-gate/comprehension-rubric.mjs",
+      "tools/clip-gate/find-references.mjs",
+      "tools/clip-gate/iterate.mjs",
+      "tools/clip-gate/judge-video.mjs",
+      "tools/clip-gate/narrate.mjs",
+      "tools/clip-gate/readability.mjs",
+      "tools/clip-gate/retime.mjs",
+      "tools/clip-gate/rubric.mjs",
+      "tools/clip-gate/score.mjs",
+      "tools/clip-gate/voice.mjs"
+    ]
+  },
+  {
+    "name": "lint/package/lock/workflow policies unchanged",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "normal13 syntax commands and full npm check raw receipts exact",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "name": "actual normal-gate content signals present",
+    "passed": true,
+    "detail": [
+      "Checked 522 files",
+      "Test Files  73 passed (73)",
+      "Tests  344 passed (344)",
+      "PASS: no primitive-first policy regression detected.",
+      "PASS: UI code did not exceed the final budgets.",
+      "UI contract verified: rendered UI matches .ui/contract.json"
+    ]
+  },
+  {
+    "name": "normal gate fixture/runtime limits explicit",
+    "passed": true,
+    "detail": [
+      {
+        "port": 55827,
+        "released": true
+      },
+      {
+        "port": 4339,
+        "released": true
+      }
+    ]
+  },
+  {
+    "name": "preexisting clip import/runtime holds observed from source",
+    "passed": true,
+    "detail": null
+  }
+]

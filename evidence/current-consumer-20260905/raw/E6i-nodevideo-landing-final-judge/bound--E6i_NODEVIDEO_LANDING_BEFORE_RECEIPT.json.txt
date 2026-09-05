@@ -1,0 +1,231 @@
+{
+  "status": "BEFORE_FROZEN_GUARD_CLOSED",
+  "at": "2026-09-05T20:03:57.212547+00:00",
+  "root": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905",
+  "approved18": {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-conformance-apply-01\\receipt.json",
+    "sha256": "4eacc240c40521fcb527b0714b1f1e8ca0d64d5b2655d2bbd930ac0607ed4aa0",
+    "sourceDigest": "bb5ca4d7a02ab72eecf2581f63fa7762174190453e2ccdeb5d7879d30b9c0c18"
+  },
+  "sourceBindings": 1374,
+  "distBindings": 1329,
+  "sourceUnchanged": true,
+  "distUnchanged": true,
+  "guardsUnchanged": true,
+  "owned4983Released": true,
+  "sourceMutations": [],
+  "clockInstrumentation": false,
+  "forcedFailure": false,
+  "cells": [
+    {
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "paintedPixels": 0,
+      "count": {
+        "label": "Count 2 of 8 at 103.4 beats per minute",
+        "live": [
+          {
+            "text": "1",
+            "live": "false"
+          },
+          {
+            "text": "2",
+            "live": "true"
+          },
+          {
+            "text": "3",
+            "live": "false"
+          },
+          {
+            "text": "4",
+            "live": "false"
+          },
+          {
+            "text": "5",
+            "live": "false"
+          },
+          {
+            "text": "6",
+            "live": "false"
+          },
+          {
+            "text": "7",
+            "live": "false"
+          },
+          {
+            "text": "8",
+            "live": "false"
+          }
+        ],
+        "pulse": "0",
+        "rect": {
+          "x": 20,
+          "y": 185.921875,
+          "width": 280,
+          "height": 34
+        }
+      },
+      "errors": [
+        "TypeError: Cannot read properties of undefined (reading '11')"
+      ],
+      "staticDomRestored": true,
+      "fullDomExact": true,
+      "observedNativeChanges": [],
+      "images": [
+        {
+          "path": "before.png",
+          "sha256": "689ee8b289b5fdc0635d5591d514ad25f1024ca3d0b9f6d1cf355e39e90a1a7e"
+        },
+        {
+          "path": "change-boundary.png",
+          "sha256": "2bb448167dc9f833ea454920bf24f6ee812bb7cbeef0f6a806b410c346ee61ed"
+        }
+      ],
+      "viewedByWorker": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "paintedPixels": 0,
+      "count": {
+        "label": "Count 2 of 8 at 103.4 beats per minute",
+        "live": [
+          {
+            "text": "1",
+            "live": "false"
+          },
+          {
+            "text": "2",
+            "live": "true"
+          },
+          {
+            "text": "3",
+            "live": "false"
+          },
+          {
+            "text": "4",
+            "live": "false"
+          },
+          {
+            "text": "5",
+            "live": "false"
+          },
+          {
+            "text": "6",
+            "live": "false"
+          },
+          {
+            "text": "7",
+            "live": "false"
+          },
+          {
+            "text": "8",
+            "live": "false"
+          }
+        ],
+        "pulse": "0",
+        "rect": {
+          "x": 20,
+          "y": 420.671875,
+          "width": 350,
+          "height": 34
+        }
+      },
+      "errors": [
+        "TypeError: Cannot read properties of undefined (reading '11')"
+      ],
+      "staticDomRestored": true,
+      "fullDomExact": true,
+      "observedNativeChanges": [],
+      "images": [
+        {
+          "path": "before.png",
+          "sha256": "18343ac54e3dd726d583858f38e055b369f85343c6793dd3c21ed81c53ee30ed"
+        },
+        {
+          "path": "change-boundary.png",
+          "sha256": "831923e5c33025d54bdf5031afd46c26bb67128a969a512a43cb8ae2c696424e"
+        }
+      ],
+      "viewedByWorker": true
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "paintedPixels": 0,
+      "count": {
+        "label": "Count 2 of 8 at 103.4 beats per minute",
+        "live": [
+          {
+            "text": "1",
+            "live": "false"
+          },
+          {
+            "text": "2",
+            "live": "true"
+          },
+          {
+            "text": "3",
+            "live": "false"
+          },
+          {
+            "text": "4",
+            "live": "false"
+          },
+          {
+            "text": "5",
+            "live": "false"
+          },
+          {
+            "text": "6",
+            "live": "false"
+          },
+          {
+            "text": "7",
+            "live": "false"
+          },
+          {
+            "text": "8",
+            "live": "false"
+          }
+        ],
+        "pulse": "0",
+        "rect": {
+          "x": 176,
+          "y": 605,
+          "width": 576.390625,
+          "height": 20
+        }
+      },
+      "errors": [
+        "TypeError: Cannot read properties of undefined (reading '11')"
+      ],
+      "staticDomRestored": true,
+      "fullDomExact": true,
+      "observedNativeChanges": [],
+      "images": [
+        {
+          "path": "before.png",
+          "sha256": "2bd2e458d696e635ee7384f221e35450cfee8904256494ac7d1ed53ff5423691"
+        },
+        {
+          "path": "change-boundary.png",
+          "sha256": "f3e815faf1e65a956fe83f6646c82e0f4a1aa440313ed1315adb3c4fe028b3d4"
+        }
+      ],
+      "viewedByWorker": true
+    }
+  ],
+  "artifactRoot": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-before-01",
+  "artifactFiles": 35,
+  "manifestSha256": "4b515754fbe873922897aaa72456e7be36397ac0b264b02d5e71d38b92ea0806",
+  "afterPlanSha256": "cc5970ab918dc65fe55b1c3d8c87df85b93a3bdf19713cf09040375c34faa03d",
+  "note": "Full DOM can differ only in observed existing clock pulse/count attributes. Raw before/after DOM retained; no animation paused to force exact equality. All nonclock attributes/text/structure restored. Root may now apply its separate approved source repair.",
+  "grades": null
+}

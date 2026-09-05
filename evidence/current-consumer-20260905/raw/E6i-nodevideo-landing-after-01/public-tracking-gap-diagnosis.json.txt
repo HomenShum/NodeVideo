@@ -1,0 +1,32 @@
+{
+  "status": "RECORDER_EXPECTATION_TOO_STRICT_FOR_EXISTING_MISSING_TRACKING_FRAMES",
+  "poseSha256": "b2f2ea20a01dbe4815a921c0db6330c24967495dbc7b8b798b6ff82a13488be1",
+  "frames": 80,
+  "allNullFrameIndices": [
+    19,
+    24,
+    25,
+    76,
+    79
+  ],
+  "observedSamples": 135,
+  "observedZeroSampleIndices": [
+    13,
+    17,
+    56,
+    58,
+    72,
+    76,
+    77,
+    115,
+    117,
+    132
+  ],
+  "everyZeroHasLaterPositiveRecovery": true,
+  "minPainted": 0,
+  "maxPainted": 5710,
+  "pageErrors": [],
+  "inferenceLimit": "No browser frame index instrumentation. Null source frames establish an intentional empty-render case; native sample timestamps alone do not certify exact null-frame correspondence. No fallback or app change proposed.",
+  "failedAssertion": "Every sample has actual native paint",
+  "preservation": "Original report, native samples, full video and failure PNG remain unchanged."
+}

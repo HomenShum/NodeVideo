@@ -1,0 +1,73 @@
+{
+  "commands": [
+    {
+      "name": "ffprobe",
+      "argv": [
+        "C:/Users/hshum/scoop/shims/ffprobe.exe",
+        "-v",
+        "error",
+        "-show_entries",
+        "format=duration:stream=codec_name,width,height,codec_type,nb_frames,r_frame_rate",
+        "-of",
+        "json",
+        "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-first-use-01\\codec\\nodevideo-sign-edit.mp4"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.0779999999795109,
+      "stdoutSha256": "9ab41c9b72f6e37443fb9c2b373830dd844e984849d728d844fa5749287c17d6",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "decoded-frames",
+      "argv": [
+        "C:/Users/hshum/scoop/shims/ffmpeg.exe",
+        "-v",
+        "error",
+        "-i",
+        "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-first-use-01\\codec\\nodevideo-sign-edit.mp4",
+        "-f",
+        "framemd5",
+        "-"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.09299999999348074,
+      "stdoutSha256": "df3d1a8cca743da846b22fcda6f5ba5bd3429f84516d5d81fff0fdb5fa9d1631",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "caption-ocr",
+      "argv": [
+        "C:/Program Files/Tesseract-OCR/tesseract.exe",
+        "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-first-use-01\\codec\\decoded-proof-frame.png",
+        "stdout",
+        "--psm",
+        "11"
+      ],
+      "exitCode": 0,
+      "elapsedSeconds": 0.10999999998603016,
+      "stdoutSha256": "43a5effcba569ace6b8b280f39d8e6cda0633fc50db9fae9b5f1206731a64bf6",
+      "stderrSha256": "87f7cf3fe153b419b146a0ff0ea60ae2bc1a78394397e2ffa6671a72297a4322"
+    }
+  ],
+  "actualMp4Bytes": 55223,
+  "actualMp4Sha256": "ea98c867b27136df65c5b5c8d6b22ddd43294bfc5881580e8e2ced2cd923317e",
+  "probe": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 180,
+        "height": 320,
+        "r_frame_rate": "30/1",
+        "nb_frames": "60"
+      }
+    ],
+    "format": {
+      "duration": "2.000000"
+    }
+  },
+  "decodedFrameRows": 60,
+  "ocr": "PROOF CUT\n",
+  "scope": "Read-only analysis of retained actual downloaded MP4/PNG; no browser export, app, server or provider execution."
+}

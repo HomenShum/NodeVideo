@@ -1,0 +1,281 @@
+{
+  "phase": "after",
+  "status": "PASS",
+  "sourceSha256": "5d4ce6007803f7166949c40cdec646e0d2c51b0ee7ba8ca0dc2ac686b2de45ab",
+  "currentOwnerSha256": "5d4ce6007803f7166949c40cdec646e0d2c51b0ee7ba8ca0dc2ac686b2de45ab",
+  "poseSha256": "b2f2ea20a01dbe4815a921c0db6330c24967495dbc7b8b798b6ff82a13488be1",
+  "scenarios": [
+    {
+      "name": "actual-320-negative-start",
+      "errors": [],
+      "firstFrame": 0,
+      "lastFrame": 0,
+      "framesDrawn": 3,
+      "strokes": 48,
+      "arcs": 78,
+      "firstCount": 1,
+      "lastCount": 1,
+      "countRange": [
+        1,
+        1
+      ],
+      "pulseRange": [
+        0.7702217626666668,
+        1
+      ],
+      "callbackCount": 6,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 2,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": true,
+      "allCountValuesValid": true,
+      "allPulseValuesValid": true,
+      "drawSequenceSha256": "2a08979e8002252124e861b2816490b04fe03b6b779f9287fb7c25652bbc4052",
+      "countsSha256": "9e07ab64261fb6803c6572f7b5c3098ea68fb45873128af820d42a2262eb900b",
+      "pulsesSha256": "c7c6991330613b49608c6c31bc2e6fbd66be1eb1f35ee21622b0021a31ba4df3"
+    },
+    {
+      "name": "actual-390-negative-start",
+      "errors": [],
+      "firstFrame": 0,
+      "lastFrame": 0,
+      "framesDrawn": 3,
+      "strokes": 48,
+      "arcs": 78,
+      "firstCount": 1,
+      "lastCount": 1,
+      "countRange": [
+        1,
+        1
+      ],
+      "pulseRange": [
+        0.7702217626666666,
+        1
+      ],
+      "callbackCount": 6,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 2,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": true,
+      "allCountValuesValid": true,
+      "allPulseValuesValid": true,
+      "drawSequenceSha256": "2a08979e8002252124e861b2816490b04fe03b6b779f9287fb7c25652bbc4052",
+      "countsSha256": "9e07ab64261fb6803c6572f7b5c3098ea68fb45873128af820d42a2262eb900b",
+      "pulsesSha256": "e5acd212bc9ba8ec132ede75ce2c5373082a6dfc387b0d7b9aacc398804c9508"
+    },
+    {
+      "name": "valid-zero-first-timestamp",
+      "errors": [],
+      "firstFrame": 0,
+      "lastFrame": 46,
+      "framesDrawn": 5,
+      "strokes": 80,
+      "arcs": 137,
+      "firstCount": 1,
+      "lastCount": 1,
+      "countRange": [
+        1,
+        2
+      ],
+      "pulseRange": [
+        0,
+        1
+      ],
+      "callbackCount": 10,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 2,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": true,
+      "allCountValuesValid": true,
+      "allPulseValuesValid": true,
+      "drawSequenceSha256": "d3b30f7a91e09b30702228a54c9365de12e2980e69e22f962f666e24dbf0305c",
+      "countsSha256": "4540bd0abeee4503cfc6def4ad1d65e996691443faa10f1a7e82406658f2386d",
+      "pulsesSha256": "e7c96c233b5a734757adb8c176ec9c243a8168e6aa3f6f2a9372aa26674109aa"
+    },
+    {
+      "name": "delayed-first-paint",
+      "errors": [],
+      "firstFrame": 0,
+      "lastFrame": 46,
+      "framesDrawn": 4,
+      "strokes": 65,
+      "arcs": 107,
+      "firstCount": 1,
+      "lastCount": 1,
+      "countRange": [
+        1,
+        1
+      ],
+      "pulseRange": [
+        0.31066666666666665,
+        1
+      ],
+      "callbackCount": 8,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 2,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": true,
+      "allCountValuesValid": true,
+      "allPulseValuesValid": true,
+      "drawSequenceSha256": "98a37154491204352cbf670f1ed96f68699b0cef8e37c107e25e212154ecaa07",
+      "countsSha256": "ac91b3ec501b23593f3981b92775f32afb157e91b50c4fcc1b9f70164ac1214c",
+      "pulsesSha256": "0bb90a40ba04966ee0e47af9a8750182843caf44c1c2833cca422ce44af93b9a"
+    },
+    {
+      "name": "pose-and-count-rollovers",
+      "errors": [],
+      "firstFrame": 0,
+      "lastFrame": 0,
+      "framesDrawn": 6,
+      "strokes": 80,
+      "arcs": 135,
+      "firstCount": 1,
+      "lastCount": 4,
+      "countRange": [
+        1,
+        6
+      ],
+      "pulseRange": [
+        0,
+        1
+      ],
+      "callbackCount": 12,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 2,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": true,
+      "allCountValuesValid": true,
+      "allPulseValuesValid": true,
+      "drawSequenceSha256": "d0d078b1535d1dd6eedc588874b43e736484ce5ef9c2f8aae852a088a0bcc4d0",
+      "countsSha256": "5a52997513a1d48144c95e83eaeb6e2421a529411b39393bb302d1084aad1d4b",
+      "pulsesSha256": "3943404c1be53747f40268e44a1c14b28a7c45dddab702afb6acd0069283856a"
+    },
+    {
+      "name": "finite-60-second-callbacks",
+      "errors": [],
+      "firstFrame": 0,
+      "lastFrame": 39,
+      "framesDrawn": 3601,
+      "strokes": 54620,
+      "arcs": 99015,
+      "firstCount": 1,
+      "lastCount": 8,
+      "countRange": [
+        1,
+        8
+      ],
+      "pulseRange": [
+        0,
+        1
+      ],
+      "callbackCount": 7202,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 2,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": true,
+      "allCountValuesValid": true,
+      "allPulseValuesValid": true,
+      "drawSequenceSha256": "0aa2204e0f0fe968d66df977812cb4f5baad404edaa542608efc3d1a7584beed",
+      "countsSha256": "47c9d1cec250297cdcfcc07ad5acf9cc022f6a5712eb2ad65784094a68f499b0",
+      "pulsesSha256": "f4440e8c0fc33fc8290e3740b23e21fa80aabf3ea479b3a53f4107e9053f50f3"
+    },
+    {
+      "name": "reduced-negative-first-timestamp",
+      "errors": [],
+      "firstFrame": 0,
+      "lastFrame": 0,
+      "framesDrawn": 1,
+      "strokes": 16,
+      "arcs": 26,
+      "firstCount": null,
+      "lastCount": null,
+      "countRange": null,
+      "pulseRange": null,
+      "callbackCount": 1,
+      "maxPending": 1,
+      "pendingBeforeCleanup": 0,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": true,
+      "allCountValuesValid": true,
+      "allPulseValuesValid": true,
+      "drawSequenceSha256": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "countsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "pulsesSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "cleanup-before-first-frame",
+      "errors": [],
+      "firstFrame": null,
+      "lastFrame": null,
+      "framesDrawn": 0,
+      "strokes": 0,
+      "arcs": 0,
+      "firstCount": null,
+      "lastCount": null,
+      "countRange": null,
+      "pulseRange": null,
+      "callbackCount": 0,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 0,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": true,
+      "allCountValuesValid": true,
+      "allPulseValuesValid": true,
+      "drawSequenceSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "countsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "pulsesSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "name": "same-context-cleanup-remount",
+      "errors": [],
+      "firstFrame": 0,
+      "lastFrame": 1,
+      "framesDrawn": 3,
+      "strokes": 48,
+      "arcs": 80,
+      "firstCount": 1,
+      "lastCount": 1,
+      "countRange": [
+        1,
+        1
+      ],
+      "pulseRange": [
+        0.19347999999999999,
+        1
+      ],
+      "callbackCount": 6,
+      "maxPending": 2,
+      "pendingBeforeCleanup": 2,
+      "pendingAfterCleanup": 0,
+      "allFrameIndicesValid": true,
+      "allCountValuesValid": true,
+      "allPulseValuesValid": true,
+      "drawSequenceSha256": "7ead7f2ac1f175e1650b7a7b433f7cbdca3ae29ff06e6ff5c5199d17b731658c",
+      "countsSha256": "9e07ab64261fb6803c6572f7b5c3098ea68fb45873128af820d42a2262eb900b",
+      "pulsesSha256": "a89939cf6e44db1aabfa6be397af5c36685fe1d86fc51f834a759e0e9113c82f",
+      "remount": {
+        "sameVm": true,
+        "sameScheduler": true,
+        "newEffects": 2,
+        "indices": [
+          0,
+          0,
+          1
+        ],
+        "counts": [
+          1,
+          1,
+          1
+        ],
+        "pendingBeforeCleanup": 2,
+        "pendingAfterCleanup": 0
+      }
+    }
+  ],
+  "limitations": [
+    "Transpiled actual-owner callbacks with mock React lifecycle/canvas and controlled scheduler; not native animation or pixel proof.",
+    "Finite60-second simulated timeline, not one minute of wall-clock performance or sustained load."
+  ],
+  "sourceUnchanged": true,
+  "finishedAt": "2026-09-05T20:05:52.216Z"
+}

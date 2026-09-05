@@ -1,0 +1,131 @@
+{
+  "schema": "nodevideo-current-recon/v1",
+  "at": "2026-09-05T18:38:06.313220+00:00",
+  "mode": "Builder / read-only planner recon",
+  "status": "RECON_FROZEN_FIRST_USE_NOT_EXECUTED",
+  "canonicalRepository": "HomenShum/NodeVideo",
+  "canonicalMain": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "canonicalTree": "cab0f9515fe80ed2868a6f9d9a6a7018fcbf4657",
+  "primary": {
+    "path": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\NodeVideo",
+    "branch": "main",
+    "head": "4cc05fed8a998f5ced394c7a5bea387700ced91a",
+    "originMain": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+    "clean": true,
+    "branches": 1,
+    "worktrees": 1,
+    "relation": "Exactly one commit behind advertised main; only config/openrouter-free-routing.json differs."
+  },
+  "olderClone": {
+    "path": "D:\\VSCode Projects\\NodeVideo",
+    "head": "0c30c3185d3cf7c4e54ade5ec1e21e1df20a3a36",
+    "localBranches": 23,
+    "worktrees": 8,
+    "detachedWorktrees": 4,
+    "primaryPorcelainEntries": 1,
+    "preservedE1DirtyFilesAcrossCapturedWorktrees": 28,
+    "priorRewriteFetchHold": "Retained; no force/fetch/ref changes in this recon. Current automation log independently shows forced update of routing automation branch, not main.",
+    "salvageCandidates": [
+      "DraftPR30 codex/nodekit-eve-map@31319bdc962801328850d171903eae9cc611ed20",
+      "codex/nodevideo-eve-control-plane@a112b79927aa240f5a18d235ce2ccfc331230bd3",
+      "codex/nodevideo-live-product-proof@186095c4e44767158a509094783f41c9964442bb",
+      "Four detached deploy worktrees plus preserved dirty changes/reflog-only commits.",
+      "Other browser export, practice, editor, framing, creatorbench and routing branch refs remain inventoried; ancestor/equivalence and file-level salvage must be determined later."
+    ],
+    "retirementApproved": false,
+    "uniqueContributionStatus": "Not exhaustively compared; none treated as disposable or automatically merged."
+  },
+  "instructions": {
+    "applicableRepositoryOrAncestorAGENTS": "No AGENTS.md found at primary or filesystem ancestors; supplied global portfolio instructions apply.",
+    "qaProfile": "Existing .qa/profile.md is a historical production-oriented contract; it does not authorize production actions in this read-only task.",
+    "handoff": "No root HANDOFF.md in current primary inventory; README, .qa/profile and submission docs split the entry-point guidance."
+  },
+  "entryPoints": [
+    {
+      "route": "/",
+      "source": "src/App.tsx and src/lib/integrated-inspector.ts",
+      "job": "Inspect bundled sanitized silent calibration; open collapsed inspector, verify trusted manifest plus seven assets, scrub output frame480→481→480 with native button/keyboard.",
+      "boundary": "Fresh browser storage, no owner token, no live-job upload/start. It is fixed replay inspection, not making a new video."
+    },
+    {
+      "route": "/edit.html",
+      "source": "apps/edit/src/edit.tsx",
+      "job": "Local Stitch Studio accepted edit and browser H.264 export; inspect/prove actual default fixture and plan operations before exporting.",
+      "boundary": "No ConvexProvider at this entry point. Browser model BYOK branch is optional and must remain empty; use local deterministic edit path. FFmpeg WASM and cross-origin isolation are prerequisites."
+    },
+    {
+      "route": "/creator.html",
+      "source": "apps/edit/src/creator.tsx:1115 and creator-caseflow.ts",
+      "job": "Rights-cleared demo→campaign→local deterministic proposal→explicit approval→actual local MP4 export/download/reopen, then canonical reload/conflict proof.",
+      "boundary": "Throws before render without VITE_CONVEX_URL. Requires separately provisioned isolated Convex with current schema/functions; existing shared credentials/deployments must not be reused implicitly. Persistent owner capability locator is not authenticated multi-user readiness."
+    }
+  ],
+  "currentCi": {
+    "scheduledRouting": {
+      "runId": 33984024064,
+      "head": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+      "conclusion": "failure",
+      "actualCause": "Benchmark step completed; promotion workflow dispatch returns422 because HomenShum/node-platform/.github/workflows/repo-conformance.yml@ef4ac8a011b230efa3324892a193abe02ff2d673 is reported not found. Rollback step skipped. Does not prove every individual provider response was valid."
+    },
+    "routingPrQuality": {
+      "runId": 33984118568,
+      "head": "b2c60f589275cebfcfc123119530394835b50a51",
+      "pr": 45,
+      "conclusion": "failure",
+      "actualCause": "Normal npm ci succeeds; Biome lint checks522files and finds85errors,65 diagnostics omitted by cap. Visible failures include tools/clip-gate voice/score formatting/complexity/style. Typecheck/unit/worker/UI/build downstream skipped.",
+      "attribution": "PR45 differs from canonical main only in routing manifest; the cited tools lint failures are inherited source, not inferred from new application edits."
+    },
+    "claims": "No current full CI or live deployment acceptance. No workflow rerun/dispatch by reviewer."
+  },
+  "firstConcreteGaps": [
+    "README default localhost4173/host:true conflicts with protected portfolio4173; use fresh owned loopback port with --host127.0.0.1 --strictPort.",
+    "README asks to copy environment file even for no-key replay, while creator requires a backend. Document replay/local-editor versus durable-creator prerequisites separately; no env values were read.",
+    "Reusable conformance ref is not found in current routing promotion; verify intended immutable upstream workflow/access before proposing a pin repair.",
+    "85 inherited lint errors currently prevent downstream verification; retain failure, then prepare a separately reviewed owner-specific repair rather than waive checker or auto-fix all.",
+    "README describes failed strict timing while QA profile/current trusted-inspector schema describes passed calibration. Freeze exact case/manifest identities and reconcile historical scopes after actual first-use; no generic success claim.",
+    "Existing submission doc itself keeps authenticated wrapper, paid-provider completion and fresh factory-time proof open. No empty-directory capability is proven by historical 53.188-second in-app run."
+  ],
+  "minimalFirstUsePlan": [
+    "Create a new codex/ branch/worktree or isolated clone at exact canonical42e41b4 after root preservation guard; never alter primary/older branches or bring ignored/private state.",
+    "Record baseline tracked bytes and public fixture manifests; use child environment cleared of provider/Convex/production URL/private-preview overrides. No .env copying, existing personal browser storage or default4173.",
+    "In isolated checkout, normal Node22/npm ci; capture unmodified lint/type/tests/doctor/build outcomes proportionately. No regeneration/publish/rollback/provider scripts; static guard failures stay visible.",
+    "First observe public root inspector at390/1440: actual trusted seven-asset verification, frames480↔481, error/retry, keyboard and original media/source boundaries. Then expand only needed responsive widths/200% evidence.",
+    "For first new artifact, use local /edit.html deterministic operation→accepted plan→browser H.264 download→independent FFprobe/decode/reopen, and a bounded cancel/error case. Use bundled authorized/synthetic fixture; no raw private media. Source route and FFmpeg headers support this plan but actual behavior is unobserved.",
+    "If the creator user job is next, separately inspect bootstrap/crons/guards then provision new anonymous loopback-only Convex, bind actual listener ownership before source push; run deterministic proposal/reject/stale/approve/export/reload with provider consent unset. No existing shared Convex or cloud deployment.",
+    "Capture genuine before boundaries for actual failures, agree narrow owner plan, soleworker repairs, independent judge checks exact outputs/pixels/guarded state. Retain older-branch salvage queue separately."
+  ],
+  "notExecuted": [
+    "fetch",
+    "ref/worktree creation",
+    "install",
+    "test",
+    "build",
+    "browser",
+    "app",
+    "provider",
+    "production fetch",
+    "environment values",
+    "private media",
+    "source edits",
+    "merge",
+    "deletion"
+  ],
+  "fullGrades": null,
+  "rawEvidenceRoot": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-current-recon",
+  "selectedSourceBindings": 30,
+  "closingGuards": "closing-guards.json",
+  "documentedPublicEntry": {
+    "url": "https://nodevideo-pi.vercel.app",
+    "sourceDocuments": [
+      ".qa/profile.md",
+      "docs/testing/NODEVIDEO_SUBMISSION_READINESS.md"
+    ],
+    "status": "Documented only; not fetched or live-verified by this recon.",
+    "safeReadOnlyScope": "A fresh browser with empty NodeVideo owner/job storage can GET the public root, same-origin trusted manifest and seven public assets, open/scrub the inspector without entering a token or submitting a job. Source network writes occur through separate live controls; do not invoke them.",
+    "plainGetLimit": "Raw root HTML GET can inspect the static shell/build signal, but Vite client rendering is required to verify actual inspector DOM/pixels. Asset hashes can be verified via read-only GET independently. Neither establishes fresh-creator/export behavior.",
+    "manifestRoute": "/media/integrated-source-only-v1/manifest.json",
+    "sourceExpectedManifestSha256": "8c76857975bcc2fd67272aaf93ec1d5c456b993434e3b64f0b082fa397b362cc",
+    "buildStampRoute": "/.well-known/agent-ui.build.json",
+    "creatorSeparate": "/creator.html requires Convex and has writable persistent campaign/proposal actions; exclude from passive public-inspector observation."
+  }
+}

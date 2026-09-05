@@ -1,0 +1,304 @@
+{
+  "at": "2026-09-05T20:25:32.602006+00:00",
+  "checks": [
+    {
+      "name": "228 raw native artifacts and seven context bindings exact",
+      "passed": true,
+      "detail": {
+        "mismatches": [],
+        "payloadBytes": 29084056
+      }
+    },
+    {
+      "name": "Final native receipt and manifest frozen identities",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All 1374 current source bindings and 1329 dist files exact",
+      "passed": true,
+      "detail": {
+        "sourceMismatches": [],
+        "distMismatches": []
+      }
+    },
+    {
+      "name": "1373 previous inputs protected; only landing changed",
+      "passed": true,
+      "detail": [
+        "apps/landing/src/landing.tsx"
+      ]
+    },
+    {
+      "name": "All prior 18 reviewed owners exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Actual owner is exactly the four-line clock repair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Immutable pose has exactly five all-null frames",
+      "passed": true,
+      "detail": {
+        "frames": 80,
+        "allNullIndices": [
+          19,
+          24,
+          25,
+          76,
+          79
+        ]
+      }
+    },
+    {
+      "name": "Frozen v2 before actual source, pose, harness and nine scenarios",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "before reproduces both native negative-start causal inputs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Frozen v2 after actual source, pose, harness and nine scenarios",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "After timestamp-zero, 3601 simulated callbacks, remount and cleanup assertions passed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Frozen v2 knockout actual source, pose, harness and nine scenarios",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "knockout reproduces both native negative-start causal inputs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Normal npm check receipt raw log hash and exit exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Normal gate reports unchanged 73 files / 344 tests and rendered contract",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Original every-sample-paint failure retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320-normal exact raw samples and all declared checks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320-normal zero samples/runs independently reconstructed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320-normal native window/paint/count scope",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320-normal natural navigation readback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320-reduced exact raw samples and all declared checks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320-reduced zero samples/runs independently reconstructed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320-reduced native window/paint/count scope",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320-reduced natural navigation readback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320-text200 exact raw samples and all declared checks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320-text200 zero samples/runs independently reconstructed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320-text200 native window/paint/count scope",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320-text200 natural navigation readback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390-normal exact raw samples and all declared checks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390-normal zero samples/runs independently reconstructed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390-normal native window/paint/count scope",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390-normal natural navigation readback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390-reduced exact raw samples and all declared checks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390-reduced zero samples/runs independently reconstructed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390-reduced native window/paint/count scope",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390-reduced natural navigation readback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390-text200 exact raw samples and all declared checks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390-text200 zero samples/runs independently reconstructed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390-text200 native window/paint/count scope",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "390-text200 natural navigation readback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440-normal exact raw samples and all declared checks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440-normal zero samples/runs independently reconstructed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440-normal native window/paint/count scope",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440-normal natural navigation readback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440-reduced exact raw samples and all declared checks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440-reduced zero samples/runs independently reconstructed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440-reduced native window/paint/count scope",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440-reduced natural navigation readback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440-text200 exact raw samples and all declared checks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440-text200 zero samples/runs independently reconstructed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440-text200 native window/paint/count scope",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440-text200 natural navigation readback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Native final totals exact: 9 cells / 99 checks / 848 samples / 49 zeros / 43 runs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Recorder keeps 18s/2s limits and no timestamp/pose overrides",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "HEAD, refs, index entries match frozen worker guard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Root and worker reference serializers reconcile",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "passed": 56,
+  "total": 56
+}

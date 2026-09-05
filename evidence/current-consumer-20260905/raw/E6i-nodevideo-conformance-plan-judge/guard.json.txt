@@ -1,0 +1,12 @@
+{
+  "head": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "indexEntriesSha256": "3e9c929044933fd852980d1393a64e5b755dcaeb1f6f7e8e22d96c7b8192df62",
+  "beforeSha256": "c4fe65fd6d7dc8798f9a6e7c9531e0f5b38c29b6d71aac7ad1a6459af32b2363",
+  "proposedSha256": "3d489dbd49b458b5c1342a3bed0b25cf10b0edd40c612455d2bbbec79373c08d",
+  "guard": "CLOSED; read-only caller plan, no product edit",
+  "historicalLog": {
+    "path": "E6i-nodevideo-current-recon/routing-log.out",
+    "bytes": 112679,
+    "sha256": "8c765425b5bca21deba0ec06ff5c7fa744930db8553b333e14415d36b10db4b0"
+  }
+}

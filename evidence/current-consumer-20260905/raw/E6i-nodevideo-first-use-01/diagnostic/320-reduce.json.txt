@@ -1,0 +1,83 @@
+{
+  "width": 320,
+  "height": 800,
+  "reducedMotion": "reduce",
+  "errors": [],
+  "external": [],
+  "clock": {
+    "nowCalls": [
+      {
+        "value": 26.100000023841858,
+        "stack": "Error\n    at Performance.value (<anonymous>:5:112)\n    at e.unstable_now (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:1478)\n    at sd (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:121594)\n    at http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:122968"
+      },
+      {
+        "value": 26.300000071525574,
+        "stack": "Error\n    at Performance.value (<anonymous>:5:112)\n    at e.unstable_now (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:1478)\n    at e.unstable_scheduleCallback (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:3733)\n    at cd (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:122427)\n    at sd (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:121637)\n    at http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:122968"
+      },
+      {
+        "value": 26.700000047683716,
+        "stack": "Error\n    at Performance.value (<anonymous>:5:112)\n    at e.unstable_now (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:1478)\n    at MessagePort.ae (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:2124)"
+      },
+      {
+        "value": 26.800000071525574,
+        "stack": "Error\n    at Performance.value (<anonymous>:5:112)\n    at e.unstable_now (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:1478)\n    at ie (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:2068)\n    at MessagePort.ae (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:2255)"
+      },
+      {
+        "value": 29.700000047683716,
+        "stack": "Error\n    at Performance.value (<anonymous>:5:112)\n    at e.unstable_now (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:1478)\n    at e.unstable_scheduleCallback (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:3733)\n    at Zu (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:120974)\n    at Ru (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:116975)\n    at vu (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:112358)\n    at _u (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:111864)\n    at ld (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:122794)\n    at MessagePort.ae (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:2345)"
+      },
+      {
+        "value": 30.600000023841858,
+        "stack": "Error\n    at Performance.value (<anonymous>:5:112)\n    at e.unstable_now (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:1478)\n    at ld (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:122809)\n    at MessagePort.ae (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:2345)"
+      },
+      {
+        "value": 30.600000023841858,
+        "stack": "Error\n    at Performance.value (<anonymous>:5:112)\n    at e.unstable_now (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:1478)\n    at MessagePort.ae (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:2375)"
+      },
+      {
+        "value": 30.600000023841858,
+        "stack": "Error\n    at Performance.value (<anonymous>:5:112)\n    at e.unstable_now (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:1478)\n    at sd (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:121594)\n    at http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:122968"
+      },
+      {
+        "value": 55,
+        "stack": "Error\n    at Performance.value (<anonymous>:5:112)\n    at e.unstable_now (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:1478)\n    at MessagePort.ae (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:2124)"
+      },
+      {
+        "value": 55,
+        "stack": "Error\n    at Performance.value (<anonymous>:5:112)\n    at e.unstable_now (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:1478)\n    at ie (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:2068)\n    at MessagePort.ae (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:2255)"
+      },
+      {
+        "value": 55.5,
+        "stack": "Error\n    at Performance.value (<anonymous>:5:112)\n    at http://127.0.0.1:4983/assets/index-Di-CS-ZF.js:1:903\n    at Kc (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:91672)\n    at kl (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:106761)\n    at Ol (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:106645)\n    at kl (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:107525)\n    at Ol (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:106645)\n    at kl (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:107525)\n    at Ol (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:106645)\n    at kl (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:107525)"
+      },
+      {
+        "value": 55.800000071525574,
+        "stack": "Error\n    at Performance.value (<anonymous>:5:112)\n    at e.unstable_now (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:1478)\n    at MessagePort.ae (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:1:2375)"
+      }
+    ],
+    "frames": [
+      {
+        "started": {
+          "value": 55.5,
+          "stack": "Error\n    at Performance.value (<anonymous>:5:112)\n    at http://127.0.0.1:4983/assets/index-Di-CS-ZF.js:1:903\n    at Kc (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:91672)\n    at kl (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:106761)\n    at Ol (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:106645)\n    at kl (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:107525)\n    at Ol (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:106645)\n    at kl (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:107525)\n    at Ol (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:106645)\n    at kl (http://127.0.0.1:4983/assets/client-DsVmXU0u.js:8:107525)"
+        },
+        "scheduledAt": 55.700000047683716,
+        "callback": "t=>{let s=e?0:(t-i)/1e3,c=d[Math.floor(s*f)%d.length],p=Math.min(n.width,n.height)*.92,m={x:(n.width-p)/2,y:(n.height-p)/2},h=e?1:(t-i)/l%1,g=Math.max(0,1-h*4);r.clearRect(0,0,n.width,n.height);let _=getComputedStyle(document.documentElement).getPropertyValue(`--brand-accent`);r.strokeStyle=`oklch(${_.trim().replace(`oklch(`,``).replace(`)`,``)})`,r.strokeStyle=_.trim()||`#c6f000`,r.lineWidth=3+g*1.5,r.lineCap=`round`,r.globalAlpha=.92;for(let[e,t]of u){let n=c[e],i=c[t];!n||!i||(r.beginPath(),r.moveTo(m.x+n[0]*p,m.y+n[1]*p),r.lineTo(m.x+i[0]*p,m.y+i[1]*p),r.stroke())}r.globalAlpha=1;for(let e of c)e&&(r.beginPath(),r.arc(m.x+e[0]*p,m.y+e[1]*p,3+g,0,Math.PI*2),r.fillStyle=r.strokeStyle,r.fill());e||(a=requestAnimationFrame(o))}",
+        "floorCalls": [
+          {
+            "value": 0,
+            "result": 0
+          }
+        ],
+        "timestamp": 41.9,
+        "callbackNow": 55.89999997615814,
+        "elapsedSecondsFromLastNativeNow": -0.013600000000000001
+      }
+    ]
+  },
+  "canvas": {
+    "width": 560,
+    "height": 560,
+    "painted": 3606
+  }
+}

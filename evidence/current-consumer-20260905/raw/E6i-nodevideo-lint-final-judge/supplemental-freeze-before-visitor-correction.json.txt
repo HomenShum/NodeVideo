@@ -1,0 +1,7 @@
+{
+  "at": "2026-09-05T19:21:25.609516+00:00",
+  "status": "FROZEN_BEFORE_SUPPLEMENT_EXECUTION",
+  "harnessSha256": "0564392477dc27db6ce0cad5f96c640b6e88a3a8a6340f19b9e70b1928d864a2",
+  "unchangedSourceFreezeSha256": "250ad771d9cb9a2915f2e71e28fed07ce6f0d0109cff67a4f71c61c8a63e8a45",
+  "scope": "Actual extracted pure Set merge, NUL sanitizer and final failure string plus nonexecuting clip AST/import/const audit; no product CLI execution."
+}

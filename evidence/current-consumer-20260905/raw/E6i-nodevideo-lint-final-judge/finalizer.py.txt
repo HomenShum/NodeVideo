@@ -1,0 +1,78 @@
+from pathlib import Path
+import datetime,hashlib,json,re,subprocess,sys
+sys.stdout.reconfigure(encoding='utf-8')
+P=Path(__file__).resolve().parent
+O=P/'E6i-nodevideo-lint-final-judge'
+R=Path('D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905')
+sha=lambda b:hashlib.sha256(b).hexdigest()
+blob=lambda b:hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()
+def read(p):return json.loads(p.read_text('utf-8-sig'))
+def dump(n,d):(O/n).write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+F=read(O/'harness-freeze.json');D=read(O/'report.json');S=read(O/'supplemental-report.json');G=read(P/'E6i-nodevideo-lint-check.json')
+checks=[]
+def ck(n,ok,detail=None):checks.append(dict(name=n,passed=bool(ok),detail=detail))
+ck('initial harness frozen before proof and exact identity',D['harnessSha256']==F['harnessSha256']==sha((P/'E6i-nodevideo-lint-differential.mjs').read_bytes()) and sha((O/'harness-before-execution.mjs.txt').read_bytes())==F['harnessSha256'])
+ck('actual differential40 checks pass',D['status']=='PASS' and D['checksPassed']==D['checksTotal']==40 and len(read(O/'checks.json'))==40)
+SF=read(O/'supplemental-freeze.json')
+ck('supplement frozen exact current identity',S['harnessSha256']==SF['harnessSha256']==sha((P/'E6i-nodevideo-lint-differential-supplement.mjs').read_bytes()))
+ck('actual bounded supplement10 checks pass',S['status']=='PASS' and S['checksPassed']==S['checksTotal']==10)
+ck('prior supplemental9of10 collector failure retained',read(O/'supplemental-report.json.before-flag-mask.txt')['checksPassed']==9 and read(O/'supplemental-report.json.before-flag-mask.txt')['checksTotal']==10 and (O/'supplement-execution-01.stdout.log').is_file())
+source=[]
+for row in sorted(F['sources'],key=lambda x:x['path']):
+    b=(R/row['path']).read_bytes();source.append(dict(path=row['path'],bytes=len(b),sha256=sha(b),gitBlobSha1=blob(b)))
+ck('all17 current source bytes exact judged freeze',len(source)==17 and all({'bytes':x['bytes'],'sha256':x['sha256']}==next(y['after'] for y in F['sources'] if y['path']==x['path']) for x in source))
+baseline=read(P/'E6i-nodevideo-current-baseline-01/source-before.json');base={x['path']:x for x in baseline}
+ck('all17 preserved before bytes exact canonical baseline',all(sha((O/'before'/x['path']).read_bytes())==base[x['path']]['sha256'] for x in source))
+protected=[dict(path=x['path'],sha256=sha((R/x['path']).read_bytes()),exact=sha((R/x['path']).read_bytes())==x['sha256']) for x in F['protected']]
+ck('all1357 protected tracked files unchanged',len(protected)==1357 and all(x['exact'] for x in protected))
+gitrows=[]
+for name,args in {'head':['rev-parse','HEAD'],'branch':['branch','--show-current'],'index':['ls-files','--stage','-z'],'diff':['diff','--binary','--',*[x['path'] for x in F['sources']]]}.items():
+    c=subprocess.run(['git','--no-optional-locks',*args],cwd=R,capture_output=True,timeout=30,check=True);(O/('closing-'+name+'.raw')).write_bytes(c.stdout)
+    gitrows.append(dict(name=name,argv=['git','--no-optional-locks',*args],sha256=sha(c.stdout),bytes=len(c.stdout)))
+    ck('closing '+name+' exact start guard',c.stdout==(O/('start-'+name+'.raw')).read_bytes())
+c=subprocess.run(['git','--no-optional-locks','diff','--name-only','-z'],cwd=R,capture_output=True,check=True,timeout=30)
+changed={x.decode() for x in c.stdout.split(b'\0') if x}
+ck('exact17 changed tracked owners and no staged changes',changed=={x['path'] for x in source} and not subprocess.check_output(['git','--no-optional-locks','diff','--cached','--name-only'],cwd=R).strip(),sorted(changed))
+ck('lint/package/lock/workflow policies unchanged',all(sha((R/n).read_bytes())==base[n]['sha256'] for n in ['biome.json','package.json','package-lock.json','.github/workflows/quality.yml']))
+gateRows=[]
+for cmd in G['commands']:
+    p=P/'E6i-nodevideo-lint-check-01'/(cmd['name']+'.log');b=p.read_bytes();gateRows.append(dict(name=cmd['name'],argv=cmd['argv'],exitCode=cmd['exitCode'],bytes=len(b),sha256=sha(b),exact=sha(b)==cmd['logSha256']))
+    (O/('normal-'+cmd['name']+'.log')).write_bytes(b)
+ck('normal13 syntax commands and full npm check raw receipts exact',len(gateRows)==14 and all(x['exact'] and x['exitCode']==0 for x in gateRows) and G['status']=='PASS')
+log=(P/'E6i-nodevideo-lint-check-01/normal-check.log').read_text('utf-8')
+clean=re.sub(r'\x1b\[[0-9;]*[A-Za-z]','',log)
+signals=['Checked 522 files','Test Files  73 passed (73)','Tests  344 passed (344)','PASS: no primitive-first policy regression detected.','PASS: UI code did not exceed the final budgets.','UI contract verified: rendered UI matches .ui/contract.json']
+ck('actual normal-gate content signals present',all(s in clean for s in signals),signals)
+ck('normal gate fixture/runtime limits explicit',G['normalContractFixtureScope']=='Existing mock sidecar and owned non-video consent stub; no live worker/provider proof' and len(G['ports'])==2 and all(x['released'] for x in G['ports']),G['ports'])
+scoreBefore=(O/'before/tools/clip-gate/score.mjs').read_text('utf-8');scoreAfter=(R/'tools/clip-gate/score.mjs').read_text('utf-8')
+missingNames=['tools/clip-gate/src/walkthrough.collab.data.js','src/walkthrough.collab.data.js']
+objects=subprocess.check_output(['git','--no-optional-locks','ls-tree','-r','--name-only',F['candidate'] and '42e41b4bb2ec738ef84330dedd7a7ebc9269070f','--',*missingNames],cwd=R)
+ck('preexisting clip import/runtime holds observed from source',not re.search(r'^\s*export\b',scoreBefore,re.M) and not re.search(r'^\s*export\b',scoreAfter,re.M) and not objects.strip() and all(not (R/n).exists() for n in missingNames))
+for src,name in [(P/'E6i-nodevideo-lint-check.json','operator-normal-check.json'),(P/'E6i_NODEVIDEO_LINT_REPAIR_PLAN.json','approved-plan.json'),(P/'E6i-nodevideo-lint-repair-01/manual-edits.json','operator-manual-edits.json'),(P/'E6i-nodevideo-lint-repair-01/formatter-imports.log','operator-formatter-imports.log')]: (O/name).write_bytes(src.read_bytes())
+digest=sha(''.join(x['path']+'\t'+x['sha256']+'\n' for x in source).encode())
+dump('source-final-bindings.json',dict(digestFormat='SHA256(sorted path TAB rawSHA256 LF)',sourceDigest=digest,source=source));dump('protected-final-readback.json',protected);dump('normal-gate-readback.json',gateRows);dump('git-command-bindings.json',gitrows);dump('closing-checks.json',checks)
+(O/'finalizer.py.txt').write_bytes(Path(__file__).read_bytes())
+files=[dict(path=x.relative_to(O).as_posix(),bytes=x.stat().st_size,sha256=sha(x.read_bytes())) for x in sorted(O.rglob('*')) if x.is_file() and x.name!='artifact-manifest.json']
+dump('artifact-manifest.json',dict(files=files,excludes=['self','external final judgment MD/JSON']))
+result=dict(schema='nodevideo-lint-final-nonauthor-judge/v1',at=datetime.datetime.now(datetime.timezone.utc).isoformat(),verdict='APPROVED_SCOPED_LINT_REPAIR' if all(x['passed'] for x in checks) else 'BLOCKED',candidate=str(R),baseCommit='42e41b4bb2ec738ef84330dedd7a7ebc9269070f',sourceDigest=digest,sourceBindings=source,changedOwners=17,protectedUnchanged=1357,differentialChecks=40,supplementalChecks=10,ordinaryPairedScenarios=31,deliberateKnockoutComparisons=1,closingChecksPassed=sum(x['passed'] for x in checks),closingChecksTotal=len(checks),blockers=[x for x in checks if not x['passed']],sourceGuardClosed=True,normalGate={'owner':'root; independent raw-log/hash readback by judge','status':'PASS','syntaxCommands':13,'command':'npm run check','seconds':57.95299999997951,'unitFiles':73,'unitTests':344,'logSha256':'a47e76f9ea945755822d53d1c6a5d958c8dd50ad15cd77ab0e1d8f69c57168db','renderedScope':G['normalContractFixtureScope']},syntheticScope='Actual before/after JS modules in VM; allowlisted synthetic FS/process/network return values. Score buffers generated only in VM memory with identical seeded randomness. This is behavior equivalence, not real TTS/video/export/provider proof.',actualJudgeModelCalls=0,actualJudgeProductSubprocessCalls=0,actualJudgeProductFileWrites=0,reviewerContextReuse='Same nonauthor planner/judge; root implemented source.',collectorLimits=['First Set fixture tied totals and selected first run; supplemental actual Set block forces middle run and verifies fallback/empty evidence. Original proof retained.','Supplement pre-execution AST traversal callback corrected to visit all siblings; original unexecuted copy retained.','Supplement first execution9/10: collector compared full TypeScript flags to Let/Const but flags also include JavaScriptFile524288. Corrected BlockScoped mask gives10/10; original failure retained.','Python stdout wrapper cp1252 display failure occurred after raw supplement files were written; read using UTF8. VM experimental-feature warning retained.'],preexistingHolds=['clip.mjs imports buildScore/muxOnto from score.mjs, which exports neither before nor after.','Nested tools/clip-gate/src/walkthrough.collab.data.js and root src/walkthrough.collab.data.js are absent in canonical Git and candidate; VM used an explicitly synthetic walkthrough fixture.','Existing local audit findings remain separate: full13 (6 moderate7 high), production3 (2 moderate1 high), reported by root; not repaired or recertified here.','Historical shared routing head reported85 lint diagnostics with only20 printed; current canonical before84 is fully retained. No shared-CI rerun/merge or production readiness claim.'],fullGrades=None,artifactManifest=str(O/'artifact-manifest.json'),artifactManifestSha256=sha((O/'artifact-manifest.json').read_bytes()),artifactCount=len(files))
+(P/'E6i_NODEVIDEO_LINT_FINAL_JUDGE.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
+md=f'''# NodeVideo independent lint repair judgment
+
+**Re your request:** make each repository suitable for developer handoff — **{result['verdict']}** for the exact17-owner lint slice. The pre-existing lint gate is cleared without changing its rules; this does not certify the clip/media product or full repository readiness.
+
+Source digest `{digest}` (sorted path TAB raw SHA-256 LF), based on canonical `42e41b4bb2ec738ef84330dedd7a7ebc9269070f`. All17 current files match the judged freeze; all1,357 protected tracked inputs remain exact. Closing HEAD, branch, serialized index and exact diff guards pass. No source/index/ref edits were made by this reviewer.
+
+The harness was frozen before executable proof and exercised actual old/new source in isolated VM modules with filesystem, subprocess and network imports replaced by bounded synthetic stubs. **40/40 checks** cover31 ordinary paired scenarios plus a deliberately broken recovery-property comparison. A separately frozen pure supplement passes **10/10**, covering the actual Set median/evidence block, seven NUL inputs, exact deployment-failure wording and clip AST/import/const preservation. Normal score floats and generated filter strings match with identical seeded randomness; no real media artifact or provider call is claimed.
+
+Narration preserves batch success, first/second retry recovery, exhaustion, malformed output and mixed order. Recovered results have no `failed` property; the undefined-property mutant is rejected. Voice removes every NUL before its300-character limit. Score/readability/iteration outputs and side-effect order match. The supplemental Set fixture selects the middle run and verifies first-run fallback, empty evidence and absent evidence. Rubric/frame/source-only formatter ASTs and both JSON values match; clip's relative imports and leading explanation remain intact. Source schema, prompts, thresholds and policy are preserved.
+
+Root's normal13 syntax checks and unchanged `npm run check` pass; independent readback verifies every raw log hash and the actual lint/type/test/build/contract signals. The complete normal check took57.953s and passed73 unit files/344 tests. Its normal rendered contract uses the existing mock sidecar and synthetic consent fixture; checked-in media/grounding receipts are historical bound artifacts. Green output does not establish a new live provider/media run or public deployment. Normal log SHA-256: `a47e76f9ea945755822d53d1c6a5d958c8dd50ad15cd77ab0e1d8f69c57168db`.
+
+Preserved collector limits: the original Set fixture's median tie did not exercise middle-run fallback; the supplement does. One unexecuted AST visitor callback was corrected before running. The first supplement result was9/10 because the collector compared full TypeScript flags instead of masking the Let/Const bits; its raw failure remains, and the corrected10/10 does not conceal it. A Python cp1252 display error occurred after evidence had been saved. No product defect was inferred from these collector failures.
+
+Separate pre-existing runtime holds remain: `clip.mjs` requests `buildScore`/`muxOnto`, but `score.mjs` exports neither; the nested and root walkthrough data paths are absent. Those tools were not run. Root's full13/production3 dependency audit findings are also outside this repair. Current canonical before84 lint errors and historical shared85 with65 omitted diagnostics remain distinct. There is no shared CI, deployment, actual video quality, human usability or full-grade approval here.
+
+All{result['closingChecksPassed']}/{len(checks)} closing custody/log checks pass. Source guard **CLOSED** for root's next metadata/integration step. [Structured judgment](E6i_NODEVIDEO_LINT_FINAL_JUDGE.json) and [raw artifact manifest](E6i-nodevideo-lint-final-judge/artifact-manifest.json), SHA-256 `{result['artifactManifestSha256']}` ({len(files)} artifacts).
+'''
+(P/'E6i_NODEVIDEO_LINT_FINAL_JUDGE.md').write_text(md,encoding='utf-8',newline='\n')
+print(json.dumps(dict(verdict=result['verdict'],checks=result['closingChecksPassed'],total=len(checks),sourceDigest=digest,jsonSha256=sha((P/'E6i_NODEVIDEO_LINT_FINAL_JUDGE.json').read_bytes()),artifactManifestSha256=result['artifactManifestSha256'],artifacts=len(files),failures=result['blockers'])))

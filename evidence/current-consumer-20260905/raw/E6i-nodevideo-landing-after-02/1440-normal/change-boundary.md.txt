@@ -1,0 +1,5 @@
+# Observed landing after: 1440×960, normal
+
+CHANGE A · Pose canvas and CHANGE B · Count row use actual 3px boxes around the existing DOM. Source is bound to the parent build freeze. No timestamp/canvas/frame replacement is used. Normal/text cells observe18seconds of native paint; reduced cells observe2seconds. Raw DOM permits only the existing live pulse/count attributes during overlay restoration.
+
+Normal/reduced geometry is compared to the exact native before capture. Text200 doubles one initial computed-font snapshot; it is not browser zoom. Observed page overflow: 0px. Enlarged layout issues remain open. Exact index/wrap/cancellation comes from the separate actual-owner callback proof, not browser wall time.

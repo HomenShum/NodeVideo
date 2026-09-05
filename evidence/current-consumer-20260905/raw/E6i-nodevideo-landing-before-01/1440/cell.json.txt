@@ -1,0 +1,251 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 960
+  },
+  "errors": [
+    "TypeError: Cannot read properties of undefined (reading '11')"
+  ],
+  "console": [
+    {
+      "type": "warning",
+      "text": "Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently"
+    }
+  ],
+  "external": [],
+  "before": {
+    "url": "http://127.0.0.1:4983/",
+    "viewport": {
+      "width": 1440,
+      "height": 960
+    },
+    "scroll": {
+      "x": 0,
+      "y": 0
+    },
+    "overflow": 0,
+    "canvas": {
+      "width": 560,
+      "height": 560,
+      "painted": 0,
+      "rect": {
+        "x": 793.390625,
+        "y": 147.6875,
+        "width": 469.609375,
+        "height": 469.609375
+      }
+    },
+    "count": {
+      "label": "Count 2 of 8 at 103.4 beats per minute",
+      "live": [
+        {
+          "text": "1",
+          "live": "false"
+        },
+        {
+          "text": "2",
+          "live": "true"
+        },
+        {
+          "text": "3",
+          "live": "false"
+        },
+        {
+          "text": "4",
+          "live": "false"
+        },
+        {
+          "text": "5",
+          "live": "false"
+        },
+        {
+          "text": "6",
+          "live": "false"
+        },
+        {
+          "text": "7",
+          "live": "false"
+        },
+        {
+          "text": "8",
+          "live": "false"
+        }
+      ],
+      "pulse": "0",
+      "rect": {
+        "x": 176,
+        "y": 605,
+        "width": 576.390625,
+        "height": 20
+      }
+    },
+    "links": [
+      {
+        "text": "Studio",
+        "href": "/studio.html"
+      },
+      {
+        "text": "For agents",
+        "href": "/.well-known/agent-ui.json"
+      },
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html"
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html"
+      },
+      {
+        "text": "Preview a sample verdict — no setup needed",
+        "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+      },
+      {
+        "text": "Open the collab editor",
+        "href": "/collab.html"
+      },
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html"
+      },
+      {
+        "text": "Open the stitch studio",
+        "href": "/edit.html"
+      },
+      {
+        "text": "Proof console",
+        "href": "/studio.html"
+      },
+      {
+        "text": "Open the practice room (early beta)",
+        "href": "/practice.html"
+      }
+    ]
+  },
+  "overlay": {
+    "removed": true,
+    "fullDomExact": true,
+    "staticDomRestored": true,
+    "observedNativeDifferences": []
+  },
+  "after": {
+    "url": "http://127.0.0.1:4983/",
+    "viewport": {
+      "width": 1440,
+      "height": 960
+    },
+    "scroll": {
+      "x": 0,
+      "y": 0
+    },
+    "overflow": 0,
+    "canvas": {
+      "width": 560,
+      "height": 560,
+      "painted": 0,
+      "rect": {
+        "x": 793.390625,
+        "y": 147.6875,
+        "width": 469.609375,
+        "height": 469.609375
+      }
+    },
+    "count": {
+      "label": "Count 2 of 8 at 103.4 beats per minute",
+      "live": [
+        {
+          "text": "1",
+          "live": "false"
+        },
+        {
+          "text": "2",
+          "live": "true"
+        },
+        {
+          "text": "3",
+          "live": "false"
+        },
+        {
+          "text": "4",
+          "live": "false"
+        },
+        {
+          "text": "5",
+          "live": "false"
+        },
+        {
+          "text": "6",
+          "live": "false"
+        },
+        {
+          "text": "7",
+          "live": "false"
+        },
+        {
+          "text": "8",
+          "live": "false"
+        }
+      ],
+      "pulse": "0",
+      "rect": {
+        "x": 176,
+        "y": 605,
+        "width": 576.390625,
+        "height": 20
+      }
+    },
+    "links": [
+      {
+        "text": "Studio",
+        "href": "/studio.html"
+      },
+      {
+        "text": "For agents",
+        "href": "/.well-known/agent-ui.json"
+      },
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html"
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html"
+      },
+      {
+        "text": "Preview a sample verdict — no setup needed",
+        "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+      },
+      {
+        "text": "Open the collab editor",
+        "href": "/collab.html"
+      },
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html"
+      },
+      {
+        "text": "Open the stitch studio",
+        "href": "/edit.html"
+      },
+      {
+        "text": "Proof console",
+        "href": "/studio.html"
+      },
+      {
+        "text": "Open the practice room (early beta)",
+        "href": "/practice.html"
+      }
+    ]
+  },
+  "pngs": [
+    {
+      "path": "before.png",
+      "sha256": "2bd2e458d696e635ee7384f221e35450cfee8904256494ac7d1ed53ff5423691"
+    },
+    {
+      "path": "change-boundary.png",
+      "sha256": "f3e815faf1e65a956fe83f6646c82e0f4a1aa440313ed1315adb3c4fe028b3d4"
+    }
+  ],
+  "status": "OBSERVED_NATIVE_BEFORE"
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "name": "exact frozen receipt identity",
+    "pass": true
+  },
+  {
+    "name": "all409 raw artifacts64686000bytes exact",
+    "pass": true
+  },
+  {
+    "name": "1374originalsourcebindings match independentclosedapproval",
+    "pass": true
+  },
+  {
+    "name": "sevenlane same originalsource/dist bindings",
+    "pass": true
+  },
+  {
+    "name": "eleven actual served artifact bindings exact",
+    "pass": true
+  },
+  {
+    "name": "seven declared inspector assets hash-bound to served bytes",
+    "pass": true
+  },
+  {
+    "name": "seven exact viewportpairs57captures",
+    "pass": true
+  },
+  {
+    "name": "final normal report truthful finite observation",
+    "pass": true
+  },
+  {
+    "name": "viewport pixels/DOM/hash cell320",
+    "pass": true
+  },
+  {
+    "name": "viewport pixels/DOM/hash cell360",
+    "pass": true
+  },
+  {
+    "name": "viewport pixels/DOM/hash cell390",
+    "pass": true
+  },
+  {
+    "name": "viewport pixels/DOM/hash cell768",
+    "pass": true
+  },
+  {
+    "name": "viewport pixels/DOM/hash cell1024",
+    "pass": true
+  },
+  {
+    "name": "viewport pixels/DOM/hash cell1440",
+    "pass": true
+  },
+  {
+    "name": "viewport pixels/DOM/hash cell1920",
+    "pass": true
+  },
+  {
+    "name": "all21 raw480481keyboard480 videoidentities",
+    "pass": true
+  },
+  {
+    "name": "all7 rawDOM proposalapplyUndo labels andduration",
+    "pass": true
+  },
+  {
+    "name": "tenlocalexchanges retain16messages newest8pairs",
+    "pass": true
+  },
+  {
+    "name": "compact tempo visibility limitation preserved",
+    "pass": true
+  },
+  {
+    "name": "historical failure retained matrix",
+    "pass": true
+  },
+  {
+    "name": "historical failure retained editor-inspector",
+    "pass": true
+  },
+  {
+    "name": "historical failure retained editor-inspector-02",
+    "pass": true
+  },
+  {
+    "name": "special processpass not blanketUIpass",
+    "pass": true
+  },
+  {
+    "name": "actual manifest mismatch and reloadrecovery honest",
+    "pass": true
+  },
+  {
+    "name": "enlarged390 actualoverflow retained",
+    "pass": true
+  },
+  {
+    "name": "exactexistingquicktransformationnotnewfixture",
+    "pass": true
+  },
+  {
+    "name": "fullquickinputequalsdeclaredexistingtransformation",
+    "pass": true
+  },
+  {
+    "name": "retainedMP4 actualreadback60frames2secondssilentH264",
+    "pass": true
+  },
+  {
+    "name": "decodedcaptionactualpixelsandindependentOCR",
+    "pass": true
+  },
+  {
+    "name": "codec recordednativecancelreadyreopen distinguish states",
+    "pass": true
+  }
+]

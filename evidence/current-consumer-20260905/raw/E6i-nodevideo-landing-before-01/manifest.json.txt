@@ -1,0 +1,180 @@
+{
+  "files": [
+    {
+      "path": "1440/after-overlay.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216"
+    },
+    {
+      "path": "1440/before-overlay.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216"
+    },
+    {
+      "path": "1440/before.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216"
+    },
+    {
+      "path": "1440/before.json",
+      "bytes": 1988,
+      "sha256": "b69aeeb179abdd6470d6778a4cc54e77225026665646eb03a74a2bc50bf2a321"
+    },
+    {
+      "path": "1440/before.png",
+      "bytes": 107218,
+      "sha256": "2bd2e458d696e635ee7384f221e35450cfee8904256494ac7d1ed53ff5423691"
+    },
+    {
+      "path": "1440/cell.json",
+      "bytes": 5329,
+      "sha256": "099a69326f2fc8a25082d27d955b7b2337e7c9d6e51b275399b32e5630d4cf54"
+    },
+    {
+      "path": "1440/change-boundary.md",
+      "bytes": 1601,
+      "sha256": "8a7a137a44d17facafdf6c952a799835084c4878fbf5ad55e9005a5bddd0331e"
+    },
+    {
+      "path": "1440/change-boundary.png",
+      "bytes": 109276,
+      "sha256": "f3e815faf1e65a956fe83f6646c82e0f4a1aa440313ed1315adb3c4fe028b3d4"
+    },
+    {
+      "path": "1440/overlay-restoration.json",
+      "bytes": 110,
+      "sha256": "f8b75a90d1eef272b7fcee5975458538e62f7547628b5a1fe332d24e7da81227"
+    },
+    {
+      "path": "320/after-overlay.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216"
+    },
+    {
+      "path": "320/before-overlay.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216"
+    },
+    {
+      "path": "320/before.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216"
+    },
+    {
+      "path": "320/before.json",
+      "bytes": 1968,
+      "sha256": "12dd13284c1e25e4ddbd4bfeeca3081d749a0d1ece3333a9f1dedf4ecf5b39a0"
+    },
+    {
+      "path": "320/before.png",
+      "bytes": 27979,
+      "sha256": "689ee8b289b5fdc0635d5591d514ad25f1024ca3d0b9f6d1cf355e39e90a1a7e"
+    },
+    {
+      "path": "320/cell.json",
+      "bytes": 5288,
+      "sha256": "e8a28d64d742ca84a4cf4a95baa77633834f71ae889f39aa4da2beab06e3348e"
+    },
+    {
+      "path": "320/change-boundary.md",
+      "bytes": 1600,
+      "sha256": "890f7856546b86c58ff39a7ec4ada9255fcda0ea93c84322137e399cd401d226"
+    },
+    {
+      "path": "320/change-boundary.png",
+      "bytes": 29574,
+      "sha256": "2bb448167dc9f833ea454920bf24f6ee812bb7cbeef0f6a806b410c346ee61ed"
+    },
+    {
+      "path": "320/overlay-restoration.json",
+      "bytes": 110,
+      "sha256": "f8b75a90d1eef272b7fcee5975458538e62f7547628b5a1fe332d24e7da81227"
+    },
+    {
+      "path": "390/after-overlay.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216"
+    },
+    {
+      "path": "390/before-overlay.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216"
+    },
+    {
+      "path": "390/before.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216"
+    },
+    {
+      "path": "390/before.json",
+      "bytes": 1968,
+      "sha256": "cc70b49b2d4c8d65daaa9c3939956ddf85549b729a0ee8098b095a82ce54645d"
+    },
+    {
+      "path": "390/before.png",
+      "bytes": 40719,
+      "sha256": "18343ac54e3dd726d583858f38e055b369f85343c6793dd3c21ed81c53ee30ed"
+    },
+    {
+      "path": "390/cell.json",
+      "bytes": 5288,
+      "sha256": "1e1ce7fd055cda700f26bcfa4d4020627706a4719ac04618d5308e7e97b22570"
+    },
+    {
+      "path": "390/change-boundary.md",
+      "bytes": 1600,
+      "sha256": "8d31ed59173a4b5f4a36bde3ee171af6e1d01e2735d864f408aefdfabc51c97b"
+    },
+    {
+      "path": "390/change-boundary.png",
+      "bytes": 42385,
+      "sha256": "831923e5c33025d54bdf5031afd46c26bb67128a969a512a43cb8ae2c696424e"
+    },
+    {
+      "path": "390/overlay-restoration.json",
+      "bytes": 110,
+      "sha256": "f8b75a90d1eef272b7fcee5975458538e62f7547628b5a1fe332d24e7da81227"
+    },
+    {
+      "path": "capture.mjs",
+      "bytes": 8782,
+      "sha256": "3ba8588118b8e591d02d4b248d8d94229e88f35b784889ec4f8527fcd50ee750"
+    },
+    {
+      "path": "freeze.py",
+      "bytes": 9182,
+      "sha256": "21e6fe9542c3e2a7405cdb896303c7266f38bbeaa9fd1f4969b794bd9d5c6a42"
+    },
+    {
+      "path": "landing-before-before.json",
+      "bytes": 491963,
+      "sha256": "baa6a1ceb15c165c60ce65a55297f3ba4a04913a419b4b5c119caf7c4b41f659"
+    },
+    {
+      "path": "landing-before-preview.log",
+      "bytes": 124,
+      "sha256": "380a289905a6ae185958c8953c5611cc8cf47adf07b1f296d06eb80afd2f57c7"
+    },
+    {
+      "path": "landing-before.command.json",
+      "bytes": 2403,
+      "sha256": "7e616e0473474528cb34c58556e392fbc2aae4ec84e24c802b5a1ed2f97d84d0"
+    },
+    {
+      "path": "landing-before.log",
+      "bytes": 661,
+      "sha256": "161eef7ad8f50ae2a7d1167dd60f2fbf98820f28bb8b0e3f1f5894f26d8b7967"
+    },
+    {
+      "path": "report.json",
+      "bytes": 19189,
+      "sha256": "c9dc7955c11fcec1f8f9252c192705c03fde6ff4eedbb1f1df6f95d547d19ba0"
+    },
+    {
+      "path": "run-before.py",
+      "bytes": 7443,
+      "sha256": "f151d83357007c7e70392ba5032876ff8ab536454ac5105c6c6ce6081100f772"
+    }
+  ],
+  "limit": "Before-capture operator packet; excludes this manifest. No application source edit."
+}

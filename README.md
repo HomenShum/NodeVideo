@@ -1,5 +1,7 @@
 # NodeVideo
 
+For a keyless local demo, current checks and known limits, read [the developer/user handoff](HANDOFF.md) first. The handoff distinguishes current local proof from optional private-media, durable and provider workflows.
+
 NodeVideo is a local-first, artifact-driven editor for short-form creator productions. Dance is the
 first deeply instrumented profile, while the creator-taste and audit contracts also cover tutorials,
 talking-head videos, comedy, montage, and other formats. Its primary workflow is:
@@ -322,7 +324,7 @@ wrong `16.067-19.633 s` phrase and missing music/text. See
 
 ## Run locally
 
-Requirements: Node.js 22+, npm 10+, Chromium for browser tests, and FFmpeg/FFprobe for regeneration
+Requirements: Node.js 22.12+, npm 10+, Chromium for browser tests, and FFmpeg/FFprobe for regeneration
 or independent media verification.
 
 ```bash

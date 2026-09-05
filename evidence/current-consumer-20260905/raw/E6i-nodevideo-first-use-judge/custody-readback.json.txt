@@ -1,0 +1,99 @@
+{
+  "manifestSha256": "d9e078300d8246590c764eed5dd8e32e540ee1118fe72cdf0a088ebea1a4c7c9",
+  "count": 409,
+  "bytes": 64686000,
+  "allRawExact": true,
+  "actualAdditional": [
+    "artifact-manifest.json"
+  ],
+  "missing": [],
+  "originalSource1374MatchesPreviouslyClosed17LintPlusWorkflowAndProtected": true,
+  "sourceSets": [
+    {
+      "file": "codec-before.json",
+      "sourceExact": true,
+      "distExact": true,
+      "keys": [
+        "source",
+        "dist",
+        "guards",
+        "harnessSha256",
+        "approved18OwnerReceipt"
+      ]
+    },
+    {
+      "file": "diagnostic-before.json",
+      "sourceExact": true,
+      "distExact": true,
+      "keys": [
+        "source",
+        "dist",
+        "guards",
+        "harnessSha256",
+        "approved18OwnerReceipt"
+      ]
+    },
+    {
+      "file": "editor-inspector-02-before.json",
+      "sourceExact": true,
+      "distExact": true,
+      "keys": [
+        "source",
+        "dist",
+        "guards",
+        "harnessSha256",
+        "approved18OwnerReceipt"
+      ]
+    },
+    {
+      "file": "editor-inspector-03-before.json",
+      "sourceExact": true,
+      "distExact": true,
+      "keys": [
+        "source",
+        "dist",
+        "guards",
+        "harnessSha256",
+        "approved18OwnerReceipt"
+      ]
+    },
+    {
+      "file": "editor-inspector-before.json",
+      "sourceExact": true,
+      "distExact": true,
+      "keys": [
+        "source",
+        "dist",
+        "guards",
+        "harnessSha256",
+        "approved18OwnerReceipt"
+      ]
+    },
+    {
+      "file": "matrix-before.json",
+      "sourceExact": true,
+      "distExact": true,
+      "keys": [
+        "source",
+        "dist",
+        "guards",
+        "harnessSha256",
+        "approved18OwnerReceipt"
+      ]
+    },
+    {
+      "file": "special-before.json",
+      "sourceExact": true,
+      "distExact": true,
+      "keys": [
+        "source",
+        "dist",
+        "guards",
+        "harnessSha256",
+        "approved18OwnerReceipt"
+      ]
+    }
+  ],
+  "currentSourceDeltas": [],
+  "scope": "Current source comparison permits separately authorized landing.tsx delta; no currentdist or appguard requested."
+}

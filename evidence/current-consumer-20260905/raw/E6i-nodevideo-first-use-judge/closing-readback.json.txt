@@ -1,0 +1,15 @@
+{
+  "at": "2026-09-05T20:08:48.853491+00:00",
+  "original409ArtifactBytesStillExact": true,
+  "currentSourceDifferencesFromOriginalFrozen1374": [
+    {
+      "path": "apps/landing/src/landing.tsx",
+      "beforeSha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+      "currentSha256": "5d4ce6007803f7166949c40cdec646e0d2c51b0ee7ba8ca0dc2ac686b2de45ab"
+    }
+  ],
+  "currentHead": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "currentIndexEntriesSha256": "3e9c929044933fd852980d1393a64e5b755dcaeb1f6f7e8e22d96c7b8192df62",
+  "currentDistNotCompared": "Root owns separate landing build; original1329distguard is historical and consistent across frozen7lanes.",
+  "scope": "Original editor/inspector/export evidence CLOSED. Landing follow-on source may change and needs separate final runtime judgment; no original evidence modified."
+}

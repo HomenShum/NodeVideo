@@ -1,0 +1,110 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {createRequire} from 'node:module';
+import {execFileSync} from 'node:child_process';
+const R='D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905';
+const O=path.dirname(new URL(import.meta.url).pathname.replace(/^\/(\w:)/,'$1'));
+const require=createRequire(path.join(R,'package.json'));
+const {chromium}=require('playwright');
+const {expect:baseExpect}=require('playwright/test');
+const expect=baseExpect.configure({timeout:15000});
+const AxeBuilder=require('@axe-core/playwright').default;
+const section=process.argv[2];
+if(!['matrix','special','codec','editor-inspector'].includes(section))throw Error('Choose a named proof lane');
+const out=path.join(O,process.argv[3]??section);fs.mkdirSync(out,{recursive:false});
+const base='http://127.0.0.1:4983';
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+const put=(name,value)=>fs.writeFileSync(path.join(out,name),JSON.stringify(value,null,2)+'\n');
+const plan=JSON.parse(fs.readFileSync(path.join(O,'../E6i_NODEVIDEO_FIRST_USE_PLAN.json'),'utf8'));
+const contract=JSON.parse(fs.readFileSync(path.join(O,'../E6i-nodevideo-first-use-recon/asset-contract.json'),'utf8'));
+const manifest=JSON.parse(fs.readFileSync(path.join(R,'fixtures/media/integrated-source-only-v1/manifest.json'),'utf8'));
+const report={proofId:plan.proofId,section,startedAt:new Date().toISOString(),cells:[],external:[],status:'RUNNING',grades:null};
+const browser=await chromium.launch();report.browser=browser.version();
+let current;
+async function fresh(viewport,reducedMotion='no-preference',video=false){
+ const context=await browser.newContext({viewport,colorScheme:'light',locale:'en-US',timezoneId:'America/Los_Angeles',reducedMotion,...(video?{recordVideo:{dir:path.join(out,'motion'),size:viewport}}:{})});
+ const cell={viewport,reducedMotion,console:[],pageErrors:[],network:[],captures:[]};report.cells.push(cell);
+ await context.route('**/*',route=>{const url=route.request().url();if(new URL(url).origin===base)return route.continue();report.external.push({url,method:route.request().method()});return route.abort('blockedbyclient');});
+ const page=await context.newPage();page.setDefaultTimeout(15000);page.setDefaultNavigationTimeout(90000);
+ page.on('console',m=>cell.console.push({type:m.type(),text:m.text()}));page.on('pageerror',e=>cell.pageErrors.push(String(e)));
+ page.on('response',r=>cell.network.push({url:r.url(),status:r.status()}));
+ current={page,context,cell};return current;
+}
+async function settle(page){await page.evaluate(async()=>{await document.fonts.ready;await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));});}
+async function capture(page,cell,name){
+ await settle(page);
+ const state=await page.evaluate(()=>({url:location.href,viewport:{width:innerWidth,height:innerHeight},crossOriginIsolated,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,active:{tag:document.activeElement?.tagName,label:document.activeElement?.getAttribute('aria-label'),text:document.activeElement?.textContent?.slice(0,160)},text:document.body.innerText,controls:[...document.querySelectorAll('button,a,input,[role="slider"]')].map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {tag:e.tagName,label:e.getAttribute('aria-label'),text:e.textContent?.slice(0,120),disabled:e.disabled,rect:{x:r.x,y:r.y,width:r.width,height:r.height},display:s.display,visibility:s.visibility,scrollWidth:e.scrollWidth,clientWidth:e.clientWidth};}),videos:[...document.querySelectorAll('video')].map(v=>({src:v.currentSrc,currentTime:v.currentTime,duration:v.duration,readyState:v.readyState,seeking:v.seeking,muted:v.muted,width:v.videoWidth,height:v.videoHeight})),svgs:[...document.querySelectorAll('svg[role="img"]')].map(s=>({label:s.getAttribute('aria-label'),svg:s.outerHTML})),canvases:[...document.querySelectorAll('canvas')].map(c=>{let nontransparent=0;try{const d=c.getContext('2d')?.getImageData(0,0,c.width,c.height).data;if(d)for(let i=3;i<d.length;i+=4)if(d[i]>0)nontransparent++;}catch{}return {width:c.width,height:c.height,nontransparent};})}));
+ put(name+'.json',state);fs.writeFileSync(path.join(out,name+'.html'),await page.content());await page.screenshot({path:path.join(out,name+'.png'),caret:'initial'});cell.captures.push({name,overflow:state.overflow,pngSha256:hash(fs.readFileSync(path.join(out,name+'.png')))});return state;
+}
+async function inspect(page,cell,prefix){
+ const toggle=page.getByTestId('integrated-frame-inspector').getByRole('button',{name:/inspect the calibration cut/i});await toggle.click();
+ const verified=page.getByTestId('verified-frame-inspector');await expect(verified).toContainText('7/7 SHA-256 verified',{timeout:90000});await expect(verified).toContainText('Public proof · silent');
+ for(const title of ['Original choreography pose','Creator take A','Creator take B','Frozen generated edit','Manual final MP4'])await expect(verified.getByText(title,{exact:true})).toBeVisible();
+ if(cell.mode==='text200')cell.inspectorText=await page.evaluate(()=>window.__proofDoubleText());
+ async function frame(n){
+  await expect(verified).toContainText(new RegExp(`Frame ${n} .* ${(n/30).toFixed(3).replace('.','\\.')} s .* ${n===480?'take-b .* fill':'take-a .* fit'}`));
+  const t=n/30,c=Math.min(t,manifest.synchronization.choreographyDurationSeconds);
+  const times=[t,t,c+manifest.synchronization.takeOffsetsSeconds['asset.take-a'],c+manifest.synchronization.takeOffsetsSeconds['asset.take-b']];
+  await page.waitForFunction(times=>{const vs=[...document.querySelectorAll('[data-testid="verified-frame-inspector"] video')];return vs.length===4&&vs.every((v,i)=>v.readyState>=2&&!v.seeking&&Math.abs(v.currentTime-Math.max(0,Math.min(times[i],v.duration-1/60)))<=1/120+0.00001);},times,{timeout:15000});
+  await verified.scrollIntoViewIfNeeded();const state=await capture(page,cell,`${prefix}-frame-${n}`);state.poseInput={outputFrame:n,outputSeconds:t,referenceSeconds:manifest.synchronization.referenceOffsetSeconds+c,takeASeconds:times[2],takeBSeconds:times[3],poseArtifactSha256:contract.assets.find(a=>a.id==='pose-tracks').sha256};put(`${prefix}-frame-${n}.json`,state);
+ }
+ await frame(480);await verified.getByRole('button',{name:'Next output frame'}).click();await frame(481);await page.keyboard.press('ArrowLeft');await expect(verified).toContainText(/Frame 480 .* take-b .* fill/);
+ cell.inspectorAxe=await new AxeBuilder({page}).include('[data-testid="verified-frame-inspector"]').analyze();
+ await capture(page,cell,prefix+'-inspector-keyboard-restored');
+}
+async function edit(page,cell,prefix,ten=false){
+ await page.goto(base+'/edit.html');await expect(page.getByRole('heading',{name:'Sign · Cut v1'})).toBeVisible();await expect(page.getByText('107.7 bpm')).toHaveCount(1);await expect(page.getByText('Local',{exact:true})).toHaveCount(1);
+ const preview=page.getByTestId('plan-preview'),undo=page.getByRole('button',{name:'Undo',exact:true});await expect(preview).toHaveAttribute('data-duration-frames','1335');await expect(undo).toBeDisabled();
+ if(cell.mode==='text200')cell.editorText=await page.evaluate(()=>window.__proofDoubleText());
+ await capture(page,cell,prefix+'-edit-entry');const compact=cell.viewport.width<1024;
+ if(compact)await page.getByRole('button',{name:'Timeline',exact:true}).click();
+ cell.tempo={text:await page.getByText('107.7 bpm').textContent(),visible:await page.getByText('107.7 bpm').isVisible(),limit:'Existing mobile CSS hides the project header badge below1024; source scenario asserts presence, not phone visibility'};
+ if(!compact)await expect(page.getByText('107.7 bpm')).toBeVisible();
+ const clip=page.getByLabel('Current clip 2 take A',{exact:true});await expect(clip).toBeVisible();const original=await clip.getAttribute('aria-label');const labels=await page.getByRole('button',{name:/^Current clip \d+ take [AB]$/}).evaluateAll(es=>es.map(e=>({label:e.getAttribute('aria-label'),text:e.textContent})));
+ if(compact)await page.getByRole('button',{name:'Agent',exact:true}).click();await page.getByLabel('Ask the edit agent').fill('swap 2');await page.keyboard.press('Enter');
+ if(compact)await page.getByRole('button',{name:'Timeline',exact:true}).click();await expect(page.getByLabel('Current clip 2 take A',{exact:true})).toBeVisible();await expect(page.getByLabel('Proposal clip 2 take B changed')).toBeVisible();await capture(page,cell,prefix+'-proposal');
+ await page.getByRole('button',{name:'Apply to timeline'}).click();await expect(page.getByLabel('Current clip 2 take B',{exact:true})).toBeVisible();await expect(page.getByRole('group',{name:'Agent proposal timeline'})).toHaveCount(0);await expect(undo).toBeEnabled();await capture(page,cell,prefix+'-applied');
+ await undo.click();await expect(undo).toBeDisabled();await expect(page.getByLabel(original,{exact:true})).toBeVisible();await expect(preview).toHaveAttribute('data-duration-frames','1335');
+ const restored=await page.getByRole('button',{name:/^Current clip \d+ take [AB]$/}).evaluateAll(es=>es.map(e=>({label:e.getAttribute('aria-label'),text:e.textContent})));expect(restored).toEqual(labels);cell.undo={original:labels,restored,durationFrames:1335};await capture(page,cell,prefix+'-restored');
+ if(ten){if(compact)await page.getByRole('button',{name:'Agent',exact:true}).click();for(let i=0;i<10;i++){await page.getByLabel('Ask the edit agent').fill(`show the cuts follow-up ${i+1}`);await page.keyboard.press('Enter');}await expect(page.getByText(/History.*16 messages/)).toBeVisible();await page.getByText(/History.*16 messages/).click();await capture(page,cell,prefix+'-ten-exchanges');cell.localExchanges=10;}
+ cell.editorAxe=await new AxeBuilder({page}).exclude('[data-testid="plan-preview"]').analyze();
+}
+async function main(){
+ if(section==='editor-inspector')for(const [width,height]of plan.viewports){
+  const {page,context,cell}=await fresh({width,height});cell.landing='Previously observed failure, outside this independent lane';const prefix=String(width);await page.goto(base+'/studio.html');await capture(page,cell,prefix+'-studio-entry');await inspect(page,cell,prefix);await edit(page,cell,prefix,width===390);cell.status='OBSERVED';put('report.json',report);await context.close();current=null;
+ }
+ if(section==='matrix')for(const [width,height]of plan.viewports){
+  const {page,context,cell}=await fresh({width,height});const prefix=String(width);await page.goto(base+'/');await expect(page.getByTestId('landing')).toBeVisible();await page.locator('canvas').scrollIntoViewIfNeeded();await page.waitForFunction(()=>{const c=document.querySelector('canvas'),d=c?.getContext('2d')?.getImageData(0,0,c.width,c.height).data;return d&&d.some((n,i)=>i%4===3&&n>0);});await capture(page,cell,prefix+'-landing-pose');await page.getByRole('link',{name:'Studio',exact:true}).click();await inspect(page,cell,prefix);await edit(page,cell,prefix,width===390);cell.status='OBSERVED';put('report.json',report);await context.close();current=null;
+ }
+ if(section==='special'){
+  {const {page,context,cell}=await fresh({width:390,height:844},'no-preference',true);await page.goto(base+'/');await page.locator('canvas').scrollIntoViewIfNeeded();await capture(page,cell,'motion-start');await page.waitForTimeout(3200);await capture(page,cell,'motion-end');await context.close();current=null;cell.status='OBSERVED_3_SECOND_MOTION';}
+  {const {page,context,cell}=await fresh({width:390,height:844});const original=fs.readFileSync(path.join(R,'fixtures/media/integrated-source-only-v1/manifest.json'));const changed=Buffer.concat([original,Buffer.from('\n ')]);fs.writeFileSync(path.join(out,'mismatched-manifest.json'),changed);cell.manifestHashes={original:hash(original),changed:hash(changed)};await page.route('**'+contract.manifestUrl,route=>route.fulfill({body:changed,contentType:'application/json'}));await page.goto(base+'/studio.html');const toggle=page.getByRole('button',{name:/inspect the calibration cut/i});await toggle.click();await expect(page.getByRole('alert')).toContainText('Inspector blocked');await expect(page.getByTestId('verified-frame-inspector')).toHaveCount(0);await capture(page,cell,'manifest-blocked');await toggle.click();await toggle.click();await expect(page.getByRole('alert')).toContainText('Inspector blocked');await page.unroute('**'+contract.manifestUrl);await page.reload();await toggle.click();await expect(page.getByTestId('verified-frame-inspector')).toContainText('7/7 SHA-256 verified',{timeout:90000});await capture(page,cell,'manifest-reload-recovered');cell.status='OBSERVED';await context.close();current=null;}
+  for(const mode of ['text200','reduced'])for(const width of [390,1440]){
+   const {page,context,cell}=await fresh({width,height:width===390?844:960},mode==='reduced'?'reduce':'no-preference');cell.mode=mode;
+   if(mode==='text200')await page.addInitScript(()=>{document.addEventListener('DOMContentLoaded',()=>{window.__proofDoubleText=()=>{const es=[...document.querySelectorAll('body *')].filter(e=>getComputedStyle(e).display!=='none');const sizes=es.map(e=>({e,size:parseFloat(getComputedStyle(e).fontSize),before:e.getAttribute('style')}));for(const {e,size}of sizes)e.style.fontSize=`${size*2}px`;return sizes.map(({e,size,before})=>({tag:e.tagName,testid:e.getAttribute('data-testid'),beforePx:size,afterPx:parseFloat(getComputedStyle(e).fontSize),beforeStyle:before}));};});});
+   await page.goto(base+'/');await expect(page.getByTestId('landing')).toBeVisible();if(mode==='text200')cell.landingText=await page.evaluate(()=>window.__proofDoubleText());await page.locator('canvas').scrollIntoViewIfNeeded();await capture(page,cell,`${mode}-${width}-landing`);await page.getByRole('link',{name:'Studio',exact:true}).click();await inspect(page,cell,`${mode}-${width}`);await edit(page,cell,`${mode}-${width}`);cell.status='OBSERVED';await context.close();current=null;put('report.json',report);
+  }
+ }
+ if(section==='codec'){
+  const testPath=path.join(R,'tests/e2e/stitch-studio.spec.ts'),testSource=fs.readFileSync(testPath,'utf8');
+  const functionSource=testSource.slice(testSource.indexOf('function quickBrowserExportPlan()'),testSource.indexOf("\ntest('stitch studio loads"));
+  const committed=JSON.parse(fs.readFileSync(path.join(R,'fixtures/media/integrated-source-only-v1/edit-plan.json'),'utf8'));
+  const quick=new Function('committedEditPlan',functionSource+';return quickBrowserExportPlan();')(committed);
+  put('quick-input.json',quick);put('quick-transformation.json',{testPath,testSha256:hash(fs.readFileSync(testPath)),functionSourceSha256:hash(functionSource),originalSha256:contract.assets.find(a=>a.id==='edit-plan').sha256,canvas:quick.canvas,durationFrames:quick.durationFrames});fs.writeFileSync(path.join(out,'exact-quick-function.js.txt'),functionSource);
+  const {page,context,cell}=await fresh({width:1440,height:960});await page.route('**/media/integrated-source-only-v1/edit-plan.json',route=>route.fulfill({json:quick}));await page.goto(base+'/edit.html');await expect(page.getByText('107.7 bpm')).toBeVisible();expect(await page.evaluate(()=>crossOriginIsolated)).toBe(true);
+  await page.getByLabel('Ask the edit agent').fill('duplicate 0');await page.keyboard.press('Enter');await expect(page.getByRole('group',{name:'Agent proposal timeline'})).toBeVisible();await page.getByRole('button',{name:'Apply to timeline'}).click();await expect(page.getByTestId('plan-preview')).toHaveAttribute('data-duration-frames','60');
+  await page.getByRole('button',{name:'Edit overlays'}).click();const overlay=page.getByTestId('overlay-box').first();await overlay.click();await page.getByLabel('Overlay text').fill('PROOF CUT');await page.getByLabel('Overlay text').press('Enter');await expect(overlay).toHaveText('PROOF CUT');await page.getByRole('button',{name:'Done editing overlays'}).click();await capture(page,cell,'accepted-caption');
+  const wasm=await page.request.get(base+'/ffmpeg/0.12.10/mt/ffmpeg-core.wasm');expect(wasm.ok()).toBe(true);expect(wasm.headers()['content-type']).toContain('application/wasm');cell.mtAvailabilityOnly={status:wasm.status(),sha256:hash(await wasm.body()),limit:'GET availability only; exporter defaults single-thread'};
+  const downloads=[];page.on('download',d=>downloads.push(d.suggestedFilename()));await page.getByRole('button',{name:'Export',exact:true}).click();await expect(page.getByLabel('MP4 export progress')).toBeVisible();await page.waitForFunction(()=>Number(document.querySelector('[aria-label="MP4 export progress"]')?.getAttribute('aria-valuenow'))>0,undefined,{timeout:15000});await capture(page,cell,'export-active-before-cancel');await page.getByRole('button',{name:'Cancel MP4 export'}).click();await expect(page.getByTestId('browser-export-status')).toContainText('Export cancelled. No partial file was downloaded.');expect(downloads).toEqual([]);await capture(page,cell,'export-cancelled');
+  const event=page.waitForEvent('download',{timeout:220000}).catch(e=>e);await page.getByRole('button',{name:'Export',exact:true}).click();await expect(page.getByLabel('MP4 export progress')).toBeVisible();
+  const terminal=await page.waitForFunction(()=>{const s=document.querySelector('[data-testid="browser-export-status"]');return s&&!s.querySelector('[role="progressbar"]')?(s.textContent?.trim()||null):null;},undefined,{timeout:220000});expect(await terminal.jsonValue()).toContain('Silent MP4 ready');const download=await event;if(download instanceof Error)throw download;expect(downloads).toEqual(['nodevideo-sign-edit.mp4']);
+  const mp4=path.join(out,'nodevideo-sign-edit.mp4');await download.saveAs(mp4);const bytes=fs.readFileSync(mp4);expect(bytes.length).toBeGreaterThan(1000);expect(bytes.subarray(4,8).toString('ascii')).toBe('ftyp');
+  const probeRaw=execFileSync('C:/Users/hshum/scoop/shims/ffprobe.exe',['-v','error','-show_entries','format=duration:stream=codec_name,width,height,codec_type','-of','json',mp4],{encoding:'utf8',timeout:15000,windowsHide:true});fs.writeFileSync(path.join(out,'ffprobe.json'),probeRaw);const probe=JSON.parse(probeRaw);expect(Number(probe.format.duration)).toBeCloseTo(2,1);expect(probe.streams).toEqual([expect.objectContaining({codec_name:'h264',codec_type:'video',width:180,height:320})]);
+  const png=path.join(out,'decoded-proof-frame.png');execFileSync('C:/Users/hshum/scoop/shims/ffmpeg.exe',['-v','error','-ss','0.4','-i',mp4,'-frames:v','1','-vf','scale=720:1280:flags=lanczos','-y',png],{timeout:15000,windowsHide:true});const ocr=execFileSync('C:/Program Files/Tesseract-OCR/tesseract.exe',[png,'stdout','--psm','11'],{encoding:'utf8',timeout:15000,windowsHide:true});fs.writeFileSync(path.join(out,'decoded-ocr.txt'),ocr);expect(ocr.toUpperCase()).toContain('PROOF CUT');
+  const decode=execFileSync('C:/Users/hshum/scoop/shims/ffmpeg.exe',['-v','error','-i',mp4,'-f','null','-'],{encoding:'utf8',timeout:15000,windowsHide:true});fs.writeFileSync(path.join(out,'full-decode.log'),decode);cell.artifact={file:'nodevideo-sign-edit.mp4',bytes:bytes.length,sha256:hash(bytes),probe,decodedPngSha256:hash(fs.readFileSync(png)),ocr,fullDecodeExit:0};await capture(page,cell,'export-ready');await context.close();current=null;
+  const reopen=await fresh({width:390,height:844});await reopen.page.route(base+'/proof-export.mp4',route=>route.fulfill({body:bytes,contentType:'video/mp4'}));await reopen.page.goto(base+'/');await reopen.page.setContent('<main><h1>Retained exported file</h1><video controls muted src="'+base+'/proof-export.mp4" style="width:180px;height:320px"></video></main>');await reopen.page.locator('video').evaluate(async v=>{await new Promise((resolve,reject)=>{if(v.readyState>=1)return resolve();v.addEventListener('loadedmetadata',resolve,{once:true});v.addEventListener('error',reject,{once:true});});v.currentTime=.4;});await reopen.page.waitForFunction(()=>{const v=document.querySelector('video');return v.readyState>=2&&!v.seeking;});await capture(reopen.page,reopen.cell,'actual-file-reopened');reopen.cell.artifactSha256=hash(bytes);reopen.cell.status='OBSERVED_REOPEN';await reopen.context.close();current=null;cell.status='OBSERVED_REAL_CODEC';
+ }
+ report.status='OBSERVED_WITH_UNGRADED_FINDINGS';
+}
+try{await main();}catch(error){report.status='FAILED';report.error=String(error.stack??error);if(current)try{await capture(current.page,current.cell,'failure');}catch(e){report.captureError=String(e);}process.exitCode=1;}finally{await browser.close();report.finishedAt=new Date().toISOString();put('report.json',report);console.log(JSON.stringify({status:report.status,cells:report.cells.length,captures:report.cells.reduce((n,c)=>n+c.captures.length,0),error:report.error}));}

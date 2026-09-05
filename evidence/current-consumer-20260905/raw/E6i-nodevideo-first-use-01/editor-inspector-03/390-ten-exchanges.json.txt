@@ -1,0 +1,799 @@
+{
+  "url": "http://127.0.0.1:4983/edit.html",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "crossOriginIsolated": true,
+  "overflow": 0,
+  "active": {
+    "tag": "SUMMARY",
+    "label": null,
+    "text": "History · 16 messages"
+  },
+  "text": "Sign · Cut v1\nUndo\nExport\n\nLocal H.264 export matches this accepted cut; the private song master is omitted and nothing uploads.\n\nNodeAgent\nLocal\nHistory · 16 messages\nshow the cuts follow-up 3\nlist_clips\nCompleted\n\n5 cuts across the two takes at 107.7 bpm. Try \"duplicate 2\", \"delete 2\", \"split 2\", or \"swap 2\" — every accepted edit lands on the shared timeline.\n\nshow the cuts follow-up 4\nlist_clips\nCompleted\n\n5 cuts across the two takes at 107.7 bpm. Try \"duplicate 2\", \"delete 2\", \"split 2\", or \"swap 2\" — every accepted edit lands on the shared timeline.\n\nshow the cuts follow-up 5\nlist_clips\nCompleted\n\n5 cuts across the two takes at 107.7 bpm. Try \"duplicate 2\", \"delete 2\", \"split 2\", or \"swap 2\" — every accepted edit lands on the shared timeline.\n\nshow the cuts follow-up 6\nlist_clips\nCompleted\n\n5 cuts across the two takes at 107.7 bpm. Try \"duplicate 2\", \"delete 2\", \"split 2\", or \"swap 2\" — every accepted edit lands on the shared timeline.\n\nshow the cuts follow-up 7\nlist_clips\nCompleted\n\n5 cuts across the two takes at 107.7 bpm. Try \"duplicate 2\", \"delete 2\", \"split 2\", or \"swap 2\" — every accepted edit lands on the shared timeline.\n\nshow the cuts follow-up 8\nlist_clips\nCompleted\n\n5 cuts across the two takes at 107.7 bpm. Try \"duplicate 2\", \"delete 2\", \"split 2\", or \"swap 2\" — every accepted edit lands on the shared timeline.\n\nshow the cuts follow-up 9\nlist_clips\nCompleted\n\n5 cuts across the two takes at 107.7 bpm. Try \"duplicate 2\", \"delete 2\", \"split 2\", or \"swap 2\" — every accepted edit lands on the shared timeline.\n\nshow the cuts follow-up 10\nlist_clips\nCompleted\n\n5 cuts across the two takes at 107.7 bpm. Try \"duplicate 2\", \"delete 2\", \"split 2\", or \"swap 2\" — every accepted edit lands on the shared timeline.\n\nAgent settings · key not set\nCanvas\nAgent\nTimeline",
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Undo",
+      "disabled": true,
+      "rect": {
+        "x": 248.296875,
+        "y": 8.5,
+        "width": 51.078125,
+        "height": 32
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 49,
+      "clientWidth": 49
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Export",
+      "disabled": false,
+      "rect": {
+        "x": 304.96875,
+        "y": 8.5,
+        "width": 77.03125,
+        "height": 32
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 75,
+      "clientWidth": 75
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Play video",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Mute sound",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Enter Fullscreen",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "inline-flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Edit overlays",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "INPUT",
+      "label": "Upload files",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "none",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Submit",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 29.390625,
+        "y": 216.984375,
+        "width": 32,
+        "height": 32
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 30,
+      "clientWidth": 30
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "list_clipsCompleted",
+      "disabled": false,
+      "rect": {
+        "x": 51.390625,
+        "y": 407.375,
+        "width": 272.75,
+        "height": 44
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 273,
+      "clientWidth": 273
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "list_clipsCompleted",
+      "disabled": false,
+      "rect": {
+        "x": 51.390625,
+        "y": 689.375,
+        "width": 272.75,
+        "height": 44
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 273,
+      "clientWidth": 273
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "list_clipsCompleted",
+      "disabled": false,
+      "rect": {
+        "x": 51.390625,
+        "y": 971.375,
+        "width": 272.75,
+        "height": 44
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 273,
+      "clientWidth": 273
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "list_clipsCompleted",
+      "disabled": false,
+      "rect": {
+        "x": 51.390625,
+        "y": 1253.375,
+        "width": 272.75,
+        "height": 44
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 273,
+      "clientWidth": 273
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "list_clipsCompleted",
+      "disabled": false,
+      "rect": {
+        "x": 51.390625,
+        "y": 1535.375,
+        "width": 272.75,
+        "height": 44
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 273,
+      "clientWidth": 273
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "list_clipsCompleted",
+      "disabled": false,
+      "rect": {
+        "x": 51.390625,
+        "y": 1817.375,
+        "width": 272.75,
+        "height": 44
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 273,
+      "clientWidth": 273
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "list_clipsCompleted",
+      "disabled": false,
+      "rect": {
+        "x": 51.390625,
+        "y": 2099.375,
+        "width": 272.75,
+        "height": 44
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 273,
+      "clientWidth": 273
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "list_clipsCompleted",
+      "disabled": false,
+      "rect": {
+        "x": 51.390625,
+        "y": 2381.375,
+        "width": 272.75,
+        "height": 44
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 273,
+      "clientWidth": 273
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 18.390625,
+        "y": 692.8125,
+        "width": 353.21875,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 351,
+      "clientWidth": 351
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 18.390625,
+        "y": 760.859375,
+        "width": 353.21875,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 351,
+      "clientWidth": 351
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 18.390625,
+        "y": 862.703125,
+        "width": 353.21875,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 351,
+      "clientWidth": 351
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 18.390625,
+        "y": 930.75,
+        "width": 353.21875,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 351,
+      "clientWidth": 351
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Split clip 2 on nearest beat",
+      "text": " Split",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Swap clip 2 to other take",
+      "text": " Swap take",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Trim in clip 2 by one beat",
+      "text": " Trim in",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Trim out clip 2 by one beat",
+      "text": " Trim out",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Duplicate clip 2",
+      "text": " Duplicate",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Delete clip 2",
+      "text": " Delete",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current clip 0 take A",
+      "text": "A0.0–6.6s",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current clip 1 take B",
+      "text": "B6.6–16.0s",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current clip 2 take A",
+      "text": "A16.0–19.7s",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current clip 3 take B",
+      "text": "B19.7–25.0s",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current clip 4 take A",
+      "text": "A25.0–40.5s",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 1: Wait a minute, 0.0 to 1.9 seconds",
+      "text": "#1Wait a minute",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 2: Left · right · alright, 1.9 to 3.9 seconds",
+      "text": "#2Left · right · alright",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 3: Flip it a little closer, 3.9 to 6.6 seconds",
+      "text": "#3Flip it a little closer",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 4: Red light · on fire, 6.6 to 8.4 seconds",
+      "text": "#4Red light · on fire",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 5: Right now · it's so tight, 9.0 to 11.2 seconds",
+      "text": "#5Right now · it's so tight",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 6: Take that as a sign, 11.9 to 15.8 seconds",
+      "text": "#6Take that as a sign",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 7: Show me your sign, 15.8 to 19.8 seconds",
+      "text": "#7Show me your sign",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 8: Tiki taki tak · tiki tiki taki tak, 19.8 to 25.3 seconds",
+      "text": "#8Tiki taki tak · tiki tiki taki tak",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 9: Make up your mind, 25.3 to 26.6 seconds",
+      "text": "#9Make up your mind",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 10: Show me your sign, 26.6 to 29.5 seconds",
+      "text": "#10Show me your sign",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 11: Tiki taki tak · tiki tiki taki tak, 29.5 to 33.6 seconds",
+      "text": "#11Tiki taki tak · tiki tiki taki tak",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 12: Take that as a sign, 33.6 to 37.9 seconds",
+      "text": "#12Take that as a sign",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 13: Stay here, 38.9 to 40.3 seconds",
+      "text": "#13Stay here",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 14: NodeVideo source-only proof, 40.5 to 44.5 seconds",
+      "text": "#14NodeVideo source-only proof",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Canvas",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 795,
+        "width": 130,
+        "height": 49
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 130,
+      "clientWidth": 130
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Agent",
+      "disabled": false,
+      "rect": {
+        "x": 130,
+        "y": 795,
+        "width": 130,
+        "height": 49
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 130,
+      "clientWidth": 130
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Timeline",
+      "disabled": false,
+      "rect": {
+        "x": 260,
+        "y": 795,
+        "width": 130,
+        "height": 49
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 130,
+      "clientWidth": 130
+    }
+  ],
+  "videos": [
+    {
+      "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4#t=15.5,22.13",
+      "currentTime": 15.5,
+      "duration": 57.598005,
+      "readyState": 4,
+      "seeking": false,
+      "muted": true,
+      "width": 640,
+      "height": 360
+    }
+  ],
+  "svgs": [],
+  "canvases": []
+}

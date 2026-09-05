@@ -1,0 +1,432 @@
+{
+  "method": "PIL inspects the exact saved canvas screenshot PNG; RGB red>70,green>120,blue<110,green>=red identifies the existing lime pose, excluding dark background. Zero captures remain zero, not certified painted from DOM.",
+  "files": [
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/end-canvas.png",
+      "bytes": 13910,
+      "sha256": "0bfa444cb5c689a7831910354fa3a8d1c514629649c67c355716dd06176e5783",
+      "dimensions": [
+        470,
+        471
+      ],
+      "savedAccentPixelCount": 1789,
+      "accentBounds": {
+        "left": 337,
+        "top": 68,
+        "right": 389,
+        "bottom": 399
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/mid-canvas.png",
+      "bytes": 14498,
+      "sha256": "d77dba0483a16b90a1c2eadcc1de3f031bf780e900f7a55b73302e07bd9858f6",
+      "dimensions": [
+        470,
+        471
+      ],
+      "savedAccentPixelCount": 2104,
+      "accentBounds": {
+        "left": 133,
+        "top": 121,
+        "right": 200,
+        "bottom": 399
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/start-canvas.png",
+      "bytes": 14672,
+      "sha256": "91022816f79d41b09dba2349bc165f7fcefb3cea3629f04cf5cedf4380786b97",
+      "dimensions": [
+        470,
+        471
+      ],
+      "savedAccentPixelCount": 2057,
+      "accentBounds": {
+        "left": 112,
+        "top": 139,
+        "right": 215,
+        "bottom": 400
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/end-canvas.png",
+      "bytes": 15481,
+      "sha256": "3e98fc5284ca426d8181bcdb4239bffb0d37df149142568f30b0ef81837bd851",
+      "dimensions": [
+        470,
+        471
+      ],
+      "savedAccentPixelCount": 1919,
+      "accentBounds": {
+        "left": 101,
+        "top": 107,
+        "right": 232,
+        "bottom": 362
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/mid-canvas.png",
+      "bytes": 15481,
+      "sha256": "3e98fc5284ca426d8181bcdb4239bffb0d37df149142568f30b0ef81837bd851",
+      "dimensions": [
+        470,
+        471
+      ],
+      "savedAccentPixelCount": 1919,
+      "accentBounds": {
+        "left": 101,
+        "top": 107,
+        "right": 232,
+        "bottom": 362
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/start-canvas.png",
+      "bytes": 15481,
+      "sha256": "3e98fc5284ca426d8181bcdb4239bffb0d37df149142568f30b0ef81837bd851",
+      "dimensions": [
+        470,
+        471
+      ],
+      "savedAccentPixelCount": 1919,
+      "accentBounds": {
+        "left": 101,
+        "top": 107,
+        "right": 232,
+        "bottom": 362
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/end-canvas.png",
+      "bytes": 9481,
+      "sha256": "79d754f361f8fb0746aca2b6b6bd8cf149fa6d1a10ad4b200d44bc3a12f891ba",
+      "dimensions": [
+        553,
+        553
+      ],
+      "savedAccentPixelCount": 2,
+      "accentBounds": {
+        "left": 364,
+        "top": 508,
+        "right": 464,
+        "bottom": 508
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/mid-canvas.png",
+      "bytes": 21164,
+      "sha256": "5d7da965397a3be56d03a74dd2e7da39cd786c5cfdc89636b654e01f24ae7050",
+      "dimensions": [
+        553,
+        553
+      ],
+      "savedAccentPixelCount": 2782,
+      "accentBounds": {
+        "left": 157,
+        "top": 142,
+        "right": 464,
+        "bottom": 508
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/start-canvas.png",
+      "bytes": 21867,
+      "sha256": "ce0135afdc9af63ee03812e5f25139e62e601ac8c99a3dc033d6ab5578c13667",
+      "dimensions": [
+        553,
+        553
+      ],
+      "savedAccentPixelCount": 2829,
+      "accentBounds": {
+        "left": 133,
+        "top": 163,
+        "right": 464,
+        "bottom": 508
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/end-canvas.png",
+      "bytes": 7794,
+      "sha256": "f08e8e1551b8147a8f0351c0a062327d9dea981df308d283d4de289ad896ad3b",
+      "dimensions": [
+        278,
+        279
+      ],
+      "savedAccentPixelCount": 624,
+      "accentBounds": {
+        "left": 199,
+        "top": 41,
+        "right": 230,
+        "bottom": 236
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/mid-canvas.png",
+      "bytes": 7635,
+      "sha256": "c532d4e033824b7a6076ae0450977b048c4e25c93131ea7ebceb290c41cd9615",
+      "dimensions": [
+        278,
+        279
+      ],
+      "savedAccentPixelCount": 837,
+      "accentBounds": {
+        "left": 82,
+        "top": 68,
+        "right": 114,
+        "bottom": 236
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/start-canvas.png",
+      "bytes": 8140,
+      "sha256": "ac0e6bb12c58f3727abf08a2bf43828e586875482daabd0e226702db8308085c",
+      "dimensions": [
+        278,
+        279
+      ],
+      "savedAccentPixelCount": 632,
+      "accentBounds": {
+        "left": 30,
+        "top": 64,
+        "right": 128,
+        "bottom": 227
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/end-canvas.png",
+      "bytes": 8293,
+      "sha256": "0a507dcb3982a5cd7d458c04c8da0a4b66c0efe2a7f1d7e8eded834c883a463a",
+      "dimensions": [
+        278,
+        279
+      ],
+      "savedAccentPixelCount": 656,
+      "accentBounds": {
+        "left": 60,
+        "top": 64,
+        "right": 137,
+        "bottom": 215
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/mid-canvas.png",
+      "bytes": 8293,
+      "sha256": "0a507dcb3982a5cd7d458c04c8da0a4b66c0efe2a7f1d7e8eded834c883a463a",
+      "dimensions": [
+        278,
+        279
+      ],
+      "savedAccentPixelCount": 656,
+      "accentBounds": {
+        "left": 60,
+        "top": 64,
+        "right": 137,
+        "bottom": 215
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/start-canvas.png",
+      "bytes": 8293,
+      "sha256": "0a507dcb3982a5cd7d458c04c8da0a4b66c0efe2a7f1d7e8eded834c883a463a",
+      "dimensions": [
+        278,
+        279
+      ],
+      "savedAccentPixelCount": 656,
+      "accentBounds": {
+        "left": 60,
+        "top": 64,
+        "right": 137,
+        "bottom": 215
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/end-canvas.png",
+      "bytes": 16097,
+      "sha256": "c66459252d1a8fc1ea084dc9d1fc75167280ba3b07780e66e8affa080e886c98",
+      "dimensions": [
+        396,
+        397
+      ],
+      "savedAccentPixelCount": 1232,
+      "accentBounds": {
+        "left": 283,
+        "top": 57,
+        "right": 327,
+        "bottom": 336
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/mid-canvas.png",
+      "bytes": 16493,
+      "sha256": "e38c390bd4290ac0887de3850b27ec565a6e3562897b29cda59e5ef7e224ea7a",
+      "dimensions": [
+        396,
+        397
+      ],
+      "savedAccentPixelCount": 1423,
+      "accentBounds": {
+        "left": 111,
+        "top": 102,
+        "right": 168,
+        "bottom": 336
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/start-canvas.png",
+      "bytes": 16628,
+      "sha256": "eeb54b91173a8926776b77ca222b1cc9a49186662f6f2256a53ffffc2e47bd5a",
+      "dimensions": [
+        396,
+        397
+      ],
+      "savedAccentPixelCount": 1414,
+      "accentBounds": {
+        "left": 96,
+        "top": 118,
+        "right": 180,
+        "bottom": 337
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/end-canvas.png",
+      "bytes": 10421,
+      "sha256": "4d7883a1dc83fbd44ceec0cddcaca07f21b6b755e64ef4b376007c23a9c945a9",
+      "dimensions": [
+        348,
+        349
+      ],
+      "savedAccentPixelCount": 1098,
+      "accentBounds": {
+        "left": 32,
+        "top": 66,
+        "right": 105,
+        "bottom": 279
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/mid-canvas.png",
+      "bytes": 10270,
+      "sha256": "5ac1174464ab1615ee0b0873b7ee9bebd333d353c760d42e25eed726a19db49b",
+      "dimensions": [
+        348,
+        349
+      ],
+      "savedAccentPixelCount": 1192,
+      "accentBounds": {
+        "left": 103,
+        "top": 85,
+        "right": 143,
+        "bottom": 295
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/start-canvas.png",
+      "bytes": 10407,
+      "sha256": "f6449c6d1039b547df2b72665f0d031327326ae9b3ed8255ec90959d5069385a",
+      "dimensions": [
+        348,
+        349
+      ],
+      "savedAccentPixelCount": 1001,
+      "accentBounds": {
+        "left": 38,
+        "top": 80,
+        "right": 160,
+        "bottom": 284
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/end-canvas.png",
+      "bytes": 10755,
+      "sha256": "fdd12b9910eb5db20c926a135ec12bf7706a0a59fd2260dccae01351c4e4d184",
+      "dimensions": [
+        348,
+        349
+      ],
+      "savedAccentPixelCount": 1054,
+      "accentBounds": {
+        "left": 75,
+        "top": 80,
+        "right": 171,
+        "bottom": 269
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/mid-canvas.png",
+      "bytes": 10755,
+      "sha256": "fdd12b9910eb5db20c926a135ec12bf7706a0a59fd2260dccae01351c4e4d184",
+      "dimensions": [
+        348,
+        349
+      ],
+      "savedAccentPixelCount": 1054,
+      "accentBounds": {
+        "left": 75,
+        "top": 80,
+        "right": 171,
+        "bottom": 269
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/start-canvas.png",
+      "bytes": 10755,
+      "sha256": "fdd12b9910eb5db20c926a135ec12bf7706a0a59fd2260dccae01351c4e4d184",
+      "dimensions": [
+        348,
+        349
+      ],
+      "savedAccentPixelCount": 1054,
+      "accentBounds": {
+        "left": 75,
+        "top": 80,
+        "right": 171,
+        "bottom": 269
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/end-canvas.png",
+      "bytes": 9346,
+      "sha256": "51c36fc018d317c4b3d42907e35b15dab5ce36236b2e12ea59958578e78cb902",
+      "dimensions": [
+        396,
+        397
+      ],
+      "savedAccentPixelCount": 0,
+      "accentBounds": null
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/mid-canvas.png",
+      "bytes": 16493,
+      "sha256": "e38c390bd4290ac0887de3850b27ec565a6e3562897b29cda59e5ef7e224ea7a",
+      "dimensions": [
+        396,
+        397
+      ],
+      "savedAccentPixelCount": 1423,
+      "accentBounds": {
+        "left": 111,
+        "top": 102,
+        "right": 168,
+        "bottom": 336
+      }
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/start-canvas.png",
+      "bytes": 16628,
+      "sha256": "eeb54b91173a8926776b77ca222b1cc9a49186662f6f2256a53ffffc2e47bd5a",
+      "dimensions": [
+        396,
+        397
+      ],
+      "savedAccentPixelCount": 1414,
+      "accentBounds": {
+        "left": 96,
+        "top": 118,
+        "right": 180,
+        "bottom": 337
+      }
+    }
+  ]
+}

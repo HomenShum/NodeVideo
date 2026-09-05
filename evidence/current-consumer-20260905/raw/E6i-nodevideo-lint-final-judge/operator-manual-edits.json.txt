@@ -1,0 +1,266 @@
+[
+  {
+    "path": "tools/clip-gate/voice.mjs",
+    "old": "const at = t / fps, dur = (s.hold || 60) / fps;",
+    "new": "const at = t / fps; const dur = (s.hold || 60) / fps;",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "const at = t / fps, dur = (s.hold || 60) / fps;",
+    "new": "const at = t / fps; const dur = (s.hold || 60) / fps;",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/voice.mjs",
+    "old": "let ok = false, lastErr = \"\";",
+    "new": "let ok = false; let lastErr = \"\";",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "const L = new Float32Array(N), R = new Float32Array(N);",
+    "new": "const L = new Float32Array(N); const R = new Float32Array(N);",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "const s0 = Math.round(start * SR), n = Math.round(dur * SR);",
+    "new": "const s0 = Math.round(start * SR); const n = Math.round(dur * SR);",
+    "count": 2
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "const s0 = Math.round(start * SR), n = Math.round(0.16 * SR);",
+    "new": "const s0 = Math.round(start * SR); const n = Math.round(0.16 * SR);",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "const s0 = Math.round(start * SR), n = Math.round(0.14 * SR);",
+    "new": "const s0 = Math.round(start * SR); const n = Math.round(0.14 * SR);",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "const s0 = Math.round(start * SR), n = Math.round(len * SR);",
+    "new": "const s0 = Math.round(start * SR); const n = Math.round(len * SR);",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "const end = endOf(i), notes = CH[s.ch];",
+    "new": "const end = endOf(i); const notes = CH[s.ch];",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "const a = Math.abs(L[i]), b = Math.abs(R[i]);",
+    "new": "const a = Math.abs(L[i]); const b = Math.abs(R[i]);",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/judge-video.mjs",
+    "old": "const craft = sub(CRAFT), comp = sub(SECOND);",
+    "new": "const craft = sub(CRAFT); const comp = sub(SECOND);",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/retime.mjs",
+    "old": "let k = 0, changed = 0, before = 0, after = 0;",
+    "new": "let k = 0; let changed = 0; let before = 0; let after = 0;",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/retime.mjs",
+    "old": "let s = readFileSync(",
+    "new": "const s = readFileSync(",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/apply-captions.mjs",
+    "old": "let s = readFileSync(",
+    "new": "const s = readFileSync(",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/clip.mjs",
+    "old": "let clips = synthesiseBeats(lines, VOICE);",
+    "new": "const clips = synthesiseBeats(lines, VOICE);",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "Math.pow(2, (n - 69) / 12)",
+    "new": "2 ** ((n - 69) / 12)",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/voice.mjs",
+    "old": "lines.forEach((l) => {",
+    "new": "for (const l of lines) {",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/voice.mjs",
+    "old": "l.over = l.rawDur / l.tempo > l.dur;\n});",
+    "new": "l.over = l.rawDur / l.tempo > l.dur;\n}",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/voice.mjs",
+    "old": "overruns.forEach((l) => console.log(`  step ${l.i}: ${(l.rawDur / l.tempo).toFixed(1)}s of speech in a ${l.dur.toFixed(1)}s hold — \"${l.text.slice(0, 52)}...\"`));",
+    "new": "for (const l of overruns) { console.log(`  step ${l.i}: ${(l.rawDur / l.tempo).toFixed(1)}s of speech in a ${l.dur.toFixed(1)}s hold — \"${l.text.slice(0, 52)}...\"`); }",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "events.filter((e) => e.burst).forEach((e) => {",
+    "new": "for (const e of events.filter((e) => e.burst)) {",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "events.filter((e) => e.click).forEach((e) => sfxSelect(e.at));",
+    "new": "for (const e of events.filter((e) => e.click)) { sfxSelect(e.at); }",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "events.filter((e) => e.zoom).forEach((e) => sfxPowerUp(Math.max(0, e.at - 0.15)));",
+    "new": "for (const e of events.filter((e) => e.zoom)) { sfxPowerUp(Math.max(0, e.at - 0.15)); }",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "for (const e of events.filter((e) => e.burst)) {\n  const notes = CH[sectionAt(e.at).ch];\n  for (let k = 0, x = e.at; x < e.at + e.dur; k++, x += BEAT / 4) {\n    blip(HZ(notes[k % notes.length] + 24), x, BEAT * 0.2, 0.035, 0.125, k % 2 ? 0.35 : -0.35);\n  }\n});",
+    "new": "for (const e of events.filter((e) => e.burst)) {\n  const notes = CH[sectionAt(e.at).ch];\n  for (let k = 0, x = e.at; x < e.at + e.dur; k++, x += BEAT / 4) {\n    blip(HZ(notes[k % notes.length] + 24), x, BEAT * 0.2, 0.035, 0.125, k % 2 ? 0.35 : -0.35);\n  }\n}",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/readability.mjs",
+    "old": "caps.forEach((c) => {",
+    "new": "for (const c of caps) {",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/readability.mjs",
+    "old": "\n  });\n  const mean",
+    "new": "\n  }\n  const mean",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/judge-video.mjs",
+    "old": "keys.forEach((k) => {",
+    "new": "for (const k of keys) {",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/judge-video.mjs",
+    "old": "\n    });\n    console.log(`[judge] ${runs.length}",
+    "new": "\n    }\n    console.log(`[judge] ${runs.length}",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "(p) => p && p.click",
+    "new": "(p) => p?.click",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/judge-video.mjs",
+    "old": "(centre.scores[k] || runs[0].scores[k] || {}).evidence || \"\"",
+    "new": "(centre.scores[k] || runs[0].scores[k])?.evidence || \"\"",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/voice.mjs",
+    "old": "lastErr.replace(/\u0000/g, \"\").slice(0, 300)",
+    "new": "lastErr.split(String.fromCharCode(0)).join(\"\").slice(0, 300)",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/narrate.mjs",
+    "old": "for (const entry of results) {",
+    "new": "for (const [index, entry] of results.entries()) {",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/narrate.mjs",
+    "old": "        delete entry.failed;\n        entry.freshProcessRetry = attempt + 1;",
+    "new": "        const { failed: _failed, ...recoveredEntry } = entry;\n        recoveredEntry.freshProcessRetry = attempt + 1;\n        results[index] = recoveredEntry;",
+    "count": 1
+  },
+  {
+    "path": "scripts/quality/verify-production-deploy.mjs",
+    "old": "`FAIL: ${url} never served HTTP 200 with the content signal within ${timeoutMs}ms. ` +\n    'The deployment is not verified live.'",
+    "new": "`FAIL: ${url} never served HTTP 200 with the content signal within ${timeoutMs}ms. The deployment is not verified live.`",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/judge-video.mjs",
+    "old": "md + \"\\n\"",
+    "new": "`${md}\\n`",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/iterate.mjs",
+    "old": "writeFileSync(`${base}.next-cut.md`, [",
+    "new": "writeFileSync(`${base}.next-cut.md`, `${[",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/iterate.mjs",
+    "old": "].join(\"\\n\") + \"\\n\");",
+    "new": "].join(\"\\n\")}\\n`);",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/readability.mjs",
+    "old": "`${bad ? \"FAIL\" : \"  ok\"}  ${String(r.ease).padStart(6)}  step ${String(c.i).padStart(2)}  ` +\n      `${r.words}w/${r.sentences}s  ${JSON.stringify(c.text.slice(0, 62))}` +\n      (hard.length ? `\\n            hard: ${hard.join(\", \")}` : \"\")",
+    "new": "`${bad ? \"FAIL\" : \"  ok\"}  ${String(r.ease).padStart(6)}  step ${String(c.i).padStart(2)}  ${r.words}w/${r.sentences}s  ${JSON.stringify(c.text.slice(0, 62))}${hard.length ? `\\n            hard: ${hard.join(\", \")}` : \"\"}`",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/readability.mjs",
+    "old": "`\\nmean reading ease ${mean} over ${caps.length} captions` + (MIN ? ` · gate ${MIN} · ${fails} below` : \"\")",
+    "new": "`\\nmean reading ease ${mean} over ${caps.length} captions${MIN ? ` · gate ${MIN} · ${fails} below` : \"\"}`",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "`[1:a]atrim=0:${DUR},afade=t=in:st=0:d=1.2,afade=t=out:st=${(DUR - 2).toFixed(2)}:d=2,volume=0.55[bed];` +\n      `[bed][2:a]amix=inputs=2:duration=first:dropout_transition=0[mix];` +\n      `[mix]${NORM}[a]`",
+    "new": "`[1:a]atrim=0:${DUR},afade=t=in:st=0:d=1.2,afade=t=out:st=${(DUR - 2).toFixed(2)}:d=2,volume=0.55[bed];[bed][2:a]amix=inputs=2:duration=first:dropout_transition=0[mix];[mix]${NORM}[a]`",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "old": "`[1:a]afade=t=out:st=${(DUR - 1.2).toFixed(2)}:d=1.2[bed];` +\n      `[bed][2:a]sidechaincompress=threshold=0.03:ratio=9:attack=12:release=320:makeup=1[duck];` +\n      `[duck][2:a]amix=inputs=2:normalize=0:duration=longest[mix];[mix]${NORM}[a]`",
+    "new": "`[1:a]afade=t=out:st=${(DUR - 1.2).toFixed(2)}:d=1.2[bed];[bed][2:a]sidechaincompress=threshold=0.03:ratio=9:attack=12:release=320:makeup=1[duck];[duck][2:a]amix=inputs=2:normalize=0:duration=longest[mix];[mix]${NORM}[a]`",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/voice.mjs",
+    "old": "`${chains};${mixIn}amix=inputs=${lines.length}:normalize=0:duration=longest[m];` +\n  // Speech wants a narrow band and a little presence; loudnorm at -16 leaves\n  // headroom for the music to sit under it after ducking.\n  `[m]highpass=f=90,lowpass=f=11000,acompressor=threshold=-18dB:ratio=3:attack=8:release=180,` +\n  `atrim=0:${(DUR + 1).toFixed(2)},loudnorm=I=-16:TP=-1.5:LRA=9[a]`",
+    "new": "// Speech wants a narrow band and a little presence; loudnorm at -16 leaves\n  // headroom for the music to sit under it after ducking.\n  `${chains};${mixIn}amix=inputs=${lines.length}:normalize=0:duration=longest[m];[m]highpass=f=90,lowpass=f=11000,acompressor=threshold=-18dB:ratio=3:attack=8:release=180,atrim=0:${(DUR + 1).toFixed(2)},loudnorm=I=-16:TP=-1.5:LRA=9[a]`",
+    "count": 1
+  },
+  {
+    "path": "tools/clip-gate/iterate.mjs",
+    "equalLiteralTokens": [
+      "``",
+      "`Apply these to the storyboard spec, then re-run \\`npm run clip\\`:`"
+    ]
+  },
+  {
+    "path": "tools/clip-gate/judge-video.mjs",
+    "equalLiteralTokens": [
+      "``",
+      "`| Dimension | Score | Evidence |`",
+      "`|---|---|---|`",
+      "`## Defects`",
+      "`## Next cut — the revision brief`",
+      "`Your previous judgement gave the SAME score to most dimensions. Re-judge and FORCE a spread: some dimensions are genuinely 0 and some are genuinely 2. Do NOT simply lower scores -- promote what deserves 2 as readily as you demote. Keep the same JSON shape.`"
+    ]
+  }
+]

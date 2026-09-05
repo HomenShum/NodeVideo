@@ -1,0 +1,8 @@
+{
+  "at": "2026-09-05T19:21:48.992110+00:00",
+  "status": "FROZEN_BEFORE_SUPPLEMENT_EXECUTION",
+  "harnessSha256": "74c10d7882f041341f1216e8fccb7a704eefe6fe5e75b16c4b25261576b42dab",
+  "unchangedSourceFreezeSha256": "250ad771d9cb9a2915f2e71e28fed07ce6f0d0109cff67a4f71c61c8a63e8a45",
+  "scope": "Actual extracted pure Set merge, NUL sanitizer and final failure string plus nonexecuting clip AST/import/const audit; no product CLI execution.",
+  "preExecutionCollectorCorrection": "AST visitor callback now returns undefined so all siblings are visited; prior unexecuted script/freeze retained."
+}

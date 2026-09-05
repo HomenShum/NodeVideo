@@ -1,0 +1,11 @@
+{
+  "beforeSha256": "ebbb01b01fa9eb8a7d3bed26df6fbcae04c60578bea0c30ee74d4fc8a6321b0e",
+  "afterSha256": "2e210e764294b412130c67ad6fa363ed1eb48f4b1b727fb2ed369b6af36523de",
+  "changes": [
+    "Mock effect callback return type void\u2192undefined within union",
+    "Separate three remount snapshot const declarations"
+  ],
+  "assertionsOrProductChanged": false,
+  "priorFailure": "execution/normal-check.log",
+  "rootAuthorization": "Proceed with those exact two new-test lint corrections and justified named-check rerun"
+}

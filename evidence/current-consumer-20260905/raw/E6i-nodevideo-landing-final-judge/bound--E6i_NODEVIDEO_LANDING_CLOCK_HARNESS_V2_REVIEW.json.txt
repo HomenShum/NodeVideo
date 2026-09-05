@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-05T19:59:23.144376+00:00",
+  "verdict": "APPROVED_BOUNDED_EFFECTIVE_V2_HARNESS",
+  "checksPassed": 8,
+  "checksTotal": 8,
+  "harnessSha256": "4819f1d07796aad1ad98288d622cca908f74457d05b60fc20790ea46a4c61d8b",
+  "sourceBeforeSha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+  "closedFindings": [
+    "CLOCK-HARNESS-ZERO-01",
+    "CLOCK-HARNESS-REMOUNT-01"
+  ],
+  "originalV1ReviewPreserved": true,
+  "executedByReviewer": false,
+  "actualAfterOutcome": "PENDING",
+  "actualKnockoutOutcome": "PENDING",
+  "scope": "Read-only audit of frozen actual-owner callback harness. V2 resolves prior assertion and same-context remount coverage gaps; before02 legitimately reproduces original failure.",
+  "limits": [
+    "3601simulated60Hzinstants cover60seconds of callback timeline, not wall-clock performance or browserload.",
+    "Canvasmethods are counters; clearRect count is not completedpaint.",
+    "Same-context effects are stubs, not native React StrictMode.",
+    "Actual after/old-epoch outcomes and native pixel proof remain separate.",
+    "Current TypeScript supplementary identity is recorded in prior review; original freezes do not themselves bind transpilerbinary."
+  ],
+  "fullGrades": null,
+  "artifactManifest": {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-clock-harness-v2-review\\artifact-manifest.json",
+    "sha256": "4635054032dbc642b64aea8440a1073df3b9f2a453fdcd58bdce4d8cdf8fefa1"
+  }
+}

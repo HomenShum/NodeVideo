@@ -1,0 +1,13 @@
+{
+  "exitCode": 1,
+  "command": "python -X utf8 run-proof.py matrix",
+  "originalError": "AssertionError: Environment file unexpectedly tracked; do not read",
+  "gitPaths": [
+    ".env.example",
+    "apps/eve-agent/.env.example"
+  ],
+  "cause": "Overbroad protection rejected two tracked .env.example templates before reading them",
+  "launches": 0,
+  "status": "HARNESS_FAIL_BEFORE_RUNTIME",
+  "remedy": "Allow only literal .env.example for SHA-256 custody without displaying values; real env files remain prohibited"
+}

@@ -1,0 +1,32 @@
+{
+  "status": "EXTERNAL_PROPOSAL_NOT_TRANSFERRED_NOT_TESTED",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 25599,
+      "sha256": "20b0510e27fbda3375c57adc7171d00884737efffc60afe91d52774e3a161bf2",
+      "rawGitBlobSha1": "505e5871bf5d395fd8939b9e1414508ee5592e08"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 6064,
+      "sha256": "513fa67534a70892d334f8485af52918e980d48daa0c463b85276ca9e9a7bcb5",
+      "rawGitBlobSha1": "ee6cfad585ed7a7796a03c0ddab4f0e5d0a8a13b"
+    },
+    {
+      "path": "tests/unit/landing-clock.test.ts",
+      "bytes": 8168,
+      "sha256": "ebbb01b01fa9eb8a7d3bed26df6fbcae04c60578bea0c30ee74d4fc8a6321b0e",
+      "rawGitBlobSha1": "d0e955700795ccc6b88e61c7ff9ea8be2b697803"
+    }
+  ],
+  "overridesHistoricalPaths": [
+    "README.md"
+  ],
+  "newPaths": [
+    "HANDOFF.md",
+    "tests/unit/landing-clock.test.ts"
+  ],
+  "historicalCurrentSourceMeaning": "current-source/current-dist files are the exact earlier landing-build inputs, not this future publication tree. Preserve those unchanged. Final candidate adds these authored bytes and the separate packet manifest; do not regenerate old proof.",
+  "persistentTestExpectation": "Nine actual-owner cases; zero-timestamp sequence must also fail a truthiness initializer. Execution pending."
+}

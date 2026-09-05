@@ -1,0 +1,540 @@
+{
+  "cells": [
+    {
+      "cell": "320-normal",
+      "samples": 135,
+      "zeroSamples": 8,
+      "blankRuns": [
+        {
+          "firstSample": 13,
+          "lastSample": 13,
+          "recoverySample": 14,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 17,
+          "lastSample": 18,
+          "recoverySample": 19,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 56,
+          "lastSample": 56,
+          "recoverySample": 57,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 58,
+          "lastSample": 58,
+          "recoverySample": 59,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 76,
+          "lastSample": 77,
+          "recoverySample": 78,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 115,
+          "lastSample": 115,
+          "recoverySample": 116,
+          "recovered": true,
+          "trailingCensored": false
+        }
+      ],
+      "observedMilliseconds": 18113.4331,
+      "firstPaint": 4441,
+      "counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "fingerprints": 98,
+      "overflow": 0,
+      "zeroSampleIndices": [
+        13,
+        17,
+        18,
+        56,
+        58,
+        76,
+        77,
+        115
+      ]
+    },
+    {
+      "cell": "320-reduced",
+      "samples": 14,
+      "zeroSamples": 0,
+      "blankRuns": [],
+      "observedMilliseconds": 2033.3323999999993,
+      "firstPaint": 3606,
+      "counts": [
+        1
+      ],
+      "fingerprints": 1,
+      "overflow": 0,
+      "zeroSampleIndices": []
+    },
+    {
+      "cell": "320-text200",
+      "samples": 134,
+      "zeroSamples": 8,
+      "blankRuns": [
+        {
+          "firstSample": 13,
+          "lastSample": 13,
+          "recoverySample": 14,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 17,
+          "lastSample": 17,
+          "recoverySample": 18,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 55,
+          "lastSample": 55,
+          "recoverySample": 56,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 57,
+          "lastSample": 57,
+          "recoverySample": 58,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 72,
+          "lastSample": 72,
+          "recoverySample": 73,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 76,
+          "lastSample": 76,
+          "recoverySample": 77,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 114,
+          "lastSample": 114,
+          "recoverySample": 115,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 117,
+          "lastSample": 117,
+          "recoverySample": 118,
+          "recovered": true,
+          "trailingCensored": false
+        }
+      ],
+      "observedMilliseconds": 18030.076600000004,
+      "firstPaint": 4306,
+      "counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "fingerprints": 93,
+      "overflow": 201,
+      "zeroSampleIndices": [
+        13,
+        17,
+        55,
+        57,
+        72,
+        76,
+        114,
+        117
+      ]
+    },
+    {
+      "cell": "390-normal",
+      "samples": 134,
+      "zeroSamples": 9,
+      "blankRuns": [
+        {
+          "firstSample": 17,
+          "lastSample": 18,
+          "recoverySample": 19,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 56,
+          "lastSample": 56,
+          "recoverySample": 57,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 58,
+          "lastSample": 58,
+          "recoverySample": 59,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 72,
+          "lastSample": 72,
+          "recoverySample": 73,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 76,
+          "lastSample": 77,
+          "recoverySample": 78,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 115,
+          "lastSample": 115,
+          "recoverySample": 116,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 117,
+          "lastSample": 117,
+          "recoverySample": 118,
+          "recovered": true,
+          "trailingCensored": false
+        }
+      ],
+      "observedMilliseconds": 18013.6742,
+      "firstPaint": 4587,
+      "counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "fingerprints": 89,
+      "overflow": 0,
+      "zeroSampleIndices": [
+        17,
+        18,
+        56,
+        58,
+        72,
+        76,
+        77,
+        115,
+        117
+      ]
+    },
+    {
+      "cell": "390-reduced",
+      "samples": 14,
+      "zeroSamples": 0,
+      "blankRuns": [],
+      "observedMilliseconds": 2050.8853000000017,
+      "firstPaint": 3606,
+      "counts": [
+        1
+      ],
+      "fingerprints": 1,
+      "overflow": 0,
+      "zeroSampleIndices": []
+    },
+    {
+      "cell": "390-text200",
+      "samples": 135,
+      "zeroSamples": 7,
+      "blankRuns": [
+        {
+          "firstSample": 13,
+          "lastSample": 13,
+          "recoverySample": 14,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 17,
+          "lastSample": 17,
+          "recoverySample": 18,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 58,
+          "lastSample": 58,
+          "recoverySample": 59,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 72,
+          "lastSample": 72,
+          "recoverySample": 73,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 76,
+          "lastSample": 76,
+          "recoverySample": 77,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 117,
+          "lastSample": 117,
+          "recoverySample": 118,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 132,
+          "lastSample": 132,
+          "recoverySample": 133,
+          "recovered": true,
+          "trailingCensored": false
+        }
+      ],
+      "observedMilliseconds": 18129.45300000001,
+      "firstPaint": 4306,
+      "counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "fingerprints": 90,
+      "overflow": 131,
+      "zeroSampleIndices": [
+        13,
+        17,
+        58,
+        72,
+        76,
+        117,
+        132
+      ]
+    },
+    {
+      "cell": "1440-normal",
+      "samples": 134,
+      "zeroSamples": 9,
+      "blankRuns": [
+        {
+          "firstSample": 13,
+          "lastSample": 13,
+          "recoverySample": 14,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 17,
+          "lastSample": 17,
+          "recoverySample": 18,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 56,
+          "lastSample": 56,
+          "recoverySample": 57,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 58,
+          "lastSample": 58,
+          "recoverySample": 59,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 72,
+          "lastSample": 72,
+          "recoverySample": 73,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 76,
+          "lastSample": 76,
+          "recoverySample": 77,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 115,
+          "lastSample": 115,
+          "recoverySample": 116,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 117,
+          "lastSample": 117,
+          "recoverySample": 118,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 132,
+          "lastSample": 132,
+          "recoverySample": 133,
+          "recovered": true,
+          "trailingCensored": false
+        }
+      ],
+      "observedMilliseconds": 18015.857099999994,
+      "firstPaint": 4441,
+      "counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "fingerprints": 84,
+      "overflow": 0,
+      "zeroSampleIndices": [
+        13,
+        17,
+        56,
+        58,
+        72,
+        76,
+        115,
+        117,
+        132
+      ]
+    },
+    {
+      "cell": "1440-reduced",
+      "samples": 14,
+      "zeroSamples": 0,
+      "blankRuns": [],
+      "observedMilliseconds": 2054.425900000002,
+      "firstPaint": 3606,
+      "counts": [
+        1
+      ],
+      "fingerprints": 1,
+      "overflow": 0,
+      "zeroSampleIndices": []
+    },
+    {
+      "cell": "1440-text200",
+      "samples": 134,
+      "zeroSamples": 8,
+      "blankRuns": [
+        {
+          "firstSample": 16,
+          "lastSample": 17,
+          "recoverySample": 18,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 55,
+          "lastSample": 55,
+          "recoverySample": 56,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 71,
+          "lastSample": 71,
+          "recoverySample": 72,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 75,
+          "lastSample": 76,
+          "recoverySample": 77,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 114,
+          "lastSample": 114,
+          "recoverySample": 115,
+          "recovered": true,
+          "trailingCensored": false
+        },
+        {
+          "firstSample": 116,
+          "lastSample": 116,
+          "recoverySample": 117,
+          "recovered": true,
+          "trailingCensored": false
+        }
+      ],
+      "observedMilliseconds": 18035.589299999992,
+      "firstPaint": 4436,
+      "counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "fingerprints": 92,
+      "overflow": 0,
+      "zeroSampleIndices": [
+        16,
+        17,
+        55,
+        71,
+        75,
+        76,
+        114,
+        116
+      ]
+    }
+  ],
+  "totalSamples": 848,
+  "zeroSamples": 49,
+  "blankRuns": 43,
+  "exactBrowserFrameIndexAttribution": false,
+  "continuousPaintClaim": false,
+  "closedRunRecoveryIsObservationNotIndependentDurationGuarantee": true
+}

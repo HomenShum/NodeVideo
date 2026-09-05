@@ -1,0 +1,53 @@
+{
+  "summary": {
+    "name": "valid-zero-first-timestamp",
+    "errors": [
+      "TypeError: Cannot read properties of undefined (reading '11')"
+    ],
+    "firstFrame": -1,
+    "lastFrame": -1,
+    "framesDrawn": 1,
+    "strokes": 0,
+    "arcs": 0,
+    "firstCount": 0,
+    "lastCount": 8,
+    "countRange": [
+      0,
+      8
+    ],
+    "pulseRange": [
+      0,
+      1.0689333333333333
+    ],
+    "callbackCount": 6,
+    "maxPending": 2,
+    "pendingBeforeCleanup": 1,
+    "pendingAfterCleanup": 0,
+    "allFrameIndicesValid": false,
+    "allCountValuesValid": false,
+    "allPulseValuesValid": false,
+    "drawSequenceSha256": "d124b23c696a85177dac41a7a28c853546e55caa5b4798fb917f2c3dc1b331ce",
+    "countsSha256": "e13e179ddb00827aca4eb7fbba2309dfeff964cca4862344b7beb3234eba800f",
+    "pulsesSha256": "c939d578fe3c87556bbf8cf69cf552b97e00039113d6d4dad7f85f148bdeaefd"
+  },
+  "firstObservedIndices": [
+    -1
+  ],
+  "lastObservedIndices": [
+    -1
+  ],
+  "firstObservedCounts": [
+    0,
+    1,
+    1,
+    1,
+    8
+  ],
+  "lastObservedCounts": [
+    0,
+    1,
+    1,
+    1,
+    8
+  ]
+}

@@ -1,0 +1,17 @@
+# NodeVideo first-use independent judgment
+
+**Re your request:** make each repository usable for developer and user handoff, including visual and interaction standards — the original public inspector, local editing and short-video export now have independently reviewed evidence. Full readiness remains held.
+
+**APPROVED_SCOPED_OBSERVED_BASELINE_FULL_READINESS_HELD.** All 30 bounded checks pass. All 409 operator artifacts (64,686,000 bytes) match their frozen manifest. The 1,374 original source bindings match the previously closed 18-owner review; all seven lanes use identical source and distribution input sets. I inspected 15 actual PNGs and preserved both operator and reviewer collector failures.
+
+The seven exact viewport pairs support 480→481→480 inspector labels and 21 actual video seek states, seven proposal→Apply→Undo clip-label and duration transitions, and ten local exchanges retaining the newest 16 visible messages. Altering the manifest bytes blocks verification; restoring the route and fully reloading recovers it. These are observed local flows, not a complete UI grade.
+
+The actual downloaded MP4 independently probes as 60 H.264 frames, two seconds, 180×320, with no audio. Full-frame decoding succeeds and OCR reads **PROOF CUT** from the viewed decoded frame. The existing quick-export transformation is exact; native UI duplicate/apply and caption editing lead to that file. A cancellation precedes one explicit successful retry. A fresh browser displays the retained bytes in a proof-only video document. This does not certify the full 44.5-second calibration export or reopening the file in the full editor.
+
+Four limits remain visible: the original animated landing is blank (a separate clock repair); the text-doubled 390px landing overflows 39px and the editor caption overlaps controls; some inspector captures show a native waiting spinner; compact timeline details can be clipped or offscreen. DOM checks do not erase these pixels. Text doubling does not cover every newly rendered node, and Axe excludes the editor preview.
+
+The original evidence guard is **CLOSED**. The only current source difference is root's separately authorized landing clock change. Its source/build belongs to a separate proof; this judgment does not require the old distribution to remain current or approve the new clock behavior. This reviewer ran no app, browser or export journey and made no provider call. Work was limited to reading retained artifacts/source and independently analyzing the downloaded MP4/PNG. All full grades remain null.
+
+Evidence: [30 checks](E6i-nodevideo-first-use-judge/checks.json), [actual media readback](E6i-nodevideo-first-use-judge/actual-media-readback.json), [21 seek states](E6i-nodevideo-first-use-judge/frame-identity-readback.json), [edit transitions](E6i-nodevideo-first-use-judge/edit-transition-readback.json), [viewed pixels](E6i-nodevideo-first-use-judge/viewed-pixels.json), [409 artifact bindings](E6i-nodevideo-first-use-judge/manifest-readback.json), [closing readback](E6i-nodevideo-first-use-judge/closing-readback.json).
+
+Reviewer collector corrections are retained: an implicit Windows encoding read failed, and an initial button-only HTML collector omitted the real proposal span labels. Explicit UTF-8 and the actual element owner corrected those reads; the initial 29/30 report remains preserved. No product bytes changed.

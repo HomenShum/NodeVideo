@@ -1,0 +1,5 @@
+
+> nodevideo@0.1.0 test
+> vitest run tests/unit/landing-clock.test.ts --reporter=json --outputFile=C:\Users\hshum\.codex\worktrees\5dba\nodebench-ai\docs\plans\portfolio-recovery-20260904\E6i-nodevideo-publication-stage-01\execution\targeted.json
+
+JSON report written to C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-publication-stage-01/execution/targeted.json

@@ -1,0 +1,59 @@
+{
+  "summary": {
+    "name": "valid-zero-first-timestamp",
+    "errors": [],
+    "firstFrame": 0,
+    "lastFrame": 46,
+    "framesDrawn": 5,
+    "strokes": 80,
+    "arcs": 137,
+    "firstCount": 1,
+    "lastCount": 1,
+    "countRange": [
+      1,
+      2
+    ],
+    "pulseRange": [
+      0,
+      1
+    ],
+    "callbackCount": 10,
+    "maxPending": 2,
+    "pendingBeforeCleanup": 2,
+    "pendingAfterCleanup": 0,
+    "allFrameIndicesValid": true,
+    "allCountValuesValid": true,
+    "allPulseValuesValid": true,
+    "drawSequenceSha256": "d3b30f7a91e09b30702228a54c9365de12e2980e69e22f962f666e24dbf0305c",
+    "countsSha256": "4540bd0abeee4503cfc6def4ad1d65e996691443faa10f1a7e82406658f2386d",
+    "pulsesSha256": "e7c96c233b5a734757adb8c176ec9c243a8168e6aa3f6f2a9372aa26674109aa"
+  },
+  "firstObservedIndices": [
+    0,
+    0,
+    1,
+    5,
+    46
+  ],
+  "lastObservedIndices": [
+    0,
+    0,
+    1,
+    5,
+    46
+  ],
+  "firstObservedCounts": [
+    1,
+    1,
+    1,
+    2,
+    1
+  ],
+  "lastObservedCounts": [
+    1,
+    1,
+    1,
+    2,
+    1
+  ]
+}

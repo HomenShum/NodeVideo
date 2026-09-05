@@ -1,0 +1,7 @@
+{
+  "head": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "branch": "codex/nodevideo-current-consumer-20260905",
+  "serializedIndexSha256": "3e9c929044933fd852980d1393a64e5b755dcaeb1f6f7e8e22d96c7b8192df62",
+  "scope": "1374 tracked source inputs; no dist, app session, backend or runtime work",
+  "guard": "CLOSED"
+}

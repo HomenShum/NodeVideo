@@ -1,0 +1,116 @@
+{
+  "startedAt": "2026-09-05T19:42:13.458213+00:00",
+  "section": "matrix",
+  "cwd": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905",
+  "sourceCount": 1374,
+  "distCount": 1329,
+  "childRemovedNamesOnly": [],
+  "childOverride": {
+    "NODEVIDEO_URL": "http://127.0.0.1:4983"
+  },
+  "status": "FAIL",
+  "argv": [
+    "C:/nvm4w/nodejs/node.exe",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-first-use-01\\observe.mjs",
+    "matrix"
+  ],
+  "timeoutSeconds": 900,
+  "exitCode": 1,
+  "owned": [
+    [
+      65344,
+      1788637333.4617379
+    ],
+    [
+      66232,
+      1788637333.471854
+    ],
+    [
+      54428,
+      1788637333.6324258
+    ],
+    [
+      19788,
+      1788637333.81936
+    ],
+    [
+      40984,
+      1788637333.852007
+    ],
+    [
+      63768,
+      1788637334.7424848
+    ],
+    [
+      40608,
+      1788637334.7516892
+    ],
+    [
+      18952,
+      1788637335.5869606
+    ],
+    [
+      51480,
+      1788637335.700953
+    ],
+    [
+      22892,
+      1788637335.759895
+    ],
+    [
+      38248,
+      1788637335.7820055
+    ]
+  ],
+  "closure": [
+    {
+      "pid": 38248,
+      "result": "already-exited"
+    },
+    {
+      "pid": 22892,
+      "result": "already-exited"
+    },
+    {
+      "pid": 51480,
+      "result": "already-exited"
+    },
+    {
+      "pid": 18952,
+      "result": "already-exited"
+    },
+    {
+      "pid": 40608,
+      "result": "already-exited"
+    },
+    {
+      "pid": 63768,
+      "result": "already-exited"
+    },
+    {
+      "pid": 40984,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 19788,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 54428,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 66232,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 65344,
+      "result": "owned-process-closed"
+    }
+  ],
+  "sourceUnchanged": true,
+  "distUnchanged": true,
+  "guardsUnchanged": true,
+  "ownedPortReleased": true,
+  "finishedAt": "2026-09-05T19:42:34.136468+00:00"
+}

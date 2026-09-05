@@ -1,0 +1,302 @@
+[
+  {
+    "original": {
+      "path": "E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.json",
+      "bytes": 110583,
+      "sha256": "ec4b6859658ef54073b496c2433d16c9936fb40cd84ff575081ab0dc868a9a45"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.json",
+      "bytes": 110583,
+      "sha256": "ec4b6859658ef54073b496c2433d16c9936fb40cd84ff575081ab0dc868a9a45"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.md",
+      "bytes": 2278,
+      "sha256": "6e6135bf345a38280a5cbf42a9ecd87f3c3ee50d381a215e5476c513ed5047f4"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.md.txt",
+      "bytes": 2278,
+      "sha256": "6e6135bf345a38280a5cbf42a9ecd87f3c3ee50d381a215e5476c513ed5047f4"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i_NODEVIDEO_LANDING_BUILD_FREEZE.json",
+      "bytes": 568821,
+      "sha256": "07bcdd809a70218e62b0a4f1f79c5520958ff869cb88eed878c8b252703a12f8"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i_NODEVIDEO_LANDING_BUILD_FREEZE.json",
+      "bytes": 568821,
+      "sha256": "07bcdd809a70218e62b0a4f1f79c5520958ff869cb88eed878c8b252703a12f8"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i_NODEVIDEO_LANDING_CLOCK_HARNESS_V2_REVIEW.json",
+      "bytes": 1572,
+      "sha256": "a33e6c8443da0d4d7441061e2170542ed927d5f18d2bce122bbc87bee1691ea8"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i_NODEVIDEO_LANDING_CLOCK_HARNESS_V2_REVIEW.json",
+      "bytes": 1572,
+      "sha256": "a33e6c8443da0d4d7441061e2170542ed927d5f18d2bce122bbc87bee1691ea8"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i_NODEVIDEO_LANDING_CLOCK_DIAGNOSIS.json",
+      "bytes": 6915,
+      "sha256": "343d1a4a4783d5f676c97ad5f29c87283d40d80451652b30ef05d589df1026f3"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i_NODEVIDEO_LANDING_CLOCK_DIAGNOSIS.json",
+      "bytes": 6915,
+      "sha256": "343d1a4a4783d5f676c97ad5f29c87283d40d80451652b30ef05d589df1026f3"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i_NODEVIDEO_LANDING_BEFORE_RECEIPT.json",
+      "bytes": 6064,
+      "sha256": "6d96bef387171d551e3ef44b4428e42e3a56407c65cf1b02b536075a183eea29"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i_NODEVIDEO_LANDING_BEFORE_RECEIPT.json",
+      "bytes": 6064,
+      "sha256": "6d96bef387171d551e3ef44b4428e42e3a56407c65cf1b02b536075a183eea29"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-clock-repair-01/receipt.json",
+      "bytes": 963,
+      "sha256": "e0ad2eb689e964b4d37e9163441d0b580f8758135f9137394489347fe1a0a746"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-clock-repair-01--receipt.json",
+      "bytes": 963,
+      "sha256": "e0ad2eb689e964b4d37e9163441d0b580f8758135f9137394489347fe1a0a746"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-check.json",
+      "bytes": 138986,
+      "sha256": "3ac01ecb1844c19cd4b49c58e2bcdd052fd702d25e24e7b6eb4542391ca0e9fd"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-check.json",
+      "bytes": 138986,
+      "sha256": "3ac01ecb1844c19cd4b49c58e2bcdd052fd702d25e24e7b6eb4542391ca0e9fd"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-check-01/normal-check.log",
+      "bytes": 85328,
+      "sha256": "521e14da4950d1acc0453edefa4b9d464480694c7659f961ed3066f965806e4e"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-check-01--normal-check.log",
+      "bytes": 85328,
+      "sha256": "521e14da4950d1acc0453edefa4b9d464480694c7659f961ed3066f965806e4e"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-after-02/artifact-manifest.json",
+      "bytes": 45356,
+      "sha256": "83d48d24e795bb294ee7f4f06de16919315820907752e4aaa9d0c42d515e223d"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-after-02--artifact-manifest.json",
+      "bytes": 45356,
+      "sha256": "83d48d24e795bb294ee7f4f06de16919315820907752e4aaa9d0c42d515e223d"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-after-02/scoped-results.json",
+      "bytes": 101028,
+      "sha256": "ab59552245fe6291a46f11bca011e547a0dc33694242e487cd06fee1632e216b"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-after-02--scoped-results.json",
+      "bytes": 101028,
+      "sha256": "ab59552245fe6291a46f11bca011e547a0dc33694242e487cd06fee1632e216b"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-after-02/expectation-addendum.json",
+      "bytes": 744,
+      "sha256": "0591fb81dfb5c55ac656630543b601492b533cb4a151c93777bf761da489ca77"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-after-02--expectation-addendum.json",
+      "bytes": 744,
+      "sha256": "0591fb81dfb5c55ac656630543b601492b533cb4a151c93777bf761da489ca77"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-after-02/landing-after.command.json",
+      "bytes": 4152,
+      "sha256": "a6bcd1fc8429180be7d5e27254d487cb4ed196e1a33b695078a3a8b3c81533be"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-after-02--landing-after.command.json",
+      "bytes": 4152,
+      "sha256": "a6bcd1fc8429180be7d5e27254d487cb4ed196e1a33b695078a3a8b3c81533be"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-after-02/final-source-guard.json",
+      "bytes": 556,
+      "sha256": "b04b0582c6312eac7e517f4d4ade0478eea4dd5242f08e8901237b65ee9c4b2f"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-after-02--final-source-guard.json",
+      "bytes": 556,
+      "sha256": "b04b0582c6312eac7e517f4d4ade0478eea4dd5242f08e8901237b65ee9c4b2f"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-after-01/public-tracking-gap-diagnosis.json",
+      "bytes": 911,
+      "sha256": "40e66d93fc7d3141292f0db79a8da18d2f5bc6284b4c899c3edcbe5fc9908eb3"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-after-01--public-tracking-gap-diagnosis.json",
+      "bytes": 911,
+      "sha256": "40e66d93fc7d3141292f0db79a8da18d2f5bc6284b4c899c3edcbe5fc9908eb3"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-after-02/capture.mjs",
+      "bytes": 11683,
+      "sha256": "d43ce26bd008756a62b66536235baf1df0879f4bd8d28507bcfd927a3bc22c35"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-after-02--capture.mjs.txt",
+      "bytes": 11683,
+      "sha256": "d43ce26bd008756a62b66536235baf1df0879f4bd8d28507bcfd927a3bc22c35"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-after-02/boundary.mjs",
+      "bytes": 3305,
+      "sha256": "8c3b157f53a15930c1d2b4b083123fa7b819b0036acbd437018b067876c85a5f"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-after-02--boundary.mjs.txt",
+      "bytes": 3305,
+      "sha256": "8c3b157f53a15930c1d2b4b083123fa7b819b0036acbd437018b067876c85a5f"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-verify-landing-clock-v2.mjs",
+      "bytes": 9214,
+      "sha256": "4819f1d07796aad1ad98288d622cca908f74457d05b60fc20790ea46a4c61d8b"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-verify-landing-clock-v2.mjs.txt",
+      "bytes": 9214,
+      "sha256": "4819f1d07796aad1ad98288d622cca908f74457d05b60fc20790ea46a4c61d8b"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-review-landing-final.py",
+      "bytes": 10030,
+      "sha256": "5f88c489b2667b51c31e8f6ae370f4ca5c6d2398fcb67268bf16b9579c7bfc9d"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-review-landing-final.py.txt",
+      "bytes": 10030,
+      "sha256": "5f88c489b2667b51c31e8f6ae370f4ca5c6d2398fcb67268bf16b9579c7bfc9d"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-clock-before-02/freeze.json",
+      "bytes": 92510,
+      "sha256": "d974f4e42436242fcfcbb2e4885ec7f16a9b65141531efb51acfdf16b7351bff"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-clock-before-02--freeze.json",
+      "bytes": 92510,
+      "sha256": "d974f4e42436242fcfcbb2e4885ec7f16a9b65141531efb51acfdf16b7351bff"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-clock-before-02/report.json",
+      "bytes": 8927,
+      "sha256": "35b6fe307ba571605fb40c07298126cf83660674cfda4ba90192a6ad0be814f3"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-clock-before-02--report.json",
+      "bytes": 8927,
+      "sha256": "35b6fe307ba571605fb40c07298126cf83660674cfda4ba90192a6ad0be814f3"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-clock-after-02/freeze.json",
+      "bytes": 92509,
+      "sha256": "b4d04b90622c456a42eea362a76658ad18acb4298e64c48d6e7093e9edc51f87"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-clock-after-02--freeze.json",
+      "bytes": 92509,
+      "sha256": "b4d04b90622c456a42eea362a76658ad18acb4298e64c48d6e7093e9edc51f87"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-clock-after-02/report.json",
+      "bytes": 8434,
+      "sha256": "c193c867182a481d60f59a563355b62e2038f4b1158c5e05d6460cc789ab78ab"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-clock-after-02--report.json",
+      "bytes": 8434,
+      "sha256": "c193c867182a481d60f59a563355b62e2038f4b1158c5e05d6460cc789ab78ab"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-clock-knockout-02/freeze.json",
+      "bytes": 92512,
+      "sha256": "a40a6a7dc17d67e290a9d74e66472872ef4a89c7028f71810f7578258006afe2"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-clock-knockout-02--freeze.json",
+      "bytes": 92512,
+      "sha256": "a40a6a7dc17d67e290a9d74e66472872ef4a89c7028f71810f7578258006afe2"
+    }
+  },
+  {
+    "original": {
+      "path": "E6i-nodevideo-landing-clock-knockout-02/report.json",
+      "bytes": 8929,
+      "sha256": "fd23a1cff4086d09e53e81cb42fe4aa55c530d2109351c2ef51df93ab30c092d"
+    },
+    "copy": {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-clock-knockout-02--report.json",
+      "bytes": 8929,
+      "sha256": "fd23a1cff4086d09e53e81cb42fe4aa55c530d2109351c2ef51df93ab30c092d"
+    }
+  }
+]

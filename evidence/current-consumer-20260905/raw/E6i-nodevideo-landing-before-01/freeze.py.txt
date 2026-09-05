@@ -1,0 +1,54 @@
+from pathlib import Path
+import datetime,hashlib,json
+O=Path(__file__).parent;P=O.parent
+sha=lambda b:hashlib.sha256(b).hexdigest()
+def read(p):return json.loads(p.read_text(encoding='utf-8-sig'))
+def write(p,value):p.write_text(json.dumps(value,indent=2,ensure_ascii=False)+'\n',encoding='utf-8',newline='\n')
+report=read(O/'report.json');command=read(O/'landing-before.command.json');before=read(O/'landing-before-before.json')
+assert report['status']=='NATIVE_BEFORE_BOUNDARIES_CAPTURED'and command['status']=='PASS'
+assert command['sourceUnchanged']and command['distUnchanged']and command['guardsUnchanged']and command['ownedPortReleased']
+assert len(report['cells'])==3 and all(c['overlay']['staticDomRestored']and c['overlay']['removed']and not c['external']for c in report['cells'])
+afterPlan={
+ 'proofId':'NODEVIDEO-LANDING-CLOCK-01','status':'AFFECTED_ONLY_AFTER_PLAN_NOT_EXECUTED','sourceOwner':'apps/landing/src/landing.tsx',
+ 'implementationOwner':'Parent applies separately reviewed first-rAF origin in both existing callbacks and runs its focused callback/knockout checks plus normal required gates/build.',
+ 'viewports':[[320,800],[390,844],[1440,960]],'modes':['normal motion','reduced motion','200% computed text with normal motion'],
+ 'inputs':{'poseFile':'apps/landing/src/pose-loop.json','poseSha256':'b2f2ea20a01dbe4815a921c0db6330c24967495dbc7b8b798b6ff82a13488be1','frames':80,'cadenceHz':9.99,'tempoBpm':103.4,'countRange':[1,8]},
+ 'preconditions':['Parent source/build freeze and completed normal gates; no concurrent source/build edits. Bind new owner/bundle/build stamp and all unchanged named inputs.','Owned loopback preview on newly checked free4983 or recorded equivalent; fresh nonpersistent Chromium matching before locale/timezone/theme. No original4173/4174.'],
+ 'steps':[
+  'For each exact viewport/mode, open the same landing route naturally. Capture actual page errors, console, count aria/live state, native canvas pixels and geometry; no clamp, fallback frame, replacement renderer or forced successful state.',
+  'Normal and computed-text cells: observe18seconds after first actual paint, exceeding two declared80/9.99-second pose cycles. Sample native canvas readback/count/pulse every125ms with maximum160records; retain timestamped fingerprints and a short actual video. Record nonzero painted pixels, changing shapes and observed validcounts1..8. Exact callback indices/wrap are proven by the parent’s separate actual-owner callback harness; elapsed browser duration alone is not an exact-frame-index certificate.',
+  'Capture start, mid and end actual PNGs and tight3px labelled A canvas/B count regions at matching before route/viewport/scroll state; view the exact saved pixels. Keep both raw and annotated images and a paired before/after index. Geometry/links/protected text/CSS/input bytes must remain unchanged except native expected clock fields.',
+  'Reduced motion: record a painted frame0 and count1; sample a fixed interval to establish unchanged pixels/count. No repeated animation or Count0. Source callback harness separately proves no reschedule and cleanup.',
+  'Computed-text: derive every initial font size from one baseline snapshot, apply exactly2× and retain before/after sizes. This is not native browser/OS zoom. Check actual new label/canvas visibility and document/page overflow without fixing known39px overflow or adjacent layout. Do not claim newly mounted text that escaped the snapshot was also enlarged.',
+  'Use native Studio link, verify expected route and disappearance of landing canvas, then native back/reload and observe valid paint/count again. Retain errors and lifecycle/navigation observations. Parent callback harness supplies precise unmount/StrictMode cancellation proof; browser navigation alone does not certify callback counts.',
+  'Close every owned context/browser/preview, retain PID/start identities and released-port receipt, and compare source/bundle/input hashes. Preserve any failed cell before narrowly diagnosing it; no timeout increase or silent retry.'
+ ],
+ 'limits':['No inspector/editor/codec rerun for landing-only repair; earlier exact baseline receipts remain historical and available.','No source edit by this before-capture worker, new dependencies, providers/private media/keys, rollout or publication.','No whole UI/performance/device/assistive/human grade. Source clock repair does not close enlarged-layout issues.','Native pulse/count updates are allowed observed differences during DOM overlay restoration; all nonclock structure/text/attributes must be exact.'],
+ 'grades':None
+}
+write(P/'E6i_NODEVIDEO_LANDING_AFFECTED_AFTER_PLAN.json',afterPlan)
+(P/'E6i_NODEVIDEO_LANDING_AFFECTED_AFTER_PLAN.md').write_text('''# Affected-only landing clock after proof
+
+An arriving user should see the actual public pose move and the eight-count row advance. The parent will repair the two existing callbacks to use their first native animation timestamp, then freeze the new source/build. This plan checks only that affected landing behavior.
+
+Replay320×800,390×844and1440×960 at normal motion, reduced motion and200%computed text, with the exact prior source-owned pose data and presentation. Native normal/text cells observe18seconds, longer than two80-frame/9.99Hzcycles, with bounded actual-pixel/count samples and short recorded video. Verify firstpaint, changing poses, observedcounts1..8, validpulse, no exception and unchanged links/geometry. The separate actual-callback harness owns exactframe/wrap/cancellation claims; browser duration alone does not prove every index.
+
+Reduced cells must remain painted/static atframe0/count1. Capture and view matching raw/3px A-canvas/B-count screenshots. Test nativeStudio navigation/back/reload, then close all owned processes and recheck exact source/bundle/pose bindings. The structuredJSON specifies recording bounds and honest limits.
+
+The original codec/editor proof stays frozen and is not rerun. Known enlarged-text overflow/layout, nativezoom/realdevices/assistive/human quality and fullgrades remain open. No app edits are made by this before-capture task.
+''',encoding='utf-8',newline='\n')
+files=[]
+for f in sorted(O.rglob('*')):
+ if f.is_file()and f.name!='manifest.json':files.append({'path':f.relative_to(O).as_posix(),'bytes':f.stat().st_size,'sha256':sha(f.read_bytes())})
+write(O/'manifest.json',{'files':files,'limit':'Before-capture operator packet; excludes this manifest. No application source edit.'})
+receipt={'status':'BEFORE_FROZEN_GUARD_CLOSED','at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'root':command['cwd'],'approved18':before['approved18OwnerReceipt'],'sourceBindings':command['sourceCount'],'distBindings':command['distCount'],'sourceUnchanged':True,'distUnchanged':True,'guardsUnchanged':True,'owned4983Released':True,'sourceMutations':[],'clockInstrumentation':False,'forcedFailure':False,'cells':[{'viewport':c['viewport'],'paintedPixels':c['before']['canvas']['painted'],'count':c['before']['count'],'errors':c['errors'],'staticDomRestored':c['overlay']['staticDomRestored'],'fullDomExact':c['overlay']['fullDomExact'],'observedNativeChanges':c['overlay']['observedNativeDifferences'],'images':c['pngs'],'viewedByWorker':True}for c in report['cells']],'artifactRoot':str(O),'artifactFiles':len(files),'manifestSha256':sha((O/'manifest.json').read_bytes()),'afterPlanSha256':sha((P/'E6i_NODEVIDEO_LANDING_AFFECTED_AFTER_PLAN.json').read_bytes()),'note':'Full DOM can differ only in observed existing clock pulse/count attributes. Raw before/after DOM retained; no animation paused to force exact equality. All nonclock attributes/text/structure restored. Root may now apply its separate approved source repair.','grades':None}
+write(P/'E6i_NODEVIDEO_LANDING_BEFORE_RECEIPT.json',receipt)
+(P/'E6i_NODEVIDEO_LANDING_BEFORE_RECEIPT.md').write_text(f'''# Native landing before boundaries are frozen
+
+**Re your request:** verify actual UI before repair — fresh320×800,390×844and1440×960normal-motion captures all show zero painted canvas pixels and the same undefined-frame error. The native count row had advanced to2. No timestamp observer or forced failure was installed.
+
+Viewed raw/3px boundary images: `E6i-nodevideo-landing-before-01/320/change-boundary.png`, `390/change-boundary.png`, `1440/change-boundary.png`, each with a matching state contract. BoxA is the posecanvas; boxB is the countrow. Native pulse/count differences are individually retained; all staticDOM restores exactly after annotation.
+
+All1,374source/1,329dist files, approved18owners and refs/index remain unchanged; owned4983isclosed. Root may now edit the clock owner. ManifestSHA256 `{receipt['manifestSha256']}` binds{len(files)}operator artifacts. The separate affected-only after plan covers matching normal/reduced/text200cells and two-loop native paint observation, without repeating exports or claiming fullgrades.
+''',encoding='utf-8',newline='\n')
+print(json.dumps({'receiptSha256':sha((P/'E6i_NODEVIDEO_LANDING_BEFORE_RECEIPT.json').read_bytes()),'manifestSha256':receipt['manifestSha256'],'files':len(files),'afterPlanSha256':receipt['afterPlanSha256'],'guardClosed':True}))

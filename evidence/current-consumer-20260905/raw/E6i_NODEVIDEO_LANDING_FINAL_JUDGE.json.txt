@@ -1,0 +1,189 @@
+{
+  "proofId": "NODEVIDEO-LANDING-CLOCK-01",
+  "role": "Independent nonauthor judge; reviewer context reused from prior independent portfolio reviews, no landing implementation involvement",
+  "at": "2026-09-05T20:30:15.566003+00:00",
+  "verdict": "APPROVED_SCOPED_STARTUP_CLOCK_REPAIR_FULL_READINESS_HELD",
+  "sourceGuard": "CLOSED",
+  "requestTrace": "Use planner-worker-judge to make each repository ready for use and handoff, including visual UI, responsiveness and interaction evidence.",
+  "candidate": "D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905",
+  "baseCommit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "source": {
+    "path": "apps/landing/src/landing.tsx",
+    "beforeSha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+    "afterSha256": "5d4ce6007803f7166949c40cdec646e0d2c51b0ee7ba8ca0dc2ac686b2de45ab",
+    "bytes": 12030,
+    "delta": "Two existing local effects initialize an explicit undefined origin from their first callback; exact four-line change. Cadence, frame data, drawing, reduced mode and cleanup expressions remain exact.",
+    "allSourceBindings": 1374,
+    "protectedPriorInputs": 1373,
+    "priorReviewedOwnersExact": 18,
+    "effectiveOwners": 19,
+    "effectiveOwnerDigest": "1b6dac7ed3b6cbd2353adffe7da6bffb21a3d57fb6685027158b1390fb0e6d02",
+    "distBindings": 1329,
+    "distDigest": "80676f08fb7524b4818b3c05b240cd24dd7681bfd73ebace0491fab13ce6f564"
+  },
+  "verification": {
+    "judgeChecksPassed": 60,
+    "judgeChecksTotal": 60,
+    "checks": {
+      "path": "E6i-nodevideo-landing-final-judge/checks.json",
+      "bytes": 7732,
+      "sha256": "27c6e8abfbe20168e828db74301c9fbb65d89ff86c6590438a29ebd1182dcfca"
+    },
+    "supplementalChecks": {
+      "path": "E6i-nodevideo-landing-final-judge/supplemental-checks.json",
+      "bytes": 444,
+      "sha256": "8f9ff7378051e903d24af9e94bd22ee605e29589c9d82ed65e58a15e68014ea1"
+    },
+    "workerRawArtifactsVerified": 228,
+    "workerRawBytes": 29084056,
+    "judgeBoundedArtifacts": 50,
+    "judgeManifest": {
+      "path": "E6i-nodevideo-landing-final-judge/artifact-manifest.json",
+      "bytes": 9638,
+      "sha256": "08c8e7406933f481c87bb5e9a3871e7de56ae801953e66ecffdce9c6356b3c7a"
+    },
+    "closingGuard": {
+      "path": "E6i-nodevideo-landing-final-judge/closing-guards.json",
+      "bytes": 741,
+      "sha256": "2964dd270fd50d1e3cd2324f70960a7cb03f8fb1bc921d366c6e3d9819b9493c"
+    },
+    "actuallyViewedPngs": 12,
+    "viewed": {
+      "path": "E6i-nodevideo-landing-final-judge/viewed-pixels.json",
+      "bytes": 7121,
+      "sha256": "8be179fe463b993357612cf0cdc9c34b72f1c6fb77aaf1cce767d2a40ef60671"
+    }
+  },
+  "callbackProof": {
+    "harnessSha256": "4819f1d07796aad1ad98288d622cca908f74457d05b60fc20790ea46a4c61d8b",
+    "method": "Inspected previously approved actual-owner transpilation harness and independently checked frozen before/after/knockout hashes, reports and assertions; did not rerun application/gates/browser.",
+    "after": "9 scenarios pass; timestamp zero, delayed start, count/pose wrap, 3601 controlled callbacks over 60 simulated seconds, reduced mode, cleanup-before-first and same-context remount.",
+    "knockout": "Exact original owner bytes reconstructed only in proof memory; both native observed negative-start inputs reproduce undefined[11] failure.",
+    "limits": [
+      "Mock React lifecycle and canvas; no React StrictMode or real pixel certification.",
+      "3601 clearRect calls are not 3601 independently verified visible frames.",
+      "60 simulated seconds are not one minute of wall-clock performance."
+    ]
+  },
+  "normalGate": {
+    "command": [
+      "npm",
+      "run",
+      "check"
+    ],
+    "exitCode": 0,
+    "seconds": 46.0,
+    "tests": 344,
+    "testFiles": 73,
+    "log": {
+      "path": "E6i-nodevideo-landing-check-01/normal-check.log",
+      "bytes": 85328,
+      "sha256": "521e14da4950d1acc0453edefa4b9d464480694c7659f961ed3066f965806e4e"
+    },
+    "scope": "Unchanged lint, types, tests, UI policy/budgets, capability/atlas/grounding/committed fixture verification, build and rendered contract. Existing mock sidecar/synthetic consent and deferred camera controls are preserved; no new provider/live media claim."
+  },
+  "nativeProof": {
+    "receipt": {
+      "path": "E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.json",
+      "bytes": 110583,
+      "sha256": "ec4b6859658ef54073b496c2433d16c9936fb40cd84ff575081ab0dc868a9a45"
+    },
+    "checks": 99,
+    "cells": 9,
+    "viewports": [
+      [
+        320,
+        800
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        1440,
+        960
+      ]
+    ],
+    "modes": [
+      "normal",
+      "reduced",
+      "initial computed font sizes doubled once"
+    ],
+    "normalAndTextWindowMilliseconds": 18000,
+    "reducedWindowMilliseconds": 2000,
+    "samples": 848,
+    "zeroSamples": 49,
+    "closedBlankRunsWithLaterPositiveSample": 43,
+    "trailingCensoredRuns": 0,
+    "pageExceptions": 0,
+    "externalRequestsObserved": 0,
+    "savedPngs": 63,
+    "savedVideos": 9,
+    "savedCanvasRasters": 27,
+    "savedEmptyCanvasRasters": 1,
+    "sampleAnalysis": {
+      "path": "E6i-nodevideo-landing-final-judge/native-sample-analysis.json",
+      "bytes": 12159,
+      "sha256": "6d24fc06755116f5903afc3a4fee3ad10b24f43cf24492333b5b1f1e539ee5c4"
+    },
+    "savedRasterAnalysis": {
+      "path": "E6i-nodevideo-landing-final-judge/independent-saved-raster-analysis.json",
+      "bytes": 8069,
+      "sha256": "aaf1b5585fc727579b505fdb828ba7afe1b5134f2c063284341c7f6d7f603c91"
+    },
+    "navigation": "Actual Studio navigation removes landing/count, native Back and reload return painted valid-count state in each cell. This observes remount outcome, not cancellation internals.",
+    "protectedDOM": "All 220 parsed structure/text tokens per ordinary 320/390/1440 page remain equal except exact bound JS asset and native count/pulse attributes; links/geometry also match.",
+    "protectedDOMAnalysis": {
+      "path": "E6i-nodevideo-landing-final-judge/protected-dom-analysis.json",
+      "bytes": 7709,
+      "sha256": "62bb5d3c179c2de84a349e0d71b1cf7396ee7393e8c6798b50381fc8c43a1357"
+    }
+  },
+  "recorderCorrection": {
+    "acceptedFor": "Startup, changing poses/counts and finite observed recovery only",
+    "originalFailure": {
+      "path": "E6i-nodevideo-landing-after-01/report.json",
+      "bytes": 667321,
+      "sha256": "c06288f3164aced3ec4e57e855e8151a5e6eb40497e179154db0877dc31d8c93"
+    },
+    "diff": {
+      "path": "E6i-nodevideo-landing-final-judge/recorder.diff",
+      "bytes": 2461,
+      "sha256": "e620c6b2381c1a496a9162ee07e79b1cc707179289ba7bcd3f21033f400986cc"
+    },
+    "fixtureAllNullFrames": [
+      19,
+      24,
+      25,
+      76,
+      79
+    ],
+    "fixtureSha256": "b2f2ea20a01dbe4815a921c0db6330c24967495dbc7b8b798b6ff82a13488be1",
+    "durationChanged": false,
+    "productOrPoseChanged": false,
+    "qualification": "An all-null source frame clears and draws nothing in the unchanged renderer. The observed zero samples are compatible with these existing gaps, but exact browser frame indices were not instrumented. Defining a closed blank run by its next positive sample makes recovery bookkeeping observational, not an independent upper bound on blank duration. No trailing run happened in this data; future recovery is not certified.",
+    "continuousPaint": false
+  },
+  "remainingHolds": [
+    {
+      "id": "ENLARGED_PHONE_LAYOUT",
+      "status": "OPEN",
+      "evidence": "Computed-text200 at320/390 has201/131px horizontal overflow and count/canvas/provenance clipping. Actual pixels viewed. This is initial font doubling, not native zoom."
+    },
+    {
+      "id": "TRACKING_GAPS",
+      "status": "OBSERVED_NOT_FIXED",
+      "evidence": "Five all-null fixture frames remain;49 sampled zeros retained; one actual saved canvas-only PNG is blank even though a nearby separate screenshot is painted. No same-frame inference."
+    },
+    {
+      "id": "PRODUCT_AND_INTEGRATION",
+      "status": "HELD",
+      "evidence": "Original editor/codec review remains separate. Previously reported clip-gate missing exports/data, audit findings, broader UI and full-grade holds remain. Shared conformance for the retained ef4 reference and deployment have not been proved by this local slice."
+    }
+  ],
+  "fullGrades": null,
+  "deployed": false,
+  "providerCallsByJudge": 0,
+  "sourceIndexRefEditsByJudge": false,
+  "nextAuthorizedStep": "Root may prepare truthful portable handoff/publication for the exact reviewed local repair, then normal commit/shared CI. This verdict does not authorize whole-product readiness language or retirement of preserved work."
+}

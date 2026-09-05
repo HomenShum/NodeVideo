@@ -1,0 +1,1 @@
+{"playwrightVersion":"1.61.1","modulePath":"D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905\\node_modules\\playwright\\index.js","chromiumExecutable":"C:\\Users\\hshum\\AppData\\Local\\ms-playwright\\chromium-1228\\chrome-win64\\chrome.exe","chromiumPresent":true}

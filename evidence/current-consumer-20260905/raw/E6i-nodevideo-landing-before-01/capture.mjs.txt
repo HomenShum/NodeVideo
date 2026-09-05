@@ -1,0 +1,47 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import {createRequire} from 'node:module';
+const O=path.dirname(fileURLToPath(import.meta.url));
+const R='D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905';
+const {chromium}=createRequire(path.join(R,'package.json'))('playwright');
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const write=(f,o)=>fs.writeFileSync(f,JSON.stringify(o,null,2)+'\n');
+const browser=await chromium.launch();
+const report={status:'CAPTURING',browser:browser.version(),route:'/',theme:'actual inherited dark palette with light preference',motion:'no-preference',clockInstrumentation:false,forcedFailure:false,cells:[]};
+try{for(const [width,height]of [[320,800],[390,844],[1440,960]]){
+ const out=path.join(O,String(width));fs.mkdirSync(out);const context=await browser.newContext({viewport:{width,height},colorScheme:'light',reducedMotion:'no-preference',locale:'en-US',timezoneId:'America/Los_Angeles'});
+ const cell={viewport:{width,height},errors:[],console:[],external:[]};report.cells.push(cell);const page=await context.newPage();page.setDefaultTimeout(15000);
+ await context.route('**/*',route=>{const u=route.request().url();if(new URL(u).origin==='http://127.0.0.1:4983')return route.continue();cell.external.push(u);return route.abort();});
+ page.on('pageerror',e=>cell.errors.push(String(e)));page.on('console',m=>cell.console.push({type:m.type(),text:m.text()}));
+ await page.goto('http://127.0.0.1:4983/');await page.locator('canvas').waitFor({state:'visible'});await page.locator('canvas').scrollIntoViewIfNeeded();await page.evaluate(async()=>{await document.fonts.ready;await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));});await page.waitForTimeout(700);
+ async function state(){return page.evaluate(()=>{const c=document.querySelector('canvas'),count=document.querySelector('[aria-label^="Count "]');const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let painted=0;for(let i=3;i<d.length;i+=4)if(d[i])painted++;const r=c.getBoundingClientRect(),q=count.getBoundingClientRect();return {url:location.href,viewport:{width:innerWidth,height:innerHeight},scroll:{x:scrollX,y:scrollY},overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,canvas:{width:c.width,height:c.height,painted,rect:{x:r.x,y:r.y,width:r.width,height:r.height}},count:{label:count.getAttribute('aria-label'),live:[...count.querySelectorAll('[data-live]')].map(e=>({text:e.textContent,live:e.getAttribute('data-live')})),pulse:document.documentElement.style.getPropertyValue('--count-pulse'),rect:{x:q.x,y:q.y,width:q.width,height:q.height}},links:[...document.querySelectorAll('a')].map(a=>({text:a.textContent,href:a.getAttribute('href')}))};});}
+ cell.before=await state();write(path.join(out,'before.json'),cell.before);fs.writeFileSync(path.join(out,'before.html'),await page.content());await page.screenshot({path:path.join(out,'before.png'),caret:'initial'});
+ // The native pulse changes every animation frame. Keep both full DOM snapshots,
+ // and admit only that existing live clock's declared attribute changes.
+ const snapshot=()=>[...document.querySelectorAll('*')].map((e,i)=>({i,tag:e.tagName,clock:e.matches('[aria-label^="Count "]')?'count':e.matches('[aria-label^="Count "] [data-live]')?'live':e===document.documentElement?'html':null,attrs:Object.fromEntries([...e.attributes].map(a=>[a.name,a.value])),directText:[...e.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent)}));
+ const before=await page.evaluate(snapshot);fs.writeFileSync(path.join(out,'before-overlay.html'),await page.content());
+ await page.evaluate(()=>{
+  const root=document.createElement('div');root.id='nodevideo-proof-boundary';root.setAttribute('aria-hidden','true');Object.assign(root.style,{position:'fixed',inset:'0',pointerEvents:'none',zIndex:'2147483647'});
+  for(const [selector,label,color]of [['canvas','CHANGE A · Pose canvas','#ff00d4'],['[aria-label^="Count "]','CHANGE B · Count row','#00e5ff']]){
+   const r=document.querySelector(selector).getBoundingClientRect(),box=document.createElement('div');Object.assign(box.style,{position:'absolute',left:r.x+'px',top:r.y+'px',width:r.width+'px',height:r.height+'px',border:`3px solid ${color}`,boxSizing:'border-box'});const title=document.createElement('div');title.textContent=label;Object.assign(title.style,{position:'absolute',left:'0',bottom:'100%',marginBottom:'4px',padding:'3px 6px',background:'#080808',color,font:'bold 12px/16px Arial,sans-serif',whiteSpace:'nowrap',border:`1px solid ${color}`});box.append(title);root.append(box);
+  }document.body.append(root);
+ });
+ await page.screenshot({path:path.join(out,'change-boundary.png'),caret:'initial'});await page.evaluate(()=>document.querySelector('#nodevideo-proof-boundary').remove());
+ const after=await page.evaluate(snapshot);fs.writeFileSync(path.join(out,'after-overlay.html'),await page.content());const changes=[];let staticRestored=before.length===after.length;
+ for(let i=0;i<before.length;i++){
+  const a=before[i],b=after[i];if(!b||a.tag!==b.tag||JSON.stringify(a.directText)!==JSON.stringify(b.directText)){staticRestored=false;changes.push({i,kind:'structure-or-text'});continue;}
+  for(const key of new Set([...Object.keys(a.attrs),...Object.keys(b.attrs)]))if(a.attrs[key]!==b.attrs[key]){
+   let native=false;
+   if(a.clock==='count'&&key==='aria-label')native=/^Count [1-8] of 8 at 103\.4 beats per minute$/.test(b.attrs[key]);
+   if(a.clock==='live'&&key==='data-live')native=['true','false'].includes(b.attrs[key]);
+   if(a.clock==='html'&&key==='style'){const removePulse=s=>s.replace(/--count-pulse:\s*[^;]+;?/g,'').trim();native=removePulse(a.attrs[key]??'')===removePulse(b.attrs[key]??'');}
+   if(!native)staticRestored=false;changes.push({i,tag:a.tag,clock:a.clock,key,before:a.attrs[key],after:b.attrs[key],nativeClockChange:native});
+  }
+ }
+ cell.overlay={removed:await page.locator('#nodevideo-proof-boundary').count()===0,fullDomExact:JSON.stringify(before)===JSON.stringify(after),staticDomRestored:staticRestored,observedNativeDifferences:changes};write(path.join(out,'overlay-restoration.json'),cell.overlay);if(!staticRestored)throw Error('Unexplained DOM change during boundary overlay');
+ cell.after=await state();cell.pngs=['before.png','change-boundary.png'].map(name=>({path:name,sha256:sha(fs.readFileSync(path.join(out,name)))}));
+ fs.writeFileSync(path.join(out,'change-boundary.md'),`# Landing clock change boundary\n\nRoute: / on owned loopback preview. Viewport: ${width}×${height}. Fresh nonpersistent Chromium, en-US, America/Los_Angeles, light preference with existing dark application palette, normal motion. Native page load then canvas scroll into view; no time/frame instrumentation, forced failure, provider or private input.\n\nCHANGE A · Pose canvas: public80-frame33-landmark pose-loop input at9.99Hz. Current native painted-pixel count ${cell.before.canvas.painted}; errors ${JSON.stringify(cell.errors)}. Expected after: first callback paints actual frame0, then normal native callbacks progress and wrap without undefined-frame exceptions. Empty/loading means prior-to-first-paint only; no invented skeleton/placeholder/status is introduced. Reduced motion remains one static frame0. No new error/retry UI.\n\nCHANGE B · Count row: current ${cell.before.count.label}. Keep103.4bpm, counts1..8 and original pulse formula. The owning clock's first callback starts elapsed0; native next callbacks advance normally. No shared clock redesign or label/layout edits.\n\nOverflow/responsive: same boxes and original CSS at all three viewports; existing enlarged-text overflow is a separate hold. Neighbors held: header, links, hero wording/buttons, media/pose bytes, cards/footer, studio/editor/export and all provider/backend surfaces. Native clock state may advance during capture; raw before/after DOM is retained, and overlay validation permits only actual HTML --count-pulse and Count aria/data-live changes. Every other attribute/text/structure must restore exactly.\n`, 'utf8');
+ cell.status='OBSERVED_NATIVE_BEFORE';write(path.join(out,'cell.json'),cell);await context.close();
+}report.status='NATIVE_BEFORE_BOUNDARIES_CAPTURED';}catch(e){report.status='FAILED_BOUNDARY_CAPTURE';report.error=String(e.stack??e);process.exitCode=1;}finally{await browser.close();write(path.join(O,'report.json'),report);console.log(JSON.stringify({status:report.status,cells:report.cells.map(c=>({viewport:c.viewport,painted:c.before?.canvas.painted,count:c.before?.count.label,errors:c.errors,staticDomRestored:c.overlay?.staticDomRestored})),error:report.error}));}

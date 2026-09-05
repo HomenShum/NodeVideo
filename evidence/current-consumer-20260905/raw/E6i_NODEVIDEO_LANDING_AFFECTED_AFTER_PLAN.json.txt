@@ -1,0 +1,56 @@
+{
+  "proofId": "NODEVIDEO-LANDING-CLOCK-01",
+  "status": "AFFECTED_ONLY_AFTER_PLAN_NOT_EXECUTED",
+  "sourceOwner": "apps/landing/src/landing.tsx",
+  "implementationOwner": "Parent applies separately reviewed first-rAF origin in both existing callbacks and runs its focused callback/knockout checks plus normal required gates/build.",
+  "viewports": [
+    [
+      320,
+      800
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      1440,
+      960
+    ]
+  ],
+  "modes": [
+    "normal motion",
+    "reduced motion",
+    "200% computed text with normal motion"
+  ],
+  "inputs": {
+    "poseFile": "apps/landing/src/pose-loop.json",
+    "poseSha256": "b2f2ea20a01dbe4815a921c0db6330c24967495dbc7b8b798b6ff82a13488be1",
+    "frames": 80,
+    "cadenceHz": 9.99,
+    "tempoBpm": 103.4,
+    "countRange": [
+      1,
+      8
+    ]
+  },
+  "preconditions": [
+    "Parent source/build freeze and completed normal gates; no concurrent source/build edits. Bind new owner/bundle/build stamp and all unchanged named inputs.",
+    "Owned loopback preview on newly checked free4983 or recorded equivalent; fresh nonpersistent Chromium matching before locale/timezone/theme. No original4173/4174."
+  ],
+  "steps": [
+    "For each exact viewport/mode, open the same landing route naturally. Capture actual page errors, console, count aria/live state, native canvas pixels and geometry; no clamp, fallback frame, replacement renderer or forced successful state.",
+    "Normal and computed-text cells: observe18seconds after first actual paint, exceeding two declared80/9.99-second pose cycles. Sample native canvas readback/count/pulse every125ms with maximum160records; retain timestamped fingerprints and a short actual video. Record nonzero painted pixels, changing shapes and observed validcounts1..8. Exact callback indices/wrap are proven by the parent’s separate actual-owner callback harness; elapsed browser duration alone is not an exact-frame-index certificate.",
+    "Capture start, mid and end actual PNGs and tight3px labelled A canvas/B count regions at matching before route/viewport/scroll state; view the exact saved pixels. Keep both raw and annotated images and a paired before/after index. Geometry/links/protected text/CSS/input bytes must remain unchanged except native expected clock fields.",
+    "Reduced motion: record a painted frame0 and count1; sample a fixed interval to establish unchanged pixels/count. No repeated animation or Count0. Source callback harness separately proves no reschedule and cleanup.",
+    "Computed-text: derive every initial font size from one baseline snapshot, apply exactly2× and retain before/after sizes. This is not native browser/OS zoom. Check actual new label/canvas visibility and document/page overflow without fixing known39px overflow or adjacent layout. Do not claim newly mounted text that escaped the snapshot was also enlarged.",
+    "Use native Studio link, verify expected route and disappearance of landing canvas, then native back/reload and observe valid paint/count again. Retain errors and lifecycle/navigation observations. Parent callback harness supplies precise unmount/StrictMode cancellation proof; browser navigation alone does not certify callback counts.",
+    "Close every owned context/browser/preview, retain PID/start identities and released-port receipt, and compare source/bundle/input hashes. Preserve any failed cell before narrowly diagnosing it; no timeout increase or silent retry."
+  ],
+  "limits": [
+    "No inspector/editor/codec rerun for landing-only repair; earlier exact baseline receipts remain historical and available.",
+    "No source edit by this before-capture worker, new dependencies, providers/private media/keys, rollout or publication.",
+    "No whole UI/performance/device/assistive/human grade. Source clock repair does not close enlarged-layout issues.",
+    "Native pulse/count updates are allowed observed differences during DOM overlay restoration; all nonclock structure/text/attributes must be exact."
+  ],
+  "grades": null
+}

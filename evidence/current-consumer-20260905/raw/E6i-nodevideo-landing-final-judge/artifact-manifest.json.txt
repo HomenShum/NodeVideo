@@ -1,0 +1,258 @@
+{
+  "scope": "Bounded actual reviewer artifacts; all 228 original native candidate bindings independently checked, not all copied here.",
+  "artifacts": [
+    {
+      "path": "bound--E6i-nodevideo-landing-after-01--public-tracking-gap-diagnosis.json",
+      "bytes": 911,
+      "sha256": "40e66d93fc7d3141292f0db79a8da18d2f5bc6284b4c899c3edcbe5fc9908eb3"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-after-02--artifact-manifest.json",
+      "bytes": 45356,
+      "sha256": "83d48d24e795bb294ee7f4f06de16919315820907752e4aaa9d0c42d515e223d"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-after-02--boundary.mjs.txt",
+      "bytes": 3305,
+      "sha256": "8c3b157f53a15930c1d2b4b083123fa7b819b0036acbd437018b067876c85a5f"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-after-02--capture.mjs.txt",
+      "bytes": 11683,
+      "sha256": "d43ce26bd008756a62b66536235baf1df0879f4bd8d28507bcfd927a3bc22c35"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-after-02--expectation-addendum.json",
+      "bytes": 744,
+      "sha256": "0591fb81dfb5c55ac656630543b601492b533cb4a151c93777bf761da489ca77"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-after-02--final-source-guard.json",
+      "bytes": 556,
+      "sha256": "b04b0582c6312eac7e517f4d4ade0478eea4dd5242f08e8901237b65ee9c4b2f"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-after-02--landing-after.command.json",
+      "bytes": 4152,
+      "sha256": "a6bcd1fc8429180be7d5e27254d487cb4ed196e1a33b695078a3a8b3c81533be"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-after-02--scoped-results.json",
+      "bytes": 101028,
+      "sha256": "ab59552245fe6291a46f11bca011e547a0dc33694242e487cd06fee1632e216b"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-check-01--normal-check.log",
+      "bytes": 85328,
+      "sha256": "521e14da4950d1acc0453edefa4b9d464480694c7659f961ed3066f965806e4e"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-check.json",
+      "bytes": 138986,
+      "sha256": "3ac01ecb1844c19cd4b49c58e2bcdd052fd702d25e24e7b6eb4542391ca0e9fd"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-clock-after-02--freeze.json",
+      "bytes": 92509,
+      "sha256": "b4d04b90622c456a42eea362a76658ad18acb4298e64c48d6e7093e9edc51f87"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-clock-after-02--report.json",
+      "bytes": 8434,
+      "sha256": "c193c867182a481d60f59a563355b62e2038f4b1158c5e05d6460cc789ab78ab"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-clock-before-02--freeze.json",
+      "bytes": 92510,
+      "sha256": "d974f4e42436242fcfcbb2e4885ec7f16a9b65141531efb51acfdf16b7351bff"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-clock-before-02--report.json",
+      "bytes": 8927,
+      "sha256": "35b6fe307ba571605fb40c07298126cf83660674cfda4ba90192a6ad0be814f3"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-clock-knockout-02--freeze.json",
+      "bytes": 92512,
+      "sha256": "a40a6a7dc17d67e290a9d74e66472872ef4a89c7028f71810f7578258006afe2"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-clock-knockout-02--report.json",
+      "bytes": 8929,
+      "sha256": "fd23a1cff4086d09e53e81cb42fe4aa55c530d2109351c2ef51df93ab30c092d"
+    },
+    {
+      "path": "bound--E6i-nodevideo-landing-clock-repair-01--receipt.json",
+      "bytes": 963,
+      "sha256": "e0ad2eb689e964b4d37e9163441d0b580f8758135f9137394489347fe1a0a746"
+    },
+    {
+      "path": "bound--E6i-review-landing-final.py.txt",
+      "bytes": 10030,
+      "sha256": "5f88c489b2667b51c31e8f6ae370f4ca5c6d2398fcb67268bf16b9579c7bfc9d"
+    },
+    {
+      "path": "bound--E6i-verify-landing-clock-v2.mjs.txt",
+      "bytes": 9214,
+      "sha256": "4819f1d07796aad1ad98288d622cca908f74457d05b60fc20790ea46a4c61d8b"
+    },
+    {
+      "path": "bound--E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.json",
+      "bytes": 110583,
+      "sha256": "ec4b6859658ef54073b496c2433d16c9936fb40cd84ff575081ab0dc868a9a45"
+    },
+    {
+      "path": "bound--E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.md.txt",
+      "bytes": 2278,
+      "sha256": "6e6135bf345a38280a5cbf42a9ecd87f3c3ee50d381a215e5476c513ed5047f4"
+    },
+    {
+      "path": "bound--E6i_NODEVIDEO_LANDING_BEFORE_RECEIPT.json",
+      "bytes": 6064,
+      "sha256": "6d96bef387171d551e3ef44b4428e42e3a56407c65cf1b02b536075a183eea29"
+    },
+    {
+      "path": "bound--E6i_NODEVIDEO_LANDING_BUILD_FREEZE.json",
+      "bytes": 568821,
+      "sha256": "07bcdd809a70218e62b0a4f1f79c5520958ff869cb88eed878c8b252703a12f8"
+    },
+    {
+      "path": "bound--E6i_NODEVIDEO_LANDING_CLOCK_DIAGNOSIS.json",
+      "bytes": 6915,
+      "sha256": "343d1a4a4783d5f676c97ad5f29c87283d40d80451652b30ef05d589df1026f3"
+    },
+    {
+      "path": "bound--E6i_NODEVIDEO_LANDING_CLOCK_HARNESS_V2_REVIEW.json",
+      "bytes": 1572,
+      "sha256": "a33e6c8443da0d4d7441061e2170542ed927d5f18d2bce122bbc87bee1691ea8"
+    },
+    {
+      "path": "bounded-copy-map.json",
+      "bytes": 11144,
+      "sha256": "7e0da8c2c73268b25c55cdcce203ea1d6281632fd0028d6ebdd34a810b2fd335"
+    },
+    {
+      "path": "checks.json",
+      "bytes": 7732,
+      "sha256": "27c6e8abfbe20168e828db74301c9fbb65d89ff86c6590438a29ebd1182dcfca"
+    },
+    {
+      "path": "closing-guards.json",
+      "bytes": 741,
+      "sha256": "2964dd270fd50d1e3cd2324f70960a7cb03f8fb1bc921d366c6e3d9819b9493c"
+    },
+    {
+      "path": "independent-saved-raster-analysis.json",
+      "bytes": 8069,
+      "sha256": "aaf1b5585fc727579b505fdb828ba7afe1b5134f2c063284341c7f6d7f603c91"
+    },
+    {
+      "path": "native-sample-analysis.json",
+      "bytes": 12159,
+      "sha256": "6d24fc06755116f5903afc3a4fee3ad10b24f43cf24492333b5b1f1e539ee5c4"
+    },
+    {
+      "path": "opening-guards.json",
+      "bytes": 250,
+      "sha256": "0a61bf93537cec0c628564ccf7f9de818431b0e77d167af4e664c47947933f0c"
+    },
+    {
+      "path": "owner.diff",
+      "bytes": 903,
+      "sha256": "63cba6f0af0c71b48fba81454b75d89e10c94cd5e67595c8ee69b3ae392a4a5e"
+    },
+    {
+      "path": "protected-dom-analysis.json",
+      "bytes": 7709,
+      "sha256": "62bb5d3c179c2de84a349e0d71b1cf7396ee7393e8c6798b50381fc8c43a1357"
+    },
+    {
+      "path": "recorder.diff",
+      "bytes": 2461,
+      "sha256": "e620c6b2381c1a496a9162ee07e79b1cc707179289ba7bcd3f21033f400986cc"
+    },
+    {
+      "path": "source-after.tsx.txt",
+      "bytes": 12030,
+      "sha256": "5d4ce6007803f7166949c40cdec646e0d2c51b0ee7ba8ca0dc2ac686b2de45ab"
+    },
+    {
+      "path": "source-before.tsx.txt",
+      "bytes": 11988,
+      "sha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8"
+    },
+    {
+      "path": "supplemental-checks.json",
+      "bytes": 444,
+      "sha256": "8f9ff7378051e903d24af9e94bd22ee605e29589c9d82ed65e58a15e68014ea1"
+    },
+    {
+      "path": "viewed--E6i-nodevideo-landing-after-01--320-normal--failure.png",
+      "bytes": 28011,
+      "sha256": "36f9819acade57494b9684c8e274323baff21a05d0de3ae8f2d3ac66c69300fe"
+    },
+    {
+      "path": "viewed--E6i-nodevideo-landing-after-02--1440-normal--end.png",
+      "bytes": 117853,
+      "sha256": "b694f2cfdd5064e3867c22e207d671306f9fbf14b551dbd03776ce01f54ea12c"
+    },
+    {
+      "path": "viewed--E6i-nodevideo-landing-after-02--1440-normal--start.png",
+      "bytes": 128975,
+      "sha256": "d517786eb44889cb88bf19344801119806f18e66891201c1a23ff1db9b9a723b"
+    },
+    {
+      "path": "viewed--E6i-nodevideo-landing-after-02--320-normal--start.png",
+      "bytes": 33862,
+      "sha256": "2df9ec898cc0e9d5b50352d30b9e9f2899f92c37dd4bf7adcfc713e888b454f3"
+    },
+    {
+      "path": "viewed--E6i-nodevideo-landing-after-02--320-text200--start.png",
+      "bytes": 16570,
+      "sha256": "23997c825ba10f64ba378e4a30fbc62e61ed8b7d4dc9ed47226779ec0661029b"
+    },
+    {
+      "path": "viewed--E6i-nodevideo-landing-after-02--390-normal--start.png",
+      "bytes": 49719,
+      "sha256": "9e2b9669fb4742950c5e818237ad4c1fb2d968e2e0f536a6f92dc4a7a50aaf8f"
+    },
+    {
+      "path": "viewed--E6i-nodevideo-landing-after-02--390-reduced--start.png",
+      "bytes": 47205,
+      "sha256": "9c135a852dec5514658151c5e2b3b6b9d81316aef1d05995ef1c001b2427bfd5"
+    },
+    {
+      "path": "viewed--E6i-nodevideo-landing-after-02--390-text200--end-canvas.png",
+      "bytes": 9346,
+      "sha256": "51c36fc018d317c4b3d42907e35b15dab5ce36236b2e12ea59958578e78cb902"
+    },
+    {
+      "path": "viewed--E6i-nodevideo-landing-after-02--390-text200--end.png",
+      "bytes": 22100,
+      "sha256": "740ee466e27d14cfbfafbe03122ace473844bd10de67b6c928bbeac6c269cc29"
+    },
+    {
+      "path": "viewed--E6i-nodevideo-landing-before-01--1440--change-boundary.png",
+      "bytes": 109276,
+      "sha256": "f3e815faf1e65a956fe83f6646c82e0f4a1aa440313ed1315adb3c4fe028b3d4"
+    },
+    {
+      "path": "viewed--E6i-nodevideo-landing-before-01--320--change-boundary.png",
+      "bytes": 29574,
+      "sha256": "2bb448167dc9f833ea454920bf24f6ee812bb7cbeef0f6a806b410c346ee61ed"
+    },
+    {
+      "path": "viewed--E6i-nodevideo-landing-before-01--390--change-boundary.png",
+      "bytes": 42385,
+      "sha256": "831923e5c33025d54bdf5031afd46c26bb67128a969a512a43cb8ae2c696424e"
+    },
+    {
+      "path": "viewed-pixels.json",
+      "bytes": 7121,
+      "sha256": "8be179fe463b993357612cf0cdc9c34b72f1c6fb77aaf1cce767d2a40ef60671"
+    }
+  ],
+  "files": 50,
+  "bytes": 2129937,
+  "selfExcluded": true
+}

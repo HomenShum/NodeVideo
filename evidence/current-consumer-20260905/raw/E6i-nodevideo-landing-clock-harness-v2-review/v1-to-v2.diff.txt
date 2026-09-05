@@ -1,0 +1,74 @@
+--- v1
++++ v2
+@@ -8,14 +8,21 @@
+ 
+ const P=dirname(fileURLToPath(import.meta.url));
+ const R='D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905';
+-const phase=process.argv[2];assert.ok(['before','after'].includes(phase));
+-const O=join(P,`E6i-nodevideo-landing-clock-${phase}-01`);await mkdir(O);
++const sha=b=>createHash('sha256').update(b).digest('hex');
++const phase=process.argv[2];assert.ok(['before','after','knockout'].includes(phase));
++const O=join(P,`E6i-nodevideo-landing-clock-${phase}-02`);await mkdir(O);
+ const require=createRequire(join(R,'package.json')),ts=require('typescript');
+ const sourcePath='apps/landing/src/landing.tsx';
+-const source=await readFile(join(R,sourcePath),'utf8');
++const currentSource=await readFile(join(R,sourcePath),'utf8');
++let source=currentSource;
++if(phase==='knockout'){
++  assert.equal(source.split('let started: number | undefined;').length-1,2);
++  assert.equal(source.split('      started ??= now;').length-1,2);
++  source=source.replaceAll('let started: number | undefined;','const started = performance.now();').replaceAll('      started ??= now;\n','');
++  assert.equal(sha(Buffer.from(source)),sha(await readFile(join(P,'E6i-nodevideo-landing-clock-before-01/source.tsx.txt'))));
++}
+ const poseBytes=await readFile(join(R,'apps/landing/src/pose-loop.json'));
+ const pose=JSON.parse(poseBytes);
+-const sha=b=>createHash('sha256').update(b).digest('hex');
+ const beat=60000/103.4;
+ const cases=[
+   {name:'actual-320-negative-start',start:250.5,times:[231.7,248.3667,265.0334]},
+@@ -26,11 +33,11 @@
+   {name:'finite-60-second-callbacks',start:250.5,times:Array.from({length:3601},(_,i)=>231.7+i*(1000/60))},
+   {name:'reduced-negative-first-timestamp',start:250.5,times:[231.7,248.3667,265.0334],reduced:true},
+   {name:'cleanup-before-first-frame',start:250.5,times:[231.7],earlyCleanup:true},
+-  {name:'fresh-remount-after-cleanup',start:5000,times:[4983,5000,5100]},
++  {name:'same-context-cleanup-remount',start:5000,times:[4983,5000,5100],remount:true},
+ ];
+ // Freeze the actual owner, fixture and external scenario harness before executing any callback.
+ await writeFile(join(O,'source.tsx.txt'),source);
+-await writeFile(join(O,'freeze.json'),JSON.stringify({phase,at:new Date().toISOString(),sourcePath,sourceSha256:sha(source),poseSha256:sha(poseBytes),harnessSha256:sha(await readFile(fileURLToPath(import.meta.url))),cases},null,2));
++await writeFile(join(O,'freeze.json'),JSON.stringify({phase,at:new Date().toISOString(),sourcePath,sourceSha256:sha(source),currentOwnerSha256:sha(currentSource),poseSha256:sha(poseBytes),harnessSha256:sha(await readFile(fileURLToPath(import.meta.url))),cases},null,2));
+ function runCase(text,test){
+   const queue=new Map(),cleanups=[],counts=[],pulses=[],indices=[],errors=[];let id=0,maxPending=0,clears=0,strokes=0,arcs=0;
+   const canvasContext={clearRect(){clears++;},beginPath(){},moveTo(){},lineTo(){},stroke(){strokes++;},arc(){arcs++;},fill(){}};
+@@ -47,17 +54,27 @@
+   for(const now of test.times){const pending=[...queue];queue.clear();for(const [,fn]of pending){callbackCount++;try{fn(now);}catch(error){errors.push(String(error));}}}
+   const pendingBeforeCleanup=queue.size;for(const cleanup of cleanups)cleanup();assert.equal(queue.size,0);
+   const summary={name:test.name,errors,firstFrame:indices[0]??null,lastFrame:indices.at(-1)??null,framesDrawn:clears,strokes,arcs,firstCount:counts[0]??null,lastCount:counts.at(-1)??null,countRange:counts.length?[Math.min(...counts),Math.max(...counts)]:null,pulseRange:pulses.length?[Math.min(...pulses),Math.max(...pulses)]:null,callbackCount,maxPending,pendingBeforeCleanup,pendingAfterCleanup:queue.size,allFrameIndicesValid:indices.every(n=>Number.isInteger(n)&&n>=0&&n<80),allCountValuesValid:counts.every(n=>Number.isInteger(n)&&n>=1&&n<=8),allPulseValuesValid:pulses.every(n=>n>=0&&n<=1),drawSequenceSha256:sha(JSON.stringify(indices)),countsSha256:sha(JSON.stringify(counts)),pulsesSha256:sha(JSON.stringify(pulses))};
++  if(test.remount){
++    const oldIndices=indices.length,oldCounts=counts.length,oldCleanups=cleanups.length;
++    context.exports.CLOCK_PROOF.useCountClock(false);context.exports.CLOCK_PROOF.SkeletonHero({reduced:false});
++    for(const now of [65000,65100,65200]){const pending=[...queue];queue.clear();for(const [,fn]of pending){try{fn(now);}catch(error){errors.push(String(error));}}}
++    const remountPending=queue.size;for(const cleanup of cleanups.slice(oldCleanups))cleanup();
++    summary.remount={sameVm:true,sameScheduler:true,newEffects:cleanups.length-oldCleanups,indices:indices.slice(oldIndices),counts:counts.slice(oldCounts),pendingBeforeCleanup:remountPending,pendingAfterCleanup:queue.size};
++    assert.equal(queue.size,0);
++    if(phase==='after'){assert.equal(summary.remount.newEffects,2);assert.deepEqual(summary.remount.indices,[0,0,1]);assert.deepEqual(summary.remount.counts,[1,1,1]);assert.equal(remountPending,2);}
++  }
+   if(phase==='after'){
+     assert.deepEqual(errors,[]);assert.ok(summary.allFrameIndicesValid&&summary.allCountValuesValid&&summary.allPulseValuesValid);
+     if(test.earlyCleanup)assert.equal(callbackCount,0);
+-    else {assert.equal(indices[0],0);if(test.reduced){assert.equal(clears,1);assert.equal(counts.length,0);assert.equal(pendingBeforeCleanup,0);}else{assert.equal(counts[0],1);assert.equal(clears,test.times.length);assert.equal(pendingBeforeCleanup,2);}}
++    else {assert.equal(indices[0],0);if(test.reduced){assert.equal(clears,1);assert.equal(counts.length,0);assert.equal(pendingBeforeCleanup,0);}else{assert.equal(counts[0],1);assert.equal(summary.framesDrawn,test.times.length);assert.equal(pendingBeforeCleanup,2);}}
++    if(test.name==='valid-zero-first-timestamp'){assert.deepEqual(indices,[0,0,1,5,46]);assert.deepEqual(counts,[1,1,1,2,1]);}
+     if(test.name==='finite-60-second-callbacks'){assert.equal(clears,3601);assert.ok(new Set(indices).size===80);}
+     if(test.name==='pose-and-count-rollovers'){assert.deepEqual(indices,[0,5,46,79,0,0]);assert.deepEqual(counts,[1,2,1,6,6,4]);}
+   }
+   return {summary,firstObservedIndices:indices.slice(0,12),lastObservedIndices:indices.slice(-12),firstObservedCounts:counts.slice(0,12),lastObservedCounts:counts.slice(-12)};
+ }
+-const report={phase,status:'RUNNING',sourceSha256:sha(source),poseSha256:sha(poseBytes),scenarios:[],limitations:['Transpiled actual-owner callbacks with mock React lifecycle/canvas and controlled scheduler; not native animation or pixel proof.','Finite60-second simulated timeline, not one minute of wall-clock performance or sustained load.']};
+-try{for(const test of cases){const result=runCase(source,test);report.scenarios.push(result.summary);await writeFile(join(O,test.name+'.json'),JSON.stringify(result,null,2));}if(phase==='before'){assert.ok(report.scenarios.find(e=>e.name==='actual-320-negative-start').errors.some(e=>e.includes("reading '11'")));assert.ok(report.scenarios.find(e=>e.name==='actual-390-negative-start').errors.some(e=>e.includes("reading '11'")));report.status='ORIGINAL_FAILURES_REPRODUCED';}else report.status='PASS';}
++const report={phase,status:'RUNNING',sourceSha256:sha(source),currentOwnerSha256:sha(currentSource),poseSha256:sha(poseBytes),scenarios:[],limitations:['Transpiled actual-owner callbacks with mock React lifecycle/canvas and controlled scheduler; not native animation or pixel proof.','Finite60-second simulated timeline, not one minute of wall-clock performance or sustained load.']};
++try{for(const test of cases){const result=runCase(source,test);report.scenarios.push(result.summary);await writeFile(join(O,test.name+'.json'),JSON.stringify(result,null,2));}if(phase==='before'||phase==='knockout'){assert.ok(report.scenarios.find(e=>e.name==='actual-320-negative-start').errors.some(e=>e.includes("reading '11'")));assert.ok(report.scenarios.find(e=>e.name==='actual-390-negative-start').errors.some(e=>e.includes("reading '11'")));report.status='ORIGINAL_FAILURES_REPRODUCED';}else report.status='PASS';}
+ catch(error){report.status='FAIL';report.error=error.stack||String(error);process.exitCode=1;}
+-assert.equal(sha(await readFile(join(R,sourcePath))),sha(source));assert.equal(sha(await readFile(join(R,'apps/landing/src/pose-loop.json'))),sha(poseBytes));
++assert.equal(sha(await readFile(join(R,sourcePath))),sha(currentSource));assert.equal(sha(await readFile(join(R,'apps/landing/src/pose-loop.json'))),sha(poseBytes));
+ report.sourceUnchanged=true;report.finishedAt=new Date().toISOString();await writeFile(join(O,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({status:report.status,phase,scenarios:report.scenarios.length,error:report.error,out:O}));

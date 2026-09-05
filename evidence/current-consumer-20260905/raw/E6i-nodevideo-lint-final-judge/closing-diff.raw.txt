@@ -1,0 +1,2397 @@
+diff --git a/schemas/production-agent.v1.schema.json b/schemas/production-agent.v1.schema.json
+index 13b09c4..dbe5c98 100644
+--- a/schemas/production-agent.v1.schema.json
++++ b/schemas/production-agent.v1.schema.json
+@@ -2,7 +2,18 @@
+   "$schema": "https://json-schema.org/draft/2020-12/schema",
+   "$id": "https://github.com/HomenShum/2026-senior-agent-engineering-checklist/blob/main/schema/production-agent.v1.schema.json",
+   "type": "object",
+-  "required": ["schemaVersion", "application", "declaredAt", "goalTranslation", "hitl", "toolFaultTolerance", "context", "slos", "runtimeGuards", "release"],
++  "required": [
++    "schemaVersion",
++    "application",
++    "declaredAt",
++    "goalTranslation",
++    "hitl",
++    "toolFaultTolerance",
++    "context",
++    "slos",
++    "runtimeGuards",
++    "release"
++  ],
+   "properties": {
+     "schemaVersion": { "const": "production-agent/v1" },
+     "application": { "$ref": "#/$defs/id" },
+@@ -55,7 +66,10 @@
+           "description": "Raw provider/tool errors never travel to the user or into the agent's own reasoning as fact.",
+           "type": "object",
+           "required": ["rawErrorsReachUser"],
+-          "properties": { "rawErrorsReachUser": { "const": false }, "how": { "$ref": "#/$defs/text" } },
++          "properties": {
++            "rawErrorsReachUser": { "const": false },
++            "how": { "$ref": "#/$defs/text" }
++          },
+           "additionalProperties": false
+         },
+         "retry": {
+diff --git a/scripts/quality/verify-production-deploy.mjs b/scripts/quality/verify-production-deploy.mjs
+index 54b4423..92b784e 100644
+--- a/scripts/quality/verify-production-deploy.mjs
++++ b/scripts/quality/verify-production-deploy.mjs
+@@ -59,19 +59,24 @@ for (;;) {
+   try {
+     const { status, body } = await fetchBody();
+     if (status === 200 && body.includes(signal)) {
+-      console.log(`OK attempt ${attempt}: ${url} serves the content signal (${JSON.stringify(signal)})`);
++      console.log(
++        `OK attempt ${attempt}: ${url} serves the content signal (${JSON.stringify(signal)})`,
++      );
+       process.exit(0);
+     }
+-    console.error(`attempt ${attempt}: HTTP ${status}, signal ${body.includes(signal) ? 'present' : 'absent'}`);
++    console.error(
++      `attempt ${attempt}: HTTP ${status}, signal ${body.includes(signal) ? 'present' : 'absent'}`,
++    );
+   } catch (err) {
+-    console.error(`attempt ${attempt}: ${err?.cause?.code ?? err?.name ?? 'error'}: ${err?.message ?? err}`);
++    console.error(
++      `attempt ${attempt}: ${err?.cause?.code ?? err?.name ?? 'error'}: ${err?.message ?? err}`,
++    );
+   }
+   if (Date.now() + intervalMs > deadline) break;
+   await sleep(intervalMs);
+ }
+ 
+ console.error(
+-  `FAIL: ${url} never served HTTP 200 with the content signal within ${timeoutMs}ms. ` +
+-    'The deployment is not verified live.',
++  `FAIL: ${url} never served HTTP 200 with the content signal within ${timeoutMs}ms. The deployment is not verified live.`,
+ );
+ process.exit(1);
+diff --git a/src/lib/frame-evidence.test.ts b/src/lib/frame-evidence.test.ts
+index 029c2eb..4bcbcfb 100644
+--- a/src/lib/frame-evidence.test.ts
++++ b/src/lib/frame-evidence.test.ts
+@@ -2,7 +2,12 @@
+ // It is the easy mistake because the mockup looks better than the real product.
+ 
+ import { describe, expect, it } from 'vitest';
+-import { evaluateFrameEvidence, formatFrameEvidence, parseFrameSet, type Frame } from './frame-evidence';
++import {
++  type Frame,
++  evaluateFrameEvidence,
++  formatFrameEvidence,
++  parseFrameSet,
++} from './frame-evidence';
+ 
+ const hash = (c: string) => c.repeat(64);
+ 
+@@ -58,7 +63,9 @@ describe('frame evidence', () => {
+   );
+ 
+   it('refuses a screenshot binding that points at a different image', () => {
+-    const verdict = evaluateFrameEvidence([live({ bindings: { ...live().bindings, screenshotSha256: hash('c') } })]);
++    const verdict = evaluateFrameEvidence([
++      live({ bindings: { ...live().bindings, screenshotSha256: hash('c') } }),
++    ]);
+     expect(verdict.passed).toBe(false);
+     expect(verdict.blockers.join(' ')).toMatch(/does not match the frame's own hash/);
+   });
+@@ -83,7 +90,9 @@ describe('frame evidence', () => {
+ 
+   it('refuses a frame nobody hashed, or that never says what it is presented as', () => {
+     expect(() => parseFrameSet([live({ sha256: 'nope' })])).toThrow(/needs its own sha256/);
+-    expect(() => parseFrameSet([{ ...live(), presentedAs: undefined }])).toThrow(/needs presentedAs/);
++    expect(() => parseFrameSet([{ ...live(), presentedAs: undefined }])).toThrow(
++      /needs presentedAs/,
++    );
+   });
+ 
+   it('scopes repair to the shots that actually failed', () => {
+diff --git a/src/lib/frame-evidence.ts b/src/lib/frame-evidence.ts
+index 3c1e6d6..e5ca71c 100644
+--- a/src/lib/frame-evidence.ts
++++ b/src/lib/frame-evidence.ts
+@@ -40,12 +40,36 @@ export const FRAME_KINDS: readonly FrameKind[] = [
+ 
+ /** What each kind owes. The point is that they owe DIFFERENT things. */
+ const REQUIREMENTS: Record<FrameKind, { field: string | null; keys: string[]; why: string }> = {
+-  'live-product': { field: 'bindings', keys: ['deploymentRevision', 'browserTraceId', 'journeyState', 'screenshotSha256'], why: 'a claim about the running application must name the exact deployment it came from' },
+-  'generated-illustration': { field: 'provenance', keys: ['provider', 'model', 'prompt', 'inputAssets'], why: 'which model, with what prompt, is the only thing that makes it auditable later' },
+-  'motion-graphic': { field: 'composition', keys: ['sourceRef'], why: 'deterministic composition is reproducible, so it owes its source — not a model it never used' },
+-  'source-media': { field: 'origin', keys: ['originRef', 'rights'], why: 'material the creator already had still owes where it came from and on what terms' },
+-  'stock-media': { field: 'origin', keys: ['originRef', 'licenseId'], why: 'the licence is the whole basis for using it' },
+-  'text-or-diagram': { field: null, keys: [], why: 'authored directly; being labelled is all it owes' },
++  'live-product': {
++    field: 'bindings',
++    keys: ['deploymentRevision', 'browserTraceId', 'journeyState', 'screenshotSha256'],
++    why: 'a claim about the running application must name the exact deployment it came from',
++  },
++  'generated-illustration': {
++    field: 'provenance',
++    keys: ['provider', 'model', 'prompt', 'inputAssets'],
++    why: 'which model, with what prompt, is the only thing that makes it auditable later',
++  },
++  'motion-graphic': {
++    field: 'composition',
++    keys: ['sourceRef'],
++    why: 'deterministic composition is reproducible, so it owes its source — not a model it never used',
++  },
++  'source-media': {
++    field: 'origin',
++    keys: ['originRef', 'rights'],
++    why: 'material the creator already had still owes where it came from and on what terms',
++  },
++  'stock-media': {
++    field: 'origin',
++    keys: ['originRef', 'licenseId'],
++    why: 'the licence is the whole basis for using it',
++  },
++  'text-or-diagram': {
++    field: null,
++    keys: [],
++    why: 'authored directly; being labelled is all it owes',
++  },
+ };
+ 
+ export const LIVE_PRODUCT_BINDINGS = REQUIREMENTS['live-product'].keys;
+@@ -116,25 +140,36 @@ export function evaluateFrameEvidence(input: unknown): FrameEvidenceVerdict {
+ 
+   for (const frame of frames) {
+     const requirement = REQUIREMENTS[frame.kind];
+-    const bag = requirement.field ? ((frame as unknown as Record<string, Record<string, unknown>>)[requirement.field] ?? {}) : {};
++    const bag = requirement.field
++      ? ((frame as unknown as Record<string, Record<string, unknown>>)[requirement.field] ?? {})
++      : {};
+     const missing = requirement.keys.filter((key) =>
+       key === 'inputAssets' ? !Array.isArray(bag[key]) : !isNonEmptyString(bag[key]),
+     );
+     if (missing.length > 0) {
+-      blame(frame, `${frame.frameId} (${frame.kind}) is missing ${requirement.field}.${missing.join(', ')} — ${requirement.why}`);
++      blame(
++        frame,
++        `${frame.frameId} (${frame.kind}) is missing ${requirement.field}.${missing.join(', ')} — ${requirement.why}`,
++      );
+     }
+ 
+     if (frame.kind === 'live-product') {
+       const shot = frame.bindings?.screenshotSha256;
+       if (shot && shot !== frame.sha256) {
+-        blame(frame, `live-product frame ${frame.frameId}: screenshotSha256 does not match the frame's own hash`);
++        blame(
++          frame,
++          `live-product frame ${frame.frameId}: screenshotSha256 does not match the frame's own hash`,
++        );
+       }
+     }
+ 
+     // Every non-live kind, not just generated. A stock clip or motion graphic presented as the
+     // running application is the same false claim about what the viewer is seeing.
+     if (frame.kind !== 'live-product' && frame.presentedAs === 'live-product') {
+-      blame(frame, `frame ${frame.frameId} is ${frame.kind} but presented as the running application`);
++      blame(
++        frame,
++        `frame ${frame.frameId} is ${frame.kind} but presented as the running application`,
++      );
+     }
+   }
+ 
+diff --git a/tools/clip-gate/apply-captions.mjs b/tools/clip-gate/apply-captions.mjs
+index aa89a15..24375ae 100644
+--- a/tools/clip-gate/apply-captions.mjs
++++ b/tools/clip-gate/apply-captions.mjs
+@@ -9,35 +9,55 @@
+ //
+ //   node apply-captions.mjs --id TShero --from captions.plain.json
+ //
+-import { readFileSync, writeFileSync } from "node:fs";
++import { readFileSync, writeFileSync } from 'node:fs';
+ 
+ const argv = process.argv.slice(2);
+-const flag = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 && argv[i + 1] ? argv[i + 1] : d; };
+-const id = flag("id");
+-const from = flag("from");
+-const specFile = flag("spec", `walkthrough.${(id || "").toLowerCase()}.specs.mjs`);
+-if (!id || !from) { console.error("usage: node apply-captions.mjs --id <SpecId> --from <captions.json> [--spec <file>]"); process.exit(1); }
++const flag = (n, d) => {
++  const i = argv.indexOf(`--${n}`);
++  return i >= 0 && argv[i + 1] ? argv[i + 1] : d;
++};
++const id = flag('id');
++const from = flag('from');
++const specFile = flag('spec', `walkthrough.${(id || '').toLowerCase()}.specs.mjs`);
++if (!id || !from) {
++  console.error(
++    'usage: node apply-captions.mjs --id <SpecId> --from <captions.json> [--spec <file>]',
++  );
++  process.exit(1);
++}
+ 
+-const NEW = JSON.parse(readFileSync(from, "utf8"));
++const NEW = JSON.parse(readFileSync(from, 'utf8'));
+ const CAP_RE = /"caption": "(?:[^"\\]|\\.)*"/g;
+ const SPEC_RE = /cap: "(?:[^"\\]|\\.)*"/g;
+ 
+-const dataPath = "src/walkthrough.collab.data.js";
+-let s = readFileSync(dataPath, "utf8");
++const dataPath = 'src/walkthrough.collab.data.js';
++const s = readFileSync(dataPath, 'utf8');
+ const i = s.indexOf(`"id": "${id}"`);
+-if (i < 0) { console.error(`no "${id}" in ${dataPath}`); process.exit(1); }
+-let j = s.indexOf("\n  },\n  {", i);
++if (i < 0) {
++  console.error(`no "${id}" in ${dataPath}`);
++  process.exit(1);
++}
++let j = s.indexOf('\n  },\n  {', i);
+ if (j < 0) j = s.length;
+ 
+ let k = 0;
+-const block = s.slice(i, j).replace(CAP_RE, (m) => (k < NEW.length ? `"caption": ${JSON.stringify(NEW[k++])}` : m));
+-if (k !== NEW.length) { console.error(`caption count mismatch: file has ${k}, json has ${NEW.length}`); process.exit(1); }
++const block = s
++  .slice(i, j)
++  .replace(CAP_RE, (m) => (k < NEW.length ? `"caption": ${JSON.stringify(NEW[k++])}` : m));
++if (k !== NEW.length) {
++  console.error(`caption count mismatch: file has ${k}, json has ${NEW.length}`);
++  process.exit(1);
++}
+ writeFileSync(dataPath, s.slice(0, i) + block + s.slice(j));
+ 
+ let m = 0;
+ try {
+-  const spec = readFileSync(specFile, "utf8").replace(SPEC_RE, (x) => (m < NEW.length ? `cap: ${JSON.stringify(NEW[m++])}` : x));
++  const spec = readFileSync(specFile, 'utf8').replace(SPEC_RE, (x) =>
++    m < NEW.length ? `cap: ${JSON.stringify(NEW[m++])}` : x,
++  );
+   writeFileSync(specFile, spec);
+-} catch { console.warn(`[captions] could not update ${specFile} — spec and data will drift`); }
++} catch {
++  console.warn(`[captions] could not update ${specFile} — spec and data will drift`);
++}
+ 
+ console.log(`[captions] ${id}: ${k} in data, ${m} in ${specFile}`);
+diff --git a/tools/clip-gate/calibration.json b/tools/clip-gate/calibration.json
+index f46833f..07438da 100644
+--- a/tools/clip-gate/calibration.json
++++ b/tools/clip-gate/calibration.json
+@@ -3,7 +3,11 @@
+   "calibratedAt": "2026-08-04",
+   "instrument": "judge-video.mjs @ 2026-08-04.two-stage-blind-scorer-v1, gemini-3.6-flash",
+   "probes": {
+-    "knownBadStaticHeroShot": { "craft": 3, "comprehension": 1, "note": "30s static frame; correctly demolished" },
++    "knownBadStaticHeroShot": {
++      "craft": 3,
++      "comprehension": 1,
++      "note": "30s static frame; correctly demolished"
++    },
+     "currentWalkthrough": { "craft": 19, "comprehension": 14 },
+     "raycastLaunchFilm": {
+       "craft": 10,
+@@ -12,9 +16,18 @@
+   },
+   "gate": "good-walkthrough minus bad-walkthrough spread >= 8. Measured: 16. PASS.",
+   "history": [
+-    { "instrument": "monolithic single-call", "result": "CONSTANT FUNCTION — all three probes scored identically 11/22, 10/20. Every delta measured with it is invalid, including the 'narration moved nothing' finding." },
+-    { "instrument": "observation-first single-call", "result": "still constant; own timeline said 'no cursor' and cursor_truth still scored 1 — the model rationalizes while watching." },
+-    { "instrument": "two-stage blind scorer", "result": "watcher sees pixels and may not judge; scorer judges the written record and never sees pixels. Discriminates." }
++    {
++      "instrument": "monolithic single-call",
++      "result": "CONSTANT FUNCTION — all three probes scored identically 11/22, 10/20. Every delta measured with it is invalid, including the 'narration moved nothing' finding."
++    },
++    {
++      "instrument": "observation-first single-call",
++      "result": "still constant; own timeline said 'no cursor' and cursor_truth still scored 1 — the model rationalizes while watching."
++    },
++    {
++      "instrument": "two-stage blind scorer",
++      "result": "watcher sees pixels and may not judge; scorer judges the written record and never sees pixels. Discriminates."
++    }
+   ],
+   "rule": "deltas under 2 points do not count; re-calibrate after any rubric change"
+ }
+diff --git a/tools/clip-gate/clip.mjs b/tools/clip-gate/clip.mjs
+index 1ef9f5e..c50a187 100644
+--- a/tools/clip-gate/clip.mjs
++++ b/tools/clip-gate/clip.mjs
+@@ -7,62 +7,111 @@
+ // absence shipped a real defect this week: unfitted holds cut narration mid-sentence, an unmapped
+ // mux shipped three silent videos, and an uncalibrated judge scored a static JPEG the same as a
+ // launch film. The gates are the product.
+-import { readFileSync, writeFileSync } from "node:fs";
+-import { spawnSync } from "node:child_process";
+-import { linesFromStoryboard, synthesiseBeats, assemble, overruns } from "./narrate.mjs";
+-import { buildScore, muxOnto } from "./score.mjs";
++import { spawnSync } from 'node:child_process';
++import { readFileSync, writeFileSync } from 'node:fs';
++import { assemble, linesFromStoryboard, overruns, synthesiseBeats } from './narrate.mjs';
++import { buildScore, muxOnto } from './score.mjs';
+ 
+-const VOICE = process.env.VOICE || "en_US-lessac-medium";
++const VOICE = process.env.VOICE || 'en_US-lessac-medium';
+ const PAD = 0.35;
+-const OUT = "out/clip.mp4";
++const OUT = 'out/clip.mp4';
+ 
+ const step = (name) => console.log(`\n[clip] ${name}`);
+ 
+-step("storyboard + narration fit");
+-const raw = readFileSync("src/walkthrough.data.js", "utf8");
++step('storyboard + narration fit');
++const raw = readFileSync('src/walkthrough.data.js', 'utf8');
+ const m = raw.match(/^([\s\S]*?export const WALKTHROUGHS\s*=\s*)([\s\S]*?)(;\s*)$/);
+ const data = JSON.parse(m[2]);
+ let steps = data[0].steps;
+ let lines = linesFromStoryboard(steps);
+-let clips = synthesiseBeats(lines, VOICE);
+-const newHolds = steps.map((s, i) => Math.round(Math.max((s.hold || 60) / 30, (clips[i]?.seconds ?? 0) + PAD) * 30));
+-data[0].steps.forEach((s, i) => { s.hold = newHolds[i]; });
+-writeFileSync("src/walkthrough.data.js", m[1] + JSON.stringify(data, null, 2) + m[3]);
++const clips = synthesiseBeats(lines, VOICE);
++const newHolds = steps.map((s, i) =>
++  Math.round(Math.max((s.hold || 60) / 30, (clips[i]?.seconds ?? 0) + PAD) * 30),
++);
++data[0].steps.forEach((s, i) => {
++  s.hold = newHolds[i];
++});
++writeFileSync('src/walkthrough.data.js', m[1] + JSON.stringify(data, null, 2) + m[3]);
+ steps = data[0].steps;
+ lines = linesFromStoryboard(steps);
+ const over = overruns(lines, clips);
+-if (over.length) { console.error("[clip] OVERRUNS after fitting:", JSON.stringify(over)); process.exit(1); }
++if (over.length) {
++  console.error('[clip] OVERRUNS after fitting:', JSON.stringify(over));
++  process.exit(1);
++}
+ const totalFrames = newHolds.reduce((a, b) => a + b, 0);
+-console.log(`  ${steps.length} beats, ${(totalFrames / 30).toFixed(1)}s, voice ${VOICE}, overruns 0`);
++console.log(
++  `  ${steps.length} beats, ${(totalFrames / 30).toFixed(1)}s, voice ${VOICE}, overruns 0`,
++);
+ 
+-step("render");
+-const r = spawnSync("npx", ["remotion", "render", "src/index.js", "WT-NodeRoom", "out/clip-video.mp4", "--concurrency=2"], { encoding: "utf8", timeout: 540_000, maxBuffer: 64 * 1024 * 1024, shell: true });
+-if (r.status !== 0) { console.error("[clip] render failed:", (r.stderr || "").slice(-200)); process.exit(1); }
++step('render');
++const r = spawnSync(
++  'npx',
++  ['remotion', 'render', 'src/index.js', 'WT-NodeRoom', 'out/clip-video.mp4', '--concurrency=2'],
++  { encoding: 'utf8', timeout: 540_000, maxBuffer: 64 * 1024 * 1024, shell: true },
++);
++if (r.status !== 0) {
++  console.error('[clip] render failed:', (r.stderr || '').slice(-200));
++  process.exit(1);
++}
+ 
+-step("voice + score + mux");
+-assemble(lines, clips, totalFrames / 30, "out/clip-narration.wav");
+-const score = buildScore({ steps, outFile: "out/clip-audio.wav", narration: "out/clip-narration.wav" });
+-muxOnto("out/clip-video.mp4", "out/clip-audio.wav", OUT);
++step('voice + score + mux');
++assemble(lines, clips, totalFrames / 30, 'out/clip-narration.wav');
++const score = buildScore({
++  steps,
++  outFile: 'out/clip-audio.wav',
++  narration: 'out/clip-narration.wav',
++});
++muxOnto('out/clip-video.mp4', 'out/clip-audio.wav', OUT);
+ console.log(`  mix ${score.post.I.toFixed(1)} LUFS / LRA ${score.post.LRA.toFixed(1)}`);
+ 
+-step("gate 1 — audio is actually there");
+-const vol = spawnSync("ffmpeg", ["-v", "info", "-i", OUT, "-map", "0:a:0", "-af", "volumedetect", "-f", "null", "-"], { encoding: "utf8", timeout: 300_000 });
++step('gate 1 — audio is actually there');
++const vol = spawnSync(
++  'ffmpeg',
++  ['-v', 'info', '-i', OUT, '-map', '0:a:0', '-af', 'volumedetect', '-f', 'null', '-'],
++  { encoding: 'utf8', timeout: 300_000 },
++);
+ const mean = Number((`${vol.stderr}`.match(/mean_volume: (-?[\d.]+)/) || [])[1] ?? -91);
+-if (mean < -60) { console.error(`[clip] SILENT OUTPUT (${mean} dB) — the mux shipped the wrong stream`); process.exit(1); }
++if (mean < -60) {
++  console.error(`[clip] SILENT OUTPUT (${mean} dB) — the mux shipped the wrong stream`);
++  process.exit(1);
++}
+ console.log(`  ${mean} dB`);
+ 
+-step("gate 2 — said matches shown (Moonshine)");
+-spawnSync("ffmpeg", ["-y", "-v", "error", "-i", OUT, "-vn", "-ar", "16000", "-ac", "1", "out/clip-stt.wav"], { encoding: "utf8", timeout: 300_000 });
+-const stt = spawnSync("python", ["-c", `
++step('gate 2 — said matches shown (Moonshine)');
++spawnSync(
++  'ffmpeg',
++  ['-y', '-v', 'error', '-i', OUT, '-vn', '-ar', '16000', '-ac', '1', 'out/clip-stt.wav'],
++  { encoding: 'utf8', timeout: 300_000 },
++);
++const stt = spawnSync(
++  'python',
++  [
++    '-c',
++    `
+ import re, json
+ import moonshine_onnx as m
+ heard = m.transcribe('out/clip-stt.wav','moonshine/tiny')
+ heard = heard[0] if isinstance(heard,(list,tuple)) else str(heard)
+ print(json.dumps({"heard": heard}))
+-`], { encoding: "utf8", timeout: 540_000, env: { ...process.env, PYTHONUTF8: "1" }, maxBuffer: 32 * 1024 * 1024 });
+-const heard = JSON.parse(stt.stdout.split("\n").filter(Boolean).pop() ?? "{}").heard ?? "";
+-const norm = (t) => t.toLowerCase().replace(/—/g, " ").replace(/[^a-z0-9 ]/g, "").split(/\s+/).filter(Boolean);
+-const tw = norm(lines.map((l) => l.text).join(" "));
++`,
++  ],
++  {
++    encoding: 'utf8',
++    timeout: 540_000,
++    env: { ...process.env, PYTHONUTF8: '1' },
++    maxBuffer: 32 * 1024 * 1024,
++  },
++);
++const heard = JSON.parse(stt.stdout.split('\n').filter(Boolean).pop() ?? '{}').heard ?? '';
++const norm = (t) =>
++  t
++    .toLowerCase()
++    .replace(/—/g, ' ')
++    .replace(/[^a-z0-9 ]/g, '')
++    .split(/\s+/)
++    .filter(Boolean);
++const tw = norm(lines.map((l) => l.text).join(' '));
+ const hw = norm(heard);
+ // UNIQUE-word coverage. Counting every occurrence let one word repeated 85 times pass the gate
+ // with half the captions missing — Codex constructed it. Distinct vocabulary coverage cannot be
+@@ -71,42 +120,60 @@ const tuniq = [...new Set(tw)];
+ const hset = new Set(hw);
+ const overlap = tuniq.filter((w) => hset.has(w)).length / Math.max(1, tuniq.length);
+ console.log(`  ${Math.round(overlap * 100)}% of ${tuniq.length} distinct caption words heard`);
+-if (overlap < 0.85) { console.error("[clip] SAID-VS-SHOWN FAIL — narration and captions have drifted"); process.exit(1); }
++if (overlap < 0.85) {
++  console.error('[clip] SAID-VS-SHOWN FAIL — narration and captions have drifted');
++  process.exit(1);
++}
+ 
+-step("gate 3 — two-axis judge (median of 3 at the boundary)");
++step('gate 3 — two-axis judge (median of 3 at the boundary)');
+ // Measured on one file, three consecutive runs: comprehension 20/16/16 and the mom boolean flipped
+ // true/false/false. A single run is iteration feedback, not a gate. Clear results take one run;
+ // anything near the boundary escalates to three — median for scores, majority for mom.
+ const judgeOnce = () => {
+-  const run = spawnSync("node", ["judge-video.mjs", OUT, "--no-reference"], { encoding: "utf8", timeout: 540_000, maxBuffer: 32 * 1024 * 1024 });
++  const run = spawnSync('node', ['judge-video.mjs', OUT, '--no-reference'], {
++    encoding: 'utf8',
++    timeout: 540_000,
++    maxBuffer: 32 * 1024 * 1024,
++  });
+   // A crashed judge must not contribute a verdict: reading judge.json after a failed run feeds
+   // the PREVIOUS run's file into the median.
+   if (run.status !== 0) return { craft: 0, comp: 0, mom: false, blocked: true };
+-  const v = JSON.parse(readFileSync("out/clip.judge.json", "utf8"));
++  const v = JSON.parse(readFileSync('out/clip.judge.json', 'utf8'));
+   const craftScore = Object.values(v.scores).reduce((a, x) => a + x.score, 0);
+   const block = v.comprehension ?? {};
+-  const compScore = Object.keys(block).filter((k) => typeof block[k]?.score === "number").reduce((a, k) => a + block[k].score, 0);
+-  return { craft: craftScore, comp: compScore, mom: block.wouldMomUnderstand === true, blocked: run.status !== 0 };
++  const compScore = Object.keys(block)
++    .filter((k) => typeof block[k]?.score === 'number')
++    .reduce((a, k) => a + block[k].score, 0);
++  return {
++    craft: craftScore,
++    comp: compScore,
++    mom: block.wouldMomUnderstand === true,
++    blocked: run.status !== 0,
++  };
+ };
+ const runs = [judgeOnce()];
+ if ((runs[0].comp >= 12 && runs[0].comp <= 18) || !runs[0].mom) {
+-  console.log("  boundary result — escalating to median of 3");
++  console.log('  boundary result — escalating to median of 3');
+   runs.push(judgeOnce(), judgeOnce());
+ }
+ const med = (xs) => xs.slice().sort((a, b) => a - b)[Math.floor(xs.length / 2)];
+ const craft = med(runs.map((x) => x.craft));
+ const comp = med(runs.map((x) => x.comp));
+ const mom = runs.filter((x) => x.mom).length > runs.length / 2;
+-console.log(`  craft ${craft}/22 · comprehension ${comp}/20 · mom ${mom ? "passes" : "FAILS"} (${runs.length} run${runs.length > 1 ? "s" : ""})`);
++console.log(
++  `  craft ${craft}/22 · comprehension ${comp}/20 · mom ${mom ? 'passes' : 'FAILS'} (${runs.length} run${runs.length > 1 ? 's' : ''})`,
++);
+ // The previous predicate was nearly decorative — Codex's truth table: craft was computed and
+ // never consulted, mom-fail with comp exactly 14 shipped, and a judge crash in 1 of 3 runs was
+ // silently ignored. Each clause below answers a constructed counterexample.
+ if (runs.some((x) => x.blocked)) {
+-  console.error("[clip] JUDGE RUN FAILED — a crashed judge is not a verdict");
++  console.error('[clip] JUDGE RUN FAILED — a crashed judge is not a verdict');
+   process.exit(1);
+ }
+ if (!mom || comp < 14 || craft < 14) {
+-  console.error(`[clip] JUDGE BLOCKED (mom ${mom}, comp ${comp}/20, craft ${craft}/22) — read out/clip.judge.md, fix, run again.`);
++  console.error(
++    `[clip] JUDGE BLOCKED (mom ${mom}, comp ${comp}/20, craft ${craft}/22) — read out/clip.judge.md, fix, run again.`,
++  );
+   process.exit(1);
+ }
+ console.log(`\n[clip] SHIPPABLE: ${OUT}`);
+diff --git a/tools/clip-gate/comprehension-rubric.mjs b/tools/clip-gate/comprehension-rubric.mjs
+index a33b798..1b6409b 100644
+--- a/tools/clip-gate/comprehension-rubric.mjs
++++ b/tools/clip-gate/comprehension-rubric.mjs
+@@ -16,11 +16,19 @@
+ // Scoring is 0-2 per dimension with a timestamp, same shape as the craft rubric, because a score
+ // without a locator is an opinion and cannot be argued with.
+ 
+-export const COMPREHENSION_VERSION = "2026-08-04.ten-dimensions-v1";
++export const COMPREHENSION_VERSION = '2026-08-04.ten-dimensions-v1';
+ 
+ export const COMPREHENSION_DIMENSIONS = Object.freeze([
+-  "persona", "purpose", "use_case", "feature_clarity", "full_interaction",
+-  "responsiveness", "flow", "result", "non_expert_sense", "transfer",
++  'persona',
++  'purpose',
++  'use_case',
++  'feature_clarity',
++  'full_interaction',
++  'responsiveness',
++  'flow',
++  'result',
++  'non_expert_sense',
++  'transfer',
+ ]);
+ 
+ export const COMPREHENSION_RUBRIC = `SECOND AXIS — COMPREHENSION. The scores above judge whether the
+@@ -73,25 +81,44 @@ failed at its job however well it was cut.`;
+  * failure this axis exists to catch, and exactly what a single combined number would hide.
+  */
+ export function evaluateComprehension(block) {
+-  if (!block || typeof block !== "object") {
+-    return { status: "not-run", scored: 0, total: 0, blocking: [], detail: "the judge returned no comprehension block; the axis was not scored, which is not the same as scoring well" };
++  if (!block || typeof block !== 'object') {
++    return {
++      status: 'not-run',
++      scored: 0,
++      total: 0,
++      blocking: [],
++      detail:
++        'the judge returned no comprehension block; the axis was not scored, which is not the same as scoring well',
++    };
+   }
+-  const scored = COMPREHENSION_DIMENSIONS.filter((d) => typeof block[d]?.score === "number");
+-  const missing = COMPREHENSION_DIMENSIONS.filter((d) => typeof block[d]?.score !== "number");
++  const scored = COMPREHENSION_DIMENSIONS.filter((d) => typeof block[d]?.score === 'number');
++  const missing = COMPREHENSION_DIMENSIONS.filter((d) => typeof block[d]?.score !== 'number');
+   if (scored.length === 0) {
+-    return { status: "not-run", scored: 0, total: 0, blocking: [], detail: "no dimension was scored" };
++    return {
++      status: 'not-run',
++      scored: 0,
++      total: 0,
++      blocking: [],
++      detail: 'no dimension was scored',
++    };
+   }
+   // Nine unscored dimensions and a single 2 returned "passed". Partial scoring is most of the
+   // check not running, and not-run never reads as pass anywhere else in this system.
+   if (missing.length > 0) {
+-    return { status: "not-run", scored: scored.length, total: 0, blocking: [], unscored: missing,
+-      detail: `${missing.length} of ${COMPREHENSION_DIMENSIONS.length} dimensions were not scored (${missing.join(", ")})` };
++    return {
++      status: 'not-run',
++      scored: scored.length,
++      total: 0,
++      blocking: [],
++      unscored: missing,
++      detail: `${missing.length} of ${COMPREHENSION_DIMENSIONS.length} dimensions were not scored (${missing.join(', ')})`,
++    };
+   }
+   const total = scored.reduce((sum, d) => sum + block[d].score, 0);
+   const zeros = scored.filter((d) => block[d].score === 0);
+   // The three that cannot be traded away. A viewer who cannot place the audience, cannot follow
+   // without domain knowledge, or never sees the outcome has not been served, whatever else is good.
+-  const blocking = zeros.filter((d) => ["persona", "non_expert_sense", "result"].includes(d));
++  const blocking = zeros.filter((d) => ['persona', 'non_expert_sense', 'result'].includes(d));
+ 
+   // The mom test blocks on its own, whatever the numbers say. Measured on a real cut: every one of
+   // the ten dimensions scored 1, so there were no zeros and nothing blocked — while
+@@ -105,7 +132,8 @@ export function evaluateComprehension(block) {
+   const uniform = scored.length >= 5 && new Set(scored.map((d) => block[d].score)).size === 1;
+ 
+   return {
+-    status: blocking.length > 0 || momFails ? "blocked" : zeros.length > 0 ? "incomplete" : "passed",
++    status:
++      blocking.length > 0 || momFails ? 'blocked' : zeros.length > 0 ? 'incomplete' : 'passed',
+     momFails,
+     uniform,
+     scored: scored.length,
+@@ -120,21 +148,31 @@ export function evaluateComprehension(block) {
+ }
+ 
+ export function formatComprehension(verdict) {
+-  if (verdict.status === "not-run") return `COMPREHENSION NOT RUN: ${verdict.detail}.`;
+-  const head = `COMPREHENSION ${verdict.status.toUpperCase()}: ${verdict.total}/${verdict.max} across ${verdict.scored} dimension(s)`
+-    + ` · mom test ${verdict.wouldMomUnderstand ? "passes" : "FAILS"}`;
++  if (verdict.status === 'not-run') return `COMPREHENSION NOT RUN: ${verdict.detail}.`;
++  const head =
++    `COMPREHENSION ${verdict.status.toUpperCase()}: ${verdict.total}/${verdict.max} across ${verdict.scored} dimension(s)` +
++    ` · mom test ${verdict.wouldMomUnderstand ? 'passes' : 'FAILS'}`;
+   const lines = [head];
+-  if (verdict.blocking.length > 0) lines.push(`  P0 — absent entirely: ${verdict.blocking.join(", ")}`);
+-  if (verdict.momFails) lines.push("  P0 — the mom test fails: a non-expert could not say what this is for after one watch");
++  if (verdict.blocking.length > 0)
++    lines.push(`  P0 — absent entirely: ${verdict.blocking.join(', ')}`);
++  if (verdict.momFails)
++    lines.push(
++      '  P0 — the mom test fails: a non-expert could not say what this is for after one watch',
++    );
+   if (verdict.uniform) {
+-    lines.push("  every dimension scored the same — nothing was ABSENT and nothing was EXPLICIT either;"
+-      + " treat this as 'all implied, none stated' rather than as a middling pass");
++    lines.push(
++      '  every dimension scored the same — nothing was ABSENT and nothing was EXPLICIT either;' +
++        " treat this as 'all implied, none stated' rather than as a middling pass",
++    );
+   }
+   const soft = verdict.zeros.filter((d) => !verdict.blocking.includes(d));
+-  if (soft.length > 0) lines.push(`  P1 — absent: ${soft.join(", ")}`);
+-  if (verdict.unscored.length > 0) lines.push(`  unscored (not the same as fine): ${verdict.unscored.join(", ")}`);
++  if (soft.length > 0) lines.push(`  P1 — absent: ${soft.join(', ')}`);
++  if (verdict.unscored.length > 0)
++    lines.push(`  unscored (not the same as fine): ${verdict.unscored.join(', ')}`);
+   if (!verdict.wouldMomUnderstand && verdict.momLosesThemAt) {
+-    lines.push(`  loses a non-expert at ${verdict.momLosesThemAt.ts}: ${verdict.momLosesThemAt.what}`);
++    lines.push(
++      `  loses a non-expert at ${verdict.momLosesThemAt.ts}: ${verdict.momLosesThemAt.what}`,
++    );
+   }
+-  return lines.join("\n");
++  return lines.join('\n');
+ }
+diff --git a/tools/clip-gate/find-references.mjs b/tools/clip-gate/find-references.mjs
+index 390a17e..27d38fa 100644
+--- a/tools/clip-gate/find-references.mjs
++++ b/tools/clip-gate/find-references.mjs
+@@ -19,13 +19,13 @@
+ // measured 102k tokens, a 39-second one under 4k. A keynote is also the wrong SHAPE to learn a
+ // 45-second walkthrough from, so the default ceiling is both a cost control and a taste control.
+ 
+-import { spawnSync } from "node:child_process";
+-import { createHash } from "node:crypto";
+-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+-import path from "node:path";
++import { spawnSync } from 'node:child_process';
++import { createHash } from 'node:crypto';
++import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
++import path from 'node:path';
+ 
+-const OUT_DIR = "references/video";
+-const LEDGER = "references/video/ledger.json";
++const OUT_DIR = 'references/video';
++const LEDGER = 'references/video/ledger.json';
+ 
+ // The corpus is CUMULATIVE, and the ledger is what makes it so. Two different things must survive a
+ // re-run, and only one of them is obvious:
+@@ -40,47 +40,65 @@ const LEDGER = "references/video/ledger.json";
+ //
+ // Discovery is not blocked by either: a query that returns something new still gets watched, and
+ // --refresh re-observes a specific video when the prompt or the video itself has moved on.
+-const OBSERVE_VERSION = "2026-08-03.atomic-facts-v1";
++const OBSERVE_VERSION = '2026-08-03.atomic-facts-v1';
+ 
+ function loadLedger() {
+-  try { return JSON.parse(readFileSync(LEDGER, "utf8")); }
+-  catch { return { schemaVersion: "featureclip.reference-ledger/v1", observed: {}, rejected: {} }; }
++  try {
++    return JSON.parse(readFileSync(LEDGER, 'utf8'));
++  } catch {
++    return { schemaVersion: 'featureclip.reference-ledger/v1', observed: {}, rejected: {} };
++  }
+ }
+ 
+ /** Identity of an observation: the video, under a specific prompt and model. */
+ // The prompt TEXT is part of the identity, hashed — a version string someone forgets to bump
+ // would silently reuse observations made under a different prompt: a stale measurement.
+-const observationKey = (url, model) => `${videoId(url)}::${OBSERVE_VERSION}::${createHash("sha256").update(OBSERVE).digest("hex").slice(0, 12)}::${model}`;
++const observationKey = (url, model) =>
++  `${videoId(url)}::${OBSERVE_VERSION}::${createHash('sha256').update(OBSERVE).digest('hex').slice(0, 12)}::${model}`;
+ 
+ function videoId(url) {
+   const m = /(?:youtu\.be\/|[?&]v=|\/shorts\/)([\w-]{6,})/.exec(String(url));
+   return m ? m[1] : String(url);
+ }
+-const MAX_SECONDS = Number.parseInt(process.env.REFERENCE_MAX_SECONDS ?? "180", 10);
+-const PER_QUERY = Number.parseInt(process.env.REFERENCE_PER_QUERY ?? "4", 10);
+-const MODEL = process.env.GEMINI_JUDGE_MODEL || "gemini-3.6-flash";
++const MAX_SECONDS = Number.parseInt(process.env.REFERENCE_MAX_SECONDS ?? '180', 10);
++const PER_QUERY = Number.parseInt(process.env.REFERENCE_PER_QUERY ?? '4', 10);
++const MODEL = process.env.GEMINI_JUDGE_MODEL || 'gemini-3.6-flash';
+ 
+ const key = () => {
+-  for (const k of ["GEMINI_API_KEY", "GOOGLE_GENERATIVE_AI_API_KEY"]) if (process.env[k]) return process.env[k];
+-  for (const f of [".env.local", ".env", "../noderoom/.env.local"]) {
++  for (const k of ['GEMINI_API_KEY', 'GOOGLE_GENERATIVE_AI_API_KEY'])
++    if (process.env[k]) return process.env[k];
++  for (const f of ['.env.local', '.env', '../noderoom/.env.local']) {
+     if (!existsSync(f)) continue;
+-    const m = readFileSync(f, "utf8").match(/^(?:GEMINI_API_KEY|GOOGLE_GENERATIVE_AI_API_KEY)=(.+)$/m);
+-    if (m) return m[1].trim().replace(/^["']|["']$/g, "");
++    const m = readFileSync(f, 'utf8').match(
++      /^(?:GEMINI_API_KEY|GOOGLE_GENERATIVE_AI_API_KEY)=(.+)$/m,
++    );
++    if (m) return m[1].trim().replace(/^["']|["']$/g, '');
+   }
+-  throw new Error("set GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY");
++  throw new Error('set GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY');
+ };
+ 
+ /** Search YouTube. Metadata only — yt-dlp never fetches a stream here. */
+ function search(query, limit = PER_QUERY) {
+-  const run = spawnSync("yt-dlp", [
+-    `ytsearch${limit}:${query}`, "--flat-playlist", "--no-warnings",
+-    "--print", "%(duration)s\t%(channel)s\t%(title)s\thttps://youtu.be/%(id)s",
+-  ], { encoding: "utf8", maxBuffer: 32 * 1024 * 1024, timeout: 120_000 });
++  const run = spawnSync(
++    'yt-dlp',
++    [
++      `ytsearch${limit}:${query}`,
++      '--flat-playlist',
++      '--no-warnings',
++      '--print',
++      '%(duration)s\t%(channel)s\t%(title)s\thttps://youtu.be/%(id)s',
++    ],
++    { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024, timeout: 120_000 },
++  );
+   if (run.status !== 0) return [];
+-  return run.stdout.split("\n").filter(Boolean).map((line) => {
+-    const [duration, channel, title, url] = line.split("\t");
+-    return { seconds: Number.parseInt(duration, 10), channel, title, url };
+-  }).filter((c) => Number.isInteger(c.seconds));
++  return run.stdout
++    .split('\n')
++    .filter(Boolean)
++    .map((line) => {
++      const [duration, channel, title, url] = line.split('\t');
++      return { seconds: Number.parseInt(duration, 10), channel, title, url };
++    })
++    .filter((c) => Number.isInteger(c.seconds));
+ }
+ 
+ /**
+@@ -91,7 +109,8 @@ function triage(candidate, ledger) {
+   const prior = ledger.rejected[videoId(candidate.url)];
+   // Already decided. Re-deciding it prints noise and invites a different answer to the same input.
+   if (prior) return `${prior.reason} (recorded ${prior.at.slice(0, 10)})`;
+-  if (candidate.seconds > MAX_SECONDS) return `${candidate.seconds}s exceeds the ${MAX_SECONDS}s ceiling — wrong shape and wrong cost for a short walkthrough`;
++  if (candidate.seconds > MAX_SECONDS)
++    return `${candidate.seconds}s exceeds the ${MAX_SECONDS}s ceiling — wrong shape and wrong cost for a short walkthrough`;
+   if (candidate.seconds < 10) return `${candidate.seconds}s is too short to contain a flow`;
+   // A first-party channel is the strongest available signal that this is the product's own framing
+   // rather than a third-party review. Recorded, not enforced — the caller may want a critique.
+@@ -122,22 +141,29 @@ Return STRICT JSON:
+  "notRun":["anything you could not determine from the video"]}`;
+ 
+ async function observe(url) {
+-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key()}`, {
+-    method: "POST",
+-    headers: { "content-type": "application/json" },
+-    body: JSON.stringify({
+-      contents: [{ parts: [{ file_data: { file_uri: url } }, { text: OBSERVE }] }],
+-      generationConfig: { temperature: 0.2, response_mime_type: "application/json" },
+-    }),
+-  });
++  const res = await fetch(
++    `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key()}`,
++    {
++      method: 'POST',
++      headers: { 'content-type': 'application/json' },
++      body: JSON.stringify({
++        contents: [{ parts: [{ file_data: { file_uri: url } }, { text: OBSERVE }] }],
++        generationConfig: { temperature: 0.2, response_mime_type: 'application/json' },
++      }),
++    },
++  );
+   const body = await res.json();
+-  if (!res.ok || body.error) return { error: `${res.status}: ${(body.error?.message ?? "").slice(0, 120)}` };
++  if (!res.ok || body.error)
++    return { error: `${res.status}: ${(body.error?.message ?? '').slice(0, 120)}` };
+   const parts = body.candidates?.[0]?.content?.parts ?? [];
+-  const text = parts.map((p) => p.text ?? "").join("");
++  const text = parts.map((p) => p.text ?? '').join('');
+   // A URL that cannot be watched returns prose with no VIDEO modality rather than an error, and an
+   // observation invented from a title is worse than none. Absence of the modality is the tell.
+-  const sawVideo = (body.usageMetadata?.promptTokensDetails ?? []).some((d) => d.modality === "VIDEO");
+-  if (!sawVideo) return { error: "no VIDEO modality in the response — the URL was not actually watched" };
++  const sawVideo = (body.usageMetadata?.promptTokensDetails ?? []).some(
++    (d) => d.modality === 'VIDEO',
++  );
++  if (!sawVideo)
++    return { error: 'no VIDEO modality in the response — the URL was not actually watched' };
+   try {
+     return { observation: JSON.parse(text), tokens: body.usageMetadata?.promptTokenCount ?? null };
+   } catch {
+@@ -145,14 +171,19 @@ async function observe(url) {
+   }
+ }
+ 
+-const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
++const slug = (s) =>
++  s
++    .toLowerCase()
++    .replace(/[^a-z0-9]+/g, '-')
++    .replace(/^-|-$/g, '')
++    .slice(0, 60);
+ 
+ const run = async () => {
+   const args = process.argv.slice(2);
+-  const refresh = args.includes("--refresh");
++  const refresh = args.includes('--refresh');
+   const ledger = loadLedger();
+-  const urls = args.filter((a) => a.startsWith("--url=")).map((a) => a.slice(6));
+-  const queries = args.filter((a) => !a.startsWith("--"));
++  const urls = args.filter((a) => a.startsWith('--url=')).map((a) => a.slice(6));
++  const queries = args.filter((a) => !a.startsWith('--'));
+   if (urls.length === 0 && queries.length === 0) {
+     console.error('usage: node find-references.mjs "<search query>" [...] [--url=<youtube-url>]');
+     process.exit(2);
+@@ -163,23 +194,36 @@ const run = async () => {
+   // path that costs the same tokens.
+   for (const url of urls) {
+     const prior = ledger.rejected[videoId(url)];
+-    if (prior) console.log(`[override] ${url} was rejected ${prior.at.slice(0, 10)} (${prior.reason.slice(0, 60)}) — observing anyway; --url is explicit`);
++    if (prior)
++      console.log(
++        `[override] ${url} was rejected ${prior.at.slice(0, 10)} (${prior.reason.slice(0, 60)}) — observing anyway; --url is explicit`,
++      );
+   }
+-  const candidates = [...urls.map((url) => ({ url, seconds: null, channel: "(direct)", title: url }))];
++  const candidates = [
++    ...urls.map((url) => ({ url, seconds: null, channel: '(direct)', title: url })),
++  ];
+   for (const q of queries) {
+     const found = search(q);
+     console.log(`[search] "${q}" -> ${found.length} result(s)`);
+     for (const c of found) {
+       const why = triage(c, ledger);
+-      console.log(`  ${why ? "skip" : "KEEP"}  ${String(c.seconds).padStart(4)}s  ${c.channel} — ${c.title.slice(0, 46)}${why ? `\n         ${why}` : ""}`);
++      console.log(
++        `  ${why ? 'skip' : 'KEEP'}  ${String(c.seconds).padStart(4)}s  ${c.channel} — ${c.title.slice(0, 46)}${why ? `\n         ${why}` : ''}`,
++      );
+       if (!why) candidates.push(c);
+       else if (!ledger.rejected[videoId(c.url)]) {
+-        ledger.rejected[videoId(c.url)] = { url: c.url, title: c.title, seconds: c.seconds, reason: why, at: new Date().toISOString() };
++        ledger.rejected[videoId(c.url)] = {
++          url: c.url,
++          title: c.title,
++          seconds: c.seconds,
++          reason: why,
++          at: new Date().toISOString(),
++        };
+       }
+     }
+   }
+   if (candidates.length === 0) {
+-    console.error("no candidate survived triage; widen REFERENCE_MAX_SECONDS or change the query");
++    console.error('no candidate survived triage; widen REFERENCE_MAX_SECONDS or change the query');
+     process.exit(1);
+   }
+ 
+@@ -191,43 +235,55 @@ const run = async () => {
+     const hit = ledger.observed[cacheKey];
+     if (hit && !refresh && existsSync(hit.file)) {
+       reused.push(hit);
+-      console.log(`[cached] ${c.url} — ${hit.factCount} facts, observed ${hit.at.slice(0, 10)} (--refresh to re-watch)`);
++      console.log(
++        `[cached] ${c.url} — ${hit.factCount} facts, observed ${hit.at.slice(0, 10)} (--refresh to re-watch)`,
++      );
+       continue;
+     }
+     process.stdout.write(`[watch] ${c.url} `);
+     const { observation, error, tokens } = await observe(c.url);
+-    if (error) { console.log(`SKIPPED — ${error}`); continue; }
++    if (error) {
++      console.log(`SKIPPED — ${error}`);
++      continue;
++    }
+     const record = {
+-      schemaVersion: "featureclip.video-reference/v1",
++      schemaVersion: 'featureclip.video-reference/v1',
+       referenceId: slug(`${c.channel}-${c.title}`),
+       source: { url: c.url, channel: c.channel, title: c.title, declaredSeconds: c.seconds },
+       // Cited, never copied: this file holds observations and a link. No footage is stored, so
+       // there is no licence to review — the same reason Mobbin is a corpus and not a mirror.
+-      licence: "observed-and-attributed: cited by URL and timestamp, never re-hosted",
++      licence: 'observed-and-attributed: cited by URL and timestamp, never re-hosted',
+       observedAt: new Date().toISOString(),
+       observedBy: MODEL,
+       promptTokens: tokens,
+       ...observation,
+     };
+     const file = path.join(OUT_DIR, `${record.referenceId}.json`);
+-    writeFileSync(file, `${JSON.stringify(record, null, 2)}\n`, "utf8");
++    writeFileSync(file, `${JSON.stringify(record, null, 2)}\n`, 'utf8');
+     written.push({ file, record });
+     ledger.observed[cacheKey] = {
+-      file, url: c.url, referenceId: record.referenceId,
+-      factCount: observation.facts?.length ?? 0, promptTokens: tokens,
+-      observeVersion: OBSERVE_VERSION, model: MODEL, at: record.observedAt,
++      file,
++      url: c.url,
++      referenceId: record.referenceId,
++      factCount: observation.facts?.length ?? 0,
++      promptTokens: tokens,
++      observeVersion: OBSERVE_VERSION,
++      model: MODEL,
++      at: record.observedAt,
+     };
+-    console.log(`ok — ${observation.facts?.length ?? 0} facts, hook ${observation.hookSeconds}s, ${tokens} tokens`);
++    console.log(
++      `ok — ${observation.facts?.length ?? 0} facts, hook ${observation.hookSeconds}s, ${tokens} tokens`,
++    );
+   }
+ 
+   // Persisting the ledger is the whole feature. It was populated in memory and never written, so
+   // every run started from empty and re-watched what it already knew — a cache that reads and never
+   // writes is indistinguishable from no cache, and its logs look identical to a working one.
+-  writeFileSync(LEDGER, `${JSON.stringify(ledger, null, 2)}\n`, "utf8");
++  writeFileSync(LEDGER, `${JSON.stringify(ledger, null, 2)}\n`, 'utf8');
+   const savedTokens = reused.reduce((total, entry) => total + (entry.promptTokens ?? 0), 0);
+   console.log(
+-    `\n${written.length} new, ${reused.length} reused${savedTokens ? ` (~${savedTokens} prompt tokens not respent)` : ""}, `
+-    + `${Object.keys(ledger.rejected).length} rejected on record.`,
++    `\n${written.length} new, ${reused.length} reused${savedTokens ? ` (~${savedTokens} prompt tokens not respent)` : ''}, ` +
++      `${Object.keys(ledger.rejected).length} rejected on record.`,
+   );
+   console.log(`corpus ${OUT_DIR}/ · ledger ${LEDGER}`);
+   for (const { record } of written) {
+@@ -239,4 +295,7 @@ const run = async () => {
+   if (written.length === 0 && reused.length === 0) process.exitCode = 1;
+ };
+ 
+-run().catch((error) => { console.error(error.message); process.exit(1); });
++run().catch((error) => {
++  console.error(error.message);
++  process.exit(1);
++});
+diff --git a/tools/clip-gate/iterate.mjs b/tools/clip-gate/iterate.mjs
+index 1aea68a..3346e2a 100644
+--- a/tools/clip-gate/iterate.mjs
++++ b/tools/clip-gate/iterate.mjs
+@@ -25,22 +25,30 @@
+ //   node iterate.mjs --comp WTC-TShero --out out/trialscope.mp4
+ //   node iterate.mjs --comp WTC-TShero --out out/x.mp4 --for "a frontend engineer" --gate 30
+ //
+-import { execFileSync } from "node:child_process";
+-import { existsSync, readFileSync, writeFileSync, appendFileSync } from "node:fs";
++import { execFileSync } from 'node:child_process';
++import { appendFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+ 
+ const argv = process.argv.slice(2);
+-const flag = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 && argv[i + 1] ? argv[i + 1] : d; };
++const flag = (n, d) => {
++  const i = argv.indexOf(`--${n}`);
++  return i >= 0 && argv[i + 1] ? argv[i + 1] : d;
++};
+ const has = (n) => argv.includes(`--${n}`);
+ 
+-const comp = flag("comp");
+-const out = flag("out", "out/clip.mp4");
+-const audience = flag("for", "a smart newcomer who has never seen this product and does not know the domain jargon");
+-const gate = flag("gate", "28");           // 28/40 — see README for where this number came from
+-const rounds = Number(flag("rounds", "1"));
+-const entry = flag("entry", "src/index.js");
++const comp = flag('comp');
++const out = flag('out', 'out/clip.mp4');
++const audience = flag(
++  'for',
++  'a smart newcomer who has never seen this product and does not know the domain jargon',
++);
++const gate = flag('gate', '28'); // 28/40 — see README for where this number came from
++const rounds = Number(flag('rounds', '1'));
++const entry = flag('entry', 'src/index.js');
+ 
+ if (!comp) {
+-  console.error(`usage: node iterate.mjs --comp <CompositionId> --out <file.mp4> [--for "<audience>"] [--gate 28] [--rounds N] [--no-render]`);
++  console.error(
++    `usage: node iterate.mjs --comp <CompositionId> --out <file.mp4> [--for "<audience>"] [--gate 28] [--rounds N] [--no-render]`,
++  );
+   process.exit(1);
+ }
+ 
+@@ -54,40 +62,45 @@ const sh = (cmd, args, shell = false) =>
+   execFileSync(
+     cmd,
+     shell ? args.map((a) => (/[\s"]/.test(a) ? `"${a.replace(/"/g, '\\"')}"` : a)) : args,
+-    { stdio: "inherit", shell },
++    { stdio: 'inherit', shell },
+   );
+-const base = out.replace(/\.(mp4|webm|mov)$/i, "");
++const base = out.replace(/\.(mp4|webm|mov)$/i, '');
+ const LOG = `${base}.rounds.md`;
+ 
+ for (let r = 1; r <= rounds; r++) {
+   console.log(`\n=== round ${r}/${rounds} — ${comp} for "${audience}" ===\n`);
+ 
+-  if (!has("no-render")) {
+-    sh("npx", ["remotion", "render", entry, comp, out, "--concurrency=2"], true);
++  if (!has('no-render')) {
++    sh('npx', ['remotion', 'render', entry, comp, out, '--concurrency=2'], true);
+   }
+ 
+   // The judge exits non-zero below the gate; that is the signal, not a crash.
+   let passed = true;
+   try {
+-    sh("node", ["judge-video.mjs", out, "--for", audience, "--gate", gate]);
++    sh('node', ['judge-video.mjs', out, '--for', audience, '--gate', gate]);
+   } catch {
+     passed = false;
+   }
+ 
+-  const verdict = existsSync(`${base}.judge.json`) ? JSON.parse(readFileSync(`${base}.judge.json`, "utf8")) : null;
++  const verdict = existsSync(`${base}.judge.json`)
++    ? JSON.parse(readFileSync(`${base}.judge.json`, 'utf8'))
++    : null;
+   const total = verdict ? Object.values(verdict.scores).reduce((a, v) => a + v.score, 0) : 0;
+ 
+   // Append rather than overwrite: the ROUND HISTORY is the artefact worth having.
+   // A single final score cannot tell you whether the cut improved or whether the
+   // judge simply drifted, and "20 -> 31 after adding a premise beat" is the only
+   // form of that claim anyone should believe.
+-  appendFileSync(LOG, [
+-    `\n## Round ${r} — ${total}/40 — ${verdict?.verdict ?? "no verdict"}`,
+-    `audience: ${audience}`,
+-    `weakest: ${verdict?.weakest ?? "-"} · weakest comprehension: ${verdict?.weakest_comprehension ?? "-"}`,
+-    ...(verdict?.next_cut ?? []).map((n) => `- **${n.dimension}** @ ${n.where} — ${n.change}`),
+-    ``,
+-  ].join("\n"));
++  appendFileSync(
++    LOG,
++    [
++      `\n## Round ${r} — ${total}/40 — ${verdict?.verdict ?? 'no verdict'}`,
++      `audience: ${audience}`,
++      `weakest: ${verdict?.weakest ?? '-'} · weakest comprehension: ${verdict?.weakest_comprehension ?? '-'}`,
++      ...(verdict?.next_cut ?? []).map((n) => `- **${n.dimension}** @ ${n.where} — ${n.change}`),
++      '',
++    ].join('\n'),
++  );
+ 
+   if (passed) {
+     console.log(`\n[iterate] round ${r}: ${total}/40 >= ${gate} — shippable. History in ${LOG}`);
+@@ -96,18 +109,23 @@ for (let r = 1; r <= rounds; r++) {
+ 
+   console.log(`\n[iterate] round ${r}: ${total}/40 < ${gate}.`);
+   if (r === rounds) {
+-    writeFileSync(`${base}.next-cut.md`, [
+-      `# Revision brief — ${comp}, round ${r}`,
+-      ``,
+-      `Scored ${total}/40 for: *${audience}*. Gate is ${gate}.`,
+-      `Weakest comprehension dimension: **${verdict?.weakest_comprehension ?? "unknown"}**`,
+-      ``,
+-      `Apply these to the storyboard spec, then re-run \`npm run clip\`:`,
+-      ``,
+-      ...(verdict?.next_cut ?? []).map((n, i) => `${i + 1}. **${n.dimension}** (${n.where}) — ${n.change}`),
+-      ``,
+-      `Full scorecard: ${base}.judge.md · round history: ${LOG}`,
+-    ].join("\n") + "\n");
++    writeFileSync(
++      `${base}.next-cut.md`,
++      `${[
++        `# Revision brief — ${comp}, round ${r}`,
++        '',
++        `Scored ${total}/40 for: *${audience}*. Gate is ${gate}.`,
++        `Weakest comprehension dimension: **${verdict?.weakest_comprehension ?? 'unknown'}**`,
++        '',
++        'Apply these to the storyboard spec, then re-run `npm run clip`:',
++        '',
++        ...(verdict?.next_cut ?? []).map(
++          (n, i) => `${i + 1}. **${n.dimension}** (${n.where}) — ${n.change}`,
++        ),
++        '',
++        `Full scorecard: ${base}.judge.md · round history: ${LOG}`,
++      ].join('\n')}\n`,
++    );
+     console.error(`[iterate] revision brief written to ${base}.next-cut.md — apply it and re-run.`);
+     process.exit(1);
+   }
+diff --git a/tools/clip-gate/judge-video.mjs b/tools/clip-gate/judge-video.mjs
+index dfd8f42..79fc10b 100644
+--- a/tools/clip-gate/judge-video.mjs
++++ b/tools/clip-gate/judge-video.mjs
+@@ -10,8 +10,8 @@
+ // Key: GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY (env, or a local .env/.env.local line).
+ // Severity policy: P0 blocks publishing · P1 fix before posting · P2 log and ship — do NOT enter
+ // a re-render polish loop for P2s the judge already passed.
+-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+-import { rubricPrompt, CRAFT, COMPREHENSION, INTERVIEW, setFor } from "./rubric.mjs";
++import { existsSync, readFileSync, writeFileSync } from 'node:fs';
++import { COMPREHENSION, CRAFT, INTERVIEW, rubricPrompt, setFor } from './rubric.mjs';
+ 
+ const argv = process.argv.slice(2);
+ const flag = (name, dflt) => {
+@@ -22,31 +22,44 @@ const flag = (name, dflt) => {
+ // same cut is a 2 on lay_sense for a domain expert and a 0 for someone who has
+ // never heard the jargon, and the whole point of the second rubric is to make
+ // that difference a number instead of an argument.
+-const audience = flag("for", process.env.JUDGE_AUDIENCE || "a smart newcomer who has never seen this product and does not know the domain jargon");
+-const gate = Number(flag("gate", process.env.JUDGE_GATE || "0"));   // exit 1 below this score
+-const samples = Number(flag("samples", process.env.JUDGE_SAMPLES || "3"));
+-const reask = argv.includes("--reask");
++const audience = flag(
++  'for',
++  process.env.JUDGE_AUDIENCE ||
++    'a smart newcomer who has never seen this product and does not know the domain jargon',
++);
++const gate = Number(flag('gate', process.env.JUDGE_GATE || '0')); // exit 1 below this score
++const samples = Number(flag('samples', process.env.JUDGE_SAMPLES || '3'));
++const reask = argv.includes('--reask');
+ // --mode interview swaps the comprehension half for the defensibility half.
+-const mode = flag("mode", "demo");
++const mode = flag('mode', 'demo');
+ const SECOND = setFor(mode);
+ const MAX = (CRAFT.length + SECOND.length) * 2;
+-const video = argv.find((a) => !a.startsWith("--") && argv[argv.indexOf(a) - 1] !== "--for" && argv[argv.indexOf(a) - 1] !== "--gate");
++const video = argv.find(
++  (a) =>
++    !a.startsWith('--') &&
++    argv[argv.indexOf(a) - 1] !== '--for' &&
++    argv[argv.indexOf(a) - 1] !== '--gate',
++);
+ if (!video || !existsSync(video)) {
+-  console.error("usage: node judge-video.mjs <video.mp4|webm|mov> [--for \"<audience>\"] [--gate <n>]");
++  console.error(
++    'usage: node judge-video.mjs <video.mp4|webm|mov> [--for "<audience>"] [--gate <n>]',
++  );
+   process.exit(1);
+ }
+ 
+ const key = () => {
+-  for (const k of ["GEMINI_API_KEY", "GOOGLE_GENERATIVE_AI_API_KEY"]) if (process.env[k]) return process.env[k];
+-  for (const f of [".env.local", ".env"]) {
++  for (const k of ['GEMINI_API_KEY', 'GOOGLE_GENERATIVE_AI_API_KEY'])
++    if (process.env[k]) return process.env[k];
++  for (const f of ['.env.local', '.env']) {
+     if (!existsSync(f)) continue;
+-    const m = readFileSync(f, "utf8").match(/^(?:GEMINI_API_KEY|GOOGLE_GENERATIVE_AI_API_KEY)=(.+)$/m);
++    const m = readFileSync(f, 'utf8').match(
++      /^(?:GEMINI_API_KEY|GOOGLE_GENERATIVE_AI_API_KEY)=(.+)$/m,
++    );
+     if (m) return m[1].trim();
+   }
+-  throw new Error("set GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY");
++  throw new Error('set GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY');
+ };
+ 
+-
+ // Reference videos, watched DIRECTLY from YouTube.
+ //
+ // Gemini accepts a YouTube watch URL as a file_data part and reads the actual
+@@ -63,11 +76,15 @@ const key = () => {
+ // comparison. Left empty by default: each reference costs ~100k prompt tokens,
+ // which is a real bill, and the calibration prose alone already moved the judge
+ // off uniform scoring.
+-const REFERENCE_VIDEOS = (process.env.REFERENCE_VIDEOS || "")
+-  .split(",").map((u) => u.trim()).filter(Boolean);
++const REFERENCE_VIDEOS = (process.env.REFERENCE_VIDEOS || '')
++  .split(',')
++  .map((u) => u.trim())
++  .filter(Boolean);
+ 
+ const referenceParts = REFERENCE_VIDEOS.flatMap((url, i) => [
+-  { text: `REFERENCE ${i + 1} (a demo held up as best-in-class). Watch it, then judge the SUBJECT video against it. Cite timestamps in BOTH when you compare.` },
++  {
++    text: `REFERENCE ${i + 1} (a demo held up as best-in-class). Watch it, then judge the SUBJECT video against it. Cite timestamps in BOTH when you compare.`,
++  },
+   { file_data: { file_uri: url } },
+ ]);
+ 
+@@ -108,38 +125,60 @@ const RUBRIC = rubricPrompt(audience, mode);
+ 
+ const run = async () => {
+   const bytes = readFileSync(video);
+-  if (bytes.length > 19_000_000) throw new Error(`${(bytes.length / 1048576).toFixed(1)}MB > inline limit — use the Gemini Files API or render a smaller cut`);
++  if (bytes.length > 19_000_000)
++    throw new Error(
++      `${(bytes.length / 1048576).toFixed(1)}MB > inline limit — use the Gemini Files API or render a smaller cut`,
++    );
+   console.log(`[judge] ${video} — ${(bytes.length / 1048576).toFixed(1)}MB → gemini`);
+-  const model = process.env.GEMINI_JUDGE_MODEL || "gemini-3.6-flash";
+-  const mime = video.endsWith(".webm") ? "video/webm" : video.endsWith(".mov") ? "video/quicktime" : "video/mp4";
+-  const base = video.replace(/\.(mp4|webm|mov)$/i, "");
++  const model = process.env.GEMINI_JUDGE_MODEL || 'gemini-3.6-flash';
++  const mime = video.endsWith('.webm')
++    ? 'video/webm'
++    : video.endsWith('.mov')
++      ? 'video/quicktime'
++      : 'video/mp4';
++  const base = video.replace(/\.(mp4|webm|mov)$/i, '');
+ 
+   // One call shape, reused by the first judgement and by the anti-uniformity
+   // re-ask. `extra` is appended AFTER the rubric so a follow-up can quote the
+   // previous distribution back without restating the whole rubric.
+   const ask = async (extra = []) => {
+-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key()}`, {
+-      method: "POST",
+-      headers: { "content-type": "application/json" },
+-      body: JSON.stringify({
+-        contents: [{ parts: [
+-          ...referenceParts,
+-          { text: referenceParts.length ? "SUBJECT VIDEO — this is the one being judged:" : "" },
+-          { inline_data: { mime_type: mime, data: bytes.toString("base64") } },
+-          { text: REFERENCES + RUBRIC },
+-          ...extra,
+-        ].filter((p) => p.text !== "") }],
+-        generationConfig: { temperature: 0.2, response_mime_type: "application/json" },
+-      }),
+-    });
++    const res = await fetch(
++      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key()}`,
++      {
++        method: 'POST',
++        headers: { 'content-type': 'application/json' },
++        body: JSON.stringify({
++          contents: [
++            {
++              parts: [
++                ...referenceParts,
++                {
++                  text: referenceParts.length
++                    ? 'SUBJECT VIDEO — this is the one being judged:'
++                    : '',
++                },
++                { inline_data: { mime_type: mime, data: bytes.toString('base64') } },
++                { text: REFERENCES + RUBRIC },
++                ...extra,
++              ].filter((p) => p.text !== ''),
++            },
++          ],
++          generationConfig: { temperature: 0.2, response_mime_type: 'application/json' },
++        }),
++      },
++    );
+     if (!res.ok) throw new Error(`gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
+     const body = await res.json();
+-    const raw = (body.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("");
++    const raw = (body.candidates?.[0]?.content?.parts || []).map((p) => p.text || '').join('');
+     let out = null;
+-    try { out = JSON.parse(raw); } catch {}
++    try {
++      out = JSON.parse(raw);
++    } catch {}
+     if (!out || !out.scores) {
+       writeFileSync(`${base}.judge.raw.txt`, raw || JSON.stringify(body, null, 2));
+-      throw new Error(`judge returned no usable scores (finishReason=${body.candidates?.[0]?.finishReason}); raw saved to ${base}.judge.raw.txt`);
++      throw new Error(
++        `judge returned no usable scores (finishReason=${body.candidates?.[0]?.finishReason}); raw saved to ${base}.judge.raw.txt`,
++      );
+     }
+     return out;
+   };
+@@ -177,12 +216,23 @@ const run = async () => {
+       return Math.max(...[0, 1, 2].map((q) => v.filter((x) => x === q).length)) / v.length;
+     };
+     if (spread(judge) > 0.7) {
+-      console.log(`[judge] --reask: ${Math.round(spread(judge) * 100)}% share one score — re-asking (known to bias low)`);
+-      runs.push(await ask([{ text: `Your previous judgement gave the SAME score to most dimensions. Re-judge and FORCE a spread: some dimensions are genuinely 0 and some are genuinely 2. Do NOT simply lower scores -- promote what deserves 2 as readily as you demote. Keep the same JSON shape.` }]));
++      console.log(
++        `[judge] --reask: ${Math.round(spread(judge) * 100)}% share one score — re-asking (known to bias low)`,
++      );
++      runs.push(
++        await ask([
++          {
++            text: 'Your previous judgement gave the SAME score to most dimensions. Re-judge and FORCE a spread: some dimensions are genuinely 0 and some are genuinely 2. Do NOT simply lower scores -- promote what deserves 2 as readily as you demote. Keep the same JSON shape.',
++          },
++        ]),
++      );
+     }
+   }
+ 
+-  const med = (xs) => { const a = [...xs].sort((x, y) => x - y); return a[Math.floor(a.length / 2)]; };
++  const med = (xs) => {
++    const a = [...xs].sort((x, y) => x - y);
++    return a[Math.floor(a.length / 2)];
++  };
+   const totalOf = (j2) => Object.values(j2.scores).reduce((a, v) => a + v.score, 0);
+   if (runs.length > 1) {
+     const keys = new Set(runs.flatMap((r) => Object.keys(r.scores)));
+@@ -190,54 +240,74 @@ const run = async () => {
+     // Prose comes from the most typical run, so evidence matches the numbers.
+     const centre = runs[totals.indexOf(med(totals))] || runs[0];
+     const merged = {};
+-    keys.forEach((k) => {
++    for (const k of keys) {
+       const vals = runs.map((r) => r.scores[k]?.score).filter((v) => v != null);
+-      merged[k] = { score: med(vals), evidence: (centre.scores[k] || runs[0].scores[k] || {}).evidence || "" };
+-    });
+-    console.log(`[judge] ${runs.length} samples: totals ${totals.join(", ")} — median per dimension`);
++      merged[k] = {
++        score: med(vals),
++        evidence: (centre.scores[k] || runs[0].scores[k])?.evidence || '',
++      };
++    }
++    console.log(
++      `[judge] ${runs.length} samples: totals ${totals.join(', ')} — median per dimension`,
++    );
+     judge = { ...centre, scores: merged, samples: runs.length, sample_totals: totals };
+   }
+ 
+   const scores = Object.entries(judge.scores);
+   const total = scores.reduce((a, [, v]) => a + v.score, 0);
+   const sub = (list) => list.reduce((a, [k]) => a + (judge.scores[k]?.score ?? 0), 0);
+-  const craft = sub(CRAFT), comp = sub(SECOND);
+-  const row = ([k]) => `| ${k} | ${judge.scores[k]?.score ?? "-"}/2 | ${(judge.scores[k]?.evidence || "").replace(/\|/g, "\|")} |`;
++  const craft = sub(CRAFT);
++  const comp = sub(SECOND);
++  const row = ([k]) =>
++    `| ${k} | ${judge.scores[k]?.score ?? '-'}/2 | ${(judge.scores[k]?.evidence || '').replace(/\|/g, '|')} |`;
+ 
+   const md = [
+     `# Video judge — ${video}`,
+-    ``,
++    '',
+     `**Judge:** ${model} · **Audience:** ${audience}`,
+-    `**Verdict:** ${judge.verdict} · **Score:** ${total}/${MAX} — craft ${craft}/${CRAFT.length * 2}, ${mode === "interview" ? "defensibility" : "comprehension"} ${comp}/${SECOND.length * 2}`,
+-    ``,
++    `**Verdict:** ${judge.verdict} · **Score:** ${total}/${MAX} — craft ${craft}/${CRAFT.length * 2}, ${mode === 'interview' ? 'defensibility' : 'comprehension'} ${comp}/${SECOND.length * 2}`,
++    '',
+     `> ${judge.summary}`,
+-    ``,
++    '',
+     // The split is printed even when it is flattering, because the gap between
+     // the two halves IS the finding. A cut that is 16/20 craft and 7/20
+     // comprehension is not "a 23" -- it is a well-made video nobody understood.
+     `## Craft — is it well made (${craft}/${CRAFT.length * 2})`,
+-    ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...CRAFT.map(row),
+-    ``,
+-    `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
++    '',
++    '| Dimension | Score | Evidence |',
++    '|---|---|---|',
++    ...CRAFT.map(row),
++    '',
++    `## ${mode === 'interview' ? 'Defensibility — could the author defend it' : 'Comprehension — did anyone understand it'} (${comp}/${SECOND.length * 2})`,
+     `Judged as: *${audience}*`,
+-    ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...SECOND.map(row),
+-    ``,
+-    `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
+-    ``,
+-    `## Defects`,
+-    ...(judge.defects?.length ? judge.defects.map((d) => `- **${d.severity} @ ${d.ts}** — ${d.observed} → *${d.fix}*`) : ["(none found)"]),
+-    ``,
+-    `## Next cut — the revision brief`,
++    '',
++    '| Dimension | Score | Evidence |',
++    '|---|---|---|',
++    ...SECOND.map(row),
++    '',
++    `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || '-'}**`,
++    '',
++    '## Defects',
++    ...(judge.defects?.length
++      ? judge.defects.map((d) => `- **${d.severity} @ ${d.ts}** — ${d.observed} → *${d.fix}*`)
++      : ['(none found)']),
++    '',
++    '## Next cut — the revision brief',
+     ...(judge.next_cut?.length
+       ? judge.next_cut.map((n) => `- **${n.dimension}** @ ${n.where} — ${n.change}`)
+-      : ["(judge returned no next_cut — treat that as a judge defect, not a passing grade)"]),
+-  ].join("\n");
+-  writeFileSync(`${base}.judge.md`, md + "\n");
++      : ['(judge returned no next_cut — treat that as a judge defect, not a passing grade)']),
++  ].join('\n');
++  writeFileSync(`${base}.judge.md`, `${md}\n`);
+   console.log(md);
+ 
+   if (gate && total < gate) {
+-    console.error(`\n[gate] ${total}/${MAX} < ${gate} — not shippable. Apply the next-cut brief above and re-run.`);
++    console.error(
++      `\n[gate] ${total}/${MAX} < ${gate} — not shippable. Apply the next-cut brief above and re-run.`,
++    );
+     process.exit(1);
+   }
+ };
+-run().catch((e) => { console.error(e.message || e); process.exit(1); });
++run().catch((e) => {
++  console.error(e.message || e);
++  process.exit(1);
++});
+diff --git a/tools/clip-gate/narrate.mjs b/tools/clip-gate/narrate.mjs
+index 943edb2..c65fc86 100644
+--- a/tools/clip-gate/narrate.mjs
++++ b/tools/clip-gate/narrate.mjs
+@@ -19,30 +19,30 @@
+ // A caption longer than its beat is REPORTED rather than sped up or cut off. Compressing speech to
+ // fit a hold makes it harder to follow, which is the opposite of the reason narration was added.
+ 
+-import { spawnSync } from "node:child_process";
+-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+-import path from "node:path";
++import { spawnSync } from 'node:child_process';
++import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
++import path from 'node:path';
+ 
+ const FPS = 30;
+-const OUT_DIR = "out/narration";
+-const VOICE_DIR = "out/tts";
++const OUT_DIR = 'out/narration';
++const VOICE_DIR = 'out/tts';
+ 
+ function python(code, { timeout = 540_000 } = {}) {
+-  const run = spawnSync("python", ["-c", code], {
+-    encoding: "utf8",
++  const run = spawnSync('python', ['-c', code], {
++    encoding: 'utf8',
+     timeout,
+     maxBuffer: 32 * 1024 * 1024,
+     // PYTHONUTF8 because the phonemiser emits IPA and a Windows console codepage cannot print it —
+     // a crash that looks exactly like a synthesis failure and is not one.
+-    env: { ...process.env, PYTHONUTF8: "1", PYTHONIOENCODING: "utf-8" },
++    env: { ...process.env, PYTHONUTF8: '1', PYTHONIOENCODING: 'utf-8' },
+   });
+-  return { ok: run.status === 0, out: (run.stdout ?? "").trim(), err: (run.stderr ?? "").trim() };
++  return { ok: run.status === 0, out: (run.stdout ?? '').trim(), err: (run.stderr ?? '').trim() };
+ }
+ 
+ /** One wav per beat, all from a single loaded voice — the load is 8s and the synthesis is not. */
+ export function synthesiseBeats(lines, voiceModel) {
+   mkdirSync(OUT_DIR, { recursive: true });
+-  const model = path.join(VOICE_DIR, `${voiceModel}.onnx`).replace(/\\/g, "/");
++  const model = path.join(VOICE_DIR, `${voiceModel}.onnx`).replace(/\\/g, '/');
+ 
+   // Batch first — one process, one model load, fast. But Piper's ONNX session corrupts under
+   // repeated synthesis on this machine: a line that fails 4/4 in a warm session synthesises 3/3 in
+@@ -52,8 +52,8 @@ export function synthesiseBeats(lines, voiceModel) {
+   // The payload travels by FILE, never by string interpolation. A caption containing three single
+   // quotes closed the generated Python's raw string — a syntax error at best, injection at worst,
+   // since captions can be product UI text nobody vets as code.
+-  const payloadFile = path.join(OUT_DIR, "lines.json").replace(/\\/g, "/");
+-  writeFileSync(payloadFile, JSON.stringify(lines.map((l, i) => ({ i, text: l.text }))), "utf8");
++  const payloadFile = path.join(OUT_DIR, 'lines.json').replace(/\\/g, '/');
++  writeFileSync(payloadFile, JSON.stringify(lines.map((l, i) => ({ i, text: l.text }))), 'utf8');
+   const batchCode = `
+ import json, wave, time
+ from piper import PiperVoice
+@@ -74,10 +74,13 @@ for item in lines:
+ print(json.dumps(out))
+ `;
+   const batch = python(batchCode);
+-  if (!batch.ok) throw new Error(`piper batch failed outright: ${batch.err.split(String.fromCharCode(10)).slice(-3).join(" ").slice(0, 200)}`);
++  if (!batch.ok)
++    throw new Error(
++      `piper batch failed outright: ${batch.err.split(String.fromCharCode(10)).slice(-3).join(' ').slice(0, 200)}`,
++    );
+   const results = JSON.parse(batch.out.split(String.fromCharCode(10)).filter(Boolean).pop());
+ 
+-  for (const entry of results) {
++  for (const [index, entry] of results.entries()) {
+     if (!entry.failed) continue;
+     let recovered = false;
+     for (let attempt = 0; attempt < 2 && !recovered; attempt += 1) {
+@@ -96,12 +99,16 @@ print(json.dumps({"seconds": dur, "synth": round(time.time()-t, 3)}))
+         const parsed = JSON.parse(single.out.split(String.fromCharCode(10)).filter(Boolean).pop());
+         entry.seconds = parsed.seconds;
+         entry.synth = parsed.synth;
+-        delete entry.failed;
+-        entry.freshProcessRetry = attempt + 1;
++        const { failed: _failed, ...recoveredEntry } = entry;
++        recoveredEntry.freshProcessRetry = attempt + 1;
++        results[index] = recoveredEntry;
+         recovered = true;
+       }
+     }
+-    if (!recovered) throw new Error(`beat ${entry.i + 1} failed in batch AND in 2 fresh processes — this is not the session bug`);
++    if (!recovered)
++      throw new Error(
++        `beat ${entry.i + 1} failed in batch AND in 2 fresh processes — this is not the session bug`,
++      );
+   }
+   return results;
+ }
+@@ -112,7 +119,8 @@ export function linesFromStoryboard(steps, fps = FPS) {
+   let frame = 0;
+   for (const step of steps) {
+     const holdSeconds = (step.hold || 60) / fps;
+-    if (step.caption) lines.push({ at: frame / fps, hold: holdSeconds, text: String(step.caption) });
++    if (step.caption)
++      lines.push({ at: frame / fps, hold: holdSeconds, text: String(step.caption) });
+     frame += step.hold || 60;
+   }
+   return lines;
+@@ -125,16 +133,41 @@ export function assemble(lines, clips, totalSeconds, outFile) {
+   const labels = [];
+   for (const [n, clip] of clips.entries()) {
+     const line = lines[clip.i];
+-    inputs.push("-i", clip.file);
++    inputs.push('-i', clip.file);
+     const ms = Math.round(line.at * 1000);
+     filters.push(`[${n}:a]aresample=48000,adelay=${ms}|${ms}[n${n}]`);
+     labels.push(`[n${n}]`);
+   }
+-  filters.push(`${labels.join("")}amix=inputs=${labels.length}:normalize=0:dropout_transition=0,apad=whole_dur=${totalSeconds.toFixed(2)}[out]`);
+-  const run = spawnSync("ffmpeg", ["-y", "-v", "error", ...inputs, "-filter_complex", filters.join(";"), "-map", "[out]", "-t", totalSeconds.toFixed(2), "-ar", "48000", "-ac", "1", path.resolve(outFile)], {
+-    encoding: "utf8", timeout: 300_000, maxBuffer: 32 * 1024 * 1024,
+-  });
+-  if (run.status !== 0) throw new Error(`ffmpeg assemble failed: ${(run.stderr || "").slice(0, 200)}`);
++  filters.push(
++    `${labels.join('')}amix=inputs=${labels.length}:normalize=0:dropout_transition=0,apad=whole_dur=${totalSeconds.toFixed(2)}[out]`,
++  );
++  const run = spawnSync(
++    'ffmpeg',
++    [
++      '-y',
++      '-v',
++      'error',
++      ...inputs,
++      '-filter_complex',
++      filters.join(';'),
++      '-map',
++      '[out]',
++      '-t',
++      totalSeconds.toFixed(2),
++      '-ar',
++      '48000',
++      '-ac',
++      '1',
++      path.resolve(outFile),
++    ],
++    {
++      encoding: 'utf8',
++      timeout: 300_000,
++      maxBuffer: 32 * 1024 * 1024,
++    },
++  );
++  if (run.status !== 0)
++    throw new Error(`ffmpeg assemble failed: ${(run.stderr || '').slice(0, 200)}`);
+   return path.resolve(outFile);
+ }
+ 
+diff --git a/tools/clip-gate/readability.mjs b/tools/clip-gate/readability.mjs
+index 29dc39a..75e41d9 100644
+--- a/tools/clip-gate/readability.mjs
++++ b/tools/clip-gate/readability.mjs
+@@ -18,28 +18,37 @@
+ //   node readability.mjs --id TShero              (score every caption)
+ //   node readability.mjs --id TShero --min 80     (exit 1 if any caption is below)
+ //
+-import { COLLAB_WALKTHROUGHS } from "./src/walkthrough.collab.data.js";
++import { COLLAB_WALKTHROUGHS } from './src/walkthrough.collab.data.js';
+ 
+ const argv = process.argv.slice(2);
+-const flag = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 && argv[i + 1] ? argv[i + 1] : d; };
++const flag = (n, d) => {
++  const i = argv.indexOf(`--${n}`);
++  return i >= 0 && argv[i + 1] ? argv[i + 1] : d;
++};
+ 
+-const id = flag("id");
+-const MIN = Number(flag("min", "0"));
+-if (!id) { console.error("usage: node readability.mjs --id <SpecId> [--min 80]"); process.exit(1); }
++const id = flag('id');
++const MIN = Number(flag('min', '0'));
++if (!id) {
++  console.error('usage: node readability.mjs --id <SpecId> [--min 80]');
++  process.exit(1);
++}
+ 
+ // Syllable estimate: vowel groups, minus silent trailing 'e', minimum 1. It is an
+ // approximation, and Flesch is itself an approximation, so precision beyond this
+ // buys nothing — the signal is "this sentence is hard", not a decimal place.
+ export const syllables = (word) => {
+-  const w = word.toLowerCase().replace(/[^a-z]/g, "");
++  const w = word.toLowerCase().replace(/[^a-z]/g, '');
+   if (!w) return 0;
+   if (w.length <= 3) return 1;
+-  const groups = w.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, "").replace(/^y/, "").match(/[aeiouy]{1,2}/g);
++  const groups = w
++    .replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '')
++    .replace(/^y/, '')
++    .match(/[aeiouy]{1,2}/g);
+   return Math.max(1, groups ? groups.length : 1);
+ };
+ 
+ export const flesch = (text) => {
+-  const clean = text.replace(/[—–]/g, " ").replace(/\s+/g, " ").trim();
++  const clean = text.replace(/[—–]/g, ' ').replace(/\s+/g, ' ').trim();
+   const sentences = Math.max(1, (clean.match(/[.!?]+/g) || []).length || 1);
+   const words = clean.split(/\s+/).filter((w) => /[a-z0-9]/i.test(w));
+   if (!words.length) return { ease: 100, words: 0, syll: 0, sentences };
+@@ -50,29 +59,35 @@ export const flesch = (text) => {
+ 
+ // Words that cost the most: long, and jargon a general viewer has never met.
+ // Reported alongside the score so a rewrite has somewhere to start.
+-const HARD = (text) => text.split(/\s+/)
+-  .map((w) => w.replace(/[^A-Za-z-]/g, ""))
+-  .filter((w) => w.length > 3 && syllables(w) >= 3);
++const HARD = (text) =>
++  text
++    .split(/\s+/)
++    .map((w) => w.replace(/[^A-Za-z-]/g, ''))
++    .filter((w) => w.length > 3 && syllables(w) >= 3);
+ 
+-if (import.meta.url.endsWith(process.argv[1].replace(/\\/g, "/").split("/").pop())) {
++if (import.meta.url.endsWith(process.argv[1].replace(/\\/g, '/').split('/').pop())) {
+   const wt = COLLAB_WALKTHROUGHS.find((w) => w.id === id);
+-  if (!wt) { console.error(`no walkthrough "${id}"`); process.exit(1); }
++  if (!wt) {
++    console.error(`no walkthrough "${id}"`);
++    process.exit(1);
++  }
+   const caps = wt.steps.map((s, i) => ({ i, text: s.caption })).filter((c) => c.text);
+ 
+   let fails = 0;
+   const all = [];
+-  caps.forEach((c) => {
++  for (const c of caps) {
+     const r = flesch(c.text);
+     all.push(r.ease);
+     const bad = MIN && r.ease < MIN;
+     if (bad) fails++;
+     const hard = HARD(c.text);
+     console.log(
+-      `${bad ? "FAIL" : "  ok"}  ${String(r.ease).padStart(6)}  step ${String(c.i).padStart(2)}  ` +
+-      `${r.words}w/${r.sentences}s  ${JSON.stringify(c.text.slice(0, 62))}` +
+-      (hard.length ? `\n            hard: ${hard.join(", ")}` : ""));
+-  });
++      `${bad ? 'FAIL' : '  ok'}  ${String(r.ease).padStart(6)}  step ${String(c.i).padStart(2)}  ${r.words}w/${r.sentences}s  ${JSON.stringify(c.text.slice(0, 62))}${hard.length ? `\n            hard: ${hard.join(', ')}` : ''}`,
++    );
++  }
+   const mean = Math.round((all.reduce((a, b) => a + b, 0) / all.length) * 10) / 10;
+-  console.log(`\nmean reading ease ${mean} over ${caps.length} captions` + (MIN ? ` · gate ${MIN} · ${fails} below` : ""));
++  console.log(
++    `\nmean reading ease ${mean} over ${caps.length} captions${MIN ? ` · gate ${MIN} · ${fails} below` : ''}`,
++  );
+   if (MIN && fails) process.exit(1);
+ }
+diff --git a/tools/clip-gate/retime.mjs b/tools/clip-gate/retime.mjs
+index aaab8b3..1d1b13f 100644
+--- a/tools/clip-gate/retime.mjs
++++ b/tools/clip-gate/retime.mjs
+@@ -12,26 +12,38 @@
+ //   node voice.mjs --id TShero --out out/x.vo.wav     (writes x.vo.holds.json)
+ //   node retime.mjs --id TShero --holds out/x.vo.holds.json
+ //
+-import { readFileSync, writeFileSync } from "node:fs";
++import { readFileSync, writeFileSync } from 'node:fs';
+ 
+ const argv = process.argv.slice(2);
+-const flag = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 && argv[i + 1] ? argv[i + 1] : d; };
+-const id = flag("id");
+-const holdsFile = flag("holds");
+-const shrink = argv.includes("--shrink");   // allow holds to get SHORTER too
+-if (!id || !holdsFile) { console.error("usage: node retime.mjs --id <SpecId> --holds <holds.json> [--shrink]"); process.exit(1); }
++const flag = (n, d) => {
++  const i = argv.indexOf(`--${n}`);
++  return i >= 0 && argv[i + 1] ? argv[i + 1] : d;
++};
++const id = flag('id');
++const holdsFile = flag('holds');
++const shrink = argv.includes('--shrink'); // allow holds to get SHORTER too
++if (!id || !holdsFile) {
++  console.error('usage: node retime.mjs --id <SpecId> --holds <holds.json> [--shrink]');
++  process.exit(1);
++}
+ 
+-const holds = JSON.parse(readFileSync(holdsFile, "utf8"));
+-const path = "src/walkthrough.collab.data.js";
+-let s = readFileSync(path, "utf8");
++const holds = JSON.parse(readFileSync(holdsFile, 'utf8'));
++const path = 'src/walkthrough.collab.data.js';
++const s = readFileSync(path, 'utf8');
+ const i = s.indexOf(`"id": "${id}"`);
+-if (i < 0) { console.error(`no "${id}" in ${path}`); process.exit(1); }
+-let j = s.indexOf("\n  },\n  {", i);
++if (i < 0) {
++  console.error(`no "${id}" in ${path}`);
++  process.exit(1);
++}
++let j = s.indexOf('\n  },\n  {', i);
+ if (j < 0) j = s.length;
+ 
+ // Only CAPTIONED steps are re-timed. A step with no caption has no narration, so
+ // its hold is a visual decision (a beat, a settle) that speech has no claim on.
+-let k = 0, changed = 0, before = 0, after = 0;
++let k = 0;
++let changed = 0;
++let before = 0;
++let after = 0;
+ // `\r?\n`: git's autocrlf rewrites this file on checkout, and a regex that
+ // assumes LF silently matches nothing — which reports as "0/0 holds changed"
+ // rather than as an error, the most expensive kind of failure to notice.
+@@ -39,7 +51,10 @@ const STEP_RE = /"caption": (null|"(?:[^"\\]|\\.)*"),\r?\n(\s*)"hold": (\d+)/g;
+ const block = s.slice(i, j).replace(STEP_RE, (m, cap, ws, old) => {
+   const idx = k++;
+   before += Number(old);
+-  if (cap === "null") { after += Number(old); return m; }
++  if (cap === 'null') {
++    after += Number(old);
++    return m;
++  }
+   const want = holds[String(idx)];
+   const next = want == null ? Number(old) : shrink ? want : Math.max(Number(old), want);
+   after += next;
+@@ -47,4 +62,6 @@ const block = s.slice(i, j).replace(STEP_RE, (m, cap, ws, old) => {
+   return `"caption": ${cap},\n${ws}"hold": ${next}`;
+ });
+ writeFileSync(path, s.slice(0, i) + block + s.slice(j));
+-console.log(`[retime] ${id}: ${changed}/${k} holds changed — ${(before / 30).toFixed(1)}s -> ${(after / 30).toFixed(1)}s`);
++console.log(
++  `[retime] ${id}: ${changed}/${k} holds changed — ${(before / 30).toFixed(1)}s -> ${(after / 30).toFixed(1)}s`,
++);
+diff --git a/tools/clip-gate/rubric.mjs b/tools/clip-gate/rubric.mjs
+index 20f288f..b82b636 100644
+--- a/tools/clip-gate/rubric.mjs
++++ b/tools/clip-gate/rubric.mjs
+@@ -22,39 +22,105 @@
+ 
+ // --------------------------------------------------------------------- CRAFT
+ export const CRAFT = [
+-  ["storyboard_clarity", "can a first-time viewer state what is being compared, why it matters, and what each scene proves?"],
+-  ["state_coverage", "does each flow show empty state -> action -> (loading if async) -> result, or does it skip to outcomes (hero-shot smell)?"],
+-  ["cursor_truth", "does the cursor visibly travel to and land ON the control being used before each state change?"],
+-  ["caption_sync", "do step captions match what is actually happening on screen (and any narration heard)?"],
+-  ["pacing", "can a first-time viewer read each caption and register each state? any dead air or rushed beats?"],
+-  ["legibility", "is app text readable at the rendered size? are captions large and contrasty enough?"],
+-  ["proof_feel", "does it read as evidence of a real working product (real states, real data motion) rather than staged marketing?"],
+-  ["safety", "any visible secrets, API keys, tokens, real personal data, or internal URLs that should not ship?"],
+-  ["signature_moment", "is there ONE moment the whole demo is built around, does it land early, and is everything before it earning it? (a demo that is uniformly pleasant and has no peak scores 0)"],
+-  ["loop_etiquette", "if this loops as a GIF, is the total length and final-state hold reasonable (viewers lost on the second loop = too long)?"],
++  [
++    'storyboard_clarity',
++    'can a first-time viewer state what is being compared, why it matters, and what each scene proves?',
++  ],
++  [
++    'state_coverage',
++    'does each flow show empty state -> action -> (loading if async) -> result, or does it skip to outcomes (hero-shot smell)?',
++  ],
++  [
++    'cursor_truth',
++    'does the cursor visibly travel to and land ON the control being used before each state change?',
++  ],
++  [
++    'caption_sync',
++    'do step captions match what is actually happening on screen (and any narration heard)?',
++  ],
++  [
++    'pacing',
++    'can a first-time viewer read each caption and register each state? any dead air or rushed beats?',
++  ],
++  [
++    'legibility',
++    'is app text readable at the rendered size? are captions large and contrasty enough?',
++  ],
++  [
++    'proof_feel',
++    'does it read as evidence of a real working product (real states, real data motion) rather than staged marketing?',
++  ],
++  [
++    'safety',
++    'any visible secrets, API keys, tokens, real personal data, or internal URLs that should not ship?',
++  ],
++  [
++    'signature_moment',
++    'is there ONE moment the whole demo is built around, does it land early, and is everything before it earning it? (a demo that is uniformly pleasant and has no peak scores 0)',
++  ],
++  [
++    'loop_etiquette',
++    'if this loops as a GIF, is the total length and final-state hold reasonable (viewers lost on the second loop = too long)?',
++  ],
+   // Added after the gate scored a SILENT video twice, across two different cuts,
+   // and never once mentioned that it had no audio track at all. A rubric only
+   // sees what it names: silence was not a low score on any dimension, it was
+   // invisible. Reference films are music-forward and measured loud (-13.2 LUFS
+   // on the closest analogue by length), so a silent cut is not a neutral choice.
+-  ["soundtrack", "is there audio at all, and does it have SHAPE that follows the story (lifting at the reveal, thinning where something must be read) rather than a flat loop? Silence scores 0. Music that fights the content, or sits so loud the demo feels like an advert, scores 1."],
+-  ["audio_sync", "do clicks, transitions and reveals get an audible acknowledgement landing ON the frame, not near it? A demo where nothing is heard when the pointer acts feels like a mockup even when the product is real."],
++  [
++    'soundtrack',
++    'is there audio at all, and does it have SHAPE that follows the story (lifting at the reveal, thinning where something must be read) rather than a flat loop? Silence scores 0. Music that fights the content, or sits so loud the demo feels like an advert, scores 1.',
++  ],
++  [
++    'audio_sync',
++    'do clicks, transitions and reveals get an audible acknowledgement landing ON the frame, not near it? A demo where nothing is heard when the pointer acts feels like a mockup even when the product is real.',
++  ],
+ ];
+ 
+ // ------------------------------------------------------------- COMPREHENSION
+ // Each of these is scored from the seat of the AUDIENCE named on the command
+ // line, not from the seat of someone who already knows the product.
+ export const COMPREHENSION = [
+-  ["persona", "is it visible WHO this is for? A viewer should be able to name the person whose job this is, from what is on screen — not infer it from the domain. 0 if the demo never establishes a user at all."],
+-  ["purpose", "is the JOB TO BE DONE stated? What was hard or slow or untrustworthy before? A feature tour with no stated problem scores 0 however pretty it is."],
+-  ["use_case", "is there a concrete, specific situation driving the demo — a real question a real person would actually have — rather than a generic sample query?"],
+-  ["feature_legibility", "can a viewer name the FEATURES they just watched, as distinct capabilities, and say what each one does? Not 'it made a chart' but 'it planned the buckets, probed each one, and declared the overlap'."],
+-  ["full_interaction", "is the interaction shown END TO END — including the parts that are boring or slow — or does it cut from click to finished result? Every hidden step is a step the viewer assumes was faked."],
+-  ["responsiveness", "does the product visibly RESPOND: hover states, focus, loading indicators, streaming, progressive results, latency the viewer can feel? A demo where nothing acknowledges the user reads as a mockup."],
+-  ["flow", "do the scenes connect causally — this, THEREFORE that — so the demo is a single journey rather than a list of screens? Name where the thread breaks if it does."],
+-  ["result", "is the OUTCOME unmistakable? What does the user now have that they did not have at the start, stated plainly and left on screen long enough to absorb?"],
+-  ["lay_sense", "AUDIENCE TEST, the one most demos fail. Score from the seat of the named audience. Would THEY finish this video able to say, in their own words, why this is useful and why it should be believed? Jargon that is never unpacked, acronyms, and unexplained numbers all cost points here."],
+-  ["own_case_transfer", "could a viewer now use this on THEIR OWN input? Is the entry point shown (where you type, what a good question looks like, what varies vs what is fixed)? A demo that only ever proves one hardcoded example scores 0."],
++  [
++    'persona',
++    'is it visible WHO this is for? A viewer should be able to name the person whose job this is, from what is on screen — not infer it from the domain. 0 if the demo never establishes a user at all.',
++  ],
++  [
++    'purpose',
++    'is the JOB TO BE DONE stated? What was hard or slow or untrustworthy before? A feature tour with no stated problem scores 0 however pretty it is.',
++  ],
++  [
++    'use_case',
++    'is there a concrete, specific situation driving the demo — a real question a real person would actually have — rather than a generic sample query?',
++  ],
++  [
++    'feature_legibility',
++    "can a viewer name the FEATURES they just watched, as distinct capabilities, and say what each one does? Not 'it made a chart' but 'it planned the buckets, probed each one, and declared the overlap'.",
++  ],
++  [
++    'full_interaction',
++    'is the interaction shown END TO END — including the parts that are boring or slow — or does it cut from click to finished result? Every hidden step is a step the viewer assumes was faked.',
++  ],
++  [
++    'responsiveness',
++    'does the product visibly RESPOND: hover states, focus, loading indicators, streaming, progressive results, latency the viewer can feel? A demo where nothing acknowledges the user reads as a mockup.',
++  ],
++  [
++    'flow',
++    'do the scenes connect causally — this, THEREFORE that — so the demo is a single journey rather than a list of screens? Name where the thread breaks if it does.',
++  ],
++  [
++    'result',
++    'is the OUTCOME unmistakable? What does the user now have that they did not have at the start, stated plainly and left on screen long enough to absorb?',
++  ],
++  [
++    'lay_sense',
++    'AUDIENCE TEST, the one most demos fail. Score from the seat of the named audience. Would THEY finish this video able to say, in their own words, why this is useful and why it should be believed? Jargon that is never unpacked, acronyms, and unexplained numbers all cost points here.',
++  ],
++  [
++    'own_case_transfer',
++    'could a viewer now use this on THEIR OWN input? Is the entry point shown (where you type, what a good question looks like, what varies vs what is fixed)? A demo that only ever proves one hardcoded example scores 0.',
++  ],
+ ];
+ 
+ // ------------------------------------------------------- INTERVIEW variant
+@@ -66,21 +132,36 @@ export const COMPREHENSION = [
+ // This exists because an agent produces faster than its author can absorb, and
+ // the gap shows up first as a walkthrough full of WHAT and empty of WHY.
+ export const INTERVIEW = [
+-  ...COMPREHENSION.filter(([k]) => k !== "own_case_transfer"),
+-  ["alternatives_named", "for each decision, is the REJECTED option stated concretely enough that a listener could have argued for it? A walkthrough that presents every choice as the only choice is describing an artefact, not defending it."],
+-  ["tradeoff_honesty", "is what each decision COSTS said out loud, in the author's own voice, without being softened into a benefit? 0 if every tradeoff resolves in the author's favour."],
+-  ["falsifiability", "for each claim, could a listener state the measurement that would prove it wrong? THE dimension of this rubric: a decision with no statable falsifier is a preference nobody has examined."],
+-  ["failure_modes_named", "does the author name something that went WRONG here — a belief that was measured and killed, a bug that passed its tests — rather than only what works? Scoring 2 requires a specific, checkable failure, not humility as a rhetorical move."],
++  ...COMPREHENSION.filter(([k]) => k !== 'own_case_transfer'),
++  [
++    'alternatives_named',
++    'for each decision, is the REJECTED option stated concretely enough that a listener could have argued for it? A walkthrough that presents every choice as the only choice is describing an artefact, not defending it.',
++  ],
++  [
++    'tradeoff_honesty',
++    "is what each decision COSTS said out loud, in the author's own voice, without being softened into a benefit? 0 if every tradeoff resolves in the author's favour.",
++  ],
++  [
++    'falsifiability',
++    'for each claim, could a listener state the measurement that would prove it wrong? THE dimension of this rubric: a decision with no statable falsifier is a preference nobody has examined.',
++  ],
++  [
++    'failure_modes_named',
++    'does the author name something that went WRONG here — a belief that was measured and killed, a bug that passed its tests — rather than only what works? Scoring 2 requires a specific, checkable failure, not humility as a rhetorical move.',
++  ],
+ ];
+ 
+ export const ALL = [...CRAFT, ...COMPREHENSION];
+ export const MAX = ALL.length * 2;
+ 
+-const fmt = (list) => list.map(([k, q], i) => `${i + 1}. ${k} - ${q}`).join("\n");
++const fmt = (list) => list.map(([k, q], i) => `${i + 1}. ${k} - ${q}`).join('\n');
+ 
+-export const setFor = (mode) => (mode === "interview" ? INTERVIEW : COMPREHENSION);
++export const setFor = (mode) => (mode === 'interview' ? INTERVIEW : COMPREHENSION);
+ 
+-export const rubricPrompt = (audience, mode = "demo") => `You are judging a rendered product-walkthrough video
++export const rubricPrompt = (
++  audience,
++  mode = 'demo',
++) => `You are judging a rendered product-walkthrough video
+ (a feature demo with an animated cursor, click ripples, step captions, and a progress bar —
+ possibly with narration).
+ 
+diff --git a/tools/clip-gate/score.mjs b/tools/clip-gate/score.mjs
+index a39de67..1b0740f 100644
+--- a/tools/clip-gate/score.mjs
++++ b/tools/clip-gate/score.mjs
+@@ -43,60 +43,86 @@
+ //   node score.mjs --id TShero --video out/trialscope.mp4
+ //   node score.mjs --id TShero --video out/x.mp4 --music path/to/licensed.mp3
+ //
+-import { execFileSync } from "node:child_process";
+-import { writeFileSync, existsSync } from "node:fs";
+-import { COLLAB_WALKTHROUGHS } from "./src/walkthrough.collab.data.js";
++import { execFileSync } from 'node:child_process';
++import { existsSync, writeFileSync } from 'node:fs';
++import { COLLAB_WALKTHROUGHS } from './src/walkthrough.collab.data.js';
+ 
+ const argv = process.argv.slice(2);
+-const flag = (n, d) => { const i = argv.indexOf(`--${n}`); return i >= 0 && argv[i + 1] ? argv[i + 1] : d; };
++const flag = (n, d) => {
++  const i = argv.indexOf(`--${n}`);
++  return i >= 0 && argv[i + 1] ? argv[i + 1] : d;
++};
+ 
+-const id = flag("id");
+-const video = flag("video");
+-const music = flag("music");
+-const vo = flag("vo");
+-const fps = Number(flag("fps", "30"));
+-const BPM = Number(flag("bpm", "120"));
+-const targetLufs = flag("lufs", "-14");
+-if (!id || !video) { console.error("usage: node score.mjs --id <SpecId> --video <file.mp4> [--music <file>] [--bpm 120] [--lufs -14]"); process.exit(1); }
++const id = flag('id');
++const video = flag('video');
++const music = flag('music');
++const vo = flag('vo');
++const fps = Number(flag('fps', '30'));
++const BPM = Number(flag('bpm', '120'));
++const targetLufs = flag('lufs', '-14');
++if (!id || !video) {
++  console.error(
++    'usage: node score.mjs --id <SpecId> --video <file.mp4> [--music <file>] [--bpm 120] [--lufs -14]',
++  );
++  process.exit(1);
++}
+ 
+ const wt = COLLAB_WALKTHROUGHS.find((w) => w.id === id);
+-if (!wt) { console.error(`no walkthrough "${id}"`); process.exit(1); }
++if (!wt) {
++  console.error(`no walkthrough "${id}"`);
++  process.exit(1);
++}
+ 
+ // ---------------------------------------------------------------- the timeline
+ let t = 0;
+ const events = wt.steps.map((s) => {
+-  const at = t / fps, dur = (s.hold || 60) / fps;
++  const at = t / fps;
++  const dur = (s.hold || 60) / fps;
+   t += s.hold || 60;
+-  return { at, dur, burst: !!s.burst, click: !!(s.panes || []).some((p) => p && p.click), zoom: !!s.zoomScale };
++  return {
++    at,
++    dur,
++    burst: !!s.burst,
++    click: !!(s.panes || []).some((p) => p?.click),
++    zoom: !!s.zoomScale,
++  };
+ });
+ const DUR = t / fps;
+ 
+ const SR = 48000;
+ const N = Math.ceil((DUR + 1.5) * SR);
+-const L = new Float32Array(N), R = new Float32Array(N);
+-const BEAT = 60 / BPM;                      // 0.5s at 120
+-const add = (i, l, r) => { if (i >= 0 && i < N) { L[i] += l; R[i] += r; } };
+-const HZ = (n) => 440 * Math.pow(2, (n - 69) / 12);
++const L = new Float32Array(N);
++const R = new Float32Array(N);
++const BEAT = 60 / BPM; // 0.5s at 120
++const add = (i, l, r) => {
++  if (i >= 0 && i < N) {
++    L[i] += l;
++    R[i] += r;
++  }
++};
++const HZ = (n) => 440 * 2 ** ((n - 69) / 12);
+ 
+ // ------------------------------------------------------- chip voices
+ // Square/pulse rather than sine: the harmonic stack IS the arcade sound, and a
+ // pure sine reads as "test tone" or, with a slow attack, as dread.
+-const pulse = (ph, duty = 0.5) => ((ph % 1) < duty ? 1 : -1);
++const pulse = (ph, duty = 0.5) => (ph % 1 < duty ? 1 : -1);
+ 
+ // Lead/arp voice. 6ms attack, exponential decay — percussive, never swells.
+ const blip = (freq, start, dur, gain = 0.06, duty = 0.5, pan = 0) => {
+-  const s0 = Math.round(start * SR), n = Math.round(dur * SR);
++  const s0 = Math.round(start * SR);
++  const n = Math.round(dur * SR);
+   const atk = Math.round(0.006 * SR);
+   for (let k = 0; k < n; k++) {
+-    const env = (k < atk ? k / atk : Math.exp(-(k - atk) / (dur * 0.42 * SR)));
++    const env = k < atk ? k / atk : Math.exp(-(k - atk) / (dur * 0.42 * SR));
+     const v = pulse((k / SR) * freq, duty) * env * gain;
+     add(s0 + k, v * (1 - Math.max(0, pan)), v * (1 + Math.min(0, pan)));
+   }
+ };
+ 
+ // Bass: low square, longer body, slight portamento-free chunk.
+-const bass = (freq, start, dur, gain = 0.10) => {
+-  const s0 = Math.round(start * SR), n = Math.round(dur * SR);
++const bass = (freq, start, dur, gain = 0.1) => {
++  const s0 = Math.round(start * SR);
++  const n = Math.round(dur * SR);
+   for (let k = 0; k < n; k++) {
+     const env = Math.min(1, k / (0.004 * SR)) * Math.exp(-k / (dur * 0.6 * SR));
+     const v = pulse((k / SR) * freq, 0.5) * env * gain;
+@@ -107,8 +133,9 @@ const bass = (freq, start, dur, gain = 0.10) => {
+ // Drums, synthesized: kick = pitch-swept sine, snare = noise + tone body,
+ // hat = very short high noise. This is the part the first version had none of,
+ // and rhythm is most of what separates "game" from "unsettling".
+-const kick = (start, gain = 0.30) => {
+-  const s0 = Math.round(start * SR), n = Math.round(0.16 * SR);
++const kick = (start, gain = 0.3) => {
++  const s0 = Math.round(start * SR);
++  const n = Math.round(0.16 * SR);
+   for (let k = 0; k < n; k++) {
+     const p = k / n;
+     const f = 120 * Math.exp(-p * 3.2) + 42;
+@@ -117,30 +144,45 @@ const kick = (start, gain = 0.30) => {
+   }
+ };
+ const snare = (start, gain = 0.16) => {
+-  const s0 = Math.round(start * SR), n = Math.round(0.14 * SR);
++  const s0 = Math.round(start * SR);
++  const n = Math.round(0.14 * SR);
+   for (let k = 0; k < n; k++) {
+     const env = Math.exp(-k / (0.035 * SR));
+-    const v = ((Math.random() * 2 - 1) * 0.8 + Math.sin((k / SR) * 2 * Math.PI * 190) * 0.3) * env * gain;
++    const v =
++      ((Math.random() * 2 - 1) * 0.8 + Math.sin((k / SR) * 2 * Math.PI * 190) * 0.3) * env * gain;
+     add(s0 + k, v, v);
+   }
+ };
+ const hat = (start, gain = 0.055, len = 0.028) => {
+-  const s0 = Math.round(start * SR), n = Math.round(len * SR);
++  const s0 = Math.round(start * SR);
++  const n = Math.round(len * SR);
+   let prev = 0;
+   for (let k = 0; k < n; k++) {
+     const x = Math.random() * 2 - 1;
+-    const hp = x - prev; prev = x;                       // crude highpass -> "tss"
+-    add(s0 + k, hp * Math.exp(-k / (len * 0.4 * SR)) * gain, hp * Math.exp(-k / (len * 0.4 * SR)) * gain);
++    const hp = x - prev;
++    prev = x; // crude highpass -> "tss"
++    add(
++      s0 + k,
++      hp * Math.exp(-k / (len * 0.4 * SR)) * gain,
++      hp * Math.exp(-k / (len * 0.4 * SR)) * gain,
++    );
+   }
+ };
+ 
+ // ------------------------------------------------------------- game-feel sfx
+ // Select blip: two fast rising squares. The sound a menu makes.
+-const sfxSelect = (start) => { blip(HZ(84), start, 0.055, 0.13, 0.25); blip(HZ(91), start + 0.055, 0.09, 0.13, 0.25); };
++const sfxSelect = (start) => {
++  blip(HZ(84), start, 0.055, 0.13, 0.25);
++  blip(HZ(91), start + 0.055, 0.09, 0.13, 0.25);
++};
+ // Power-up: quick ascending run, used where the camera pushes in on a reveal.
+-const sfxPowerUp = (start) => [0, 4, 7, 12, 16].forEach((s, i) => blip(HZ(72 + s), start + i * 0.045, 0.10, 0.075, 0.5));
++const sfxPowerUp = (start) =>
++  [0, 4, 7, 12, 16].forEach((s, i) => blip(HZ(72 + s), start + i * 0.045, 0.1, 0.075, 0.5));
+ // Coin/answer jingle: the classic 2-note pickup, then a major triad landing.
+-const sfxCoin = (start) => { blip(HZ(88), start, 0.075, 0.14, 0.5); blip(HZ(95), start + 0.075, 0.30, 0.14, 0.5); };
++const sfxCoin = (start) => {
++  blip(HZ(88), start, 0.075, 0.14, 0.5);
++  blip(HZ(95), start + 0.075, 0.3, 0.14, 0.5);
++};
+ 
+ // -------------------------------------------------------------- arrangement
+ // C major throughout. Sections still track the STORY -- what changes is the
+@@ -158,33 +200,35 @@ const CH = { C: [60, 64, 67], G: [55, 59, 62], Am: [57, 60, 64], F: [53, 57, 60]
+ // half true, since the sfx derived from events and the arrangement did not.
+ // An index survives a re-time; a timestamp does not.
+ const sections = [
+-  { step: 0,  ch: "C",  drums: false, arp: false, g: 0.30 },  // premise — barely there
+-  { step: 3,  ch: "G",  drums: true,  arp: true,  g: 0.80 },  // hook — the kit comes in
+-  { step: 6,  ch: "C",  drums: true,  arp: true,  g: 1.00 },  // graph reveal — full
+-  { step: 7,  ch: "Am", drums: true,  arp: true,  g: 0.85 },  // doubt — the one minor bar
+-  { step: 8,  ch: "F",  drums: false, arp: false, g: 0.16 },  // PROOF — near silence,
+-  { step: 10, ch: "C",  drums: false, arp: false, g: 0.16 },  //   the trace must be read
+-  { step: 11, ch: "G",  drums: true,  arp: true,  g: 0.88 },  // spread
+-  { step: 14, ch: "C",  drums: true,  arp: true,  g: 0.88 },
+-  { step: 15, ch: "Am", drums: true,  arp: true,  g: 0.92 },  // two-hop
+-  { step: 17, ch: "F",  drums: true,  arp: true,  g: 0.92 },
+-  { step: 18, ch: "C",  drums: true,  arp: true,  g: 1.00 },  // RESULT — the peak
+-  { step: 20, ch: "G",  drums: true,  arp: false, g: 0.62 },  // your turn — left open
++  { step: 0, ch: 'C', drums: false, arp: false, g: 0.3 }, // premise — barely there
++  { step: 3, ch: 'G', drums: true, arp: true, g: 0.8 }, // hook — the kit comes in
++  { step: 6, ch: 'C', drums: true, arp: true, g: 1.0 }, // graph reveal — full
++  { step: 7, ch: 'Am', drums: true, arp: true, g: 0.85 }, // doubt — the one minor bar
++  { step: 8, ch: 'F', drums: false, arp: false, g: 0.16 }, // PROOF — near silence,
++  { step: 10, ch: 'C', drums: false, arp: false, g: 0.16 }, //   the trace must be read
++  { step: 11, ch: 'G', drums: true, arp: true, g: 0.88 }, // spread
++  { step: 14, ch: 'C', drums: true, arp: true, g: 0.88 },
++  { step: 15, ch: 'Am', drums: true, arp: true, g: 0.92 }, // two-hop
++  { step: 17, ch: 'F', drums: true, arp: true, g: 0.92 },
++  { step: 18, ch: 'C', drums: true, arp: true, g: 1.0 }, // RESULT — the peak
++  { step: 20, ch: 'G', drums: true, arp: false, g: 0.62 }, // your turn — left open
+ ].map((x) => ({ ...x, at: events[x.step] ? events[x.step].at : 0 }));
+ const sectionAt = (x) => sections.filter((s) => s.at <= x).pop() || sections[0];
+ const endOf = (i) => (i + 1 < sections.length ? sections[i + 1].at : DUR);
+ 
+ if (!music) {
+   sections.forEach((s, i) => {
+-    const end = endOf(i), notes = CH[s.ch];
++    const end = endOf(i);
++    const notes = CH[s.ch];
+     // Bass on every beat; arp in 8ths; drums on the standard 4/4 grid.
+     const g = s.g;
+     for (let b = 0, x = s.at; x < end; b++, x = s.at + b * BEAT) {
+       bass(HZ(notes[0] - 24), x, BEAT * 0.9, 0.085 * g);
+       if (s.drums) {
+-        if (b % 4 === 0 || b % 4 === 2) kick(x, 0.30 * g);
++        if (b % 4 === 0 || b % 4 === 2) kick(x, 0.3 * g);
+         if (b % 4 === 1 || b % 4 === 3) snare(x, 0.16 * g);
+-        hat(x, 0.055 * g); hat(x + BEAT / 2, 0.04 * g);
++        hat(x, 0.055 * g);
++        hat(x + BEAT / 2, 0.04 * g);
+       } else if (b % 2 === 0) {
+         hat(x + BEAT / 2, 0.03 * g);
+       }
+@@ -200,20 +244,29 @@ if (!music) {
+ 
+ // Activity arps during BURST steps: a faster 16th run on top, so the moment the
+ // product is visibly working also SOUNDS like work happening.
+-events.filter((e) => e.burst).forEach((e) => {
++for (const e of events.filter((e) => e.burst)) {
+   const notes = CH[sectionAt(e.at).ch];
+   for (let k = 0, x = e.at; x < e.at + e.dur; k++, x += BEAT / 4) {
+     blip(HZ(notes[k % notes.length] + 24), x, BEAT * 0.2, 0.035, 0.125, k % 2 ? 0.35 : -0.35);
+   }
+-});
++}
+ 
+-events.filter((e) => e.click).forEach((e) => sfxSelect(e.at));
+-events.filter((e) => e.zoom).forEach((e) => sfxPowerUp(Math.max(0, e.at - 0.15)));
+-sfxCoin(events[18] ? events[18].at : DUR - 6);   // the result beat — the answer landing
++for (const e of events.filter((e) => e.click)) {
++  sfxSelect(e.at);
++}
++for (const e of events.filter((e) => e.zoom)) {
++  sfxPowerUp(Math.max(0, e.at - 0.15));
++}
++sfxCoin(events[18] ? events[18].at : DUR - 6); // the result beat — the answer landing
+ 
+ // --------------------------------------------------------------- write + mux
+ let peak = 0;
+-for (let i = 0; i < N; i++) { const a = Math.abs(L[i]), b = Math.abs(R[i]); if (a > peak) peak = a; if (b > peak) peak = b; }
++for (let i = 0; i < N; i++) {
++  const a = Math.abs(L[i]);
++  const b = Math.abs(R[i]);
++  if (a > peak) peak = a;
++  if (b > peak) peak = b;
++}
+ if (!peak) peak = 1;
+ const norm = 0.89 / peak;
+ const buf = Buffer.alloc(N * 4);
+@@ -222,17 +275,29 @@ for (let i = 0; i < N; i++) {
+   buf.writeInt16LE(Math.max(-32768, Math.min(32767, Math.round(R[i] * norm * 32767))), i * 4 + 2);
+ }
+ const hdr = Buffer.alloc(44);
+-hdr.write("RIFF", 0); hdr.writeUInt32LE(36 + buf.length, 4); hdr.write("WAVE", 8);
+-hdr.write("fmt ", 12); hdr.writeUInt32LE(16, 16); hdr.writeUInt16LE(1, 20); hdr.writeUInt16LE(2, 22);
+-hdr.writeUInt32LE(SR, 24); hdr.writeUInt32LE(SR * 4, 28); hdr.writeUInt16LE(4, 32); hdr.writeUInt16LE(16, 34);
+-hdr.write("data", 36); hdr.writeUInt32LE(buf.length, 40);
++hdr.write('RIFF', 0);
++hdr.writeUInt32LE(36 + buf.length, 4);
++hdr.write('WAVE', 8);
++hdr.write('fmt ', 12);
++hdr.writeUInt32LE(16, 16);
++hdr.writeUInt16LE(1, 20);
++hdr.writeUInt16LE(2, 22);
++hdr.writeUInt32LE(SR, 24);
++hdr.writeUInt32LE(SR * 4, 28);
++hdr.writeUInt16LE(4, 32);
++hdr.writeUInt16LE(16, 34);
++hdr.write('data', 36);
++hdr.writeUInt32LE(buf.length, 40);
+ 
+-const base = video.replace(/\.(mp4|webm|mov)$/i, "");
++const base = video.replace(/\.(mp4|webm|mov)$/i, '');
+ const wav = `${base}.score.wav`;
+ writeFileSync(wav, Buffer.concat([hdr, buf]));
+-console.log(`[score] ${wav} — ${DUR.toFixed(1)}s @ ${BPM}bpm, ${events.filter((e) => e.click).length} select blips, ${events.filter((e) => e.burst).length} activity runs`);
++console.log(
++  `[score] ${wav} — ${DUR.toFixed(1)}s @ ${BPM}bpm, ${events.filter((e) => e.click).length} select blips, ${events.filter((e) => e.burst).length} activity runs`,
++);
+ 
+-const ff = (args) => execFileSync("ffmpeg", ["-y", "-loglevel", "error", ...args], { stdio: "inherit" });
++const ff = (args) =>
++  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...args], { stdio: 'inherit' });
+ 
+ // TWO-PASS loudnorm, and this is not a refinement -- single-pass loudnorm runs a
+ // dynamic normaliser that flattened the mix to LRA 2.3 against a reference of
+@@ -241,41 +306,103 @@ const ff = (args) => execFileSync("ffmpeg", ["-y", "-loglevel", "error", ...args
+ // Pass 1 measures, pass 2 applies LINEAR gain, which moves the level without
+ // touching the range.
+ const measure = (file) => {
+-  const out = execFileSync("ffmpeg", ["-hide_banner", "-nostats", "-i", file,
+-    "-af", `loudnorm=I=${targetLufs}:TP=-1.5:LRA=11:print_format=json`, "-f", "null", "-"],
+-    { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
++  const out = execFileSync(
++    'ffmpeg',
++    [
++      '-hide_banner',
++      '-nostats',
++      '-i',
++      file,
++      '-af',
++      `loudnorm=I=${targetLufs}:TP=-1.5:LRA=11:print_format=json`,
++      '-f',
++      'null',
++      '-',
++    ],
++    { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] },
++  );
+   const m = (out.match(/\{[\s\S]*\}/) || [])[0];
+   return m ? JSON.parse(m) : null;
+ };
+-const norm2 = (n) => n
+-  ? `loudnorm=I=${targetLufs}:TP=-1.5:LRA=11:measured_I=${n.input_i}:measured_TP=${n.input_tp}:measured_LRA=${n.input_lra}:measured_thresh=${n.input_thresh}:offset=${n.target_offset}:linear=true`
+-  : `loudnorm=I=${targetLufs}:TP=-1.5:LRA=11`;
++const norm2 = (n) =>
++  n
++    ? `loudnorm=I=${targetLufs}:TP=-1.5:LRA=11:measured_I=${n.input_i}:measured_TP=${n.input_tp}:measured_LRA=${n.input_lra}:measured_thresh=${n.input_thresh}:offset=${n.target_offset}:linear=true`
++    : `loudnorm=I=${targetLufs}:TP=-1.5:LRA=11`;
+ const NORM = norm2(measure(wav));
+ const out = `${base}.scored.mp4`;
+ 
+ // A licensed bed, when supplied, sits UNDER the generated sfx rather than
+ // replacing them: the sfx are the part that is synced to the storyboard.
+ if (music && existsSync(music)) {
+-  ff(["-i", video, "-i", music, "-i", wav,
+-      "-filter_complex",
+-      `[1:a]atrim=0:${DUR},afade=t=in:st=0:d=1.2,afade=t=out:st=${(DUR - 2).toFixed(2)}:d=2,volume=0.55[bed];` +
+-      `[bed][2:a]amix=inputs=2:duration=first:dropout_transition=0[mix];` +
+-      `[mix]${NORM}[a]`,
+-      "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", out]);
++  ff([
++    '-i',
++    video,
++    '-i',
++    music,
++    '-i',
++    wav,
++    '-filter_complex',
++    `[1:a]atrim=0:${DUR},afade=t=in:st=0:d=1.2,afade=t=out:st=${(DUR - 2).toFixed(2)}:d=2,volume=0.55[bed];[bed][2:a]amix=inputs=2:duration=first:dropout_transition=0[mix];[mix]${NORM}[a]`,
++    '-map',
++    '0:v',
++    '-map',
++    '[a]',
++    '-c:v',
++    'copy',
++    '-c:a',
++    'aac',
++    '-b:a',
++    '192k',
++    '-shortest',
++    out,
++  ]);
+ } else if (vo && existsSync(vo)) {
+   // Music ducked BY the narration via sidechain, rather than mixed at a fixed
+   // low level: a static duck either buries the bed everywhere or lets it fight
+   // the voice on the loud lines. The sidechain only pulls down while someone is
+   // actually speaking, so the bed comes back up in the gaps.
+-  ff(["-i", video, "-i", wav, "-i", vo,
+-      "-filter_complex",
+-      `[1:a]afade=t=out:st=${(DUR - 1.2).toFixed(2)}:d=1.2[bed];` +
+-      `[bed][2:a]sidechaincompress=threshold=0.03:ratio=9:attack=12:release=320:makeup=1[duck];` +
+-      `[duck][2:a]amix=inputs=2:normalize=0:duration=longest[mix];[mix]${NORM}[a]`,
+-      "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", out]);
++  ff([
++    '-i',
++    video,
++    '-i',
++    wav,
++    '-i',
++    vo,
++    '-filter_complex',
++    `[1:a]afade=t=out:st=${(DUR - 1.2).toFixed(2)}:d=1.2[bed];[bed][2:a]sidechaincompress=threshold=0.03:ratio=9:attack=12:release=320:makeup=1[duck];[duck][2:a]amix=inputs=2:normalize=0:duration=longest[mix];[mix]${NORM}[a]`,
++    '-map',
++    '0:v',
++    '-map',
++    '[a]',
++    '-c:v',
++    'copy',
++    '-c:a',
++    'aac',
++    '-b:a',
++    '192k',
++    '-shortest',
++    out,
++  ]);
+ } else {
+-  ff(["-i", video, "-i", wav,
+-      "-filter_complex", `[1:a]afade=t=out:st=${(DUR - 1.2).toFixed(2)}:d=1.2,${NORM}[a]`,
+-      "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", out]);
++  ff([
++    '-i',
++    video,
++    '-i',
++    wav,
++    '-filter_complex',
++    `[1:a]afade=t=out:st=${(DUR - 1.2).toFixed(2)}:d=1.2,${NORM}[a]`,
++    '-map',
++    '0:v',
++    '-map',
++    '[a]',
++    '-c:v',
++    'copy',
++    '-c:a',
++    'aac',
++    '-b:a',
++    '192k',
++    '-shortest',
++    out,
++  ]);
+ }
+ console.log(`[score] ${out}`);
+diff --git a/tools/clip-gate/voice.mjs b/tools/clip-gate/voice.mjs
+index 2c3f6462af3245483e9ceea2d4b57a9de06730cf..3f8804b64c77148819d23b3d87a956b0812f6db5 100644
+GIT binary patch
+delta 2275
+zcmZuz&2Jk;6qn;PDcdi%i5uEN`})Q1Qt#SsP$_XzDE*K^+k7}wh$dFptY__Qc6V00
+zV<%B+OyP{wYOb6BA@K+FfCS=z#07!iz=b~mgv5;t7bM=y?#8Wx<@L<GkC}PD-+OQU
+zsQU2Yqk3K`mmj~g`1s4E$Nw(yx!jZx@Q-uTa{MW`z)ua`=HAde|9WVakL2g2{9gVR
+z|018*{E<I-QVnR6OxbPMYp#Y7wMiVSHO2Kq8Zp@Blf&mumtZ4u8M*0tWN9m~p$ASx
+zeMmeVH0Sq+&*xPBXc+S7%byINJE7P#h#5GZ)q)w&f)X@!n7IPm3h=*&&kW&E+*9c*
+zy_%Amx=l0`_L}N8RlSyqX@~8|aXwIVscVxRm0YPMP)V?QcggTD49hlr(sVoiz{d$=
+z^qA}TYb4U}tO6c}GT}E_QFXn>f7^4asQT8X!3aVi6jgIlY6>I3t0Q9*3V?`>dc-7A
+zL?aCa04jfbr2e8>!UbL(AcfK-n=aF;DC#Nv+mY7}D6RwA=?$h!B!)+I<NuA*=$Rkl
+zg;fl^Y<4Lky*zq8r|^$P7x}NF)BV&c4vDpHt$6|tEfzTArZGMMW<)~IvWZq+i49{V
+zF1Iiw{OY^37o=)O!y?z$@ZO3?7zhd~86%z>5CP+IW4fknFf(Q(j7^6|H!QoYX>keM
+zjB1G#155ZbC<9_Gz>&GZzuNmk5f=<D%s_0msn>)D58zUz#{b$odr9f-q`>vN^{4%_
+zpxY?aY`<9oD{7@tbN{*XeYL}!%NS(Lnl7D!Wi@m|B7%NqY{1}zW+xJxIVp5$f=Gzs
+zHl~P!bgqdlmQ|xGc9P7Ci4nKy#wrOAE+X^Dp|3{1#b$6zi@7wAM${359d~EKnF>yw
+zhHfSRrwN0V3;e2bg}<-tKc*m-7?~^}52ynYam*P0nWFO_m0SGSzFVB^o99pV-QoHD
+zv;5BfOMP*IKA^j_62E+|j51Tz8v=B}BVETZ9m|VJCh@G8-H1f=DwZz5Q%5thi5?EJ
+zCu)Hq!rKxN7Hy?70J2H!q%ZUXTT{a=)|Me7PQJL1Ks*u?!|<`scsP}nDkYfJVTTzG
+z_7#*z)<&bWvoU}hpmGYtEd)r(XBVYzE1;2Z?<edw2DT)yY10i_Q;;S^x{IJa+08TK
+zkgk&eqZh|yVu=!qIuaydxfWr4CE6a?7PH%+kqiz*R$$0~KX6v`27n&^ibqyDT^GEa
+zI`|&{;NXdV9D3LemXP|OWr`+xt!+iu5E!kZ>*jsx2AYZ_#vZmdtx|%?3d)m%cQusc
+z5YI&1@c#HK?Bw#g%w|kL4W-f@v+F8m5mye~<co*u{PRQg0$QUO`E9$+CJ9Www=m1=
+z1vM{P)x*LZ|G7}-XAjTu=<ovn4xjNO>TTtjH-Tt<Na7&rR?H2nn`E7+=h(a-V>;-9
+zled=U=de|X$X#bkc=8XAyn7r+fS}`f32#*~pgrE2|9Ql`AloJFV!3sK*z`!yV(kR@
+ztOt9vm2_bK`dDLHx(gtl%41nV*&Z2dyWH_U-;edil50rNdI&^XmsS37{5bz){H24c
+z;bO8$m>c-I_+`9!6i+jKE7UZv1ju&sk^}zFxRys1KU2IulGGMoFD{Iss3)3l%61K3
+zPW*@BWFL9QW;>`SEGM+W*5ikyCEqK{xJHSwC0AmGv3sN|swz>XT}duX)07nyr#ew)
+zj6|z8^+S(rrY@KPOCce4n}2ikO?lni1pbe}Yp)z#<Zn#e<DX7k_0xkf$n2zLtC39&
+w%g&}3vx#A0(I;N7T&`5G<;ex+ikQe6-Ok#x>IQ9s|1VVNCA?RkZ{(E!0Qs$ZQvd(}
+
+delta 2092
+zcmZuy&2QXP5NDHYle%$}=4)xi$Mh*B-p1?QG*C*~v>>&hrfu4!Y9*R1jq82hb>p>-
+z{dSWmT~%B-aY*$fE=crHsYiqa2QC~c#DNq40D?0TM=H?+5;M=6Y!;BL@$<~Q`S{I;
+zKRLBCv$LGlwPI0!bZaT2KYDr-$%`8qU0%-2r2_eB=3M*qV}>N-Jy((1J=c+b-E$e~
+zi=OLkjVrxZ@cZ-Lb4$vo=GCJx7O)L`lRNKwKEJsYIM4z&4(q^zu)^n@n&(&UMseuy
+zBw=Uu&Yg|e6MXlQDUb9`j&@&lNnhUXJCR}XK_6u4wk{v{O&-%VCkzq+u5VXi9*n?*
+zN*?CV!?ygjkI9~F={B@TyRGL{P>Yle=2ci8CF%XJA@&4#-Y02>p2PQK>Wi7c<j1|E
+z<~}tyN>FLBQNPDyBXxi*(wr@^JUWukvajb@-QFw+j$n~w#+oG&fP9{XNd&|N<2Xk6
+z-~k-RAo2(&MHl+q;&B|t29p;KEFVR$(1y|Co1QRckkKMUzB=&EVB5?FU6+3z$Xoxf
+z+s<3mBMh6Nx1!Yy3FU?U6TM_B>c>8j&-%|H{k#9@9Z0O0N51WFqqv$B3ad%6iaFqu
+z-!GU}Tw;pYs~d!{uK8R5;al3n+xG%afUT6#WozKooUVaNR)9^K0*Zk6new}VSCmY^
+z^gM=83w?#pX*4B&AGrLQuC+Q<ym)K5bC*2Js|SzC+QAbKSwpyIFxW&?yl@UySmZ^V
+zg712lVV|)|BSvF}tJ<ku*raAK*G2H}(d89ZXp#+896A(|TDWnS2belnwRgj~Zj1TK
+zbR)Kf7Y0fxbm`?J&G~4)gh#i$3zkAl?u@-9*R;cvkZc8_#uG2$2q6Jxp}kACQ!@-d
+zZE{^c)$&-NpEVlCV~2?HLo~489=e7!Ge~2*FnIa`x!hMMb2T|RSwx=2@>l`{pK27Y
+zW5%xSC)@<zPQ;~{AYjxMKMWp!NNNBg-h%D)2wmfDuxLxvRFa5Hojek{F&zqpI_>};
+zk7|Mx2b(Txh=PmT0{OAMQ8stY0=B*vpmYud-xO)x9(EPZs|I1*DPh?J9ynpe3#xOF
+zRy!>wg^bx*NffU0fZ78Ms*H)RG8S=z?{V(M++J^gwZO53Qv-w3EXu!hV}b?^QliE+
+zTt|^E-#)zNrNMVkY#YVSguJBY151(kxL1sl3A3dV?FWVJzsGvdmv13H7(7xe#_&)M
+z%Q`hgTY6(?8R<_$%Oj**EJEl)&8t*+VCiytnCdTvrv}<{qRTIb7m@YHFx@(TgwCHG
+zAv?b)YK}~Ople+V*}yt=;$O8k>}J|IG>eIKKf#LUO<1^jebGv=^Mk7AZW+2JACG)^
+z7=niHn=qp?)aA&ig|6Nm%?(qqyHNRI)sX9><&!B4VG{?c5&WmyyVU!}S_hR;wfJ_%
+zsONthd*d`Kc-Tw|u5xEFI5pb~Xy2q`RJS7>Arr86^sB&F&yO2D`0~atW~tpZ`OWwZ
+zjIous?uTAru(P!4<;2A7M@%h!UEBYoqoq)fcojWk=WpSQ6)-8EH&x5;EeOl9R97de
+z(HXVA;PG82tVcfIWXP2ZxuxtHOylYMiE9*+o}>RWz?%FbcV|F}=;L|ry+vZ<pxF^Q
+uT(Qf_ukFz5RC-pk_vV>WiS`WE5vOE(cLy>rsB!%BvUE;#`Q+s?I{XJan?qLs
+

@@ -1,0 +1,1036 @@
+{
+  "schemaVersion": "portfolio-criterion-assessment.v1",
+  "at": "2026-09-05T21:04:21.262036+00:00",
+  "mode": "Builder",
+  "verdict": "AGENT_EVALUATED_ONLY_INCOMPLETE_WITH_OBSERVED_REFLOW_FAILURES",
+  "scope": "First bounded measurement pass over existing immutable local first-use and repaired landing evidence; no new runtime/browser test and no whole-product grade.",
+  "originalRequest": "Each individual repo ready for use and handoff, including visual UI, responsiveness and interaction standards and grading.",
+  "repo": "NodeVideo",
+  "canonicalRepo": "HomenShum/NodeVideo",
+  "commit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "commitMeaning": "Base of the two dirty proof snapshots, not a claim the19-owner repair is committed at this base.",
+  "runtimeSourceBindings": {
+    "firstUse18OwnerDigest": "bb5ca4d7a02ab72eecf2581f63fa7762174190453e2ccdeb5d7879d30b9c0c18",
+    "landing19OwnerDigest": "1b6dac7ed3b6cbd2353adffe7da6bffb21a3d57fb6685027158b1390fb0e6d02",
+    "landingOwnerSha256": "5d4ce6007803f7166949c40cdec646e0d2c51b0ee7ba8ca0dc2ac686b2de45ab",
+    "allHistoricalSourceBindings": 1374,
+    "currentMetadataAndTestUnchangedClaim": false,
+    "equivalence": {
+      "path": "E6i-nodevideo-criterion-assessment/runtime-scope-equivalence.json",
+      "bytes": 1410,
+      "sha256": "91811c4588ffef0cd13ecc471d2deda0f7eeb89bf5da17b9ae32f897d2d8e544"
+    }
+  },
+  "environment": {
+    "kind": "Local built preview, ownloopback4983 nowclosed",
+    "OS": "Windows",
+    "browser": "Chromium149.0.7827.55",
+    "input": "Automated pointer and selected keyboard operations",
+    "device": "Viewport emulation, not physical hardware",
+    "theme": "Actual default dark HTML; color-scheme emulation is not the app theme switch",
+    "providerMode": "Local rules; no credential/provider operation",
+    "assistiveTechnology": null
+  },
+  "profileRevision": "NODEVIDEO-CRITERION-FIRST-PASS-20260905",
+  "referenceRefs": [
+    "standard",
+    "promise",
+    "baseReadme"
+  ],
+  "testedAt": {
+    "originalFirstUse": "2026-09-05T19:44:28.521Z through2026-09-05T19:56:37.235352Z receipts",
+    "landingNative": "2026-09-05T20:16:43.893997Z through2026-09-05T20:18:50.509110Z",
+    "assessment": "2026-09-05T21:04:21.262036+00:00"
+  },
+  "reviewer": "/root/nodemem_mobile_judge, independent nonauthor; context reused from earlier independent reviews, not a fresh-human participant",
+  "coverage": {
+    "originalFirstUseViewports": [
+      [
+        320,
+        800
+      ],
+      [
+        360,
+        800
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        1440,
+        960
+      ],
+      [
+        1920,
+        1080
+      ]
+    ],
+    "landingViewports": [
+      [
+        320,
+        800
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        1440,
+        960
+      ]
+    ],
+    "landingModes": [
+      "normal",
+      "reduced",
+      "initial computed-font200percent"
+    ],
+    "originalViewedPngs": 15,
+    "landingViewedPngs": 12,
+    "currentlyReViewedForAssessment": [
+      "editor1440",
+      "editor320",
+      "inspector390"
+    ],
+    "missingThemes": [
+      "light visual/state matrix"
+    ],
+    "missingContractRoutes": [
+      "/collab.html userjourney",
+      "/practice.html camera journey",
+      "/apps/chrome-extension/sidepanel.html actual coach workflow",
+      "/creatorbench.html workflow"
+    ],
+    "performanceBudgets": "NOT_FROZEN_OR_MEASURED",
+    "physicalDevices": "NOT_RUN",
+    "nativeZoom": "NOT_RUN",
+    "screenReaders": "NOT_RUN",
+    "humanParticipants": 0,
+    "liveProvider": "NOT_RUN"
+  },
+  "criterionRatings": [
+    {
+      "id": "V1",
+      "dimension": "visualScore",
+      "criterion": "Typography",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "The viewed dark landing/editor use distinct heading, prose and monospace roles.",
+      "deduction": "No complete typography reference/state/theme review; compact and enlarged text issues are recorded under V5.",
+      "evidenceRefs": [
+        "landing1440",
+        "editor1440",
+        "editor320"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "V2",
+      "dimension": "visualScore",
+      "criterion": "Spacing/grid",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "The ordinary desktop layout and protected landing geometry were observed.",
+      "deduction": "All routes/states and both promised themes have not received spacing/grid review.",
+      "evidenceRefs": [
+        "landingJudge",
+        "editor1440",
+        "promise"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "V3",
+      "dimension": "visualScore",
+      "criterion": "Color/token discipline",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Actual default-dark captures use the existing lime accent.",
+      "deduction": "No complete token-to-pixel audit or light-theme visual matrix; a dark-class toggle is not visual certification.",
+      "evidenceRefs": [
+        "landing1440",
+        "promise"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "V4",
+      "dimension": "visualScore",
+      "criterion": "Hierarchy",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Visible heading, calls to action, editor sections and proposal controls were inspected.",
+      "deduction": "No frozen full-route hierarchy reference and no first-time human action-choice observation.",
+      "evidenceRefs": [
+        "landing1440",
+        "editor1440"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "V5",
+      "dimension": "visualScore",
+      "criterion": "Rendered legibility/contrast",
+      "rating": 2,
+      "status": "SCORED_OBSERVED_SCOPE",
+      "observation": "Actual enlarged phone captures cut off timeline labels, count text and pose provenance.",
+      "deduction": "Major legibility loss in the observed resized state; contrast ratios and the light theme remain unmeasured.",
+      "evidenceRefs": [
+        "landing320text",
+        "landing390text",
+        "editor390text"
+      ],
+      "coverage": "Default-dark Chromium, initial computed-font doubling at320/390; not native zoom or whole criterion coverage.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "V6",
+      "dimension": "visualScore",
+      "criterion": "Consistent elevation/icons",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Shared buttons/cards/icons are visible in the selected captures.",
+      "deduction": "No complete elevation/icon consistency review across routes, states and themes.",
+      "evidenceRefs": [
+        "editor1440",
+        "landing1440",
+        "promise"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "V7",
+      "dimension": "visualScore",
+      "criterion": "Alignment",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Matched ordinary landing captures preserve existing target geometry.",
+      "deduction": "Protected geometry is not a complete alignment grade for all surfaces and states.",
+      "evidenceRefs": [
+        "landingJudge",
+        "editor320"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "V8",
+      "dimension": "visualScore",
+      "criterion": "Polish of empty/loading/error/populated states",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Hash-error/recovery, populated editor and export-cancel states are preserved. A native waiting spinner appears in an inspector capture.",
+      "deduction": "No complete empty/loading/error/timeout/disabled-state visual matrix or measured waiting duration. The spinner alone is not graded as a defect.",
+      "evidenceRefs": [
+        "inspector390",
+        "special",
+        "codec"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "V9",
+      "dimension": "visualScore",
+      "criterion": "Purposeful motion and reduced-motion behavior",
+      "rating": 3,
+      "status": "SCORED_OBSERVED_SCOPE",
+      "observation": "The repaired landing paints, counts1–8 and has a static reduced-motion alternative. Native18-second windows retain49 zero samples followed by recovery.",
+      "deduction": "Repeated visible interruption remains in the supplied tracking sequence. Do not infer continuous paint, precise frame attribution, smooth playback or wall-time performance.",
+      "evidenceRefs": [
+        "landingJudge",
+        "landingSamples",
+        "landingReceipt"
+      ],
+      "coverage": "Landing only; normal/reduced/text200 at320/390/1440. Other motion surfaces and preferences are not certified.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "D1",
+      "dimension": "designScore",
+      "criterion": "Clarity of the main action",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Landing actions and local editor proposal/apply/export controls are visible.",
+      "deduction": "The advertised coach/collab/practice/creator journeys and fresh-human recognition were not assessed.",
+      "evidenceRefs": [
+        "landing1440",
+        "editor1440",
+        "promise"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "D2",
+      "dimension": "designScore",
+      "criterion": "Navigation/information architecture",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Studio, editor tabs and landing Studio/Back/reload paths were exercised.",
+      "deduction": "Deep links/back-forward and navigation architecture across all promised routes are untested.",
+      "evidenceRefs": [
+        "firstMatrix",
+        "landingReceipt",
+        "promise"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "D3",
+      "dimension": "designScore",
+      "criterion": "Progressive disclosure",
+      "rating": 3,
+      "status": "SCORED_OBSERVED_SCOPE",
+      "observation": "Phone tabs expose Canvas, Agent and Timeline, but after applying the edit to clip2 the compact view still shows clip0 and the changed clip lies beyond the viewport.",
+      "deduction": "The reviewer needs additional navigation/scrolling to inspect the accepted change; a successful DOM transition does not reveal that change in the current view.",
+      "evidenceRefs": [
+        "editor320",
+        "firstJudge"
+      ],
+      "coverage": "Observed local phone proposal/apply state; no claim about every disclosure flow.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "D4",
+      "dimension": "designScore",
+      "criterion": "Useful information density",
+      "rating": 3,
+      "status": "SCORED_OBSERVED_SCOPE",
+      "observation": "The phone timeline truncates captions and current-cut context; only an initial segment is visible although the actual changed clip is later.",
+      "deduction": "Useful change evidence is harder to read than the large empty panel area suggests; manual scrolling is required.",
+      "evidenceRefs": [
+        "editor320",
+        "editor1440",
+        "firstJudge"
+      ],
+      "coverage": "Viewed current local editor states, without extrapolation to all editor workspaces.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "D5",
+      "dimension": "designScore",
+      "criterion": "Consistency of component behavior and wording",
+      "rating": 4,
+      "status": "SCORED_OBSERVED_SCOPE",
+      "observation": "The actual desktop landing says Three ways to use NodeVideo today above four cards: collab edit, coach, cut takes, and practice.",
+      "deduction": "The visible count and content disagree. This is a minor wording inconsistency, not an allegation that the four routes were tested.",
+      "evidenceRefs": [
+        "landing1440",
+        "promise"
+      ],
+      "coverage": "Observed landing copy only; other component wording requires coverage.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "R1",
+      "dimension": "responsiveScore",
+      "criterion": "Reflow/content preservation",
+      "rating": 2,
+      "status": "SCORED_OBSERVED_SCOPE",
+      "observation": "Initial computed-text200 produces201px/131px page overflow at320/390; provenance/count prose and canvas bounds are cropped in actual PNGs.",
+      "deduction": "A required enlarged-phone state loses straightforward access to content. Native200/400percent zoom and full locale coverage remain NOT_RUN.",
+      "evidenceRefs": [
+        "landing320text",
+        "landing390text",
+        "landingReceipt"
+      ],
+      "coverage": "Measured initial-font-doubling failure, not a general device or native zoom result.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "R2",
+      "dimension": "responsiveScore",
+      "criterion": "Reachability of navigation and primary actions",
+      "rating": 3,
+      "status": "SCORED_OBSERVED_SCOPE",
+      "observation": "Primary Export and bottom tabs remain visible in the compact editor, but later timeline actions and the accepted clip require horizontal discovery.",
+      "deduction": "Actions/context are not fully visible in the current compact view; observed workaround is scrolling. Real touch and on-screen keyboard are untested.",
+      "evidenceRefs": [
+        "editor320",
+        "firstJudge"
+      ],
+      "coverage": "Local Chromium compact editor only. No inaccessible-action or data-loss claim is inferred.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "R3",
+      "dimension": "responsiveScore",
+      "criterion": "Modal/panel/table/canvas adaptation",
+      "rating": 2,
+      "status": "SCORED_OBSERVED_SCOPE",
+      "observation": "Enlarged phone editor captions intersect the native player controls; landing canvas/count/provenance content extends beyond the viewport.",
+      "deduction": "The current panel/canvas arrangement does not preserve adjacent labels and controls under the exercised text enlargement.",
+      "evidenceRefs": [
+        "editor390text",
+        "proposal390text",
+        "landing320text",
+        "landing390text"
+      ],
+      "coverage": "Observed specific panels/canvas; no modal/table-wide or physical-device certification.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "R4",
+      "dimension": "responsiveScore",
+      "criterion": "Touch and on-screen-keyboard usability",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Chromium CSS viewports were emulated on Windows.",
+      "deduction": "No physical touch device, operating-system on-screen keyboard or input occlusion measurement.",
+      "evidenceRefs": [
+        "firstReceipt",
+        "landingReceipt"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "R5",
+      "dimension": "responsiveScore",
+      "criterion": "Stability under zoom, long content and declared locales",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Initial computed-font doubling and selected long text were observed, including failures.",
+      "deduction": "Native200/400percent zoom, complete long-content matrix and declared locales/support promises are not established.",
+      "evidenceRefs": [
+        "special",
+        "landingReceipt"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "I1",
+      "dimension": "interactionScore",
+      "criterion": "Working controls and keyboard paths",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Frame480→481→ArrowLeft480 and local proposal/Apply/Undo controls worked in seven viewport pairs.",
+      "deduction": "Not all controls, keyboard paths, tab order or modal interactions were exercised.",
+      "evidenceRefs": [
+        "firstJudge",
+        "firstMatrix"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "I2",
+      "dimension": "interactionScore",
+      "criterion": "Immediate honest feedback and durable status",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Local-mode attribution, manifest-blocked status and export progress/cancel are present.",
+      "deduction": "Durable status, reload-during-work, stale progress and provider status are NOT_RUN.",
+      "evidenceRefs": [
+        "firstJudge",
+        "codec"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "I3",
+      "dimension": "interactionScore",
+      "criterion": "Validation/error/retry behavior",
+      "rating": 3,
+      "status": "SCORED_OBSERVED_SCOPE",
+      "observation": "A byte-mismatched manifest visibly blocks inspector use. Restoring the route then toggling the inspector does not recover; a full page reload recovers7/7 verification.",
+      "deduction": "Recovery requires a broader reload after source correction. Provider failures, durable-job timeout and request retry behavior were not exercised.",
+      "evidenceRefs": [
+        "hashBlocked",
+        "hashRecovered",
+        "special",
+        "firstJudge"
+      ],
+      "coverage": "Exact local manifest failure/recovery fixture only, with failure retained.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "I4",
+      "dimension": "interactionScore",
+      "criterion": "Safe cancellation/undo and duplicate-action handling",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Native export cancellation produced no file in the observed window, explicit retry produced one file, and Undo restored labels/duration.",
+      "deduction": "Duplicate dispatch, concurrent edits, later delayed cancellation and full hidden-plan rollback equality were not certified.",
+      "evidenceRefs": [
+        "codec",
+        "actualMedia",
+        "firstJudge"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "I5",
+      "dimension": "interactionScore",
+      "criterion": "State continuity through navigation, reload, conflicts and reopening",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Landing Back/reload and exported-file reopening succeeded.",
+      "deduction": "Accepted-plan restart persistence, conflicts, multi-tab state, stale/concurrent revisions and durable handoff are NOT_RUN.",
+      "evidenceRefs": [
+        "landingReceipt",
+        "actualMedia",
+        "firstJudge"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "A1",
+      "dimension": "accessibilityScore",
+      "criterion": "Semantic names/structure",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Named controls are operable by locators; retained automated scans report no violations in their selected regions.",
+      "deduction": "Manual semantic coverage and all surfaces remain missing; the editor scan excluded plan preview.",
+      "evidenceRefs": [
+        "firstJudge",
+        "firstMatrix"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "A2",
+      "dimension": "accessibilityScore",
+      "criterion": "Keyboard/focus order and modal focus return",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "A slider arrow-key path worked.",
+      "deduction": "No complete keyboard-only journey, focus order/visibility, dialog trap or focus-return proof.",
+      "evidenceRefs": [
+        "firstJudge"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "A3",
+      "dimension": "accessibilityScore",
+      "criterion": "Contrast/non-color cues",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Text labels supplement several status badges in dark captures.",
+      "deduction": "No complete computed contrast ratios, light-theme check or non-color-only audit.",
+      "evidenceRefs": [
+        "inspector390",
+        "editor1440",
+        "promise"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "A4",
+      "dimension": "accessibilityScore",
+      "criterion": "Text resize/reflow and target size",
+      "rating": 2,
+      "status": "SCORED_OBSERVED_SCOPE",
+      "observation": "The exercised initial text-resize state visibly clips controls/provenance/captions on phones.",
+      "deduction": "This is observed reflow failure. Target-size measurements, exception review, native zoom and assistive operation remain missing; no WCAG certification is made.",
+      "evidenceRefs": [
+        "landing320text",
+        "landing390text",
+        "editor390text"
+      ],
+      "coverage": "Scoped text-resize deduction only; incomplete accessibility criterion.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "A5",
+      "dimension": "accessibilityScore",
+      "criterion": "Screen-reader announcements and reduced-motion alternatives",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Landing reduced-motion capture is painted/static atcount1.",
+      "deduction": "No actual screen-reader/assistive-technology announcements or cross-surface reduced-motion alternatives were tested.",
+      "evidenceRefs": [
+        "landingReceipt"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "P1",
+      "dimension": "performanceScore",
+      "criterion": "Initial usable view",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "A first painted canvas was observed after the repaired startup.",
+      "deduction": "No frozen usable-view budget, LCP measurement or field p75 sample/window. First observed canvas paint is not LCP.",
+      "evidenceRefs": [
+        "landingReceipt"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "P2",
+      "dimension": "performanceScore",
+      "criterion": "Input/scroll responsiveness",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Frame seeks and local controls completed in their bounded harness.",
+      "deduction": "No INP/input/scroll latency distribution, frozen budget or device/network segment.",
+      "evidenceRefs": [
+        "firstJudge"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "P3",
+      "dimension": "performanceScore",
+      "criterion": "Layout stability",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Ordinary before/after geometry is equal for protected landing targets.",
+      "deduction": "No current layout-shift instrumentation or field/lab CLS measurement; equal snapshots do not establish stability.",
+      "evidenceRefs": [
+        "landingJudge"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "P4",
+      "dimension": "performanceScore",
+      "criterion": "Honest long-operation feedback",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "A short export exposed real progress and supported cancellation/retry.",
+      "deduction": "No frozen long-operation latency/staleness budget, full-duration export or durable-job measurement. Feedback observation is retained under interaction scope.",
+      "evidenceRefs": [
+        "codec",
+        "actualMedia"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "P5",
+      "dimension": "performanceScore",
+      "criterion": "Behavior with large data and constrained device/network conditions",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Ten local exchanges left the latest eight pairs in the retained transcript; callback proof simulated60seconds.",
+      "deduction": "No large media/data workload or actual constrained CPU/device/network test. Simulated timestamps are not sustained wall-time load.",
+      "evidenceRefs": [
+        "firstJudge",
+        "landingJudge"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "U1",
+      "dimension": "usageScore",
+      "criterion": "First-time task comprehension",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "An agent completed scripted local tasks using prior knowledge.",
+      "deduction": "No first-time intended-audience human participant, sample, assistance or wrong-turn record.",
+      "evidenceRefs": [
+        "firstJudge"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "U2",
+      "dimension": "usageScore",
+      "criterion": "Successful core journey",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Agent local inspection/edit/short-export journeys completed.",
+      "deduction": "No observed fresh human core-task completion; advertised additional journeys and default full export are not fully exercised.",
+      "evidenceRefs": [
+        "firstJudge",
+        "promise"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "U3",
+      "dimension": "usageScore",
+      "criterion": "Bounded errors/help/rework",
+      "rating": 3,
+      "status": "SCORED_OBSERVED_SCOPE",
+      "observation": "The automated local inspector journey needs a full reload to recover after correcting a manifest mismatch.",
+      "deduction": "The failed toggle recovery adds rework. This is agent-operated evidence, without any first-time human comprehension/help rating.",
+      "evidenceRefs": [
+        "special",
+        "firstJudge",
+        "hashRecovered"
+      ],
+      "coverage": "Agent-evaluated local recovery only; no fresh-human usability inference.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "U4",
+      "dimension": "usageScore",
+      "criterion": "Usable export or consumer result",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Actual H.264 file independently decoded/reopened:2seconds,60frames,180×320,noaudio,captionPROOF CUT.",
+      "deduction": "The shortened proof fixture is not the untouched44.5second720×1280 user export or full-editor re-import; broader result usability remains unmeasured.",
+      "evidenceRefs": [
+        "actualMedia",
+        "decoded",
+        "firstJudge"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "U5",
+      "dimension": "usageScore",
+      "criterion": "Restart/reopen/handoff without hidden knowledge",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "The actual short artifact reopened in a fresh video document; handoff/test proposal is reviewed.",
+      "deduction": "A new developer executing the final handoff and full app/accepted-plan restart without hidden proof setup remains pending.",
+      "evidenceRefs": [
+        "actualMedia",
+        "newTestPlan"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "L1",
+      "dimension": "alignmentScore",
+      "criterion": "Fit to intended user and job",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "The stated product serves creators inspecting and editing public comparison material.",
+      "deduction": "No intended-user fit research or participant validation in this evidence; avoid inferring market/job fit from scripted success.",
+      "evidenceRefs": [
+        "baseReadme",
+        "promise"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "L2",
+      "dimension": "alignmentScore",
+      "criterion": "Coverage of advertised capabilities",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Three route families have bounded local observations.",
+      "deduction": "Seven contract surfaces plus optional durable/provider/private workflows are advertised; remaining capability coverage is NOT_RUN.",
+      "evidenceRefs": [
+        "promise",
+        "firstJudge",
+        "landingJudge"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "L3",
+      "dimension": "alignmentScore",
+      "criterion": "Truthful limits/status",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Local mode, silent public media, blocked hash mismatch and repaired landing limits are documented.",
+      "deduction": "Provider/model/usage status and all advertised scoring/production claims have not been verified in actual operation.",
+      "evidenceRefs": [
+        "firstJudge",
+        "landingJudge",
+        "promise"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "L4",
+      "dimension": "alignmentScore",
+      "criterion": "Permissions and review authority",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Local proposals require Apply before accepted-plan mutation; no provider requests occurred in the local proof.",
+      "deduction": "Real provider egress/consent, durable owner authorization, private-media policy and server enforcement were not exercised.",
+      "evidenceRefs": [
+        "firstJudge",
+        "promise"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    },
+    {
+      "id": "L5",
+      "dimension": "alignmentScore",
+      "criterion": "Source/trace/artifact consistency",
+      "rating": null,
+      "status": "NOT_RUN",
+      "observation": "Seven input hashes, frame times and actual short-file bytes were independently checked.",
+      "deduction": "Provider trace/usage/durable-owner attribution and current published-deployment consistency remain NOT_RUN. Local provenance is positive evidence, not a full cross-system criterion pass.",
+      "evidenceRefs": [
+        "firstJudge",
+        "actualMedia",
+        "landingJudge"
+      ],
+      "coverage": "Required criterion coverage incomplete; positive partial evidence does not create a passing score.",
+      "fullCriterionCoverageComplete": false
+    }
+  ],
+  "visualScore": null,
+  "designScore": null,
+  "responsiveScore": null,
+  "interactionScore": null,
+  "accessibilityScore": null,
+  "performanceScore": null,
+  "usageScore": null,
+  "alignmentScore": null,
+  "overallScore": null,
+  "overallGrade": null,
+  "dimensionStatus": {
+    "visualScore": "INCOMPLETE",
+    "designScore": "INCOMPLETE",
+    "responsiveScore": "INCOMPLETE",
+    "interactionScore": "INCOMPLETE",
+    "accessibilityScore": "INCOMPLETE",
+    "performanceScore": "INCOMPLETE",
+    "usageScore": "INCOMPLETE",
+    "alignmentScore": "INCOMPLETE"
+  },
+  "aggregation": {
+    "performed": false,
+    "reason": "Every dimension has required missing coverage. Scoped deductions are not final dimension scores; no means, floor or N/A pass is invented."
+  },
+  "target": {
+    "minimumDimension": 4.5,
+    "minimumCriterion": 4,
+    "changed": false
+  },
+  "barScores": null,
+  "hardGates": {
+    "evidenceIdentity": "VALID_FOR_BOUND_SCOPES",
+    "landingStartup": "CLOSED_BY_SEPARATE_REVIEW",
+    "requiredEnlargedReflow": "OBSERVED_FAILURE",
+    "completeAccessibility": "NOT_RUN",
+    "currentPublicationAndNewTestGate": "IN_PROGRESS_SEPARATE_WORKER_SLICE",
+    "sharedIntegration": "NOT_RUN_CURRENT_CANDIDATE",
+    "productionAndLiveProvider": "NOT_RUN"
+  },
+  "confidence": {
+    "rawIdentityAndObservedFailures": "high",
+    "completeExperienceQuality": "insufficient",
+    "humanUsability": "unmeasured"
+  },
+  "limitations": [
+    "No complete route/state/theme/browser/device/assistive matrix.",
+    "Initial-font doubling is not native zoom and does not uniformly enlarge later inserted proposal text.",
+    "Continuous paint/smooth playback are not certified; raw tracking gaps and waiting-spinners remain.",
+    "Only a shortened actual2second export was independently decoded/reopened; no full44.5second export grade.",
+    "Current worker README/HANDOFF/test/publication edits are outside these historical product input freezes; their final checks are separate.",
+    "No canonical grade file or product source was edited."
+  ],
+  "requiredFixes": [
+    {
+      "priority": 1,
+      "criteria": [
+        "R1",
+        "R3",
+        "V5",
+        "A4"
+      ],
+      "finding": "Observed enlarged-phone content/control preservation fails.",
+      "smallestNextAction": "After the current publication guard closes, freeze one owning-layout plan for320/390 initial text enlargement. Keep count/provenance prose and primary controls reachable and contain necessary canvas/timeline scrolling. Preserve exact input pose, accepted plan/export semantics and all current failure captures."
+    },
+    {
+      "priority": 2,
+      "criteria": [
+        "D3",
+        "D4",
+        "R2"
+      ],
+      "finding": "Compact accepted change can remain beyond the current timeline viewport.",
+      "smallestNextAction": "Diagnose existing selection/scroll owner and capture current changed-clip boundary before a minimal reveal/navigation proposal; no assumption that DOM update alone is visible review."
+    },
+    {
+      "priority": 3,
+      "criteria": [
+        "D5"
+      ],
+      "finding": "Landing says three ways above four cards.",
+      "smallestNextAction": "Correct the existing heading count in a separately owned small copy change when that owner is next approved."
+    }
+  ],
+  "missingEvidenceNext": [
+    "Freeze supported route/theme/platform promises and budgets before broader grading.",
+    "Capture the promised light-theme states and remaining principal routes using their real applicable journeys.",
+    "Run native zoom/reflow and actual touch/OSK/assistive tests; do not relabel Chromium emulation.",
+    "Measure performance against declared workload/budgets and keep fieldp75 separate.",
+    "Observe intended first-time human participants and record assistance/wrongturns without identifiers.",
+    "Only claim provider/durable/production behavior after exact authorized real operation and content/trace proof."
+  ],
+  "developerHandoffStatus": "REVIEWED_PLAN; transfer/newtest/normalcheck/publication closure in progress elsewhere",
+  "userExperienceStatus": "AGENT_EVALUATED_ONLY_WITH_OPEN_OBSERVED_REFLOW_DEFECTS",
+  "freshHumanUsabilityStatus": "NOT_RUN",
+  "sharedIntegrationStatus": "NOT_RUN_CURRENT_CANDIDATE",
+  "productionStatus": "NOT_RUN_CURRENT_CANDIDATE",
+  "centralGradeFile": "REPO_READINESS_GRADES.json untouched",
+  "evidenceRefs": {
+    "standard": {
+      "path": "REPO_READINESS_STANDARD.md",
+      "bytes": 18664,
+      "sha256": "8b5bb532bf0dfeed7cc4ecd2b425d708fc49048cc05ab4cbeb315fc3534aeff2"
+    },
+    "promise": {
+      "path": "E6i-nodevideo-criterion-assessment/reference-ui-contract.json.txt",
+      "bytes": 25735,
+      "sha256": "283f7811a0d55663df019d2dfa33f770b817b2aff05eda43553b7454b335308f"
+    },
+    "baseReadme": {
+      "path": "E6i-nodevideo-criterion-assessment/reference-base-README.md.txt",
+      "bytes": 25376,
+      "sha256": "331183c906921c6a8775bfe6db5904b75293ce28fb88d4f4477ddbc76f67f368"
+    },
+    "equivalence": {
+      "path": "E6i-nodevideo-criterion-assessment/runtime-scope-equivalence.json",
+      "bytes": 1410,
+      "sha256": "91811c4588ffef0cd13ecc471d2deda0f7eeb89bf5da17b9ae32f897d2d8e544"
+    },
+    "firstJudge": {
+      "path": "E6i_NODEVIDEO_FIRST_USE_FINAL_JUDGE.json",
+      "bytes": 9273,
+      "sha256": "60ec51473c13cd0fe3eaff8eb63428858a17345762df2b725aa4dcf8b46b40f6"
+    },
+    "firstReceipt": {
+      "path": "E6i_NODEVIDEO_FIRST_USE_RECEIPT.json",
+      "bytes": 19408,
+      "sha256": "68e03aea425d13dc5667a5bfe99058b1eba4d86413ba9391c5cbc054ba999d1e"
+    },
+    "firstMatrix": {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/report.json",
+      "bytes": 5618111,
+      "sha256": "30a268420a709354688e539345d3a400114c0c94204836e2965d88f852f1a814"
+    },
+    "special": {
+      "path": "E6i-nodevideo-first-use-01/special/report.json",
+      "bytes": 4515363,
+      "sha256": "63e97041c9da5374f22b60e7e10a7b52895d9bbfe1be31f784290ed4b75e0061"
+    },
+    "landingJudge": {
+      "path": "E6i_NODEVIDEO_LANDING_FINAL_JUDGE.json",
+      "bytes": 8923,
+      "sha256": "1ed04cfc540126eab7bf264aa99fe6d6e228fba23209a68a39133e052d1c3905"
+    },
+    "landingReceipt": {
+      "path": "E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.json",
+      "bytes": 110583,
+      "sha256": "ec4b6859658ef54073b496c2433d16c9936fb40cd84ff575081ab0dc868a9a45"
+    },
+    "landingSamples": {
+      "path": "E6i-nodevideo-landing-final-judge/native-sample-analysis.json",
+      "bytes": 12159,
+      "sha256": "6d24fc06755116f5903afc3a4fee3ad10b24f43cf24492333b5b1f1e539ee5c4"
+    },
+    "landing1440": {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/start.png",
+      "bytes": 128975,
+      "sha256": "d517786eb44889cb88bf19344801119806f18e66891201c1a23ff1db9b9a723b"
+    },
+    "landing320text": {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/start.png",
+      "bytes": 16570,
+      "sha256": "23997c825ba10f64ba378e4a30fbc62e61ed8b7d4dc9ed47226779ec0661029b"
+    },
+    "landing390text": {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/end.png",
+      "bytes": 22100,
+      "sha256": "740ee466e27d14cfbfafbe03122ace473844bd10de67b6c928bbeac6c269cc29"
+    },
+    "editor320": {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/320-applied.png",
+      "bytes": 29667,
+      "sha256": "916433cf57fbac046497de115cd3d444826a5d14f8a29ae2f43c336324b2ccb5"
+    },
+    "editor1440": {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1440-restored.png",
+      "bytes": 135357,
+      "sha256": "9cb3b0117b014e302381477025eb21b68476424a2e874e4585048a2c11e34463"
+    },
+    "inspector390": {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/390-frame-481.png",
+      "bytes": 196675,
+      "sha256": "a84de23f1b3339a84fb15ada66959cc4fca22d994428f071f4f865f89b005500"
+    },
+    "editor390text": {
+      "path": "E6i-nodevideo-first-use-01/special/text200-390-edit-entry.png",
+      "bytes": 111440,
+      "sha256": "c93656a0168a36c83b22cf76d4fdefec7fbfa36d0913b6ec88d3c0cdc1815d5b"
+    },
+    "proposal390text": {
+      "path": "E6i-nodevideo-first-use-01/special/text200-390-proposal.png",
+      "bytes": 54856,
+      "sha256": "a266cf274d4d9d60078de7101c1e28f6b7bfc3dd0a99b9e81aa82beb117ba281"
+    },
+    "hashBlocked": {
+      "path": "E6i-nodevideo-first-use-01/special/manifest-blocked.png",
+      "bytes": 58432,
+      "sha256": "c0489c50bd385d379c3b5a099852aa81061a86ff958b4ec10714bf85b734d884"
+    },
+    "hashRecovered": {
+      "path": "E6i-nodevideo-first-use-01/special/manifest-reload-recovered.png",
+      "bytes": 61763,
+      "sha256": "11358cfb81705fc58dd5efee1f06074e2a76da554301c77c0377ecf4d0623fc7"
+    },
+    "codec": {
+      "path": "E6i-nodevideo-first-use-01/codec/report.json",
+      "bytes": 10748,
+      "sha256": "cdff1f511c8136f3db0716089a260c67e2eaf26b6dac39504e074938e932956a"
+    },
+    "actualMedia": {
+      "path": "E6i-nodevideo-first-use-judge/actual-media-readback.json",
+      "bytes": 2594,
+      "sha256": "3d7ab7cf9922fbd3b3f946cef01faba1b8f62860b0d8ffdf05c06ba5acd9ac9a"
+    },
+    "decoded": {
+      "path": "E6i-nodevideo-first-use-01/codec/decoded-proof-frame.png",
+      "bytes": 238113,
+      "sha256": "a3d53477d76ec1c1eb47e485403972b5d213e0da18a71093d784de348a98baa7"
+    },
+    "newTestPlan": {
+      "path": "E6i_NODEVIDEO_PUBLICATION_PLAN_JUDGE.json",
+      "bytes": 6212,
+      "sha256": "ffa63b1751e8bc426abaf3403828d103bd7e0a3955f72716282c4ea06cda6f22"
+    },
+    "viewedOriginal": {
+      "path": "E6i-nodevideo-first-use-judge/viewed-pixels.json",
+      "bytes": 5758,
+      "sha256": "7a97d7e37d3b78c3d8d6fac7d89d92059f294d6d317742ac67d9f678113eb6f5"
+    },
+    "viewedLanding": {
+      "path": "E6i-nodevideo-landing-final-judge/viewed-pixels.json",
+      "bytes": 7121,
+      "sha256": "8be179fe463b993357612cf0cdc9c34b72f1c6fb77aaf1cce767d2a40ef60671"
+    }
+  },
+  "sourceEdits": false,
+  "providerCalls": 0,
+  "credentialAccesses": 0,
+  "envFileReads": 0
+}

@@ -1,0 +1,67 @@
+{
+  "summary": {
+    "name": "finite-60-second-callbacks",
+    "errors": [
+      "TypeError: Cannot read properties of undefined (reading '11')"
+    ],
+    "firstFrame": -1,
+    "lastFrame": -1,
+    "framesDrawn": 1,
+    "strokes": 0,
+    "arcs": 0,
+    "firstCount": 0,
+    "lastCount": 8,
+    "countRange": [
+      0,
+      8
+    ],
+    "pulseRange": [
+      0,
+      1.1295946666666667
+    ],
+    "callbackCount": 3602,
+    "maxPending": 2,
+    "pendingBeforeCleanup": 1,
+    "pendingAfterCleanup": 0,
+    "allFrameIndicesValid": false,
+    "allCountValuesValid": false,
+    "allPulseValuesValid": false,
+    "drawSequenceSha256": "d124b23c696a85177dac41a7a28c853546e55caa5b4798fb917f2c3dc1b331ce",
+    "countsSha256": "22723a77529e56b134fb695c2cf880603f8df2fb526f6bbeb6ac38cc798549e0",
+    "pulsesSha256": "baba95069147992b13d784af360ea96da57bceec322024812eb449fc3db02c2b"
+  },
+  "firstObservedIndices": [
+    -1
+  ],
+  "lastObservedIndices": [
+    -1
+  ],
+  "firstObservedCounts": [
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "lastObservedCounts": [
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8
+  ]
+}

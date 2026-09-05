@@ -1,0 +1,703 @@
+{
+  "url": "http://127.0.0.1:4983/edit.html",
+  "viewport": {
+    "width": 1440,
+    "height": 960
+  },
+  "crossOriginIsolated": true,
+  "overflow": 0,
+  "active": {
+    "tag": "BODY",
+    "label": null,
+    "text": "\n    NodeVideo/Sign · Cut v1Accepted107.7 bpmUndoLocal onlyExportLocal H.264 export matches this accepted cut; the private song master is omitted and nothing up"
+  },
+  "text": "NODEVIDEO\n/\nSign · Cut v1\nAccepted\n107.7 bpm\nUndo\nLocal only\nExport\n\nLocal H.264 export matches this accepted cut; the private song master is omitted and nothing uploads.\n\nCanvas\n9:16\nWait a minute\n0:00 / 0:44\nEdit overlays\nNodeAgent\nLocal\nHistory · 2 messages\nAgent settings · key not set\nTimeline\nSelect · edit · drag\nClip #0\nTake A · 6.6s\nSplit\nSwap take\nTrim in\nTrim out\nDuplicate\nDelete\nCurrent cut\nClip #0 selected\nA\n0.0–6.6s\nB\n6.6–16.0s\nB\n16.0–19.7s\nB\n19.7–25.0s\nA\n25.0–40.5s\nCurrent captions\n14 timed captions\n#1\nWait a minute\n#2\nLeft · right · alright\n#3\nFlip it a little closer\n#4\nRed light · on fire\n#5\nRight now · it's so tight\n#6\nTake that as a sign\n#7\nShow me your sign\n#8\nTiki taki tak · tiki tiki taki tak\n#9\nMake up your mind\n#10\nShow me your sign\n#11\nTiki taki tak · tiki tiki taki tak\n#12\nTake that as a sign\n#13\nStay here\n#14\nNodeVideo source-only proof\nNodeAgent · Swap clip #2 to take B",
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Undo",
+      "disabled": false,
+      "rect": {
+        "x": 1106.828125,
+        "y": 12.84375,
+        "width": 84.953125,
+        "height": 28
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 83,
+      "clientWidth": 83
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Export",
+      "disabled": false,
+      "rect": {
+        "x": 1308.34375,
+        "y": 12.84375,
+        "width": 118.859375,
+        "height": 28
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 117,
+      "clientWidth": 117
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Play video",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 476.453125,
+        "y": 247.171875,
+        "width": 25,
+        "height": 37
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 25,
+      "clientWidth": 25
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Mute sound",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 513.453125,
+        "y": 253.171875,
+        "width": 25,
+        "height": 25
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 25,
+      "clientWidth": 25
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Enter Fullscreen",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 577.140625,
+        "y": 248.921875,
+        "width": 16,
+        "height": 37
+      },
+      "display": "inline-flex",
+      "visibility": "visible",
+      "scrollWidth": 16,
+      "clientWidth": 16
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Edit overlays",
+      "disabled": false,
+      "rect": {
+        "x": 447.484375,
+        "y": 366.703125,
+        "width": 174.640625,
+        "height": 28
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 173,
+      "clientWidth": 173
+    },
+    {
+      "tag": "INPUT",
+      "label": "Upload files",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "none",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Submit",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 1091.796875,
+        "y": 272.890625,
+        "width": 32,
+        "height": 32
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 30,
+      "clientWidth": 30
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "inspect_clipCompleted",
+      "disabled": false,
+      "rect": {
+        "x": 1113.796875,
+        "y": 463.28125,
+        "width": 257.9375,
+        "height": 44
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 258,
+      "clientWidth": 258
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Patch applied",
+      "disabled": true,
+      "rect": {
+        "x": 1125.796875,
+        "y": 701.28125,
+        "width": 103.8125,
+        "height": 28
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 102,
+      "clientWidth": 102
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 1080.796875,
+        "y": 455.96875,
+        "width": 337.625,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 336,
+      "clientWidth": 336
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 1080.796875,
+        "y": 543.265625,
+        "width": 337.625,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 370,
+      "clientWidth": 336
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 1080.796875,
+        "y": 680.359375,
+        "width": 337.625,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 336,
+      "clientWidth": 336
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 1080.796875,
+        "y": 767.65625,
+        "width": 337.625,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 336,
+      "clientWidth": 336
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Split clip 0 on nearest beat",
+      "text": " Split",
+      "disabled": false,
+      "rect": {
+        "x": 589.453125,
+        "y": 524.734375,
+        "width": 95.3125,
+        "height": 28
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 93,
+      "clientWidth": 93
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Swap clip 0 to other take",
+      "text": " Swap take",
+      "disabled": false,
+      "rect": {
+        "x": 690.359375,
+        "y": 524.734375,
+        "width": 166.484375,
+        "height": 28
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 164,
+      "clientWidth": 164
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Trim in clip 0 by one beat",
+      "text": " Trim in",
+      "disabled": true,
+      "rect": {
+        "x": 862.4375,
+        "y": 524.734375,
+        "width": 120.109375,
+        "height": 28
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 118,
+      "clientWidth": 118
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Trim out clip 0 by one beat",
+      "text": " Trim out",
+      "disabled": false,
+      "rect": {
+        "x": 988.140625,
+        "y": 524.734375,
+        "width": 137.90625,
+        "height": 28
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 136,
+      "clientWidth": 136
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Duplicate clip 0",
+      "text": " Duplicate",
+      "disabled": false,
+      "rect": {
+        "x": 1131.640625,
+        "y": 524.734375,
+        "width": 154.234375,
+        "height": 28
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 152,
+      "clientWidth": 152
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Delete clip 0",
+      "text": " Delete",
+      "disabled": false,
+      "rect": {
+        "x": 1291.46875,
+        "y": 524.734375,
+        "width": 118.765625,
+        "height": 28
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 117,
+      "clientWidth": 117
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current clip 0 take A",
+      "text": "A0.0–6.6s",
+      "disabled": false,
+      "rect": {
+        "x": 132.765625,
+        "y": 615.59375,
+        "width": 205.90625,
+        "height": 36
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 204,
+      "clientWidth": 204
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current clip 1 take B",
+      "text": "B6.6–16.0s",
+      "disabled": false,
+      "rect": {
+        "x": 340.671875,
+        "y": 615.59375,
+        "width": 293.03125,
+        "height": 36
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 291,
+      "clientWidth": 291
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current clip 2 take B",
+      "text": "B16.0–19.7s",
+      "disabled": false,
+      "rect": {
+        "x": 635.703125,
+        "y": 615.59375,
+        "width": 111.421875,
+        "height": 36
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 109,
+      "clientWidth": 109
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current clip 3 take B",
+      "text": "B19.7–25.0s",
+      "disabled": false,
+      "rect": {
+        "x": 749.125,
+        "y": 615.59375,
+        "width": 166.015625,
+        "height": 36
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 164,
+      "clientWidth": 164
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current clip 4 take A",
+      "text": "A25.0–40.5s",
+      "disabled": false,
+      "rect": {
+        "x": 917.140625,
+        "y": 615.59375,
+        "width": 483.046875,
+        "height": 36
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 481,
+      "clientWidth": 481
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 1: Wait a minute, 0.0 to 1.9 seconds",
+      "text": "#1Wait a minute",
+      "disabled": false,
+      "rect": {
+        "x": 129.765625,
+        "y": 735.765625,
+        "width": 55.625,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 54,
+      "clientWidth": 54
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 2: Left · right · alright, 1.9 to 3.9 seconds",
+      "text": "#2Left · right · alright",
+      "disabled": false,
+      "rect": {
+        "x": 185.390625,
+        "y": 735.765625,
+        "width": 57.546875,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 56,
+      "clientWidth": 56
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 3: Flip it a little closer, 3.9 to 6.6 seconds",
+      "text": "#3Flip it a little closer",
+      "disabled": false,
+      "rect": {
+        "x": 242.9375,
+        "y": 735.765625,
+        "width": 76.71875,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 75,
+      "clientWidth": 75
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 4: Red light · on fire, 6.6 to 8.4 seconds",
+      "text": "#4Red light · on fire",
+      "disabled": false,
+      "rect": {
+        "x": 319.671875,
+        "y": 735.765625,
+        "width": 51.78125,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 50,
+      "clientWidth": 50
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 5: Right now · it's so tight, 9.0 to 11.2 seconds",
+      "text": "#5Right now · it's so tight",
+      "disabled": false,
+      "rect": {
+        "x": 388.734375,
+        "y": 735.765625,
+        "width": 64.25,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 62,
+      "clientWidth": 62
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 6: Take that as a sign, 11.9 to 15.8 seconds",
+      "text": "#6Take that as a sign",
+      "disabled": false,
+      "rect": {
+        "x": 473.140625,
+        "y": 735.765625,
+        "width": 111.25,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 109,
+      "clientWidth": 109
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 7: Show me your sign, 15.8 to 19.8 seconds",
+      "text": "#7Show me your sign",
+      "disabled": false,
+      "rect": {
+        "x": 584.390625,
+        "y": 735.765625,
+        "width": 115.09375,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 113,
+      "clientWidth": 113
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 8: Tiki taki tak · tiki tiki taki tak, 19.8 to 25.3 seconds",
+      "text": "#8Tiki taki tak · tiki tiki taki tak",
+      "disabled": false,
+      "rect": {
+        "x": 699.5,
+        "y": 735.765625,
+        "width": 157.296875,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 155,
+      "clientWidth": 155
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 9: Make up your mind, 25.3 to 26.6 seconds",
+      "text": "#9Make up your mind",
+      "disabled": false,
+      "rect": {
+        "x": 856.796875,
+        "y": 735.765625,
+        "width": 39.3125,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 37,
+      "clientWidth": 37
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 10: Show me your sign, 26.6 to 29.5 seconds",
+      "text": "#10Show me your sign",
+      "disabled": false,
+      "rect": {
+        "x": 896.125,
+        "y": 735.765625,
+        "width": 82.484375,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 80,
+      "clientWidth": 80
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 11: Tiki taki tak · tiki tiki taki tak, 29.5 to 33.6 seconds",
+      "text": "#11Tiki taki tak · tiki tiki taki tak",
+      "disabled": false,
+      "rect": {
+        "x": 978.609375,
+        "y": 735.765625,
+        "width": 118.921875,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 117,
+      "clientWidth": 117
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 12: Take that as a sign, 33.6 to 37.9 seconds",
+      "text": "#12Take that as a sign",
+      "disabled": false,
+      "rect": {
+        "x": 1097.546875,
+        "y": 735.765625,
+        "width": 122.765625,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 121,
+      "clientWidth": 121
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 13: Stay here, 38.9 to 40.3 seconds",
+      "text": "#13Stay here",
+      "disabled": false,
+      "rect": {
+        "x": 1250.046875,
+        "y": 735.765625,
+        "width": 40.28125,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 47,
+      "clientWidth": 38
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Current caption 14: NodeVideo source-only proof, 40.5 to 44.5 seconds",
+      "text": "#14NodeVideo source-only proof",
+      "disabled": false,
+      "rect": {
+        "x": 1295.125,
+        "y": 735.765625,
+        "width": 115.09375,
+        "height": 24
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 113,
+      "clientWidth": 113
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Canvas",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "inline-block",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Agent",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "inline-block",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Timeline",
+      "disabled": false,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "display": "inline-block",
+      "visibility": "visible",
+      "scrollWidth": 0,
+      "clientWidth": 0
+    }
+  ],
+  "videos": [
+    {
+      "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4#t=15.5,22.13",
+      "currentTime": 15.5,
+      "duration": 57.598005,
+      "readyState": 4,
+      "seeking": false,
+      "muted": true,
+      "width": 640,
+      "height": 360
+    }
+  ],
+  "svgs": [],
+  "canvases": []
+}

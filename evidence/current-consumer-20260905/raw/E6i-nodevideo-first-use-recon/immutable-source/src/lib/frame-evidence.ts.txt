@@ -1,0 +1,166 @@
+// Deterministic frame checks, run before any model looks at anything.
+//
+// The rule this exists to enforce: do not judge a clip by watching the finished MP4. A person or a
+// vision model reviewing final output is the weakest instrument available and the first one everyone
+// reaches for. These checks are cheap, deterministic and bindable, and a model's opinion never
+// overturns one of the hard zeros below.
+//
+// Frames for a product walkthrough come from FeatureClipStudio (feature-walkthrough-gif/): Playwright
+// captures one frame per UI state from the live deployment, Remotion composites cursor, captions and
+// zoom-to-focus over them. That split is exactly the distinction below — a captured frame is
+// live-product and owes its deployment bindings; a composited one is motion-graphic and owes its
+// sourceRef. They arrive in the same render, which is why `presentedAs` has to be checkable rather
+// than assumed.
+//
+// Real product footage proves the product; everything else explains the idea. So exactly one kind
+// may be presented as the running application, and it must bind to the exact deployment it came
+// from. `presentedAs` is what makes that checkable — without a field recording what the AUDIENCE is
+// told a frame is, a made frame and a real capture are just pixels, and the made one usually looks
+// better, which is why it ships by accident.
+
+// Six kinds, matching the delivery spec. Collapsing them breaks in both directions: a motion
+// graphic forced into "generated" is asked for a provider, model and prompt it never had, and
+// escaping that demand by labelling it live-product is the loophole.
+export type FrameKind =
+  | 'live-product'
+  | 'generated-illustration'
+  | 'motion-graphic'
+  | 'source-media'
+  | 'stock-media'
+  | 'text-or-diagram';
+
+export const FRAME_KINDS: readonly FrameKind[] = [
+  'live-product',
+  'generated-illustration',
+  'motion-graphic',
+  'source-media',
+  'stock-media',
+  'text-or-diagram',
+] as const;
+
+/** What each kind owes. The point is that they owe DIFFERENT things. */
+const REQUIREMENTS: Record<FrameKind, { field: string | null; keys: string[]; why: string }> = {
+  'live-product': { field: 'bindings', keys: ['deploymentRevision', 'browserTraceId', 'journeyState', 'screenshotSha256'], why: 'a claim about the running application must name the exact deployment it came from' },
+  'generated-illustration': { field: 'provenance', keys: ['provider', 'model', 'prompt', 'inputAssets'], why: 'which model, with what prompt, is the only thing that makes it auditable later' },
+  'motion-graphic': { field: 'composition', keys: ['sourceRef'], why: 'deterministic composition is reproducible, so it owes its source — not a model it never used' },
+  'source-media': { field: 'origin', keys: ['originRef', 'rights'], why: 'material the creator already had still owes where it came from and on what terms' },
+  'stock-media': { field: 'origin', keys: ['originRef', 'licenseId'], why: 'the licence is the whole basis for using it' },
+  'text-or-diagram': { field: null, keys: [], why: 'authored directly; being labelled is all it owes' },
+};
+
+export const LIVE_PRODUCT_BINDINGS = REQUIREMENTS['live-product'].keys;
+export const GENERATED_PROVENANCE = REQUIREMENTS['generated-illustration'].keys;
+
+export interface Frame {
+  frameId: string;
+  kind: FrameKind;
+  /** What the viewer is told this frame is. May differ from `kind` — that difference is the fraud. */
+  presentedAs: FrameKind;
+  sha256: string;
+  shotId?: string;
+  bindings?: Record<string, string>;
+  composition?: { sourceRef?: string };
+  origin?: { originRef?: string; rights?: string; licenseId?: string };
+  provenance?: {
+    provider?: string;
+    model?: string;
+    prompt?: string;
+    inputAssets?: string[];
+  };
+}
+
+export interface FrameEvidenceVerdict {
+  passed: boolean;
+  insufficient: boolean;
+  blockers: string[];
+  checked: number;
+  liveProduct: number;
+  generated: number;
+  /** Shots with at least one blocker, so repair can be scoped to the failed shot only. */
+  failedShots: string[];
+}
+
+const SHA256 = /^[0-9a-f]{64}$/;
+const isNonEmptyString = (value: unknown): value is string =>
+  typeof value === 'string' && value.trim().length > 0;
+
+export function parseFrameSet(frames: unknown): Frame[] {
+  if (!Array.isArray(frames)) throw new Error('frames must be a list');
+  frames.forEach((frame, index) => {
+    const at = `frames[${index}]`;
+    if (!frame || typeof frame !== 'object') throw new Error(`${at} must be an object`);
+    const candidate = frame as Frame;
+    if (!FRAME_KINDS.includes(candidate.kind)) {
+      throw new Error(`${at} kind must be one of ${FRAME_KINDS.join(', ')}`);
+    }
+    if (!FRAME_KINDS.includes(candidate.presentedAs)) {
+      throw new Error(`${at} needs presentedAs — what the audience is told this frame is`);
+    }
+    if (!isNonEmptyString(candidate.frameId)) throw new Error(`${at} needs a frameId`);
+    if (!SHA256.test(candidate.sha256 ?? '')) {
+      throw new Error(`${at} needs its own sha256; a frame nobody hashed is not evidence`);
+    }
+  });
+  return frames as Frame[];
+}
+
+export function evaluateFrameEvidence(input: unknown): FrameEvidenceVerdict {
+  const frames = parseFrameSet(input);
+  const blockers: string[] = [];
+  const failedShots = new Set<string>();
+
+  const blame = (frame: Frame, message: string) => {
+    blockers.push(message);
+    if (frame.shotId) failedShots.add(frame.shotId);
+  };
+
+  for (const frame of frames) {
+    const requirement = REQUIREMENTS[frame.kind];
+    const bag = requirement.field ? ((frame as unknown as Record<string, Record<string, unknown>>)[requirement.field] ?? {}) : {};
+    const missing = requirement.keys.filter((key) =>
+      key === 'inputAssets' ? !Array.isArray(bag[key]) : !isNonEmptyString(bag[key]),
+    );
+    if (missing.length > 0) {
+      blame(frame, `${frame.frameId} (${frame.kind}) is missing ${requirement.field}.${missing.join(', ')} — ${requirement.why}`);
+    }
+
+    if (frame.kind === 'live-product') {
+      const shot = frame.bindings?.screenshotSha256;
+      if (shot && shot !== frame.sha256) {
+        blame(frame, `live-product frame ${frame.frameId}: screenshotSha256 does not match the frame's own hash`);
+      }
+    }
+
+    // Every non-live kind, not just generated. A stock clip or motion graphic presented as the
+    // running application is the same false claim about what the viewer is seeing.
+    if (frame.kind !== 'live-product' && frame.presentedAs === 'live-product') {
+      blame(frame, `frame ${frame.frameId} is ${frame.kind} but presented as the running application`);
+    }
+  }
+
+  return {
+    // Zero frames measured nothing, and must not read like a pass.
+    passed: blockers.length === 0 && frames.length > 0,
+    insufficient: frames.length === 0,
+    blockers,
+    checked: frames.length,
+    liveProduct: frames.filter((frame) => frame.kind === 'live-product').length,
+    generated: frames.filter((frame) => frame.kind !== 'live-product').length,
+    failedShots: [...failedShots].sort(),
+  };
+}
+
+export function formatFrameEvidence(verdict: FrameEvidenceVerdict): string {
+  if (verdict.insufficient) return 'FRAME EVIDENCE: no frames supplied — nothing was checked.';
+  const head =
+    `FRAME EVIDENCE ${verdict.passed ? 'PASS' : 'BLOCKED'}: ${verdict.checked} frame(s) — ` +
+    `${verdict.liveProduct} live-product, ${verdict.generated} generated.`;
+  if (verdict.passed) return head;
+  return [
+    head,
+    ...verdict.blockers.map((blocker) => `  ${blocker}`),
+    verdict.failedShots.length > 0 ? `  repair scope: ${verdict.failedShots.join(', ')}` : '',
+  ]
+    .filter(Boolean)
+    .join('\n');
+}

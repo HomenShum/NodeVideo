@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "commands": [
+    {
+      "name": "normal-check",
+      "argv": [
+        "C:/nvm4w/nodejs/npm.cmd",
+        "run",
+        "check"
+      ],
+      "startedAt": "2026-09-05T20:06:39.086662+00:00",
+      "finishedAt": "2026-09-05T20:07:25.099905+00:00",
+      "seconds": 46.0,
+      "exitCode": 0,
+      "logSha256": "521e14da4950d1acc0453edefa4b9d464480694c7659f961ed3066f965806e4e"
+    }
+  ],
+  "originalFullReceipt": {
+    "path": "E6i-nodevideo-landing-check.json",
+    "bytes": 138986,
+    "sha256": "3ac01ecb1844c19cd4b49c58e2bcdd052fd702d25e24e7b6eb4542391ca0e9fd",
+    "rawGitBlobSha1": "2ddb9c14d30f82981a0b4b86c4cdb42acbd2d871"
+  },
+  "sourceCount": 1374,
+  "distCount": 1329,
+  "currentOwnerDigest": "1b6dac7ed3b6cbd2353adffe7da6bffb21a3d57fb6685027158b1390fb0e6d02",
+  "testCount": 344,
+  "testFileCount": 73,
+  "contract": "Existing mock/synthetic boundary, three camera controls deferred. New persistent test not transferred/run yet.",
+  "audit": {
+    "full.json": {
+      "info": 0,
+      "low": 0,
+      "moderate": 6,
+      "high": 7,
+      "critical": 0,
+      "total": 13
+    },
+    "production.json": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 1,
+      "critical": 0,
+      "total": 3
+    }
+  }
+}

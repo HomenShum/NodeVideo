@@ -1,0 +1,9 @@
+# Landing clock change boundary
+
+Route: / on owned loopback preview. Viewport: 1440×960. Fresh nonpersistent Chromium, en-US, America/Los_Angeles, light preference with existing dark application palette, normal motion. Native page load then canvas scroll into view; no time/frame instrumentation, forced failure, provider or private input.
+
+CHANGE A · Pose canvas: public80-frame33-landmark pose-loop input at9.99Hz. Current native painted-pixel count 0; errors ["TypeError: Cannot read properties of undefined (reading '11')"]. Expected after: first callback paints actual frame0, then normal native callbacks progress and wrap without undefined-frame exceptions. Empty/loading means prior-to-first-paint only; no invented skeleton/placeholder/status is introduced. Reduced motion remains one static frame0. No new error/retry UI.
+
+CHANGE B · Count row: current Count 2 of 8 at 103.4 beats per minute. Keep103.4bpm, counts1..8 and original pulse formula. The owning clock's first callback starts elapsed0; native next callbacks advance normally. No shared clock redesign or label/layout edits.
+
+Overflow/responsive: same boxes and original CSS at all three viewports; existing enlarged-text overflow is a separate hold. Neighbors held: header, links, hero wording/buttons, media/pose bytes, cards/footer, studio/editor/export and all provider/backend surfaces. Native clock state may advance during capture; raw before/after DOM is retained, and overlay validation permits only actual HTML --count-pulse and Count aria/data-live changes. Every other attribute/text/structure must restore exactly.

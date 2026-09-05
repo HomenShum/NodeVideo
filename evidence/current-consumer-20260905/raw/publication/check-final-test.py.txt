@@ -1,0 +1,129 @@
+"""Prepared controller. Run --execute only after root authorizes the reviewed transfer."""
+from pathlib import Path
+import argparse,datetime,hashlib,json,os,socket,subprocess,time
+import psutil
+
+O=Path(__file__).parent
+P=O.parent
+D=O/'proposed'
+R=Path('D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905')
+F=Path('D:/ProjectRecovery/nodevideo-clock-regression-20260905-publication01')
+EXPECTED_PLAN='be4347a0e12b79d633d1b537531f7d9e8ae09ca393c4942048cdd98a0fae0a2e'
+PLAN=P/'E6i_NODEVIDEO_PUBLICATION_OWNER_PLAN.json'
+NODE='C:/nvm4w/nodejs/node.exe';NPM='C:/nvm4w/nodejs/npm.cmd'
+sha=lambda b:hashlib.sha256(b).hexdigest()
+now=lambda:datetime.datetime.now(datetime.timezone.utc).isoformat()
+def read(p):return json.loads(p.read_text(encoding='utf-8'))
+def save(p,obj):p.write_text(json.dumps(obj,indent=2,ensure_ascii=False)+'\n',encoding='utf-8',newline='\n')
+def git(*args):return subprocess.check_output(['git','--no-optional-locks',*args],cwd=R,timeout=30)
+def guards():return {name:sha(git(*args))for name,args in {'head':['rev-parse','HEAD'],'refs':['for-each-ref','--format=%(refname) %(objectname)'],'index':['ls-files','--stage','-z'],'status':['status','--porcelain=v1','--untracked-files=all']}.items()}
+def require_bytes(file,row):
+    assert file.is_file()and not file.is_symlink(),str(file)
+    data=file.read_bytes();assert len(data)==row['bytes']and sha(data)==row['sha256'],str(file)
+    return data
+def assert_sources(expected):
+    for name,digest in expected.items():assert sha((R/name).read_bytes())==digest,name
+def require_free(port):
+    with socket.socket()as s:s.bind(('127.0.0.1',port))
+
+def execute():
+    assert sha(PLAN.read_bytes())==EXPECTED_PLAN
+    plan=read(PLAN);before=read(O/'source-guard-before.json');build=read(P/'E6i_NODEVIDEO_LANDING_BUILD_FREEZE.json')
+    prior=read(O/'execution/receipt.json');expected=dict(prior['newSourceBindings'])
+    expected['tests/unit/landing-clock.test.ts']='2e210e764294b412130c67ad6fa363ed1eb48f4b1b727fb2ed369b6af36523de'
+    assert_sources(expected)
+    assert all(guards()[k]==before['guards'][k]for k in ['head','refs','index'])
+    assert F.is_dir()and not (O/'execution-final').exists()
+    for port in [55827,4339]:require_free(port)
+    X=O/'execution-final';X.mkdir()
+    report={'status':'RUNNING','startedAt':now(),'planSha256':EXPECTED_PLAN,'commands':[],'fixtures':[],'ownedProcesses':[],'sourceEdits':'Named rerun after two approved test-only lint corrections. No transfer repeated; original failed attempt retained. Knockout owners external.','fullGrades':None}
+    owned={};removed=[]
+    env=os.environ.copy()
+    for key in list(env):
+        upper=key.upper()
+        if upper.startswith(('NODEVIDEO_','VITE_','CONVEX_','OPENAI_','ANTHROPIC_','GEMINI_','GOOGLE_GENERATIVE_','OPENROUTER_','HIGGSFIELD_','VERCEL_'))or upper in ['GITHUB_SHA','CI']:
+            removed.append(key);env.pop(key)
+    env['NODEVIDEO_CONTRACT_PORT']='55827'
+    report['childRemovedNamesOnly']=removed;report['childOverrides']={'NODEVIDEO_CONTRACT_PORT':'55827'}
+    def run(name,argv,cwd=R):
+        started=now();clock=time.monotonic();timed_out=False
+        with (X/(name+'.log')).open('wb')as log:
+            child=subprocess.Popen(argv,cwd=cwd,env=env,stdout=log,stderr=subprocess.STDOUT,creationflags=subprocess.CREATE_NO_WINDOW)
+            process=psutil.Process(child.pid)
+            while child.poll()is None:
+                try:
+                    for item in [process,*process.children(recursive=True)]:
+                        try:owned[(item.pid,item.create_time())]={'pid':item.pid,'createTime':item.create_time()}
+                        except(psutil.NoSuchProcess,psutil.AccessDenied):pass
+                except psutil.NoSuchProcess:pass
+                if time.monotonic()-clock>300:
+                    timed_out=True;child.terminate();child.wait(timeout=5);break
+                time.sleep(.2)
+        row={'name':name,'argv':argv,'cwd':str(cwd),'startedAt':started,'finishedAt':now(),'seconds':time.monotonic()-clock,'exitCode':child.returncode,'outerBudgetSeconds':300,'timedOut':timed_out,'logSha256':sha((X/(name+'.log')).read_bytes())}
+        report['commands'].append(row);save(X/'progress.json',report);print(json.dumps(row),flush=True)
+        assert not timed_out,name
+        return child.returncode
+    def test_results(file):
+        data=read(file);tests=[t for suite in data['testResults']for t in suite['assertionResults']]
+        assert data['numTotalTests']==9 and len(tests)==9 and all(t['status']in ['passed','failed']for t in tests)
+        return tests
+    try:
+        output=X/'targeted.json'
+        assert run('targeted-clock',[NPM,'run','test','--','tests/unit/landing-clock.test.ts','--reporter=json','--outputFile='+str(output)])==0
+        assert all(t['status']=='passed'for t in test_results(output))
+        actual=(R/'apps/landing/src/landing.tsx').read_bytes()
+        original=(P/'E6i-nodevideo-landing-clock-before-01/source.tsx.txt').read_bytes()
+        assert sha(actual)=='5d4ce6007803f7166949c40cdec646e0d2c51b0ee7ba8ca0dc2ac686b2de45ab'
+        assert sha(original)=='68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8'
+        assert actual.count(b'started ??= now;')==2
+        variants={'original':original,'truthiness':actual.replace(b'started ??= now;',b'started ||= now;')}
+        zero='zero is a valid first timestamp, not an uninitialized clock'
+        for name,owner in variants.items():
+            fixture=F/(name+'-final');fixture.mkdir()
+            for relative,data in {'apps/landing/src/landing.tsx':owner,'apps/landing/src/pose-loop.json':(R/'apps/landing/src/pose-loop.json').read_bytes(),'tests/unit/landing-clock.test.ts':(R/'tests/unit/landing-clock.test.ts').read_bytes()}.items():
+                target=fixture/relative;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
+            # Reuse the installed cohort without installation/copy/config overrides.
+            link=fixture/'node_modules';target=R/'node_modules'
+            assert fixture.resolve().is_relative_to(F.resolve())and not link.exists()and target.is_dir()
+            script="$ErrorActionPreference='Stop'; New-Item -ItemType Junction -Path '"+str(link).replace("'","''")+"' -Target '"+str(target).replace("'","''")+"' | Out-Null"
+            subprocess.run(['powershell','-NoProfile','-NonInteractive','-Command',script],check=True,creationflags=subprocess.CREATE_NO_WINDOW,capture_output=True,timeout=30)
+            output=X/(name+'-knockout.json')
+            code=run(name+'-knockout',[NODE,str(R/'node_modules/vitest/vitest.mjs'),'run','--root',str(fixture),'--config',str(R/'vite.config.ts'),'tests/unit/landing-clock.test.ts','--reporter=json','--outputFile='+str(output)],cwd=fixture)
+            tests=test_results(output);failed=[t['title']for t in tests if t['status']=='failed']
+            assert code!=0 and zero in failed,'Knockout must expose the actual regression'
+            if name=='truthiness':assert failed==[zero]
+            else:assert all(title in failed for title in ['visitor receives the observed 320px earlier callback','visitor receives the observed 390px earlier callback'])
+            report['fixtures'].append({'name':name,'root':str(fixture),'actualTestSha256':sha((fixture/'tests/unit/landing-clock.test.ts').read_bytes()),'ownerSha256':sha(owner),'configSha256':sha((R/'vite.config.ts').read_bytes()),'existingDependencyJunction':str(target),'tests':9,'failed':failed,'status':'EXPECTED_KNOCKOUT_FAILURE_OBSERVED','candidateSourceMutated':False})
+            assert_sources(expected)
+        for port in [55827,4339]:require_free(port)
+        assert run('normal-check',[NPM,'run','check'])==0
+        report['status']='TARGETED_AND_KNOCKOUTS_AND_NORMAL_CHECK_PASS'
+    except Exception as error:
+        report['status']='FAILED_RETAINED';report['error']=repr(error);raise
+    finally:
+        closure=[]
+        for(pid,created),identity in reversed(list(owned.items())):
+            try:
+                process=psutil.Process(pid)
+                if process.create_time()!=created:closure.append({'pid':pid,'status':'identity-changed-not-touched'});continue
+                process.terminate()
+                try:process.wait(timeout=5)
+                except psutil.TimeoutExpired:process.kill();process.wait(timeout=5)
+                closure.append({'pid':pid,'status':'owned-descendant-closed'})
+            except psutil.NoSuchProcess:closure.append({'pid':pid,'status':'already-exited'})
+        report['ownedProcesses']=list(owned.values());report['closure']=closure;report['finishedAt']=now()
+        report['allExpectedSourceBytesExact']=all(sha((R/name).read_bytes())==digest for name,digest in expected.items())
+        report['headRefsIndexExact']=all(guards()[k]==before['guards'][k]for k in ['head','refs','index'])
+        report['ports']=[]
+        for port in [55827,4339]:
+            with socket.socket()as s:released=s.connect_ex(('127.0.0.1',port))!=0
+            report['ports'].append({'port':port,'released':released})
+        report['afterDist']=[{'path':p.relative_to(R).as_posix(),'bytes':p.stat().st_size,'sha256':sha(p.read_bytes())}for p in sorted((R/'dist').rglob('*'))if p.is_file()]
+        report['newSourceBindings']=expected
+        save(X/'receipt.json',report)
+        assert report['allExpectedSourceBytesExact']and report['headRefsIndexExact']and all(p['released']for p in report['ports'])
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--execute',action='store_true');args=parser.parse_args()
+    if args.execute:execute()
+    else:print(json.dumps({'status':'PREPARED_NOT_EXECUTED','requiredPlanSha256':EXPECTED_PLAN,'candidate':str(R),'newRetainedFixtureRoot':str(F),'noStageCommitPush':True}))

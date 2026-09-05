@@ -1,0 +1,33 @@
+{
+  "status": "LOCAL_TRANSFER_TARGETED_KNOCKOUTS_AND_NORMAL_CHECK_PASSED",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 25599,
+      "sha256": "20b0510e27fbda3375c57adc7171d00884737efffc60afe91d52774e3a161bf2",
+      "rawGitBlobSha1": "505e5871bf5d395fd8939b9e1414508ee5592e08"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 7280,
+      "sha256": "51594a71edf6445b6482b3d07c5688a1e190d47ea082bafb699e815b6f6c4275",
+      "rawGitBlobSha1": "8507e7b3572675206373cec4e67e5617806faa7e"
+    },
+    {
+      "path": "tests/unit/landing-clock.test.ts",
+      "bytes": 8181,
+      "sha256": "2e210e764294b412130c67ad6fa363ed1eb48f4b1b727fb2ed369b6af36523de",
+      "rawGitBlobSha1": "73636bc5e1f54744bcafd9be74ceab634a27f06e"
+    }
+  ],
+  "historicalOverride": [
+    "README.md"
+  ],
+  "addedSourcePaths": [
+    "HANDOFF.md",
+    "tests/unit/landing-clock.test.ts"
+  ],
+  "sharedCi": "PENDING",
+  "deployment": "NOT_RUN",
+  "fullGrades": null
+}

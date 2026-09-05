@@ -1,0 +1,9 @@
+{
+  "at": "2026-09-05T19:22:36.708504+00:00",
+  "status": "FROZEN_BEFORE_SUPPLEMENT_EXECUTION",
+  "harnessSha256": "1574e24015faea4c9f89d6b15e58e46d5d9135f91f0f9eab879cb9cc39ef568c",
+  "unchangedSourceFreezeSha256": "250ad771d9cb9a2915f2e71e28fed07ce6f0d0109cff67a4f71c61c8a63e8a45",
+  "scope": "Actual extracted pure Set merge, NUL sanitizer and final failure string plus nonexecuting clip AST/import/const audit; no product CLI execution.",
+  "preExecutionCollectorCorrection": "AST visitor callback now returns undefined so all siblings are visited; prior unexecuted script/freeze retained.",
+  "postExecutionCollectorCorrection": "Prior9/10 retained: full AST flags include JavaScriptFile524288. Compare only BlockScoped mask for expected Let1/Const2; actual body AST and imports were equal. Wrapper stdout print also encountered cp1252 UnicodeEncodeError after raw logs/report were saved; no rerun required for that display error."
+}

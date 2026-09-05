@@ -1,0 +1,20 @@
+--- failed-retained-recorder
++++ corrected-recorder
+@@ -60,12 +60,15 @@
+    }
+    cell.sampleElapsedMilliseconds=performance.now()-started;cell.samples=samples;write(path.join(out,'native-samples.json'),samples);
+    cell.end=await capture('end');
+-   check('Every sample has actual native paint',samples.length>0&&samples.every(s=>s.canvas.painted>0),{minPainted:Math.min(...samples.map(s=>s.canvas.painted)),samples:samples.length});
++   const blankRuns=[];
++   for(let i=0;i<samples.length;i++)if(samples[i].canvas.painted===0){const first=i;while(i+1<samples.length&&samples[i+1].canvas.painted===0)i++;const next=samples[i+1];blankRuns.push({firstSample:first,lastSample:i,firstAt:samples[first].at,lastAt:samples[i].at,recoverySample:next?i+1:null,recovered:!!next&&next.canvas.painted>0,trailingCensored:!next});}
++   cell.trackingGaps={blankSampleCount:samples.filter(s=>s.canvas.painted===0).length,blankRuns,trailingCensored:blankRuns.some(r=>r.trailingCensored),sourceAllNullFrames:[19,24,25,76,79],exactFrameIndexNotInstrumented:true};
++   check('Initial actual paint and closed tracking gaps recover',cell.firstPaintObserved.canvas.painted>0&&samples.some(s=>s.canvas.painted>0)&&blankRuns.filter(r=>!r.trailingCensored).every(r=>r.recovered),cell.trackingGaps);
+    const counts=[...new Set(samples.map(s=>Number(/^Count (\d+) /.exec(s.count.label)?.[1])))].sort((a,b)=>a-b),fingerprints=new Set(samples.map(s=>s.canvas.fingerprint));
+    cell.counts=counts;cell.uniqueCanvasFingerprints=fingerprints.size;
+    check('Only valid native count and live state',samples.every(s=>/^Count [1-8] of 8 at 103\.4 beats per minute$/.test(s.count.label)&&s.count.live.every(e=>['true','false'].includes(e.live))));
+    if(mode==='reduced'){
+-    check('Reduced pixels and count remain static',fingerprints.size===1&&JSON.stringify(counts)==='[1]'&&samples.every(s=>s.count.live.every(e=>e.live==='false')));
++    check('Reduced pixels and count remain static',samples.every(s=>s.canvas.painted>0)&&fingerprints.size===1&&JSON.stringify(counts)==='[1]'&&samples.every(s=>s.count.live.every(e=>e.live==='false')));
+    }else{
+     check('Observe longer than two declared pose durations',cell.sampleElapsedMilliseconds>=18000&&cell.sampleElapsedMilliseconds>2*80/9.99*1000);
+     check('Native shapes change while all counts recur',fingerprints.size>16&&JSON.stringify(counts)==='[1,2,3,4,5,6,7,8]',{fingerprints:fingerprints.size,counts});

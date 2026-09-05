@@ -1,0 +1,99 @@
+{
+  "schema": "nodevideo-existing-lint-causal-plan/v1",
+  "at": "2026-09-05T18:56:31.646941+00:00",
+  "status": "FROZEN_READ_ONLY_REPAIR_PLAN_NOT_IMPLEMENTED",
+  "sourceCommit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "tree": "cab0f9515fe80ed2868a6f9d9a6a7018fcbf4657",
+  "actualLocalErrors": 84,
+  "historicalSharedErrors": 85,
+  "diagnosticOwners": 17,
+  "clipGateOwners": 13,
+  "clipGateErrors": 78,
+  "ruleCounts": {
+    "lint/style/useSingleVarDeclarator": 13,
+    "lint/complexity/noForEach": 7,
+    "lint/suspicious/noControlCharactersInRegex": 1,
+    "lint/style/useTemplate": 8,
+    "lint/style/noUnusedTemplateLiteral": 25,
+    "organizeImports": 6,
+    "format": 17,
+    "lint/complexity/useOptionalChain": 2,
+    "lint/style/useExponentiationOperator": 1,
+    "lint/style/useConst": 3,
+    "lint/performance/noDelete": 1
+  },
+  "classCounts": {
+    "local-syntax-style": 50,
+    "behavior-sensitive": 11,
+    "import-order": 6,
+    "formatting": 17
+  },
+  "owners": {
+    "tools/clip-gate/voice.mjs": 9,
+    "schemas/production-agent.v1.schema.json": 1,
+    "tools/clip-gate/score.mjs": 20,
+    "tools/clip-gate/rubric.mjs": 1,
+    "tools/clip-gate/retime.mjs": 3,
+    "tools/clip-gate/readability.mjs": 4,
+    "scripts/quality/verify-production-deploy.mjs": 2,
+    "tools/clip-gate/narrate.mjs": 2,
+    "tools/clip-gate/judge-video.mjs": 22,
+    "src/lib/frame-evidence.test.ts": 2,
+    "tools/clip-gate/iterate.mjs": 9,
+    "src/lib/frame-evidence.ts": 1,
+    "tools/clip-gate/calibration.json": 1,
+    "tools/clip-gate/apply-captions.mjs": 2,
+    "tools/clip-gate/comprehension-rubric.mjs": 1,
+    "tools/clip-gate/clip.mjs": 3,
+    "tools/clip-gate/find-references.mjs": 1
+  },
+  "sourceFilesUnchanged": 1374,
+  "sourceBytes": 128631356,
+  "rootCause": "The existing unmodified canonical source includes13 vendored clip-gate owners whose formatting and local idioms do not satisfy the active Biome1.9.4 rules. Four other schema/frame/deploy-verifier owners contribute6 diagnostics. This exact local lint stop precedes downstream gates; no dependency failure or new runtime defect is established by lint.",
+  "rootCauseLimit": "Import provenance is source-documented; this review does not reconstruct every historical edit or explain the unprinted85th shared diagnostic.",
+  "minimumPlan": [
+    "Freeze one17-owner repair slice on this exact baseline, preserving original logs, source bytes and policy. Keep source schema and frame evidence behavior, clip prompts/thresholds, task ordering, filenames and media/API boundaries unchanged. This is existing gate repair, not creator/UI implementation.",
+    "Apply formatter output only to the17 named files, then review its raw diff. Sort the six named import lists without dropping or adding imports; clip.mjs moves a Node builtin import, so keep the leading explanation intact and relative-module evaluation order unchanged. Deep-compare both JSON values and preserve literal/template content and Unicode. No repository-wide autofix, unsafe fixer, ignore list or rule changes.",
+    "Manually resolve the50 local idiom findings: split13 declarations in original evaluation order, convert8 string concatenations without changing resulting strings or comments, replace25 no-interpolation templates with equal string literals, use const for3 never-reassigned bindings, and preserve Math.pow(2, exponent) numeric behavior when using exponentiation. Do not infer semantic equality from the lint label alone.",
+    "For7 callback loops retain item order, dense input assumptions, nested break/return behavior and mutation order. Do not gratuitously rewrite the existing indexed forEach uses that were not flagged. For2 optional-chain findings preserve Boolean some() behavior and the existing fallback precedence for score evidence, including null/undefined/falsy cases.",
+    "Replace voice.mjs literal NUL-matching regex with an equivalent character operation such as split(String.fromCharCode(0)).join(''), preserving removal of every NUL and the final slice(0,300). For narrate.mjs rebuild the recovered plain result without its failed property; setting failed=undefined is not an equivalent property-presence contract. Preserve i/file, seconds/synth, freshProcessRetry and exactly two retries, and leave terminal failure as a thrown failure.",
+    "Before any executable proof, inspect the actual changed owners and freeze a bounded differential harness using synthetic owned inputs. Compare strings, numeric outputs, loop effect order and narration success/recovered/exhausted/invalid-response boundaries while blocking actual subprocess/network/media work. Keep property absence assertions. These prove transformations only; no Piper, FFmpeg, model, upload, deploy or video-quality claim. Do not invoke clip, voice, score, judge-video or deploy-verifier entrypoints merely to lint them.",
+    "After the patch run unchanged normal lint, syntax checks and the existing frame-evidence scenario tests; then the normal required type/test/build gates appropriate to that source freeze. Coordinate with root baseline/build work to avoid duplicate or overlapping commands. Independent judge reviews raw diff and proof before integration. Original84 local and85 historical shared errors remain preserved; future passing checks are not predicted."
+  ],
+  "risks": [
+    {
+      "owner": "tools/clip-gate/narrate.mjs:99",
+      "risk": "Biome noDelete suggested undefined replacement changes Object.hasOwn/keys/in behavior even when JSON omits the undefined value.",
+      "minimum": "Reconstruct only the recovered entry without failed, preserving the other fields and retry/error contract."
+    },
+    {
+      "owner": "tools/clip-gate/voice.mjs:76",
+      "risk": "The actual source contains a NUL byte in the regex; changing only how the error prints must keep complete NUL removal and the300-character bound.",
+      "minimum": "Equivalent literal-character operation, with Unicode/repeated-NUL differential cases; no TTS run."
+    },
+    {
+      "owner": "tools/clip-gate/score.mjs and judge-video.mjs",
+      "risk": "Loop/optional-chain/literal rewrites affect synthesis ordering or evidence fallback if applied without preserving evaluation order.",
+      "minimum": "Compare owned synthetic effects and generated strings; retain original thresholds and failure semantics."
+    },
+    {
+      "owner": "tools/clip-gate/**",
+      "risk": "README declares FeatureClipStudio the canonical source; formatting these13 vendored files creates a consumer-side delta, not an upstream release.",
+      "minimum": "Record local adaptation and original byte identities; do not replace the vendor wholesale or infer its clip runtime works."
+    },
+    {
+      "owner": "historical shared CI33984118568",
+      "risk": "85 total errors but only20 diagnostics printed,65 omitted; it is a different routing head and Linux environment.",
+      "minimum": "Current canonical42 local log fully exposes84. The unprinted shared85th diagnostic cannot be attributed from the retained capped log; preserve that limit without adding a guessed18th owner."
+    }
+  ],
+  "guardClosed": true,
+  "policyEdits": 0,
+  "sourceEdits": 0,
+  "lintReruns": 0,
+  "runtimeOrNetworkCalls": 0,
+  "fullGrades": null,
+  "artifactManifest": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-lint-plan\\artifact-manifest.json",
+  "artifactManifestSha256": "1cebe20f499e3c4f60f67a78e9dec12ac36ef024c1bb8167a2f6678a36f58040",
+  "artifactCount": 37
+}

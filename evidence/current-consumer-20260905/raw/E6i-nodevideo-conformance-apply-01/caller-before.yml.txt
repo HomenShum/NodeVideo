@@ -1,0 +1,16 @@
+name: Node Platform conformance
+
+on:
+  pull_request:
+    paths-ignore:
+      - config/openrouter-free-routing.json
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  node-platform:
+    uses: HomenShum/node-platform/.github/workflows/repo-conformance.yml@ef4ac8a011b230efa3324892a193abe02ff2d673

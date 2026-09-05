@@ -1,0 +1,3216 @@
+
+> nodevideo@0.1.0 lint
+> biome check . --max-diagnostics=200
+
+.\tools\clip-gate\voice.mjs:46:3 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+    44 │ const lines = [];
+    45 │ wt.steps.forEach((s, i) => {
+  > 46 │   const at = t / fps, dur = (s.hold || 60) / fps;
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    47 │   t += s.hold || 60;
+    48 │   if (s.caption) lines.push({ i, at, dur, text: speakable(s.caption) });
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+     44  44 │   const lines = [];␍
+     45  45 │   wt.steps.forEach((s, i) => {␍
+     46     │ - ··const·at·=·t·/·fps,·dur·=·(s.hold·||·60)·/·fps;␍
+         46 │ + ··const·at·=·t·/·fps;␍
+         47 │ + ··const·dur·=·(s.hold·||·60)·/·fps;␍
+     47  48 │     t += s.hold || 60;␍
+     48  49 │     if (s.caption) lines.push({ i, at, dur, text: speakable(s.caption) });␍
+  
+
+.\tools\clip-gate\voice.mjs:56:1 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Prefer for...of instead of forEach.
+  
+    55 │ // --------------------------------------------------------------- synthesise
+  > 56 │ lines.forEach((l) => {
+       │ ^^^^^^^^^^^^^^^^^^^^^^
+  > 57 │   const raw = `${tmp}/${id}-${l.i}.wav`;
+        ...
+  > 86 │   l.over = l.rawDur / l.tempo > l.dur;
+  > 87 │ });
+       │ ^^
+    88 │ 
+    89 │ // PACING IS DOWNSTREAM OF NARRATION. A cut timed for reading captions is too
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+.\tools\clip-gate\voice.mjs:64:3 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+    62 │   // full stops in four seconds is a caption rhythm, not a speaking one.
+    63 │   const attempts = [l.text, l.text.replace(/\.\s+/g, ", ").replace(/,\s*$/, ".")];
+  > 64 │   let ok = false, lastErr = "";
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    65 │   for (const text of attempts) {
+    66 │     try {
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+     62  62 │     // full stops in four seconds is a caption rhythm, not a speaking one.␍
+     63  63 │     const attempts = [l.text, l.text.replace(/\.\s+/g, ", ").replace(/,\s*$/, ".")];␍
+     64     │ - ··let·ok·=·false,·lastErr·=·"";␍
+         64 │ + ··let·ok·=·false;␍
+         65 │ + ··let·lastErr·=·"";␍
+     65  66 │     for (const text of attempts) {␍
+     66  67 │       try {␍
+  
+
+.\tools\clip-gate\voice.mjs:76:36 lint/suspicious/noControlCharactersInRegex ━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Unexpected control character in a regular expression.
+  
+    74 │   if (!ok) {
+    75 │     console.error(`[voice] step ${l.i} FAILED after ${attempts.length} attempts: "${l.text}"`);
+  > 76 │     console.error(lastErr.replace(/␀/g, "").slice(0, 300));
+       │                                    
+    77 │     process.exit(1);
+    78 │   }
+  
+  i Control characters are unusual and potentially incorrect inputs, so they are disallowed.
+  
+
+.\tools\clip-gate\voice.mjs:101:3 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Prefer for...of instead of forEach.
+  
+     99 │ if (overruns.length) {
+    100 │   console.log(`[voice] ${overruns.length}/${lines.length} lines still overrun their step at ${MAX_TEMPO}x:`);
+  > 101 │   overruns.forEach((l) => console.log(`  step ${l.i}: ${(l.rawDur / l.tempo).toFixed(1)}s of speech in a ${l.dur.toFixed(1)}s hold — "${l.text.slice(0, 52)}..."`));
+        │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    102 │ }
+    103 │ 
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+.\tools\clip-gate\voice.mjs:115:3 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Template literals are preferred over string concatenation.
+  
+    113 │ execFileSync("ffmpeg", ["-y", "-loglevel", "error", ...inputs,
+    114 │   "-filter_complex",
+  > 115 │   `${chains};${mixIn}amix=inputs=${lines.length}:normalize=0:duration=longest[m];` +
+        │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 116 │   // Speech wants a narrow band and a little presence; loudnorm at -16 leaves
+  > 117 │   // headroom for the music to sit under it after ducking.
+  > 118 │   `[m]highpass=f=90,lowpass=f=11000,acompressor=threshold=-18dB:ratio=3:attack=8:release=180,` +
+  > 119 │   `atrim=0:${(DUR + 1).toFixed(2)},loudnorm=I=-16:TP=-1.5:LRA=9[a]`,
+        │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    120 │   "-map", "[a]", "-ac", "2", "-ar", "48000", out], { stdio: "inherit" });
+    121 │ 
+  
+  i Unsafe fix: Use a template literal.
+  
+    113 113 │   execFileSync("ffmpeg", ["-y", "-loglevel", "error", ...inputs,␍
+    114 114 │     "-filter_complex",␍
+    115     │ - ··`${chains};${mixIn}amix=inputs=${lines.length}:normalize=0:duration=longest[m];`·+␍
+    116     │ - ··//·Speech·wants·a·narrow·band·and·a·little·presence;·loudnorm·at·-16·leaves␍
+    117     │ - ··//·headroom·for·the·music·to·sit·under·it·after·ducking.␍
+    118     │ - ··`[m]highpass=f=90,lowpass=f=11000,acompressor=threshold=-18dB:ratio=3:attack=8:release=180,`·+␍
+    119     │ - ··`atrim=0:${(DUR·+·1).toFixed(2)},loudnorm=I=-16:TP=-1.5:LRA=9[a]`,␍
+        115 │ + ··`${chains};${mixIn}amix=inputs=${lines.length}:normalize=0:duration=longest[m];[m]highpass=f=90,lowpass=f=11000,acompressor=threshold=-18dB:ratio=3:attack=8:release=180,atrim=0:${(DUR·+·1).toFixed(2)},loudnorm=I=-16:TP=-1.5:LRA=9[a]`,␍
+    120 116 │     "-map", "[a]", "-ac", "2", "-ar", "48000", out], { stdio: "inherit" });␍
+    121 117 │   ␍
+  
+
+.\tools\clip-gate\voice.mjs:118:3 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    116 │   // Speech wants a narrow band and a little presence; loudnorm at -16 leaves
+    117 │   // headroom for the music to sit under it after ducking.
+  > 118 │   `[m]highpass=f=90,lowpass=f=11000,acompressor=threshold=-18dB:ratio=3:attack=8:release=180,` +
+        │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    119 │   `atrim=0:${(DUR + 1).toFixed(2)},loudnorm=I=-16:TP=-1.5:LRA=9[a]`,
+    120 │   "-map", "[a]", "-ac", "2", "-ar", "48000", out], { stdio: "inherit" });
+  
+  i Unsafe fix: Replace with string literal
+  
+    116 116 │     // Speech wants a narrow band and a little presence; loudnorm at -16 leaves␍
+    117 117 │     // headroom for the music to sit under it after ducking.␍
+    118     │ - ··`[m]highpass=f=90,lowpass=f=11000,acompressor=threshold=-18dB:ratio=3:attack=8:release=180,`·+␍
+        118 │ + ··'[m]highpass=f=90,lowpass=f=11000,acompressor=threshold=-18dB:ratio=3:attack=8:release=180,'·+␍
+    119 119 │     `atrim=0:${(DUR + 1).toFixed(2)},loudnorm=I=-16:TP=-1.5:LRA=9[a]`,␍
+    120 120 │     "-map", "[a]", "-ac", "2", "-ar", "48000", out], { stdio: "inherit" });␍
+  
+
+.\tools\clip-gate\voice.mjs organizeImports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Import statements could be sorted:
+  
+     18  18 │   //␍
+     19  19 │   import { execFileSync } from "node:child_process";␍
+     20     │ - import·{·writeFileSync,·existsSync,·mkdirSync,·readFileSync·}·from·"node:fs";␍
+         20 │ + import·{·existsSync,·mkdirSync,·readFileSync,·writeFileSync·}·from·"node:fs";␍
+     21  21 │   import { COLLAB_WALKTHROUGHS } from "./src/walkthrough.collab.data.js";␍
+     22  22 │   ␍
+  
+
+.\tools\clip-gate\voice.mjs format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+      1     │ - //·voice.mjs·—·narrate·the·storyboard·with·a·LOCAL·TTS,·aligned·to·the·captions.␍
+      2     │ - //␍
+      3     │ - //·THE·SCRIPT·IS·THE·CAPTIONS.·There·is·no·second·script·file,·deliberately:·the␍
+      4     │ - //·fastest·way·to·ship·a·demo·whose·voice·contradicts·its·subtitles·is·to·keep·the␍
+      5     │ - //·two·in·separate·documents·and·edit·one·of·them.·Change·a·caption·in·the·spec␍
+      6     │ - //·and·the·narration·changes·with·it,·or·neither·changes.␍
+      7     │ - //␍
+      8     │ - //·WHY·PIPER,·MEASURED·RATHER·THAN·CHOSEN·FROM·A·SHORTLIST.␍
+      9     │ - //␍
+     10     │ - //·The·brief·was·a·free,·small,·local·replacement·for·ElevenLabs.·Kokoro-82M·is␍
+     11     │ - //·the·usual·first·recommendation·and·it·SEGFAULTED·here·on·synthesis·after␍
+     12     │ - //·installing·cleanly·--·which·is·the·difference·between·a·search·result·and·a␍
+     13     │ - //·measurement.·Piper·runs:·a·63MB·onnx·voice,·no·API·key,·no·network·at␍
+     14     │ - //·synthesis·time,·and·it·produced·4.27s·of·speech·from·a·13-word·line·on·CPU.␍
+     15     │ - //␍
+     16     │ - //···python·-m·piper.download_voices·en_US-lessac-medium·····(once,·~63MB)␍
+     17     │ - //···node·voice.mjs·--id·TShero·--out·out/trialscope.vo.wav␍
+     18     │ - //␍
+     19     │ - import·{·execFileSync·}·from·"node:child_process";␍
+     20     │ - import·{·writeFileSync,·existsSync,·mkdirSync,·readFileSync·}·from·"node:fs";␍
+     21     │ - import·{·COLLAB_WALKTHROUGHS·}·from·"./src/walkthrough.collab.data.js";␍
+     22     │ - ␍
+     23     │ - const·argv·=·process.argv.slice(2);␍
+     24     │ - const·flag·=·(n,·d)·=>·{·const·i·=·argv.indexOf(`--${n}`);·return·i·>=·0·&&·argv[i·+·1]·?·argv[i·+·1]·:·d;·};␍
+     25     │ - ␍
+     26     │ - const·id·=·flag("id");␍
+     27     │ - const·out·=·flag("out");␍
+     28     │ - const·voice·=·flag("voice",·"en_US-lessac-medium");␍
+     29     │ - const·fps·=·Number(flag("fps",·"30"));␍
+     30     │ - const·MAX_TEMPO·=·Number(flag("max-tempo",·"1.3"));···//·beyond·this·it·sounds·rushed␍
+     31     │ - if·(!id·||·!out)·{·console.error("usage:·node·voice.mjs·--id·<SpecId>·--out·<file.wav>·[--voice·en_US-lessac-medium]");·process.exit(1);·}␍
+     32     │ - ␍
+     33     │ - const·wt·=·COLLAB_WALKTHROUGHS.find((w)·=>·w.id·===·id);␍
+     34     │ - if·(!wt)·{·console.error(`no·walkthrough·"${id}"`);·process.exit(1);·}␍
+     35     │ - ␍
+     36     │ - const·tmp·=·"out/.vo";␍
+     37     │ - mkdirSync(tmp,·{·recursive:·true·});␍
+     38     │ - ␍
+     39     │ - //·Captions·are·written·to·be·READ,·not·spoken:·"--"·is·a·visual·dash,·and·a·TTS␍
+     40     │ - //·says·it·as·"minus·minus"·or·swallows·the·pause·entirely.␍
+     41     │ - const·speakable·=·(s)·=>·s.replace(/\s--\s/g,·",·").replace(/\s+/g,·"·").trim();␍
+     42     │ - ␍
+     43     │ - let·t·=·0;␍
+     44     │ - const·lines·=·[];␍
+     45     │ - wt.steps.forEach((s,·i)·=>·{␍
+     46     │ - ··const·at·=·t·/·fps,·dur·=·(s.hold·||·60)·/·fps;␍
+     47     │ - ··t·+=·s.hold·||·60;␍
+     48     │ - ··if·(s.caption)·lines.push({·i,·at,·dur,·text:·speakable(s.caption)·});␍
+     49     │ - });␍
+     50     │ - const·DUR·=·t·/·fps;␍
+     51     │ - ␍
+     52     │ - const·sh·=·(cmd,·args)·=>·execFileSync(cmd,·args,·{·encoding:·"utf8",·stdio:·["pipe",·"pipe",·"pipe"]·});␍
+     53     │ - const·dur·=·(f)·=>·Number(sh("ffprobe",·["-v",·"error",·"-show_entries",·"format=duration",·"-of",·"csv=p=0",·f]).trim());␍
+     54     │ - ␍
+     55     │ - //·---------------------------------------------------------------·synthesise␍
+     56     │ - lines.forEach((l)·=>·{␍
+     57     │ - ··const·raw·=·`${tmp}/${id}-${l.i}.wav`;␍
+     58     │ - ··//·Piper·splits·on·sentence·boundaries,·and·a·caption·made·of·very·short␍
+     59     │ - ··//·fragments·("Any·condition.·Any·breakdown.·Same·receipts.")·produces·a␍
+     60     │ - ··//·degenerate·phoneme·tensor·and·an·onnxruntime·Reshape·failure.·Joining·the␍
+     61     │ - ··//·fragments·into·one·utterance·fixes·it,·and·reads·better·anyway·--·three␍
+     62     │ - ··//·full·stops·in·four·seconds·is·a·caption·rhythm,·not·a·speaking·one.␍
+     63     │ - ··const·attempts·=·[l.text,·l.text.replace(/\.\s+/g,·",·").replace(/,\s*$/,·".")];␍
+     64     │ - ··let·ok·=·false,·lastErr·=·"";␍
+     65     │ - ··for·(const·text·of·attempts)·{␍
+     66     │ - ····try·{␍
+     67     │ - ······execFileSync("python",·["-m",·"piper",·"--model",·voice,·"--output-file",·raw],␍
+     68     │ - ········{·input:·text,·stdio:·["pipe",·"ignore",·"pipe"],·encoding:·"utf8"·});␍
+     69     │ - ······l.spoken·=·text;␍
+     70     │ - ······ok·=·true;␍
+     71     │ - ······break;␍
+     72     │ - ····}·catch·(e)·{·lastErr·=·String(e.stderr·||·e.message);·}␍
+     73     │ - ··}␍
+     74     │ - ··if·(!ok)·{␍
+     75     │ - ····console.error(`[voice]·step·${l.i}·FAILED·after·${attempts.length}·attempts:·"${l.text}"`);␍
+     76     │ - ····console.error(lastErr.replace(/␀/g,·"").slice(0,·300));␍
+     77     │ - ····process.exit(1);␍
+     78     │ - ··}␍
+     79     │ - ··l.raw·=·raw;␍
+     80     │ - ··l.rawDur·=·dur(raw);␍
+     81     │ - ··//·A·line·longer·than·its·step·would·talk·over·the·next·caption,·which·is·the␍
+     82     │ - ··//·one·desync·a·viewer·always·notices.·Compress·time·up·to·MAX_TEMPO;·past·that␍
+     83     │ - ··//·the·fix·is·a·shorter·caption,·not·a·faster·reader,·so·it·is·reported·instead␍
+     84     │ - ··//·of·hidden.␍
+     85     │ - ··l.tempo·=·Math.min(MAX_TEMPO,·Math.max(1,·l.rawDur·/·(l.dur·-·0.12)));␍
+     86     │ - ··l.over·=·l.rawDur·/·l.tempo·>·l.dur;␍
+     87     │ - });␍
+     88     │ - ␍
+     89     │ - //·PACING·IS·DOWNSTREAM·OF·NARRATION.·A·cut·timed·for·reading·captions·is·too␍
+     90     │ - //·fast·to·speak:·9·of·21·lines·here·overran·their·hold·even·at·1.3x.·Rushing·the␍
+     91     │ - //·reader·to·fit·the·picture·is·the·wrong·direction·--·the·picture·is·a·still␍
+     92     │ - //·frame·held·for·N·frames,·and·holding·it·longer·costs·nothing·but·runtime.·So␍
+     93     │ - //·the·measured·speech·duration·is·written·out·as·the·hold·each·step·NEEDS,·and␍
+     94     │ - //·the·storyboard·is·re-timed·from·it.␍
+     95     │ - writeFileSync(out.replace(/\.wav$/,·".holds.json"),·JSON.stringify(␍
+     96     │ - ··Object.fromEntries(lines.map((l)·=>·[l.i,·Math.ceil((l.rawDur·/·1.12·+·0.45)·*·fps)])),·null,·1));␍
+     97     │ - ␍
+     98     │ - const·overruns·=·lines.filter((l)·=>·l.over);␍
+     99     │ - if·(overruns.length)·{␍
+    100     │ - ··console.log(`[voice]·${overruns.length}/${lines.length}·lines·still·overrun·their·step·at·${MAX_TEMPO}x:`);␍
+    101     │ - ··overruns.forEach((l)·=>·console.log(`··step·${l.i}:·${(l.rawDur·/·l.tempo).toFixed(1)}s·of·speech·in·a·${l.dur.toFixed(1)}s·hold·—·"${l.text.slice(0,·52)}..."`));␍
+    102     │ - }␍
+    103     │ - ␍
+    104     │ - //·-------------------------------------------------·lay·each·line·at·its·step␍
+    105     │ - const·inputs·=·lines.flatMap((l)·=>·["-i",·l.raw]);␍
+    106     │ - const·chains·=·lines.map((l,·k)·=>·{␍
+    107     │ - ··const·delay·=·Math.round(l.at·*·1000);␍
+    108     │ - ··const·tempo·=·l.tempo·>·1.001·?·`atempo=${l.tempo.toFixed(3)},`·:·"";␍
+    109     │ - ··return·`[${k}:a]${tempo}aresample=48000,adelay=${delay}|${delay},apad[v${k}]`;␍
+    110     │ - }).join(";");␍
+    111     │ - const·mixIn·=·lines.map((_,·k)·=>·`[v${k}]`).join("");␍
+    112     │ - ␍
+    113     │ - execFileSync("ffmpeg",·["-y",·"-loglevel",·"error",·...inputs,␍
+    114     │ - ··"-filter_complex",␍
+    115     │ - ··`${chains};${mixIn}amix=inputs=${lines.length}:normalize=0:duration=longest[m];`·+␍
+    116     │ - ··//·Speech·wants·a·narrow·band·and·a·little·presence;·loudnorm·at·-16·leaves␍
+    117     │ - ··//·headroom·for·the·music·to·sit·under·it·after·ducking.␍
+    118     │ - ··`[m]highpass=f=90,lowpass=f=11000,acompressor=threshold=-18dB:ratio=3:attack=8:release=180,`·+␍
+    119     │ - ··`atrim=0:${(DUR·+·1).toFixed(2)},loudnorm=I=-16:TP=-1.5:LRA=9[a]`,␍
+    120     │ - ··"-map",·"[a]",·"-ac",·"2",·"-ar",·"48000",·out],·{·stdio:·"inherit"·});␍
+    121     │ - ␍
+    122     │ - console.log(`[voice]·${out}·—·${lines.length}·lines,·${DUR.toFixed(1)}s,·voice=${voice}`);␍
+          1 │ + //·voice.mjs·—·narrate·the·storyboard·with·a·LOCAL·TTS,·aligned·to·the·captions.
+          2 │ + //
+          3 │ + //·THE·SCRIPT·IS·THE·CAPTIONS.·There·is·no·second·script·file,·deliberately:·the
+          4 │ + //·fastest·way·to·ship·a·demo·whose·voice·contradicts·its·subtitles·is·to·keep·the
+          5 │ + //·two·in·separate·documents·and·edit·one·of·them.·Change·a·caption·in·the·spec
+          6 │ + //·and·the·narration·changes·with·it,·or·neither·changes.
+          7 │ + //
+          8 │ + //·WHY·PIPER,·MEASURED·RATHER·THAN·CHOSEN·FROM·A·SHORTLIST.
+          9 │ + //
+         10 │ + //·The·brief·was·a·free,·small,·local·replacement·for·ElevenLabs.·Kokoro-82M·is
+         11 │ + //·the·usual·first·recommendation·and·it·SEGFAULTED·here·on·synthesis·after
+         12 │ + //·installing·cleanly·--·which·is·the·difference·between·a·search·result·and·a
+         13 │ + //·measurement.·Piper·runs:·a·63MB·onnx·voice,·no·API·key,·no·network·at
+         14 │ + //·synthesis·time,·and·it·produced·4.27s·of·speech·from·a·13-word·line·on·CPU.
+         15 │ + //
+         16 │ + //···python·-m·piper.download_voices·en_US-lessac-medium·····(once,·~63MB)
+         17 │ + //···node·voice.mjs·--id·TShero·--out·out/trialscope.vo.wav
+         18 │ + //
+         19 │ + import·{·execFileSync·}·from·'node:child_process';
+         20 │ + import·{·writeFileSync,·existsSync,·mkdirSync,·readFileSync·}·from·'node:fs';
+         21 │ + import·{·COLLAB_WALKTHROUGHS·}·from·'./src/walkthrough.collab.data.js';
+         22 │ + 
+         23 │ + const·argv·=·process.argv.slice(2);
+         24 │ + const·flag·=·(n,·d)·=>·{
+         25 │ + ··const·i·=·argv.indexOf(`--${n}`);
+         26 │ + ··return·i·>=·0·&&·argv[i·+·1]·?·argv[i·+·1]·:·d;
+         27 │ + };
+         28 │ + 
+  150 more lines truncated
+  
+
+.\schemas\production-agent.v1.schema.json format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+      3   3 │     "$id": "https://github.com/HomenShum/2026-senior-agent-engineering-checklist/blob/main/schema/production-agent.v1.schema.json",
+      4   4 │     "type": "object",
+      5     │ - ··"required":·["schemaVersion",·"application",·"declaredAt",·"goalTranslation",·"hitl",·"toolFaultTolerance",·"context",·"slos",·"runtimeGuards",·"release"],
+          5 │ + ··"required":·[
+          6 │ + ····"schemaVersion",
+          7 │ + ····"application",
+          8 │ + ····"declaredAt",
+          9 │ + ····"goalTranslation",
+         10 │ + ····"hitl",
+         11 │ + ····"toolFaultTolerance",
+         12 │ + ····"context",
+         13 │ + ····"slos",
+         14 │ + ····"runtimeGuards",
+         15 │ + ····"release"
+         16 │ + ··],
+      6  17 │     "properties": {
+      7  18 │       "schemaVersion": { "const": "production-agent/v1" },
+    ······· │ 
+     56  67 │             "type": "object",
+     57  68 │             "required": ["rawErrorsReachUser"],
+     58     │ - ··········"properties":·{·"rawErrorsReachUser":·{·"const":·false·},·"how":·{·"$ref":·"#/$defs/text"·}·},
+         69 │ + ··········"properties":·{
+         70 │ + ············"rawErrorsReachUser":·{·"const":·false·},
+         71 │ + ············"how":·{·"$ref":·"#/$defs/text"·}
+         72 │ + ··········},
+     59  73 │             "additionalProperties": false
+     60  74 │           },
+  
+
+.\tools\clip-gate\score.mjs:68:3 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+    66 │ let t = 0;
+    67 │ const events = wt.steps.map((s) => {
+  > 68 │   const at = t / fps, dur = (s.hold || 60) / fps;
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    69 │   t += s.hold || 60;
+    70 │   return { at, dur, burst: !!s.burst, click: !!(s.panes || []).some((p) => p && p.click), zoom: !!s.zoomScale };
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+     66  66 │   let t = 0;
+     67  67 │   const events = wt.steps.map((s) => {
+     68     │ - ··const·at·=·t·/·fps,·dur·=·(s.hold·||·60)·/·fps;
+         68 │ + ··const·at·=·t·/·fps;
+         69 │ + ··const·dur·=·(s.hold·||·60)·/·fps;
+     69  70 │     t += s.hold || 60;
+     70  71 │     return { at, dur, burst: !!s.burst, click: !!(s.panes || []).some((p) => p && p.click), zoom: !!s.zoomScale };
+  
+
+.\tools\clip-gate\score.mjs:70:76 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Change to an optional chain.
+  
+    68 │   const at = t / fps, dur = (s.hold || 60) / fps;
+    69 │   t += s.hold || 60;
+  > 70 │   return { at, dur, burst: !!s.burst, click: !!(s.panes || []).some((p) => p && p.click), zoom: !!s.zoomScale };
+       │                                                                            ^^^^^^^^^^^^
+    71 │ });
+    72 │ const DUR = t / fps;
+  
+  i Unsafe fix: Change to an optional chain.
+  
+     68  68 │     const at = t / fps, dur = (s.hold || 60) / fps;
+     69  69 │     t += s.hold || 60;
+     70     │ - ··return·{·at,·dur,·burst:·!!s.burst,·click:·!!(s.panes·||·[]).some((p)·=>·p·&&·p.click),·zoom:·!!s.zoomScale·};
+         70 │ + ··return·{·at,·dur,·burst:·!!s.burst,·click:·!!(s.panes·||·[]).some((p)·=>·p?.click),·zoom:·!!s.zoomScale·};
+     71  71 │   });
+     72  72 │   const DUR = t / fps;
+  
+
+.\tools\clip-gate\score.mjs:76:1 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+    74 │ const SR = 48000;
+    75 │ const N = Math.ceil((DUR + 1.5) * SR);
+  > 76 │ const L = new Float32Array(N), R = new Float32Array(N);
+       │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    77 │ const BEAT = 60 / BPM;                      // 0.5s at 120
+    78 │ const add = (i, l, r) => { if (i >= 0 && i < N) { L[i] += l; R[i] += r; } };
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+     74  74 │   const SR = 48000;
+     75  75 │   const N = Math.ceil((DUR + 1.5) * SR);
+     76     │ - const·L·=·new·Float32Array(N),·R·=·new·Float32Array(N);
+         76 │ + const·L·=·new·Float32Array(N);
+         77 │ + const·R·=·new·Float32Array(N);
+     77  78 │   const BEAT = 60 / BPM;                      // 0.5s at 120
+     78  79 │   const add = (i, l, r) => { if (i >= 0 && i < N) { L[i] += l; R[i] += r; } };
+  
+
+.\tools\clip-gate\score.mjs:88:3 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+    86 │ // Lead/arp voice. 6ms attack, exponential decay — percussive, never swells.
+    87 │ const blip = (freq, start, dur, gain = 0.06, duty = 0.5, pan = 0) => {
+  > 88 │   const s0 = Math.round(start * SR), n = Math.round(dur * SR);
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    89 │   const atk = Math.round(0.006 * SR);
+    90 │   for (let k = 0; k < n; k++) {
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+     86  86 │   // Lead/arp voice. 6ms attack, exponential decay — percussive, never swells.
+     87  87 │   const blip = (freq, start, dur, gain = 0.06, duty = 0.5, pan = 0) => {
+     88     │ - ··const·s0·=·Math.round(start·*·SR),·n·=·Math.round(dur·*·SR);
+         88 │ + ··const·s0·=·Math.round(start·*·SR);
+         89 │ + ··const·n·=·Math.round(dur·*·SR);
+     89  90 │     const atk = Math.round(0.006 * SR);
+     90  91 │     for (let k = 0; k < n; k++) {
+  
+
+.\tools\clip-gate\score.mjs:99:3 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+     97 │ // Bass: low square, longer body, slight portamento-free chunk.
+     98 │ const bass = (freq, start, dur, gain = 0.10) => {
+   > 99 │   const s0 = Math.round(start * SR), n = Math.round(dur * SR);
+        │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    100 │   for (let k = 0; k < n; k++) {
+    101 │     const env = Math.min(1, k / (0.004 * SR)) * Math.exp(-k / (dur * 0.6 * SR));
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+     97  97 │   // Bass: low square, longer body, slight portamento-free chunk.
+     98  98 │   const bass = (freq, start, dur, gain = 0.10) => {
+     99     │ - ··const·s0·=·Math.round(start·*·SR),·n·=·Math.round(dur·*·SR);
+         99 │ + ··const·s0·=·Math.round(start·*·SR);
+        100 │ + ··const·n·=·Math.round(dur·*·SR);
+    100 101 │     for (let k = 0; k < n; k++) {
+    101 102 │       const env = Math.min(1, k / (0.004 * SR)) * Math.exp(-k / (dur * 0.6 * SR));
+  
+
+.\tools\clip-gate\score.mjs:111:3 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+    109 │ // and rhythm is most of what separates "game" from "unsettling".
+    110 │ const kick = (start, gain = 0.30) => {
+  > 111 │   const s0 = Math.round(start * SR), n = Math.round(0.16 * SR);
+        │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    112 │   for (let k = 0; k < n; k++) {
+    113 │     const p = k / n;
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+    109 109 │   // and rhythm is most of what separates "game" from "unsettling".
+    110 110 │   const kick = (start, gain = 0.30) => {
+    111     │ - ··const·s0·=·Math.round(start·*·SR),·n·=·Math.round(0.16·*·SR);
+        111 │ + ··const·s0·=·Math.round(start·*·SR);
+        112 │ + ··const·n·=·Math.round(0.16·*·SR);
+    112 113 │     for (let k = 0; k < n; k++) {
+    113 114 │       const p = k / n;
+  
+
+.\tools\clip-gate\score.mjs:120:3 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+    118 │ };
+    119 │ const snare = (start, gain = 0.16) => {
+  > 120 │   const s0 = Math.round(start * SR), n = Math.round(0.14 * SR);
+        │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    121 │   for (let k = 0; k < n; k++) {
+    122 │     const env = Math.exp(-k / (0.035 * SR));
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+    118 118 │   };
+    119 119 │   const snare = (start, gain = 0.16) => {
+    120     │ - ··const·s0·=·Math.round(start·*·SR),·n·=·Math.round(0.14·*·SR);
+        120 │ + ··const·s0·=·Math.round(start·*·SR);
+        121 │ + ··const·n·=·Math.round(0.14·*·SR);
+    121 122 │     for (let k = 0; k < n; k++) {
+    122 123 │       const env = Math.exp(-k / (0.035 * SR));
+  
+
+.\tools\clip-gate\score.mjs:128:3 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+    126 │ };
+    127 │ const hat = (start, gain = 0.055, len = 0.028) => {
+  > 128 │   const s0 = Math.round(start * SR), n = Math.round(len * SR);
+        │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    129 │   let prev = 0;
+    130 │   for (let k = 0; k < n; k++) {
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+    126 126 │   };
+    127 127 │   const hat = (start, gain = 0.055, len = 0.028) => {
+    128     │ - ··const·s0·=·Math.round(start·*·SR),·n·=·Math.round(len·*·SR);
+        128 │ + ··const·s0·=·Math.round(start·*·SR);
+        129 │ + ··const·n·=·Math.round(len·*·SR);
+    129 130 │     let prev = 0;
+    130 131 │     for (let k = 0; k < n; k++) {
+  
+
+.\tools\clip-gate\score.mjs:179:5 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+    177 │ if (!music) {
+    178 │   sections.forEach((s, i) => {
+  > 179 │     const end = endOf(i), notes = CH[s.ch];
+        │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    180 │     // Bass on every beat; arp in 8ths; drums on the standard 4/4 grid.
+    181 │     const g = s.g;
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+    177 177 │   if (!music) {
+    178 178 │     sections.forEach((s, i) => {
+    179     │ - ····const·end·=·endOf(i),·notes·=·CH[s.ch];
+        179 │ + ····const·end·=·endOf(i);
+        180 │ + ····const·notes·=·CH[s.ch];
+    180 181 │       // Bass on every beat; arp in 8ths; drums on the standard 4/4 grid.
+    181 182 │       const g = s.g;
+  
+
+.\tools\clip-gate\score.mjs:203:1 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Prefer for...of instead of forEach.
+  
+    201 │ // Activity arps during BURST steps: a faster 16th run on top, so the moment the
+    202 │ // product is visibly working also SOUNDS like work happening.
+  > 203 │ events.filter((e) => e.burst).forEach((e) => {
+        │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 204 │   const notes = CH[sectionAt(e.at).ch];
+  > 205 │   for (let k = 0, x = e.at; x < e.at + e.dur; k++, x += BEAT / 4) {
+  > 206 │     blip(HZ(notes[k % notes.length] + 24), x, BEAT * 0.2, 0.035, 0.125, k % 2 ? 0.35 : -0.35);
+  > 207 │   }
+  > 208 │ });
+        │ ^^
+    209 │ 
+    210 │ events.filter((e) => e.click).forEach((e) => sfxSelect(e.at));
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+.\tools\clip-gate\score.mjs:210:1 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Prefer for...of instead of forEach.
+  
+    208 │ });
+    209 │ 
+  > 210 │ events.filter((e) => e.click).forEach((e) => sfxSelect(e.at));
+        │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    211 │ events.filter((e) => e.zoom).forEach((e) => sfxPowerUp(Math.max(0, e.at - 0.15)));
+    212 │ sfxCoin(events[18] ? events[18].at : DUR - 6);   // the result beat — the answer landing
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+.\tools\clip-gate\score.mjs:211:1 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Prefer for...of instead of forEach.
+  
+    210 │ events.filter((e) => e.click).forEach((e) => sfxSelect(e.at));
+  > 211 │ events.filter((e) => e.zoom).forEach((e) => sfxPowerUp(Math.max(0, e.at - 0.15)));
+        │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    212 │ sfxCoin(events[18] ? events[18].at : DUR - 6);   // the result beat — the answer landing
+    213 │ 
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+.\tools\clip-gate\score.mjs:216:31 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+    214 │ // --------------------------------------------------------------- write + mux
+    215 │ let peak = 0;
+  > 216 │ for (let i = 0; i < N; i++) { const a = Math.abs(L[i]), b = Math.abs(R[i]); if (a > peak) peak = a; if (b > peak) peak = b; }
+        │                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    217 │ if (!peak) peak = 1;
+    218 │ const norm = 0.89 / peak;
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+    214 214 │   // --------------------------------------------------------------- write + mux
+    215 215 │   let peak = 0;
+    216     │ - for·(let·i·=·0;·i·<·N;·i++)·{·const·a·=·Math.abs(L[i]),·b·=·Math.abs(R[i]);·if·(a·>·peak)·peak·=·a;·if·(b·>·peak)·peak·=·b;·}
+        216 │ + for·(let·i·=·0;·i·<·N;·i++)·{·const·a·=·Math.abs(L[i]);
+        217 │ + const·b·=·Math.abs(R[i]);·if·(a·>·peak)·peak·=·a;·if·(b·>·peak)·peak·=·b;·}
+    217 218 │   if (!peak) peak = 1;
+    218 219 │   const norm = 0.89 / peak;
+  
+
+.\tools\clip-gate\score.mjs:261:7 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Template literals are preferred over string concatenation.
+  
+    259 │   ff(["-i", video, "-i", music, "-i", wav,
+    260 │       "-filter_complex",
+  > 261 │       `[1:a]atrim=0:${DUR},afade=t=in:st=0:d=1.2,afade=t=out:st=${(DUR - 2).toFixed(2)}:d=2,volume=0.55[bed];` +
+        │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 262 │       `[bed][2:a]amix=inputs=2:duration=first:dropout_transition=0[mix];` +
+  > 263 │       `[mix]${NORM}[a]`,
+        │       ^^^^^^^^^^^^^^^^^
+    264 │       "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", out]);
+    265 │ } else if (vo && existsSync(vo)) {
+  
+  i Unsafe fix: Use a template literal.
+  
+    259 259 │     ff(["-i", video, "-i", music, "-i", wav,
+    260 260 │         "-filter_complex",
+    261     │ - ······`[1:a]atrim=0:${DUR},afade=t=in:st=0:d=1.2,afade=t=out:st=${(DUR·-·2).toFixed(2)}:d=2,volume=0.55[bed];`·+
+    262     │ - ······`[bed][2:a]amix=inputs=2:duration=first:dropout_transition=0[mix];`·+
+    263     │ - ······`[mix]${NORM}[a]`,
+        261 │ + ······`[1:a]atrim=0:${DUR},afade=t=in:st=0:d=1.2,afade=t=out:st=${(DUR·-·2).toFixed(2)}:d=2,volume=0.55[bed];[bed][2:a]amix=inputs=2:duration=first:dropout_transition=0[mix];[mix]${NORM}[a]`,
+    264 262 │         "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", out]);
+    265 263 │   } else if (vo && existsSync(vo)) {
+  
+
+.\tools\clip-gate\score.mjs:262:7 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    260 │       "-filter_complex",
+    261 │       `[1:a]atrim=0:${DUR},afade=t=in:st=0:d=1.2,afade=t=out:st=${(DUR - 2).toFixed(2)}:d=2,volume=0.55[bed];` +
+  > 262 │       `[bed][2:a]amix=inputs=2:duration=first:dropout_transition=0[mix];` +
+        │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    263 │       `[mix]${NORM}[a]`,
+    264 │       "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", out]);
+  
+  i Unsafe fix: Replace with string literal
+  
+    260 260 │         "-filter_complex",
+    261 261 │         `[1:a]atrim=0:${DUR},afade=t=in:st=0:d=1.2,afade=t=out:st=${(DUR - 2).toFixed(2)}:d=2,volume=0.55[bed];` +
+    262     │ - ······`[bed][2:a]amix=inputs=2:duration=first:dropout_transition=0[mix];`·+
+        262 │ + ······'[bed][2:a]amix=inputs=2:duration=first:dropout_transition=0[mix];'·+
+    263 263 │         `[mix]${NORM}[a]`,
+    264 264 │         "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", out]);
+  
+
+.\tools\clip-gate\score.mjs:272:7 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Template literals are preferred over string concatenation.
+  
+    270 │   ff(["-i", video, "-i", wav, "-i", vo,
+    271 │       "-filter_complex",
+  > 272 │       `[1:a]afade=t=out:st=${(DUR - 1.2).toFixed(2)}:d=1.2[bed];` +
+        │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 273 │       `[bed][2:a]sidechaincompress=threshold=0.03:ratio=9:attack=12:release=320:makeup=1[duck];` +
+  > 274 │       `[duck][2:a]amix=inputs=2:normalize=0:duration=longest[mix];[mix]${NORM}[a]`,
+        │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    275 │       "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", out]);
+    276 │ } else {
+  
+  i Unsafe fix: Use a template literal.
+  
+    270 270 │     ff(["-i", video, "-i", wav, "-i", vo,
+    271 271 │         "-filter_complex",
+    272     │ - ······`[1:a]afade=t=out:st=${(DUR·-·1.2).toFixed(2)}:d=1.2[bed];`·+
+    273     │ - ······`[bed][2:a]sidechaincompress=threshold=0.03:ratio=9:attack=12:release=320:makeup=1[duck];`·+
+    274     │ - ······`[duck][2:a]amix=inputs=2:normalize=0:duration=longest[mix];[mix]${NORM}[a]`,
+        272 │ + ······`[1:a]afade=t=out:st=${(DUR·-·1.2).toFixed(2)}:d=1.2[bed];[bed][2:a]sidechaincompress=threshold=0.03:ratio=9:attack=12:release=320:makeup=1[duck];[duck][2:a]amix=inputs=2:normalize=0:duration=longest[mix];[mix]${NORM}[a]`,
+    275 273 │         "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", out]);
+    276 274 │   } else {
+  
+
+.\tools\clip-gate\score.mjs:273:7 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    271 │       "-filter_complex",
+    272 │       `[1:a]afade=t=out:st=${(DUR - 1.2).toFixed(2)}:d=1.2[bed];` +
+  > 273 │       `[bed][2:a]sidechaincompress=threshold=0.03:ratio=9:attack=12:release=320:makeup=1[duck];` +
+        │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    274 │       `[duck][2:a]amix=inputs=2:normalize=0:duration=longest[mix];[mix]${NORM}[a]`,
+    275 │       "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", out]);
+  
+  i Unsafe fix: Replace with string literal
+  
+    271 271 │         "-filter_complex",
+    272 272 │         `[1:a]afade=t=out:st=${(DUR - 1.2).toFixed(2)}:d=1.2[bed];` +
+    273     │ - ······`[bed][2:a]sidechaincompress=threshold=0.03:ratio=9:attack=12:release=320:makeup=1[duck];`·+
+        273 │ + ······'[bed][2:a]sidechaincompress=threshold=0.03:ratio=9:attack=12:release=320:makeup=1[duck];'·+
+    274 274 │         `[duck][2:a]amix=inputs=2:normalize=0:duration=longest[mix];[mix]${NORM}[a]`,
+    275 275 │         "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", out]);
+  
+
+.\tools\clip-gate\score.mjs:79:25 lint/style/useExponentiationOperator  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+
+  × Use the '**' operator instead of 'Math.pow'.
+  
+    77 │ const BEAT = 60 / BPM;                      // 0.5s at 120
+    78 │ const add = (i, l, r) => { if (i >= 0 && i < N) { L[i] += l; R[i] += r; } };
+  > 79 │ const HZ = (n) => 440 * Math.pow(2, (n - 69) / 12);
+       │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    80 │ 
+    81 │ // ------------------------------------------------------- chip voices
+  
+  i Unsafe fix: Use the '**' operator instead of 'Math.pow'.
+  
+     77  77 │   const BEAT = 60 / BPM;                      // 0.5s at 120
+     78  78 │   const add = (i, l, r) => { if (i >= 0 && i < N) { L[i] += l; R[i] += r; } };
+     79     │ - const·HZ·=·(n)·=>·440·*·Math.pow(2,·(n·-·69)·/·12);
+         79 │ + const·HZ·=·(n)·=>·440·*·2·**·((n·-·69)·/·12);
+     80  80 │   
+     81  81 │   // ------------------------------------------------------- chip voices
+  
+
+.\tools\clip-gate\score.mjs organizeImports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Import statements could be sorted:
+  
+     45  45 │   //
+     46  46 │   import { execFileSync } from "node:child_process";
+     47     │ - import·{·writeFileSync,·existsSync·}·from·"node:fs";
+         47 │ + import·{·existsSync,·writeFileSync·}·from·"node:fs";
+     48  48 │   import { COLLAB_WALKTHROUGHS } from "./src/walkthrough.collab.data.js";
+     49  49 │   
+  
+
+.\tools\clip-gate\score.mjs format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+     44  44 │   //   node score.mjs --id TShero --video out/x.mp4 --music path/to/licensed.mp3
+     45  45 │   //
+     46     │ - import·{·execFileSync·}·from·"node:child_process";
+     47     │ - import·{·writeFileSync,·existsSync·}·from·"node:fs";
+     48     │ - import·{·COLLAB_WALKTHROUGHS·}·from·"./src/walkthrough.collab.data.js";
+         46 │ + import·{·execFileSync·}·from·'node:child_process';
+         47 │ + import·{·writeFileSync,·existsSync·}·from·'node:fs';
+         48 │ + import·{·COLLAB_WALKTHROUGHS·}·from·'./src/walkthrough.collab.data.js';
+     49  49 │   
+     50  50 │   const argv = process.argv.slice(2);
+     51     │ - const·flag·=·(n,·d)·=>·{·const·i·=·argv.indexOf(`--${n}`);·return·i·>=·0·&&·argv[i·+·1]·?·argv[i·+·1]·:·d;·};
+         51 │ + const·flag·=·(n,·d)·=>·{
+         52 │ + ··const·i·=·argv.indexOf(`--${n}`);
+         53 │ + ··return·i·>=·0·&&·argv[i·+·1]·?·argv[i·+·1]·:·d;
+         54 │ + };
+     52  55 │   
+     53     │ - const·id·=·flag("id");
+     54     │ - const·video·=·flag("video");
+     55     │ - const·music·=·flag("music");
+     56     │ - const·vo·=·flag("vo");
+     57     │ - const·fps·=·Number(flag("fps",·"30"));
+     58     │ - const·BPM·=·Number(flag("bpm",·"120"));
+     59     │ - const·targetLufs·=·flag("lufs",·"-14");
+     60     │ - if·(!id·||·!video)·{·console.error("usage:·node·score.mjs·--id·<SpecId>·--video·<file.mp4>·[--music·<file>]·[--bpm·120]·[--lufs·-14]");·process.exit(1);·}
+         56 │ + const·id·=·flag('id');
+         57 │ + const·video·=·flag('video');
+         58 │ + const·music·=·flag('music');
+         59 │ + const·vo·=·flag('vo');
+         60 │ + const·fps·=·Number(flag('fps',·'30'));
+         61 │ + const·BPM·=·Number(flag('bpm',·'120'));
+         62 │ + const·targetLufs·=·flag('lufs',·'-14');
+         63 │ + if·(!id·||·!video)·{
+         64 │ + ··console.error(
+         65 │ + ····'usage:·node·score.mjs·--id·<SpecId>·--video·<file.mp4>·[--music·<file>]·[--bpm·120]·[--lufs·-14]',
+         66 │ + ··);
+         67 │ + ··process.exit(1);
+         68 │ + }
+     61  69 │   
+     62  70 │   const wt = COLLAB_WALKTHROUGHS.find((w) => w.id === id);
+     63     │ - if·(!wt)·{·console.error(`no·walkthrough·"${id}"`);·process.exit(1);·}
+         71 │ + if·(!wt)·{
+         72 │ + ··console.error(`no·walkthrough·"${id}"`);
+         73 │ + ··process.exit(1);
+         74 │ + }
+     64  75 │   
+     65  76 │   // ---------------------------------------------------------------- the timeline
+     66  77 │   let t = 0;
+     67  78 │   const events = wt.steps.map((s) => {
+     68     │ - ··const·at·=·t·/·fps,·dur·=·(s.hold·||·60)·/·fps;
+         79 │ + ··const·at·=·t·/·fps,
+         80 │ + ····dur·=·(s.hold·||·60)·/·fps;
+     69  81 │     t += s.hold || 60;
+     70     │ - ··return·{·at,·dur,·burst:·!!s.burst,·click:·!!(s.panes·||·[]).some((p)·=>·p·&&·p.click),·zoom:·!!s.zoomScale·};
+         82 │ + ··return·{
+         83 │ + ····at,
+         84 │ + ····dur,
+         85 │ + ····burst:·!!s.burst,
+         86 │ + ····click:·!!(s.panes·||·[]).some((p)·=>·p·&&·p.click),
+         87 │ + ····zoom:·!!s.zoomScale,
+         88 │ + ··};
+     71  89 │   });
+     72  90 │   const DUR = t / fps;
+    ······· │ 
+     74  92 │   const SR = 48000;
+     75  93 │   const N = Math.ceil((DUR + 1.5) * SR);
+     76     │ - const·L·=·new·Float32Array(N),·R·=·new·Float32Array(N);
+     77     │ - const·BEAT·=·60·/·BPM;······················//·0.5s·at·120
+     78     │ - const·add·=·(i,·l,·r)·=>·{·if·(i·>=·0·&&·i·<·N)·{·L[i]·+=·l;·R[i]·+=·r;·}·};
+         94 │ + const·L·=·new·Float32Array(N),
+         95 │ + ··R·=·new·Float32Array(N);
+         96 │ + const·BEAT·=·60·/·BPM;·//·0.5s·at·120
+         97 │ + const·add·=·(i,·l,·r)·=>·{
+         98 │ + ··if·(i·>=·0·&&·i·<·N)·{
+         99 │ + ····L[i]·+=·l;
+        100 │ + ····R[i]·+=·r;
+        101 │ + ··}
+        102 │ + };
+     79 103 │   const HZ = (n) => 440 * Math.pow(2, (n - 69) / 12);
+     80 104 │   
+    ······· │ 
+     82 106 │   // Square/pulse rather than sine: the harmonic stack IS the arcade sound, and a
+     83 107 │   // pure sine reads as "test tone" or, with a slow attack, as dread.
+     84     │ - const·pulse·=·(ph,·duty·=·0.5)·=>·((ph·%·1)·<·duty·?·1·:·-1);
+        108 │ + const·pulse·=·(ph,·duty·=·0.5)·=>·(ph·%·1·<·duty·?·1·:·-1);
+     85 109 │   
+     86 110 │   // Lead/arp voice. 6ms attack, exponential decay — percussive, never swells.
+     87 111 │   const blip = (freq, start, dur, gain = 0.06, duty = 0.5, pan = 0) => {
+     88     │ - ··const·s0·=·Math.round(start·*·SR),·n·=·Math.round(dur·*·SR);
+        112 │ + ··const·s0·=·Math.round(start·*·SR),
+        113 │ + ····n·=·Math.round(dur·*·SR);
+     89 114 │     const atk = Math.round(0.006 * SR);
+     90 115 │     for (let k = 0; k < n; k++) {
+     91     │ - ····const·env·=·(k·<·atk·?·k·/·atk·:·Math.exp(-(k·-·atk)·/·(dur·*·0.42·*·SR)));
+        116 │ + ····const·env·=·k·<·atk·?·k·/·atk·:·Math.exp(-(k·-·atk)·/·(dur·*·0.42·*·SR));
+     92 117 │       const v = pulse((k / SR) * freq, duty) * env * gain;
+     93 118 │       add(s0 + k, v * (1 - Math.max(0, pan)), v * (1 + Math.min(0, pan)));
+    ······· │ 
+     96 121 │   
+     97 122 │   // Bass: low square, longer body, slight portamento-free chunk.
+     98     │ - const·bass·=·(freq,·start,·dur,·gain·=·0.10)·=>·{
+     99     │ - ··const·s0·=·Math.round(start·*·SR),·n·=·Math.round(dur·*·SR);
+        123 │ + const·bass·=·(freq,·start,·dur,·gain·=·0.1)·=>·{
+        124 │ + ··const·s0·=·Math.round(start·*·SR),
+        125 │ + ····n·=·Math.round(dur·*·SR);
+    100 126 │     for (let k = 0; k < n; k++) {
+    101 127 │       const env = Math.min(1, k / (0.004 * SR)) * Math.exp(-k / (dur * 0.6 * SR));
+    ······· │ 
+    108 134 │   // hat = very short high noise. This is the part the first version had none of,
+    109 135 │   // and rhythm is most of what separates "game" from "unsettling".
+    110     │ - const·kick·=·(start,·gain·=·0.30)·=>·{
+    111     │ - ··const·s0·=·Math.round(start·*·SR),·n·=·Math.round(0.16·*·SR);
+        136 │ + const·kick·=·(start,·gain·=·0.3)·=>·{
+        137 │ + ··const·s0·=·Math.round(start·*·SR),
+        138 │ + ····n·=·Math.round(0.16·*·SR);
+    112 139 │     for (let k = 0; k < n; k++) {
+    113 140 │       const p = k / n;
+    ······· │ 
+    118 145 │   };
+    119 146 │   const snare = (start, gain = 0.16) => {
+    120     │ - ··const·s0·=·Math.round(start·*·SR),·n·=·Math.round(0.14·*·SR);
+        147 │ + ··const·s0·=·Math.round(start·*·SR),
+        148 │ + ····n·=·Math.round(0.14·*·SR);
+    121 149 │     for (let k = 0; k < n; k++) {
+    122 150 │       const env = Math.exp(-k / (0.035 * SR));
+    123     │ - ····const·v·=·((Math.random()·*·2·-·1)·*·0.8·+·Math.sin((k·/·SR)·*·2·*·Math.PI·*·190)·*·0.3)·*·env·*·gain;
+        151 │ + ····const·v·=
+        152 │ + ······((Math.random()·*·2·-·1)·*·0.8·+·Math.sin((k·/·SR)·*·2·*·Math.PI·*·190)·*·0.3)·*·env·*·gain;
+    124 153 │       add(s0 + k, v, v);
+    125 154 │     }
+    126 155 │   };
+    127 156 │   const hat = (start, gain = 0.055, len = 0.028) => {
+    128     │ - ··const·s0·=·Math.round(start·*·SR),·n·=·Math.round(len·*·SR);
+        157 │ + ··const·s0·=·Math.round(start·*·SR),
+        158 │ + ····n·=·Math.round(len·*·SR);
+    129 159 │     let prev = 0;
+    130 160 │     for (let k = 0; k < n; k++) {
+    131 161 │       const x = Math.random() * 2 - 1;
+    132     │ - ····const·hp·=·x·-·prev;·prev·=·x;·······················//·crude·highpass·->·"tss"
+    133     │ - ····add(s0·+·k,·hp·*·Math.exp(-k·/·(len·*·0.4·*·SR))·*·gain,·hp·*·Math.exp(-k·/·(len·*·0.4·*·SR))·*·gain);
+        162 │ + ····const·hp·=·x·-·prev;
+        163 │ + ····prev·=·x;·//·crude·highpass·->·"tss"
+        164 │ + ····add(
+        165 │ + ······s0·+·k,
+        166 │ + ······hp·*·Math.exp(-k·/·(len·*·0.4·*·SR))·*·gain,
+        167 │ + ······hp·*·Math.exp(-k·/·(len·*·0.4·*·SR))·*·gain,
+        168 │ + ····);
+    134 169 │     }
+    135 170 │   };
+    ······· │ 
+    137 172 │   // ------------------------------------------------------------- game-feel sfx
+    138 173 │   // Select blip: two fast rising squares. The sound a menu makes.
+    139     │ - const·sfxSelect·=·(start)·=>·{·blip(HZ(84),·start,·0.055,·0.13,·0.25);·blip(HZ(91),·start·+·0.055,·0.09,·0.13,·0.25);·};
+        174 │ + const·sfxSelect·=·(start)·=>·{
+        175 │ + ··blip(HZ(84),·start,·0.055,·0.13,·0.25);
+        176 │ + ··blip(HZ(91),·start·+·0.055,·0.09,·0.13,·0.25);
+        177 │ + };
+  244 more lines truncated
+  
+
+.\tools\clip-gate\rubric.mjs format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+     23  23 │   // --------------------------------------------------------------------- CRAFT
+     24  24 │   export const CRAFT = [
+     25     │ - ··["storyboard_clarity",·"can·a·first-time·viewer·state·what·is·being·compared,·why·it·matters,·and·what·each·scene·proves?"],
+     26     │ - ··["state_coverage",·"does·each·flow·show·empty·state·->·action·->·(loading·if·async)·->·result,·or·does·it·skip·to·outcomes·(hero-shot·smell)?"],
+     27     │ - ··["cursor_truth",·"does·the·cursor·visibly·travel·to·and·land·ON·the·control·being·used·before·each·state·change?"],
+     28     │ - ··["caption_sync",·"do·step·captions·match·what·is·actually·happening·on·screen·(and·any·narration·heard)?"],
+     29     │ - ··["pacing",·"can·a·first-time·viewer·read·each·caption·and·register·each·state?·any·dead·air·or·rushed·beats?"],
+     30     │ - ··["legibility",·"is·app·text·readable·at·the·rendered·size?·are·captions·large·and·contrasty·enough?"],
+     31     │ - ··["proof_feel",·"does·it·read·as·evidence·of·a·real·working·product·(real·states,·real·data·motion)·rather·than·staged·marketing?"],
+     32     │ - ··["safety",·"any·visible·secrets,·API·keys,·tokens,·real·personal·data,·or·internal·URLs·that·should·not·ship?"],
+     33     │ - ··["signature_moment",·"is·there·ONE·moment·the·whole·demo·is·built·around,·does·it·land·early,·and·is·everything·before·it·earning·it?·(a·demo·that·is·uniformly·pleasant·and·has·no·peak·scores·0)"],
+     34     │ - ··["loop_etiquette",·"if·this·loops·as·a·GIF,·is·the·total·length·and·final-state·hold·reasonable·(viewers·lost·on·the·second·loop·=·too·long)?"],
+         25 │ + ··[
+         26 │ + ····'storyboard_clarity',
+         27 │ + ····'can·a·first-time·viewer·state·what·is·being·compared,·why·it·matters,·and·what·each·scene·proves?',
+         28 │ + ··],
+         29 │ + ··[
+         30 │ + ····'state_coverage',
+         31 │ + ····'does·each·flow·show·empty·state·->·action·->·(loading·if·async)·->·result,·or·does·it·skip·to·outcomes·(hero-shot·smell)?',
+         32 │ + ··],
+         33 │ + ··[
+         34 │ + ····'cursor_truth',
+         35 │ + ····'does·the·cursor·visibly·travel·to·and·land·ON·the·control·being·used·before·each·state·change?',
+         36 │ + ··],
+         37 │ + ··[
+         38 │ + ····'caption_sync',
+         39 │ + ····'do·step·captions·match·what·is·actually·happening·on·screen·(and·any·narration·heard)?',
+         40 │ + ··],
+         41 │ + ··[
+         42 │ + ····'pacing',
+         43 │ + ····'can·a·first-time·viewer·read·each·caption·and·register·each·state?·any·dead·air·or·rushed·beats?',
+         44 │ + ··],
+         45 │ + ··[
+         46 │ + ····'legibility',
+         47 │ + ····'is·app·text·readable·at·the·rendered·size?·are·captions·large·and·contrasty·enough?',
+         48 │ + ··],
+         49 │ + ··[
+         50 │ + ····'proof_feel',
+         51 │ + ····'does·it·read·as·evidence·of·a·real·working·product·(real·states,·real·data·motion)·rather·than·staged·marketing?',
+         52 │ + ··],
+         53 │ + ··[
+         54 │ + ····'safety',
+         55 │ + ····'any·visible·secrets,·API·keys,·tokens,·real·personal·data,·or·internal·URLs·that·should·not·ship?',
+         56 │ + ··],
+         57 │ + ··[
+         58 │ + ····'signature_moment',
+         59 │ + ····'is·there·ONE·moment·the·whole·demo·is·built·around,·does·it·land·early,·and·is·everything·before·it·earning·it?·(a·demo·that·is·uniformly·pleasant·and·has·no·peak·scores·0)',
+         60 │ + ··],
+         61 │ + ··[
+         62 │ + ····'loop_etiquette',
+         63 │ + ····'if·this·loops·as·a·GIF,·is·the·total·length·and·final-state·hold·reasonable·(viewers·lost·on·the·second·loop·=·too·long)?',
+         64 │ + ··],
+     35  65 │     // Added after the gate scored a SILENT video twice, across two different cuts,
+     36  66 │     // and never once mentioned that it had no audio track at all. A rubric only
+    ······· │ 
+     38  68 │     // invisible. Reference films are music-forward and measured loud (-13.2 LUFS
+     39  69 │     // on the closest analogue by length), so a silent cut is not a neutral choice.
+     40     │ - ··["soundtrack",·"is·there·audio·at·all,·and·does·it·have·SHAPE·that·follows·the·story·(lifting·at·the·reveal,·thinning·where·something·must·be·read)·rather·than·a·flat·loop?·Silence·scores·0.·Music·that·fights·the·content,·or·sits·so·loud·the·demo·feels·like·an·advert,·scores·1."],
+     41     │ - ··["audio_sync",·"do·clicks,·transitions·and·reveals·get·an·audible·acknowledgement·landing·ON·the·frame,·not·near·it?·A·demo·where·nothing·is·heard·when·the·pointer·acts·feels·like·a·mockup·even·when·the·product·is·real."],
+         70 │ + ··[
+         71 │ + ····'soundtrack',
+         72 │ + ····'is·there·audio·at·all,·and·does·it·have·SHAPE·that·follows·the·story·(lifting·at·the·reveal,·thinning·where·something·must·be·read)·rather·than·a·flat·loop?·Silence·scores·0.·Music·that·fights·the·content,·or·sits·so·loud·the·demo·feels·like·an·advert,·scores·1.',
+         73 │ + ··],
+         74 │ + ··[
+         75 │ + ····'audio_sync',
+         76 │ + ····'do·clicks,·transitions·and·reveals·get·an·audible·acknowledgement·landing·ON·the·frame,·not·near·it?·A·demo·where·nothing·is·heard·when·the·pointer·acts·feels·like·a·mockup·even·when·the·product·is·real.',
+         77 │ + ··],
+     42  78 │   ];
+     43  79 │   
+    ······· │ 
+     46  82 │   // line, not from the seat of someone who already knows the product.
+     47  83 │   export const COMPREHENSION = [
+     48     │ - ··["persona",·"is·it·visible·WHO·this·is·for?·A·viewer·should·be·able·to·name·the·person·whose·job·this·is,·from·what·is·on·screen·—·not·infer·it·from·the·domain.·0·if·the·demo·never·establishes·a·user·at·all."],
+     49     │ - ··["purpose",·"is·the·JOB·TO·BE·DONE·stated?·What·was·hard·or·slow·or·untrustworthy·before?·A·feature·tour·with·no·stated·problem·scores·0·however·pretty·it·is."],
+     50     │ - ··["use_case",·"is·there·a·concrete,·specific·situation·driving·the·demo·—·a·real·question·a·real·person·would·actually·have·—·rather·than·a·generic·sample·query?"],
+     51     │ - ··["feature_legibility",·"can·a·viewer·name·the·FEATURES·they·just·watched,·as·distinct·capabilities,·and·say·what·each·one·does?·Not·'it·made·a·chart'·but·'it·planned·the·buckets,·probed·each·one,·and·declared·the·overlap'."],
+     52     │ - ··["full_interaction",·"is·the·interaction·shown·END·TO·END·—·including·the·parts·that·are·boring·or·slow·—·or·does·it·cut·from·click·to·finished·result?·Every·hidden·step·is·a·step·the·viewer·assumes·was·faked."],
+     53     │ - ··["responsiveness",·"does·the·product·visibly·RESPOND:·hover·states,·focus,·loading·indicators,·streaming,·progressive·results,·latency·the·viewer·can·feel?·A·demo·where·nothing·acknowledges·the·user·reads·as·a·mockup."],
+     54     │ - ··["flow",·"do·the·scenes·connect·causally·—·this,·THEREFORE·that·—·so·the·demo·is·a·single·journey·rather·than·a·list·of·screens?·Name·where·the·thread·breaks·if·it·does."],
+     55     │ - ··["result",·"is·the·OUTCOME·unmistakable?·What·does·the·user·now·have·that·they·did·not·have·at·the·start,·stated·plainly·and·left·on·screen·long·enough·to·absorb?"],
+     56     │ - ··["lay_sense",·"AUDIENCE·TEST,·the·one·most·demos·fail.·Score·from·the·seat·of·the·named·audience.·Would·THEY·finish·this·video·able·to·say,·in·their·own·words,·why·this·is·useful·and·why·it·should·be·believed?·Jargon·that·is·never·unpacked,·acronyms,·and·unexplained·numbers·all·cost·points·here."],
+     57     │ - ··["own_case_transfer",·"could·a·viewer·now·use·this·on·THEIR·OWN·input?·Is·the·entry·point·shown·(where·you·type,·what·a·good·question·looks·like,·what·varies·vs·what·is·fixed)?·A·demo·that·only·ever·proves·one·hardcoded·example·scores·0."],
+         84 │ + ··[
+         85 │ + ····'persona',
+         86 │ + ····'is·it·visible·WHO·this·is·for?·A·viewer·should·be·able·to·name·the·person·whose·job·this·is,·from·what·is·on·screen·—·not·infer·it·from·the·domain.·0·if·the·demo·never·establishes·a·user·at·all.',
+         87 │ + ··],
+         88 │ + ··[
+         89 │ + ····'purpose',
+         90 │ + ····'is·the·JOB·TO·BE·DONE·stated?·What·was·hard·or·slow·or·untrustworthy·before?·A·feature·tour·with·no·stated·problem·scores·0·however·pretty·it·is.',
+         91 │ + ··],
+         92 │ + ··[
+         93 │ + ····'use_case',
+         94 │ + ····'is·there·a·concrete,·specific·situation·driving·the·demo·—·a·real·question·a·real·person·would·actually·have·—·rather·than·a·generic·sample·query?',
+         95 │ + ··],
+         96 │ + ··[
+         97 │ + ····'feature_legibility',
+         98 │ + ····"can·a·viewer·name·the·FEATURES·they·just·watched,·as·distinct·capabilities,·and·say·what·each·one·does?·Not·'it·made·a·chart'·but·'it·planned·the·buckets,·probed·each·one,·and·declared·the·overlap'.",
+         99 │ + ··],
+        100 │ + ··[
+        101 │ + ····'full_interaction',
+        102 │ + ····'is·the·interaction·shown·END·TO·END·—·including·the·parts·that·are·boring·or·slow·—·or·does·it·cut·from·click·to·finished·result?·Every·hidden·step·is·a·step·the·viewer·assumes·was·faked.',
+        103 │ + ··],
+        104 │ + ··[
+        105 │ + ····'responsiveness',
+        106 │ + ····'does·the·product·visibly·RESPOND:·hover·states,·focus,·loading·indicators,·streaming,·progressive·results,·latency·the·viewer·can·feel?·A·demo·where·nothing·acknowledges·the·user·reads·as·a·mockup.',
+        107 │ + ··],
+        108 │ + ··[
+        109 │ + ····'flow',
+        110 │ + ····'do·the·scenes·connect·causally·—·this,·THEREFORE·that·—·so·the·demo·is·a·single·journey·rather·than·a·list·of·screens?·Name·where·the·thread·breaks·if·it·does.',
+        111 │ + ··],
+        112 │ + ··[
+        113 │ + ····'result',
+        114 │ + ····'is·the·OUTCOME·unmistakable?·What·does·the·user·now·have·that·they·did·not·have·at·the·start,·stated·plainly·and·left·on·screen·long·enough·to·absorb?',
+        115 │ + ··],
+        116 │ + ··[
+        117 │ + ····'lay_sense',
+        118 │ + ····'AUDIENCE·TEST,·the·one·most·demos·fail.·Score·from·the·seat·of·the·named·audience.·Would·THEY·finish·this·video·able·to·say,·in·their·own·words,·why·this·is·useful·and·why·it·should·be·believed?·Jargon·that·is·never·unpacked,·acronyms,·and·unexplained·numbers·all·cost·points·here.',
+        119 │ + ··],
+        120 │ + ··[
+        121 │ + ····'own_case_transfer',
+        122 │ + ····'could·a·viewer·now·use·this·on·THEIR·OWN·input?·Is·the·entry·point·shown·(where·you·type,·what·a·good·question·looks·like,·what·varies·vs·what·is·fixed)?·A·demo·that·only·ever·proves·one·hardcoded·example·scores·0.',
+        123 │ + ··],
+     58 124 │   ];
+     59 125 │   
+    ······· │ 
+     67 133 │   // the gap shows up first as a walkthrough full of WHAT and empty of WHY.
+     68 134 │   export const INTERVIEW = [
+     69     │ - ··...COMPREHENSION.filter(([k])·=>·k·!==·"own_case_transfer"),
+     70     │ - ··["alternatives_named",·"for·each·decision,·is·the·REJECTED·option·stated·concretely·enough·that·a·listener·could·have·argued·for·it?·A·walkthrough·that·presents·every·choice·as·the·only·choice·is·describing·an·artefact,·not·defending·it."],
+     71     │ - ··["tradeoff_honesty",·"is·what·each·decision·COSTS·said·out·loud,·in·the·author's·own·voice,·without·being·softened·into·a·benefit?·0·if·every·tradeoff·resolves·in·the·author's·favour."],
+     72     │ - ··["falsifiability",·"for·each·claim,·could·a·listener·state·the·measurement·that·would·prove·it·wrong?·THE·dimension·of·this·rubric:·a·decision·with·no·statable·falsifier·is·a·preference·nobody·has·examined."],
+     73     │ - ··["failure_modes_named",·"does·the·author·name·something·that·went·WRONG·here·—·a·belief·that·was·measured·and·killed,·a·bug·that·passed·its·tests·—·rather·than·only·what·works?·Scoring·2·requires·a·specific,·checkable·failure,·not·humility·as·a·rhetorical·move."],
+        135 │ + ··...COMPREHENSION.filter(([k])·=>·k·!==·'own_case_transfer'),
+        136 │ + ··[
+        137 │ + ····'alternatives_named',
+        138 │ + ····'for·each·decision,·is·the·REJECTED·option·stated·concretely·enough·that·a·listener·could·have·argued·for·it?·A·walkthrough·that·presents·every·choice·as·the·only·choice·is·describing·an·artefact,·not·defending·it.',
+        139 │ + ··],
+        140 │ + ··[
+        141 │ + ····'tradeoff_honesty',
+        142 │ + ····"is·what·each·decision·COSTS·said·out·loud,·in·the·author's·own·voice,·without·being·softened·into·a·benefit?·0·if·every·tradeoff·resolves·in·the·author's·favour.",
+        143 │ + ··],
+        144 │ + ··[
+        145 │ + ····'falsifiability',
+        146 │ + ····'for·each·claim,·could·a·listener·state·the·measurement·that·would·prove·it·wrong?·THE·dimension·of·this·rubric:·a·decision·with·no·statable·falsifier·is·a·preference·nobody·has·examined.',
+        147 │ + ··],
+        148 │ + ··[
+        149 │ + ····'failure_modes_named',
+        150 │ + ····'does·the·author·name·something·that·went·WRONG·here·—·a·belief·that·was·measured·and·killed,·a·bug·that·passed·its·tests·—·rather·than·only·what·works?·Scoring·2·requires·a·specific,·checkable·failure,·not·humility·as·a·rhetorical·move.',
+        151 │ + ··],
+     74 152 │   ];
+     75 153 │   
+    ······· │ 
+     77 155 │   export const MAX = ALL.length * 2;
+     78 156 │   
+  13 more lines truncated
+  
+
+.\tools\clip-gate\retime.mjs:34:1 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+    32 │ // Only CAPTIONED steps are re-timed. A step with no caption has no narration, so
+    33 │ // its hold is a visual decision (a beat, a settle) that speech has no claim on.
+  > 34 │ let k = 0, changed = 0, before = 0, after = 0;
+       │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    35 │ // `\r?\n`: git's autocrlf rewrites this file on checkout, and a regex that
+    36 │ // assumes LF silently matches nothing — which reports as "0/0 holds changed"
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+    32 32 │   // Only CAPTIONED steps are re-timed. A step with no caption has no narration, so
+    33 33 │   // its hold is a visual decision (a beat, a settle) that speech has no claim on.
+    34    │ - let·k·=·0,·changed·=·0,·before·=·0,·after·=·0;
+       34 │ + let·k·=·0;
+       35 │ + let·changed·=·0;
+       36 │ + let·before·=·0;
+       37 │ + let·after·=·0;
+    35 38 │   // `\r?\n`: git's autocrlf rewrites this file on checkout, and a regex that
+    36 39 │   // assumes LF silently matches nothing — which reports as "0/0 holds changed"
+  
+
+.\tools\clip-gate\retime.mjs:26:1 lint/style/useConst  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × This let declares a variable that is only assigned once.
+  
+    24 │ const holds = JSON.parse(readFileSync(holdsFile, "utf8"));
+    25 │ const path = "src/walkthrough.collab.data.js";
+  > 26 │ let s = readFileSync(path, "utf8");
+       │ ^^^
+    27 │ const i = s.indexOf(`"id": "${id}"`);
+    28 │ if (i < 0) { console.error(`no "${id}" in ${path}`); process.exit(1); }
+  
+  i 's' is never reassigned.
+  
+    24 │ const holds = JSON.parse(readFileSync(holdsFile, "utf8"));
+    25 │ const path = "src/walkthrough.collab.data.js";
+  > 26 │ let s = readFileSync(path, "utf8");
+       │     ^
+    27 │ const i = s.indexOf(`"id": "${id}"`);
+    28 │ if (i < 0) { console.error(`no "${id}" in ${path}`); process.exit(1); }
+  
+  i Safe fix: Use const instead.
+  
+    24 24 │   const holds = JSON.parse(readFileSync(holdsFile, "utf8"));
+    25 25 │   const path = "src/walkthrough.collab.data.js";
+    26    │ - let·s·=·readFileSync(path,·"utf8");
+       26 │ + const·s·=·readFileSync(path,·"utf8");
+    27 27 │   const i = s.indexOf(`"id": "${id}"`);
+    28 28 │   if (i < 0) { console.error(`no "${id}" in ${path}`); process.exit(1); }
+  
+
+.\tools\clip-gate\retime.mjs format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+    13 13 │   //   node retime.mjs --id TShero --holds out/x.vo.holds.json
+    14 14 │   //
+    15    │ - import·{·readFileSync,·writeFileSync·}·from·"node:fs";
+       15 │ + import·{·readFileSync,·writeFileSync·}·from·'node:fs';
+    16 16 │   
+    17 17 │   const argv = process.argv.slice(2);
+    18    │ - const·flag·=·(n,·d)·=>·{·const·i·=·argv.indexOf(`--${n}`);·return·i·>=·0·&&·argv[i·+·1]·?·argv[i·+·1]·:·d;·};
+    19    │ - const·id·=·flag("id");
+    20    │ - const·holdsFile·=·flag("holds");
+    21    │ - const·shrink·=·argv.includes("--shrink");···//·allow·holds·to·get·SHORTER·too
+    22    │ - if·(!id·||·!holdsFile)·{·console.error("usage:·node·retime.mjs·--id·<SpecId>·--holds·<holds.json>·[--shrink]");·process.exit(1);·}
+       18 │ + const·flag·=·(n,·d)·=>·{
+       19 │ + ··const·i·=·argv.indexOf(`--${n}`);
+       20 │ + ··return·i·>=·0·&&·argv[i·+·1]·?·argv[i·+·1]·:·d;
+       21 │ + };
+       22 │ + const·id·=·flag('id');
+       23 │ + const·holdsFile·=·flag('holds');
+       24 │ + const·shrink·=·argv.includes('--shrink');·//·allow·holds·to·get·SHORTER·too
+       25 │ + if·(!id·||·!holdsFile)·{
+       26 │ + ··console.error('usage:·node·retime.mjs·--id·<SpecId>·--holds·<holds.json>·[--shrink]');
+       27 │ + ··process.exit(1);
+       28 │ + }
+    23 29 │   
+    24    │ - const·holds·=·JSON.parse(readFileSync(holdsFile,·"utf8"));
+    25    │ - const·path·=·"src/walkthrough.collab.data.js";
+    26    │ - let·s·=·readFileSync(path,·"utf8");
+       30 │ + const·holds·=·JSON.parse(readFileSync(holdsFile,·'utf8'));
+       31 │ + const·path·=·'src/walkthrough.collab.data.js';
+       32 │ + let·s·=·readFileSync(path,·'utf8');
+    27 33 │   const i = s.indexOf(`"id": "${id}"`);
+    28    │ - if·(i·<·0)·{·console.error(`no·"${id}"·in·${path}`);·process.exit(1);·}
+    29    │ - let·j·=·s.indexOf("\n··},\n··{",·i);
+       34 │ + if·(i·<·0)·{
+       35 │ + ··console.error(`no·"${id}"·in·${path}`);
+       36 │ + ··process.exit(1);
+       37 │ + }
+       38 │ + let·j·=·s.indexOf('\n··},\n··{',·i);
+    30 39 │   if (j < 0) j = s.length;
+    31 40 │   
+    32 41 │   // Only CAPTIONED steps are re-timed. A step with no caption has no narration, so
+    33 42 │   // its hold is a visual decision (a beat, a settle) that speech has no claim on.
+    34    │ - let·k·=·0,·changed·=·0,·before·=·0,·after·=·0;
+       43 │ + let·k·=·0,
+       44 │ + ··changed·=·0,
+       45 │ + ··before·=·0,
+       46 │ + ··after·=·0;
+    35 47 │   // `\r?\n`: git's autocrlf rewrites this file on checkout, and a regex that
+    36 48 │   // assumes LF silently matches nothing — which reports as "0/0 holds changed"
+    ····· │ 
+    40 52 │     const idx = k++;
+    41 53 │     before += Number(old);
+    42    │ - ··if·(cap·===·"null")·{·after·+=·Number(old);·return·m;·}
+       54 │ + ··if·(cap·===·'null')·{
+       55 │ + ····after·+=·Number(old);
+       56 │ + ····return·m;
+       57 │ + ··}
+    43 58 │     const want = holds[String(idx)];
+    44 59 │     const next = want == null ? Number(old) : shrink ? want : Math.max(Number(old), want);
+    ····· │ 
+    48 63 │   });
+    49 64 │   writeFileSync(path, s.slice(0, i) + block + s.slice(j));
+    50    │ - console.log(`[retime]·${id}:·${changed}/${k}·holds·changed·—·${(before·/·30).toFixed(1)}s·->·${(after·/·30).toFixed(1)}s`);
+       65 │ + console.log(
+       66 │ + ··`[retime]·${id}:·${changed}/${k}·holds·changed·—·${(before·/·30).toFixed(1)}s·->·${(after·/·30).toFixed(1)}s`,
+       67 │ + );
+    51 68 │   
+  
+
+.\tools\clip-gate\readability.mjs:64:3 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Prefer for...of instead of forEach.
+  
+    62 │   let fails = 0;
+    63 │   const all = [];
+  > 64 │   caps.forEach((c) => {
+       │   ^^^^^^^^^^^^^^^^^^^^^
+  > 65 │     const r = flesch(c.text);
+        ...
+  > 73 │       (hard.length ? `\n            hard: ${hard.join(", ")}` : ""));
+  > 74 │   });
+       │   ^^
+    75 │   const mean = Math.round((all.reduce((a, b) => a + b, 0) / all.length) * 10) / 10;
+    76 │   console.log(`\nmean reading ease ${mean} over ${caps.length} captions` + (MIN ? ` · gate ${MIN} · ${fails} below` : ""));
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+.\tools\clip-gate\readability.mjs:71:7 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Template literals are preferred over string concatenation.
+  
+    69 │     const hard = HARD(c.text);
+    70 │     console.log(
+  > 71 │       `${bad ? "FAIL" : "  ok"}  ${String(r.ease).padStart(6)}  step ${String(c.i).padStart(2)}  ` +
+       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 72 │       `${r.words}w/${r.sentences}s  ${JSON.stringify(c.text.slice(0, 62))}` +
+  > 73 │       (hard.length ? `\n            hard: ${hard.join(", ")}` : ""));
+       │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    74 │   });
+    75 │   const mean = Math.round((all.reduce((a, b) => a + b, 0) / all.length) * 10) / 10;
+  
+  i Unsafe fix: Use a template literal.
+  
+    69 69 │       const hard = HARD(c.text);
+    70 70 │       console.log(
+    71    │ - ······`${bad·?·"FAIL"·:·"··ok"}··${String(r.ease).padStart(6)}··step·${String(c.i).padStart(2)}··`·+
+    72    │ - ······`${r.words}w/${r.sentences}s··${JSON.stringify(c.text.slice(0,·62))}`·+
+    73    │ - ······(hard.length·?·`\n············hard:·${hard.join(",·")}`·:·""));
+       71 │ + ······`${bad·?·"FAIL"·:·"··ok"}··${String(r.ease).padStart(6)}··step·${String(c.i).padStart(2)}··${r.words}w/${r.sentences}s··${JSON.stringify(c.text.slice(0,·62))}${hard.length·?·`\n············hard:·${hard.join(",·")}`·:·""}`);
+    74 72 │     });
+    75 73 │     const mean = Math.round((all.reduce((a, b) => a + b, 0) / all.length) * 10) / 10;
+  
+
+.\tools\clip-gate\readability.mjs:76:15 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Template literals are preferred over string concatenation.
+  
+    74 │   });
+    75 │   const mean = Math.round((all.reduce((a, b) => a + b, 0) / all.length) * 10) / 10;
+  > 76 │   console.log(`\nmean reading ease ${mean} over ${caps.length} captions` + (MIN ? ` · gate ${MIN} · ${fails} below` : ""));
+       │               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    77 │   if (MIN && fails) process.exit(1);
+    78 │ }
+  
+  i Unsafe fix: Use a template literal.
+  
+    74 74 │     });
+    75 75 │     const mean = Math.round((all.reduce((a, b) => a + b, 0) / all.length) * 10) / 10;
+    76    │ - ··console.log(`\nmean·reading·ease·${mean}·over·${caps.length}·captions`·+·(MIN·?·`···gate·${MIN}···${fails}·below`·:·""));
+       76 │ + ··console.log(`\nmean·reading·ease·${mean}·over·${caps.length}·captions${MIN·?·`···gate·${MIN}···${fails}·below`·:·""}`);
+    77 77 │     if (MIN && fails) process.exit(1);
+    78 78 │   }
+  
+
+.\tools\clip-gate\readability.mjs format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+    19 19 │   //   node readability.mjs --id TShero --min 80     (exit 1 if any caption is below)
+    20 20 │   //
+    21    │ - import·{·COLLAB_WALKTHROUGHS·}·from·"./src/walkthrough.collab.data.js";
+       21 │ + import·{·COLLAB_WALKTHROUGHS·}·from·'./src/walkthrough.collab.data.js';
+    22 22 │   
+    23 23 │   const argv = process.argv.slice(2);
+    24    │ - const·flag·=·(n,·d)·=>·{·const·i·=·argv.indexOf(`--${n}`);·return·i·>=·0·&&·argv[i·+·1]·?·argv[i·+·1]·:·d;·};
+       24 │ + const·flag·=·(n,·d)·=>·{
+       25 │ + ··const·i·=·argv.indexOf(`--${n}`);
+       26 │ + ··return·i·>=·0·&&·argv[i·+·1]·?·argv[i·+·1]·:·d;
+       27 │ + };
+    25 28 │   
+    26    │ - const·id·=·flag("id");
+    27    │ - const·MIN·=·Number(flag("min",·"0"));
+    28    │ - if·(!id)·{·console.error("usage:·node·readability.mjs·--id·<SpecId>·[--min·80]");·process.exit(1);·}
+       29 │ + const·id·=·flag('id');
+       30 │ + const·MIN·=·Number(flag('min',·'0'));
+       31 │ + if·(!id)·{
+       32 │ + ··console.error('usage:·node·readability.mjs·--id·<SpecId>·[--min·80]');
+       33 │ + ··process.exit(1);
+       34 │ + }
+    29 35 │   
+    30 36 │   // Syllable estimate: vowel groups, minus silent trailing 'e', minimum 1. It is an
+    ····· │ 
+    32 38 │   // buys nothing — the signal is "this sentence is hard", not a decimal place.
+    33 39 │   export const syllables = (word) => {
+    34    │ - ··const·w·=·word.toLowerCase().replace(/[^a-z]/g,·"");
+       40 │ + ··const·w·=·word.toLowerCase().replace(/[^a-z]/g,·'');
+    35 41 │     if (!w) return 0;
+    36 42 │     if (w.length <= 3) return 1;
+    37    │ - ··const·groups·=·w.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/,·"").replace(/^y/,·"").match(/[aeiouy]{1,2}/g);
+       43 │ + ··const·groups·=·w
+       44 │ + ····.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/,·'')
+       45 │ + ····.replace(/^y/,·'')
+       46 │ + ····.match(/[aeiouy]{1,2}/g);
+    38 47 │     return Math.max(1, groups ? groups.length : 1);
+    39 48 │   };
+    40 49 │   
+    41 50 │   export const flesch = (text) => {
+    42    │ - ··const·clean·=·text.replace(/[—–]/g,·"·").replace(/\s+/g,·"·").trim();
+       51 │ + ··const·clean·=·text.replace(/[—–]/g,·'·').replace(/\s+/g,·'·').trim();
+    43 52 │     const sentences = Math.max(1, (clean.match(/[.!?]+/g) || []).length || 1);
+    44 53 │     const words = clean.split(/\s+/).filter((w) => /[a-z0-9]/i.test(w));
+    ····· │ 
+    51 60 │   // Words that cost the most: long, and jargon a general viewer has never met.
+    52 61 │   // Reported alongside the score so a rewrite has somewhere to start.
+    53    │ - const·HARD·=·(text)·=>·text.split(/\s+/)
+    54    │ - ··.map((w)·=>·w.replace(/[^A-Za-z-]/g,·""))
+    55    │ - ··.filter((w)·=>·w.length·>·3·&&·syllables(w)·>=·3);
+       62 │ + const·HARD·=·(text)·=>
+       63 │ + ··text
+       64 │ + ····.split(/\s+/)
+       65 │ + ····.map((w)·=>·w.replace(/[^A-Za-z-]/g,·''))
+       66 │ + ····.filter((w)·=>·w.length·>·3·&&·syllables(w)·>=·3);
+    56 67 │   
+    57    │ - if·(import.meta.url.endsWith(process.argv[1].replace(/\\/g,·"/").split("/").pop()))·{
+       68 │ + if·(import.meta.url.endsWith(process.argv[1].replace(/\\/g,·'/').split('/').pop()))·{
+    58 69 │     const wt = COLLAB_WALKTHROUGHS.find((w) => w.id === id);
+    59    │ - ··if·(!wt)·{·console.error(`no·walkthrough·"${id}"`);·process.exit(1);·}
+       70 │ + ··if·(!wt)·{
+       71 │ + ····console.error(`no·walkthrough·"${id}"`);
+       72 │ + ····process.exit(1);
+       73 │ + ··}
+    60 74 │     const caps = wt.steps.map((s, i) => ({ i, text: s.caption })).filter((c) => c.text);
+    61 75 │   
+    ····· │ 
+    69 83 │       const hard = HARD(c.text);
+    70 84 │       console.log(
+    71    │ - ······`${bad·?·"FAIL"·:·"··ok"}··${String(r.ease).padStart(6)}··step·${String(c.i).padStart(2)}··`·+
+    72    │ - ······`${r.words}w/${r.sentences}s··${JSON.stringify(c.text.slice(0,·62))}`·+
+    73    │ - ······(hard.length·?·`\n············hard:·${hard.join(",·")}`·:·""));
+       85 │ + ······`${bad·?·'FAIL'·:·'··ok'}··${String(r.ease).padStart(6)}··step·${String(c.i).padStart(2)}··`·+
+       86 │ + ········`${r.words}w/${r.sentences}s··${JSON.stringify(c.text.slice(0,·62))}`·+
+       87 │ + ········(hard.length·?·`\n············hard:·${hard.join(',·')}`·:·''),
+       88 │ + ····);
+    74 89 │     });
+    75 90 │     const mean = Math.round((all.reduce((a, b) => a + b, 0) / all.length) * 10) / 10;
+    76    │ - ··console.log(`\nmean·reading·ease·${mean}·over·${caps.length}·captions`·+·(MIN·?·`···gate·${MIN}···${fails}·below`·:·""));
+       91 │ + ··console.log(
+       92 │ + ····`\nmean·reading·ease·${mean}·over·${caps.length}·captions`·+
+       93 │ + ······(MIN·?·`···gate·${MIN}···${fails}·below`·:·''),
+       94 │ + ··);
+    77 95 │     if (MIN && fails) process.exit(1);
+    78 96 │   }
+  
+
+.\scripts\quality\verify-production-deploy.mjs:74:3 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Template literals are preferred over string concatenation.
+  
+    73 │ console.error(
+  > 74 │   `FAIL: ${url} never served HTTP 200 with the content signal within ${timeoutMs}ms. ` +
+       │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 75 │     'The deployment is not verified live.',
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    76 │ );
+    77 │ process.exit(1);
+  
+  i Unsafe fix: Use a template literal.
+  
+    72 72 │   
+    73 73 │   console.error(
+    74    │ - ··`FAIL:·${url}·never·served·HTTP·200·with·the·content·signal·within·${timeoutMs}ms.·`·+
+    75    │ - ····'The·deployment·is·not·verified·live.',
+       74 │ + ··`FAIL:·${url}·never·served·HTTP·200·with·the·content·signal·within·${timeoutMs}ms.·The·deployment·is·not·verified·live.`,
+    76 75 │   );
+    77 76 │   process.exit(1);
+  
+
+.\tools\clip-gate\narrate.mjs:99:9 lint/performance/noDelete  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Avoid the delete operator which can impact performance.
+  
+     97 │         entry.seconds = parsed.seconds;
+     98 │         entry.synth = parsed.synth;
+   > 99 │         delete entry.failed;
+        │         ^^^^^^^^^^^^^^^^^^^
+    100 │         entry.freshProcessRetry = attempt + 1;
+    101 │         recovered = true;
+  
+  i Unsafe fix: Use an undefined assignment instead.
+  
+     97  97 │           entry.seconds = parsed.seconds;
+     98  98 │           entry.synth = parsed.synth;
+     99     │ - ········delete·entry.failed;
+         99 │ + ········entry.failed·=·undefined;
+    100 100 │           entry.freshProcessRetry = attempt + 1;
+    101 101 │           recovered = true;
+  
+
+.\scripts\quality\verify-production-deploy.mjs format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+    60 60 │       const { status, body } = await fetchBody();
+    61 61 │       if (status === 200 && body.includes(signal)) {
+    62    │ - ······console.log(`OK·attempt·${attempt}:·${url}·serves·the·content·signal·(${JSON.stringify(signal)})`);
+       62 │ + ······console.log(
+       63 │ + ········`OK·attempt·${attempt}:·${url}·serves·the·content·signal·(${JSON.stringify(signal)})`,
+       64 │ + ······);
+    63 65 │         process.exit(0);
+    64 66 │       }
+    65    │ - ····console.error(`attempt·${attempt}:·HTTP·${status},·signal·${body.includes(signal)·?·'present'·:·'absent'}`);
+       67 │ + ····console.error(
+       68 │ + ······`attempt·${attempt}:·HTTP·${status},·signal·${body.includes(signal)·?·'present'·:·'absent'}`,
+       69 │ + ····);
+    66 70 │     } catch (err) {
+    67    │ - ····console.error(`attempt·${attempt}:·${err?.cause?.code·??·err?.name·??·'error'}:·${err?.message·??·err}`);
+       71 │ + ····console.error(
+       72 │ + ······`attempt·${attempt}:·${err?.cause?.code·??·err?.name·??·'error'}:·${err?.message·??·err}`,
+       73 │ + ····);
+    68 74 │     }
+    69 75 │     if (Date.now() + intervalMs > deadline) break;
+  
+
+.\tools\clip-gate\narrate.mjs format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+     20  20 │   // fit a hold makes it harder to follow, which is the opposite of the reason narration was added.
+     21  21 │   
+     22     │ - import·{·spawnSync·}·from·"node:child_process";
+     23     │ - import·{·existsSync,·mkdirSync,·readFileSync,·writeFileSync·}·from·"node:fs";
+     24     │ - import·path·from·"node:path";
+         22 │ + import·{·spawnSync·}·from·'node:child_process';
+         23 │ + import·{·existsSync,·mkdirSync,·readFileSync,·writeFileSync·}·from·'node:fs';
+         24 │ + import·path·from·'node:path';
+     25  25 │   
+     26  26 │   const FPS = 30;
+     27     │ - const·OUT_DIR·=·"out/narration";
+     28     │ - const·VOICE_DIR·=·"out/tts";
+         27 │ + const·OUT_DIR·=·'out/narration';
+         28 │ + const·VOICE_DIR·=·'out/tts';
+     29  29 │   
+     30  30 │   function python(code, { timeout = 540_000 } = {}) {
+     31     │ - ··const·run·=·spawnSync("python",·["-c",·code],·{
+     32     │ - ····encoding:·"utf8",
+         31 │ + ··const·run·=·spawnSync('python',·['-c',·code],·{
+         32 │ + ····encoding:·'utf8',
+     33  33 │       timeout,
+     34  34 │       maxBuffer: 32 * 1024 * 1024,
+     35  35 │       // PYTHONUTF8 because the phonemiser emits IPA and a Windows console codepage cannot print it —
+     36  36 │       // a crash that looks exactly like a synthesis failure and is not one.
+     37     │ - ····env:·{·...process.env,·PYTHONUTF8:·"1",·PYTHONIOENCODING:·"utf-8"·},
+         37 │ + ····env:·{·...process.env,·PYTHONUTF8:·'1',·PYTHONIOENCODING:·'utf-8'·},
+     38  38 │     });
+     39     │ - ··return·{·ok:·run.status·===·0,·out:·(run.stdout·??·"").trim(),·err:·(run.stderr·??·"").trim()·};
+         39 │ + ··return·{·ok:·run.status·===·0,·out:·(run.stdout·??·'').trim(),·err:·(run.stderr·??·'').trim()·};
+     40  40 │   }
+     41  41 │   
+    ······· │ 
+     43  43 │   export function synthesiseBeats(lines, voiceModel) {
+     44  44 │     mkdirSync(OUT_DIR, { recursive: true });
+     45     │ - ··const·model·=·path.join(VOICE_DIR,·`${voiceModel}.onnx`).replace(/\\/g,·"/");
+         45 │ + ··const·model·=·path.join(VOICE_DIR,·`${voiceModel}.onnx`).replace(/\\/g,·'/');
+     46  46 │   
+     47  47 │     // Batch first — one process, one model load, fast. But Piper's ONNX session corrupts under
+    ······· │ 
+     53  53 │     // quotes closed the generated Python's raw string — a syntax error at best, injection at worst,
+     54  54 │     // since captions can be product UI text nobody vets as code.
+     55     │ - ··const·payloadFile·=·path.join(OUT_DIR,·"lines.json").replace(/\\/g,·"/");
+     56     │ - ··writeFileSync(payloadFile,·JSON.stringify(lines.map((l,·i)·=>·({·i,·text:·l.text·}))),·"utf8");
+         55 │ + ··const·payloadFile·=·path.join(OUT_DIR,·'lines.json').replace(/\\/g,·'/');
+         56 │ + ··writeFileSync(payloadFile,·JSON.stringify(lines.map((l,·i)·=>·({·i,·text:·l.text·}))),·'utf8');
+     57  57 │     const batchCode = `
+     58  58 │   import json, wave, time
+    ······· │ 
+     75  75 │   `;
+     76  76 │     const batch = python(batchCode);
+     77     │ - ··if·(!batch.ok)·throw·new·Error(`piper·batch·failed·outright:·${batch.err.split(String.fromCharCode(10)).slice(-3).join("·").slice(0,·200)}`);
+         77 │ + ··if·(!batch.ok)
+         78 │ + ····throw·new·Error(
+         79 │ + ······`piper·batch·failed·outright:·${batch.err.split(String.fromCharCode(10)).slice(-3).join('·').slice(0,·200)}`,
+         80 │ + ····);
+     78  81 │     const results = JSON.parse(batch.out.split(String.fromCharCode(10)).filter(Boolean).pop());
+     79  82 │   
+    ······· │ 
+    102 105 │         }
+    103 106 │       }
+    104     │ - ····if·(!recovered)·throw·new·Error(`beat·${entry.i·+·1}·failed·in·batch·AND·in·2·fresh·processes·—·this·is·not·the·session·bug`);
+        107 │ + ····if·(!recovered)
+        108 │ + ······throw·new·Error(
+        109 │ + ········`beat·${entry.i·+·1}·failed·in·batch·AND·in·2·fresh·processes·—·this·is·not·the·session·bug`,
+        110 │ + ······);
+    105 111 │     }
+    106 112 │     return results;
+    ······· │ 
+    113 119 │     for (const step of steps) {
+    114 120 │       const holdSeconds = (step.hold || 60) / fps;
+    115     │ - ····if·(step.caption)·lines.push({·at:·frame·/·fps,·hold:·holdSeconds,·text:·String(step.caption)·});
+        121 │ + ····if·(step.caption)
+        122 │ + ······lines.push({·at:·frame·/·fps,·hold:·holdSeconds,·text:·String(step.caption)·});
+    116 123 │       frame += step.hold || 60;
+    117 124 │     }
+    ······· │ 
+    126 133 │     for (const [n, clip] of clips.entries()) {
+    127 134 │       const line = lines[clip.i];
+    128     │ - ····inputs.push("-i",·clip.file);
+        135 │ + ····inputs.push('-i',·clip.file);
+    129 136 │       const ms = Math.round(line.at * 1000);
+    130 137 │       filters.push(`[${n}:a]aresample=48000,adelay=${ms}|${ms}[n${n}]`);
+    131 138 │       labels.push(`[n${n}]`);
+    132 139 │     }
+    133     │ - ··filters.push(`${labels.join("")}amix=inputs=${labels.length}:normalize=0:dropout_transition=0,apad=whole_dur=${totalSeconds.toFixed(2)}[out]`);
+    134     │ - ··const·run·=·spawnSync("ffmpeg",·["-y",·"-v",·"error",·...inputs,·"-filter_complex",·filters.join(";"),·"-map",·"[out]",·"-t",·totalSeconds.toFixed(2),·"-ar",·"48000",·"-ac",·"1",·path.resolve(outFile)],·{
+    135     │ - ····encoding:·"utf8",·timeout:·300_000,·maxBuffer:·32·*·1024·*·1024,
+    136     │ - ··});
+    137     │ - ··if·(run.status·!==·0)·throw·new·Error(`ffmpeg·assemble·failed:·${(run.stderr·||·"").slice(0,·200)}`);
+        140 │ + ··filters.push(
+        141 │ + ····`${labels.join('')}amix=inputs=${labels.length}:normalize=0:dropout_transition=0,apad=whole_dur=${totalSeconds.toFixed(2)}[out]`,
+        142 │ + ··);
+        143 │ + ··const·run·=·spawnSync(
+        144 │ + ····'ffmpeg',
+        145 │ + ····[
+        146 │ + ······'-y',
+        147 │ + ······'-v',
+        148 │ + ······'error',
+        149 │ + ······...inputs,
+        150 │ + ······'-filter_complex',
+        151 │ + ······filters.join(';'),
+        152 │ + ······'-map',
+        153 │ + ······'[out]',
+        154 │ + ······'-t',
+        155 │ + ······totalSeconds.toFixed(2),
+        156 │ + ······'-ar',
+        157 │ + ······'48000',
+        158 │ + ······'-ac',
+        159 │ + ······'1',
+        160 │ + ······path.resolve(outFile),
+        161 │ + ····],
+        162 │ + ····{
+        163 │ + ······encoding:·'utf8',
+        164 │ + ······timeout:·300_000,
+        165 │ + ······maxBuffer:·32·*·1024·*·1024,
+        166 │ + ····},
+        167 │ + ··);
+        168 │ + ··if·(run.status·!==·0)
+        169 │ + ····throw·new·Error(`ffmpeg·assemble·failed:·${(run.stderr·||·'').slice(0,·200)}`);
+    138 170 │     return path.resolve(outFile);
+    139 171 │   }
+  
+
+.\tools\clip-gate\judge-video.mjs:181:36 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    179 │     if (spread(judge) > 0.7) {
+    180 │       console.log(`[judge] --reask: ${Math.round(spread(judge) * 100)}% share one score — re-asking (known to bias low)`);
+  > 181 │       runs.push(await ask([{ text: `Your previous judgement gave the SAME score to most dimensions. Re-judge and FORCE a spread: some dimensions are genuinely 0 and some are genuinely 2. Do NOT simply lower scores -- promote what deserves 2 as readily as you demote. Keep the same JSON shape.` }]));
+        │                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    182 │     }
+    183 │   }
+  
+  i Unsafe fix: Replace with string literal
+  
+    179 179 │       if (spread(judge) > 0.7) {
+    180 180 │         console.log(`[judge] --reask: ${Math.round(spread(judge) * 100)}% share one score — re-asking (known to bias low)`);
+    181     │ - ······runs.push(await·ask([{·text:·`Your·previous·judgement·gave·the·SAME·score·to·most·dimensions.·Re-judge·and·FORCE·a·spread:·some·dimensions·are·genuinely·0·and·some·are·genuinely·2.·Do·NOT·simply·lower·scores·--·promote·what·deserves·2·as·readily·as·you·demote.·Keep·the·same·JSON·shape.`·}]));
+        181 │ + ······runs.push(await·ask([{·text:·'Your·previous·judgement·gave·the·SAME·score·to·most·dimensions.·Re-judge·and·FORCE·a·spread:·some·dimensions·are·genuinely·0·and·some·are·genuinely·2.·Do·NOT·simply·lower·scores·--·promote·what·deserves·2·as·readily·as·you·demote.·Keep·the·same·JSON·shape.'·}]));
+    182 182 │       }
+    183 183 │     }
+  
+
+.\tools\clip-gate\judge-video.mjs:193:5 lint/complexity/noForEach ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Prefer for...of instead of forEach.
+  
+    191 │     const centre = runs[totals.indexOf(med(totals))] || runs[0];
+    192 │     const merged = {};
+  > 193 │     keys.forEach((k) => {
+        │     ^^^^^^^^^^^^^^^^^^^^^
+  > 194 │       const vals = runs.map((r) => r.scores[k]?.score).filter((v) => v != null);
+  > 195 │       merged[k] = { score: med(vals), evidence: (centre.scores[k] || runs[0].scores[k] || {}).evidence || "" };
+  > 196 │     });
+        │     ^^
+    197 │     console.log(`[judge] ${runs.length} samples: totals ${totals.join(", ")} — median per dimension`);
+    198 │     judge = { ...centre, scores: merged, samples: runs.length, sample_totals: totals };
+  
+  i forEach may lead to performance issues when working with large arrays. When combined with functions like filter or map, this causes multiple iterations over the same type.
+  
+
+.\tools\clip-gate\judge-video.mjs:195:49 lint/complexity/useOptionalChain  FIXABLE  ━━━━━━━━━━━━━━━━
+
+  × Change to an optional chain.
+  
+    193 │     keys.forEach((k) => {
+    194 │       const vals = runs.map((r) => r.scores[k]?.score).filter((v) => v != null);
+  > 195 │       merged[k] = { score: med(vals), evidence: (centre.scores[k] || runs[0].scores[k] || {}).evidence || "" };
+        │                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    196 │     });
+    197 │     console.log(`[judge] ${runs.length} samples: totals ${totals.join(", ")} — median per dimension`);
+  
+  i Unsafe fix: Change to an optional chain.
+  
+    193 193 │       keys.forEach((k) => {
+    194 194 │         const vals = runs.map((r) => r.scores[k]?.score).filter((v) => v != null);
+    195     │ - ······merged[k]·=·{·score:·med(vals),·evidence:·(centre.scores[k]·||·runs[0].scores[k]·||·{}).evidence·||·""·};
+        195 │ + ······merged[k]·=·{·score:·med(vals),·evidence:·(centre.scores[k]·||·runs[0].scores[k])?.evidence·||·""·};
+    196 196 │       });
+    197 197 │       console.log(`[judge] ${runs.length} samples: totals ${totals.join(", ")} — median per dimension`);
+  
+
+.\tools\clip-gate\judge-video.mjs:204:3 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+    202 │   const total = scores.reduce((a, [, v]) => a + v.score, 0);
+    203 │   const sub = (list) => list.reduce((a, [k]) => a + (judge.scores[k]?.score ?? 0), 0);
+  > 204 │   const craft = sub(CRAFT), comp = sub(SECOND);
+        │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    205 │   const row = ([k]) => `| ${k} | ${judge.scores[k]?.score ?? "-"}/2 | ${(judge.scores[k]?.evidence || "").replace(/\|/g, "\|")} |`;
+    206 │ 
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+    202 202 │     const total = scores.reduce((a, [, v]) => a + v.score, 0);
+    203 203 │     const sub = (list) => list.reduce((a, [k]) => a + (judge.scores[k]?.score ?? 0), 0);
+    204     │ - ··const·craft·=·sub(CRAFT),·comp·=·sub(SECOND);
+        204 │ + ··const·craft·=·sub(CRAFT);
+        205 │ + ··const·comp·=·sub(SECOND);
+    205 206 │     const row = ([k]) => `| ${k} | ${judge.scores[k]?.score ?? "-"}/2 | ${(judge.scores[k]?.evidence || "").replace(/\|/g, "\|")} |`;
+    206 207 │   
+  
+
+.\tools\clip-gate\judge-video.mjs:209:5 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    207 │   const md = [
+    208 │     `# Video judge — ${video}`,
+  > 209 │     ``,
+        │     ^^
+    210 │     `**Judge:** ${model} · **Audience:** ${audience}`,
+    211 │     `**Verdict:** ${judge.verdict} · **Score:** ${total}/${MAX} — craft ${craft}/${CRAFT.length * 2}, ${mode === "interview" ? "defensibility" : "comprehension"} ${comp}/${SECOND.length * 2}`,
+  
+  i Unsafe fix: Replace with string literal
+  
+    207 207 │     const md = [
+    208 208 │       `# Video judge — ${video}`,
+    209     │ - ····``,
+        209 │ + ····'',
+    210 210 │       `**Judge:** ${model} · **Audience:** ${audience}`,
+    211 211 │       `**Verdict:** ${judge.verdict} · **Score:** ${total}/${MAX} — craft ${craft}/${CRAFT.length * 2}, ${mode === "interview" ? "defensibility" : "comprehension"} ${comp}/${SECOND.length * 2}`,
+  
+
+.\tools\clip-gate\judge-video.mjs:212:5 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    210 │     `**Judge:** ${model} · **Audience:** ${audience}`,
+    211 │     `**Verdict:** ${judge.verdict} · **Score:** ${total}/${MAX} — craft ${craft}/${CRAFT.length * 2}, ${mode === "interview" ? "defensibility" : "comprehension"} ${comp}/${SECOND.length * 2}`,
+  > 212 │     ``,
+        │     ^^
+    213 │     `> ${judge.summary}`,
+    214 │     ``,
+  
+  i Unsafe fix: Replace with string literal
+  
+    210 210 │       `**Judge:** ${model} · **Audience:** ${audience}`,
+    211 211 │       `**Verdict:** ${judge.verdict} · **Score:** ${total}/${MAX} — craft ${craft}/${CRAFT.length * 2}, ${mode === "interview" ? "defensibility" : "comprehension"} ${comp}/${SECOND.length * 2}`,
+    212     │ - ····``,
+        212 │ + ····'',
+    213 213 │       `> ${judge.summary}`,
+    214 214 │       ``,
+  
+
+.\tools\clip-gate\judge-video.mjs:214:5 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    212 │     ``,
+    213 │     `> ${judge.summary}`,
+  > 214 │     ``,
+        │     ^^
+    215 │     // The split is printed even when it is flattering, because the gap between
+    216 │     // the two halves IS the finding. A cut that is 16/20 craft and 7/20
+  
+  i Unsafe fix: Replace with string literal
+  
+    212 212 │       ``,
+    213 213 │       `> ${judge.summary}`,
+    214     │ - ····``,
+        214 │ + ····'',
+    215 215 │       // The split is printed even when it is flattering, because the gap between
+    216 216 │       // the two halves IS the finding. A cut that is 16/20 craft and 7/20
+  
+
+.\tools\clip-gate\judge-video.mjs:219:5 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    217 │     // comprehension is not "a 23" -- it is a well-made video nobody understood.
+    218 │     `## Craft — is it well made (${craft}/${CRAFT.length * 2})`,
+  > 219 │     ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...CRAFT.map(row),
+        │     ^^
+    220 │     ``,
+    221 │     `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+  
+  i Unsafe fix: Replace with string literal
+  
+    217 217 │       // comprehension is not "a 23" -- it is a well-made video nobody understood.
+    218 218 │       `## Craft — is it well made (${craft}/${CRAFT.length * 2})`,
+    219     │ - ····``,·`|·Dimension·|·Score·|·Evidence·|`,·`|---|---|---|`,·...CRAFT.map(row),
+        219 │ + ····'',·`|·Dimension·|·Score·|·Evidence·|`,·`|---|---|---|`,·...CRAFT.map(row),
+    220 220 │       ``,
+    221 221 │       `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+  
+
+.\tools\clip-gate\judge-video.mjs:219:9 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    217 │     // comprehension is not "a 23" -- it is a well-made video nobody understood.
+    218 │     `## Craft — is it well made (${craft}/${CRAFT.length * 2})`,
+  > 219 │     ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...CRAFT.map(row),
+        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    220 │     ``,
+    221 │     `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+  
+  i Unsafe fix: Replace with string literal
+  
+    217 217 │       // comprehension is not "a 23" -- it is a well-made video nobody understood.
+    218 218 │       `## Craft — is it well made (${craft}/${CRAFT.length * 2})`,
+    219     │ - ····``,·`|·Dimension·|·Score·|·Evidence·|`,·`|---|---|---|`,·...CRAFT.map(row),
+        219 │ + ····``,·'|·Dimension·|·Score·|·Evidence·|',·`|---|---|---|`,·...CRAFT.map(row),
+    220 220 │       ``,
+    221 221 │       `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+  
+
+.\tools\clip-gate\judge-video.mjs:219:45 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    217 │     // comprehension is not "a 23" -- it is a well-made video nobody understood.
+    218 │     `## Craft — is it well made (${craft}/${CRAFT.length * 2})`,
+  > 219 │     ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...CRAFT.map(row),
+        │                                             ^^^^^^^^^^^^^^^
+    220 │     ``,
+    221 │     `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+  
+  i Unsafe fix: Replace with string literal
+  
+    217 217 │       // comprehension is not "a 23" -- it is a well-made video nobody understood.
+    218 218 │       `## Craft — is it well made (${craft}/${CRAFT.length * 2})`,
+    219     │ - ····``,·`|·Dimension·|·Score·|·Evidence·|`,·`|---|---|---|`,·...CRAFT.map(row),
+        219 │ + ····``,·`|·Dimension·|·Score·|·Evidence·|`,·'|---|---|---|',·...CRAFT.map(row),
+    220 220 │       ``,
+    221 221 │       `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+  
+
+.\tools\clip-gate\judge-video.mjs:220:5 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    218 │     `## Craft — is it well made (${craft}/${CRAFT.length * 2})`,
+    219 │     ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...CRAFT.map(row),
+  > 220 │     ``,
+        │     ^^
+    221 │     `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+    222 │     `Judged as: *${audience}*`,
+  
+  i Unsafe fix: Replace with string literal
+  
+    218 218 │       `## Craft — is it well made (${craft}/${CRAFT.length * 2})`,
+    219 219 │       ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...CRAFT.map(row),
+    220     │ - ····``,
+        220 │ + ····'',
+    221 221 │       `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+    222 222 │       `Judged as: *${audience}*`,
+  
+
+.\tools\clip-gate\judge-video.mjs:223:5 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    221 │     `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+    222 │     `Judged as: *${audience}*`,
+  > 223 │     ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...SECOND.map(row),
+        │     ^^
+    224 │     ``,
+    225 │     `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
+  
+  i Unsafe fix: Replace with string literal
+  
+    221 221 │       `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+    222 222 │       `Judged as: *${audience}*`,
+    223     │ - ····``,·`|·Dimension·|·Score·|·Evidence·|`,·`|---|---|---|`,·...SECOND.map(row),
+        223 │ + ····'',·`|·Dimension·|·Score·|·Evidence·|`,·`|---|---|---|`,·...SECOND.map(row),
+    224 224 │       ``,
+    225 225 │       `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
+  
+
+.\tools\clip-gate\judge-video.mjs:223:9 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    221 │     `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+    222 │     `Judged as: *${audience}*`,
+  > 223 │     ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...SECOND.map(row),
+        │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    224 │     ``,
+    225 │     `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
+  
+  i Unsafe fix: Replace with string literal
+  
+    221 221 │       `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+    222 222 │       `Judged as: *${audience}*`,
+    223     │ - ····``,·`|·Dimension·|·Score·|·Evidence·|`,·`|---|---|---|`,·...SECOND.map(row),
+        223 │ + ····``,·'|·Dimension·|·Score·|·Evidence·|',·`|---|---|---|`,·...SECOND.map(row),
+    224 224 │       ``,
+    225 225 │       `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
+  
+
+.\tools\clip-gate\judge-video.mjs:223:45 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    221 │     `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+    222 │     `Judged as: *${audience}*`,
+  > 223 │     ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...SECOND.map(row),
+        │                                             ^^^^^^^^^^^^^^^
+    224 │     ``,
+    225 │     `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
+  
+  i Unsafe fix: Replace with string literal
+  
+    221 221 │       `## ${mode === "interview" ? "Defensibility — could the author defend it" : "Comprehension — did anyone understand it"} (${comp}/${SECOND.length * 2})`,
+    222 222 │       `Judged as: *${audience}*`,
+    223     │ - ····``,·`|·Dimension·|·Score·|·Evidence·|`,·`|---|---|---|`,·...SECOND.map(row),
+        223 │ + ····``,·`|·Dimension·|·Score·|·Evidence·|`,·'|---|---|---|',·...SECOND.map(row),
+    224 224 │       ``,
+    225 225 │       `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
+  
+
+.\tools\clip-gate\judge-video.mjs:224:5 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    222 │     `Judged as: *${audience}*`,
+    223 │     ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...SECOND.map(row),
+  > 224 │     ``,
+        │     ^^
+    225 │     `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
+    226 │     ``,
+  
+  i Unsafe fix: Replace with string literal
+  
+    222 222 │       `Judged as: *${audience}*`,
+    223 223 │       ``, `| Dimension | Score | Evidence |`, `|---|---|---|`, ...SECOND.map(row),
+    224     │ - ····``,
+        224 │ + ····'',
+    225 225 │       `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
+    226 226 │       ``,
+  
+
+.\tools\clip-gate\judge-video.mjs:226:5 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    224 │     ``,
+    225 │     `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
+  > 226 │     ``,
+        │     ^^
+    227 │     `## Defects`,
+    228 │     ...(judge.defects?.length ? judge.defects.map((d) => `- **${d.severity} @ ${d.ts}** — ${d.observed} → *${d.fix}*`) : ["(none found)"]),
+  
+  i Unsafe fix: Replace with string literal
+  
+    224 224 │       ``,
+    225 225 │       `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
+    226     │ - ····``,
+        226 │ + ····'',
+    227 227 │       `## Defects`,
+    228 228 │       ...(judge.defects?.length ? judge.defects.map((d) => `- **${d.severity} @ ${d.ts}** — ${d.observed} → *${d.fix}*`) : ["(none found)"]),
+  
+
+.\tools\clip-gate\judge-video.mjs:227:5 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    225 │     `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
+    226 │     ``,
+  > 227 │     `## Defects`,
+        │     ^^^^^^^^^^^^
+    228 │     ...(judge.defects?.length ? judge.defects.map((d) => `- **${d.severity} @ ${d.ts}** — ${d.observed} → *${d.fix}*`) : ["(none found)"]),
+    229 │     ``,
+  
+  i Unsafe fix: Replace with string literal
+  
+    225 225 │       `Weakest overall: **${judge.weakest}** · strongest: **${judge.strongest}** · weakest comprehension: **${judge.weakest_comprehension || "-"}**`,
+    226 226 │       ``,
+    227     │ - ····`##·Defects`,
+        227 │ + ····'##·Defects',
+    228 228 │       ...(judge.defects?.length ? judge.defects.map((d) => `- **${d.severity} @ ${d.ts}** — ${d.observed} → *${d.fix}*`) : ["(none found)"]),
+    229 229 │       ``,
+  
+
+.\tools\clip-gate\judge-video.mjs:229:5 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    227 │     `## Defects`,
+    228 │     ...(judge.defects?.length ? judge.defects.map((d) => `- **${d.severity} @ ${d.ts}** — ${d.observed} → *${d.fix}*`) : ["(none found)"]),
+  > 229 │     ``,
+        │     ^^
+    230 │     `## Next cut — the revision brief`,
+    231 │     ...(judge.next_cut?.length
+  
+  i Unsafe fix: Replace with string literal
+  
+    227 227 │       `## Defects`,
+    228 228 │       ...(judge.defects?.length ? judge.defects.map((d) => `- **${d.severity} @ ${d.ts}** — ${d.observed} → *${d.fix}*`) : ["(none found)"]),
+    229     │ - ····``,
+        229 │ + ····'',
+    230 230 │       `## Next cut — the revision brief`,
+    231 231 │       ...(judge.next_cut?.length
+  
+
+.\tools\clip-gate\judge-video.mjs:230:5 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    228 │     ...(judge.defects?.length ? judge.defects.map((d) => `- **${d.severity} @ ${d.ts}** — ${d.observed} → *${d.fix}*`) : ["(none found)"]),
+    229 │     ``,
+  > 230 │     `## Next cut — the revision brief`,
+        │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    231 │     ...(judge.next_cut?.length
+    232 │       ? judge.next_cut.map((n) => `- **${n.dimension}** @ ${n.where} — ${n.change}`)
+  
+  i Unsafe fix: Replace with string literal
+  
+    228 228 │       ...(judge.defects?.length ? judge.defects.map((d) => `- **${d.severity} @ ${d.ts}** — ${d.observed} → *${d.fix}*`) : ["(none found)"]),
+    229 229 │       ``,
+    230     │ - ····`##·Next·cut·—·the·revision·brief`,
+        230 │ + ····'##·Next·cut·—·the·revision·brief',
+    231 231 │       ...(judge.next_cut?.length
+    232 232 │         ? judge.next_cut.map((n) => `- **${n.dimension}** @ ${n.where} — ${n.change}`)
+  
+
+.\tools\clip-gate\judge-video.mjs:235:37 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Template literals are preferred over string concatenation.
+  
+    233 │       : ["(judge returned no next_cut — treat that as a judge defect, not a passing grade)"]),
+    234 │   ].join("\n");
+  > 235 │   writeFileSync(`${base}.judge.md`, md + "\n");
+        │                                     ^^^^^^^^^
+    236 │   console.log(md);
+    237 │ 
+  
+  i Unsafe fix: Use a template literal.
+  
+    233 233 │         : ["(judge returned no next_cut — treat that as a judge defect, not a passing grade)"]),
+    234 234 │     ].join("\n");
+    235     │ - ··writeFileSync(`${base}.judge.md`,·md·+·"\n");
+        235 │ + ··writeFileSync(`${base}.judge.md`,·`${md}\n`);
+    236 236 │     console.log(md);
+    237 237 │   
+  
+
+.\tools\clip-gate\judge-video.mjs organizeImports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Import statements could be sorted:
+  
+     12  12 │   // a re-render polish loop for P2s the judge already passed.
+     13  13 │   import { existsSync, readFileSync, writeFileSync } from "node:fs";
+     14     │ - import·{·rubricPrompt,·CRAFT,·COMPREHENSION,·INTERVIEW,·setFor·}·from·"./rubric.mjs";
+         14 │ + import·{·COMPREHENSION,·CRAFT,·INTERVIEW,·rubricPrompt,·setFor·}·from·"./rubric.mjs";
+     15  15 │   
+     16  16 │   const argv = process.argv.slice(2);
+  
+
+.\src\lib\frame-evidence.test.ts organizeImports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Import statements could be sorted:
+  
+     3  3 │   
+     4  4 │   import { describe, expect, it } from 'vitest';
+     5    │ - import·{·evaluateFrameEvidence,·formatFrameEvidence,·parseFrameSet,·type·Frame·}·from·'./frame-evidence';
+        5 │ + import·{·type·Frame,·evaluateFrameEvidence,·formatFrameEvidence,·parseFrameSet·}·from·'./frame-evidence';
+     6  6 │   
+     7  7 │   const hash = (c: string) => c.repeat(64);
+  
+
+.\src\lib\frame-evidence.test.ts format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+     3   3 │   
+     4   4 │   import { describe, expect, it } from 'vitest';
+     5     │ - import·{·evaluateFrameEvidence,·formatFrameEvidence,·parseFrameSet,·type·Frame·}·from·'./frame-evidence';
+         5 │ + import·{
+         6 │ + ··evaluateFrameEvidence,
+         7 │ + ··formatFrameEvidence,
+         8 │ + ··parseFrameSet,
+         9 │ + ··type·Frame,
+        10 │ + }·from·'./frame-evidence';
+     6  11 │   
+     7  12 │   const hash = (c: string) => c.repeat(64);
+    ······ │ 
+    59  64 │   
+    60  65 │     it('refuses a screenshot binding that points at a different image', () => {
+    61     │ - ····const·verdict·=·evaluateFrameEvidence([live({·bindings:·{·...live().bindings,·screenshotSha256:·hash('c')·}·})]);
+        66 │ + ····const·verdict·=·evaluateFrameEvidence([
+        67 │ + ······live({·bindings:·{·...live().bindings,·screenshotSha256:·hash('c')·}·}),
+        68 │ + ····]);
+    62  69 │       expect(verdict.passed).toBe(false);
+    63  70 │       expect(verdict.blockers.join(' ')).toMatch(/does not match the frame's own hash/);
+    ······ │ 
+    84  91 │     it('refuses a frame nobody hashed, or that never says what it is presented as', () => {
+    85  92 │       expect(() => parseFrameSet([live({ sha256: 'nope' })])).toThrow(/needs its own sha256/);
+    86     │ - ····expect(()·=>·parseFrameSet([{·...live(),·presentedAs:·undefined·}])).toThrow(/needs·presentedAs/);
+        93 │ + ····expect(()·=>·parseFrameSet([{·...live(),·presentedAs:·undefined·}])).toThrow(
+        94 │ + ······/needs·presentedAs/,
+        95 │ + ····);
+    87  96 │     });
+    88  97 │   
+  
+
+.\tools\clip-gate\judge-video.mjs format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+     11  11 │   // Severity policy: P0 blocks publishing · P1 fix before posting · P2 log and ship — do NOT enter
+     12  12 │   // a re-render polish loop for P2s the judge already passed.
+     13     │ - import·{·existsSync,·readFileSync,·writeFileSync·}·from·"node:fs";
+     14     │ - import·{·rubricPrompt,·CRAFT,·COMPREHENSION,·INTERVIEW,·setFor·}·from·"./rubric.mjs";
+         13 │ + import·{·existsSync,·readFileSync,·writeFileSync·}·from·'node:fs';
+         14 │ + import·{·rubricPrompt,·CRAFT,·COMPREHENSION,·INTERVIEW,·setFor·}·from·'./rubric.mjs';
+     15  15 │   
+     16  16 │   const argv = process.argv.slice(2);
+    ······· │ 
+     23  23 │   // never heard the jargon, and the whole point of the second rubric is to make
+     24  24 │   // that difference a number instead of an argument.
+     25     │ - const·audience·=·flag("for",·process.env.JUDGE_AUDIENCE·||·"a·smart·newcomer·who·has·never·seen·this·product·and·does·not·know·the·domain·jargon");
+     26     │ - const·gate·=·Number(flag("gate",·process.env.JUDGE_GATE·||·"0"));···//·exit·1·below·this·score
+     27     │ - const·samples·=·Number(flag("samples",·process.env.JUDGE_SAMPLES·||·"3"));
+     28     │ - const·reask·=·argv.includes("--reask");
+         25 │ + const·audience·=·flag(
+         26 │ + ··'for',
+         27 │ + ··process.env.JUDGE_AUDIENCE·||
+         28 │ + ····'a·smart·newcomer·who·has·never·seen·this·product·and·does·not·know·the·domain·jargon',
+         29 │ + );
+         30 │ + const·gate·=·Number(flag('gate',·process.env.JUDGE_GATE·||·'0'));·//·exit·1·below·this·score
+         31 │ + const·samples·=·Number(flag('samples',·process.env.JUDGE_SAMPLES·||·'3'));
+         32 │ + const·reask·=·argv.includes('--reask');
+     29  33 │   // --mode interview swaps the comprehension half for the defensibility half.
+     30     │ - const·mode·=·flag("mode",·"demo");
+         34 │ + const·mode·=·flag('mode',·'demo');
+     31  35 │   const SECOND = setFor(mode);
+     32  36 │   const MAX = (CRAFT.length + SECOND.length) * 2;
+     33     │ - const·video·=·argv.find((a)·=>·!a.startsWith("--")·&&·argv[argv.indexOf(a)·-·1]·!==·"--for"·&&·argv[argv.indexOf(a)·-·1]·!==·"--gate");
+         37 │ + const·video·=·argv.find(
+         38 │ + ··(a)·=>
+         39 │ + ····!a.startsWith('--')·&&
+         40 │ + ····argv[argv.indexOf(a)·-·1]·!==·'--for'·&&
+         41 │ + ····argv[argv.indexOf(a)·-·1]·!==·'--gate',
+         42 │ + );
+     34  43 │   if (!video || !existsSync(video)) {
+     35     │ - ··console.error("usage:·node·judge-video.mjs·<video.mp4|webm|mov>·[--for·\"<audience>\"]·[--gate·<n>]");
+         44 │ + ··console.error(
+         45 │ + ····'usage:·node·judge-video.mjs·<video.mp4|webm|mov>·[--for·"<audience>"]·[--gate·<n>]',
+         46 │ + ··);
+     36  47 │     process.exit(1);
+     37  48 │   }
+     38  49 │   
+     39  50 │   const key = () => {
+     40     │ - ··for·(const·k·of·["GEMINI_API_KEY",·"GOOGLE_GENERATIVE_AI_API_KEY"])·if·(process.env[k])·return·process.env[k];
+     41     │ - ··for·(const·f·of·[".env.local",·".env"])·{
+         51 │ + ··for·(const·k·of·['GEMINI_API_KEY',·'GOOGLE_GENERATIVE_AI_API_KEY'])
+         52 │ + ····if·(process.env[k])·return·process.env[k];
+         53 │ + ··for·(const·f·of·['.env.local',·'.env'])·{
+     42  54 │       if (!existsSync(f)) continue;
+     43     │ - ····const·m·=·readFileSync(f,·"utf8").match(/^(?:GEMINI_API_KEY|GOOGLE_GENERATIVE_AI_API_KEY)=(.+)$/m);
+         55 │ + ····const·m·=·readFileSync(f,·'utf8').match(
+         56 │ + ······/^(?:GEMINI_API_KEY|GOOGLE_GENERATIVE_AI_API_KEY)=(.+)$/m,
+         57 │ + ····);
+     44  58 │       if (m) return m[1].trim();
+     45  59 │     }
+     46     │ - ··throw·new·Error("set·GEMINI_API_KEY·or·GOOGLE_GENERATIVE_AI_API_KEY");
+         60 │ + ··throw·new·Error('set·GEMINI_API_KEY·or·GOOGLE_GENERATIVE_AI_API_KEY');
+     47  61 │   };
+     48  62 │   
+     49     │ - 
+     50  63 │   // Reference videos, watched DIRECTLY from YouTube.
+     51  64 │   //
+    ······· │ 
+     64  77 │   // which is a real bill, and the calibration prose alone already moved the judge
+     65  78 │   // off uniform scoring.
+     66     │ - const·REFERENCE_VIDEOS·=·(process.env.REFERENCE_VIDEOS·||·"")
+     67     │ - ··.split(",").map((u)·=>·u.trim()).filter(Boolean);
+         79 │ + const·REFERENCE_VIDEOS·=·(process.env.REFERENCE_VIDEOS·||·'')
+         80 │ + ··.split(',')
+         81 │ + ··.map((u)·=>·u.trim())
+         82 │ + ··.filter(Boolean);
+     68  83 │   
+     69  84 │   const referenceParts = REFERENCE_VIDEOS.flatMap((url, i) => [
+     70     │ - ··{·text:·`REFERENCE·${i·+·1}·(a·demo·held·up·as·best-in-class).·Watch·it,·then·judge·the·SUBJECT·video·against·it.·Cite·timestamps·in·BOTH·when·you·compare.`·},
+         85 │ + ··{
+         86 │ + ····text:·`REFERENCE·${i·+·1}·(a·demo·held·up·as·best-in-class).·Watch·it,·then·judge·the·SUBJECT·video·against·it.·Cite·timestamps·in·BOTH·when·you·compare.`,
+         87 │ + ··},
+     71  88 │     { file_data: { file_uri: url } },
+     72  89 │   ]);
+    ······· │ 
+    109 126 │   const run = async () => {
+    110 127 │     const bytes = readFileSync(video);
+    111     │ - ··if·(bytes.length·>·19_000_000)·throw·new·Error(`${(bytes.length·/·1048576).toFixed(1)}MB·>·inline·limit·—·use·the·Gemini·Files·API·or·render·a·smaller·cut`);
+        128 │ + ··if·(bytes.length·>·19_000_000)
+        129 │ + ····throw·new·Error(
+        130 │ + ······`${(bytes.length·/·1048576).toFixed(1)}MB·>·inline·limit·—·use·the·Gemini·Files·API·or·render·a·smaller·cut`,
+        131 │ + ····);
+    112 132 │     console.log(`[judge] ${video} — ${(bytes.length / 1048576).toFixed(1)}MB → gemini`);
+    113     │ - ··const·model·=·process.env.GEMINI_JUDGE_MODEL·||·"gemini-3.6-flash";
+    114     │ - ··const·mime·=·video.endsWith(".webm")·?·"video/webm"·:·video.endsWith(".mov")·?·"video/quicktime"·:·"video/mp4";
+    115     │ - ··const·base·=·video.replace(/\.(mp4|webm|mov)$/i,·"");
+        133 │ + ··const·model·=·process.env.GEMINI_JUDGE_MODEL·||·'gemini-3.6-flash';
+        134 │ + ··const·mime·=·video.endsWith('.webm')
+        135 │ + ····?·'video/webm'
+        136 │ + ····:·video.endsWith('.mov')
+        137 │ + ······?·'video/quicktime'
+        138 │ + ······:·'video/mp4';
+        139 │ + ··const·base·=·video.replace(/\.(mp4|webm|mov)$/i,·'');
+    116 140 │   
+    117 141 │     // One call shape, reused by the first judgement and by the anti-uniformity
+    ······· │ 
+    119 143 │     // previous distribution back without restating the whole rubric.
+    120 144 │     const ask = async (extra = []) => {
+    121     │ - ····const·res·=·await·fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key()}`,·{
+    122     │ - ······method:·"POST",
+    123     │ - ······headers:·{·"content-type":·"application/json"·},
+    124     │ - ······body:·JSON.stringify({
+    125     │ - ········contents:·[{·parts:·[
+    126     │ - ··········...referenceParts,
+    127     │ - ··········{·text:·referenceParts.length·?·"SUBJECT·VIDEO·—·this·is·the·one·being·judged:"·:·""·},
+    128     │ - ··········{·inline_data:·{·mime_type:·mime,·data:·bytes.toString("base64")·}·},
+    129     │ - ··········{·text:·REFERENCES·+·RUBRIC·},
+    130     │ - ··········...extra,
+    131     │ - ········].filter((p)·=>·p.text·!==·"")·}],
+    132     │ - ········generationConfig:·{·temperature:·0.2,·response_mime_type:·"application/json"·},
+    133     │ - ······}),
+    134     │ - ····});
+        145 │ + ····const·res·=·await·fetch(
+        146 │ + ······`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key()}`,
+        147 │ + ······{
+        148 │ + ········method:·'POST',
+        149 │ + ········headers:·{·'content-type':·'application/json'·},
+        150 │ + ········body:·JSON.stringify({
+        151 │ + ··········contents:·[
+        152 │ + ············{
+        153 │ + ··············parts:·[
+        154 │ + ················...referenceParts,
+        155 │ + ················{
+        156 │ + ··················text:·referenceParts.length
+        157 │ + ····················?·'SUBJECT·VIDEO·—·this·is·the·one·being·judged:'
+        158 │ + ····················:·'',
+        159 │ + ················},
+        160 │ + ················{·inline_data:·{·mime_type:·mime,·data:·bytes.toString('base64')·}·},
+        161 │ + ················{·text:·REFERENCES·+·RUBRIC·},
+        162 │ + ················...extra,
+        163 │ + ··············].filter((p)·=>·p.text·!==·''),
+        164 │ + ············},
+        165 │ + ··········],
+        166 │ + ··········generationConfig:·{·temperature:·0.2,·response_mime_type:·'application/json'·},
+        167 │ + ········}),
+        168 │ + ······},
+        169 │ + ····);
+    135 170 │       if (!res.ok) throw new Error(`gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
+    136 171 │       const body = await res.json();
+    137     │ - ····const·raw·=·(body.candidates?.[0]?.content?.parts·||·[]).map((p)·=>·p.text·||·"").join("");
+        172 │ + ····const·raw·=·(body.candidates?.[0]?.content?.parts·||·[]).map((p)·=>·p.text·||·'').join('');
+    138 173 │       let out = null;
+    139     │ - ····try·{·out·=·JSON.parse(raw);·}·catch·{}
+        174 │ + ····try·{
+        175 │ + ······out·=·JSON.parse(raw);
+        176 │ + ····}·catch·{}
+    140 177 │       if (!out || !out.scores) {
+    141 178 │         writeFileSync(`${base}.judge.raw.txt`, raw || JSON.stringify(body, null, 2));
+  111 more lines truncated
+  
+
+.\tools\clip-gate\iterate.mjs:89:5 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    87 │     `weakest: ${verdict?.weakest ?? "-"} · weakest comprehension: ${verdict?.weakest_comprehension ?? "-"}`,
+    88 │     ...(verdict?.next_cut ?? []).map((n) => `- **${n.dimension}** @ ${n.where} — ${n.change}`),
+  > 89 │     ``,
+       │     ^^
+    90 │   ].join("\n"));
+    91 │ 
+  
+  i Unsafe fix: Replace with string literal
+  
+     87  87 │       `weakest: ${verdict?.weakest ?? "-"} · weakest comprehension: ${verdict?.weakest_comprehension ?? "-"}`,
+     88  88 │       ...(verdict?.next_cut ?? []).map((n) => `- **${n.dimension}** @ ${n.where} — ${n.change}`),
+     89     │ - ····``,
+         89 │ + ····'',
+     90  90 │     ].join("\n"));
+     91  91 │   
+  
+
+.\tools\clip-gate\iterate.mjs:99:42 lint/style/useTemplate  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Template literals are preferred over string concatenation.
+  
+     97 │   console.log(`\n[iterate] round ${r}: ${total}/40 < ${gate}.`);
+     98 │   if (r === rounds) {
+   > 99 │     writeFileSync(`${base}.next-cut.md`, [
+        │                                          ^
+  > 100 │       `# Revision brief — ${comp}, round ${r}`,
+         ...
+  > 109 │       `Full scorecard: ${base}.judge.md · round history: ${LOG}`,
+  > 110 │     ].join("\n") + "\n");
+        │     ^^^^^^^^^^^^^^^^^^^
+    111 │     console.error(`[iterate] revision brief written to ${base}.next-cut.md — apply it and re-run.`);
+    112 │     process.exit(1);
+  
+  i Unsafe fix: Use a template literal.
+  
+     97  97 │     console.log(`\n[iterate] round ${r}: ${total}/40 < ${gate}.`);
+     98  98 │     if (r === rounds) {
+     99     │ - ····writeFileSync(`${base}.next-cut.md`,·[
+         99 │ + ····writeFileSync(`${base}.next-cut.md`,·`${[
+    100 100 │         `# Revision brief — ${comp}, round ${r}`,
+    101 101 │         ``,
+    ······· │ 
+    108 108 │         ``,
+    109 109 │         `Full scorecard: ${base}.judge.md · round history: ${LOG}`,
+    110     │ - ····].join("\n")·+·"\n");
+        110 │ + ····].join("\n")}\n`);
+    111 111 │       console.error(`[iterate] revision brief written to ${base}.next-cut.md — apply it and re-run.`);
+    112 112 │       process.exit(1);
+  
+
+.\tools\clip-gate\iterate.mjs:101:7 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+     99 │     writeFileSync(`${base}.next-cut.md`, [
+    100 │       `# Revision brief — ${comp}, round ${r}`,
+  > 101 │       ``,
+        │       ^^
+    102 │       `Scored ${total}/40 for: *${audience}*. Gate is ${gate}.`,
+    103 │       `Weakest comprehension dimension: **${verdict?.weakest_comprehension ?? "unknown"}**`,
+  
+  i Unsafe fix: Replace with string literal
+  
+     99  99 │       writeFileSync(`${base}.next-cut.md`, [
+    100 100 │         `# Revision brief — ${comp}, round ${r}`,
+    101     │ - ······``,
+        101 │ + ······'',
+    102 102 │         `Scored ${total}/40 for: *${audience}*. Gate is ${gate}.`,
+    103 103 │         `Weakest comprehension dimension: **${verdict?.weakest_comprehension ?? "unknown"}**`,
+  
+
+.\tools\clip-gate\iterate.mjs:104:7 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    102 │       `Scored ${total}/40 for: *${audience}*. Gate is ${gate}.`,
+    103 │       `Weakest comprehension dimension: **${verdict?.weakest_comprehension ?? "unknown"}**`,
+  > 104 │       ``,
+        │       ^^
+    105 │       `Apply these to the storyboard spec, then re-run \`npm run clip\`:`,
+    106 │       ``,
+  
+  i Unsafe fix: Replace with string literal
+  
+    102 102 │         `Scored ${total}/40 for: *${audience}*. Gate is ${gate}.`,
+    103 103 │         `Weakest comprehension dimension: **${verdict?.weakest_comprehension ?? "unknown"}**`,
+    104     │ - ······``,
+        104 │ + ······'',
+    105 105 │         `Apply these to the storyboard spec, then re-run \`npm run clip\`:`,
+    106 106 │         ``,
+  
+
+.\tools\clip-gate\iterate.mjs:105:7 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    103 │       `Weakest comprehension dimension: **${verdict?.weakest_comprehension ?? "unknown"}**`,
+    104 │       ``,
+  > 105 │       `Apply these to the storyboard spec, then re-run \`npm run clip\`:`,
+        │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    106 │       ``,
+    107 │       ...(verdict?.next_cut ?? []).map((n, i) => `${i + 1}. **${n.dimension}** (${n.where}) — ${n.change}`),
+  
+  i Unsafe fix: Replace with string literal
+  
+    103 103 │         `Weakest comprehension dimension: **${verdict?.weakest_comprehension ?? "unknown"}**`,
+    104 104 │         ``,
+    105     │ - ······`Apply·these·to·the·storyboard·spec,·then·re-run·\`npm·run·clip\`:`,
+        105 │ + ······'Apply·these·to·the·storyboard·spec,·then·re-run·\`npm·run·clip\`:',
+    106 106 │         ``,
+    107 107 │         ...(verdict?.next_cut ?? []).map((n, i) => `${i + 1}. **${n.dimension}** (${n.where}) — ${n.change}`),
+  
+
+.\tools\clip-gate\iterate.mjs:106:7 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    104 │       ``,
+    105 │       `Apply these to the storyboard spec, then re-run \`npm run clip\`:`,
+  > 106 │       ``,
+        │       ^^
+    107 │       ...(verdict?.next_cut ?? []).map((n, i) => `${i + 1}. **${n.dimension}** (${n.where}) — ${n.change}`),
+    108 │       ``,
+  
+  i Unsafe fix: Replace with string literal
+  
+    104 104 │         ``,
+    105 105 │         `Apply these to the storyboard spec, then re-run \`npm run clip\`:`,
+    106     │ - ······``,
+        106 │ + ······'',
+    107 107 │         ...(verdict?.next_cut ?? []).map((n, i) => `${i + 1}. **${n.dimension}** (${n.where}) — ${n.change}`),
+    108 108 │         ``,
+  
+
+.\tools\clip-gate\iterate.mjs:108:7 lint/style/noUnusedTemplateLiteral  FIXABLE  ━━━━━━━━━━━━━━━━━━━
+
+  × Do not use template literals if interpolation and special-character handling are not needed.
+  
+    106 │       ``,
+    107 │       ...(verdict?.next_cut ?? []).map((n, i) => `${i + 1}. **${n.dimension}** (${n.where}) — ${n.change}`),
+  > 108 │       ``,
+        │       ^^
+    109 │       `Full scorecard: ${base}.judge.md · round history: ${LOG}`,
+    110 │     ].join("\n") + "\n");
+  
+  i Unsafe fix: Replace with string literal
+  
+    106 106 │         ``,
+    107 107 │         ...(verdict?.next_cut ?? []).map((n, i) => `${i + 1}. **${n.dimension}** (${n.where}) — ${n.change}`),
+    108     │ - ······``,
+        108 │ + ······'',
+    109 109 │         `Full scorecard: ${base}.judge.md · round history: ${LOG}`,
+    110 110 │       ].join("\n") + "\n");
+  
+
+.\tools\clip-gate\iterate.mjs organizeImports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Import statements could be sorted:
+  
+     27  27 │   //
+     28  28 │   import { execFileSync } from "node:child_process";
+     29     │ - import·{·existsSync,·readFileSync,·writeFileSync,·appendFileSync·}·from·"node:fs";
+         29 │ + import·{·appendFileSync,·existsSync,·readFileSync,·writeFileSync·}·from·"node:fs";
+     30  30 │   
+     31  31 │   const argv = process.argv.slice(2);
+  
+
+.\src\lib\frame-evidence.ts format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+     41  41 │   /** What each kind owes. The point is that they owe DIFFERENT things. */
+     42  42 │   const REQUIREMENTS: Record<FrameKind, { field: string | null; keys: string[]; why: string }> = {
+     43     │ - ··'live-product':·{·field:·'bindings',·keys:·['deploymentRevision',·'browserTraceId',·'journeyState',·'screenshotSha256'],·why:·'a·claim·about·the·running·application·must·name·the·exact·deployment·it·came·from'·},
+     44     │ - ··'generated-illustration':·{·field:·'provenance',·keys:·['provider',·'model',·'prompt',·'inputAssets'],·why:·'which·model,·with·what·prompt,·is·the·only·thing·that·makes·it·auditable·later'·},
+     45     │ - ··'motion-graphic':·{·field:·'composition',·keys:·['sourceRef'],·why:·'deterministic·composition·is·reproducible,·so·it·owes·its·source·—·not·a·model·it·never·used'·},
+     46     │ - ··'source-media':·{·field:·'origin',·keys:·['originRef',·'rights'],·why:·'material·the·creator·already·had·still·owes·where·it·came·from·and·on·what·terms'·},
+     47     │ - ··'stock-media':·{·field:·'origin',·keys:·['originRef',·'licenseId'],·why:·'the·licence·is·the·whole·basis·for·using·it'·},
+     48     │ - ··'text-or-diagram':·{·field:·null,·keys:·[],·why:·'authored·directly;·being·labelled·is·all·it·owes'·},
+         43 │ + ··'live-product':·{
+         44 │ + ····field:·'bindings',
+         45 │ + ····keys:·['deploymentRevision',·'browserTraceId',·'journeyState',·'screenshotSha256'],
+         46 │ + ····why:·'a·claim·about·the·running·application·must·name·the·exact·deployment·it·came·from',
+         47 │ + ··},
+         48 │ + ··'generated-illustration':·{
+         49 │ + ····field:·'provenance',
+         50 │ + ····keys:·['provider',·'model',·'prompt',·'inputAssets'],
+         51 │ + ····why:·'which·model,·with·what·prompt,·is·the·only·thing·that·makes·it·auditable·later',
+         52 │ + ··},
+         53 │ + ··'motion-graphic':·{
+         54 │ + ····field:·'composition',
+         55 │ + ····keys:·['sourceRef'],
+         56 │ + ····why:·'deterministic·composition·is·reproducible,·so·it·owes·its·source·—·not·a·model·it·never·used',
+         57 │ + ··},
+         58 │ + ··'source-media':·{
+         59 │ + ····field:·'origin',
+         60 │ + ····keys:·['originRef',·'rights'],
+         61 │ + ····why:·'material·the·creator·already·had·still·owes·where·it·came·from·and·on·what·terms',
+         62 │ + ··},
+         63 │ + ··'stock-media':·{
+         64 │ + ····field:·'origin',
+         65 │ + ····keys:·['originRef',·'licenseId'],
+         66 │ + ····why:·'the·licence·is·the·whole·basis·for·using·it',
+         67 │ + ··},
+         68 │ + ··'text-or-diagram':·{
+         69 │ + ····field:·null,
+         70 │ + ····keys:·[],
+         71 │ + ····why:·'authored·directly;·being·labelled·is·all·it·owes',
+         72 │ + ··},
+     49  73 │   };
+     50  74 │   
+    ······· │ 
+    117 141 │     for (const frame of frames) {
+    118 142 │       const requirement = REQUIREMENTS[frame.kind];
+    119     │ - ····const·bag·=·requirement.field·?·((frame·as·unknown·as·Record<string,·Record<string,·unknown>>)[requirement.field]·??·{})·:·{};
+        143 │ + ····const·bag·=·requirement.field
+        144 │ + ······?·((frame·as·unknown·as·Record<string,·Record<string,·unknown>>)[requirement.field]·??·{})
+        145 │ + ······:·{};
+    120 146 │       const missing = requirement.keys.filter((key) =>
+    121 147 │         key === 'inputAssets' ? !Array.isArray(bag[key]) : !isNonEmptyString(bag[key]),
+    122 148 │       );
+    123 149 │       if (missing.length > 0) {
+    124     │ - ······blame(frame,·`${frame.frameId}·(${frame.kind})·is·missing·${requirement.field}.${missing.join(',·')}·—·${requirement.why}`);
+        150 │ + ······blame(
+        151 │ + ········frame,
+        152 │ + ········`${frame.frameId}·(${frame.kind})·is·missing·${requirement.field}.${missing.join(',·')}·—·${requirement.why}`,
+        153 │ + ······);
+    125 154 │       }
+    126 155 │   
+    ······· │ 
+    128 157 │         const shot = frame.bindings?.screenshotSha256;
+    129 158 │         if (shot && shot !== frame.sha256) {
+    130     │ - ········blame(frame,·`live-product·frame·${frame.frameId}:·screenshotSha256·does·not·match·the·frame's·own·hash`);
+        159 │ + ········blame(
+        160 │ + ··········frame,
+        161 │ + ··········`live-product·frame·${frame.frameId}:·screenshotSha256·does·not·match·the·frame's·own·hash`,
+        162 │ + ········);
+    131 163 │         }
+    132 164 │       }
+    ······· │ 
+    135 167 │       // running application is the same false claim about what the viewer is seeing.
+    136 168 │       if (frame.kind !== 'live-product' && frame.presentedAs === 'live-product') {
+    137     │ - ······blame(frame,·`frame·${frame.frameId}·is·${frame.kind}·but·presented·as·the·running·application`);
+        169 │ + ······blame(
+        170 │ + ········frame,
+        171 │ + ········`frame·${frame.frameId}·is·${frame.kind}·but·presented·as·the·running·application`,
+        172 │ + ······);
+    138 173 │       }
+    139 174 │     }
+  
+
+.\tools\clip-gate\iterate.mjs format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+     26  26 │   //   node iterate.mjs --comp WTC-TShero --out out/x.mp4 --for "a frontend engineer" --gate 30
+     27  27 │   //
+     28     │ - import·{·execFileSync·}·from·"node:child_process";
+     29     │ - import·{·existsSync,·readFileSync,·writeFileSync,·appendFileSync·}·from·"node:fs";
+         28 │ + import·{·execFileSync·}·from·'node:child_process';
+         29 │ + import·{·existsSync,·readFileSync,·writeFileSync,·appendFileSync·}·from·'node:fs';
+     30  30 │   
+     31  31 │   const argv = process.argv.slice(2);
+     32     │ - const·flag·=·(n,·d)·=>·{·const·i·=·argv.indexOf(`--${n}`);·return·i·>=·0·&&·argv[i·+·1]·?·argv[i·+·1]·:·d;·};
+         32 │ + const·flag·=·(n,·d)·=>·{
+         33 │ + ··const·i·=·argv.indexOf(`--${n}`);
+         34 │ + ··return·i·>=·0·&&·argv[i·+·1]·?·argv[i·+·1]·:·d;
+         35 │ + };
+     33  36 │   const has = (n) => argv.includes(`--${n}`);
+     34  37 │   
+     35     │ - const·comp·=·flag("comp");
+     36     │ - const·out·=·flag("out",·"out/clip.mp4");
+     37     │ - const·audience·=·flag("for",·"a·smart·newcomer·who·has·never·seen·this·product·and·does·not·know·the·domain·jargon");
+     38     │ - const·gate·=·flag("gate",·"28");···········//·28/40·—·see·README·for·where·this·number·came·from
+     39     │ - const·rounds·=·Number(flag("rounds",·"1"));
+     40     │ - const·entry·=·flag("entry",·"src/index.js");
+         38 │ + const·comp·=·flag('comp');
+         39 │ + const·out·=·flag('out',·'out/clip.mp4');
+         40 │ + const·audience·=·flag(
+         41 │ + ··'for',
+         42 │ + ··'a·smart·newcomer·who·has·never·seen·this·product·and·does·not·know·the·domain·jargon',
+         43 │ + );
+         44 │ + const·gate·=·flag('gate',·'28');·//·28/40·—·see·README·for·where·this·number·came·from
+         45 │ + const·rounds·=·Number(flag('rounds',·'1'));
+         46 │ + const·entry·=·flag('entry',·'src/index.js');
+     41  47 │   
+     42  48 │   if (!comp) {
+     43     │ - ··console.error(`usage:·node·iterate.mjs·--comp·<CompositionId>·--out·<file.mp4>·[--for·"<audience>"]·[--gate·28]·[--rounds·N]·[--no-render]`);
+         49 │ + ··console.error(
+         50 │ + ····`usage:·node·iterate.mjs·--comp·<CompositionId>·--out·<file.mp4>·[--for·"<audience>"]·[--gate·28]·[--rounds·N]·[--no-render]`,
+         51 │ + ··);
+     44  52 │     process.exit(1);
+     45  53 │   }
+    ······· │ 
+     55  63 │       cmd,
+     56  64 │       shell ? args.map((a) => (/[\s"]/.test(a) ? `"${a.replace(/"/g, '\\"')}"` : a)) : args,
+     57     │ - ····{·stdio:·"inherit",·shell·},
+         65 │ + ····{·stdio:·'inherit',·shell·},
+     58  66 │     );
+     59     │ - const·base·=·out.replace(/\.(mp4|webm|mov)$/i,·"");
+         67 │ + const·base·=·out.replace(/\.(mp4|webm|mov)$/i,·'');
+     60  68 │   const LOG = `${base}.rounds.md`;
+     61  69 │   
+    ······· │ 
+     63  71 │     console.log(`\n=== round ${r}/${rounds} — ${comp} for "${audience}" ===\n`);
+     64  72 │   
+     65     │ - ··if·(!has("no-render"))·{
+     66     │ - ····sh("npx",·["remotion",·"render",·entry,·comp,·out,·"--concurrency=2"],·true);
+         73 │ + ··if·(!has('no-render'))·{
+         74 │ + ····sh('npx',·['remotion',·'render',·entry,·comp,·out,·'--concurrency=2'],·true);
+     67  75 │     }
+     68  76 │   
+    ······· │ 
+     70  78 │     let passed = true;
+     71  79 │     try {
+     72     │ - ····sh("node",·["judge-video.mjs",·out,·"--for",·audience,·"--gate",·gate]);
+         80 │ + ····sh('node',·['judge-video.mjs',·out,·'--for',·audience,·'--gate',·gate]);
+     73  81 │     } catch {
+     74  82 │       passed = false;
+     75  83 │     }
+     76  84 │   
+     77     │ - ··const·verdict·=·existsSync(`${base}.judge.json`)·?·JSON.parse(readFileSync(`${base}.judge.json`,·"utf8"))·:·null;
+         85 │ + ··const·verdict·=·existsSync(`${base}.judge.json`)
+         86 │ + ····?·JSON.parse(readFileSync(`${base}.judge.json`,·'utf8'))
+         87 │ + ····:·null;
+     78  88 │     const total = verdict ? Object.values(verdict.scores).reduce((a, v) => a + v.score, 0) : 0;
+     79  89 │   
+    ······· │ 
+     82  92 │     // judge simply drifted, and "20 -> 31 after adding a premise beat" is the only
+     83  93 │     // form of that claim anyone should believe.
+     84     │ - ··appendFileSync(LOG,·[
+     85     │ - ····`\n##·Round·${r}·—·${total}/40·—·${verdict?.verdict·??·"no·verdict"}`,
+     86     │ - ····`audience:·${audience}`,
+     87     │ - ····`weakest:·${verdict?.weakest·??·"-"}···weakest·comprehension:·${verdict?.weakest_comprehension·??·"-"}`,
+     88     │ - ····...(verdict?.next_cut·??·[]).map((n)·=>·`-·**${n.dimension}**·@·${n.where}·—·${n.change}`),
+     89     │ - ····``,
+     90     │ - ··].join("\n"));
+         94 │ + ··appendFileSync(
+         95 │ + ····LOG,
+         96 │ + ····[
+         97 │ + ······`\n##·Round·${r}·—·${total}/40·—·${verdict?.verdict·??·'no·verdict'}`,
+         98 │ + ······`audience:·${audience}`,
+         99 │ + ······`weakest:·${verdict?.weakest·??·'-'}···weakest·comprehension:·${verdict?.weakest_comprehension·??·'-'}`,
+        100 │ + ······...(verdict?.next_cut·??·[]).map((n)·=>·`-·**${n.dimension}**·@·${n.where}·—·${n.change}`),
+        101 │ + ······``,
+        102 │ + ····].join('\n'),
+        103 │ + ··);
+     91 104 │   
+     92 105 │     if (passed) {
+    ······· │ 
+     97 110 │     console.log(`\n[iterate] round ${r}: ${total}/40 < ${gate}.`);
+     98 111 │     if (r === rounds) {
+     99     │ - ····writeFileSync(`${base}.next-cut.md`,·[
+    100     │ - ······`#·Revision·brief·—·${comp},·round·${r}`,
+    101     │ - ······``,
+    102     │ - ······`Scored·${total}/40·for:·*${audience}*.·Gate·is·${gate}.`,
+    103     │ - ······`Weakest·comprehension·dimension:·**${verdict?.weakest_comprehension·??·"unknown"}**`,
+    104     │ - ······``,
+    105     │ - ······`Apply·these·to·the·storyboard·spec,·then·re-run·\`npm·run·clip\`:`,
+    106     │ - ······``,
+    107     │ - ······...(verdict?.next_cut·??·[]).map((n,·i)·=>·`${i·+·1}.·**${n.dimension}**·(${n.where})·—·${n.change}`),
+    108     │ - ······``,
+    109     │ - ······`Full·scorecard:·${base}.judge.md···round·history:·${LOG}`,
+    110     │ - ····].join("\n")·+·"\n");
+        112 │ + ····writeFileSync(
+        113 │ + ······`${base}.next-cut.md`,
+        114 │ + ······[
+        115 │ + ········`#·Revision·brief·—·${comp},·round·${r}`,
+        116 │ + ········``,
+        117 │ + ········`Scored·${total}/40·for:·*${audience}*.·Gate·is·${gate}.`,
+        118 │ + ········`Weakest·comprehension·dimension:·**${verdict?.weakest_comprehension·??·'unknown'}**`,
+        119 │ + ········``,
+        120 │ + ········`Apply·these·to·the·storyboard·spec,·then·re-run·\`npm·run·clip\`:`,
+        121 │ + ········``,
+        122 │ + ········...(verdict?.next_cut·??·[]).map(
+        123 │ + ··········(n,·i)·=>·`${i·+·1}.·**${n.dimension}**·(${n.where})·—·${n.change}`,
+        124 │ + ········),
+        125 │ + ········``,
+        126 │ + ········`Full·scorecard:·${base}.judge.md···round·history:·${LOG}`,
+        127 │ + ······].join('\n')·+·'\n',
+        128 │ + ····);
+    111 129 │       console.error(`[iterate] revision brief written to ${base}.next-cut.md — apply it and re-run.`);
+    112 130 │       process.exit(1);
+  
+
+.\tools\clip-gate\calibration.json format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+     4  4 │     "instrument": "judge-video.mjs @ 2026-08-04.two-stage-blind-scorer-v1, gemini-3.6-flash",
+     5  5 │     "probes": {
+     6    │ - ····"knownBadStaticHeroShot":·{·"craft":·3,·"comprehension":·1,·"note":·"30s·static·frame;·correctly·demolished"·},
+        6 │ + ····"knownBadStaticHeroShot":·{
+        7 │ + ······"craft":·3,
+        8 │ + ······"comprehension":·1,
+        9 │ + ······"note":·"30s·static·frame;·correctly·demolished"
+       10 │ + ····},
+     7 11 │       "currentWalkthrough": { "craft": 19, "comprehension": 14 },
+     8 12 │       "raycastLaunchFilm": {
+    ····· │ 
+    13 17 │     "gate": "good-walkthrough minus bad-walkthrough spread >= 8. Measured: 16. PASS.",
+    14 18 │     "history": [
+    15    │ - ····{·"instrument":·"monolithic·single-call",·"result":·"CONSTANT·FUNCTION·—·all·three·probes·scored·identically·11/22,·10/20.·Every·delta·measured·with·it·is·invalid,·including·the·'narration·moved·nothing'·finding."·},
+    16    │ - ····{·"instrument":·"observation-first·single-call",·"result":·"still·constant;·own·timeline·said·'no·cursor'·and·cursor_truth·still·scored·1·—·the·model·rationalizes·while·watching."·},
+    17    │ - ····{·"instrument":·"two-stage·blind·scorer",·"result":·"watcher·sees·pixels·and·may·not·judge;·scorer·judges·the·written·record·and·never·sees·pixels.·Discriminates."·}
+       19 │ + ····{
+       20 │ + ······"instrument":·"monolithic·single-call",
+       21 │ + ······"result":·"CONSTANT·FUNCTION·—·all·three·probes·scored·identically·11/22,·10/20.·Every·delta·measured·with·it·is·invalid,·including·the·'narration·moved·nothing'·finding."
+       22 │ + ····},
+       23 │ + ····{
+       24 │ + ······"instrument":·"observation-first·single-call",
+       25 │ + ······"result":·"still·constant;·own·timeline·said·'no·cursor'·and·cursor_truth·still·scored·1·—·the·model·rationalizes·while·watching."
+       26 │ + ····},
+       27 │ + ····{
+       28 │ + ······"instrument":·"two-stage·blind·scorer",
+       29 │ + ······"result":·"watcher·sees·pixels·and·may·not·judge;·scorer·judges·the·written·record·and·never·sees·pixels.·Discriminates."
+       30 │ + ····}
+    18 31 │     ],
+    19 32 │     "rule": "deltas under 2 points do not count; re-calibrate after any rubric change"
+  
+
+.\tools\clip-gate\apply-captions.mjs:26:1 lint/style/useConst  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × This let declares a variable that is only assigned once.
+  
+    25 │ const dataPath = "src/walkthrough.collab.data.js";
+  > 26 │ let s = readFileSync(dataPath, "utf8");
+       │ ^^^
+    27 │ const i = s.indexOf(`"id": "${id}"`);
+    28 │ if (i < 0) { console.error(`no "${id}" in ${dataPath}`); process.exit(1); }
+  
+  i 's' is never reassigned.
+  
+    25 │ const dataPath = "src/walkthrough.collab.data.js";
+  > 26 │ let s = readFileSync(dataPath, "utf8");
+       │     ^
+    27 │ const i = s.indexOf(`"id": "${id}"`);
+    28 │ if (i < 0) { console.error(`no "${id}" in ${dataPath}`); process.exit(1); }
+  
+  i Safe fix: Use const instead.
+  
+    24 24 │   
+    25 25 │   const dataPath = "src/walkthrough.collab.data.js";
+    26    │ - let·s·=·readFileSync(dataPath,·"utf8");
+       26 │ + const·s·=·readFileSync(dataPath,·"utf8");
+    27 27 │   const i = s.indexOf(`"id": "${id}"`);
+    28 28 │   if (i < 0) { console.error(`no "${id}" in ${dataPath}`); process.exit(1); }
+  
+
+.\tools\clip-gate\apply-captions.mjs format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+    10 10 │   //   node apply-captions.mjs --id TShero --from captions.plain.json
+    11 11 │   //
+    12    │ - import·{·readFileSync,·writeFileSync·}·from·"node:fs";
+       12 │ + import·{·readFileSync,·writeFileSync·}·from·'node:fs';
+    13 13 │   
+    14 14 │   const argv = process.argv.slice(2);
+    15    │ - const·flag·=·(n,·d)·=>·{·const·i·=·argv.indexOf(`--${n}`);·return·i·>=·0·&&·argv[i·+·1]·?·argv[i·+·1]·:·d;·};
+    16    │ - const·id·=·flag("id");
+    17    │ - const·from·=·flag("from");
+    18    │ - const·specFile·=·flag("spec",·`walkthrough.${(id·||·"").toLowerCase()}.specs.mjs`);
+    19    │ - if·(!id·||·!from)·{·console.error("usage:·node·apply-captions.mjs·--id·<SpecId>·--from·<captions.json>·[--spec·<file>]");·process.exit(1);·}
+       15 │ + const·flag·=·(n,·d)·=>·{
+       16 │ + ··const·i·=·argv.indexOf(`--${n}`);
+       17 │ + ··return·i·>=·0·&&·argv[i·+·1]·?·argv[i·+·1]·:·d;
+       18 │ + };
+       19 │ + const·id·=·flag('id');
+       20 │ + const·from·=·flag('from');
+       21 │ + const·specFile·=·flag('spec',·`walkthrough.${(id·||·'').toLowerCase()}.specs.mjs`);
+       22 │ + if·(!id·||·!from)·{
+       23 │ + ··console.error(
+       24 │ + ····'usage:·node·apply-captions.mjs·--id·<SpecId>·--from·<captions.json>·[--spec·<file>]',
+       25 │ + ··);
+       26 │ + ··process.exit(1);
+       27 │ + }
+    20 28 │   
+    21    │ - const·NEW·=·JSON.parse(readFileSync(from,·"utf8"));
+       29 │ + const·NEW·=·JSON.parse(readFileSync(from,·'utf8'));
+    22 30 │   const CAP_RE = /"caption": "(?:[^"\\]|\\.)*"/g;
+    23 31 │   const SPEC_RE = /cap: "(?:[^"\\]|\\.)*"/g;
+    24 32 │   
+    25    │ - const·dataPath·=·"src/walkthrough.collab.data.js";
+    26    │ - let·s·=·readFileSync(dataPath,·"utf8");
+       33 │ + const·dataPath·=·'src/walkthrough.collab.data.js';
+       34 │ + let·s·=·readFileSync(dataPath,·'utf8');
+    27 35 │   const i = s.indexOf(`"id": "${id}"`);
+    28    │ - if·(i·<·0)·{·console.error(`no·"${id}"·in·${dataPath}`);·process.exit(1);·}
+    29    │ - let·j·=·s.indexOf("\n··},\n··{",·i);
+       36 │ + if·(i·<·0)·{
+       37 │ + ··console.error(`no·"${id}"·in·${dataPath}`);
+       38 │ + ··process.exit(1);
+       39 │ + }
+       40 │ + let·j·=·s.indexOf('\n··},\n··{',·i);
+    30 41 │   if (j < 0) j = s.length;
+    31 42 │   
+    32 43 │   let k = 0;
+    33    │ - const·block·=·s.slice(i,·j).replace(CAP_RE,·(m)·=>·(k·<·NEW.length·?·`"caption":·${JSON.stringify(NEW[k++])}`·:·m));
+    34    │ - if·(k·!==·NEW.length)·{·console.error(`caption·count·mismatch:·file·has·${k},·json·has·${NEW.length}`);·process.exit(1);·}
+       44 │ + const·block·=·s
+       45 │ + ··.slice(i,·j)
+       46 │ + ··.replace(CAP_RE,·(m)·=>·(k·<·NEW.length·?·`"caption":·${JSON.stringify(NEW[k++])}`·:·m));
+       47 │ + if·(k·!==·NEW.length)·{
+       48 │ + ··console.error(`caption·count·mismatch:·file·has·${k},·json·has·${NEW.length}`);
+       49 │ + ··process.exit(1);
+       50 │ + }
+    35 51 │   writeFileSync(dataPath, s.slice(0, i) + block + s.slice(j));
+    36 52 │   
+    37 53 │   let m = 0;
+    38 54 │   try {
+    39    │ - ··const·spec·=·readFileSync(specFile,·"utf8").replace(SPEC_RE,·(x)·=>·(m·<·NEW.length·?·`cap:·${JSON.stringify(NEW[m++])}`·:·x));
+       55 │ + ··const·spec·=·readFileSync(specFile,·'utf8').replace(SPEC_RE,·(x)·=>
+       56 │ + ····m·<·NEW.length·?·`cap:·${JSON.stringify(NEW[m++])}`·:·x,
+       57 │ + ··);
+    40 58 │     writeFileSync(specFile, spec);
+    41    │ - }·catch·{·console.warn(`[captions]·could·not·update·${specFile}·—·spec·and·data·will·drift`);·}
+       59 │ + }·catch·{
+       60 │ + ··console.warn(`[captions]·could·not·update·${specFile}·—·spec·and·data·will·drift`);
+       61 │ + }
+    42 62 │   
+    43 63 │   console.log(`[captions] ${id}: ${k} in data, ${m} in ${specFile}`);
+  
+
+.\tools\clip-gate\comprehension-rubric.mjs format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+     17  17 │   // without a locator is an opinion and cannot be argued with.
+     18  18 │   
+     19     │ - export·const·COMPREHENSION_VERSION·=·"2026-08-04.ten-dimensions-v1";
+         19 │ + export·const·COMPREHENSION_VERSION·=·'2026-08-04.ten-dimensions-v1';
+     20  20 │   
+     21  21 │   export const COMPREHENSION_DIMENSIONS = Object.freeze([
+     22     │ - ··"persona",·"purpose",·"use_case",·"feature_clarity",·"full_interaction",
+     23     │ - ··"responsiveness",·"flow",·"result",·"non_expert_sense",·"transfer",
+         22 │ + ··'persona',
+         23 │ + ··'purpose',
+         24 │ + ··'use_case',
+         25 │ + ··'feature_clarity',
+         26 │ + ··'full_interaction',
+         27 │ + ··'responsiveness',
+         28 │ + ··'flow',
+         29 │ + ··'result',
+         30 │ + ··'non_expert_sense',
+         31 │ + ··'transfer',
+     24  32 │   ]);
+     25  33 │   
+    ······· │ 
+     74  82 │    */
+     75  83 │   export function evaluateComprehension(block) {
+     76     │ - ··if·(!block·||·typeof·block·!==·"object")·{
+     77     │ - ····return·{·status:·"not-run",·scored:·0,·total:·0,·blocking:·[],·detail:·"the·judge·returned·no·comprehension·block;·the·axis·was·not·scored,·which·is·not·the·same·as·scoring·well"·};
+         84 │ + ··if·(!block·||·typeof·block·!==·'object')·{
+         85 │ + ····return·{
+         86 │ + ······status:·'not-run',
+         87 │ + ······scored:·0,
+         88 │ + ······total:·0,
+         89 │ + ······blocking:·[],
+         90 │ + ······detail:
+         91 │ + ········'the·judge·returned·no·comprehension·block;·the·axis·was·not·scored,·which·is·not·the·same·as·scoring·well',
+         92 │ + ····};
+     78  93 │     }
+     79     │ - ··const·scored·=·COMPREHENSION_DIMENSIONS.filter((d)·=>·typeof·block[d]?.score·===·"number");
+     80     │ - ··const·missing·=·COMPREHENSION_DIMENSIONS.filter((d)·=>·typeof·block[d]?.score·!==·"number");
+         94 │ + ··const·scored·=·COMPREHENSION_DIMENSIONS.filter((d)·=>·typeof·block[d]?.score·===·'number');
+         95 │ + ··const·missing·=·COMPREHENSION_DIMENSIONS.filter((d)·=>·typeof·block[d]?.score·!==·'number');
+     81  96 │     if (scored.length === 0) {
+     82     │ - ····return·{·status:·"not-run",·scored:·0,·total:·0,·blocking:·[],·detail:·"no·dimension·was·scored"·};
+         97 │ + ····return·{
+         98 │ + ······status:·'not-run',
+         99 │ + ······scored:·0,
+        100 │ + ······total:·0,
+        101 │ + ······blocking:·[],
+        102 │ + ······detail:·'no·dimension·was·scored',
+        103 │ + ····};
+     83 104 │     }
+     84 105 │     // Nine unscored dimensions and a single 2 returned "passed". Partial scoring is most of the
+     85 106 │     // check not running, and not-run never reads as pass anywhere else in this system.
+     86 107 │     if (missing.length > 0) {
+     87     │ - ····return·{·status:·"not-run",·scored:·scored.length,·total:·0,·blocking:·[],·unscored:·missing,
+     88     │ - ······detail:·`${missing.length}·of·${COMPREHENSION_DIMENSIONS.length}·dimensions·were·not·scored·(${missing.join(",·")})`·};
+        108 │ + ····return·{
+        109 │ + ······status:·'not-run',
+        110 │ + ······scored:·scored.length,
+        111 │ + ······total:·0,
+        112 │ + ······blocking:·[],
+        113 │ + ······unscored:·missing,
+        114 │ + ······detail:·`${missing.length}·of·${COMPREHENSION_DIMENSIONS.length}·dimensions·were·not·scored·(${missing.join(',·')})`,
+        115 │ + ····};
+     89 116 │     }
+     90 117 │     const total = scored.reduce((sum, d) => sum + block[d].score, 0);
+    ······· │ 
+     92 119 │     // The three that cannot be traded away. A viewer who cannot place the audience, cannot follow
+     93 120 │     // without domain knowledge, or never sees the outcome has not been served, whatever else is good.
+     94     │ - ··const·blocking·=·zeros.filter((d)·=>·["persona",·"non_expert_sense",·"result"].includes(d));
+        121 │ + ··const·blocking·=·zeros.filter((d)·=>·['persona',·'non_expert_sense',·'result'].includes(d));
+     95 122 │   
+     96 123 │     // The mom test blocks on its own, whatever the numbers say. Measured on a real cut: every one of
+    ······· │ 
+    106 133 │   
+    107 134 │     return {
+    108     │ - ····status:·blocking.length·>·0·||·momFails·?·"blocked"·:·zeros.length·>·0·?·"incomplete"·:·"passed",
+        135 │ + ····status:
+        136 │ + ······blocking.length·>·0·||·momFails·?·'blocked'·:·zeros.length·>·0·?·'incomplete'·:·'passed',
+    109 137 │       momFails,
+    110 138 │       uniform,
+    ······· │ 
+    121 149 │   
+    122 150 │   export function formatComprehension(verdict) {
+    123     │ - ··if·(verdict.status·===·"not-run")·return·`COMPREHENSION·NOT·RUN:·${verdict.detail}.`;
+    124     │ - ··const·head·=·`COMPREHENSION·${verdict.status.toUpperCase()}:·${verdict.total}/${verdict.max}·across·${verdict.scored}·dimension(s)`
+    125     │ - ····+·`···mom·test·${verdict.wouldMomUnderstand·?·"passes"·:·"FAILS"}`;
+        151 │ + ··if·(verdict.status·===·'not-run')·return·`COMPREHENSION·NOT·RUN:·${verdict.detail}.`;
+        152 │ + ··const·head·=
+        153 │ + ····`COMPREHENSION·${verdict.status.toUpperCase()}:·${verdict.total}/${verdict.max}·across·${verdict.scored}·dimension(s)`·+
+        154 │ + ····`···mom·test·${verdict.wouldMomUnderstand·?·'passes'·:·'FAILS'}`;
+    126 155 │     const lines = [head];
+    127     │ - ··if·(verdict.blocking.length·>·0)·lines.push(`··P0·—·absent·entirely:·${verdict.blocking.join(",·")}`);
+    128     │ - ··if·(verdict.momFails)·lines.push("··P0·—·the·mom·test·fails:·a·non-expert·could·not·say·what·this·is·for·after·one·watch");
+        156 │ + ··if·(verdict.blocking.length·>·0)
+        157 │ + ····lines.push(`··P0·—·absent·entirely:·${verdict.blocking.join(',·')}`);
+        158 │ + ··if·(verdict.momFails)
+        159 │ + ····lines.push(
+        160 │ + ······'··P0·—·the·mom·test·fails:·a·non-expert·could·not·say·what·this·is·for·after·one·watch',
+        161 │ + ····);
+    129 162 │     if (verdict.uniform) {
+    130     │ - ····lines.push("··every·dimension·scored·the·same·—·nothing·was·ABSENT·and·nothing·was·EXPLICIT·either;"
+    131     │ - ······+·"·treat·this·as·'all·implied,·none·stated'·rather·than·as·a·middling·pass");
+        163 │ + ····lines.push(
+        164 │ + ······'··every·dimension·scored·the·same·—·nothing·was·ABSENT·and·nothing·was·EXPLICIT·either;'·+
+        165 │ + ········"·treat·this·as·'all·implied,·none·stated'·rather·than·as·a·middling·pass",
+        166 │ + ····);
+    132 167 │     }
+    133 168 │     const soft = verdict.zeros.filter((d) => !verdict.blocking.includes(d));
+    134     │ - ··if·(soft.length·>·0)·lines.push(`··P1·—·absent:·${soft.join(",·")}`);
+    135     │ - ··if·(verdict.unscored.length·>·0)·lines.push(`··unscored·(not·the·same·as·fine):·${verdict.unscored.join(",·")}`);
+        169 │ + ··if·(soft.length·>·0)·lines.push(`··P1·—·absent:·${soft.join(',·')}`);
+        170 │ + ··if·(verdict.unscored.length·>·0)
+        171 │ + ····lines.push(`··unscored·(not·the·same·as·fine):·${verdict.unscored.join(',·')}`);
+    136 172 │     if (!verdict.wouldMomUnderstand && verdict.momLosesThemAt) {
+    137     │ - ····lines.push(`··loses·a·non-expert·at·${verdict.momLosesThemAt.ts}:·${verdict.momLosesThemAt.what}`);
+        173 │ + ····lines.push(
+        174 │ + ······`··loses·a·non-expert·at·${verdict.momLosesThemAt.ts}:·${verdict.momLosesThemAt.what}`,
+        175 │ + ····);
+    138 176 │     }
+    139     │ - ··return·lines.join("\n");
+        177 │ + ··return·lines.join('\n');
+    140 178 │   }
+    141 179 │   
+  
+
+.\tools\clip-gate\clip.mjs:27:1 lint/style/useConst  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × This let declares a variable that is only assigned once.
+  
+    25 │ let steps = data[0].steps;
+    26 │ let lines = linesFromStoryboard(steps);
+  > 27 │ let clips = synthesiseBeats(lines, VOICE);
+       │ ^^^
+    28 │ const newHolds = steps.map((s, i) => Math.round(Math.max((s.hold || 60) / 30, (clips[i]?.seconds ?? 0) + PAD) * 30));
+    29 │ data[0].steps.forEach((s, i) => { s.hold = newHolds[i]; });
+  
+  i 'clips' is never reassigned.
+  
+    25 │ let steps = data[0].steps;
+    26 │ let lines = linesFromStoryboard(steps);
+  > 27 │ let clips = synthesiseBeats(lines, VOICE);
+       │     ^^^^^
+    28 │ const newHolds = steps.map((s, i) => Math.round(Math.max((s.hold || 60) / 30, (clips[i]?.seconds ?? 0) + PAD) * 30));
+    29 │ data[0].steps.forEach((s, i) => { s.hold = newHolds[i]; });
+  
+  i Safe fix: Use const instead.
+  
+     25  25 │   let steps = data[0].steps;
+     26  26 │   let lines = linesFromStoryboard(steps);
+     27     │ - let·clips·=·synthesiseBeats(lines,·VOICE);
+         27 │ + const·clips·=·synthesiseBeats(lines,·VOICE);
+     28  28 │   const newHolds = steps.map((s, i) => Math.round(Math.max((s.hold || 60) / 30, (clips[i]?.seconds ?? 0) + PAD) * 30));
+     29  29 │   data[0].steps.forEach((s, i) => { s.hold = newHolds[i]; });
+  
+
+.\tools\clip-gate\clip.mjs organizeImports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Import statements could be sorted:
+  
+          1 │ + import·{·spawnSync·}·from·"node:child_process";
+      1   2 │   // The whole loop, one command: storyboard -> narration-fitted render -> voice -> score -> mux ->
+      2   3 │   // two-axis judge -> said-vs-shown gate. Exit non-zero until the gates clear.
+    ······· │ 
+      9  10 │   // launch film. The gates are the product.
+     10  11 │   import { readFileSync, writeFileSync } from "node:fs";
+     11     │ - import·{·spawnSync·}·from·"node:child_process";
+     12     │ - import·{·linesFromStoryboard,·synthesiseBeats,·assemble,·overruns·}·from·"./narrate.mjs";
+         12 │ + import·{·assemble,·linesFromStoryboard,·overruns,·synthesiseBeats·}·from·"./narrate.mjs";
+     13  13 │   import { buildScore, muxOnto } from "./score.mjs";
+     14  14 │   
+  
+
+.\tools\clip-gate\find-references.mjs format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+     20  20 │   // 45-second walkthrough from, so the default ceiling is both a cost control and a taste control.
+     21  21 │   
+     22     │ - import·{·spawnSync·}·from·"node:child_process";
+     23     │ - import·{·createHash·}·from·"node:crypto";
+     24     │ - import·{·existsSync,·mkdirSync,·readFileSync,·writeFileSync·}·from·"node:fs";
+     25     │ - import·path·from·"node:path";
+         22 │ + import·{·spawnSync·}·from·'node:child_process';
+         23 │ + import·{·createHash·}·from·'node:crypto';
+         24 │ + import·{·existsSync,·mkdirSync,·readFileSync,·writeFileSync·}·from·'node:fs';
+         25 │ + import·path·from·'node:path';
+     26  26 │   
+     27     │ - const·OUT_DIR·=·"references/video";
+     28     │ - const·LEDGER·=·"references/video/ledger.json";
+         27 │ + const·OUT_DIR·=·'references/video';
+         28 │ + const·LEDGER·=·'references/video/ledger.json';
+     29  29 │   
+     30  30 │   // The corpus is CUMULATIVE, and the ledger is what makes it so. Two different things must survive a
+    ······· │ 
+     41  41 │   // Discovery is not blocked by either: a query that returns something new still gets watched, and
+     42  42 │   // --refresh re-observes a specific video when the prompt or the video itself has moved on.
+     43     │ - const·OBSERVE_VERSION·=·"2026-08-03.atomic-facts-v1";
+         43 │ + const·OBSERVE_VERSION·=·'2026-08-03.atomic-facts-v1';
+     44  44 │   
+     45  45 │   function loadLedger() {
+     46     │ - ··try·{·return·JSON.parse(readFileSync(LEDGER,·"utf8"));·}
+     47     │ - ··catch·{·return·{·schemaVersion:·"featureclip.reference-ledger/v1",·observed:·{},·rejected:·{}·};·}
+         46 │ + ··try·{
+         47 │ + ····return·JSON.parse(readFileSync(LEDGER,·'utf8'));
+         48 │ + ··}·catch·{
+         49 │ + ····return·{·schemaVersion:·'featureclip.reference-ledger/v1',·observed:·{},·rejected:·{}·};
+         50 │ + ··}
+     48  51 │   }
+     49  52 │   
+    ······· │ 
+     51  54 │   // The prompt TEXT is part of the identity, hashed — a version string someone forgets to bump
+     52  55 │   // would silently reuse observations made under a different prompt: a stale measurement.
+     53     │ - const·observationKey·=·(url,·model)·=>·`${videoId(url)}::${OBSERVE_VERSION}::${createHash("sha256").update(OBSERVE).digest("hex").slice(0,·12)}::${model}`;
+         56 │ + const·observationKey·=·(url,·model)·=>
+         57 │ + ··`${videoId(url)}::${OBSERVE_VERSION}::${createHash('sha256').update(OBSERVE).digest('hex').slice(0,·12)}::${model}`;
+     54  58 │   
+     55  59 │   function videoId(url) {
+    ······· │ 
+     57  61 │     return m ? m[1] : String(url);
+     58  62 │   }
+     59     │ - const·MAX_SECONDS·=·Number.parseInt(process.env.REFERENCE_MAX_SECONDS·??·"180",·10);
+     60     │ - const·PER_QUERY·=·Number.parseInt(process.env.REFERENCE_PER_QUERY·??·"4",·10);
+     61     │ - const·MODEL·=·process.env.GEMINI_JUDGE_MODEL·||·"gemini-3.6-flash";
+         63 │ + const·MAX_SECONDS·=·Number.parseInt(process.env.REFERENCE_MAX_SECONDS·??·'180',·10);
+         64 │ + const·PER_QUERY·=·Number.parseInt(process.env.REFERENCE_PER_QUERY·??·'4',·10);
+         65 │ + const·MODEL·=·process.env.GEMINI_JUDGE_MODEL·||·'gemini-3.6-flash';
+     62  66 │   
+     63  67 │   const key = () => {
+     64     │ - ··for·(const·k·of·["GEMINI_API_KEY",·"GOOGLE_GENERATIVE_AI_API_KEY"])·if·(process.env[k])·return·process.env[k];
+     65     │ - ··for·(const·f·of·[".env.local",·".env",·"../noderoom/.env.local"])·{
+         68 │ + ··for·(const·k·of·['GEMINI_API_KEY',·'GOOGLE_GENERATIVE_AI_API_KEY'])
+         69 │ + ····if·(process.env[k])·return·process.env[k];
+         70 │ + ··for·(const·f·of·['.env.local',·'.env',·'../noderoom/.env.local'])·{
+     66  71 │       if (!existsSync(f)) continue;
+     67     │ - ····const·m·=·readFileSync(f,·"utf8").match(/^(?:GEMINI_API_KEY|GOOGLE_GENERATIVE_AI_API_KEY)=(.+)$/m);
+     68     │ - ····if·(m)·return·m[1].trim().replace(/^["']|["']$/g,·"");
+         72 │ + ····const·m·=·readFileSync(f,·'utf8').match(
+         73 │ + ······/^(?:GEMINI_API_KEY|GOOGLE_GENERATIVE_AI_API_KEY)=(.+)$/m,
+         74 │ + ····);
+         75 │ + ····if·(m)·return·m[1].trim().replace(/^["']|["']$/g,·'');
+     69  76 │     }
+     70     │ - ··throw·new·Error("set·GEMINI_API_KEY·or·GOOGLE_GENERATIVE_AI_API_KEY");
+         77 │ + ··throw·new·Error('set·GEMINI_API_KEY·or·GOOGLE_GENERATIVE_AI_API_KEY');
+     71  78 │   };
+     72  79 │   
+     73  80 │   /** Search YouTube. Metadata only — yt-dlp never fetches a stream here. */
+     74  81 │   function search(query, limit = PER_QUERY) {
+     75     │ - ··const·run·=·spawnSync("yt-dlp",·[
+     76     │ - ····`ytsearch${limit}:${query}`,·"--flat-playlist",·"--no-warnings",
+     77     │ - ····"--print",·"%(duration)s\t%(channel)s\t%(title)s\thttps://youtu.be/%(id)s",
+     78     │ - ··],·{·encoding:·"utf8",·maxBuffer:·32·*·1024·*·1024,·timeout:·120_000·});
+         82 │ + ··const·run·=·spawnSync(
+         83 │ + ····'yt-dlp',
+         84 │ + ····[
+         85 │ + ······`ytsearch${limit}:${query}`,
+         86 │ + ······'--flat-playlist',
+         87 │ + ······'--no-warnings',
+         88 │ + ······'--print',
+         89 │ + ······'%(duration)s\t%(channel)s\t%(title)s\thttps://youtu.be/%(id)s',
+         90 │ + ····],
+         91 │ + ····{·encoding:·'utf8',·maxBuffer:·32·*·1024·*·1024,·timeout:·120_000·},
+         92 │ + ··);
+     79  93 │     if (run.status !== 0) return [];
+     80     │ - ··return·run.stdout.split("\n").filter(Boolean).map((line)·=>·{
+     81     │ - ····const·[duration,·channel,·title,·url]·=·line.split("\t");
+     82     │ - ····return·{·seconds:·Number.parseInt(duration,·10),·channel,·title,·url·};
+     83     │ - ··}).filter((c)·=>·Number.isInteger(c.seconds));
+         94 │ + ··return·run.stdout
+         95 │ + ····.split('\n')
+         96 │ + ····.filter(Boolean)
+         97 │ + ····.map((line)·=>·{
+         98 │ + ······const·[duration,·channel,·title,·url]·=·line.split('\t');
+         99 │ + ······return·{·seconds:·Number.parseInt(duration,·10),·channel,·title,·url·};
+        100 │ + ····})
+        101 │ + ····.filter((c)·=>·Number.isInteger(c.seconds));
+     84 102 │   }
+     85 103 │   
+    ······· │ 
+     92 110 │     // Already decided. Re-deciding it prints noise and invites a different answer to the same input.
+     93 111 │     if (prior) return `${prior.reason} (recorded ${prior.at.slice(0, 10)})`;
+     94     │ - ··if·(candidate.seconds·>·MAX_SECONDS)·return·`${candidate.seconds}s·exceeds·the·${MAX_SECONDS}s·ceiling·—·wrong·shape·and·wrong·cost·for·a·short·walkthrough`;
+        112 │ + ··if·(candidate.seconds·>·MAX_SECONDS)
+        113 │ + ····return·`${candidate.seconds}s·exceeds·the·${MAX_SECONDS}s·ceiling·—·wrong·shape·and·wrong·cost·for·a·short·walkthrough`;
+     95 114 │     if (candidate.seconds < 10) return `${candidate.seconds}s is too short to contain a flow`;
+     96 115 │     // A first-party channel is the strongest available signal that this is the product's own framing
+    ······· │ 
+    123 142 │   
+    124 143 │   async function observe(url) {
+    125     │ - ··const·res·=·await·fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key()}`,·{
+    126     │ - ····method:·"POST",
+    127     │ - ····headers:·{·"content-type":·"application/json"·},
+    128     │ - ····body:·JSON.stringify({
+    129     │ - ······contents:·[{·parts:·[{·file_data:·{·file_uri:·url·}·},·{·text:·OBSERVE·}]·}],
+    130     │ - ······generationConfig:·{·temperature:·0.2,·response_mime_type:·"application/json"·},
+    131     │ - ····}),
+    132     │ - ··});
+        144 │ + ··const·res·=·await·fetch(
+        145 │ + ····`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key()}`,
+        146 │ + ····{
+        147 │ + ······method:·'POST',
+        148 │ + ······headers:·{·'content-type':·'application/json'·},
+        149 │ + ······body:·JSON.stringify({
+        150 │ + ········contents:·[{·parts:·[{·file_data:·{·file_uri:·url·}·},·{·text:·OBSERVE·}]·}],
+        151 │ + ········generationConfig:·{·temperature:·0.2,·response_mime_type:·'application/json'·},
+        152 │ + ······}),
+        153 │ + ····},
+        154 │ + ··);
+    133 155 │     const body = await res.json();
+    134     │ - ··if·(!res.ok·||·body.error)·return·{·error:·`${res.status}:·${(body.error?.message·??·"").slice(0,·120)}`·};
+        156 │ + ··if·(!res.ok·||·body.error)
+        157 │ + ····return·{·error:·`${res.status}:·${(body.error?.message·??·'').slice(0,·120)}`·};
+    135 158 │     const parts = body.candidates?.[0]?.content?.parts ?? [];
+    136     │ - ··const·text·=·parts.map((p)·=>·p.text·??·"").join("");
+        159 │ + ··const·text·=·parts.map((p)·=>·p.text·??·'').join('');
+    137 160 │     // A URL that cannot be watched returns prose with no VIDEO modality rather than an error, and an
+    138 161 │     // observation invented from a title is worse than none. Absence of the modality is the tell.
+    139     │ - ··const·sawVideo·=·(body.usageMetadata?.promptTokensDetails·??·[]).some((d)·=>·d.modality·===·"VIDEO");
+    140     │ - ··if·(!sawVideo)·return·{·error:·"no·VIDEO·modality·in·the·response·—·the·URL·was·not·actually·watched"·};
+        162 │ + ··const·sawVideo·=·(body.usageMetadata?.promptTokensDetails·??·[]).some(
+        163 │ + ····(d)·=>·d.modality·===·'VIDEO',
+        164 │ + ··);
+        165 │ + ··if·(!sawVideo)
+        166 │ + ····return·{·error:·'no·VIDEO·modality·in·the·response·—·the·URL·was·not·actually·watched'·};
+    141 167 │     try {
+    142 168 │       return { observation: JSON.parse(text), tokens: body.usageMetadata?.promptTokenCount ?? null };
+    ······· │ 
+    146 172 │   }
+    147 173 │   
+    148     │ - const·slug·=·(s)·=>·s.toLowerCase().replace(/[^a-z0-9]+/g,·"-").replace(/^-|-$/g,·"").slice(0,·60);
+        174 │ + const·slug·=·(s)·=>
+        175 │ + ··s
+        176 │ + ····.toLowerCase()
+  123 more lines truncated
+  
+
+.\tools\clip-gate\clip.mjs format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+      8   8 │   // mux shipped three silent videos, and an uncalibrated judge scored a static JPEG the same as a
+      9   9 │   // launch film. The gates are the product.
+     10     │ - import·{·readFileSync,·writeFileSync·}·from·"node:fs";
+     11     │ - import·{·spawnSync·}·from·"node:child_process";
+     12     │ - import·{·linesFromStoryboard,·synthesiseBeats,·assemble,·overruns·}·from·"./narrate.mjs";
+     13     │ - import·{·buildScore,·muxOnto·}·from·"./score.mjs";
+         10 │ + import·{·readFileSync,·writeFileSync·}·from·'node:fs';
+         11 │ + import·{·spawnSync·}·from·'node:child_process';
+         12 │ + import·{·linesFromStoryboard,·synthesiseBeats,·assemble,·overruns·}·from·'./narrate.mjs';
+         13 │ + import·{·buildScore,·muxOnto·}·from·'./score.mjs';
+     14  14 │   
+     15     │ - const·VOICE·=·process.env.VOICE·||·"en_US-lessac-medium";
+         15 │ + const·VOICE·=·process.env.VOICE·||·'en_US-lessac-medium';
+     16  16 │   const PAD = 0.35;
+     17     │ - const·OUT·=·"out/clip.mp4";
+         17 │ + const·OUT·=·'out/clip.mp4';
+     18  18 │   
+     19  19 │   const step = (name) => console.log(`\n[clip] ${name}`);
+     20  20 │   
+     21     │ - step("storyboard·+·narration·fit");
+     22     │ - const·raw·=·readFileSync("src/walkthrough.data.js",·"utf8");
+         21 │ + step('storyboard·+·narration·fit');
+         22 │ + const·raw·=·readFileSync('src/walkthrough.data.js',·'utf8');
+     23  23 │   const m = raw.match(/^([\s\S]*?export const WALKTHROUGHS\s*=\s*)([\s\S]*?)(;\s*)$/);
+     24  24 │   const data = JSON.parse(m[2]);
+    ······· │ 
+     26  26 │   let lines = linesFromStoryboard(steps);
+     27  27 │   let clips = synthesiseBeats(lines, VOICE);
+     28     │ - const·newHolds·=·steps.map((s,·i)·=>·Math.round(Math.max((s.hold·||·60)·/·30,·(clips[i]?.seconds·??·0)·+·PAD)·*·30));
+     29     │ - data[0].steps.forEach((s,·i)·=>·{·s.hold·=·newHolds[i];·});
+     30     │ - writeFileSync("src/walkthrough.data.js",·m[1]·+·JSON.stringify(data,·null,·2)·+·m[3]);
+         28 │ + const·newHolds·=·steps.map((s,·i)·=>
+         29 │ + ··Math.round(Math.max((s.hold·||·60)·/·30,·(clips[i]?.seconds·??·0)·+·PAD)·*·30),
+         30 │ + );
+         31 │ + data[0].steps.forEach((s,·i)·=>·{
+         32 │ + ··s.hold·=·newHolds[i];
+         33 │ + });
+         34 │ + writeFileSync('src/walkthrough.data.js',·m[1]·+·JSON.stringify(data,·null,·2)·+·m[3]);
+     31  35 │   steps = data[0].steps;
+     32  36 │   lines = linesFromStoryboard(steps);
+     33  37 │   const over = overruns(lines, clips);
+     34     │ - if·(over.length)·{·console.error("[clip]·OVERRUNS·after·fitting:",·JSON.stringify(over));·process.exit(1);·}
+         38 │ + if·(over.length)·{
+         39 │ + ··console.error('[clip]·OVERRUNS·after·fitting:',·JSON.stringify(over));
+         40 │ + ··process.exit(1);
+         41 │ + }
+     35  42 │   const totalFrames = newHolds.reduce((a, b) => a + b, 0);
+     36     │ - console.log(`··${steps.length}·beats,·${(totalFrames·/·30).toFixed(1)}s,·voice·${VOICE},·overruns·0`);
+         43 │ + console.log(
+         44 │ + ··`··${steps.length}·beats,·${(totalFrames·/·30).toFixed(1)}s,·voice·${VOICE},·overruns·0`,
+         45 │ + );
+     37  46 │   
+     38     │ - step("render");
+     39     │ - const·r·=·spawnSync("npx",·["remotion",·"render",·"src/index.js",·"WT-NodeRoom",·"out/clip-video.mp4",·"--concurrency=2"],·{·encoding:·"utf8",·timeout:·540_000,·maxBuffer:·64·*·1024·*·1024,·shell:·true·});
+     40     │ - if·(r.status·!==·0)·{·console.error("[clip]·render·failed:",·(r.stderr·||·"").slice(-200));·process.exit(1);·}
+         47 │ + step('render');
+         48 │ + const·r·=·spawnSync(
+         49 │ + ··'npx',
+         50 │ + ··['remotion',·'render',·'src/index.js',·'WT-NodeRoom',·'out/clip-video.mp4',·'--concurrency=2'],
+         51 │ + ··{·encoding:·'utf8',·timeout:·540_000,·maxBuffer:·64·*·1024·*·1024,·shell:·true·},
+         52 │ + );
+         53 │ + if·(r.status·!==·0)·{
+         54 │ + ··console.error('[clip]·render·failed:',·(r.stderr·||·'').slice(-200));
+         55 │ + ··process.exit(1);
+         56 │ + }
+     41  57 │   
+     42     │ - step("voice·+·score·+·mux");
+     43     │ - assemble(lines,·clips,·totalFrames·/·30,·"out/clip-narration.wav");
+     44     │ - const·score·=·buildScore({·steps,·outFile:·"out/clip-audio.wav",·narration:·"out/clip-narration.wav"·});
+     45     │ - muxOnto("out/clip-video.mp4",·"out/clip-audio.wav",·OUT);
+         58 │ + step('voice·+·score·+·mux');
+         59 │ + assemble(lines,·clips,·totalFrames·/·30,·'out/clip-narration.wav');
+         60 │ + const·score·=·buildScore({
+         61 │ + ··steps,
+         62 │ + ··outFile:·'out/clip-audio.wav',
+         63 │ + ··narration:·'out/clip-narration.wav',
+         64 │ + });
+         65 │ + muxOnto('out/clip-video.mp4',·'out/clip-audio.wav',·OUT);
+     46  66 │   console.log(`  mix ${score.post.I.toFixed(1)} LUFS / LRA ${score.post.LRA.toFixed(1)}`);
+     47  67 │   
+     48     │ - step("gate·1·—·audio·is·actually·there");
+     49     │ - const·vol·=·spawnSync("ffmpeg",·["-v",·"info",·"-i",·OUT,·"-map",·"0:a:0",·"-af",·"volumedetect",·"-f",·"null",·"-"],·{·encoding:·"utf8",·timeout:·300_000·});
+         68 │ + step('gate·1·—·audio·is·actually·there');
+         69 │ + const·vol·=·spawnSync(
+         70 │ + ··'ffmpeg',
+         71 │ + ··['-v',·'info',·'-i',·OUT,·'-map',·'0:a:0',·'-af',·'volumedetect',·'-f',·'null',·'-'],
+         72 │ + ··{·encoding:·'utf8',·timeout:·300_000·},
+         73 │ + );
+     50  74 │   const mean = Number((`${vol.stderr}`.match(/mean_volume: (-?[\d.]+)/) || [])[1] ?? -91);
+     51     │ - if·(mean·<·-60)·{·console.error(`[clip]·SILENT·OUTPUT·(${mean}·dB)·—·the·mux·shipped·the·wrong·stream`);·process.exit(1);·}
+         75 │ + if·(mean·<·-60)·{
+         76 │ + ··console.error(`[clip]·SILENT·OUTPUT·(${mean}·dB)·—·the·mux·shipped·the·wrong·stream`);
+         77 │ + ··process.exit(1);
+         78 │ + }
+     52  79 │   console.log(`  ${mean} dB`);
+     53  80 │   
+     54     │ - step("gate·2·—·said·matches·shown·(Moonshine)");
+     55     │ - spawnSync("ffmpeg",·["-y",·"-v",·"error",·"-i",·OUT,·"-vn",·"-ar",·"16000",·"-ac",·"1",·"out/clip-stt.wav"],·{·encoding:·"utf8",·timeout:·300_000·});
+     56     │ - const·stt·=·spawnSync("python",·["-c",·`
+         81 │ + step('gate·2·—·said·matches·shown·(Moonshine)');
+         82 │ + spawnSync(
+         83 │ + ··'ffmpeg',
+         84 │ + ··['-y',·'-v',·'error',·'-i',·OUT,·'-vn',·'-ar',·'16000',·'-ac',·'1',·'out/clip-stt.wav'],
+         85 │ + ··{·encoding:·'utf8',·timeout:·300_000·},
+         86 │ + );
+         87 │ + const·stt·=·spawnSync(
+         88 │ + ··'python',
+         89 │ + ··[
+         90 │ + ····'-c',
+         91 │ + ····`
+     57  92 │   import re, json
+     58  93 │   import moonshine_onnx as m
+    ······· │ 
+     60  95 │   heard = heard[0] if isinstance(heard,(list,tuple)) else str(heard)
+     61  96 │   print(json.dumps({"heard": heard}))
+     62     │ - `],·{·encoding:·"utf8",·timeout:·540_000,·env:·{·...process.env,·PYTHONUTF8:·"1"·},·maxBuffer:·32·*·1024·*·1024·});
+     63     │ - const·heard·=·JSON.parse(stt.stdout.split("\n").filter(Boolean).pop()·??·"{}").heard·??·"";
+     64     │ - const·norm·=·(t)·=>·t.toLowerCase().replace(/—/g,·"·").replace(/[^a-z0-9·]/g,·"").split(/\s+/).filter(Boolean);
+     65     │ - const·tw·=·norm(lines.map((l)·=>·l.text).join("·"));
+         97 │ + `,
+         98 │ + ··],
+         99 │ + ··{
+        100 │ + ····encoding:·'utf8',
+        101 │ + ····timeout:·540_000,
+        102 │ + ····env:·{·...process.env,·PYTHONUTF8:·'1'·},
+        103 │ + ····maxBuffer:·32·*·1024·*·1024,
+        104 │ + ··},
+        105 │ + );
+        106 │ + const·heard·=·JSON.parse(stt.stdout.split('\n').filter(Boolean).pop()·??·'{}').heard·??·'';
+        107 │ + const·norm·=·(t)·=>
+        108 │ + ··t
+        109 │ + ····.toLowerCase()
+        110 │ + ····.replace(/—/g,·'·')
+        111 │ + ····.replace(/[^a-z0-9·]/g,·'')
+        112 │ + ····.split(/\s+/)
+        113 │ + ····.filter(Boolean);
+        114 │ + const·tw·=·norm(lines.map((l)·=>·l.text).join('·'));
+     66 115 │   const hw = norm(heard);
+     67 116 │   // UNIQUE-word coverage. Counting every occurrence let one word repeated 85 times pass the gate
+    ······· │ 
+     72 121 │   const overlap = tuniq.filter((w) => hset.has(w)).length / Math.max(1, tuniq.length);
+     73 122 │   console.log(`  ${Math.round(overlap * 100)}% of ${tuniq.length} distinct caption words heard`);
+     74     │ - if·(overlap·<·0.85)·{·console.error("[clip]·SAID-VS-SHOWN·FAIL·—·narration·and·captions·have·drifted");·process.exit(1);·}
+        123 │ + if·(overlap·<·0.85)·{
+        124 │ + ··console.error('[clip]·SAID-VS-SHOWN·FAIL·—·narration·and·captions·have·drifted');
+        125 │ + ··process.exit(1);
+        126 │ + }
+     75 127 │   
+     76     │ - step("gate·3·—·two-axis·judge·(median·of·3·at·the·boundary)");
+        128 │ + step('gate·3·—·two-axis·judge·(median·of·3·at·the·boundary)');
+     77 129 │   // Measured on one file, three consecutive runs: comprehension 20/16/16 and the mom boolean flipped
+     78 130 │   // true/false/false. A single run is iteration feedback, not a gate. Clear results take one run;
+     79 131 │   // anything near the boundary escalates to three — median for scores, majority for mom.
+  53 more lines truncated
+  
+
+Skipped 6 suggested fixes.
+If you wish to apply the suggested (unsafe) fixes, use the command biome check --fix --unsafe
+
+Checked 522 files in 179ms. No fixes applied.
+Found 84 errors.
+check ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Some errors were emitted while running checks.
+  
+
