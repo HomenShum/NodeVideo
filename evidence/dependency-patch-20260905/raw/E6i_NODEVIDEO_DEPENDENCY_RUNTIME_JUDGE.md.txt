@@ -1,0 +1,22 @@
+Builder mode. **Approve the exact three-row dependency transfer, with a preexisting component update failure still open.**
+
+**Re your request:** verify real rendering and schema behavior before accepting the narrow dependency repair — the selected packages support the observed component and schema cases, and the additional failed transition reproduces under the original packages.
+
+A developer reading a generated reply needs the displayed text and diagram to match the current content. The external proof mounted the actual `MessageResponse` and `ReasoningContent` with their existing stylesheet. Both rendered ordinary prose, emphasis, literal code, Unicode and the benign Plan → Review diagram. The saved SVGs had positive dimensions and no script elements, event handlers or JavaScript URLs. These benign DOM checks do not constitute an exploit or sanitizer-bypass test.
+
+The malformed case has two distinct outcomes:
+
+- **Fresh mount passes:** both components show the actual “Mermaid Error: Parse error on line 2” message and no previous diagram. The fresh report passes 12 checks; the saved PNG was viewed.
+- **In-place replacement fails:** after a valid diagram is replaced with malformed input, both components keep the previous diagram and paragraph after 20 seconds. This happens with both Mermaid 11.16.0 / DOMPurify 3.4.12 / fast-uri 3.1.3 and the selected 11.16.1 / 3.4.14 / 3.1.7. Their failure PNGs are byte-identical: `74290d8837e9b0a41e37bafb897bbb4c13ba843a81af01a91c57e56d18dc8580`. Preserve this as a preexisting component-scope failure, not a passing error transition or a proved full-app regression. The internal root cause was not established.
+
+The actual AJV2020 configuration (`allErrors: true`, `strict: false`, plus `addFormats`) accepts the existing tutorial capability fixture, rejects deletion of `projectId` with the real required-property error, and rejects an invalid date-time with a format error. No fixture or production test was changed.
+
+Root's raw logs independently bind clean `npm ci` at 15.484 seconds and the ordinary check at 119.203 seconds, with 353 tests in 74 files passing. The production audit reports zero findings; the full audit still exits 1 with 10 development findings, including 6 high and 4 moderate. These checks were not replayed by this reviewer.
+
+The external harness setup failures are retained: ancestor PostCSS discovery, an incorrect strong-element assumption, a hidden SVG stylesheet keyword mistaken for visible error text, and the font route returning HTML. Only external collector configuration/oracles and exact-font delivery were corrected. Actual component, stylesheet, font and package source were untouched. Final current and original observations have no uncaught browser exceptions or outbound request attempts. All owned port 4994 sessions closed, all 2,074 external source bindings remained exact, and the original repository remains clean. 27/27 closing verification checks pass; the two in-place browser reports remain FAILED.
+
+The proof is a labelled synthetic component contract at 1024×900, not a full application or phone journey. Existing tracking gaps, enlarged-phone layout, full export, provider, accessibility, human and performance holds remain. Full grades remain null. The export's build stamp is not a commit identity; exact source bindings identify the candidate.
+
+Root may transfer the exact lock SHA `8cff46f44e9a185de1e0d1844129cbcacb2eade814c10bb25de5f52eb7adcc1b` with honest handoff/evidence and the surviving transition hold. No new dependency regression was demonstrated in this bounded comparison. Normal commit/shared-CI and production verification remain separate.
+
+[Structured judgment](E6i_NODEVIDEO_DEPENDENCY_RUNTIME_JUDGE.json) · [Closing checks](E6i-nodevideo-dependency-runtime-closure/closing-checks.json) · [Actual fresh error](E6i-nodevideo-dependency-runtime-judge-05/1024-malformed.png) · [Current failed transition](E6i-nodevideo-dependency-runtime-judge-04/failure.png) · [Original failed transition](E6i-nodevideo-dependency-runtime-judge-original-06/failure.png)

@@ -1,0 +1,30 @@
+Builder — **Keep the six-row resolver result as valid evidence; prefer a narrower security proposal before transfer.** Select fast-uri **3.1.7**, DOMPurify **3.4.14**, and Mermaid **11.16.1** in a new scratch lock proposal, then require ordinary npm validation and clean installation.
+
+**Re your request:** make the repositories ready for handoff with minimal justified changes — this addendum reviews the actual resolver closure instead of assuming that a three-package request changes only three lock records.
+
+The existing normal resolver changed exactly six rows and nothing else in the lock's package rows or top-level fields. Package.json stayed exact. All six versions, dependency metadata, tarball URLs and integrity values match public registry metadata. The two new package archives were downloaded without installation or execution and their SHA-512 values match both lock and registry. The product package/lock and external resolver files remain unchanged.
+
+| Resolution | Assessment |
+| --- | --- |
+| fast-uri 3.1.7 | Keep: it is a newer security release, addressing two additional high-severity authority/bracket defects. Returning to 3.1.6 would retain those known upstream defects. [Official release](https://github.com/fastify/fast-uri/releases/tag/v3.1.7) |
+| DOMPurify 3.4.14 | Keep: its release includes an allow-listed risky-tag bypass correction, with no new runtime dependencies. [Official release](https://github.com/cure53/DOMPurify/releases/tag/3.4.14) |
+| Mermaid 11.17.2 | Compatible, but broader than the security patch: the 11.17 line changes the default class renderer and introduces diagram features and DOM batching. Prefer 11.16.1 for the five cited advisory fixes. [11.17.0 release](https://github.com/mermaid-js/mermaid/releases/tag/mermaid@11.17.0) |
+| parser 1.2.1 | Required by Mermaid 11.17's raised `^1.2.1` range; not required by 11.16.1's unchanged `^1.2.0` range |
+| fastdom 1.0.12 | Mermaid 11.17 uses it to batch DOM measurements; a legitimate dependency of that minor release |
+| strictdom 1.0.1 | Declared dependency of fastdom through `^1.0.1`; not a new direct application dependency |
+
+The six-row graph is semver-compatible, including the raised parser, Cytoscape, Day.js and KaTeX requirements already satisfied in the resulting lock. None of the six package manifests declares engines or install lifecycle scripts. That is a metadata observation, not a runtime compatibility or supply-chain safety certificate. No new package code was installed or executed.
+
+For the preferred three-record selection, old and chosen package metadata has identical runtime dependencies, optional/peer dependencies, engines and entrypoints. A separate scratch copy can therefore propose only each selected leaf's version, resolved URL and integrity. Label this **authored version selection validated by npm**, not the untouched output of `npm update`.
+
+1. Preserve the exact six-row candidate and receipts; start from the original pair in a new scratch directory.
+2. Apply only the three explicit registry-backed leaf selections, preserving every other lock record and root constraint.
+3. Run ordinary `npm install --package-lock-only --ignore-scripts`; require semantic lock stability. Preserve and investigate any repaired or expanded resolution.
+4. Run normal clean `npm ci`, current production audit, existing full check and bounded message-render/schema observations in a fresh consumer. No permanent overrides, new direct dependencies or weakened gates.
+5. Judge the actual proposed lock and receipts before root transfers it after the current publication guard closes.
+
+This recommends a concrete smaller candidate; it does not claim that candidate was produced, installed or accepted. The six-row alternative is legitimate if root explicitly accepts the broader renderer/performance scope and tests it. The earlier audit's fast-uri 3.1.6 floor is historical and superseded by the publisher's newer security release.
+
+Two global GitHub advisory API requests returned 404; their real published repository advisory endpoints succeeded. The failed attempt and successful primary-source records are retained. The current application SSRF/XSS path remains unproved; dependency presence, actual render entrypoints and exploitability keep separate statuses.
+
+See [machine-readable review](E6i_NODEVIDEO_DEPENDENCY_RESOLUTION_REVIEW.json), [six rows](E6i-nodevideo-dependency-resolution-independent-01/six-registry-row-verification.json), [archive integrity](E6i-nodevideo-dependency-resolution-independent-01/new-package-archive-integrity.json), [narrow selection metadata](E6i-nodevideo-dependency-resolution-independent-01/narrow-version-selection-metadata.json), and [manifest](E6i-nodevideo-dependency-resolution-independent-01/manifest.json).

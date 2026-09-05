@@ -1,0 +1,297 @@
+{
+  "status": "COMPATIBLE_SIX_ROW_RESOLUTION_VERIFIED_PREFER_NARROWER_SECURITY_PROPOSAL",
+  "at": "2026-09-05T21:23:38.946914+00:00",
+  "requestTraceability": "Assess the real six-row resolver result against the minimum necessary NodeVideo dependency follow-on, preserving the current product/publication.",
+  "originalReconRetained": {
+    "path": "E6i_NODEVIDEO_DEPENDENCY_FOLLOWON_RECON.json",
+    "bytes": 13666,
+    "sha256": "c83c3d0c95a4d5e2de72b35adffe833907ed84de54a77207bed8b5a605315097"
+  },
+  "operatorReceipt": {
+    "path": "E6i-nodevideo-dependency-resolution.json",
+    "bytes": 6966,
+    "sha256": "0aa64f88fa38632eaa428f2681e7e53942ac95ff7075c1cbc31555a9a9c9a897"
+  },
+  "sourcePackageSha256": "eb7e03afdf8f2d9a11a10a16fa6a2953cca248ccd559a06717ea6bec3f60c84a",
+  "sourceLockSha256": "19e6b173b8863280af94b1b6cd09e3eeaa231d58d8862379388e3d41255f8610",
+  "normalResolverLockSha256": "5210a3f4ff209503134dc37ec651db3f93ad093e6b454fda07a7d9353d395b8c",
+  "actualDiff": {
+    "changedRows": 6,
+    "otherLockRowsAndTopLevelFieldsUnchanged": true,
+    "packageJsonUnchanged": true,
+    "noOverridesOrNewDirectDependencies": true,
+    "rows": [
+      {
+        "path": "node_modules/@mermaid-js/parser",
+        "version": "1.2.1",
+        "newPackage": false,
+        "registryMetadataMatchesLock": true,
+        "registryIntegrity": "sha512-n12NohV3mrUyUL2o93IgG/ifeW9FTyeJn3zDxkhwa8MJ9Fxg3HQMlA3RiGmD/3UnJvheztkjjQAjA2T4LmUcpw==",
+        "engines": null,
+        "runtimeDependencies": {
+          "@chevrotain/types": "~11.1.2"
+        },
+        "installLifecycleScripts": {},
+        "repository": {
+          "url": "git+https://github.com/mermaid-js/mermaid.git",
+          "type": "git",
+          "directory": "packages/parser"
+        },
+        "description": "MermaidJS parser"
+      },
+      {
+        "path": "node_modules/dompurify",
+        "version": "3.4.14",
+        "newPackage": false,
+        "registryMetadataMatchesLock": true,
+        "registryIntegrity": "sha512-dVoH9z+MY+C9IilgGCk3YfFqjLi3fChm2OiKJMzh6axrJ5qwxqWaZamgmHrpv22CN/KdbZJuGEGgfQoL00LTdg==",
+        "engines": null,
+        "runtimeDependencies": {},
+        "installLifecycleScripts": {},
+        "repository": {
+          "url": "git://github.com/cure53/DOMPurify.git",
+          "type": "git"
+        },
+        "description": "DOMPurify is a DOM-only, super-fast, uber-tolerant XSS sanitizer for HTML, MathML and SVG. It runs as JavaScript and works in all modern browsers, as well as in Node.js (via jsdom). DOMPurify is written by security people who have vast background in web a"
+      },
+      {
+        "path": "node_modules/fast-uri",
+        "version": "3.1.7",
+        "newPackage": false,
+        "registryMetadataMatchesLock": true,
+        "registryIntegrity": "sha512-dOvZVzjdZdz7phd9v6jCbwxrBW3fK6n8Rc0CtdmM4bumzMnxywBYhuph6J819RRw/ku+rLbelwfMunktuzVVHg==",
+        "engines": null,
+        "runtimeDependencies": {},
+        "installLifecycleScripts": {},
+        "repository": {
+          "url": "git+https://github.com/fastify/fast-uri.git",
+          "type": "git"
+        },
+        "description": "Dependency-free RFC 3986 URI toolbox"
+      },
+      {
+        "path": "node_modules/fastdom",
+        "version": "1.0.12",
+        "newPackage": true,
+        "registryMetadataMatchesLock": true,
+        "registryIntegrity": "sha512-LB+xjSTEbjHE1cWsxu+tN2Xqr1kpi+V9aADI7sVM5ZMaXyYGPHULQMzpJMYqOTULK/73pUkWVzzObFRBkPr+hg==",
+        "engines": null,
+        "runtimeDependencies": {
+          "strictdom": "^1.0.1"
+        },
+        "installLifecycleScripts": {},
+        "repository": {
+          "url": "git://github.com/wilsonpage/fastdom.git",
+          "type": "git"
+        },
+        "description": "Eliminates layout thrashing by batching DOM read/write operations"
+      },
+      {
+        "path": "node_modules/mermaid",
+        "version": "11.17.2",
+        "newPackage": false,
+        "registryMetadataMatchesLock": true,
+        "registryIntegrity": "sha512-V6K3C8EBdEsPFZXSKMJe6ppQOENxuHARr9GvHX4hh47lAbhMRD9qf4oEK7LoaRQxULMa80/qt5gHO73aCleBBg==",
+        "engines": null,
+        "runtimeDependencies": {
+          "d3": "^7.9.0",
+          "uuid": "^11.1.0 || ^12 || ^13 || ^14.0.0",
+          "dayjs": "^1.11.21",
+          "katex": "^0.16.47",
+          "khroma": "^2.1.0",
+          "marked": "^16.3.0",
+          "stylis": "^4.3.6",
+          "fastdom": "1.0.12",
+          "roughjs": "^4.6.6",
+          "@types/d3": "^7.4.3",
+          "cytoscape": "^3.34.0",
+          "d3-sankey": "^0.12.3",
+          "dompurify": "^3.3.3",
+          "ts-dedent": "^2.2.0",
+          "es-toolkit": "^1.45.1",
+          "dagre-d3-es": "7.0.14",
+          "@iconify/utils": "^3.0.2",
+          "cytoscape-fcose": "^2.2.0",
+          "@upsetjs/venn.js": "^2.0.0",
+          "@mermaid-js/parser": "^1.2.1",
+          "cytoscape-cose-bilkent": "^4.1.0",
+          "@braintree/sanitize-url": "^7.1.2"
+        },
+        "installLifecycleScripts": {},
+        "repository": {
+          "url": "git+https://github.com/mermaid-js/mermaid.git",
+          "type": "git"
+        },
+        "description": "Markdown-ish syntax for generating flowcharts, mindmaps, sequence diagrams, class diagrams, gantt charts, git graphs and more."
+      },
+      {
+        "path": "node_modules/strictdom",
+        "version": "1.0.1",
+        "newPackage": true,
+        "registryMetadataMatchesLock": true,
+        "registryIntegrity": "sha512-cEmp9QeXXRmjj/rVp9oyiqcvyocWab/HaoN4+bwFeZ7QzykJD6L3yD4v12K1x0tHpqRqVpJevN3gW7kyM39Bqg==",
+        "engines": null,
+        "runtimeDependencies": {},
+        "installLifecycleScripts": {},
+        "repository": {
+          "url": "git://github.com/wilsonpage/strictdom.git",
+          "type": "git"
+        },
+        "description": "Throws errors when performance sensitive DOM APIs are called out of 'phase'"
+      }
+    ]
+  },
+  "compatibility": [
+    {
+      "name": "fast-uri",
+      "required": "^3.0.1",
+      "locked": "3.1.7",
+      "compatible": true
+    },
+    {
+      "name": "dompurify",
+      "required": "^3.3.3",
+      "locked": "3.4.14",
+      "compatible": true
+    },
+    {
+      "name": "mermaid",
+      "required": "^11.12.2",
+      "locked": "11.17.2",
+      "compatible": true
+    },
+    {
+      "name": "@mermaid-js/parser",
+      "required": "^1.2.1",
+      "locked": "1.2.1",
+      "compatible": true
+    },
+    {
+      "name": "cytoscape",
+      "required": "^3.34.0",
+      "locked": "3.34.0",
+      "compatible": true
+    },
+    {
+      "name": "dayjs",
+      "required": "^1.11.21",
+      "locked": "1.11.21",
+      "compatible": true
+    },
+    {
+      "name": "katex",
+      "required": "^0.16.47",
+      "locked": "0.16.47",
+      "compatible": true
+    },
+    {
+      "name": "strictdom",
+      "required": "^1.0.1",
+      "locked": "1.0.1",
+      "compatible": true
+    },
+    {
+      "name": "fastdom",
+      "required": "1.0.12",
+      "locked": "1.0.12",
+      "compatible": true
+    }
+  ],
+  "newDependencyRationale": {
+    "fastdom": "Mermaid 11.17.0 added DOM read/write batching; 11.17.2 retains exact fastdom 1.0.12.",
+    "strictdom": "Declared dependency of fastdom 1.0.12 via ^1.0.1. It is not a separately introduced root package.",
+    "parser": "Mermaid 11.17.2 raises @mermaid-js/parser to ^1.2.1, causing the existing parser row to update.",
+    "source": "https://github.com/mermaid-js/mermaid/releases/tag/mermaid@11.17.0",
+    "necessaryForChosenMinorRelease": true,
+    "necessaryForKnownSecurityPatchLine": false
+  },
+  "integrityAndEngineScope": {
+    "sixRegistryTarballAndIntegrityEntriesMatch": true,
+    "allSixPublishedEngines": null,
+    "allSixInstallLifecycleScripts": {},
+    "newArchives": [
+      {
+        "name": "fastdom",
+        "version": "1.0.12",
+        "file": "fastdom-1.0.12.tgz",
+        "bytes": 13150,
+        "sha256": "15e452be64ae3661c3cc9d736524ebb689c23f162765d60741dcc518ec182265",
+        "sha512MatchesResolvedLockAndRegistry": true,
+        "installedOrExecuted": false
+      },
+      {
+        "name": "strictdom",
+        "version": "1.0.1",
+        "file": "strictdom-1.0.1.tgz",
+        "bytes": 6503,
+        "sha256": "824b654d671c79365e96c87687dba8ce7bf36c45f2214365313c0a2d3e3ffbbb",
+        "sha512MatchesResolvedLockAndRegistry": true,
+        "installedOrExecuted": false
+      }
+    ],
+    "registrySignatureVerificationPerformed": false,
+    "actualNodeBrowserRuntimeCompatibilityProven": false,
+    "note": "Absent engine fields means no declared engine requirement, not universal compatibility. Archive integrity verifies correspondence to published bytes, not absence of malicious behavior."
+  },
+  "updatedSecuritySelection": {
+    "fastUri": {
+      "recommended": "3.1.7",
+      "doNotRevertTo": "3.1.6",
+      "reason": "Official v3.1.7 security release fixes additional port-authority and unclosed-bracket vulnerabilities affecting earlier 3.x, including 3.1.6.",
+      "advisories": [
+        "https://github.com/fastify/fast-uri/security/advisories/GHSA-qw65-cvwx-89v3",
+        "https://github.com/fastify/fast-uri/security/advisories/GHSA-58mr-gqgx-xq4g"
+      ]
+    },
+    "dompurify": {
+      "recommended": "3.4.14",
+      "reason": "Official release fixes possible bypasses involving risky allow-listed tags plus document-context cases, with no new runtime dependency closure.",
+      "source": "https://github.com/cure53/DOMPurify/releases/tag/3.4.14"
+    },
+    "mermaid": {
+      "recommended": "11.16.1",
+      "reason": "Addresses the five cited Mermaid advisories while retaining the original runtime dependency/entrypoint metadata. The 11.17 line additionally changes the default class renderer and adds unrelated diagram capabilities and DOM batching.",
+      "source": "https://github.com/mermaid-js/mermaid/releases/tag/mermaid@11.17.0"
+    }
+  },
+  "recommendation": {
+    "preferred": "New explicit three-record scratch proposal: fast-uri 3.1.7, DOMPurify 3.4.14, Mermaid 11.16.1.",
+    "candidateExists": false,
+    "transferApproved": false,
+    "existingSixRowCandidatePreserve": true,
+    "sixRowCandidateDisposition": "Legitimate and semver-compatible normal resolver output; broader than the named security repair. Could be chosen with explicit acceptance of the renderer/performance scope and matching local rendering evidence, but is not the minimum necessary change.",
+    "narrowMetadataEvidence": {
+      "path": "E6i-nodevideo-dependency-resolution-independent-01/narrow-version-selection-metadata.json",
+      "bytes": 1572,
+      "sha256": "d0715de69731a6f865d9dd4e3fb5d10bbb92351dd81ee6e95ec3185db6fb6acb"
+    }
+  },
+  "concreteNarrowProcedure": [
+    "Start a NEW scratch directory from exact original package/lock; retain the six-row result and all prior receipts untouched.",
+    "Author only the three leaf version/resolved/integrity records from the verified registry metadata. Preserve flags, parent constraints, root dependencies and all other entries. This is explicit version selection, not pure npm update output; label its provenance honestly.",
+    "Run normal npm install --package-lock-only --ignore-scripts in that scratch directory and require the selected compatible lock to remain semantically unchanged. If npm repairs or expands it, retain that raw result and diagnose before transfer.",
+    "Normal npm ci in a fresh consumer must accept the final pair and verify package integrity. Collect current production audit, normal check, and the previously planned bounded message/schema observations; do not add permanent overrides, direct dependencies or disable a gate.",
+    "Only after the prior publication guard closes and the actual lock proposal is independently judged may root transfer the single reviewed lockfile. Security coverage and full app claims remain separate."
+  ],
+  "observedMetadataFailure": {
+    "status": "RETAINED_GLOBAL_GHSA_API_404",
+    "detail": "Both newly published fast-uri advisories were absent at the global /advisories API endpoint during collection. Their public repository security-advisory endpoints and official release are present and captured. Reused prior successful metadata bytes; no whole rerun or absent-vulnerability inference.",
+    "evidence": {
+      "path": "E6i-nodevideo-dependency-resolution-independent-01/global-advisory-fetch-failure.json",
+      "bytes": 801,
+      "sha256": "718cb5f387a23cbc7fa241a5c7a53035991bc4a38b13d33c9c96060735a187be"
+    }
+  },
+  "guard": {
+    "sourcePairUnchanged": true,
+    "retainedExternalResolverPairUnchanged": true,
+    "productNodeModulesIndexRefWrites": 0,
+    "installsUpdatesAndCodeExecutionsByReviewer": 0,
+    "wholePublicationGuardClaimed": false
+  },
+  "evidenceManifest": {
+    "path": "E6i-nodevideo-dependency-resolution-independent-01/manifest.json",
+    "bytes": 6363,
+    "sha256": "a6b2b7d823ab3d9d47f064fbe263b13a99729465607055b983470f918d76baf4"
+  }
+}

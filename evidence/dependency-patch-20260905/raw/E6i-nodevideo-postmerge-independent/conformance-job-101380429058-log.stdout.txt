@@ -1,0 +1,280 @@
+﻿2026-09-05T21:41:02.1220431Z Current runner version: '2.337.0'
+2026-09-05T21:41:02.1250041Z ##[group]Runner Image Provisioner
+2026-09-05T21:41:02.1251534Z Hosted Compute Agent
+2026-09-05T21:41:02.1252532Z Version: 20260828.587
+2026-09-05T21:41:02.1253504Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-05T21:41:02.1254598Z Build Date: 2026-08-28T16:44:25Z
+2026-09-05T21:41:02.1255747Z Worker ID: {00cdb17a-31ee-4327-92a4-a9117b38e68b}
+2026-09-05T21:41:02.1256872Z Azure Region: eastus2
+2026-09-05T21:41:02.1258122Z ##[endgroup]
+2026-09-05T21:41:02.1260185Z ##[group]Operating System
+2026-09-05T21:41:02.1261116Z Ubuntu
+2026-09-05T21:41:02.1262221Z 24.04.4
+2026-09-05T21:41:02.1263042Z LTS
+2026-09-05T21:41:02.1263803Z ##[endgroup]
+2026-09-05T21:41:02.1264727Z ##[group]Runner Image
+2026-09-05T21:41:02.1265644Z Image: ubuntu-24.04
+2026-09-05T21:41:02.1267031Z Version: 20260831.293.1
+2026-09-05T21:41:02.1269031Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260831.293/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-05T21:41:02.1271853Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260831.293
+2026-09-05T21:41:02.1273401Z ##[endgroup]
+2026-09-05T21:41:02.1275286Z ##[group]GITHUB_TOKEN Permissions
+2026-09-05T21:41:02.1278055Z Contents: read
+2026-09-05T21:41:02.1279086Z Metadata: read
+2026-09-05T21:41:02.1279926Z ##[endgroup]
+2026-09-05T21:41:02.1284012Z Secret source: Actions
+2026-09-05T21:41:02.1285876Z Prepare workflow directory
+2026-09-05T21:41:02.1734828Z Prepare all required actions
+2026-09-05T21:41:02.1800868Z Getting action download info
+2026-09-05T21:41:02.3664836Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-09-05T21:41:02.5038175Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-09-05T21:41:02.7550402Z Uses: HomenShum/NodeKit/.github/workflows/repo-conformance.yml@ef4ac8a011b230efa3324892a193abe02ff2d673
+2026-09-05T21:41:02.7554898Z ##[group] Inputs
+2026-09-05T21:41:02.7555448Z   node_version: 22
+2026-09-05T21:41:02.7555922Z   platform_ref: main
+2026-09-05T21:41:02.7556404Z ##[endgroup]
+2026-09-05T21:41:02.7556901Z Complete job name: node-platform / conformance
+2026-09-05T21:41:02.8283872Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-05T21:41:02.8293071Z ##[group]Run actions/checkout@v4
+2026-09-05T21:41:02.8293760Z with:
+2026-09-05T21:41:02.8294211Z   repository: HomenShum/NodeVideo
+2026-09-05T21:41:02.8297913Z   token: ***
+2026-09-05T21:41:02.8298359Z   ssh-strict: true
+2026-09-05T21:41:02.8298807Z   ssh-user: git
+2026-09-05T21:41:02.8299269Z   persist-credentials: true
+2026-09-05T21:41:02.8299764Z   clean: true
+2026-09-05T21:41:02.8300216Z   sparse-checkout-cone-mode: true
+2026-09-05T21:41:02.8300765Z   fetch-depth: 1
+2026-09-05T21:41:02.8301198Z   fetch-tags: false
+2026-09-05T21:41:02.8301859Z   show-progress: true
+2026-09-05T21:41:02.8302307Z   lfs: false
+2026-09-05T21:41:02.8302764Z   submodules: false
+2026-09-05T21:41:02.8303218Z   set-safe-directory: true
+2026-09-05T21:41:02.8303729Z   allow-unsafe-pr-checkout: false
+2026-09-05T21:41:02.8304457Z ##[endgroup]
+2026-09-05T21:41:02.9286810Z Syncing repository: HomenShum/NodeVideo
+2026-09-05T21:41:02.9288543Z ##[group]Getting Git version info
+2026-09-05T21:41:02.9289255Z Working directory is '/home/runner/work/NodeVideo/NodeVideo'
+2026-09-05T21:41:02.9290293Z [command]/usr/bin/git version
+2026-09-05T21:41:02.9330616Z git version 2.55.0
+2026-09-05T21:41:02.9350233Z ##[endgroup]
+2026-09-05T21:41:02.9364702Z Temporarily overriding HOME='/home/runner/work/_temp/dc355fa3-1bec-4edb-b98f-0ddc9cf9209a' before making global git config changes
+2026-09-05T21:41:02.9366958Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-05T21:41:02.9370104Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/NodeVideo/NodeVideo
+2026-09-05T21:41:02.9414746Z Deleting the contents of '/home/runner/work/NodeVideo/NodeVideo'
+2026-09-05T21:41:02.9420476Z ##[group]Initializing the repository
+2026-09-05T21:41:02.9425170Z [command]/usr/bin/git init /home/runner/work/NodeVideo/NodeVideo
+2026-09-05T21:41:02.9508000Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-05T21:41:02.9509307Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-05T21:41:02.9510824Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-05T21:41:02.9512136Z hint: call:
+2026-09-05T21:41:02.9512547Z hint:
+2026-09-05T21:41:02.9513298Z hint: 	git config --global init.defaultBranch <name>
+2026-09-05T21:41:02.9514061Z hint:
+2026-09-05T21:41:02.9514641Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-05T21:41:02.9515582Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-05T21:41:02.9516442Z hint:
+2026-09-05T21:41:02.9516863Z hint: 	git branch -m <name>
+2026-09-05T21:41:02.9517354Z hint:
+2026-09-05T21:41:02.9517978Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-05T21:41:02.9518988Z Initialized empty Git repository in /home/runner/work/NodeVideo/NodeVideo/.git/
+2026-09-05T21:41:02.9521247Z [command]/usr/bin/git remote add origin https://github.com/HomenShum/NodeVideo
+2026-09-05T21:41:02.9562952Z ##[endgroup]
+2026-09-05T21:41:02.9563745Z ##[group]Disabling automatic garbage collection
+2026-09-05T21:41:02.9566491Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-05T21:41:02.9597925Z ##[endgroup]
+2026-09-05T21:41:02.9598666Z ##[group]Setting up auth
+2026-09-05T21:41:02.9604252Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-05T21:41:02.9635564Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-05T21:41:02.9957956Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-05T21:41:02.9989230Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-05T21:41:03.0225487Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-05T21:41:03.0259993Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-05T21:41:03.0492629Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-05T21:41:03.0528408Z ##[endgroup]
+2026-09-05T21:41:03.0529619Z ##[group]Fetching the repository
+2026-09-05T21:41:03.0538477Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +1417d325faca991fed9b05803fee26336255b063:refs/remotes/origin/main
+2026-09-05T21:41:05.8137304Z From https://github.com/HomenShum/NodeVideo
+2026-09-05T21:41:05.8139173Z  * [new ref]         1417d325faca991fed9b05803fee26336255b063 -> origin/main
+2026-09-05T21:41:05.8146160Z ##[endgroup]
+2026-09-05T21:41:05.8147527Z ##[group]Determining the checkout info
+2026-09-05T21:41:05.8148700Z ##[endgroup]
+2026-09-05T21:41:05.8150612Z [command]/usr/bin/git sparse-checkout disable
+2026-09-05T21:41:05.8194871Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-05T21:41:05.8223407Z ##[group]Checking out the ref
+2026-09-05T21:41:05.8234806Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-05T21:41:06.3767378Z Switched to a new branch 'main'
+2026-09-05T21:41:06.3769109Z branch 'main' set up to track 'origin/main'.
+2026-09-05T21:41:06.3806498Z ##[endgroup]
+2026-09-05T21:41:06.3849240Z [command]/usr/bin/git log -1 --format=%H
+2026-09-05T21:41:06.3872860Z 1417d325faca991fed9b05803fee26336255b063
+2026-09-05T21:41:06.4290049Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-05T21:41:06.4296018Z ##[group]Run actions/checkout@v4
+2026-09-05T21:41:06.4297163Z with:
+2026-09-05T21:41:06.4298117Z   repository: HomenShum/node-platform
+2026-09-05T21:41:06.4299333Z   ref: main
+2026-09-05T21:41:06.4300267Z   path: .node-platform
+2026-09-05T21:41:06.4309118Z   token: ***
+2026-09-05T21:41:06.4310071Z   ssh-strict: true
+2026-09-05T21:41:06.4311057Z   ssh-user: git
+2026-09-05T21:41:06.4312151Z   persist-credentials: true
+2026-09-05T21:41:06.4313240Z   clean: true
+2026-09-05T21:41:06.4314239Z   sparse-checkout-cone-mode: true
+2026-09-05T21:41:06.4315406Z   fetch-depth: 1
+2026-09-05T21:41:06.4316370Z   fetch-tags: false
+2026-09-05T21:41:06.4317375Z   show-progress: true
+2026-09-05T21:41:06.4318380Z   lfs: false
+2026-09-05T21:41:06.4319318Z   submodules: false
+2026-09-05T21:41:06.4320304Z   set-safe-directory: true
+2026-09-05T21:41:06.4321510Z   allow-unsafe-pr-checkout: false
+2026-09-05T21:41:06.4322669Z ##[endgroup]
+2026-09-05T21:41:06.5246099Z Syncing repository: HomenShum/node-platform
+2026-09-05T21:41:06.5252336Z ##[group]Getting Git version info
+2026-09-05T21:41:06.5254078Z Working directory is '/home/runner/work/NodeVideo/NodeVideo/.node-platform'
+2026-09-05T21:41:06.5285012Z [command]/usr/bin/git version
+2026-09-05T21:41:06.5322022Z git version 2.55.0
+2026-09-05T21:41:06.5341274Z ##[endgroup]
+2026-09-05T21:41:06.5353874Z Temporarily overriding HOME='/home/runner/work/_temp/01b973ef-d248-4256-bc56-30b73a11ffff' before making global git config changes
+2026-09-05T21:41:06.5357712Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-05T21:41:06.5361583Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/NodeVideo/NodeVideo/.node-platform
+2026-09-05T21:41:06.5391914Z ##[group]Initializing the repository
+2026-09-05T21:41:06.5396941Z [command]/usr/bin/git init /home/runner/work/NodeVideo/NodeVideo/.node-platform
+2026-09-05T21:41:06.5437612Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-05T21:41:06.5441174Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-05T21:41:06.5444314Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-05T21:41:06.5446088Z hint: call:
+2026-09-05T21:41:06.5447121Z hint:
+2026-09-05T21:41:06.5448470Z hint: 	git config --global init.defaultBranch <name>
+2026-09-05T21:41:06.5450050Z hint:
+2026-09-05T21:41:06.5451570Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-05T21:41:06.5454003Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-05T21:41:06.5455737Z hint:
+2026-09-05T21:41:06.5456658Z hint: 	git branch -m <name>
+2026-09-05T21:41:06.5457723Z hint:
+2026-09-05T21:41:06.5459201Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-05T21:41:06.5461844Z Initialized empty Git repository in /home/runner/work/NodeVideo/NodeVideo/.node-platform/.git/
+2026-09-05T21:41:06.5465860Z [command]/usr/bin/git remote add origin https://github.com/HomenShum/node-platform
+2026-09-05T21:41:06.5482271Z ##[endgroup]
+2026-09-05T21:41:06.5483950Z ##[group]Disabling automatic garbage collection
+2026-09-05T21:41:06.5485679Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-05T21:41:06.5514846Z ##[endgroup]
+2026-09-05T21:41:06.5520254Z ##[group]Setting up auth
+2026-09-05T21:41:06.5522271Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-05T21:41:06.5554435Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-05T21:41:06.5806000Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-05T21:41:06.5831068Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-05T21:41:06.6087550Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-05T21:41:06.6130548Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-05T21:41:06.6357944Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-05T21:41:06.6392836Z ##[endgroup]
+2026-09-05T21:41:06.6393463Z ##[group]Fetching the repository
+2026-09-05T21:41:06.6402049Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +refs/heads/main*:refs/remotes/origin/main* +refs/tags/main*:refs/tags/main*
+2026-09-05T21:41:08.4853335Z From https://github.com/HomenShum/node-platform
+2026-09-05T21:41:08.4854083Z  * [new branch]      main       -> origin/main
+2026-09-05T21:41:08.4856901Z ##[endgroup]
+2026-09-05T21:41:08.4857459Z ##[group]Determining the checkout info
+2026-09-05T21:41:08.4865315Z [command]/usr/bin/git branch --list --remote origin/main
+2026-09-05T21:41:08.4892184Z   origin/main
+2026-09-05T21:41:08.4896610Z ##[endgroup]
+2026-09-05T21:41:08.4902278Z [command]/usr/bin/git sparse-checkout disable
+2026-09-05T21:41:08.4941263Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-05T21:41:08.4970971Z ##[group]Checking out the ref
+2026-09-05T21:41:08.4990000Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-05T21:41:08.8513796Z Switched to a new branch 'main'
+2026-09-05T21:41:08.8514743Z branch 'main' set up to track 'origin/main'.
+2026-09-05T21:41:08.8543117Z ##[endgroup]
+2026-09-05T21:41:08.8582660Z [command]/usr/bin/git log -1 --format=%H
+2026-09-05T21:41:08.8612481Z a2d2e8ce36cc3e87a6a8133469dd55d8b7580588
+2026-09-05T21:41:08.8826065Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-05T21:41:08.8827265Z ##[group]Run actions/setup-node@v4
+2026-09-05T21:41:08.8827545Z with:
+2026-09-05T21:41:08.8827766Z   node-version: 22
+2026-09-05T21:41:08.8827983Z   cache: npm
+2026-09-05T21:41:08.8828273Z   cache-dependency-path: .node-platform/package-lock.json
+2026-09-05T21:41:08.8828617Z   always-auth: false
+2026-09-05T21:41:08.8828848Z   check-latest: false
+2026-09-05T21:41:08.8831126Z   token: ***
+2026-09-05T21:41:08.8831593Z ##[endgroup]
+2026-09-05T21:41:09.0244240Z Found in cache @ /opt/hostedtoolcache/node/22.23.2/x64
+2026-09-05T21:41:09.0247319Z (node:2358) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-05T21:41:09.0248014Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-05T21:41:09.0249869Z ##[group]Environment details
+2026-09-05T21:41:11.7947755Z node: v22.23.2
+2026-09-05T21:41:11.7948164Z npm: 10.9.8
+2026-09-05T21:41:11.7948500Z yarn: 1.22.22
+2026-09-05T21:41:11.7949785Z ##[endgroup]
+2026-09-05T21:41:11.7988815Z [command]/opt/hostedtoolcache/node/22.23.2/x64/bin/npm config get cache
+2026-09-05T21:41:12.1351889Z /home/runner/.npm
+2026-09-05T21:41:12.2121303Z npm cache is not found
+2026-09-05T21:41:12.2253950Z ##[group]Run npm ci --prefix .node-platform
+2026-09-05T21:41:12.2254363Z [36;1mnpm ci --prefix .node-platform[0m
+2026-09-05T21:41:12.2304046Z shell: /usr/bin/bash -e {0}
+2026-09-05T21:41:12.2304330Z ##[endgroup]
+2026-09-05T21:41:17.3598404Z 
+2026-09-05T21:41:17.3605909Z added 84 packages, and audited 85 packages in 5s
+2026-09-05T21:41:17.3606259Z 
+2026-09-05T21:41:17.3606490Z 22 packages are looking for funding
+2026-09-05T21:41:17.3606807Z   run `npm fund` for details
+2026-09-05T21:41:17.3648292Z 
+2026-09-05T21:41:17.3648600Z 3 vulnerabilities (1 moderate, 2 high)
+2026-09-05T21:41:17.3648826Z 
+2026-09-05T21:41:17.3648954Z To address all issues, run:
+2026-09-05T21:41:17.3649223Z   npm audit fix
+2026-09-05T21:41:17.3649348Z 
+2026-09-05T21:41:17.3649480Z Run `npm audit` for details.
+2026-09-05T21:41:17.4170465Z ##[group]Run node .node-platform/src/cli.mjs repo check --repo-root . --registry-root .node-platform
+2026-09-05T21:41:17.4171202Z [36;1mnode .node-platform/src/cli.mjs repo check --repo-root . --registry-root .node-platform[0m
+2026-09-05T21:41:17.4214774Z shell: /usr/bin/bash -e {0}
+2026-09-05T21:41:17.4215053Z ##[endgroup]
+2026-09-05T21:41:17.8968493Z PASS HomenShum/NodeVideo
+2026-09-05T21:41:17.8970217Z   PASS manifest-schema: nodekit.repo/v1
+2026-09-05T21:41:17.8970706Z   PASS catalog-entry: NodeVideo
+2026-09-05T21:41:17.8971003Z   PASS lifecycle: preview
+2026-09-05T21:41:17.8971265Z   PASS support: active
+2026-09-05T21:41:17.8971801Z   PASS command:dev: dev
+2026-09-05T21:41:17.8972258Z   PASS command:demo: demo
+2026-09-05T21:41:17.8972517Z   PASS command:doctor: doctor
+2026-09-05T21:41:17.8972786Z   PASS command:check: check
+2026-09-05T21:41:17.8974424Z   PASS command:proof: proof
+2026-09-05T21:41:17.8974797Z   PASS contract-declarations: 0/0 classified
+2026-09-05T21:41:17.8975247Z   PASS source-rules: 0/0 excepted
+2026-09-05T21:41:17.9141779Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-05T21:41:17.9143011Z Post job cleanup.
+2026-09-05T21:41:18.0390600Z (node:2441) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-05T21:41:18.0391663Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-05T21:41:18.0585396Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/NodeVideo/NodeVideo --files-from manifest.txt --use-compress-program zstdmt
+2026-09-05T21:41:18.2503087Z (node:2441) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-05T21:41:18.9883042Z Sent 57031083 of 57031083 (100.0%), 72.8 MBs/sec
+2026-09-05T21:41:19.0856493Z Cache saved with the key: node-cache-Linux-x64-npm-c2c05c7d8bc479940521f6b92edd1432dc37302a9f0e676ac17704f1525f46d8
+2026-09-05T21:41:19.1072941Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-05T21:41:19.1074139Z Post job cleanup.
+2026-09-05T21:41:19.1919645Z [command]/usr/bin/git version
+2026-09-05T21:41:19.1956539Z git version 2.55.0
+2026-09-05T21:41:19.1992163Z Temporarily overriding HOME='/home/runner/work/_temp/cf4efdd6-e681-4ff4-a13c-7440183829fe' before making global git config changes
+2026-09-05T21:41:19.1994044Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-05T21:41:19.1998116Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/NodeVideo/NodeVideo/.node-platform
+2026-09-05T21:41:19.2035040Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-05T21:41:19.2067532Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-05T21:41:19.2306407Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-05T21:41:19.2333023Z http.https://github.com/.extraheader
+2026-09-05T21:41:19.2343810Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-09-05T21:41:19.2375940Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-05T21:41:19.2609812Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-05T21:41:19.2642281Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-05T21:41:19.3032175Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-05T21:41:19.3033395Z Post job cleanup.
+2026-09-05T21:41:19.3886764Z [command]/usr/bin/git version
+2026-09-05T21:41:19.3924514Z git version 2.55.0
+2026-09-05T21:41:19.3959669Z Temporarily overriding HOME='/home/runner/work/_temp/a47f60ac-feaf-463f-bd2d-a61e07d465d0' before making global git config changes
+2026-09-05T21:41:19.3961167Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-05T21:41:19.3965590Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/NodeVideo/NodeVideo
+2026-09-05T21:41:19.4002355Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-05T21:41:19.4037548Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-05T21:41:19.4275852Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-05T21:41:19.4299154Z http.https://github.com/.extraheader
+2026-09-05T21:41:19.4308649Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-09-05T21:41:19.4341296Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-05T21:41:19.4579313Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-05T21:41:19.4611291Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-05T21:41:19.5016272Z Cleaning up orphan processes
+2026-09-05T21:41:19.5294610Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

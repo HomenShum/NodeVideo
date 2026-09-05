@@ -1,0 +1,13 @@
+Builder mode. **APPROVED as the exact external three-row lock proposal. Runtime acceptance and repository transfer remain pending.**
+
+**Re your request:** inspect the smallest dependency follow-on without disturbing the current product — 24/24 bounded checks pass against committed source `e0777e37f9da60dede2817f44ecf7d9eea02e5bb`.
+
+Only `fast-uri` 3.1.7, `dompurify` 3.4.14 and `mermaid` 11.16.1 change. Each existing lock row changes only version, tarball URL and integrity. No package row, direct dependency, override or NodeKit pin is added or altered otherwise. The root manifest and every other lock field remain exact.
+
+All three selected versions, tarball URLs and integrity strings match the preserved primary registry metadata. Their declared runtime dependency and entrypoint metadata match their old versions. This confirms the bounded source proposal; it does not prove installed runtime behavior or exploitability.
+
+The source is **authored version selection validated by npm**, not untouched `npm update` output. The preserved ordinary `npm install --package-lock-only --ignore-scripts --no-audit --no-fund` log and receipt record exit 0 in 1.594 seconds, with semantic lock equality. No validation, install, check or browser command was replayed by this reviewer.
+
+External lock SHA-256: `8cff46f44e9a185de1e0d1844129cbcacb2eade814c10bb25de5f52eb7adcc1b`. Source package/lock and index remain unchanged. The external package/lock pair also remained exact through readback. Parent-owned fresh installation, current audit, normal checks and bounded rendering/schema observations are still required before accepting a transfer; their potentially concurrent outputs were not judged here.
+
+[Three-row delta](E6i-nodevideo-dependency-proposal-judge/three-row-delta.json) · [Checks](E6i-nodevideo-dependency-proposal-judge/checks.json) · [Structured judgment](E6i_NODEVIDEO_DEPENDENCY_PROPOSAL_JUDGE.json)

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "fast-uri",
+    "version": "3.1.7",
+    "runtimeMetadataFieldsChanged": [],
+    "resolved": "https://registry.npmjs.org/fast-uri/-/fast-uri-3.1.7.tgz",
+    "integrity": "sha512-dOvZVzjdZdz7phd9v6jCbwxrBW3fK6n8Rc0CtdmM4bumzMnxywBYhuph6J819RRw/ku+rLbelwfMunktuzVVHg==",
+    "source": {
+      "path": "E6i-nodevideo-dependency-resolution-independent-01/fast-uri-3.1.7.metadata.json",
+      "bytes": 3209,
+      "sha256": "6da6855353d63acdb167e8be86c66425673b7f4e9608f588b756836c9ccb76b7"
+    }
+  },
+  {
+    "name": "dompurify",
+    "version": "3.4.14",
+    "runtimeMetadataFieldsChanged": [],
+    "resolved": "https://registry.npmjs.org/dompurify/-/dompurify-3.4.14.tgz",
+    "integrity": "sha512-dVoH9z+MY+C9IilgGCk3YfFqjLi3fChm2OiKJMzh6axrJ5qwxqWaZamgmHrpv22CN/KdbZJuGEGgfQoL00LTdg==",
+    "source": {
+      "path": "E6i-nodevideo-dependency-resolution-independent-01/dompurify-3.4.14.metadata.json",
+      "bytes": 6546,
+      "sha256": "c895380dd9aed88db38dfd27c9741ac9e71acd019787cd57563c576741a86b3d"
+    }
+  },
+  {
+    "name": "mermaid",
+    "version": "11.16.1",
+    "runtimeMetadataFieldsChanged": [],
+    "resolved": "https://registry.npmjs.org/mermaid/-/mermaid-11.16.1.tgz",
+    "integrity": "sha512-TQsq6u22fAn3rek5VOubrhKPo1g5hwC3FXUN9hiyupTckcYiGuuKGkNQrKYwGJkXUxZdojwRG46gsSCFZMDp4g==",
+    "source": {
+      "path": "E6i-nodevideo-dependency-followon-01/registry-mermaid-11.16.1.json",
+      "bytes": 5761,
+      "sha256": "ed832164ea8de1d355bd199ffb3898d2c0149bb2cde5b8b261b10e8ab6be2c42"
+    }
+  }
+]

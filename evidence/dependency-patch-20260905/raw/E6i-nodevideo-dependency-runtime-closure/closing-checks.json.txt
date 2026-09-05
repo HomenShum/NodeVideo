@@ -1,0 +1,137 @@
+[
+  {
+    "name": "new normal prose and benign diagram checks pass",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "new in-place malformed failure retained",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "fresh malformed actual error proof passes",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "original same bounded transition also fails",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "old/new failure actual PNG byte equality",
+    "pass": true,
+    "detail": "74290d8837e9b0a41e37bafb897bbb4c13ba843a81af01a91c57e56d18dc8580"
+  },
+  {
+    "name": "new failure retains previous displayed diagram and updated harness state",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "original failure retains previous displayed diagram and updated harness state",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "actual old/new selected dependency versions",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "same actual component/style/schema/consumer owners",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "same synthetic payload definitions",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "new optimized plugin resolves actual installed root",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "original optimized plugin resolves actual installed root",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "E6i-nodevideo-dependency-runtime-judge-04 AJV actual options/valid/invalid/format",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "E6i-nodevideo-dependency-runtime-judge-05 AJV actual options/valid/invalid/format",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "E6i-nodevideo-dependency-runtime-judge-original-06 AJV actual options/valid/invalid/format",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "successful fresh actual SVG-error output has no diagram",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "positive benign SVG and inspected safe DOM at both component owners",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "final valid/new/original captures have no uncaught errors or outbound request attempts",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "root actual log clean-install",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "root actual log production-audit",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "root actual log full-audit",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "root actual log normal-check",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "actual audit production0/full10 retained",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "actual normal check353tests74files passes",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "every attempt closes source guards and own port",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "all2074 external source bindings exact at final close",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "original repository still clean",
+    "pass": true,
+    "detail": null
+  }
+]

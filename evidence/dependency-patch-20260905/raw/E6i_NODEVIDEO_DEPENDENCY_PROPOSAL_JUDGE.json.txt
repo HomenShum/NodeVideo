@@ -1,0 +1,124 @@
+{
+  "status": "APPROVED_BOUNDED_EXTERNAL_LOCK_PROPOSAL_RUNTIME_AND_TRANSFER_PENDING",
+  "mode": "Builder / nonauthor read-only proposal judge",
+  "requestTraceability": "Review the smallest justified follow-on dependency source without changing the current NodeVideo product.",
+  "sourceCommit": "e0777e37f9da60dede2817f44ecf7d9eea02e5bb",
+  "sourcePair": {
+    "package.json": "eb7e03afdf8f2d9a11a10a16fa6a2953cca248ccd559a06717ea6bec3f60c84a",
+    "package-lock.json": "19e6b173b8863280af94b1b6cd09e3eeaa231d58d8862379388e3d41255f8610"
+  },
+  "externalRoot": "D:\\ProjectRecovery\\nodevideo-dependency-narrow-20260905",
+  "externalLockSha256": "8cff46f44e9a185de1e0d1844129cbcacb2eade814c10bb25de5f52eb7adcc1b",
+  "selection": {
+    "node_modules/fast-uri": "3.1.7",
+    "node_modules/dompurify": "3.4.14",
+    "node_modules/mermaid": "11.16.1"
+  },
+  "selectionProvenance": "Authored registry-backed selection validated by ordinary npm package-lock-only. It is not untouched npm update output.",
+  "checks": {
+    "passed": 24,
+    "total": 24
+  },
+  "delta": [
+    {
+      "path": "node_modules/dompurify",
+      "beforeVersion": "3.4.12",
+      "afterVersion": "3.4.14",
+      "fieldsChanged": [
+        "integrity",
+        "resolved",
+        "version"
+      ]
+    },
+    {
+      "path": "node_modules/fast-uri",
+      "beforeVersion": "3.1.3",
+      "afterVersion": "3.1.7",
+      "fieldsChanged": [
+        "integrity",
+        "resolved",
+        "version"
+      ]
+    },
+    {
+      "path": "node_modules/mermaid",
+      "beforeVersion": "11.16.0",
+      "afterVersion": "11.16.1",
+      "fieldsChanged": [
+        "integrity",
+        "resolved",
+        "version"
+      ]
+    }
+  ],
+  "newPackageRows": 0,
+  "newDirectDependencies": 0,
+  "newOverrides": 0,
+  "unchangedRootAndNodeKitPin": true,
+  "normalValidation": {
+    "argv": [
+      "cmd.exe",
+      "/d",
+      "/c",
+      "npm install --package-lock-only --ignore-scripts --no-audit --no-fund"
+    ],
+    "exitCode": 0,
+    "seconds": 1.594,
+    "semanticLockStable": true,
+    "logSha256": "b125771fda8addd462adfe7f7b03299feb35e28badbb2d16ae8589e371216f8f",
+    "independentlyReplayed": false
+  },
+  "primaryRegistryMetadata": [
+    {
+      "name": "fast-uri",
+      "source": {
+        "path": "E6i-nodevideo-dependency-resolution-independent-01/fast-uri-3.1.7.metadata.json",
+        "bytes": 3209,
+        "sha256": "6da6855353d63acdb167e8be86c66425673b7f4e9608f588b756836c9ccb76b7"
+      },
+      "oldVersion": "3.1.3",
+      "newVersion": "3.1.7",
+      "declaredRuntimeMetadataDelta": [],
+      "installLifecycle": {}
+    },
+    {
+      "name": "dompurify",
+      "source": {
+        "path": "E6i-nodevideo-dependency-resolution-independent-01/dompurify-3.4.14.metadata.json",
+        "bytes": 6546,
+        "sha256": "c895380dd9aed88db38dfd27c9741ac9e71acd019787cd57563c576741a86b3d"
+      },
+      "oldVersion": "3.4.12",
+      "newVersion": "3.4.14",
+      "declaredRuntimeMetadataDelta": [],
+      "installLifecycle": {}
+    },
+    {
+      "name": "mermaid",
+      "source": {
+        "path": "E6i-nodevideo-dependency-followon-01/registry-mermaid-11.16.1.json",
+        "bytes": 5761,
+        "sha256": "ed832164ea8de1d355bd199ffb3898d2c0149bb2cde5b8b261b10e8ab6be2c42"
+      },
+      "oldVersion": "11.16.0",
+      "newVersion": "11.16.1",
+      "declaredRuntimeMetadataDelta": [],
+      "installLifecycle": {}
+    }
+  ],
+  "approval": "The exact three-row source proposal is suitable for the parent-owned isolated clean install/check/audit and bounded render/schema proof. This review authorizes no current-repository transfer or runtime acceptance.",
+  "limits": [
+    "Npm validation proves lock consistency at the recorded run, not compatibility of actual installed code, audit closure, or absence of vulnerabilities.",
+    "Security version-selection rationale was reviewed separately against preserved official metadata; no new advisory fetch or independent exploit proof is claimed here.",
+    "Root may be running external install/check after this proposal freeze. This judgment makes no claim about mutable node_modules/build files or later outcomes.",
+    "Prior NodeVideo UI, native tracking gaps, full grades, provider and deployment limitations remain unchanged."
+  ],
+  "guard": {
+    "sourcePackageLockIndexWrites": false,
+    "installsOrRuntimeExecutedByReviewer": false,
+    "sourcePairAndIndexUnchanged": true,
+    "externalPairUnchanged": true
+  },
+  "artifactManifestSha256": "ac4647b2a00b9587ecb2f2b8630f6806abea5cbfafe9db5c4def36c0c7616a52",
+  "timestamp": "2026-09-05T21:30:27.194724+00:00"
+}

@@ -1,0 +1,59 @@
+[
+  {
+    "attempt": "E6i-nodevideo-dependency-runtime-judge",
+    "status": "FAIL",
+    "failure": {
+      "message": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'prose', exact: true })\u001b[22m\n",
+      "stack": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'prose', exact: true })\u001b[22m\n\n    at C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-observe-nodevideo-dependency-runtime.mjs:89:65"
+    },
+    "sourceClosed": true,
+    "portReleased": true
+  },
+  {
+    "attempt": "E6i-nodevideo-dependency-runtime-judge-02",
+    "status": "FAIL",
+    "failure": {
+      "message": "1024 ordinary prose markup and Unicode retained",
+      "stack": "Error: 1024 ordinary prose markup and Unicode retained\n    at check (file:///C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-observe-nodevideo-dependency-runtime-02.mjs:17:110)\n    at file:///C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-observe-nodevideo-dependency-runtime-02.mjs:100:29"
+    },
+    "sourceClosed": true,
+    "portReleased": true
+  },
+  {
+    "attempt": "E6i-nodevideo-dependency-runtime-judge-03",
+    "status": "FAIL",
+    "failure": {
+      "message": "1024 malformed input has visible error and no stale diagram",
+      "stack": "Error: 1024 malformed input has visible error and no stale diagram\n    at check (file:///C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-observe-nodevideo-dependency-runtime-03.mjs:17:110)\n    at file:///C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-observe-nodevideo-dependency-runtime-03.mjs:99:33"
+    },
+    "sourceClosed": true,
+    "portReleased": true
+  },
+  {
+    "attempt": "E6i-nodevideo-dependency-runtime-judge-04",
+    "status": "FAIL",
+    "failure": {
+      "message": "page.waitForFunction: Timeout 20000ms exceeded.",
+      "stack": "page.waitForFunction: Timeout 20000ms exceeded.\n    at C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-observe-nodevideo-dependency-runtime-04.mjs:99:44"
+    },
+    "sourceClosed": true,
+    "portReleased": true
+  },
+  {
+    "attempt": "E6i-nodevideo-dependency-runtime-judge-05",
+    "status": "PASS_COMPONENT_AND_SCHEMA_SCOPE",
+    "failure": null,
+    "sourceClosed": true,
+    "portReleased": true
+  },
+  {
+    "attempt": "E6i-nodevideo-dependency-runtime-judge-original-06",
+    "status": "FAIL",
+    "failure": {
+      "message": "page.waitForFunction: Timeout 20000ms exceeded.",
+      "stack": "page.waitForFunction: Timeout 20000ms exceeded.\n    at C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-observe-nodevideo-dependency-runtime-original-06.mjs:100:44"
+    },
+    "sourceClosed": true,
+    "portReleased": true
+  }
+]

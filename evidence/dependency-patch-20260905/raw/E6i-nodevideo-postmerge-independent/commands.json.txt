@@ -1,0 +1,326 @@
+[
+  {
+    "label": "before-head",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:02.478641+00:00",
+    "stdoutSha256": "ee96ab730a7ce74daf5176ce277239103ae302893ad79e9c787d0650af515a0e",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "before-tree",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "rev-parse",
+      "HEAD^{tree}"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:02.520249+00:00",
+    "stdoutSha256": "de2ac8496340a206811400c388e1561a626d00b9dc5e9ef7e50a0a7ddbc5770e",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "before-branch",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "symbolic-ref",
+      "HEAD"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:02.556692+00:00",
+    "stdoutSha256": "23264cd8b872785cffda2ca3e9787692ffa0060caa28d7843ea4a9121f499c36",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "before-index",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "ls-files",
+      "--stage",
+      "-z"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:02.675233+00:00",
+    "stdoutSha256": "696c4cec20663ed0ae54078d3011d63e9de44bec221043be8210991c92b026fb",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "before-refs",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "show-ref"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:02.712417+00:00",
+    "stdoutSha256": "ef5802ea81c4f5d18a8b4969f9bc182d9df75410731eef95737e8d6eccadd65f",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "before-status",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "status",
+      "--porcelain=v1",
+      "-z",
+      "--untracked-files=all"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:02.754394+00:00",
+    "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-commit",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/git/commits/1417d325faca991fed9b05803fee26336255b063"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:03.903760+00:00",
+    "stdoutSha256": "3c879cd2fd6b882b4ed0f519242263cdbce806707ea7437e387f37ccb652402f",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-source-ref",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/git/ref/heads/codex/nodevideo-current-consumer-20260905"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:03.922092+00:00",
+    "stdoutSha256": "aabcfbb28caf4389ca616b60ffb6a154bc652b25973054b3f4798277419779b7",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-main",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/git/ref/heads/main"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:03.962288+00:00",
+    "stdoutSha256": "8ce19fe3c1b3e31b1accd7d1e18f0d637dd8a61a40276fc52f0fb28130cb76b7",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-pr",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/pulls/46"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:04.180153+00:00",
+    "stdoutSha256": "41f6445ffb80da28a3cf7809ab8e4edd8aa6ad8bf06c1297d8e932aea72188db",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-runs",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/actions/runs?head_sha=1417d325faca991fed9b05803fee26336255b063&per_page=30"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:04.479275+00:00",
+    "stdoutSha256": "2f43d9be87fc1f1d890e4859929466fc5651e1ea2d30ce9ae7074de3b98a173d",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-checks",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/commits/1417d325faca991fed9b05803fee26336255b063/check-runs?per_page=100"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:04.516949+00:00",
+    "stdoutSha256": "ff86ed236a24f3d345acb2fae10d8cea37ee171c43e9e58b6b73eaa173f166a5",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-status",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/commits/1417d325faca991fed9b05803fee26336255b063/status"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:04.535047+00:00",
+    "stdoutSha256": "e14fef5ea06fec4cc99a8c6525a7a43c2be7a6215380c016007340b3a342ef02",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-deployments",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/deployments?sha=1417d325faca991fed9b05803fee26336255b063&per_page=20"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:04.800293+00:00",
+    "stdoutSha256": "c43e51ae50d74fc7c05058ccea9bb6e6239a8d506902bf8fc3418180e8022a43",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-deployment-status",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/deployments/6286138069/statuses"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:04.994078+00:00",
+    "stdoutSha256": "aa190ca6f86326665c1ce846f0e24dd91bfcddb2290c624dd4c5e795aef2d012",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-conformance-jobs",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/actions/runs/33993746903/jobs?per_page=100"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:05.131693+00:00",
+    "stdoutSha256": "ce3abae942d5d28e4dc58cb5336e439db849cdadbcb30a11f51e7856980ed8bd",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-quality-jobs",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/actions/runs/33993746696/jobs?per_page=100"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:05.155528+00:00",
+    "stdoutSha256": "d5ea0b2e3bda726025f82069d7fd5aa1c9c61ca0457225fd9d403b04387b69f3",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-deploy-verify-jobs",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/actions/runs/33993746694/jobs?per_page=100"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:05.237183+00:00",
+    "stdoutSha256": "12f70126381c7c79e9d8a37a9aa56b6ffe669f632de2bcf04e18b9c2f0c6140b",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-repo-policy",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:05.447578+00:00",
+    "stdoutSha256": "2bb4079ea60aa68f5bfcb20adcf5b44d6f5078f1b4ffd5312ae2d76c5d5f8c41",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "initial-main-rules",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/rules/branches/main"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:05.478078+00:00",
+    "stdoutSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "conformance-job-101380429058-log",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/actions/jobs/101380429058/logs"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:06.434456+00:00",
+    "stdoutSha256": "f8b80bfee1fe18a7be7db9b1c9145e2fbca50b63a76ebf59e816af89aa345ddc",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "deploy-verify-job-101380428561-log",
+    "argv": [
+      "gh",
+      "api",
+      "repos/HomenShum/NodeVideo/actions/jobs/101380428561/logs"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:07.215545+00:00",
+    "stdoutSha256": "a0dbe5e04416287afe71cc68696047581d851a1564f8e6661ed1da84cb3fba14",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "source-deploy-verify.yml",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "show",
+      "1417d325faca991fed9b05803fee26336255b063:.github/workflows/deploy-verify.yml"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:07.253108+00:00",
+    "stdoutSha256": "4d421ccfef1bfb580fb8cf5fdfe2a9086e0144a0ccfdcab3c436714c8301bc24",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "source-verify-production-deploy.mjs",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "show",
+      "1417d325faca991fed9b05803fee26336255b063:scripts/quality/verify-production-deploy.mjs"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:07.287807+00:00",
+    "stdoutSha256": "0d994c32c82940d34243c3695a892818022f3e50f1bf0bb10bdd4cda54c7b38d",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "source-stamp-contract-build.mjs",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "show",
+      "1417d325faca991fed9b05803fee26336255b063:scripts/quality/stamp-contract-build.mjs"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:07.322291+00:00",
+    "stdoutSha256": "949d196d91bf5f57ecdb7e79f4fbdb712885b93886fea5cf4160631ae8d2c034",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "source-index.html",
+    "argv": [
+      "git",
+      "--no-optional-locks",
+      "show",
+      "1417d325faca991fed9b05803fee26336255b063:index.html"
+    ],
+    "exitCode": 0,
+    "at": "2026-09-05T21:43:07.363928+00:00",
+    "stdoutSha256": "3937663923683f5ff15ce87ac7a730da1ca9bafafaaacea090c053cf00c8901b",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

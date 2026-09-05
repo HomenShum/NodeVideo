@@ -1,0 +1,16 @@
+{
+  "titleSignal": true,
+  "rootContainerEmpty": true,
+  "modulePath": "/assets/index-CFTGFMdj.js",
+  "receiptSourceCommit": "1417d325faca991fed9b05803fee26336255b063",
+  "expectedMerge": "1417d325faca991fed9b05803fee26336255b063",
+  "exactMerge": true,
+  "contractSha256": "283f7811a0d55663df019d2dfa33f770b817b2aff05eda43553b7454b335308f",
+  "receiptContractMatches": true,
+  "htmlIsHydratedUiProof": false,
+  "contract": {
+    "schemaVersion": "nodevideo.agent-ui-build.v1",
+    "sourceCommit": "1417d325faca991fed9b05803fee26336255b063",
+    "stampedBy": "scripts/quality/stamp-contract-build.mjs"
+  }
+}

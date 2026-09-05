@@ -1,0 +1,7 @@
+{
+  "priorScriptSha256": "3644c0a8dc838becc84052f3b3daee8ea38a87dd8059bf9121da2df9119f253b",
+  "newScriptSha256": "f06dd759898fdac4541769420c1f694e35642dd1090a3d6f18f7dd9dc6a0abc9",
+  "onlyExecutionDelta": "Prose oracle uses actual Streamdown data-streamdown=strong span instead of assuming HTML strong element. Exact retained DOM and viewed PNG demonstrate visible bold text. No component/style/site input changed.",
+  "sameSiteBytes": true,
+  "priorResult": "FAIL"
+}

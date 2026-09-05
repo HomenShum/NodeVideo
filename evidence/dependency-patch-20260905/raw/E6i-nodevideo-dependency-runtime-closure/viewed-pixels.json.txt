@@ -1,0 +1,37 @@
+[
+  {
+    "path": "E6i-nodevideo-dependency-runtime-judge-04/1024-prose.png",
+    "sha256": "30cc19cb6c7e7d63beb12cac4beeab0dd6ab836267e0039d91ab777fb2a18100",
+    "viewedActualPixels": true
+  },
+  {
+    "path": "E6i-nodevideo-dependency-runtime-judge-04/1024-diagram.png",
+    "sha256": "71cbef7e89b4ee61c980fc0a4fbc35214859e1b0f0ff5414f02d6eeac436baca",
+    "viewedActualPixels": true
+  },
+  {
+    "path": "E6i-nodevideo-dependency-runtime-judge-04/failure.png",
+    "sha256": "74290d8837e9b0a41e37bafb897bbb4c13ba843a81af01a91c57e56d18dc8580",
+    "viewedActualPixels": true
+  },
+  {
+    "path": "E6i-nodevideo-dependency-runtime-judge-05/1024-malformed.png",
+    "sha256": "7cce937574683a9341cb318021e929bbd10da58f0f80c2fe1ad77d111dfe653d",
+    "viewedActualPixels": true
+  },
+  {
+    "path": "E6i-nodevideo-dependency-runtime-judge-original-06/failure.png",
+    "sha256": "74290d8837e9b0a41e37bafb897bbb4c13ba843a81af01a91c57e56d18dc8580",
+    "viewedActualPixels": true
+  },
+  {
+    "path": "E6i-nodevideo-dependency-runtime-judge-02/1024-prose.png",
+    "sha256": "6037d9282d399e0014f9fb997136b3805f5c2047a339b35bf391d9f1bd12b673",
+    "viewedActualPixels": true
+  },
+  {
+    "path": "E6i-nodevideo-dependency-runtime-judge-03/1024-malformed.png",
+    "sha256": "4044a2067a08bfb6aa68cc507be416e78767805d0bd1b1f65e40daafa315ccb6",
+    "viewedActualPixels": true
+  }
+]

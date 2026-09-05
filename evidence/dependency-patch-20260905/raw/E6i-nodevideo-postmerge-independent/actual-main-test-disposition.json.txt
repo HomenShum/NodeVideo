@@ -1,0 +1,1844 @@
+{
+  "junitRoot": {
+    "id": "",
+    "name": "",
+    "tests": "200",
+    "failures": "0",
+    "skipped": "25",
+    "errors": "0",
+    "time": "272.570658"
+  },
+  "cases": [
+    {
+      "project": "desktop-chromium",
+      "name": "extension first run is accessible and does not overflow",
+      "time": "1.524",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "collab editor is immediately usable, honest, and does not overflow",
+      "time": "1.678",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "native Chromium records the collab canvas as a non-empty WebM",
+      "time": "6.744",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "collab export falls back when animation frames stall and discards interrupted files",
+      "time": "2.381",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "default Auto mode applies only a safe local single-variant proposal",
+      "time": "1.59",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "a returning creator can restore browser-local demo media from Files",
+      "time": "0.966",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "creator pipeline compiles one source into reviewable variants",
+      "time": "3.047",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "creator topology keeps the artifact dominant and mobile surfaces mode-based",
+      "time": "1.492",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "creator pipeline exposes cleanup and quote workflows",
+      "time": "1.116",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "Smart Reframe detects locally, reuses one track, and proposes three crop plans",
+      "time": "11.54",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "agent rail gates cloud execution and supports inline proposal decisions",
+      "time": "2.958",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "a cautious creator sees the iterative free-model trace before accepting a proposal",
+      "time": "1.326",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "an overloaded free provider is labeled degraded instead of deep-agent success",
+      "time": "1.255",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "live OpenRouter free planner resolves a model before deterministic compilation",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "creator template selection and restore are real state transitions",
+      "time": "1.3",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "two sessions react to the same Caseflow and stale approval fails closed",
+      "time": "2.076",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "approved creator variant exports a real local H.264 MP4",
+      "time": "5.764",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a loads the real render pilot with three reopened formats and a blind review queue",
+      "time": "0.686",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders exact samples, rates, intervals, subgroups, routes, failures, and freeze receipt",
+      "time": "0.601",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a keeps reviewer judgment blind, bounded, keyboard-operable, and explicitly non-durable",
+      "time": "0.815",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a fails closed when the report is absent and never prints invented metrics",
+      "time": "0.299",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders an honest unevaluated state when infrastructure exists without results",
+      "time": "0.393",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders unavailable measured metrics without crashing when the real report uses null",
+      "time": "0.412",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a works in light and dark themes without page-level horizontal overflow",
+      "time": "0.447",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a passes focused Axe smoke on the evidence overview and blind review form",
+      "time": "1.797",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "hash-verifies and synchronizes the frame inspector",
+      "time": "2.361",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "practice room is honest before, during, and about the camera",
+      "time": "1.633",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "stitch studio loads the frozen plan and the edit agent applies a patch",
+      "time": "3.217",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "an exploring editor keeps one actionable proposal and can reject it without timeline drift",
+      "time": "0.98",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "a creator and NodeAgent manipulate the same selected timeline blocks",
+      "time": "2.846",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "a creator and NodeAgent manipulate the same timed caption block",
+      "time": "2.674",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "ripple duplicate and delete keep every timed track behind one accepted timeline",
+      "time": "2.658",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "agent proposals explain which real blocks are sourced, inserted, removed, and shifted",
+      "time": "2.241",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "browser exporter produces a real local H.264 MP4 download",
+      "time": "2.962",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "in-browser BYOK agent runs the tool loop against a mocked OpenRouter",
+      "time": "1.057",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "model proposals allow exactly one mutation per approval card",
+      "time": "1.088",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "a sustained local-agent session keeps visible history bounded",
+      "time": "1.005",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a shows proof-backed artifacts, detector arena, harness comparison, and rights ledger",
+      "time": "0.95",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a keeps the local Atlas guide usable without external egress",
+      "time": "0.752",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "desktop-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a serves the compiled proof media through the public media contract",
+      "time": "0.047",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "extension first run is accessible and does not overflow",
+      "time": "1.454",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "collab editor is immediately usable, honest, and does not overflow",
+      "time": "1.664",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "native Chromium records the collab canvas as a non-empty WebM",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "collab export falls back when animation frames stall and discards interrupted files",
+      "time": "2.155",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "default Auto mode applies only a safe local single-variant proposal",
+      "time": "1.18",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "a returning creator can restore browser-local demo media from Files",
+      "time": "0.89",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "creator pipeline compiles one source into reviewable variants",
+      "time": "2.648",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "creator topology keeps the artifact dominant and mobile surfaces mode-based",
+      "time": "1.524",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "creator pipeline exposes cleanup and quote workflows",
+      "time": "1.04",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "Smart Reframe detects locally, reuses one track, and proposes three crop plans",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "agent rail gates cloud execution and supports inline proposal decisions",
+      "time": "2.84",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "a cautious creator sees the iterative free-model trace before accepting a proposal",
+      "time": "1.278",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "an overloaded free provider is labeled degraded instead of deep-agent success",
+      "time": "1.235",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "live OpenRouter free planner resolves a model before deterministic compilation",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "creator template selection and restore are real state transitions",
+      "time": "1.657",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "two sessions react to the same Caseflow and stale approval fails closed",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "approved creator variant exports a real local H.264 MP4",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a loads the real render pilot with three reopened formats and a blind review queue",
+      "time": "0.606",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders exact samples, rates, intervals, subgroups, routes, failures, and freeze receipt",
+      "time": "0.579",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a keeps reviewer judgment blind, bounded, keyboard-operable, and explicitly non-durable",
+      "time": "0.68",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a fails closed when the report is absent and never prints invented metrics",
+      "time": "0.278",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders an honest unevaluated state when infrastructure exists without results",
+      "time": "0.364",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders unavailable measured metrics without crashing when the real report uses null",
+      "time": "0.376",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a works in light and dark themes without page-level horizontal overflow",
+      "time": "0.41",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a passes focused Axe smoke on the evidence overview and blind review form",
+      "time": "1.691",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "hash-verifies and synchronizes the frame inspector",
+      "time": "3.005",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "practice room is honest before, during, and about the camera",
+      "time": "1.629",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "stitch studio loads the frozen plan and the edit agent applies a patch",
+      "time": "3.179",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "an exploring editor keeps one actionable proposal and can reject it without timeline drift",
+      "time": "0.905",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "a creator and NodeAgent manipulate the same selected timeline blocks",
+      "time": "2.797",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "a creator and NodeAgent manipulate the same timed caption block",
+      "time": "2.578",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "ripple duplicate and delete keep every timed track behind one accepted timeline",
+      "time": "2.511",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "agent proposals explain which real blocks are sourced, inserted, removed, and shifted",
+      "time": "2.162",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "browser exporter produces a real local H.264 MP4 download",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "in-browser BYOK agent runs the tool loop against a mocked OpenRouter",
+      "time": "1.007",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "model proposals allow exactly one mutation per approval card",
+      "time": "0.984",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "a sustained local-agent session keeps visible history bounded",
+      "time": "0.955",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a shows proof-backed artifacts, detector arena, harness comparison, and rights ledger",
+      "time": "0.859",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a keeps the local Atlas guide usable without external egress",
+      "time": "0.622",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a serves the compiled proof media through the public media contract",
+      "time": "0.027",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "extension first run is accessible and does not overflow",
+      "time": "1.508",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "collab editor is immediately usable, honest, and does not overflow",
+      "time": "1.765",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "native Chromium records the collab canvas as a non-empty WebM",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "collab export falls back when animation frames stall and discards interrupted files",
+      "time": "2.183",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "default Auto mode applies only a safe local single-variant proposal",
+      "time": "1.088",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "a returning creator can restore browser-local demo media from Files",
+      "time": "0.941",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "creator pipeline compiles one source into reviewable variants",
+      "time": "3.123",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "creator topology keeps the artifact dominant and mobile surfaces mode-based",
+      "time": "1.247",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "creator pipeline exposes cleanup and quote workflows",
+      "time": "0.994",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "Smart Reframe detects locally, reuses one track, and proposes three crop plans",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "agent rail gates cloud execution and supports inline proposal decisions",
+      "time": "2.213",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "a cautious creator sees the iterative free-model trace before accepting a proposal",
+      "time": "1.3",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "an overloaded free provider is labeled degraded instead of deep-agent success",
+      "time": "1.164",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "live OpenRouter free planner resolves a model before deterministic compilation",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "creator template selection and restore are real state transitions",
+      "time": "1.229",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "two sessions react to the same Caseflow and stale approval fails closed",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "approved creator variant exports a real local H.264 MP4",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a loads the real render pilot with three reopened formats and a blind review queue",
+      "time": "0.666",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders exact samples, rates, intervals, subgroups, routes, failures, and freeze receipt",
+      "time": "0.571",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a keeps reviewer judgment blind, bounded, keyboard-operable, and explicitly non-durable",
+      "time": "0.765",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a fails closed when the report is absent and never prints invented metrics",
+      "time": "0.284",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders an honest unevaluated state when infrastructure exists without results",
+      "time": "0.394",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders unavailable measured metrics without crashing when the real report uses null",
+      "time": "0.401",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a works in light and dark themes without page-level horizontal overflow",
+      "time": "0.413",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a passes focused Axe smoke on the evidence overview and blind review form",
+      "time": "1.783",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "hash-verifies and synchronizes the frame inspector",
+      "time": "2.328",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "practice room is honest before, during, and about the camera",
+      "time": "1.6",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "stitch studio loads the frozen plan and the edit agent applies a patch",
+      "time": "3.403",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "an exploring editor keeps one actionable proposal and can reject it without timeline drift",
+      "time": "1.086",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "a creator and NodeAgent manipulate the same selected timeline blocks",
+      "time": "2.696",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "a creator and NodeAgent manipulate the same timed caption block",
+      "time": "2.622",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "ripple duplicate and delete keep every timed track behind one accepted timeline",
+      "time": "2.411",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "agent proposals explain which real blocks are sourced, inserted, removed, and shifted",
+      "time": "2.237",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "browser exporter produces a real local H.264 MP4 download",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "in-browser BYOK agent runs the tool loop against a mocked OpenRouter",
+      "time": "0.982",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "model proposals allow exactly one mutation per approval card",
+      "time": "1.042",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "a sustained local-agent session keeps visible history bounded",
+      "time": "0.981",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a shows proof-backed artifacts, detector arena, harness comparison, and rights ledger",
+      "time": "0.946",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a keeps the local Atlas guide usable without external egress",
+      "time": "0.632",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a serves the compiled proof media through the public media contract",
+      "time": "0.018",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "extension first run is accessible and does not overflow",
+      "time": "1.572",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "collab editor is immediately usable, honest, and does not overflow",
+      "time": "1.59",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "native Chromium records the collab canvas as a non-empty WebM",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "collab export falls back when animation frames stall and discards interrupted files",
+      "time": "2.166",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "default Auto mode applies only a safe local single-variant proposal",
+      "time": "1.098",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "a returning creator can restore browser-local demo media from Files",
+      "time": "0.863",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "creator pipeline compiles one source into reviewable variants",
+      "time": "3.872",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "creator topology keeps the artifact dominant and mobile surfaces mode-based",
+      "time": "1.638",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "creator pipeline exposes cleanup and quote workflows",
+      "time": "1.178",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "Smart Reframe detects locally, reuses one track, and proposes three crop plans",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "agent rail gates cloud execution and supports inline proposal decisions",
+      "time": "2.804",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "a cautious creator sees the iterative free-model trace before accepting a proposal",
+      "time": "1.272",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "an overloaded free provider is labeled degraded instead of deep-agent success",
+      "time": "1.148",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "live OpenRouter free planner resolves a model before deterministic compilation",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "creator template selection and restore are real state transitions",
+      "time": "1.897",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "two sessions react to the same Caseflow and stale approval fails closed",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "approved creator variant exports a real local H.264 MP4",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a loads the real render pilot with three reopened formats and a blind review queue",
+      "time": "0.589",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders exact samples, rates, intervals, subgroups, routes, failures, and freeze receipt",
+      "time": "0.596",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a keeps reviewer judgment blind, bounded, keyboard-operable, and explicitly non-durable",
+      "time": "0.681",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a fails closed when the report is absent and never prints invented metrics",
+      "time": "0.301",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders an honest unevaluated state when infrastructure exists without results",
+      "time": "0.371",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders unavailable measured metrics without crashing when the real report uses null",
+      "time": "0.413",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a works in light and dark themes without page-level horizontal overflow",
+      "time": "0.422",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a passes focused Axe smoke on the evidence overview and blind review form",
+      "time": "1.716",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "hash-verifies and synchronizes the frame inspector",
+      "time": "1.822",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "practice room is honest before, during, and about the camera",
+      "time": "1.844",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "stitch studio loads the frozen plan and the edit agent applies a patch",
+      "time": "3.21",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "an exploring editor keeps one actionable proposal and can reject it without timeline drift",
+      "time": "1.076",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "a creator and NodeAgent manipulate the same selected timeline blocks",
+      "time": "2.495",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "a creator and NodeAgent manipulate the same timed caption block",
+      "time": "2.544",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "ripple duplicate and delete keep every timed track behind one accepted timeline",
+      "time": "2.318",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "agent proposals explain which real blocks are sourced, inserted, removed, and shifted",
+      "time": "2.054",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "browser exporter produces a real local H.264 MP4 download",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "in-browser BYOK agent runs the tool loop against a mocked OpenRouter",
+      "time": "1.005",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "model proposals allow exactly one mutation per approval card",
+      "time": "1.03",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "a sustained local-agent session keeps visible history bounded",
+      "time": "0.962",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a shows proof-backed artifacts, detector arena, harness comparison, and rights ledger",
+      "time": "0.905",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a keeps the local Atlas guide usable without external egress",
+      "time": "0.688",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a serves the compiled proof media through the public media contract",
+      "time": "0.026",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "extension first run is accessible and does not overflow",
+      "time": "1.324",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "collab editor is immediately usable, honest, and does not overflow",
+      "time": "1.303",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "native Chromium records the collab canvas as a non-empty WebM",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "collab export falls back when animation frames stall and discards interrupted files",
+      "time": "1.971",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "default Auto mode applies only a safe local single-variant proposal",
+      "time": "0.881",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "a returning creator can restore browser-local demo media from Files",
+      "time": "0.767",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "creator pipeline compiles one source into reviewable variants",
+      "time": "2.558",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "creator topology keeps the artifact dominant and mobile surfaces mode-based",
+      "time": "0.937",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "creator pipeline exposes cleanup and quote workflows",
+      "time": "0.772",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "Smart Reframe detects locally, reuses one track, and proposes three crop plans",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "agent rail gates cloud execution and supports inline proposal decisions",
+      "time": "2.558",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "a cautious creator sees the iterative free-model trace before accepting a proposal",
+      "time": "1.096",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "an overloaded free provider is labeled degraded instead of deep-agent success",
+      "time": "1.068",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "live OpenRouter free planner resolves a model before deterministic compilation",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "creator template selection and restore are real state transitions",
+      "time": "1.723",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "two sessions react to the same Caseflow and stale approval fails closed",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "approved creator variant exports a real local H.264 MP4",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a loads the real render pilot with three reopened formats and a blind review queue",
+      "time": "0.469",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders exact samples, rates, intervals, subgroups, routes, failures, and freeze receipt",
+      "time": "0.442",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a keeps reviewer judgment blind, bounded, keyboard-operable, and explicitly non-durable",
+      "time": "0.563",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a fails closed when the report is absent and never prints invented metrics",
+      "time": "0.206",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders an honest unevaluated state when infrastructure exists without results",
+      "time": "0.233",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a renders unavailable measured metrics without crashing when the real report uses null",
+      "time": "0.244",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a works in light and dark themes without page-level horizontal overflow",
+      "time": "0.298",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "CreatorBench public evidence and reviewer UI \u203a passes focused Axe smoke on the evidence overview and blind review form",
+      "time": "1.46",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "hash-verifies and synchronizes the frame inspector",
+      "time": "1.52",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "practice room is honest before, during, and about the camera",
+      "time": "1.493",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "stitch studio loads the frozen plan and the edit agent applies a patch",
+      "time": "2.998",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "an exploring editor keeps one actionable proposal and can reject it without timeline drift",
+      "time": "0.977",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "a creator and NodeAgent manipulate the same selected timeline blocks",
+      "time": "2.301",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "a creator and NodeAgent manipulate the same timed caption block",
+      "time": "2.287",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "ripple duplicate and delete keep every timed track behind one accepted timeline",
+      "time": "2.13",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "agent proposals explain which real blocks are sourced, inserted, removed, and shifted",
+      "time": "1.996",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "browser exporter produces a real local H.264 MP4 download",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "in-browser BYOK agent runs the tool loop against a mocked OpenRouter",
+      "time": "0.833",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "model proposals allow exactly one mutation per approval card",
+      "time": "0.903",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "a sustained local-agent session keeps visible history bounded",
+      "time": "0.803",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a shows proof-backed artifacts, detector arena, harness comparison, and rights ledger",
+      "time": "0.582",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a keeps the local Atlas guide usable without external egress",
+      "time": "0.376",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "NodeVideo tracking Artifact Atlas \u203a serves the compiled proof media through the public media contract",
+      "time": "0.022",
+      "skipped": false,
+      "failures": [],
+      "errors": []
+    }
+  ],
+  "skips": [
+    {
+      "project": "desktop-chromium",
+      "name": "live OpenRouter free planner resolves a model before deterministic compilation",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "native Chromium records the collab canvas as a non-empty WebM",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "Smart Reframe detects locally, reuses one track, and proposes three crop plans",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "live OpenRouter free planner resolves a model before deterministic compilation",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "two sessions react to the same Caseflow and stale approval fails closed",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "approved creator variant exports a real local H.264 MP4",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "xl-boundary-chromium",
+      "name": "browser exporter produces a real local H.264 MP4 download",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "native Chromium records the collab canvas as a non-empty WebM",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "Smart Reframe detects locally, reuses one track, and proposes three crop plans",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "live OpenRouter free planner resolves a model before deterministic compilation",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "two sessions react to the same Caseflow and stale approval fails closed",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "approved creator variant exports a real local H.264 MP4",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "tablet-chromium",
+      "name": "browser exporter produces a real local H.264 MP4 download",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "native Chromium records the collab canvas as a non-empty WebM",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "Smart Reframe detects locally, reuses one track, and proposes three crop plans",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "live OpenRouter free planner resolves a model before deterministic compilation",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "two sessions react to the same Caseflow and stale approval fails closed",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "approved creator variant exports a real local H.264 MP4",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "mobile-chromium",
+      "name": "browser exporter produces a real local H.264 MP4 download",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "native Chromium records the collab canvas as a non-empty WebM",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "Smart Reframe detects locally, reuses one track, and proposes three crop plans",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "live OpenRouter free planner resolves a model before deterministic compilation",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "two sessions react to the same Caseflow and stale approval fails closed",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "approved creator variant exports a real local H.264 MP4",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    },
+    {
+      "project": "compact-mobile-chromium",
+      "name": "browser exporter produces a real local H.264 MP4 download",
+      "time": null,
+      "skipped": true,
+      "failures": [],
+      "errors": []
+    }
+  ],
+  "failures": [],
+  "artifact": {
+    "id": 9977515250,
+    "sha256": "610626fe41cc715693cae4af251f82833cc19551dfcc80d898d64ee53accf909",
+    "bytes": 1191042,
+    "metadataDigestVerified": true,
+    "entries": [
+      {
+        "path": "playwright-report/data/13bf7ac23a786970874d497db5f6cad9ec1076d9.png",
+        "bytes": 238113
+      },
+      {
+        "path": "playwright-report/index.html",
+        "bytes": 915430
+      },
+      {
+        "path": "test-results/junit.xml",
+        "bytes": 43476
+      },
+      {
+        "path": "test-results/stitch-studio-browser-expo-7c3c5-al-local-H-264-MP4-download-desktop-chromium/accepted-proof-frame.png",
+        "bytes": 238113
+      },
+      {
+        "path": "test-results/stitch-studio-browser-expo-7c3c5-al-local-H-264-MP4-download-desktop-chromium/attachments/accepted-edited-export-frame-3730413817399e300567ca5dab03dc62fa567e96.png",
+        "bytes": 238113
+      }
+    ]
+  }
+}

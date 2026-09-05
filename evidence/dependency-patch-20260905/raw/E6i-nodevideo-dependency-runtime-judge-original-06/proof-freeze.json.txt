@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-09-05T21:48:21.781Z",
+  "sourceCount": 2074,
+  "sourceBindingSha256": "9875946217477e5b66104d0a1d4902fdd5eaa034080d25729f28ffda2b1e5970",
+  "collector": {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-observe-nodevideo-dependency-runtime-original-06.mjs",
+    "sha256": "9446d6f2ba81f9f28a7f8d899c125ae2bd937b75dc663ea579e69216330444ef"
+  },
+  "site": [
+    {
+      "path": "index.html",
+      "sha256": "ef7a8979e7d98b00441a6632bbb63172fda295f00a7ece02b55a2e4ee337f12a"
+    },
+    {
+      "path": "main.tsx",
+      "sha256": "e82e800d2ea2d227642e85ba4f702dbdfc44ef858ac755e499e4b07355fba016"
+    }
+  ],
+  "removedEnvNames": [
+    "DEVIN_API_KEY",
+    "GMI_MAAS_API_KEY",
+    "HF_TOKEN",
+    "PROOFLOOP_DEVIN_API_KEY",
+    "SENSO_API_KEY"
+  ],
+  "versions": {
+    "fast-uri": "3.1.3",
+    "dompurify": "3.4.12",
+    "mermaid": "11.16.0",
+    "streamdown": "2.5.0",
+    "@streamdown/mermaid": "1.0.2",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1"
+  }
+}

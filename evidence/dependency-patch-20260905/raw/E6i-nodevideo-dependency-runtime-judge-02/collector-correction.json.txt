@@ -1,0 +1,8 @@
+{
+  "priorScriptSha256": "82078e7292c130d023b0b957801d94bc625eaeb841c559f74a905f04724e96c0",
+  "newScriptSha256": "3644c0a8dc838becc84052f3b3daee8ea38a87dd8059bf9121da2df9119f253b",
+  "onlyExecutionDelta": "External Vite css.postcss empty config prevents ancestor NodeBench config discovery. Existing NodeVideo @tailwindcss/vite plugin and extension stylesheet remain unchanged. New output folder preserves every first-attempt artifact.",
+  "sameSiteBytes": true,
+  "actualExportRootPostcssFiles": [],
+  "priorResult": "FAIL"
+}

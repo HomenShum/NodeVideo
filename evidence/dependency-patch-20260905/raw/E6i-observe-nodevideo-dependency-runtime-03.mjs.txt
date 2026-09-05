@@ -1,0 +1,120 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import net from 'node:net';
+import { createHash } from 'node:crypto';
+import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
+
+const P = 'C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904';
+const X = 'D:/ProjectRecovery/nodevideo-dependency-narrow-20260905';
+const O = path.join(P, 'E6i-nodevideo-dependency-runtime-judge-03');
+const site = path.join(O, 'site');
+const req = createRequire(path.join(X, 'package.json'));
+const sha = (b) => createHash('sha256').update(b).digest('hex');
+const json = async (p) => JSON.parse(await fs.readFile(p, 'utf8'));
+const save = (n, d) => fs.writeFile(path.join(O, n), JSON.stringify(d, null, 2) + '\n');
+const checks = [], consoleEvents = [], pageErrors = [], requests = [], servedBindings = new Map();
+const check = (name, pass, detail) => { checks.push({ name, pass: Boolean(pass), detail }); if (!pass) throw new Error(name); };
+const bounded = (list, item, limit = 500) => { if (list.length >= limit) throw new Error('Bounded observation overflow'); list.push(item); };
+const source = await json(path.join(P, 'E6i-nodevideo-dependency-narrow-check-01/source-bindings.json'));
+const hashSources = async () => {
+  const failures = [];
+  for (const row of source) if (sha(await fs.readFile(path.join(X, row.path))) !== row.sha256) failures.push(row.path);
+  return failures;
+};
+const free = (port) => new Promise((resolve) => {
+  const probe = net.createServer(); probe.once('error', () => resolve(false));
+  probe.listen(port, '127.0.0.1', () => probe.close(() => resolve(true)));
+});
+let server, browser, page;
+const result = { status: 'RUNNING', scope: 'Actual unchanged MessageResponse/ReasoningContent mounted in an external synthetic component surface with existing extension stylesheet; no full app, provider or exploitability claim.', checks };
+const removedEnvNames = Object.keys(process.env).filter((n) => /^(VITE_|CONVEX_|OPENAI_|ANTHROPIC_|GEMINI_|OPENROUTER_|NODEVIDEO_)/.test(n) || /(?:TOKEN|SECRET|API_KEY)$/.test(n));
+for (const n of removedEnvNames) delete process.env[n];
+const bindingNames = [
+ 'package.json','package-lock.json','vite.config.ts','src/components/ai-elements/message.tsx','src/components/ai-elements/reasoning.tsx','src/styles.css',
+ 'apps/chrome-extension/src/extension.css','apps/chrome-extension/src/main.tsx','apps/edit/src/edit.tsx',
+ 'scripts/quality/validate-capability-pack.mjs','packs/tutorial-compare/input.schema.json','packs/tutorial-compare/evals/public-worker-v1.json',
+ 'node_modules/fast-uri/package.json','node_modules/fast-uri/index.js','node_modules/dompurify/package.json','node_modules/dompurify/dist/purify.es.mjs',
+ 'node_modules/mermaid/package.json','node_modules/mermaid/dist/mermaid.core.mjs','node_modules/@streamdown/mermaid/package.json','node_modules/@streamdown/mermaid/dist/index.js',
+ 'node_modules/streamdown/package.json','node_modules/streamdown/dist/index.js','node_modules/ajv/package.json','node_modules/ajv/dist/2020.js','node_modules/ajv-formats/package.json','node_modules/ajv-formats/dist/index.js',
+ 'node_modules/react/package.json','node_modules/react-dom/package.json',
+];
+const bindings = [];
+for (const n of bindingNames) { const b = await fs.readFile(path.join(X, n)); bindings.push({ path: n, bytes: b.length, sha256: sha(b) }); }
+await save('input-bindings.json', bindings);
+await save('proof-freeze.json', { timestamp: new Date().toISOString(), sourceCount: source.length, sourceBindingSha256: sha(await fs.readFile(path.join(P, 'E6i-nodevideo-dependency-narrow-check-01/source-bindings.json'))), collector: { path: import.meta.filename, sha256: sha(await fs.readFile(import.meta.filename)) }, site: await Promise.all(['index.html','main.tsx'].map(async n => ({ path:n,sha256:sha(await fs.readFile(path.join(site,n))) }))), removedEnvNames, versions: Object.fromEntries(await Promise.all(['fast-uri','dompurify','mermaid','streamdown','@streamdown/mermaid','ajv','ajv-formats'].map(async n => [n,(await json(path.join(X,'node_modules',n,'package.json'))).version]))) });
+try {
+  check('all2074 source inputs match before proof', source.length === 2074 && !(await hashSources()).length);
+  check('owned4994 available', await free(4994));
+  const gatePorts = await Promise.all([55827,4339].map(async port => ({port,free:await free(port)})));
+  check('normal gate owned ports released', gatePorts.every(x => x.free), gatePorts);
+  const owner = await fs.readFile(path.join(X,'scripts/quality/validate-capability-pack.mjs'),'utf8');
+  check('AJV existing options and format call source-bound', owner.includes('new Ajv2020({ allErrors: true, strict: false })') && owner.includes('addFormats(ajv)'));
+  const Ajv2020 = req('ajv/dist/2020.js').default;
+  const addFormats = req('ajv-formats').default;
+  const ajv = new Ajv2020({ allErrors: true, strict: false }); addFormats(ajv);
+  const schema = await json(path.join(X,'packs/tutorial-compare/input.schema.json'));
+  const valid = (await json(path.join(X,'packs/tutorial-compare/evals/public-worker-v1.json'))).cases[0].input;
+  const validate = ajv.compile(schema); const good = validate(valid); const goodErrors = structuredClone(validate.errors);
+  const missing = structuredClone(valid); delete missing.projectId; const bad = validate(missing); const badErrors = structuredClone(validate.errors);
+  const invalidFormat = structuredClone(valid); invalidFormat.assets.reference.locator.expiresAt = 'not-a-date'; const badFormat = validate(invalidFormat); const formatErrors = structuredClone(validate.errors);
+  await save('ajv-actual-result.json',{ options:{allErrors:true,strict:false}, addFormats:true, schemaId:schema.$id, actualFixtureHash:sha(Buffer.from(JSON.stringify(valid))),valid:good,validErrors:goodErrors,missingRequired:bad,missingErrors:badErrors,invalidDateTime:badFormat,formatErrors,missingRequiredMutation:'delete projectId only',formatMutation:'add invalid expiresAt only',noFixtureWrites:true });
+  check('actual capability fixture accepted', good && goodErrors === null);
+  check('missing projectId rejected with real required error', !bad && badErrors.some(e => e.keyword === 'required' && e.params.missingProperty === 'projectId'));
+  check('actual addFormats rejects invalid date-time', !badFormat && formatErrors.some(e => e.keyword === 'format' && e.params.format === 'date-time'));
+  const { createServer } = await import(pathToFileURL(req.resolve('vite')).href);
+  const react = (await import(pathToFileURL(req.resolve('@vitejs/plugin-react')).href)).default;
+  const tailwindcss = (await import(pathToFileURL(req.resolve('@tailwindcss/vite')).href)).default;
+  const { chromium } = req('playwright');
+  server = await createServer({ configFile:false, envDir:path.join(O,'empty-env'),root:site,cacheDir:path.join(O,'vite-cache'),publicDir:false,css:{postcss:{plugins:[]}},plugins:[react(),tailwindcss()],resolve:{alias:[{find:'@',replacement:path.join(X,'src')},...['react','react/jsx-runtime','react/jsx-dev-runtime','react-dom','react-dom/client'].map(n => ({find:new RegExp('^'+n.replaceAll('/','\\/')+'$'),replacement:req.resolve(n)}))]},server:{host:'127.0.0.1',port:4994,strictPort:true,fs:{strict:true,allow:[site,X]},watch:{ignored:['**']}},logLevel:'warn'});
+  await server.listen();
+  browser = await chromium.launch({headless:true});
+  const context = await browser.newContext({viewport:{width:1024,height:900},deviceScaleFactor:1});
+  await context.route('**/*', async route => {
+    const u = new URL(route.request().url());
+    if (u.protocol === 'data:' || (u.origin === 'http://127.0.0.1:4994')) await route.continue();
+    else { bounded(requests,{url:u.href,blocked:true});await route.abort('blockedbyclient'); }
+  });
+  page = await context.newPage();
+  page.on('console', msg => bounded(consoleEvents,{type:msg.type(),text:msg.text()}));
+  page.on('pageerror', err => bounded(pageErrors,{message:err.message,stack:err.stack}));
+  page.on('response', async response => {
+    try { const u=new URL(response.url());if(u.origin!=='http://127.0.0.1:4994')return; const b=await response.body(); if(servedBindings.size>=400)throw new Error('response binding bound exceeded'); servedBindings.set(u.pathname,{url:u.pathname,status:response.status(),bytes:b.length,sha256:sha(b)}); } catch(e) { bounded(requests,{responseCaptureError:String(e),url:response.url()}); }
+  });
+  await page.goto('http://127.0.0.1:4994/',{waitUntil:'networkidle',timeout:60000});
+  const captures=[];
+  for (const width of [1024,390]) {
+    await page.setViewportSize({width,height:900});
+    for (const scenario of ['prose','diagram','malformed']) {
+      await page.getByRole('button',{name:scenario,exact:true}).click();
+      await page.getByTestId('scenario').filter({hasText:scenario}).waitFor();
+      const regions=['message-surface','reasoning-surface'];
+      if(scenario==='prose')for(const n of regions)await page.getByTestId(n).getByText('review-ready',{exact:true}).waitFor({timeout:20000});
+      if(scenario==='diagram')for(const n of regions)await page.getByTestId(n).locator('svg[id^="mermaid"]').waitFor({timeout:40000});
+      if(scenario==='malformed')await page.waitForFunction(()=> [...document.querySelectorAll('[data-testid="message-surface"], [data-testid="reasoning-surface"]')].every(n => /error|failed|unable|parse/i.test(n.textContent??'')),{},{timeout:20000});
+      await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+      const state=await page.evaluate(()=>({url:location.href,scenario:document.querySelector('[data-testid="scenario"]').textContent,viewport:{width:innerWidth,height:innerHeight},scrollWidth:document.documentElement.scrollWidth,regions:[...document.querySelectorAll('[data-testid="message-surface"],[data-testid="reasoning-surface"]')].map(n=>({id:n.getAttribute('data-testid'),text:n.textContent,html:n.innerHTML,rect:n.getBoundingClientRect().toJSON(),svgs:[...n.querySelectorAll('svg[id^="mermaid"]')].map(s=>({id:s.id,viewBox:s.getAttribute('viewBox'),rect:s.getBoundingClientRect().toJSON(),text:s.textContent,html:s.outerHTML,scriptCount:s.querySelectorAll('script').length,eventHandlers:[...s.querySelectorAll('*')].flatMap(e=>[...e.attributes].filter(a=>/^on/i.test(a.name)).map(a=>a.name)),unsafeUrls:[...s.querySelectorAll('*')].flatMap(e=>[...e.attributes].filter(a=>['href','xlink:href','src'].includes(a.name)&&/^javascript:/i.test(a.value)).map(a=>a.value))})),font:getComputedStyle(n).fontFamily,color:getComputedStyle(n).color}))}));
+      await save(`${width}-${scenario}.json`,state);await fs.writeFile(path.join(O,`${width}-${scenario}.html.txt`),await page.content());await page.screenshot({path:path.join(O,`${width}-${scenario}.png`),fullPage:true});
+      if(scenario==='diagram')check(`${width} both actual components render positive SVG with safe DOM`,state.regions.every(r=>r.svgs.length===1&&r.svgs[0].rect.width>20&&r.svgs[0].rect.height>20&&r.svgs[0].text.includes('Plan')&&r.svgs[0].text.includes('Review')&&!r.svgs[0].scriptCount&&!r.svgs[0].eventHandlers.length&&!r.svgs[0].unsafeUrls.length));
+      if(scenario==='malformed')check(`${width} malformed input has visible error and no stale diagram`,state.regions.every(r=>r.svgs.length===0&&/error|failed|unable|parse/i.test(r.text)));
+      if(scenario==='prose')check(`${width} ordinary prose markup and Unicode retained`,state.regions.every(r=>r.text.includes('測試')&&r.text.includes('literal code')&&r.html.includes('data-streamdown="strong"')&&r.html.includes('<code')));
+      captures.push({width,scenario,png:`${width}-${scenario}.png`,state:`${width}-${scenario}.json`});
+    }
+  }
+  result.captures=captures;
+  check('no uncaught browser exceptions',pageErrors.length===0,pageErrors);
+  check('no outbound requests attempted',requests.filter(x=>x.blocked).length===0,requests.filter(x=>x.blocked));
+  result.status='PASS_COMPONENT_AND_SCHEMA_SCOPE';
+} catch(error) {
+  result.status='FAIL';result.failure={message:error.message,stack:error.stack};
+  if(page){await page.screenshot({path:path.join(O,'failure.png'),fullPage:true}).catch(()=>{});await fs.writeFile(path.join(O,'failure.html.txt'),await page.content()).catch(()=>{});}
+} finally {
+  if(browser)await browser.close();if(server)await server.close();
+  result.console=consoleEvents;result.pageErrors=pageErrors;result.requests=requests;result.servedBindings=[...servedBindings.values()];
+  result.closingSourceMismatches=await hashSources();result.closingSelectedInputMismatches=[];
+  for(const b of bindings)if(sha(await fs.readFile(path.join(X,b.path)))!==b.sha256)result.closingSelectedInputMismatches.push(b.path);
+  result.ownedPort4994Released=await free(4994);result.finishedAt=new Date().toISOString();
+  if(result.closingSourceMismatches.length||result.closingSelectedInputMismatches.length||!result.ownedPort4994Released)result.status='FAIL_CUSTODY_OR_CLEANUP';
+  await save('report.json',result);console.log(JSON.stringify({status:result.status,checks:checks.length,failure:result.failure,closingSourceMismatches:result.closingSourceMismatches,portReleased:result.ownedPort4994Released}));
+  if(!result.status.startsWith('PASS'))process.exitCode=1;
+}

@@ -1,0 +1,38 @@
+{
+  "at": "2026-09-05T21:49:37.429069+00:00",
+  "guard": "CLOSED",
+  "git": {
+    "head": {
+      "unchanged": true,
+      "bytes": 41,
+      "sha256": "ee96ab730a7ce74daf5176ce277239103ae302893ad79e9c787d0650af515a0e"
+    },
+    "tree": {
+      "unchanged": true,
+      "bytes": 41,
+      "sha256": "de2ac8496340a206811400c388e1561a626d00b9dc5e9ef7e50a0a7ddbc5770e"
+    },
+    "branch": {
+      "unchanged": true,
+      "bytes": 52,
+      "sha256": "23264cd8b872785cffda2ca3e9787692ffa0060caa28d7843ea4a9121f499c36"
+    },
+    "index": {
+      "unchanged": true,
+      "bytes": 243143,
+      "sha256": "696c4cec20663ed0ae54078d3011d63e9de44bec221043be8210991c92b026fb"
+    },
+    "refs": {
+      "unchanged": true,
+      "bytes": 2422,
+      "sha256": "ef5802ea81c4f5d18a8b4969f9bc182d9df75410731eef95737e8d6eccadd65f"
+    },
+    "status": {
+      "unchanged": true,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "working720Exact": true,
+  "originalPrimaryHashesExact": true
+}

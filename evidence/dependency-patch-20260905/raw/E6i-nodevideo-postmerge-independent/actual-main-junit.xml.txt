@@ -1,0 +1,641 @@
+<testsuites id="" name="" tests="200" failures="0" skipped="25" errors="0" time="272.570658">
+<testsuite name="chrome-extension.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="desktop-chromium" tests="1" failures="0" skipped="0" time="1.524" errors="0">
+<testcase name="extension first run is accessible and does not overflow" classname="chrome-extension.spec.ts" time="1.524">
+</testcase>
+</testsuite>
+<testsuite name="collab-editor.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="desktop-chromium" tests="3" failures="0" skipped="0" time="10.803" errors="0">
+<testcase name="collab editor is immediately usable, honest, and does not overflow" classname="collab-editor.spec.ts" time="1.678">
+</testcase>
+<testcase name="native Chromium records the collab canvas as a non-empty WebM" classname="collab-editor.spec.ts" time="6.744">
+</testcase>
+<testcase name="collab export falls back when animation frames stall and discards interrupted files" classname="collab-editor.spec.ts" time="2.381">
+</testcase>
+</testsuite>
+<testsuite name="creator-pipeline.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="desktop-chromium" tests="13" failures="0" skipped="1" time="34.651" errors="0">
+<testcase name="default Auto mode applies only a safe local single-variant proposal" classname="creator-pipeline.spec.ts" time="1.59">
+</testcase>
+<testcase name="a returning creator can restore browser-local demo media from Files" classname="creator-pipeline.spec.ts" time="0.966">
+</testcase>
+<testcase name="creator pipeline compiles one source into reviewable variants" classname="creator-pipeline.spec.ts" time="3.047">
+</testcase>
+<testcase name="creator topology keeps the artifact dominant and mobile surfaces mode-based" classname="creator-pipeline.spec.ts" time="1.492">
+</testcase>
+<testcase name="creator pipeline exposes cleanup and quote workflows" classname="creator-pipeline.spec.ts" time="1.116">
+</testcase>
+<testcase name="Smart Reframe detects locally, reuses one track, and proposes three crop plans" classname="creator-pipeline.spec.ts" time="11.54">
+</testcase>
+<testcase name="agent rail gates cloud execution and supports inline proposal decisions" classname="creator-pipeline.spec.ts" time="2.958">
+</testcase>
+<testcase name="a cautious creator sees the iterative free-model trace before accepting a proposal" classname="creator-pipeline.spec.ts" time="1.326">
+</testcase>
+<testcase name="an overloaded free provider is labeled degraded instead of deep-agent success" classname="creator-pipeline.spec.ts" time="1.255">
+</testcase>
+<testcase name="live OpenRouter free planner resolves a model before deterministic compilation" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="Live free-router proof is opt-in and runs only against the configured production endpoint.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="creator template selection and restore are real state transitions" classname="creator-pipeline.spec.ts" time="1.3">
+</testcase>
+<testcase name="two sessions react to the same Caseflow and stale approval fails closed" classname="creator-pipeline.spec.ts" time="2.076">
+</testcase>
+<testcase name="approved creator variant exports a real local H.264 MP4" classname="creator-pipeline.spec.ts" time="5.764">
+</testcase>
+</testsuite>
+<testsuite name="creatorbench.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="desktop-chromium" tests="8" failures="0" skipped="0" time="5.45" errors="0">
+<testcase name="CreatorBench public evidence and reviewer UI › loads the real render pilot with three reopened formats and a blind review queue" classname="creatorbench.spec.ts" time="0.686">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders exact samples, rates, intervals, subgroups, routes, failures, and freeze receipt" classname="creatorbench.spec.ts" time="0.601">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › keeps reviewer judgment blind, bounded, keyboard-operable, and explicitly non-durable" classname="creatorbench.spec.ts" time="0.815">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › fails closed when the report is absent and never prints invented metrics" classname="creatorbench.spec.ts" time="0.299">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders an honest unevaluated state when infrastructure exists without results" classname="creatorbench.spec.ts" time="0.393">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders unavailable measured metrics without crashing when the real report uses null" classname="creatorbench.spec.ts" time="0.412">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › works in light and dark themes without page-level horizontal overflow" classname="creatorbench.spec.ts" time="0.447">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › passes focused Axe smoke on the evidence overview and blind review form" classname="creatorbench.spec.ts" time="1.797">
+</testcase>
+</testsuite>
+<testsuite name="frame-inspector.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="desktop-chromium" tests="1" failures="0" skipped="0" time="2.361" errors="0">
+<testcase name="hash-verifies and synchronizes the frame inspector" classname="frame-inspector.spec.ts" time="2.361">
+</testcase>
+</testsuite>
+<testsuite name="practice-room.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="desktop-chromium" tests="1" failures="0" skipped="0" time="1.633" errors="0">
+<testcase name="practice room is honest before, during, and about the camera" classname="practice-room.spec.ts" time="1.633">
+</testcase>
+</testsuite>
+<testsuite name="stitch-studio.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="desktop-chromium" tests="10" failures="0" skipped="0" time="20.728" errors="0">
+<testcase name="stitch studio loads the frozen plan and the edit agent applies a patch" classname="stitch-studio.spec.ts" time="3.217">
+</testcase>
+<testcase name="an exploring editor keeps one actionable proposal and can reject it without timeline drift" classname="stitch-studio.spec.ts" time="0.98">
+</testcase>
+<testcase name="a creator and NodeAgent manipulate the same selected timeline blocks" classname="stitch-studio.spec.ts" time="2.846">
+</testcase>
+<testcase name="a creator and NodeAgent manipulate the same timed caption block" classname="stitch-studio.spec.ts" time="2.674">
+</testcase>
+<testcase name="ripple duplicate and delete keep every timed track behind one accepted timeline" classname="stitch-studio.spec.ts" time="2.658">
+</testcase>
+<testcase name="agent proposals explain which real blocks are sourced, inserted, removed, and shifted" classname="stitch-studio.spec.ts" time="2.241">
+</testcase>
+<testcase name="browser exporter produces a real local H.264 MP4 download" classname="stitch-studio.spec.ts" time="2.962">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|stitch-studio-browser-expo-7c3c5-al-local-H-264-MP4-download-desktop-chromium/attachments/accepted-edited-export-frame-3730413817399e300567ca5dab03dc62fa567e96.png]]
+]]>
+</system-out>
+<system-err>
+<![CDATA[Estimating resolution as 678
+]]>
+</system-err>
+</testcase>
+<testcase name="in-browser BYOK agent runs the tool loop against a mocked OpenRouter" classname="stitch-studio.spec.ts" time="1.057">
+</testcase>
+<testcase name="model proposals allow exactly one mutation per approval card" classname="stitch-studio.spec.ts" time="1.088">
+</testcase>
+<testcase name="a sustained local-agent session keeps visible history bounded" classname="stitch-studio.spec.ts" time="1.005">
+</testcase>
+</testsuite>
+<testsuite name="tracking-atlas.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="desktop-chromium" tests="3" failures="0" skipped="0" time="1.749" errors="0">
+<testcase name="NodeVideo tracking Artifact Atlas › shows proof-backed artifacts, detector arena, harness comparison, and rights ledger" classname="tracking-atlas.spec.ts" time="0.95">
+</testcase>
+<testcase name="NodeVideo tracking Artifact Atlas › keeps the local Atlas guide usable without external egress" classname="tracking-atlas.spec.ts" time="0.752">
+</testcase>
+<testcase name="NodeVideo tracking Artifact Atlas › serves the compiled proof media through the public media contract" classname="tracking-atlas.spec.ts" time="0.047">
+</testcase>
+</testsuite>
+<testsuite name="chrome-extension.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="xl-boundary-chromium" tests="1" failures="0" skipped="0" time="1.454" errors="0">
+<testcase name="extension first run is accessible and does not overflow" classname="chrome-extension.spec.ts" time="1.454">
+</testcase>
+</testsuite>
+<testsuite name="collab-editor.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="xl-boundary-chromium" tests="3" failures="0" skipped="1" time="4.049" errors="0">
+<testcase name="collab editor is immediately usable, honest, and does not overflow" classname="collab-editor.spec.ts" time="1.664">
+</testcase>
+<testcase name="native Chromium records the collab canvas as a non-empty WebM" classname="collab-editor.spec.ts">
+<properties>
+<property name="skip" value="One real MediaRecorder smoke is sufficient; orchestration coverage runs in every project.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="collab export falls back when animation frames stall and discards interrupted files" classname="collab-editor.spec.ts" time="2.155">
+</testcase>
+</testsuite>
+<testsuite name="creator-pipeline.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="xl-boundary-chromium" tests="13" failures="0" skipped="4" time="14.859" errors="0">
+<testcase name="default Auto mode applies only a safe local single-variant proposal" classname="creator-pipeline.spec.ts" time="1.18">
+</testcase>
+<testcase name="a returning creator can restore browser-local demo media from Files" classname="creator-pipeline.spec.ts" time="0.89">
+</testcase>
+<testcase name="creator pipeline compiles one source into reviewable variants" classname="creator-pipeline.spec.ts" time="2.648">
+</testcase>
+<testcase name="creator topology keeps the artifact dominant and mobile surfaces mode-based" classname="creator-pipeline.spec.ts" time="1.524">
+</testcase>
+<testcase name="creator pipeline exposes cleanup and quote workflows" classname="creator-pipeline.spec.ts" time="1.04">
+</testcase>
+<testcase name="Smart Reframe detects locally, reuses one track, and proposes three crop plans" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="Focused local vision proof.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="agent rail gates cloud execution and supports inline proposal decisions" classname="creator-pipeline.spec.ts" time="2.84">
+</testcase>
+<testcase name="a cautious creator sees the iterative free-model trace before accepting a proposal" classname="creator-pipeline.spec.ts" time="1.278">
+</testcase>
+<testcase name="an overloaded free provider is labeled degraded instead of deep-agent success" classname="creator-pipeline.spec.ts" time="1.235">
+</testcase>
+<testcase name="live OpenRouter free planner resolves a model before deterministic compilation" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="Live free-router proof is opt-in and runs only against the configured production endpoint.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="creator template selection and restore are real state transitions" classname="creator-pipeline.spec.ts" time="1.657">
+</testcase>
+<testcase name="two sessions react to the same Caseflow and stale approval fails closed" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="One two-session proof is sufficient.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="approved creator variant exports a real local H.264 MP4" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="One codec smoke is sufficient.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="creatorbench.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="xl-boundary-chromium" tests="8" failures="0" skipped="0" time="4.984" errors="0">
+<testcase name="CreatorBench public evidence and reviewer UI › loads the real render pilot with three reopened formats and a blind review queue" classname="creatorbench.spec.ts" time="0.606">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders exact samples, rates, intervals, subgroups, routes, failures, and freeze receipt" classname="creatorbench.spec.ts" time="0.579">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › keeps reviewer judgment blind, bounded, keyboard-operable, and explicitly non-durable" classname="creatorbench.spec.ts" time="0.68">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › fails closed when the report is absent and never prints invented metrics" classname="creatorbench.spec.ts" time="0.278">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders an honest unevaluated state when infrastructure exists without results" classname="creatorbench.spec.ts" time="0.364">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders unavailable measured metrics without crashing when the real report uses null" classname="creatorbench.spec.ts" time="0.376">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › works in light and dark themes without page-level horizontal overflow" classname="creatorbench.spec.ts" time="0.41">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › passes focused Axe smoke on the evidence overview and blind review form" classname="creatorbench.spec.ts" time="1.691">
+</testcase>
+</testsuite>
+<testsuite name="frame-inspector.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="xl-boundary-chromium" tests="1" failures="0" skipped="0" time="3.005" errors="0">
+<testcase name="hash-verifies and synchronizes the frame inspector" classname="frame-inspector.spec.ts" time="3.005">
+</testcase>
+</testsuite>
+<testsuite name="practice-room.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="xl-boundary-chromium" tests="1" failures="0" skipped="0" time="1.629" errors="0">
+<testcase name="practice room is honest before, during, and about the camera" classname="practice-room.spec.ts" time="1.629">
+</testcase>
+</testsuite>
+<testsuite name="stitch-studio.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="xl-boundary-chromium" tests="10" failures="0" skipped="1" time="17.292" errors="0">
+<testcase name="stitch studio loads the frozen plan and the edit agent applies a patch" classname="stitch-studio.spec.ts" time="3.179">
+</testcase>
+<testcase name="an exploring editor keeps one actionable proposal and can reject it without timeline drift" classname="stitch-studio.spec.ts" time="0.905">
+</testcase>
+<testcase name="a creator and NodeAgent manipulate the same selected timeline blocks" classname="stitch-studio.spec.ts" time="2.797">
+</testcase>
+<testcase name="a creator and NodeAgent manipulate the same timed caption block" classname="stitch-studio.spec.ts" time="2.578">
+</testcase>
+<testcase name="ripple duplicate and delete keep every timed track behind one accepted timeline" classname="stitch-studio.spec.ts" time="2.511">
+</testcase>
+<testcase name="agent proposals explain which real blocks are sourced, inserted, removed, and shifted" classname="stitch-studio.spec.ts" time="2.162">
+</testcase>
+<testcase name="browser exporter produces a real local H.264 MP4 download" classname="stitch-studio.spec.ts">
+<properties>
+<property name="skip" value="One real WASM encode covers the shared browser exporter without multiplying CI time.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="in-browser BYOK agent runs the tool loop against a mocked OpenRouter" classname="stitch-studio.spec.ts" time="1.007">
+</testcase>
+<testcase name="model proposals allow exactly one mutation per approval card" classname="stitch-studio.spec.ts" time="0.984">
+</testcase>
+<testcase name="a sustained local-agent session keeps visible history bounded" classname="stitch-studio.spec.ts" time="0.955">
+</testcase>
+</testsuite>
+<testsuite name="tracking-atlas.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="xl-boundary-chromium" tests="3" failures="0" skipped="0" time="1.508" errors="0">
+<testcase name="NodeVideo tracking Artifact Atlas › shows proof-backed artifacts, detector arena, harness comparison, and rights ledger" classname="tracking-atlas.spec.ts" time="0.859">
+</testcase>
+<testcase name="NodeVideo tracking Artifact Atlas › keeps the local Atlas guide usable without external egress" classname="tracking-atlas.spec.ts" time="0.622">
+</testcase>
+<testcase name="NodeVideo tracking Artifact Atlas › serves the compiled proof media through the public media contract" classname="tracking-atlas.spec.ts" time="0.027">
+</testcase>
+</testsuite>
+<testsuite name="chrome-extension.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="tablet-chromium" tests="1" failures="0" skipped="0" time="1.508" errors="0">
+<testcase name="extension first run is accessible and does not overflow" classname="chrome-extension.spec.ts" time="1.508">
+</testcase>
+</testsuite>
+<testsuite name="collab-editor.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="tablet-chromium" tests="3" failures="0" skipped="1" time="4.184" errors="0">
+<testcase name="collab editor is immediately usable, honest, and does not overflow" classname="collab-editor.spec.ts" time="1.765">
+</testcase>
+<testcase name="native Chromium records the collab canvas as a non-empty WebM" classname="collab-editor.spec.ts">
+<properties>
+<property name="skip" value="One real MediaRecorder smoke is sufficient; orchestration coverage runs in every project.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="collab export falls back when animation frames stall and discards interrupted files" classname="collab-editor.spec.ts" time="2.183">
+</testcase>
+</testsuite>
+<testsuite name="creator-pipeline.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="tablet-chromium" tests="13" failures="0" skipped="4" time="13.948" errors="0">
+<testcase name="default Auto mode applies only a safe local single-variant proposal" classname="creator-pipeline.spec.ts" time="1.088">
+</testcase>
+<testcase name="a returning creator can restore browser-local demo media from Files" classname="creator-pipeline.spec.ts" time="0.941">
+</testcase>
+<testcase name="creator pipeline compiles one source into reviewable variants" classname="creator-pipeline.spec.ts" time="3.123">
+</testcase>
+<testcase name="creator topology keeps the artifact dominant and mobile surfaces mode-based" classname="creator-pipeline.spec.ts" time="1.247">
+</testcase>
+<testcase name="creator pipeline exposes cleanup and quote workflows" classname="creator-pipeline.spec.ts" time="0.994">
+</testcase>
+<testcase name="Smart Reframe detects locally, reuses one track, and proposes three crop plans" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="Focused local vision proof.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="agent rail gates cloud execution and supports inline proposal decisions" classname="creator-pipeline.spec.ts" time="2.213">
+</testcase>
+<testcase name="a cautious creator sees the iterative free-model trace before accepting a proposal" classname="creator-pipeline.spec.ts" time="1.3">
+</testcase>
+<testcase name="an overloaded free provider is labeled degraded instead of deep-agent success" classname="creator-pipeline.spec.ts" time="1.164">
+</testcase>
+<testcase name="live OpenRouter free planner resolves a model before deterministic compilation" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="Live free-router proof is opt-in and runs only against the configured production endpoint.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="creator template selection and restore are real state transitions" classname="creator-pipeline.spec.ts" time="1.229">
+</testcase>
+<testcase name="two sessions react to the same Caseflow and stale approval fails closed" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="One two-session proof is sufficient.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="approved creator variant exports a real local H.264 MP4" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="One codec smoke is sufficient.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="creatorbench.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="tablet-chromium" tests="8" failures="0" skipped="0" time="5.277" errors="0">
+<testcase name="CreatorBench public evidence and reviewer UI › loads the real render pilot with three reopened formats and a blind review queue" classname="creatorbench.spec.ts" time="0.666">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders exact samples, rates, intervals, subgroups, routes, failures, and freeze receipt" classname="creatorbench.spec.ts" time="0.571">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › keeps reviewer judgment blind, bounded, keyboard-operable, and explicitly non-durable" classname="creatorbench.spec.ts" time="0.765">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › fails closed when the report is absent and never prints invented metrics" classname="creatorbench.spec.ts" time="0.284">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders an honest unevaluated state when infrastructure exists without results" classname="creatorbench.spec.ts" time="0.394">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders unavailable measured metrics without crashing when the real report uses null" classname="creatorbench.spec.ts" time="0.401">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › works in light and dark themes without page-level horizontal overflow" classname="creatorbench.spec.ts" time="0.413">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › passes focused Axe smoke on the evidence overview and blind review form" classname="creatorbench.spec.ts" time="1.783">
+</testcase>
+</testsuite>
+<testsuite name="frame-inspector.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="tablet-chromium" tests="1" failures="0" skipped="0" time="2.328" errors="0">
+<testcase name="hash-verifies and synchronizes the frame inspector" classname="frame-inspector.spec.ts" time="2.328">
+</testcase>
+</testsuite>
+<testsuite name="practice-room.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="tablet-chromium" tests="1" failures="0" skipped="0" time="1.6" errors="0">
+<testcase name="practice room is honest before, during, and about the camera" classname="practice-room.spec.ts" time="1.6">
+</testcase>
+</testsuite>
+<testsuite name="stitch-studio.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="tablet-chromium" tests="10" failures="0" skipped="1" time="17.666" errors="0">
+<testcase name="stitch studio loads the frozen plan and the edit agent applies a patch" classname="stitch-studio.spec.ts" time="3.403">
+</testcase>
+<testcase name="an exploring editor keeps one actionable proposal and can reject it without timeline drift" classname="stitch-studio.spec.ts" time="1.086">
+</testcase>
+<testcase name="a creator and NodeAgent manipulate the same selected timeline blocks" classname="stitch-studio.spec.ts" time="2.696">
+</testcase>
+<testcase name="a creator and NodeAgent manipulate the same timed caption block" classname="stitch-studio.spec.ts" time="2.622">
+</testcase>
+<testcase name="ripple duplicate and delete keep every timed track behind one accepted timeline" classname="stitch-studio.spec.ts" time="2.411">
+</testcase>
+<testcase name="agent proposals explain which real blocks are sourced, inserted, removed, and shifted" classname="stitch-studio.spec.ts" time="2.237">
+</testcase>
+<testcase name="browser exporter produces a real local H.264 MP4 download" classname="stitch-studio.spec.ts">
+<properties>
+<property name="skip" value="One real WASM encode covers the shared browser exporter without multiplying CI time.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="in-browser BYOK agent runs the tool loop against a mocked OpenRouter" classname="stitch-studio.spec.ts" time="0.982">
+</testcase>
+<testcase name="model proposals allow exactly one mutation per approval card" classname="stitch-studio.spec.ts" time="1.042">
+</testcase>
+<testcase name="a sustained local-agent session keeps visible history bounded" classname="stitch-studio.spec.ts" time="0.981">
+</testcase>
+</testsuite>
+<testsuite name="tracking-atlas.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="tablet-chromium" tests="3" failures="0" skipped="0" time="1.596" errors="0">
+<testcase name="NodeVideo tracking Artifact Atlas › shows proof-backed artifacts, detector arena, harness comparison, and rights ledger" classname="tracking-atlas.spec.ts" time="0.946">
+</testcase>
+<testcase name="NodeVideo tracking Artifact Atlas › keeps the local Atlas guide usable without external egress" classname="tracking-atlas.spec.ts" time="0.632">
+</testcase>
+<testcase name="NodeVideo tracking Artifact Atlas › serves the compiled proof media through the public media contract" classname="tracking-atlas.spec.ts" time="0.018">
+</testcase>
+</testsuite>
+<testsuite name="chrome-extension.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="mobile-chromium" tests="1" failures="0" skipped="0" time="1.572" errors="0">
+<testcase name="extension first run is accessible and does not overflow" classname="chrome-extension.spec.ts" time="1.572">
+</testcase>
+</testsuite>
+<testsuite name="collab-editor.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="mobile-chromium" tests="3" failures="0" skipped="1" time="3.94" errors="0">
+<testcase name="collab editor is immediately usable, honest, and does not overflow" classname="collab-editor.spec.ts" time="1.59">
+</testcase>
+<testcase name="native Chromium records the collab canvas as a non-empty WebM" classname="collab-editor.spec.ts">
+<properties>
+<property name="skip" value="One real MediaRecorder smoke is sufficient; orchestration coverage runs in every project.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="collab export falls back when animation frames stall and discards interrupted files" classname="collab-editor.spec.ts" time="2.166">
+</testcase>
+</testsuite>
+<testsuite name="creator-pipeline.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="mobile-chromium" tests="13" failures="0" skipped="4" time="16.292" errors="0">
+<testcase name="default Auto mode applies only a safe local single-variant proposal" classname="creator-pipeline.spec.ts" time="1.098">
+</testcase>
+<testcase name="a returning creator can restore browser-local demo media from Files" classname="creator-pipeline.spec.ts" time="0.863">
+</testcase>
+<testcase name="creator pipeline compiles one source into reviewable variants" classname="creator-pipeline.spec.ts" time="3.872">
+</testcase>
+<testcase name="creator topology keeps the artifact dominant and mobile surfaces mode-based" classname="creator-pipeline.spec.ts" time="1.638">
+</testcase>
+<testcase name="creator pipeline exposes cleanup and quote workflows" classname="creator-pipeline.spec.ts" time="1.178">
+</testcase>
+<testcase name="Smart Reframe detects locally, reuses one track, and proposes three crop plans" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="Focused local vision proof.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="agent rail gates cloud execution and supports inline proposal decisions" classname="creator-pipeline.spec.ts" time="2.804">
+</testcase>
+<testcase name="a cautious creator sees the iterative free-model trace before accepting a proposal" classname="creator-pipeline.spec.ts" time="1.272">
+</testcase>
+<testcase name="an overloaded free provider is labeled degraded instead of deep-agent success" classname="creator-pipeline.spec.ts" time="1.148">
+</testcase>
+<testcase name="live OpenRouter free planner resolves a model before deterministic compilation" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="Live free-router proof is opt-in and runs only against the configured production endpoint.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="creator template selection and restore are real state transitions" classname="creator-pipeline.spec.ts" time="1.897">
+</testcase>
+<testcase name="two sessions react to the same Caseflow and stale approval fails closed" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="One two-session proof is sufficient.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="approved creator variant exports a real local H.264 MP4" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="One codec smoke is sufficient.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="creatorbench.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="mobile-chromium" tests="8" failures="0" skipped="0" time="5.089" errors="0">
+<testcase name="CreatorBench public evidence and reviewer UI › loads the real render pilot with three reopened formats and a blind review queue" classname="creatorbench.spec.ts" time="0.589">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders exact samples, rates, intervals, subgroups, routes, failures, and freeze receipt" classname="creatorbench.spec.ts" time="0.596">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › keeps reviewer judgment blind, bounded, keyboard-operable, and explicitly non-durable" classname="creatorbench.spec.ts" time="0.681">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › fails closed when the report is absent and never prints invented metrics" classname="creatorbench.spec.ts" time="0.301">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders an honest unevaluated state when infrastructure exists without results" classname="creatorbench.spec.ts" time="0.371">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders unavailable measured metrics without crashing when the real report uses null" classname="creatorbench.spec.ts" time="0.413">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › works in light and dark themes without page-level horizontal overflow" classname="creatorbench.spec.ts" time="0.422">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › passes focused Axe smoke on the evidence overview and blind review form" classname="creatorbench.spec.ts" time="1.716">
+</testcase>
+</testsuite>
+<testsuite name="frame-inspector.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="mobile-chromium" tests="1" failures="0" skipped="0" time="1.822" errors="0">
+<testcase name="hash-verifies and synchronizes the frame inspector" classname="frame-inspector.spec.ts" time="1.822">
+</testcase>
+</testsuite>
+<testsuite name="practice-room.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="mobile-chromium" tests="1" failures="0" skipped="0" time="1.844" errors="0">
+<testcase name="practice room is honest before, during, and about the camera" classname="practice-room.spec.ts" time="1.844">
+</testcase>
+</testsuite>
+<testsuite name="stitch-studio.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="mobile-chromium" tests="10" failures="0" skipped="1" time="16.869" errors="0">
+<testcase name="stitch studio loads the frozen plan and the edit agent applies a patch" classname="stitch-studio.spec.ts" time="3.21">
+</testcase>
+<testcase name="an exploring editor keeps one actionable proposal and can reject it without timeline drift" classname="stitch-studio.spec.ts" time="1.076">
+</testcase>
+<testcase name="a creator and NodeAgent manipulate the same selected timeline blocks" classname="stitch-studio.spec.ts" time="2.495">
+</testcase>
+<testcase name="a creator and NodeAgent manipulate the same timed caption block" classname="stitch-studio.spec.ts" time="2.544">
+</testcase>
+<testcase name="ripple duplicate and delete keep every timed track behind one accepted timeline" classname="stitch-studio.spec.ts" time="2.318">
+</testcase>
+<testcase name="agent proposals explain which real blocks are sourced, inserted, removed, and shifted" classname="stitch-studio.spec.ts" time="2.054">
+</testcase>
+<testcase name="browser exporter produces a real local H.264 MP4 download" classname="stitch-studio.spec.ts">
+<properties>
+<property name="skip" value="One real WASM encode covers the shared browser exporter without multiplying CI time.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="in-browser BYOK agent runs the tool loop against a mocked OpenRouter" classname="stitch-studio.spec.ts" time="1.005">
+</testcase>
+<testcase name="model proposals allow exactly one mutation per approval card" classname="stitch-studio.spec.ts" time="1.03">
+</testcase>
+<testcase name="a sustained local-agent session keeps visible history bounded" classname="stitch-studio.spec.ts" time="0.962">
+</testcase>
+</testsuite>
+<testsuite name="tracking-atlas.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="mobile-chromium" tests="3" failures="0" skipped="0" time="1.619" errors="0">
+<testcase name="NodeVideo tracking Artifact Atlas › shows proof-backed artifacts, detector arena, harness comparison, and rights ledger" classname="tracking-atlas.spec.ts" time="0.905">
+</testcase>
+<testcase name="NodeVideo tracking Artifact Atlas › keeps the local Atlas guide usable without external egress" classname="tracking-atlas.spec.ts" time="0.688">
+</testcase>
+<testcase name="NodeVideo tracking Artifact Atlas › serves the compiled proof media through the public media contract" classname="tracking-atlas.spec.ts" time="0.026">
+</testcase>
+</testsuite>
+<testsuite name="chrome-extension.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="compact-mobile-chromium" tests="1" failures="0" skipped="0" time="1.324" errors="0">
+<testcase name="extension first run is accessible and does not overflow" classname="chrome-extension.spec.ts" time="1.324">
+</testcase>
+</testsuite>
+<testsuite name="collab-editor.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="compact-mobile-chromium" tests="3" failures="0" skipped="1" time="3.441" errors="0">
+<testcase name="collab editor is immediately usable, honest, and does not overflow" classname="collab-editor.spec.ts" time="1.303">
+</testcase>
+<testcase name="native Chromium records the collab canvas as a non-empty WebM" classname="collab-editor.spec.ts">
+<properties>
+<property name="skip" value="One real MediaRecorder smoke is sufficient; orchestration coverage runs in every project.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="collab export falls back when animation frames stall and discards interrupted files" classname="collab-editor.spec.ts" time="1.971">
+</testcase>
+</testsuite>
+<testsuite name="creator-pipeline.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="compact-mobile-chromium" tests="13" failures="0" skipped="4" time="12.757" errors="0">
+<testcase name="default Auto mode applies only a safe local single-variant proposal" classname="creator-pipeline.spec.ts" time="0.881">
+</testcase>
+<testcase name="a returning creator can restore browser-local demo media from Files" classname="creator-pipeline.spec.ts" time="0.767">
+</testcase>
+<testcase name="creator pipeline compiles one source into reviewable variants" classname="creator-pipeline.spec.ts" time="2.558">
+</testcase>
+<testcase name="creator topology keeps the artifact dominant and mobile surfaces mode-based" classname="creator-pipeline.spec.ts" time="0.937">
+</testcase>
+<testcase name="creator pipeline exposes cleanup and quote workflows" classname="creator-pipeline.spec.ts" time="0.772">
+</testcase>
+<testcase name="Smart Reframe detects locally, reuses one track, and proposes three crop plans" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="Focused local vision proof.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="agent rail gates cloud execution and supports inline proposal decisions" classname="creator-pipeline.spec.ts" time="2.558">
+</testcase>
+<testcase name="a cautious creator sees the iterative free-model trace before accepting a proposal" classname="creator-pipeline.spec.ts" time="1.096">
+</testcase>
+<testcase name="an overloaded free provider is labeled degraded instead of deep-agent success" classname="creator-pipeline.spec.ts" time="1.068">
+</testcase>
+<testcase name="live OpenRouter free planner resolves a model before deterministic compilation" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="Live free-router proof is opt-in and runs only against the configured production endpoint.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="creator template selection and restore are real state transitions" classname="creator-pipeline.spec.ts" time="1.723">
+</testcase>
+<testcase name="two sessions react to the same Caseflow and stale approval fails closed" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="One two-session proof is sufficient.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="approved creator variant exports a real local H.264 MP4" classname="creator-pipeline.spec.ts">
+<properties>
+<property name="skip" value="One codec smoke is sufficient.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="creatorbench.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="compact-mobile-chromium" tests="8" failures="0" skipped="0" time="3.915" errors="0">
+<testcase name="CreatorBench public evidence and reviewer UI › loads the real render pilot with three reopened formats and a blind review queue" classname="creatorbench.spec.ts" time="0.469">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders exact samples, rates, intervals, subgroups, routes, failures, and freeze receipt" classname="creatorbench.spec.ts" time="0.442">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › keeps reviewer judgment blind, bounded, keyboard-operable, and explicitly non-durable" classname="creatorbench.spec.ts" time="0.563">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › fails closed when the report is absent and never prints invented metrics" classname="creatorbench.spec.ts" time="0.206">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders an honest unevaluated state when infrastructure exists without results" classname="creatorbench.spec.ts" time="0.233">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › renders unavailable measured metrics without crashing when the real report uses null" classname="creatorbench.spec.ts" time="0.244">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › works in light and dark themes without page-level horizontal overflow" classname="creatorbench.spec.ts" time="0.298">
+</testcase>
+<testcase name="CreatorBench public evidence and reviewer UI › passes focused Axe smoke on the evidence overview and blind review form" classname="creatorbench.spec.ts" time="1.46">
+</testcase>
+</testsuite>
+<testsuite name="frame-inspector.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="compact-mobile-chromium" tests="1" failures="0" skipped="0" time="1.52" errors="0">
+<testcase name="hash-verifies and synchronizes the frame inspector" classname="frame-inspector.spec.ts" time="1.52">
+</testcase>
+</testsuite>
+<testsuite name="practice-room.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="compact-mobile-chromium" tests="1" failures="0" skipped="0" time="1.493" errors="0">
+<testcase name="practice room is honest before, during, and about the camera" classname="practice-room.spec.ts" time="1.493">
+</testcase>
+</testsuite>
+<testsuite name="stitch-studio.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="compact-mobile-chromium" tests="10" failures="0" skipped="1" time="15.346" errors="0">
+<testcase name="stitch studio loads the frozen plan and the edit agent applies a patch" classname="stitch-studio.spec.ts" time="2.998">
+</testcase>
+<testcase name="an exploring editor keeps one actionable proposal and can reject it without timeline drift" classname="stitch-studio.spec.ts" time="0.977">
+</testcase>
+<testcase name="a creator and NodeAgent manipulate the same selected timeline blocks" classname="stitch-studio.spec.ts" time="2.301">
+</testcase>
+<testcase name="a creator and NodeAgent manipulate the same timed caption block" classname="stitch-studio.spec.ts" time="2.287">
+</testcase>
+<testcase name="ripple duplicate and delete keep every timed track behind one accepted timeline" classname="stitch-studio.spec.ts" time="2.13">
+</testcase>
+<testcase name="agent proposals explain which real blocks are sourced, inserted, removed, and shifted" classname="stitch-studio.spec.ts" time="1.996">
+</testcase>
+<testcase name="browser exporter produces a real local H.264 MP4 download" classname="stitch-studio.spec.ts">
+<properties>
+<property name="skip" value="One real WASM encode covers the shared browser exporter without multiplying CI time.">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="in-browser BYOK agent runs the tool loop against a mocked OpenRouter" classname="stitch-studio.spec.ts" time="0.833">
+</testcase>
+<testcase name="model proposals allow exactly one mutation per approval card" classname="stitch-studio.spec.ts" time="0.903">
+</testcase>
+<testcase name="a sustained local-agent session keeps visible history bounded" classname="stitch-studio.spec.ts" time="0.803">
+</testcase>
+</testsuite>
+<testsuite name="tracking-atlas.spec.ts" timestamp="2026-09-05T21:44:06.446Z" hostname="compact-mobile-chromium" tests="3" failures="0" skipped="0" time="0.98" errors="0">
+<testcase name="NodeVideo tracking Artifact Atlas › shows proof-backed artifacts, detector arena, harness comparison, and rights ledger" classname="tracking-atlas.spec.ts" time="0.582">
+</testcase>
+<testcase name="NodeVideo tracking Artifact Atlas › keeps the local Atlas guide usable without external egress" classname="tracking-atlas.spec.ts" time="0.376">
+</testcase>
+<testcase name="NodeVideo tracking Artifact Atlas › serves the compiled proof media through the public media contract" classname="tracking-atlas.spec.ts" time="0.022">
+</testcase>
+</testsuite>
+</testsuites>
