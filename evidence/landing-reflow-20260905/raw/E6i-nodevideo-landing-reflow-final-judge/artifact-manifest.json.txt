@@ -1,0 +1,57 @@
+[
+  {
+    "path": "actual-owner.diff.txt",
+    "bytes": 4812,
+    "sha256": "e56d0ca49ba5ec11cf4a4ab56e536867a7332c5c245ef0afe00c45370f2a4cbc"
+  },
+  {
+    "path": "checks.json",
+    "bytes": 9028,
+    "sha256": "e6f80f56996aff6783cd30a7d95b10203db5a8d96f7d7a0223105161a21f9df8"
+  },
+  {
+    "path": "collector-before.py.txt",
+    "bytes": 21273,
+    "sha256": "92f560d02c0d8f138c238bf22c6987cd98825dee28f29f87c19bac7caee2d1da"
+  },
+  {
+    "path": "current-dist-bindings.json",
+    "bytes": 230555,
+    "sha256": "ea718b25d2aeaa84ba9cfec68608d08ca90d8387ddb4b05e5f4acba936014ae2"
+  },
+  {
+    "path": "current-source-bindings.json",
+    "bytes": 461307,
+    "sha256": "ae335d77707ab1e0fc826b52540578ac31581fc0ab2596e1440096242b783f69"
+  },
+  {
+    "path": "failure.txt",
+    "bytes": 300,
+    "sha256": "1ca9d55b8f0fd38c1791a2c958a0ef46caadff0e58cfbe2018eba7ab5d92bdb1"
+  },
+  {
+    "path": "git-after.json",
+    "bytes": 285748,
+    "sha256": "79d4fa0c9c767389149db81b4c60b54858d21a886264fff208a1add5e2bb7300"
+  },
+  {
+    "path": "git-before.json",
+    "bytes": 285748,
+    "sha256": "79d4fa0c9c767389149db81b4c60b54858d21a886264fff208a1add5e2bb7300"
+  },
+  {
+    "path": "input-bindings.json",
+    "bytes": 2200,
+    "sha256": "6db98d19bf2da8039d8aabceb8d2196c504d0cb9c963c81f762e51d489bb1a75"
+  },
+  {
+    "path": "matrix-summary.json",
+    "bytes": 22014,
+    "sha256": "d3fc1b77220b6c08bba3efa2dfb26e44e02e226a6b71c4e6bce7859cd6251f32"
+  },
+  {
+    "path": "viewed-png-bindings.json",
+    "bytes": 3976,
+    "sha256": "23f3b382b033a345cb061c88c1d155c5135f92754a09c505bc877b99a1596b5c"
+  }
+]

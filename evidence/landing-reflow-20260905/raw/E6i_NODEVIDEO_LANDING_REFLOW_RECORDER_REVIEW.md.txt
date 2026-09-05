@@ -1,0 +1,10 @@
+Builder. **Two proof corrections are required before product editing or final after certification.** A developer needs the capture result to fail when the browser fails, and needs to know which built bytes the browser actually used.
+
+- The recorder currently writes `FAIL_RETAINED` for collected browser errors while it can exit zero. Propagate every error, require all 12 cells and two keyboard journeys, and have the controller independently inspect the raw receipt.
+- Observation phases currently hash `dist` only afterward. Require exact entry equality with the successful before-build/after-check bindings, then exact entry/exit path and byte equality.
+
+The font-target settling, ten link comparisons, eight counts, intrinsic canvas dimensions, caption geometry, scroll captures and native keyboard journeys are appropriate for the agreed scope. Pixel inspection is still mandatory: text ranges and boxes cannot establish absence of every clipping/overlap or actual canvas paint.
+
+Root accepted both corrections and is preserving the running baseline, original recorder/controller and the earlier quoted-command failure. I did not execute either script, edit product files or certify an in-progress result. [Exact findings and input snapshots](E6i_NODEVIDEO_LANDING_REFLOW_RECORDER_REVIEW.json).
+
+**Re your request:** use planner, worker and judge to make the repositories dependable — these checks prevent a failed or unbound browser observation from being reported as successful.

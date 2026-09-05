@@ -1,0 +1,401 @@
+{
+  "mode": "Builder",
+  "proof": "NODEVIDEO-LANDING-ENLARGED-REFLOW-01",
+  "verdict": "APPROVED_AMENDED_PLAN_PENDING_CAPTION_CLEARANCE_PROBE_BEFORE_IMPLEMENTATION",
+  "scope": "Read-only plan and existing causal artifact review; no implementation or additional runtime execution.",
+  "reviewer": "Reused independent reviewer context; no product implementation involvement. Parent authored plan and probe; reviewer assessed raw artifacts and proposed caption amendment.",
+  "checks": [
+    {
+      "name": "unchanged reviewed clock owner",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "probe05 no recorded errors",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "probe05 all twelve named states present",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "320 observed reversible overflow",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "320 every initial font target settled including HTML",
+      "passed": true,
+      "details": {
+        "targets": 85,
+        "root": {
+          "i": 0,
+          "tag": "HTML",
+          "before": 16,
+          "after": 32,
+          "transitionProperty": "all",
+          "transitionDuration": "1e-05s"
+        }
+      }
+    },
+    {
+      "name": "320 exact ten link labels and hrefs preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "320 full text preserved with line wrapping",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "320 actual DOM changes only temporary style and restores exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "320 three actual before/restored PNGs byte identical",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "320 restored geometry dimensions and document offsets exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "390 observed reversible overflow",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "390 every initial font target settled including HTML",
+      "passed": true,
+      "details": {
+        "targets": 85,
+        "root": {
+          "i": 0,
+          "tag": "HTML",
+          "before": 16,
+          "after": 32,
+          "transitionProperty": "all",
+          "transitionDuration": "1e-05s"
+        }
+      }
+    },
+    {
+      "name": "390 exact ten link labels and hrefs preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "390 full text preserved with line wrapping",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "390 actual DOM changes only temporary style and restores exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "390 three actual before/restored PNGs byte identical",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "390 restored geometry dimensions and document offsets exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "1440 observed reversible overflow",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "1440 every initial font target settled including HTML",
+      "passed": true,
+      "details": {
+        "targets": 85,
+        "root": {
+          "i": 0,
+          "tag": "HTML",
+          "before": 16,
+          "after": 32,
+          "transitionProperty": "all",
+          "transitionDuration": "1e-05s"
+        }
+      }
+    },
+    {
+      "name": "1440 exact ten link labels and hrefs preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "1440 full text preserved with line wrapping",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "1440 actual DOM changes only temporary style and restores exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "1440 three actual before/restored PNGs byte identical",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "1440 restored geometry dimensions and document offsets exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "scope upstream constraints exist",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "clock intrinsic dimensions and disclaimer present",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "prior four receipts retained",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "initial unsettled font assertion failure retained",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "named source guard closed",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "passed": 29,
+  "total": 29,
+  "plan": {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i_NODEVIDEO_LANDING_REFLOW_PLAN.md",
+    "sha256": "7ebce7ad44202e857a35e039260cb9dff29ffb7cbdcadd878e55b9003df15c35"
+  },
+  "currentImmutableBaseline": {
+    "commit": "1417d325faca991fed9b05803fee26336255b063",
+    "tree": "00ac1b56cb484c503653830179b0f9dfb6fd24ec",
+    "note": "Observed during review. Parent separately owns dependency work; no assertion that its unrelated working lock/HANDOFF/evidence are unchanged."
+  },
+  "sourceGuard": {
+    "state": "CLOSED",
+    "bindings": {
+      "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905\\apps\\landing\\src\\landing.tsx": "5d4ce6007803f7166949c40cdec646e0d2c51b0ee7ba8ca0dc2ac686b2de45ab",
+      "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905\\apps\\landing\\src\\landing.css": "587f04d1bd169628a5634b6563798b801daaf2043e56b18a46f80bf11e616807",
+      "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905\\apps\\landing\\src\\pose-loop.json": "b2f2ea20a01dbe4815a921c0db6330c24967495dbc7b8b798b6ff82a13488be1"
+    }
+  },
+  "geometry": [
+    {
+      "width": 320,
+      "overflow": [
+        201,
+        0,
+        201
+      ],
+      "fontTargets": 85,
+      "probeCanvas": {
+        "tag": "CANVAS",
+        "text": "",
+        "x": 41,
+        "y": 1234.078125,
+        "width": 238,
+        "height": 238,
+        "scrollWidth": 238,
+        "clientWidth": 238
+      },
+      "probeCaption": {
+        "tag": "P",
+        "text": "real pose track · verified public case",
+        "x": 73,
+        "y": 1316.078125,
+        "width": 174,
+        "height": 132,
+        "scrollWidth": 174,
+        "clientWidth": 174
+      },
+      "note": "Coordinates are viewport relative at recorded scroll position; dimensions and offsets relative to main restore exactly."
+    },
+    {
+      "width": 390,
+      "overflow": [
+        131,
+        0,
+        131
+      ],
+      "fontTargets": 85,
+      "probeCanvas": {
+        "tag": "CANVAS",
+        "text": "",
+        "x": 41,
+        "y": 657.28125,
+        "width": 308,
+        "height": 308,
+        "scrollWidth": 308,
+        "clientWidth": 308
+      },
+      "probeCaption": {
+        "tag": "P",
+        "text": "real pose track · verified public case",
+        "x": 73,
+        "y": 875.28125,
+        "width": 244,
+        "height": 66,
+        "scrollWidth": 244,
+        "clientWidth": 244
+      },
+      "note": "Coordinates are viewport relative at recorded scroll position; dimensions and offsets relative to main restore exactly."
+    },
+    {
+      "width": 1440,
+      "overflow": [
+        0,
+        0,
+        0
+      ],
+      "fontTargets": 85,
+      "probeCanvas": {
+        "tag": "CANVAS",
+        "text": "",
+        "x": 822.59375,
+        "y": 421.796875,
+        "width": 552.40625,
+        "height": 552.40625,
+        "scrollWidth": 552,
+        "clientWidth": 552
+      },
+      "probeCaption": {
+        "tag": "P",
+        "text": "real pose track · verified public case",
+        "x": 854.59375,
+        "y": 917.203125,
+        "width": 488.40625,
+        "height": 33,
+        "scrollWidth": 488,
+        "clientWidth": 488
+      },
+      "note": "Coordinates are viewport relative at recorded scroll position; dimensions and offsets relative to main restore exactly."
+    }
+  ],
+  "actualPngsViewed": [
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-probe-05\\320-text200-before-top.png",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-probe-05\\320-text200-probe-top.png",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-probe-05\\320-text200-probe-canvas.png",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-probe-05\\390-text200-probe-top.png",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-probe-05\\390-text200-before-canvas.png",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-probe-05\\390-text200-probe-canvas.png"
+  ],
+  "ownerRegions": [
+    {
+      "path": "apps/landing/src/landing.tsx",
+      "lines": "124-140",
+      "change": "Wrap existing header and navigation."
+    },
+    {
+      "path": "apps/landing/src/landing.tsx",
+      "lines": "143-175",
+      "change": "Explicit zero-minimum grid tracks/children, emergency heading/link wrapping and auto-height primary links with 2.75rem minimum and vertical padding."
+    },
+    {
+      "path": "apps/landing/src/landing.tsx",
+      "lines": "176-193",
+      "change": "Wrap count row; preserve outer card but move aspect-square to an inner canvas wrapper and put unchanged provenance paragraph below in normal flow."
+    }
+  ],
+  "amendment": {
+    "basis": "Parent accepted direct pixel finding after initial plan. Original temporary caption still overlays the skeleton at enlarged phone sizes. Zero document overflow alone is insufficient for readable canvas/provenance.",
+    "substitution": "Keep outer min-width-zero bordered rounded background card. Move aspect-square sizing to one inner wrapper containing the unchanged SkeletonHero; remove absolute position/left/bottom from existing paragraph and retain its typography plus bounded horizontal padding in normal flow. Preserve original caption text, intrinsic canvas 560x560, pose bytes, tempo, count/clock and all links.",
+    "preEditCondition": "Parent must run its one updated conditional temporary probe and inspect actual 320/390 caption clearance plus desktop card-height/centering delta before editing product. That probe is pending in this verdict; original probe05 does not prove the new wrapper.",
+    "noPrematurePass": "No implemented repair, readable-canvas pass or criterion upgrade is certified by this plan."
+  },
+  "finalProofContract": {
+    "normalPairs": [
+      [
+        320,
+        800
+      ],
+      [
+        360,
+        800
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        1440,
+        960
+      ],
+      [
+        1920,
+        1080
+      ]
+    ],
+    "text200Pairs": [
+      [
+        320,
+        800
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        1440,
+        960
+      ]
+    ],
+    "requirements": [
+      "Preserve before boundary artifacts and bind new actual owner/dist before the affected after proof.",
+      "Wait every original root-inclusive computed font target; no font reduction or overflow hiding to obtain zero.",
+      "Inspect viewport and scroll segments for complete unchanged headings/actions/navigation/counts/canvas/caption/cards/footer.",
+      "Caption occupies normal-flow space below canvas; count and all ten original link label/href pairs preserved.",
+      "Inspect normal desktop card-height and vertical-centering delta; no silent preservation claim.",
+      "Perform representative native keyboard navigation to existing local destinations; no provider/camera/upload/job.",
+      "Existing nine clock cases and unchanged full normal check; no mirrored CSS-only test or unrelated editor/codec replay.",
+      "Keep observed all-null pose-frame gaps and existing non-reflow product holds."
+    ]
+  },
+  "limitations": [
+    "Computed-font doubling in emulated Chromium is not native browser zoom, a physical-device test or assistive-technology certification.",
+    "Probe05 CSS is a bundle; reversal supports this bundle, not independent necessity of each individual rule. Final source should map only observed constraints to existing utilities.",
+    "Original 320 probe header has 15px internal scroll-width excess but stays inside viewport; this is not certified perfect internal sizing.",
+    "Caption-over-pose finding remains open until amended actual proof.",
+    "Earlier probes01/03 had unsettled targets;02 used a different body-only condition;04 failed immediately. All retained.",
+    "Initial reviewer raw HTML subtraction missed type=\"text/css\"; direct diff identified the exact single inserted style tag, then exact subtraction/restoration passed. No product defect inferred."
+  ],
+  "fullDimensions": null,
+  "overallGrade": null,
+  "providerCalls": 0,
+  "browserRunsByReviewer": 0,
+  "productEditsByReviewer": 0,
+  "manifest": {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-plan-judge\\input-bindings.json",
+    "sha256": "474d3262b5635a6dcc8030bab6a19b3676160ee0d3b5dd1709c1c6992033b8e1",
+    "files": 80,
+    "bytes": 5908616
+  }
+}

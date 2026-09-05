@@ -1,0 +1,232 @@
+{
+  "mode": "Builder",
+  "verdict": "APPROVED_AMENDED_PLAN_CAPTION_PROBE_PREREQUISITE_CLOSED",
+  "supersedesOnly": "The pending-caption-probe prerequisite in the original plan judgment; all implementation proof requirements and scope limits remain.",
+  "originalReports": {
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i_NODEVIDEO_LANDING_REFLOW_PLAN_JUDGE.json": "24b7a0b6ba7cbba8daaf1fb7e516bab63a9c5aa52fd9b60d18798095ea7d9ae7",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i_NODEVIDEO_LANDING_REFLOW_PLAN_JUDGE.md": "7b40e6ce6d742d7ec56d3ab978628a4b09ffcc9848d32858dfcc73bedd2528a1"
+  },
+  "checks": [
+    {
+      "name": "original plan judgment exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "probe06 completed without recorded errors",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "320 caption starts below exact canvas box",
+      "passed": true,
+      "details": {
+        "canvasBottom": 1472.078125,
+        "captionTop": 1472.078125
+      }
+    },
+    {
+      "name": "320 overflow reversal retained",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "320 before/restored HTML bytes exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "320 unchanged text and ten link labels/hrefs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "320 root-inclusive font targets settled",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "320 canvas rendered dimensions retained from prior sizing probe",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "390 caption starts below exact canvas box",
+      "passed": true,
+      "details": {
+        "canvasBottom": 965.28125,
+        "captionTop": 965.28125
+      }
+    },
+    {
+      "name": "390 overflow reversal retained",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "390 before/restored HTML bytes exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "390 unchanged text and ten link labels/hrefs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "390 root-inclusive font targets settled",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "390 canvas rendered dimensions retained from prior sizing probe",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "1440 caption starts below exact canvas box",
+      "passed": true,
+      "details": {
+        "canvasBottom": 945.703125,
+        "captionTop": 945.703125
+      }
+    },
+    {
+      "name": "1440 overflow reversal retained",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "1440 before/restored HTML bytes exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "1440 unchanged text and ten link labels/hrefs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "1440 root-inclusive font targets settled",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "1440 canvas rendered dimensions retained from prior sizing probe",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "product landing owner still exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "original MD/JSON remained unchanged",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "passed": 22,
+  "total": 22,
+  "geometry": [
+    {
+      "width": 320,
+      "canvas": {
+        "tag": "CANVAS",
+        "text": "",
+        "x": 41,
+        "y": 1234.078125,
+        "width": 238,
+        "height": 238,
+        "scrollWidth": 238,
+        "clientWidth": 238
+      },
+      "caption": {
+        "tag": "P",
+        "text": "real pose track · verified public case",
+        "x": 41,
+        "y": 1472.078125,
+        "width": 238,
+        "height": 156,
+        "scrollWidth": 238,
+        "clientWidth": 238
+      },
+      "captionBottomPaddingIncluded": true,
+      "outerCardHeightBefore": 397.234375,
+      "outerCardHeightProbe": 396
+    },
+    {
+      "width": 390,
+      "canvas": {
+        "tag": "CANVAS",
+        "text": "",
+        "x": 41,
+        "y": 657.28125,
+        "width": 308,
+        "height": 308,
+        "scrollWidth": 308,
+        "clientWidth": 308
+      },
+      "caption": {
+        "tag": "P",
+        "text": "real pose track · verified public case",
+        "x": 41,
+        "y": 965.28125,
+        "width": 308,
+        "height": 90,
+        "scrollWidth": 308,
+        "clientWidth": 308
+      },
+      "captionBottomPaddingIncluded": true,
+      "outerCardHeightBefore": 397.234375,
+      "outerCardHeightProbe": 400
+    },
+    {
+      "width": 1440,
+      "canvas": {
+        "tag": "CANVAS",
+        "text": "",
+        "x": 822.59375,
+        "y": 393.296875,
+        "width": 552.40625,
+        "height": 552.40625,
+        "scrollWidth": 552,
+        "clientWidth": 552
+      },
+      "caption": {
+        "tag": "P",
+        "text": "real pose track · verified public case",
+        "x": 822.59375,
+        "y": 945.703125,
+        "width": 552.40625,
+        "height": 57,
+        "scrollWidth": 552,
+        "clientWidth": 552
+      },
+      "captionBottomPaddingIncluded": true,
+      "outerCardHeightBefore": 554.40625,
+      "outerCardHeightProbe": 611.40625
+    }
+  ],
+  "sameNodeReview": "Read actual evaluateHandle closure: moves existing canvas into one new aspect wrapper; stores original outer/caption style attribute presence and value; restores same node, removes wrapper, restores exact style attributes and removes temporary CSS. Does not replace canvas or change drawing code.",
+  "pixelsViewed": [
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-probe-06\\320-text200-probe-canvas.png",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-probe-06\\390-text200-probe-canvas.png",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-probe-06\\1440-text200-probe-canvas.png"
+  ],
+  "pixelObservations": "320 and 390 actual PNGs visibly show full caption below skeleton, with no caption-over-pose. The 1440 canvas-centered viewport capture crops the caption below viewport; actual recorded geometry proves separation there, but this addendum does not claim a viewport-complete desktop caption screenshot. Final implementation proof still inspects full desktop card/centering.",
+  "scope": "Saved temporary probe only, not implemented runtime or full user grade. Root will edit only after its separate dependency commit guard closes.",
+  "manifest": {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-caption-plan-addendum\\input-bindings.json",
+    "sha256": "adff3e0b46488d3dfbb8461135bce9a54266eaf3bba47cc0a67b52a578886aa0",
+    "files": 74,
+    "bytes": 5832557
+  },
+  "sourceGuard": "CLOSED named landing owner exact; unrelated root dependency work outside guard",
+  "fullDimensions": null,
+  "overallGrade": null,
+  "browserRuns": 0,
+  "sourceEdits": 0,
+  "providerCalls": 0
+}

@@ -1,0 +1,9 @@
+Builder. **The two recorder blockers are closed.** The current scripts propagate every recorded error to a nonzero exit, require 12 cells/two keyboard journeys, and independently inspect the raw receipt. Observation phases now compare entry dist against the intended build/check and require exact exit equality. They preserve their executed script bytes before launch.
+
+The historical baseline independently contains 12 cells, 108 actual PNG captures, two ten-link keyboard journeys and no recorded errors. Its full 140-file raw manifest verifies. Before-build and observation-final manifests match all 1,329 dist files. **No entry dist manifest was captured for that baseline**, so this review does not retroactively claim entry/exit custody. Both old executed scripts remain exact.
+
+The actual one-file source diff matches the amended plan: wrapping/minimum sizing and one square canvas wrapper with the unchanged caption below in normal flow. Both clocks/drawing code, all semantic JSX/text/hrefs, and the cards/footer remain unchanged. 21/21 bounded readback checks pass. Final after pixels and the completed normal gate are still pending and are not approved by this preparation review.
+
+[Exact checks and bindings](E6i_NODEVIDEO_LANDING_REFLOW_RECORDER_CORRECTION_JUDGE.json). No browser rerun, product edit or provider call occurred; full grades remain unresolved.
+
+**Re your request:** planner, worker and judge with real visual standards — the proof now fails honestly and binds its served files, while final usability still requires actual after evidence.

@@ -1,0 +1,1 @@
+Initial read-only judge collector did not execute: Python parse failed at line53 with SyntaxError: unmatched closing parenthesis. No source, runtime or output guard action ran. Exact original collector preserved. Correct only parenthesis grouping; this is a collector failure, not a product defect.

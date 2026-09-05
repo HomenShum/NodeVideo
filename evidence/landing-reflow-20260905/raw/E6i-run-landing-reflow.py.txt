@@ -1,0 +1,72 @@
+import hashlib, json, os, subprocess, sys, time
+from pathlib import Path
+from datetime import datetime, timezone
+import psutil
+
+P = Path(__file__).resolve().parent
+R = Path('D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905')
+phase = sys.argv[1]
+assert phase in ('before-build', 'before-observe', 'after-check', 'after-observe')
+attempt = sys.argv[2] if len(sys.argv) > 2 else ''
+assert attempt in ('', '-02', '-03')
+O = P / ('E6i-nodevideo-landing-reflow-' + phase + attempt)
+O.mkdir()
+sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+def git(*args):
+    return subprocess.check_output(['git', '--no-optional-locks', *args], cwd=R)
+paths = [x.decode() for x in git('ls-files', '-z').split(b'\0') if x]
+bindings = [{'path':x,'bytes':(R/x).stat().st_size,'sha256':sha(R/x)} for x in paths]
+(O/'source-bindings.json').write_text(json.dumps(bindings, indent=2)+'\n', encoding='utf-8')
+guard = {name:git(*args).decode() for name,args in {'head':('rev-parse','HEAD'),'branch':('branch','--show-current'),'status':('status','--porcelain=v1','--untracked-files=all'),'index':('ls-files','--stage')}.items()}
+(O/'git-before.json').write_text(json.dumps(guard,indent=2)+'\n',encoding='utf-8')
+commands = {'before-build':'npm run build', 'after-check':'npm run check', 'before-observe':'node "'+str(P/'E6i-observe-landing-reflow.mjs')+'" before', 'after-observe':'node "'+str(P/'E6i-observe-landing-reflow.mjs')+'" after'}
+def dist_bindings():
+    return [{'path':x.relative_to(R).as_posix(),'bytes':x.stat().st_size,'sha256':sha(x)} for x in sorted((R/'dist').rglob('*')) if x.is_file()]
+dist_before = None
+if phase in ('before-observe','after-observe'):
+    dist_before = dist_bindings()
+    expected_phase = 'before-build' if phase == 'before-observe' else 'after-check'
+    expected = json.loads((P/('E6i-nodevideo-landing-reflow-'+expected_phase)/'dist-bindings.json').read_text(encoding='utf-8'))
+    assert dist_before == expected, 'Observed dist must match the preceding build/check'
+    (O/'dist-before.json').write_text(json.dumps(dist_before,indent=2)+'\n',encoding='utf-8')
+    (O/'recorder.mjs.txt').write_bytes((P/'E6i-observe-landing-reflow.mjs').read_bytes())
+    (O/'controller.py.txt').write_bytes(Path(__file__).read_bytes())
+    for conn in psutil.net_connections(kind='tcp'):
+        assert not (conn.status == psutil.CONN_LISTEN and conn.laddr.port == 4995), 'Port owned; do not interrupt'
+env = {k:v for k,v in os.environ.items() if not k.upper().startswith(('OPENAI','ANTHROPIC','CONVEX','VITE_','NODEVIDEO','ELEVENLABS','GEMINI','GOOGLE_API','AZURE_OPENAI','VERCEL_')) and k.upper() not in ('NODE_OPTIONS','NODE_EXTRA_CA_CERTS','NODE_TLS_REJECT_UNAUTHORIZED','NODE_PRELOAD','BASH_ENV')}
+start = time.monotonic()
+known = {}
+timed_out = False
+with (O/'command.log').open('wb') as log:
+    argv = ['node', str(P/'E6i-observe-landing-reflow.mjs'), phase.split('-')[0]] if phase.endswith('observe') else ['cmd.exe','/d','/c',commands[phase]]
+    proc = subprocess.Popen(argv,cwd=R,env=env,stdout=log,stderr=subprocess.STDOUT,creationflags=subprocess.CREATE_NO_WINDOW)
+    parent = psutil.Process(proc.pid)
+    known[parent.pid] = parent.create_time()
+    while proc.poll() is None:
+        try:
+            for child in parent.children(recursive=True):
+                if len(known) < 512: known[child.pid] = child.create_time()
+        except psutil.NoSuchProcess: pass
+        if time.monotonic()-start > 300:
+            timed_out = True
+            break
+        time.sleep(.5)
+    if timed_out:
+        for pid, created in reversed(list(known.items())):
+            try:
+                child = psutil.Process(pid)
+                if child.create_time() == created: child.kill()
+            except psutil.NoSuchProcess: pass
+    code = proc.wait(timeout=10)
+unchanged = all((R/x['path']).stat().st_size == x['bytes'] and sha(R/x['path']) == x['sha256'] for x in bindings)
+after = {name:git(*args).decode() for name,args in {'head':('rev-parse','HEAD'),'branch':('branch','--show-current'),'status':('status','--porcelain=v1','--untracked-files=all'),'index':('ls-files','--stage')}.items()}
+dist = dist_bindings()
+(O/'dist-bindings.json').write_text(json.dumps(dist,indent=2)+'\n',encoding='utf-8')
+observation_ok = True
+if phase.endswith('observe'):
+    raw = json.loads((P/('E6i-nodevideo-landing-reflow-'+phase.split('-')[0]+'-pixels')/'receipt.json').read_text(encoding='utf-8'))
+    observation_ok = raw['status'] == 'PASS_SCOPED_LANDING_OBSERVATION' and not raw['errors'] and len(raw['cells']) == 12 and len(raw['interactions']) == 2 and dist_before == dist
+record = {'status':'PASS' if code == 0 and not timed_out and unchanged and guard == after and observation_ok else 'FAIL', 'at':datetime.now(timezone.utc).isoformat(),'phase':phase,'command':commands[phase],'exitCode':code,'seconds':round(time.monotonic()-start,3),'budgetSeconds':300,'timedOut':timed_out,'sourceFiles':len(bindings),'sourceUnchanged':unchanged,'gitGuardUnchanged':guard==after,'distFiles':len(dist),'distEntryExitUnchanged':None if dist_before is None else dist_before==dist,'observationAccepted':None if dist_before is None else observation_ok,'logSha256':sha(O/'command.log')}
+(O/'receipt.json').write_text(json.dumps(record,indent=2)+'\n',encoding='utf-8')
+print(json.dumps(record),flush=True)
+assert record['status'] == 'PASS'

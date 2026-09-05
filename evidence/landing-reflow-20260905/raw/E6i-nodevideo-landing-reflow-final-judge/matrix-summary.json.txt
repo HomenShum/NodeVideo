@@ -1,0 +1,926 @@
+[
+  {
+    "name": "320-normal",
+    "beforeOverflow": 0,
+    "afterOverflow": 0,
+    "beforeCaptionClearance": -28.5,
+    "afterCaptionClearance": 0.0,
+    "beforeCard": {
+      "x": 20,
+      "y": 857.921875,
+      "right": 300,
+      "bottom": 1137.921875,
+      "width": 280,
+      "height": 280,
+      "scrollWidth": 278,
+      "clientWidth": 278
+    },
+    "afterCard": {
+      "x": 20,
+      "y": 873.921875,
+      "right": 300,
+      "bottom": 1182.421875,
+      "width": 280,
+      "height": 308.5,
+      "scrollWidth": 278,
+      "clientWidth": 278
+    },
+    "canvasBefore": {
+      "x": 21,
+      "y": 858.921875,
+      "right": 299,
+      "bottom": 1136.921875,
+      "width": 278,
+      "height": 278,
+      "scrollWidth": 278,
+      "clientWidth": 278,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "canvasAfter": {
+      "x": 21,
+      "y": 874.921875,
+      "right": 299,
+      "bottom": 1152.921875,
+      "width": 278,
+      "height": 278,
+      "scrollWidth": 278,
+      "clientWidth": 278,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "primaryActions": [
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html",
+        "x": 20,
+        "y": 587.921875,
+        "right": 186.1875,
+        "bottom": 631.921875,
+        "width": 166.1875,
+        "height": 44,
+        "scrollWidth": 166,
+        "clientWidth": 166
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html",
+        "x": 20,
+        "y": 643.921875,
+        "right": 254.234375,
+        "bottom": 689.921875,
+        "width": 234.234375,
+        "height": 46,
+        "scrollWidth": 232,
+        "clientWidth": 232
+      }
+    ]
+  },
+  {
+    "name": "360-normal",
+    "beforeOverflow": 0,
+    "afterOverflow": 0,
+    "beforeCaptionClearance": -28.5,
+    "afterCaptionClearance": 0.0,
+    "beforeCard": {
+      "x": 20,
+      "y": 810.671875,
+      "right": 340,
+      "bottom": 1130.671875,
+      "width": 320,
+      "height": 320,
+      "scrollWidth": 318,
+      "clientWidth": 318
+    },
+    "afterCard": {
+      "x": 20,
+      "y": 826.671875,
+      "right": 340,
+      "bottom": 1175.171875,
+      "width": 320,
+      "height": 348.5,
+      "scrollWidth": 318,
+      "clientWidth": 318
+    },
+    "canvasBefore": {
+      "x": 21,
+      "y": 811.671875,
+      "right": 339,
+      "bottom": 1129.671875,
+      "width": 318,
+      "height": 318,
+      "scrollWidth": 318,
+      "clientWidth": 318,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "canvasAfter": {
+      "x": 21,
+      "y": 827.671875,
+      "right": 339,
+      "bottom": 1145.671875,
+      "width": 318,
+      "height": 318,
+      "scrollWidth": 318,
+      "clientWidth": 318,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "primaryActions": [
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html",
+        "x": 20,
+        "y": 558.671875,
+        "right": 186.1875,
+        "bottom": 602.671875,
+        "width": 166.1875,
+        "height": 44,
+        "scrollWidth": 166,
+        "clientWidth": 166
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html",
+        "x": 20,
+        "y": 614.671875,
+        "right": 254.234375,
+        "bottom": 660.671875,
+        "width": 234.234375,
+        "height": 46,
+        "scrollWidth": 232,
+        "clientWidth": 232
+      }
+    ]
+  },
+  {
+    "name": "390-normal",
+    "beforeOverflow": 0,
+    "afterOverflow": 0,
+    "beforeCaptionClearance": -28.5,
+    "afterCaptionClearance": 0.0,
+    "beforeCard": {
+      "x": 20,
+      "y": 810.671875,
+      "right": 370,
+      "bottom": 1160.671875,
+      "width": 350,
+      "height": 350,
+      "scrollWidth": 348,
+      "clientWidth": 348
+    },
+    "afterCard": {
+      "x": 20,
+      "y": 826.671875,
+      "right": 370,
+      "bottom": 1205.171875,
+      "width": 350,
+      "height": 378.5,
+      "scrollWidth": 348,
+      "clientWidth": 348
+    },
+    "canvasBefore": {
+      "x": 21,
+      "y": 811.671875,
+      "right": 369,
+      "bottom": 1159.671875,
+      "width": 348,
+      "height": 348,
+      "scrollWidth": 348,
+      "clientWidth": 348,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "canvasAfter": {
+      "x": 21,
+      "y": 827.671875,
+      "right": 369,
+      "bottom": 1175.671875,
+      "width": 348,
+      "height": 348,
+      "scrollWidth": 348,
+      "clientWidth": 348,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "primaryActions": [
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html",
+        "x": 20,
+        "y": 558.671875,
+        "right": 186.1875,
+        "bottom": 602.671875,
+        "width": 166.1875,
+        "height": 44,
+        "scrollWidth": 166,
+        "clientWidth": 166
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html",
+        "x": 20,
+        "y": 614.671875,
+        "right": 254.234375,
+        "bottom": 660.671875,
+        "width": 234.234375,
+        "height": 46,
+        "scrollWidth": 232,
+        "clientWidth": 232
+      }
+    ]
+  },
+  {
+    "name": "768-normal",
+    "beforeOverflow": 0,
+    "afterOverflow": 0,
+    "beforeCaptionClearance": -28.5,
+    "afterCaptionClearance": 0,
+    "beforeCard": {
+      "x": 32,
+      "y": 641,
+      "right": 736,
+      "bottom": 1345,
+      "width": 704,
+      "height": 704,
+      "scrollWidth": 702,
+      "clientWidth": 702
+    },
+    "afterCard": {
+      "x": 32,
+      "y": 643,
+      "right": 736,
+      "bottom": 1375.5,
+      "width": 704,
+      "height": 732.5,
+      "scrollWidth": 702,
+      "clientWidth": 702
+    },
+    "canvasBefore": {
+      "x": 33,
+      "y": 642,
+      "right": 735,
+      "bottom": 1344,
+      "width": 702,
+      "height": 702,
+      "scrollWidth": 702,
+      "clientWidth": 702,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "canvasAfter": {
+      "x": 33,
+      "y": 644,
+      "right": 735,
+      "bottom": 1346,
+      "width": 702,
+      "height": 702,
+      "scrollWidth": 702,
+      "clientWidth": 702,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "primaryActions": [
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html",
+        "x": 32,
+        "y": 460,
+        "right": 198.1875,
+        "bottom": 504,
+        "width": 166.1875,
+        "height": 44,
+        "scrollWidth": 166,
+        "clientWidth": 166
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html",
+        "x": 210.1875,
+        "y": 459,
+        "right": 444.421875,
+        "bottom": 505,
+        "width": 234.234375,
+        "height": 46,
+        "scrollWidth": 232,
+        "clientWidth": 232
+      }
+    ]
+  },
+  {
+    "name": "1024-normal",
+    "beforeOverflow": 0,
+    "afterOverflow": 0,
+    "beforeCaptionClearance": -28.5,
+    "afterCaptionClearance": 0.0,
+    "beforeCard": {
+      "x": 578,
+      "y": 175.5,
+      "right": 992,
+      "bottom": 589.5,
+      "width": 414,
+      "height": 414,
+      "scrollWidth": 412,
+      "clientWidth": 412
+    },
+    "afterCard": {
+      "x": 578,
+      "y": 162.25,
+      "right": 992,
+      "bottom": 604.75,
+      "width": 414,
+      "height": 442.5,
+      "scrollWidth": 412,
+      "clientWidth": 412
+    },
+    "canvasBefore": {
+      "x": 579,
+      "y": 176.5,
+      "right": 991,
+      "bottom": 588.5,
+      "width": 412,
+      "height": 412,
+      "scrollWidth": 412,
+      "clientWidth": 412,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "canvasAfter": {
+      "x": 579,
+      "y": 163.25,
+      "right": 991,
+      "bottom": 575.25,
+      "width": 412,
+      "height": 412,
+      "scrollWidth": 412,
+      "clientWidth": 412,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "primaryActions": [
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html",
+        "x": 32,
+        "y": 484,
+        "right": 198.1875,
+        "bottom": 528,
+        "width": 166.1875,
+        "height": 44,
+        "scrollWidth": 166,
+        "clientWidth": 166
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html",
+        "x": 210.1875,
+        "y": 483,
+        "right": 444.421875,
+        "bottom": 529,
+        "width": 234.234375,
+        "height": 46,
+        "scrollWidth": 232,
+        "clientWidth": 232
+      }
+    ]
+  },
+  {
+    "name": "1440-normal",
+    "beforeOverflow": 0,
+    "afterOverflow": 0,
+    "beforeCaptionClearance": -28.5,
+    "afterCaptionClearance": 0.0,
+    "beforeCard": {
+      "x": 792.390625,
+      "y": 146.6875,
+      "right": 1264,
+      "bottom": 618.296875,
+      "width": 471.609375,
+      "height": 471.609375,
+      "scrollWidth": 470,
+      "clientWidth": 470
+    },
+    "afterCard": {
+      "x": 792.390625,
+      "y": 140,
+      "right": 1264,
+      "bottom": 640.109375,
+      "width": 471.609375,
+      "height": 500.109375,
+      "scrollWidth": 470,
+      "clientWidth": 470
+    },
+    "canvasBefore": {
+      "x": 793.390625,
+      "y": 147.6875,
+      "right": 1263,
+      "bottom": 617.296875,
+      "width": 469.609375,
+      "height": 469.609375,
+      "scrollWidth": 470,
+      "clientWidth": 470,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "canvasAfter": {
+      "x": 793.390625,
+      "y": 141,
+      "right": 1263,
+      "bottom": 610.609375,
+      "width": 469.609375,
+      "height": 469.609375,
+      "scrollWidth": 470,
+      "clientWidth": 470,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "primaryActions": [
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html",
+        "x": 176,
+        "y": 490.546875,
+        "right": 342.1875,
+        "bottom": 534.546875,
+        "width": 166.1875,
+        "height": 44,
+        "scrollWidth": 166,
+        "clientWidth": 166
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html",
+        "x": 354.1875,
+        "y": 489.546875,
+        "right": 588.421875,
+        "bottom": 535.546875,
+        "width": 234.234375,
+        "height": 46,
+        "scrollWidth": 232,
+        "clientWidth": 232
+      }
+    ]
+  },
+  {
+    "name": "1920-normal",
+    "beforeOverflow": 0,
+    "afterOverflow": 0,
+    "beforeCaptionClearance": -28.5,
+    "afterCaptionClearance": 0.0,
+    "beforeCard": {
+      "x": 1032.390625,
+      "y": 146.6875,
+      "right": 1504,
+      "bottom": 618.296875,
+      "width": 471.609375,
+      "height": 471.609375,
+      "scrollWidth": 470,
+      "clientWidth": 470
+    },
+    "afterCard": {
+      "x": 1032.390625,
+      "y": 140,
+      "right": 1504,
+      "bottom": 640.109375,
+      "width": 471.609375,
+      "height": 500.109375,
+      "scrollWidth": 470,
+      "clientWidth": 470
+    },
+    "canvasBefore": {
+      "x": 1033.390625,
+      "y": 147.6875,
+      "right": 1503,
+      "bottom": 617.296875,
+      "width": 469.609375,
+      "height": 469.609375,
+      "scrollWidth": 470,
+      "clientWidth": 470,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "canvasAfter": {
+      "x": 1033.390625,
+      "y": 141,
+      "right": 1503,
+      "bottom": 610.609375,
+      "width": 469.609375,
+      "height": 469.609375,
+      "scrollWidth": 470,
+      "clientWidth": 470,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "primaryActions": [
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html",
+        "x": 416,
+        "y": 490.546875,
+        "right": 582.1875,
+        "bottom": 534.546875,
+        "width": 166.1875,
+        "height": 44,
+        "scrollWidth": 166,
+        "clientWidth": 166
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html",
+        "x": 594.1875,
+        "y": 489.546875,
+        "right": 828.421875,
+        "bottom": 535.546875,
+        "width": 234.234375,
+        "height": 46,
+        "scrollWidth": 232,
+        "clientWidth": 232
+      }
+    ]
+  },
+  {
+    "name": "320-text200",
+    "beforeOverflow": 201,
+    "afterOverflow": 0,
+    "beforeCaptionClearance": -90.0,
+    "afterCaptionClearance": 0.0,
+    "beforeCard": {
+      "x": 40,
+      "y": 2261.984375,
+      "right": 437.234375,
+      "bottom": 2659.21875,
+      "width": 397.234375,
+      "height": 397.234375,
+      "scrollWidth": 395,
+      "clientWidth": 395
+    },
+    "afterCard": {
+      "x": 40,
+      "y": 3294.078125,
+      "right": 280,
+      "bottom": 3690.078125,
+      "width": 240,
+      "height": 396,
+      "scrollWidth": 238,
+      "clientWidth": 238
+    },
+    "canvasBefore": {
+      "x": 41,
+      "y": 2262.984375,
+      "right": 436.234375,
+      "bottom": 2658.21875,
+      "width": 395.234375,
+      "height": 395.234375,
+      "scrollWidth": 395,
+      "clientWidth": 395,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "canvasAfter": {
+      "x": 41,
+      "y": 3295.078125,
+      "right": 279,
+      "bottom": 3533.078125,
+      "width": 238,
+      "height": 238,
+      "scrollWidth": 238,
+      "clientWidth": 238,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "primaryActions": [
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html",
+        "x": 40,
+        "y": 2396.078125,
+        "right": 280,
+        "bottom": 2532.078125,
+        "width": 240,
+        "height": 136,
+        "scrollWidth": 240,
+        "clientWidth": 240
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html",
+        "x": 40,
+        "y": 2556.078125,
+        "right": 280,
+        "bottom": 2790.078125,
+        "width": 240,
+        "height": 234,
+        "scrollWidth": 238,
+        "clientWidth": 238
+      }
+    ]
+  },
+  {
+    "name": "390-text200",
+    "beforeOverflow": 131,
+    "afterOverflow": 0,
+    "beforeCaptionClearance": -90.0,
+    "afterCaptionClearance": 0.0,
+    "beforeCard": {
+      "x": 40,
+      "y": 2261.984375,
+      "right": 437.234375,
+      "bottom": 2659.21875,
+      "width": 397.234375,
+      "height": 397.234375,
+      "scrollWidth": 395,
+      "clientWidth": 395
+    },
+    "afterCard": {
+      "x": 40,
+      "y": 2695.28125,
+      "right": 350,
+      "bottom": 3095.28125,
+      "width": 310,
+      "height": 400,
+      "scrollWidth": 308,
+      "clientWidth": 308
+    },
+    "canvasBefore": {
+      "x": 41,
+      "y": 2262.984375,
+      "right": 436.234375,
+      "bottom": 2658.21875,
+      "width": 395.234375,
+      "height": 395.234375,
+      "scrollWidth": 395,
+      "clientWidth": 395,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "canvasAfter": {
+      "x": 41,
+      "y": 2696.28125,
+      "right": 349,
+      "bottom": 3004.28125,
+      "width": 308,
+      "height": 308,
+      "scrollWidth": 308,
+      "clientWidth": 308,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "primaryActions": [
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html",
+        "x": 40,
+        "y": 1957.28125,
+        "right": 350,
+        "bottom": 2093.28125,
+        "width": 310,
+        "height": 136,
+        "scrollWidth": 310,
+        "clientWidth": 310
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html",
+        "x": 40,
+        "y": 2117.28125,
+        "right": 350,
+        "bottom": 2255.28125,
+        "width": 310,
+        "height": 138,
+        "scrollWidth": 308,
+        "clientWidth": 308
+      }
+    ]
+  },
+  {
+    "name": "1440-text200",
+    "beforeOverflow": 0,
+    "afterOverflow": 0,
+    "beforeCaptionClearance": -57.0,
+    "afterCaptionClearance": 0.0,
+    "beforeCard": {
+      "x": 821.59375,
+      "y": 696.296875,
+      "right": 1376,
+      "bottom": 1250.703125,
+      "width": 554.40625,
+      "height": 554.40625,
+      "scrollWidth": 552,
+      "clientWidth": 552
+    },
+    "afterCard": {
+      "x": 821.59375,
+      "y": 682.296875,
+      "right": 1376,
+      "bottom": 1293.703125,
+      "width": 554.40625,
+      "height": 611.40625,
+      "scrollWidth": 552,
+      "clientWidth": 552
+    },
+    "canvasBefore": {
+      "x": 822.59375,
+      "y": 697.296875,
+      "right": 1375,
+      "bottom": 1249.703125,
+      "width": 552.40625,
+      "height": 552.40625,
+      "scrollWidth": 552,
+      "clientWidth": 552,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "canvasAfter": {
+      "x": 822.59375,
+      "y": 683.296875,
+      "right": 1375,
+      "bottom": 1235.703125,
+      "width": 552.40625,
+      "height": 552.40625,
+      "scrollWidth": 552,
+      "clientWidth": 552,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "primaryActions": [
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html",
+        "x": 64,
+        "y": 1241,
+        "right": 396.359375,
+        "bottom": 1329,
+        "width": 332.359375,
+        "height": 88,
+        "scrollWidth": 332,
+        "clientWidth": 332
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html",
+        "x": 64,
+        "y": 1353,
+        "right": 530.453125,
+        "bottom": 1443,
+        "width": 466.453125,
+        "height": 90,
+        "scrollWidth": 464,
+        "clientWidth": 464
+      }
+    ]
+  },
+  {
+    "name": "390-reduced",
+    "beforeOverflow": 0,
+    "afterOverflow": 0,
+    "beforeCaptionClearance": -28.5,
+    "afterCaptionClearance": 0.0,
+    "beforeCard": {
+      "x": 20,
+      "y": 810.671875,
+      "right": 370,
+      "bottom": 1160.671875,
+      "width": 350,
+      "height": 350,
+      "scrollWidth": 348,
+      "clientWidth": 348
+    },
+    "afterCard": {
+      "x": 20,
+      "y": 826.671875,
+      "right": 370,
+      "bottom": 1205.171875,
+      "width": 350,
+      "height": 378.5,
+      "scrollWidth": 348,
+      "clientWidth": 348
+    },
+    "canvasBefore": {
+      "x": 21,
+      "y": 811.671875,
+      "right": 369,
+      "bottom": 1159.671875,
+      "width": 348,
+      "height": 348,
+      "scrollWidth": 348,
+      "clientWidth": 348,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "canvasAfter": {
+      "x": 21,
+      "y": 827.671875,
+      "right": 369,
+      "bottom": 1175.671875,
+      "width": 348,
+      "height": 348,
+      "scrollWidth": 348,
+      "clientWidth": 348,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "primaryActions": [
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html",
+        "x": 20,
+        "y": 558.671875,
+        "right": 186.1875,
+        "bottom": 602.671875,
+        "width": 166.1875,
+        "height": 44,
+        "scrollWidth": 166,
+        "clientWidth": 166
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html",
+        "x": 20,
+        "y": 614.671875,
+        "right": 254.234375,
+        "bottom": 660.671875,
+        "width": 234.234375,
+        "height": 46,
+        "scrollWidth": 232,
+        "clientWidth": 232
+      }
+    ]
+  },
+  {
+    "name": "1440-reduced",
+    "beforeOverflow": 0,
+    "afterOverflow": 0,
+    "beforeCaptionClearance": -28.5,
+    "afterCaptionClearance": 0.0,
+    "beforeCard": {
+      "x": 792.390625,
+      "y": 146.6875,
+      "right": 1264,
+      "bottom": 618.296875,
+      "width": 471.609375,
+      "height": 471.609375,
+      "scrollWidth": 470,
+      "clientWidth": 470
+    },
+    "afterCard": {
+      "x": 792.390625,
+      "y": 140,
+      "right": 1264,
+      "bottom": 640.109375,
+      "width": 471.609375,
+      "height": 500.109375,
+      "scrollWidth": 470,
+      "clientWidth": 470
+    },
+    "canvasBefore": {
+      "x": 793.390625,
+      "y": 147.6875,
+      "right": 1263,
+      "bottom": 617.296875,
+      "width": 469.609375,
+      "height": 469.609375,
+      "scrollWidth": 470,
+      "clientWidth": 470,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "canvasAfter": {
+      "x": 793.390625,
+      "y": 141,
+      "right": 1263,
+      "bottom": 610.609375,
+      "width": 469.609375,
+      "height": 469.609375,
+      "scrollWidth": 470,
+      "clientWidth": 470,
+      "intrinsicWidth": 560,
+      "intrinsicHeight": 560
+    },
+    "primaryActions": [
+      {
+        "text": "Open the coach",
+        "href": "/apps/chrome-extension/sidepanel.html",
+        "x": 176,
+        "y": 490.546875,
+        "right": 342.1875,
+        "bottom": 534.546875,
+        "width": 166.1875,
+        "height": 44,
+        "scrollWidth": 166,
+        "clientWidth": 166
+      },
+      {
+        "text": "Watch a real comparison",
+        "href": "/studio.html",
+        "x": 354.1875,
+        "y": 489.546875,
+        "right": 588.421875,
+        "bottom": 535.546875,
+        "width": 234.234375,
+        "height": 46,
+        "scrollWidth": 232,
+        "clientWidth": 232
+      }
+    ]
+  }
+]

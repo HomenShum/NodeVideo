@@ -1,0 +1,371 @@
+[
+  {
+    "name": "local frozen base and branch exact",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "one owner raw freeze exact",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "all source path sets exact",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "all 2305 protected tracked files unchanged",
+    "passed": true,
+    "details": {
+      "changed": [
+        "apps/landing/src/landing.tsx"
+      ],
+      "protected": 2305
+    }
+  },
+  {
+    "name": "actual checked and observed source matches current",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "before owner exact raw Git object and preserved copy",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "after owner exact preserved copy",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "actual diff exact frozen diff",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "actual working diff only approved owner",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "clocks drawing and intrinsic canvas owner unchanged",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "cards footer root mount unchanged",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "all semantic JSX unchanged beyond approved wrapper",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "330 artifact manifest identity",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "every 330 frozen raw artifact exact",
+    "passed": true,
+    "details": []
+  },
+  {
+    "name": "actual normal check success and raw log binding",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "actual aggregate 353 tests 74 files",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "actual unchanged normal pipeline completed",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "nine existing clock scenarios remain collected by ordinary suite",
+    "passed": true,
+    "details": {
+      "limit": "Actual normal output is aggregate, not per-test case names. Inclusion is supported by exact existing test/config source and unchanged normal Vitest collection, not an invented individual test log."
+    }
+  },
+  {
+    "name": "after wrapper raw receipt accepts complete observation",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1329 actual dist exact successful check entry exit current",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "executed corrected scripts exact",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "complete raw before and after matrices no reported errors",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "all 108 before and 113 after PNG captures present",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "320-normal preserves exact text and ten links",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "320-normal fits text and separates caption",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "320-normal retains eight counts and intrinsic canvas",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "360-normal preserves exact text and ten links",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "360-normal fits text and separates caption",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "360-normal retains eight counts and intrinsic canvas",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "390-normal preserves exact text and ten links",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "390-normal fits text and separates caption",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "390-normal retains eight counts and intrinsic canvas",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "768-normal preserves exact text and ten links",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "768-normal fits text and separates caption",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "768-normal retains eight counts and intrinsic canvas",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1024-normal preserves exact text and ten links",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1024-normal fits text and separates caption",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1024-normal retains eight counts and intrinsic canvas",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1440-normal preserves exact text and ten links",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1440-normal fits text and separates caption",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1440-normal retains eight counts and intrinsic canvas",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1920-normal preserves exact text and ten links",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1920-normal fits text and separates caption",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1920-normal retains eight counts and intrinsic canvas",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "320-text200 preserves exact text and ten links",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "320-text200 fits text and separates caption",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "320-text200 retains eight counts and intrinsic canvas",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "320-text200 every original computed font settles including root",
+    "passed": true,
+    "details": {
+      "beforeTargets": 85,
+      "afterTargets": 86,
+      "note": "One new DIV wrapper accounts for the additional DOM font target; existing non-DIV target sequence is exact."
+    }
+  },
+  {
+    "name": "390-text200 preserves exact text and ten links",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "390-text200 fits text and separates caption",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "390-text200 retains eight counts and intrinsic canvas",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "390-text200 every original computed font settles including root",
+    "passed": true,
+    "details": {
+      "beforeTargets": 85,
+      "afterTargets": 86,
+      "note": "One new DIV wrapper accounts for the additional DOM font target; existing non-DIV target sequence is exact."
+    }
+  },
+  {
+    "name": "1440-text200 preserves exact text and ten links",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1440-text200 fits text and separates caption",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1440-text200 retains eight counts and intrinsic canvas",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1440-text200 every original computed font settles including root",
+    "passed": true,
+    "details": {
+      "beforeTargets": 85,
+      "afterTargets": 86,
+      "note": "One new DIV wrapper accounts for the additional DOM font target; existing non-DIV target sequence is exact."
+    }
+  },
+  {
+    "name": "390-reduced preserves exact text and ten links",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "390-reduced fits text and separates caption",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "390-reduced retains eight counts and intrinsic canvas",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1440-reduced preserves exact text and ten links",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1440-reduced fits text and separates caption",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1440-reduced retains eight counts and intrinsic canvas",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "390-normal all ten native keyboard links exact and within viewport",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "390-normal actual native destination signals",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1440-normal all ten native keyboard links exact and within viewport",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "1440-normal actual native destination signals",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "initial quoted-launch failure retained",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "before final dist equals preceding build without retroactive entry claim",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "owned observation port released",
+    "passed": true,
+    "details": null
+  },
+  {
+    "name": "source index refs status guard closed",
+    "passed": true,
+    "details": null
+  }
+]

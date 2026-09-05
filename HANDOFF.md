@@ -55,19 +55,20 @@ their original FAILED/PASS status; publication does not regenerate or reinterpre
 
 The [44-criterion assessment](evidence/current-consumer-20260905/raw/E6i_NODEVIDEO_CRITERION_ASSESSMENT.md.txt)
 records 11 scoped observed deductions and 33 NOT_RUN criteria. All eight dimension scores and the
-overall grade stay null. It identifies enlarged-phone content preservation as the next priority;
+overall grade stay null. It identifies the original enlarged-phone content loss; the separate reflow supplement below records its later repair;
 its ratings cover the retained observations, not a full accessibility or user-readiness result.
 
 - Ordinary local install and the reviewed lint/conformance changes passed their named checks.
   The reusable workflow still uses its original pinned revision, with the canonical NodeKit
   repository name. PR46 and exact merged1417d325 main CI passed; public bootstrap identity was
-  separately observed. The dependency follow-on below needs its own shared checks.
+  separately observed. The dependency follow-on below passed its own shared checks in PR47.
 - The original inspector/editor proof covered seven exact viewport pairs. The landing follow-up
   covered 320×800, 390×844 and 1440×960 in normal/reduced/computed-text200 modes. All full visual,
   interaction, responsive, accessibility, device and performance grades remain unassigned.
 - The landing startup exception is repaired in the tested local build. Intermittent tracking
-  gaps remain; continuous tracking is not claimed. Computed-text doubling exposes 201px/131px
-  phone overflow and cropped count/canvas/provenance at 320/390. It is not native browser zoom.
+  gaps remain; continuous tracking is not claimed. The original computed-text doubling exposed 201px/131px
+  phone overflow at 320/390. The later landing reflow below fixes those tested conditions. Neither
+  observation substitutes for native browser zoom.
   The earlier editor evidence also retains caption/player overlap, compact clipping and native
   waiting spinners; seek identity does not prove smooth playback.
 - The unchanged dependency audit recorded 13 total findings (7 high, 6 moderate), including
@@ -100,7 +101,7 @@ No timeout, rule, package, dependency, runtime owner or assertion was weakened.
 Run `npm run test -- tests/unit/landing-clock.test.ts` for the focused regression, then normal
 `npm run check`. No new production export, dependency, package command or clock service is needed.
 The clock/handoff merge passed its actual shared checks; the dependency follow-on below has
-separate local evidence and must receive its own shared checks.
+separate local evidence and passed its own shared checks in PR47.
 
 
 ## Reviewed dependency patch
@@ -117,4 +118,20 @@ under both old and patched dependencies. That preexisting component failure rema
 the patch neither claims a correct error transition nor changes the generated renderer.
 
 PR46's main tests and public bootstrap identity are independently recorded in the patch packet.
-They apply to merged1417d325, not this later lock change. Current patch shared checks remain pending.
+They apply to merged1417d325, not this later lock change. PR47 passed 353 unit tests, 175 browser cases with 25 explicit skips, and a successful one-commit secret scan, then merged normally as 4a96473. These shared results concern the dependency patch; the following layout repair has its own local proof.
+
+
+## Landing text enlargement and keyboard handoff
+
+The [landing reflow supplement](evidence/landing-reflow-20260905/README.md) records twelve actual
+before/after conditions: all seven viewport pairs, enlarged computed text at 320/390/1440 and
+reduced motion. Header/count rows wrap, long action labels can grow vertically, and the unchanged
+pose canvas has a separate caption below it. All tested after cells have zero horizontal text loss.
+Both 390 and 1440 keyboard journeys traverse all ten links and open Studio and the agent contract.
+
+The normal local check passes 353 tests / 74 files in 65.687 seconds. The supplement preserves
+failed recorder setup and its corrected error/build-binding checks. It is a separate local source
+proof; current layout shared checks and production interactions are not claimed here. Other app
+panels, full quality dimensions, physical devices and native zoom remain unverified.
+
+The existing malformed diagram update has a separate [tracked repair with reproduction and acceptance checks](https://github.com/HomenShum/NodeVideo/issues/48).

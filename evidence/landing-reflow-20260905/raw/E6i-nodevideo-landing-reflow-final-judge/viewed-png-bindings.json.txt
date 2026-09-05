@@ -1,0 +1,62 @@
+[
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-before-pixels\\1440-normal-full.png",
+    "sha256": "1faaee0ac5d5cf9f7c0086a46e8d51c0817e94199dc5fad43dc2d5b34c697bf9",
+    "observation": "Actual PNG viewed."
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-after-pixels\\1440-normal-full.png",
+    "sha256": "b6705be32bb26d807b1d4ced25fed75a802ad9ff7f8018162b30fc287b38502c",
+    "observation": "Actual PNG viewed."
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-after-pixels\\320-text200-caption.png",
+    "sha256": "3411bff43ace65096fea96208db4ebfd1fa8a1377b5f396bd39bd655b6f7635c",
+    "observation": "Actual PNG viewed."
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-after-pixels\\390-text200-segment-0.png",
+    "sha256": "ff1990d9a8c4b944a1bc0676273cb6bf1c88715b22aa13c54c4a4bf26c863da8",
+    "observation": "Actual PNG viewed."
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-after-pixels\\390-text200-caption.png",
+    "sha256": "e3c271a85828b485d13ae8e91d70475cde3ab93fb9e975852ba49563a1422262",
+    "observation": "Actual PNG viewed."
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-after-pixels\\1440-text200-caption.png",
+    "sha256": "dc5a7312c3a1b380a92bc5b463847381a38cc826357788d34d9b039eb9ce9771",
+    "observation": "Actual PNG viewed."
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-after-pixels\\320-text200-segment-3.png",
+    "sha256": "6d1b760e1256b214b44282cc663f93f0dd041ab633e7c301b4935970f6dd0f41",
+    "observation": "Actual PNG viewed."
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-after-pixels\\320-text200-segment-4.png",
+    "sha256": "6eeb4f5bd06146ec4bcf609e9355a9ae9988a95ebbaa37d0c57d46d04e32d73e",
+    "observation": "Actual PNG viewed."
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-after-pixels\\390-text200-segment-3.png",
+    "sha256": "67f154e286600ca30eb8ac712698d54747ae734a005c4b98934575604d347541",
+    "observation": "Actual PNG viewed."
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-after-pixels\\390-normal-focus-9.png",
+    "sha256": "3b5c42195ffeb27a6ec9ee0c60261cb4ab9113376d7a75517df3edb14c95da46",
+    "observation": "Actual PNG viewed."
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-after-pixels\\320-normal-full.png",
+    "sha256": "2cc36331d290d9f729f6cd23febf1e4522a5beeaaa4d4241e93e98af96edecb4",
+    "observation": "Actual PNG viewed. Full 320 normal image was displayed downscaled from 320x3113 to 211x2048, used only for overall arrangement; detailed legibility assessed from unscaled viewport captures."
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-after-pixels\\1024-normal-full.png",
+    "sha256": "39bf322742088d7cd85547f2a74b405e3d1ca6e7e4a635852ad270ae2e615a32",
+    "observation": "Actual PNG viewed."
+  }
+]

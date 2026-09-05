@@ -1,0 +1,63 @@
+{
+  "mode": "Builder",
+  "status": "CORRECTIONS_REQUIRED_BEFORE_PRODUCT_EDIT_OR_AFTER_CERTIFICATION",
+  "scope": "Read-only recorder/controller preparation review, no execution and no product edit. Root is preserving the already-running baseline attempt separately.",
+  "inputBindings": [
+    {
+      "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-observe-landing-reflow.mjs",
+      "snapshot": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-recorder-review-01\\E6i-observe-landing-reflow.mjs.txt",
+      "bytes": 10258,
+      "sha256": "d0497419c662d5d9b926a60d571ccb205ac1861ff229232ff96cc56ee664298f"
+    },
+    {
+      "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-run-landing-reflow.py",
+      "snapshot": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-recorder-review-01\\E6i-run-landing-reflow.py.txt",
+      "bytes": 4212,
+      "sha256": "b0485a19cb70decbee68cf032b21c2c1731a9c314a471ca4e31982e541b4ec5e"
+    }
+  ],
+  "findings": [
+    {
+      "id": "FAILURE_PROPAGATION",
+      "severity": "blocking_proof",
+      "path": "E6i-observe-landing-reflow.mjs",
+      "lines": [
+        125,
+        132,
+        135
+      ],
+      "cause": "Only the catch block sets process.exitCode. Page, console, response, request, or blocked-egress errors can produce a FAIL_RETAINED receipt with process exit 0. Controller currently uses command exit and source/Git guards, so it can label that failed observation PASS.",
+      "minimumCorrection": "Before reporting, enforce 12 complete cells and 2 complete keyboard journeys; propagate any recorded error to nonzero process exit; controller must independently inspect the raw browser receipt status/errors/completion for observation phases."
+    },
+    {
+      "id": "DIST_ENTRY_CUSTODY",
+      "severity": "blocking_proof",
+      "path": "E6i-run-landing-reflow.py",
+      "lines": [
+        53,
+        55
+      ],
+      "cause": "The controller hashes dist only after observation; it does not establish the exact prior successful build/check as the served input or verify entry/exit equality.",
+      "minimumCorrection": "For before-observe bind exact before-build dist; for after-observe bind exact after-check dist. Hash all entry paths before browser launch, compare expected bytes/path set, then hash exit paths and require equality. Build/check phases may produce dist and retain their successful bindings."
+    }
+  ],
+  "acceptedObservedDesign": [
+    "Fresh isolated browser context for each of 12 explicit cells, one viewport at a time; all non-local egress blocked and recorded.",
+    "All initial computed font targets including root are captured before setting styles, with an explicit per-target settled-size wait.",
+    "After captures compare ten text/href pairs and all eight count labels, 560x560 intrinsic canvas, document overflow, text ranges outside viewport, caption below canvas and contained by card.",
+    "Full page plus bounded scroll-segment captures and dedicated caption/canvas captures are retained; actual pixels still require reviewer inspection.",
+    "Two real 10-link Tab sequences, focused-anchor viewport containment, and native Studio/agent-contract Enter navigation are bounded to local read surfaces.",
+    "300-second process budget, bounded 512-entry descendant identity map, owned PID creation-time checks on timeout, service workers blocked, named provider environment removed."
+  ],
+  "limits": [
+    "Range checks detect horizontal document escape, not every clipping ancestor, text contrast, occlusion or actual canvas paint. Manual inspection of saved pixels remains required; no geometry-only visual pass.",
+    "Studio text length and parsed agent JSON prove limited destination presence; final review must inspect actual saved destination content. Neither assertion certifies full Studio workflow or capability schema.",
+    "Reduced-motion/all-element font doubling is emulation, not physical phone or native browser zoom.",
+    "The original quoting/controller failure happened before browser launch; parent reports an already-running -02 direct-argv controller. This review does not relabel that earlier raw failure or certify its in-progress completion.",
+    "Parent must preserve exact executed recorder/controller versions. Current recorded files are reviewer snapshots; the active attempt attribution comes from its separate retained launcher and raw receipt."
+  ],
+  "rootAcknowledgment": "Parent accepted failure propagation, completion counts and entry/exit dist binding before any product edit or after run. Current baseline remains historical observation until raw receipt is reviewed.",
+  "browserRunsByReviewer": 0,
+  "sourceEditsByReviewer": 0,
+  "grades": null
+}

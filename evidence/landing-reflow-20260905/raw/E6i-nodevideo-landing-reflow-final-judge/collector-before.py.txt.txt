@@ -1,0 +1,115 @@
+from pathlib import Path
+import hashlib, json, re, subprocess
+import psutil
+
+P=Path(__file__).parent
+R=Path('D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905')
+O=P/'E6i-nodevideo-landing-reflow-final-judge'
+O.mkdir(exist_ok=False)
+F=P/'E6i_NODEVIDEO_LANDING_REFLOW_FREEZE.json'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def read(p):return json.loads(p.read_text(encoding='utf-8'))
+def write(p,v):p.write_text(json.dumps(v,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+def git(*args):return subprocess.check_output(['git','--no-optional-locks',*args],cwd=R)
+checks=[]
+def ck(name,passed,details=None):checks.append({'name':name,'passed':bool(passed),'details':details})
+def guard():return {k:git(*v).decode('utf-8') for k,v in {'head':('rev-parse','HEAD'),'branch':('branch','--show-current'),'index':('ls-files','--stage'),'status':('status','--porcelain=v1','--untracked-files=all'),'refs':('show-ref',)}.items()}
+g0=guard();write(O/'git-before.json',g0)
+freeze=read(F);owner=R/freeze['owner']['path'];owner_start=sha(owner)
+ck('local frozen base and branch exact',g0['head'].strip()==freeze['base'] and g0['branch'].strip()=='codex/nodevideo-landing-reflow-20260905')
+ck('one owner raw freeze exact',owner.stat().st_size==freeze['owner']['bytes'] and owner_start==freeze['owner']['sha256'])
+source_before=read(P/'E6i-nodevideo-landing-reflow-before-build/source-bindings.json')
+source_check=read(P/'E6i-nodevideo-landing-reflow-after-check/source-bindings.json')
+source_observe=read(P/'E6i-nodevideo-landing-reflow-after-observe/source-bindings.json')
+ck('all source path sets exact',len(source_before)==len(source_check)==len(source_observe)==2306 and {x['path'] for x in source_before}=={x['path'] for x in source_check}==set(git('ls-files','-z').decode().rstrip('\0').split('\0')))
+current=[{'path':x['path'],'bytes':(R/x['path']).stat().st_size,'sha256':sha(R/x['path'])} for x in source_before]
+write(O/'current-source-bindings.json',current)
+now={x['path']:x for x in current}
+changed=[x['path'] for x in source_before if x!=now[x['path']]]
+ck('all 2305 protected tracked files unchanged',changed==[freeze['owner']['path']],{'changed':changed,'protected':2305})
+ck('actual checked and observed source matches current',source_check==source_observe==current)
+old=git('show','HEAD:'+freeze['owner']['path']).decode('utf-8');new=owner.read_text(encoding='utf-8')
+ck('before owner exact raw Git object and preserved copy',old.encode()==(P/'E6i-nodevideo-landing-reflow-freeze-01/owner-before.tsx.txt').read_bytes())
+ck('after owner exact preserved copy',owner.read_bytes()==(P/'E6i-nodevideo-landing-reflow-freeze-01/owner-after.tsx.txt').read_bytes())
+actual_diff=git('diff','--',freeze['owner']['path']);(O/'actual-owner.diff.txt').write_bytes(actual_diff)
+ck('actual diff exact frozen diff',actual_diff==(P/'E6i-nodevideo-landing-reflow-freeze-01/owner.diff.txt').read_bytes())
+ck('actual working diff only approved owner',git('diff','--name-only').decode().splitlines()==[freeze['owner']['path']])
+ck('clocks drawing and intrinsic canvas owner unchanged',old.split('function Landing()')[0]==new.split('function Landing()')[0])
+tail='<section className="space-y-4 border-t border-border py-12">'
+ck('cards footer root mount unchanged',old[old.index(tail):]==new[new.index(tail):])
+sub=new.replace('<div className="aspect-square">\n            <SkeletonHero reduced={reduced} />\n          </div>','<SkeletonHero reduced={reduced} />')
+strip=lambda s:re.sub(r'\s+',' ',re.sub(r' className="[^"]*"','',s)).strip()
+ck('all semantic JSX unchanged beyond approved wrapper',strip(old)==strip(sub))
+manifest_path=P/freeze['artifactManifest']['path'];manifest=read(manifest_path)
+ck('330 artifact manifest identity',len(manifest)==330 and sha(manifest_path)==freeze['artifactManifest']['sha256'])
+artifact_failures=[x['path'] for x in manifest if not (P/x['path']).is_file() or (P/x['path']).stat().st_size!=x['bytes'] or sha(P/x['path'])!=x['sha256']]
+ck('every 330 frozen raw artifact exact',not artifact_failures,artifact_failures)
+check_dir=P/'E6i-nodevideo-landing-reflow-after-check';obs_dir=P/'E6i-nodevideo-landing-reflow-after-observe'
+gate=read(check_dir/'receipt.json');obs=read(obs_dir/'receipt.json');log=(check_dir/'command.log').read_text(encoding='utf-8')
+ck('actual normal check success and raw log binding',gate['status']=='PASS' and gate['exitCode']==0 and gate['command']=='npm run check' and gate['logSha256']==sha(check_dir/'command.log')==freeze['normalCheck']['logSha256'])
+ck('actual aggregate 353 tests 74 files',bool(re.search(r'Test Files\s+74 passed \(74\)',log)) and bool(re.search(r'Tests\s+353 passed \(353\)',log)))
+ck('actual unchanged normal pipeline completed',all(x in log for x in ['biome check .','tsc --noEmit','vitest run','PASS: no primitive-first policy regression detected.','PASS: UI code did not exceed the final budgets.','UI contract verified: rendered UI matches .ui/contract.json']))
+test=R/'tests/unit/landing-clock.test.ts';test_text=test.read_text(encoding='utf-8');cfg=(R/'vite.config.ts').read_text(encoding='utf-8')
+ck('nine existing clock scenarios remain collected by ordinary suite',sha(test)==next(x['sha256'] for x in source_before if x['path']=='tests/unit/landing-clock.test.ts') and len(re.findall(r"name: '",test_text))==9 and 'it(scenario.name' in test_text and 'it.skip' not in test_text and "exclude: ['tests/e2e/**', '.qa/cache/**', '**/node_modules/**', '**/dist/**']" in cfg),{'limit':'Actual normal output is aggregate, not per-test case names. Inclusion is supported by exact existing test/config source and unchanged normal Vitest collection, not an invented individual test log.'})
+ck('after wrapper raw receipt accepts complete observation',obs['status']=='PASS' and obs['exitCode']==0 and obs['observationAccepted'] and obs['distEntryExitUnchanged'] and obs['logSha256']==sha(obs_dir/'command.log'))
+dist_expected=read(check_dir/'dist-bindings.json');dist_entry=read(obs_dir/'dist-before.json');dist_exit=read(obs_dir/'dist-bindings.json')
+dist_current=[{'path':x.relative_to(R).as_posix(),'bytes':x.stat().st_size,'sha256':sha(x)} for x in sorted((R/'dist').rglob('*')) if x.is_file()]
+write(O/'current-dist-bindings.json',dist_current)
+ck('1329 actual dist exact successful check entry exit current',len(dist_expected)==1329 and dist_expected==dist_entry==dist_exit==dist_current)
+ck('executed corrected scripts exact',sha(obs_dir/'recorder.mjs.txt')==sha(P/'E6i-observe-landing-reflow.mjs')=='85f18003c5d00afed3ceb98647a36c171050d51b4085f0ea2d1bbe7eb09b5bbf' and sha(obs_dir/'controller.py.txt')==sha(P/'E6i-run-landing-reflow.py')=='2cbc52ce1797589a6b7495c5759157e83f5bd016aa7d25987b29f7902485d35a')
+before_dir=P/'E6i-nodevideo-landing-reflow-before-pixels';after_dir=P/'E6i-nodevideo-landing-reflow-after-pixels';br=read(before_dir/'receipt.json');ar=read(after_dir/'receipt.json')
+ck('complete raw before and after matrices no reported errors',len(br['cells'])==len(ar['cells'])==12 and len(br['interactions'])==len(ar['interactions'])==2 and br['errors']==ar['errors']==[])
+ck('all 108 before and 113 after PNG captures present',len(br['captures'])==len(set(br['captures']))==108 and len(ar['captures'])==len(set(ar['captures']))==113 and all((before_dir/x).is_file() for x in br['captures']) and all((after_dir/x).is_file() for x in ar['captures']))
+summaries=[]
+for s in ar['cells']:
+ name=s['name'];b=read(before_dir/(name+'.json'));a=read(after_dir/(name+'.json'))
+ ck(name+' preserves exact text and ten links',a['bodyText']==b['bodyText'] and len(a['links'])==10 and [(x['text'],x['href']) for x in a['links']]==[(x['text'],x['href']) for x in b['links']])
+ ck(name+' fits text and separates caption',a['overflow']==0 and a['textOutsideViewport']==[] and a['caption']['y']==a['canvas']['bottom'] and a['caption']['bottom']<=a['card']['bottom']+.5)
+ ck(name+' retains eight counts and intrinsic canvas',a['counts']==['1','2','3','4','5','6','7','8'] and a['canvas']['intrinsicWidth']==a['canvas']['intrinsicHeight']==560)
+ if name.endswith('text200'):
+  fonts=read(after_dir/(name+'-fonts.json'));bf=read(before_dir/(name+'-fonts.json'))
+  ck(name+' every original computed font settles including root',fonts[0]['tag']=='HTML' and all(abs(x['after']-2*x['before'])<.001 for x in fonts) and [(x['tag'],x['before']) for x in fonts if x['tag']!='DIV']==[(x['tag'],x['before']) for x in bf if x['tag']!='DIV'],{'beforeTargets':len(bf),'afterTargets':len(fonts),'note':'One new DIV wrapper accounts for the additional DOM font target; existing non-DIV target sequence is exact.'})
+ summaries.append({'name':name,'beforeOverflow':b['overflow'],'afterOverflow':a['overflow'],'beforeCaptionClearance':b['caption']['y']-b['canvas']['bottom'],'afterCaptionClearance':a['caption']['y']-a['canvas']['bottom'],'beforeCard':b['card'],'afterCard':a['card'],'canvasBefore':b['canvas'],'canvasAfter':a['canvas'],'primaryActions':a['links'][2:4]})
+for x in ar['interactions']:
+ name=x['cell'];width=int(name.split('-')[0]);state=read(after_dir/(name+'.json'));height=state['viewport']['height']
+ ck(name+' all ten native keyboard links exact and within viewport',len(x['focused'])==10 and [y['href'] for y in x['focused']]==[y['href'] for y in state['links']] and all(y['tag']=='A' and y['x']>=-.5 and y['right']<=width+.5 and y['top']>=-.5 and y['bottom']<=height+.5 for y in x['focused']))
+ dest=read(after_dir/(name+'-studio-destination.json'));contract=read(after_dir/(name+'-agent-contract.json'))
+ ck(name+' actual native destination signals',dest['url']=='http://127.0.0.1:4995/studio.html' and 'Source-only calibration' in dest['text'] and contract['schemaVersion']=='nodevideo.ui-contract.v1' and contract==json.loads((R/'dist/.well-known/agent-ui.json').read_text(encoding='utf-8')))
+ck('initial quoted-launch failure retained',read(P/'E6i-nodevideo-landing-reflow-before-observe/receipt.json')['status']=='FAIL' and 'MODULE_NOT_FOUND' in (P/'E6i-nodevideo-landing-reflow-before-observe/command.log').read_text(encoding='utf-8'))
+ck('before final dist equals preceding build without retroactive entry claim',read(P/'E6i-nodevideo-landing-reflow-before-build/dist-bindings.json')==read(P/'E6i-nodevideo-landing-reflow-before-observe-02/dist-bindings.json') and not (P/'E6i-nodevideo-landing-reflow-before-observe-02/dist-before.json').exists())
+ck('owned observation port released',not any(x.status==psutil.CONN_LISTEN and x.laddr.port==4995 for x in psutil.net_connections(kind='tcp')))
+g1=guard();write(O/'git-after.json',g1)
+ck('source index refs status guard closed',g0==g1 and owner_start==sha(owner))
+write(O/'checks.json',checks);write(O/'matrix-summary.json',summaries)
+viewed=['before-pixels/1440-normal-full.png','after-pixels/1440-normal-full.png','after-pixels/320-text200-caption.png','after-pixels/390-text200-segment-0.png','after-pixels/390-text200-caption.png','after-pixels/1440-text200-caption.png','after-pixels/320-text200-segment-3.png','after-pixels/320-text200-segment-4.png','after-pixels/390-text200-segment-3.png','after-pixels/390-normal-focus-9.png','after-pixels/320-normal-full.png','after-pixels/1024-normal-full.png']
+write(O/'viewed-png-bindings.json',[{'path':str(P/('E6i-nodevideo-landing-reflow-'+x)),'sha256':sha(P/('E6i-nodevideo-landing-reflow-'+x)),'observation':'Actual PNG viewed. Full 320 normal image was displayed downscaled from 320x3113 to 211x2048, used only for overall arrangement; detailed legibility assessed from unscaled viewport captures.' if x.endswith('320-normal-full.png') else 'Actual PNG viewed.'} for x in viewed])
+assert all(x['passed'] for x in checks),[x for x in checks if not x['passed']]
+evidence=[F,manifest_path,P/'E6i_NODEVIDEO_LANDING_REFLOW_PLAN_JUDGE.json',P/'E6i_NODEVIDEO_LANDING_REFLOW_CAPTION_PLAN_ADDENDUM.json',P/'E6i_NODEVIDEO_LANDING_REFLOW_RECORDER_CORRECTION_JUDGE.json',P/'REPO_READINESS_STANDARD.md',P/'E6i_NODEVIDEO_CRITERION_ASSESSMENT.json',Path(__file__)]
+write(O/'input-bindings.json',[{'path':str(x),'bytes':x.stat().st_size,'sha256':sha(x)} for x in evidence])
+criterionObservations=[
+ {'id':'R1','criterion':'Reflow/content preservation','status':'LANDING_SCOPED_FAILURE_CLOSED','observation':'Existing phone text200 overflow201/131 is now zero; twelve cells retain exact complete text and links. Original 320 emergency word wrapping remains visible.','numericRating':None,'remaining':'Native zoom, physical devices and declared-locale coverage not measured; do not extrapolate to other routes.'},
+ {'id':'R2','criterion':'Reachability of navigation and primary actions','status':'LANDING_SCOPED_OBSERVATION_PASS','observation':'Ten-link native Tab order and two local Enter destinations succeed at390/1440; phone text200 actions/nav are visible in scroll captures.','numericRating':None,'remaining':'Existing compact editor accepted-clip discovery deduction is unchanged; physical touch/keyboard not tested.'},
+ {'id':'R3','criterion':'Modal/panel/table/canvas adaptation','status':'LANDING_SCOPED_FAILURE_CLOSED','observation':'Caption begins exactly below canvas in all12cells and is visibly separate on320/390/1440. Normal1440 card is28.5px taller with6.6875px upward top shift; arrangement remains coherent.','numericRating':None,'remaining':'Existing enlarged editor player/caption overlap and other panel coverage remain held.'},
+ {'id':'A4','criterion':'Text resize/reflow and target size','status':'LANDING_COMPUTED_TEXT_REFLOW_OBSERVED','observation':'All initial computed fonts includingHTML double and settle. Primary actions expand vertically while keeping labels.','numericRating':None,'remaining':'This is not native browser zoom, a WCAG target-size audit or assistive technology certification; existing editor deduction remains.'},
+ {'id':'V5','criterion':'Rendered legibility/contrast','status':'LANDING_TEXT_CLIPPING_DEDUCTION_RESOLVED_IN_OBSERVED_SCOPE','observation':'Phone counts/provenance and full labels are readable in actual viewport PNGs;320 emergency wrapping splits some words and page grows vertically.','numericRating':None,'remaining':'No new contrast measurements, physical-device or human taste evidence. Full V5 and prior editor legibility holds are unresolved.'}
+]
+data={'mode':'Builder','namedProof':freeze['namedProof'],'verdict':'APPROVED_LOCAL_ONE_OWNER_LANDING_REFLOW_WITH_SCOPED_LIMITS','reviewer':'Reused independent reviewer context; no product implementation involvement. Reviewer previously assessed plan/caption probe and authored the separate historical criterion assessment.','source':{'candidate':str(R),'base':freeze['base'],'branch':g0['branch'].strip(),'owner':freeze['owner'],'protectedTrackedFiles':2305,'sourceFiles':2306,'indexAndRefsUnchangedDuringReview':True,'guard':'CLOSED'},'checks':{'passed':len(checks),'total':len(checks),'raw':str(O/'checks.json')},'artifacts':{'operatorManifestSha256':sha(manifest_path),'operatorFilesVerified':330,'beforeCaptures':108,'afterCaptures':113,'viewedPngs':len(viewed)},'normalCheck':{'command':'npm run check','status':'PASS','seconds':65.687,'testFiles':74,'tests':353,'rawLogSha256':sha(check_dir/'command.log'),'nineClockCases':'Existing unchanged actual-owner scenario file included in ordinary suite. Aggregate log does not enumerate individual cases. 60 seconds is simulated callback time, not wall-time sustained load.','limits':'Normal gate includes committed proof verification and built-mock UI contract/synthetic consent states, not new actual provider/media/private jobs. Build warning for chunks over500kB retained; no performance pass inferred.'},'afterObservation':{'status':'PASS','cells':12,'nativeKeyboardJourneys':2,'errors':[],'allOverflowZero':True,'allCaptionClearanceZero':True,'allTextOutsideViewportEmpty':True,'distFiles':1329,'checkEntryExitAndCurrentDistExact':True,'sourceAndDistSameForCapturedEvidence':True},'baselineLimit':'No historical entry dist manifest exists. Preceding successful build and observation-final manifests match; raw before cells and errors were independently verified. No retroactive continuous-custody claim.','visualFindings':['At320/390 text200 the caption occupies normal flow below the skeleton, all eight counts and tempo text wrap without document loss, and primary actions retain full text while growing vertically.','At1440 normal the taller card and shifted centering are observable; protected cards/footer/text remain intact.','At320 text200 emergency wrapping splits words such as comparison. This is visible and retained, not described as polished typography.','Saved snapshots are not continuous-paint evidence. Previously verified all-null pose frames and gaps remain possible; clocks/drawing/pose bytes are unchanged.'],'criterionObservations':criterionObservations,'grading':'No central or44-criterion assessment rewrite. This is a bounded delta; historical landing failures are superseded only for the specifically repaired observations. Numeric criterion/dimension/overall scores are not inferred from incomplete cross-route/device evidence.','visualScore':None,'designScore':None,'responsiveScore':None,'interactionScore':None,'accessibilityScore':None,'performanceScore':None,'usageScore':None,'alignmentScore':None,'overallScore':None,'targetUnchanged':4.5,'remainingHolds':['No production deployment/live-content certification. Local base30593fde remains even though remotePR47 reportedly merged separately; no fetch/rebase or remote claim made by this review.','Compact editor accepted-clip discoverability and enlarged editor layout remain unchanged.','Component same-document malformed-Mermaid update failure remains separate and unchanged.','Human first-use/taste, native zoom, physical touch/keyboard/screen-reader, performance budgets, provider and full-duration export proofs remain outside this slice.'],'actionsByReviewer':{'sourceEdits':0,'browserRuns':0,'modelCalls':0,'builds':0,'testReruns':0,'commits':0},'readyFor':'Parent may prepare bounded portable publication/metadata for exact reviewed source; commit and shared integration remain separate.'}
+J=P/'E6i_NODEVIDEO_LANDING_REFLOW_FINAL_JUDGE.json';write(J,data)
+md=f'''Builder. **Approved the local one-owner landing reflow repair.** A phone user enlarging text can now reach the navigation/actions and read the pose caption below the skeleton. The actual after evidence preserves all text and ten links, with zero document overflow or outlying text across12cells.
+
+Independent checks verify **{len(checks)}/{len(checks)}**, all330frozen artifacts,2,305unchanged tracked files and the one reviewed owner. The normal `npm run check` passed353tests in74files in65.687seconds; the existing nine clock scenarios remain included. The after browser used exactly the1,329files from that successful check, unchanged at entry, exit and review. Two native ten-link keyboard journeys and Studio/agent-contract Enter navigation have actual saved content signals and no recorded errors. [Raw checks](E6i-nodevideo-landing-reflow-final-judge/checks.json).
+
+I inspected12actual PNGs including matched1440full-page before/after, phone enlarged labels/actions/caption, desktop enlarged caption and keyboard focus. The caption no longer covers the pose. The1440normal card is28.5px taller and begins6.6875px higher; this intentional centering change remains visible. At320with doubled text some words split across lines, so this is a successful reflow repair, not a full typography-quality claim.
+
+The historical before observation has **no entry dist manifest**. Its preceding build and observation-final manifests match; raw completion/errors are independently checked. The quoted-launch failure and both earlier recorder weaknesses remain retained. No baseline replay or retrospective custody claim was made.
+
+R1content preservation and the landing parts of R3canvas adaptation/A4text reflow/V5legibility improve in the observed scope. R2landing keyboard reachability is verified. Existing editor deductions, real-device/zoom/assistive-technology/performance/provider/full-export coverage and full grades remain unresolved; the4.5target is unchanged. Saved images do not prove continuous canvas paint or remove the existing all-null pose-frame limitation. [Full bounded verdict](E6i_NODEVIDEO_LANDING_REFLOW_FINAL_JUDGE.json).
+
+Sourceguard **CLOSED**, ownerSHA `{owner_start}`, localbase `{freeze['base']}`. No reviewer source edit, browser run, build/test replay, provider call, commit or deployment occurred. Parent may prepare publication for these exact bytes; publication and shared integration require their own checks.
+
+**Re your request:** make every repository ready for developers and users with visual/responsive/interaction standards — this closes the named landing reflow defect with actual pixels, keyboard results and exact source custody, while keeping unrelated readiness gaps explicit.
+'''
+(P/'E6i_NODEVIDEO_LANDING_REFLOW_FINAL_JUDGE.md').write_text(md,encoding='utf-8')
+raw=[x for x in O.iterdir() if x.is_file()]
+write(O/'artifact-manifest.json',[{'path':x.name,'bytes':x.stat().st_size,'sha256':sha(x)} for x in raw])
+print(json.dumps({'json':str(J),'sha256':sha(J),'checks':len(checks),'sourceGuard':'CLOSED','manifestSha256':sha(O/'artifact-manifest.json')}))

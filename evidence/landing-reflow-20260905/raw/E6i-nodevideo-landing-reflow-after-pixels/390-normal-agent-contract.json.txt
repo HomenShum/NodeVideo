@@ -1,0 +1,601 @@
+{
+  "schemaVersion": "nodevideo.ui-contract.v1",
+  "app": "NodeVideo",
+  "purpose": "Machine-readable UI contract. Any agent can drive these surfaces through the accessibility tree without vision: every control is bound to a stable testid, role+name, or label-backed id. CI runs scripts/quality/verify-ui-contract.mjs against the production build; drift between this file and the rendered UI fails the build. The same file is served at /.well-known/agent-ui.json in production and must stay byte-identical to this source.",
+  "buildReceipt": {
+    "path": "/.well-known/agent-ui.build.json",
+    "meaning": "Written by the same build that emitted the served bundle. Carries the SHA-256 of the served contract plus the source commit. Agents SHOULD fetch it and verify contractSha256 matches the bytes of /.well-known/agent-ui.json; a mismatch means the deploy is inconsistent and the contract must not be trusted."
+  },
+  "invariants": {
+    "charset": "UTF-8",
+    "themes": [
+      "dark",
+      "light"
+    ],
+    "themeMechanism": "in-app toggle sets the dark class on <html>; prefers-color-scheme is not honored. Toggle accessible name flips between 'Switch to light theme' and 'Switch to dark theme'.",
+    "defaultTheme": "dark",
+    "noHorizontalOverflowAtWidths": [
+      1440,
+      1280,
+      834,
+      390,
+      320
+    ],
+    "honesty": [
+      "Verdict scores carry scoreInterpretation=relative-motion-signal-not-calibrated-pass-fail and are never presented as pass/fail grades.",
+      "Signals that cannot be measured are disclosed in unmeasurableScores, never defaulted to a plausible number.",
+      "Consent is enforced client-side with a visible error and independently server-side (HTTP 422 rights_confirmation_required)."
+    ]
+  },
+  "surfaces": [
+    {
+      "id": "landing",
+      "route": "/",
+      "landmark": {
+        "testid": "landing"
+      },
+      "description": "Intent-first landing: one primary action into the coach, the pose-skeleton signature moment, and the count-driven motion identity. No owner machinery.",
+      "controls": [
+        {
+          "id": "open-coach",
+          "role": "link",
+          "name": "Open the coach"
+        },
+        {
+          "id": "see-comparison",
+          "role": "link",
+          "name": "Watch a real comparison"
+        },
+        {
+          "id": "sample-verdict",
+          "role": "link",
+          "name": "Preview a sample verdict — no setup needed",
+          "meaning": "Zero-setup first action: opens the coach with a bundled sample verdict (demo mode, honestly labeled)."
+        },
+        {
+          "id": "open-stitch-studio",
+          "role": "link",
+          "name": "Open the stitch studio",
+          "meaning": "Interactive beat-grid editor at /edit.html"
+        },
+        {
+          "id": "proof-console",
+          "role": "link",
+          "name": "Proof console"
+        },
+        {
+          "id": "proof-studio-nav",
+          "role": "link",
+          "name": "Studio"
+        },
+        {
+          "id": "agent-contract-nav",
+          "role": "link",
+          "name": "For agents"
+        }
+      ],
+      "states": [
+        {
+          "id": "landing-first-run",
+          "meaning": "A net-new visitor sees intent, not machinery: the composer action leads; the owner console lives only in the studio.",
+          "requireTexts": [
+            "Learn the dance you admire.",
+            "Open the coach",
+            "Relative signals, never grades."
+          ],
+          "forbidTexts": [
+            "Owner access key",
+            "Start source-only job"
+          ]
+        }
+      ],
+      "agentGuidance": "Public surface; follow the links. The count ticker and skeleton replay real verified case data — they are presentation, not live analysis."
+    },
+    {
+      "id": "collab-editor",
+      "route": "/collab.html",
+      "landmark": {
+        "testid": "collab-editor"
+      },
+      "description": "In-browser collab editor: reference + take composited side-by-side or top-and-bottom, aligned by nudge or canvas drag, exported as WebM. No worker, no upload — both files stay in the tab. Export fails closed if the tab is hidden or either compositor pump stalls.",
+      "controls": [
+        {
+          "id": "reference-video",
+          "css": "#reference-video",
+          "label": "Reference video",
+          "meaning": "Drag-and-drop slot or native file input (the visually hidden input is the real control). On selection a frame is decoded locally into a thumbnail with the file name and duration — a real confirmation, not an icon. Nothing uploads."
+        },
+        {
+          "id": "take-video",
+          "css": "#take-video",
+          "label": "Your take",
+          "meaning": "Same drop-or-browse intake as reference-video; the take drives export length. Thumbnail is decoded locally; nothing uploads."
+        },
+        {
+          "id": "layout-side-by-side",
+          "role": "button",
+          "name": "Side by side"
+        },
+        {
+          "id": "layout-top-bottom",
+          "role": "button",
+          "name": "Top and bottom"
+        },
+        {
+          "id": "play-preview",
+          "role": "button",
+          "name": "Play preview",
+          "gated": "disabled until both files are chosen"
+        },
+        {
+          "id": "export",
+          "role": "button",
+          "name": "Export collab video",
+          "gated": "disabled until both files are chosen; records in real time only while the tab remains visible"
+        },
+        {
+          "id": "cancel-collab-export",
+          "role": "button",
+          "name": "Cancel export",
+          "deferredResolution": "replaces Export collab video only while MediaRecorder is active; cancellation discards every partial chunk and downloads nothing"
+        },
+        {
+          "id": "preview-scrub",
+          "css": "canvas[aria-label*=\"drag sideways\"]",
+          "meaning": "Dragging the preview canvas sideways scrubs the reference offset at 4ms per pixel with the same ±10s clamp; the nudge buttons remain the keyboard and screen-reader path. The offset readout updates live."
+        }
+      ],
+      "states": [
+        {
+          "id": "collab-first-run",
+          "meaning": "Immediate usability with honest boundaries: local-only processing and the rights note are visible before any file is chosen.",
+          "requireTexts": [
+            "Dance next to the original.",
+            "nothing ever leaves your browser",
+            "only export collabs you have permission to make"
+          ],
+          "forbidTexts": [
+            "Service token",
+            "Owner access key"
+          ]
+        }
+      ],
+      "agentGuidance": "Fully client-side surface. Do not look for a job API here; there is none. Export produces WebM via MediaRecorder. Keep the tab visible: requestAnimationFrame is backed by an independent timer canvas pump, while visibility loss or a stall in both pumps cancels and discards the partial file."
+    },
+    {
+      "id": "practice-room",
+      "route": "/practice.html",
+      "landmark": {
+        "testid": "practice-room"
+      },
+      "description": "Camera practice room (early beta): follow the committed Sign reference skeleton on its measured beat grid, with on-device MediaPipe pose tracking, per-beat relative-similarity marks, honest abstention, and retry. No video or pose data leaves the browser; nothing is recorded. The phrase runs on a silent beat clock — the Sign master is not distributed.",
+      "controls": [
+        {
+          "id": "start-camera",
+          "role": "button",
+          "name": "Start camera",
+          "gated": "requests camera permission explicitly; declining shows an honest explanation, never a fake feed"
+        },
+        {
+          "id": "start-phrase",
+          "role": "button",
+          "name": "Start the phrase",
+          "state": "appears after camera setup; disabled until a full body is actually detected in frame",
+          "gated": "readiness is measured (>=10 core joints visible), never assumed",
+          "deferredResolution": "exists only after camera permission is granted; verified by the practice-room E2E spec with a fake camera"
+        },
+        {
+          "id": "reference-skeleton",
+          "css": "[aria-label='Reference skeleton']",
+          "state": "camera-setup and later modes",
+          "deferredResolution": "exists only after camera permission is granted; verified by the practice-room E2E spec with a fake camera"
+        },
+        {
+          "id": "beat-feedback",
+          "css": "[aria-label='Beat feedback']",
+          "state": "camera-setup and later modes",
+          "meaning": "Per-beat marks: close / off / abstain-dot. Beats with fewer than five clean pose samples abstain and are excluded from the summary.",
+          "deferredResolution": "exists only after camera permission is granted; verified by the practice-room E2E spec with a fake camera"
+        }
+      ],
+      "states": [
+        {
+          "id": "practice-first-run",
+          "meaning": "Privacy and claim boundaries are visible before any camera access is requested.",
+          "requireTexts": [
+            "Dance the Sign phrase with your camera.",
+            "no video or pose data leaves your browser",
+            "not a score, a grade, or a judgment"
+          ],
+          "forbidTexts": [
+            "Owner access key",
+            "Service token"
+          ]
+        }
+      ],
+      "agentGuidance": "Camera-dependent surface; without a camera the page stays honestly in its intro/permission states. Do not attempt to fake readiness — the Start-the-phrase gate is measurement-driven."
+    },
+    {
+      "id": "stitch-studio",
+      "route": "/edit.html",
+      "landmark": {
+        "testid": "stitch-studio"
+      },
+      "description": "Interactive beat-grid stitch editor over the committed Sign case: deterministic full-plan Remotion preview, wavesurfer timeline with beat-snapped cut boundaries, a local rule-grounded edit agent whose patch cards mutate the plan only on accept, and a cancellable in-browser H.264 MP4 export of the accepted plan. Fully client-side; the private song master is omitted and the rights-cleared hash-verified render stays in the studio pipeline.",
+      "controls": [
+        {
+          "id": "browser-export",
+          "role": "button",
+          "name": "Export",
+          "gated": "disabled until the plan has loaded and while an export is already running",
+          "meaning": "Snapshots the currently accepted plan, then fetches the two same-origin authorized proxies and runs the pinned self-hosted ffmpeg.wasm core entirely in this tab. The output is silent because the private song master is not distributed. Progress is visible, cancellation terminates the worker, and no media uploads."
+        },
+        {
+          "id": "cancel-browser-export",
+          "role": "button",
+          "name": "Cancel MP4 export",
+          "deferredResolution": "exists only while a local MP4 export is active; cancellation terminates the worker and downloads no partial file"
+        },
+        {
+          "id": "browser-export-progress",
+          "css": "[aria-label='MP4 export progress']",
+          "deferredResolution": "exists only while a local MP4 export is active and reports the current encode percentage"
+        },
+        {
+          "id": "edit-agent-input",
+          "role": "textbox",
+          "name": "Ask the edit agent",
+          "meaning": "On viewports under 1024px this input pins to the bottom of the screen (thumb reach); same control, same behavior."
+        },
+        {
+          "id": "edit-suggestion-cuts",
+          "role": "button",
+          "name": "Show the cuts",
+          "state": "present only before the first agent message"
+        },
+        {
+          "id": "edit-suggestion-swap",
+          "role": "button",
+          "name": "Swap 2",
+          "state": "present only before the first agent message"
+        },
+        {
+          "id": "edit-suggestion-tighten",
+          "role": "button",
+          "name": "Tighten 1 by 1 beat",
+          "state": "present only before the first agent message"
+        },
+        {
+          "id": "undo-patch",
+          "role": "button",
+          "name": "Undo",
+          "gated": "disabled until a patch or timeline drag has been applied"
+        },
+        {
+          "id": "beat-timeline",
+          "css": "[aria-label='Beat-aligned edit timeline']"
+        },
+        {
+          "id": "edit-overlays",
+          "role": "button",
+          "name": "Edit overlays",
+          "meaning": "Toggles direct manipulation of the lyric overlays on the paused frame: drag/resize via real handles (react-moveable), text edits via the Overlay text field. Every gesture is an applied, undoable plan patch. Name flips to 'Done editing overlays' while active."
+        },
+        {
+          "id": "clip-order",
+          "css": "[aria-label='Current cut timeline']",
+          "meaning": "Drag-to-reorder clip chips (dnd-kit; keyboard: Enter picks up, arrows move, Enter drops). Reordering re-lays the timeline contiguously; each clip keeps its own source frames. A plain tap on a chip (under the 6px drag threshold) seeks the preview player to that clip; the current frame is mirrored on the preview wrapper as data-frame."
+        },
+        {
+          "id": "byok-key",
+          "css": "#byok-key",
+          "state": "inside the collapsed 'Connect a model' disclosure",
+          "meaning": "Session-only OpenRouter API key: stored in sessionStorage, sent only to openrouter.ai directly from this browser, never to a NodeVideo server; cleared when the tab closes. A non-empty key switches the edit agent to the in-browser model loop."
+        },
+        {
+          "id": "byok-model",
+          "css": "#byok-model",
+          "state": "inside the collapsed 'Connect a model' disclosure",
+          "meaning": "OpenRouter model slug for the in-browser agent (default anthropic/claude-opus-4-8)."
+        },
+        {
+          "id": "worker-endpoint",
+          "css": "#worker-endpoint",
+          "state": "inside the nested 'Or use a local worker instead' disclosure under 'Connect a model'",
+          "meaning": "Optional model bridge, two honest paths: (1) in-browser — a session-only OpenRouter key runs the tool-calling loop entirely in the tab against the same plan tools; (2) local worker — /v1/edit/agent streams a real Claude model over the reasoning|tool|text|proposal|done contract; without credentials it returns model_not_configured. With neither, the panel stays on local rules — a model run is never faked. The agent-card badge states which mode is active (Model in browser | Model via worker | Local rules)."
+        },
+        {
+          "id": "worker-token",
+          "css": "#worker-token",
+          "state": "inside the nested 'Or use a local worker instead' disclosure under 'Connect a model'"
+        }
+      ],
+      "states": [
+        {
+          "id": "stitch-first-run",
+          "meaning": "Honest boundaries visible before any interaction: local-only agent, local silent MP4 export, no uploads, and the waveform's provenance (take A audio, not the undistributed Sign master).",
+          "requireTexts": [
+            "Sign · Cut v1",
+            "Canvas",
+            "Export"
+          ],
+          "forbidTexts": [
+            "Owner access key",
+            "Service token"
+          ]
+        }
+      ],
+      "agentGuidance": "Patches apply only via the Apply patch button; dragging a cut edge on the timeline snaps to the plan's beat grid and is equivalent to an accepted nudge patch. Undo reverts the last applied change. Export silent MP4 snapshots the accepted plan at click time and renders its source, black, freeze, fit/fill, and timed text-animation semantics locally; do not describe it as the rights-cleared master because audio is intentionally omitted."
+    },
+    {
+      "id": "workspace",
+      "route": "/studio.html",
+      "landmark": {
+        "testid": "app-shell"
+      },
+      "description": "Owner calibration workspace plus the public frame-by-frame proof inspector.",
+      "controls": [
+        {
+          "id": "theme-toggle",
+          "role": "button",
+          "nameAnyOf": [
+            "Switch to light theme",
+            "Switch to dark theme"
+          ]
+        },
+        {
+          "id": "owner-access-key",
+          "css": "#owner-token",
+          "label": "Owner access key",
+          "gated": "owner-only; agents without the key must not attempt job submission"
+        },
+        {
+          "id": "source-upload-original",
+          "css": "#file-reference",
+          "label": "Original choreography; sibling inputs follow the pattern [id^='file-']"
+        },
+        {
+          "id": "start-job",
+          "role": "button",
+          "name": "Start source-only job",
+          "gated": "requires owner access key + all required sources"
+        },
+        {
+          "id": "inspector-disclosure",
+          "testid": "integrated-frame-inspector",
+          "state": "collapsed on first load; no heavy pose fetch until opened"
+        }
+      ],
+      "agentGuidance": "Public agents: expand the inspector for hash-verified evidence; do not fill the owner console. The inspector is the read-only proof surface."
+    },
+    {
+      "id": "coach-sidepanel",
+      "route": "/apps/chrome-extension/sidepanel.html",
+      "landmark": {
+        "role": "heading",
+        "name": "10count choreography · UI preview",
+        "note": "web-preview heading; inside Chrome the heading is the detected video title"
+      },
+      "description": "Choreography coach: upload a dance take, compare against a reference, receive relative motion signals from a local-only worker.",
+      "controls": [
+        {
+          "id": "reference-file",
+          "css": "#reference-file",
+          "label": "Reference video file (optional)",
+          "meaning": "Non-YouTube references (saved reels, studio recordings) upload here and override the page URL; Instagram URLs are never fetched directly."
+        },
+        {
+          "id": "attempt-file",
+          "css": "#attempt",
+          "label": "Your dance take",
+          "accepts": "video/mp4,video/quicktime"
+        },
+        {
+          "id": "options-disclosure",
+          "role": "button",
+          "name": "Segment, team, and connection",
+          "state": "collapsed by default; expand before using the controls inside"
+        },
+        {
+          "id": "segment-start",
+          "role": "spinbutton",
+          "name": "Reference start seconds",
+          "requiresExpand": "options-disclosure"
+        },
+        {
+          "id": "segment-end",
+          "role": "spinbutton",
+          "name": "Reference end seconds",
+          "requiresExpand": "options-disclosure"
+        },
+        {
+          "id": "people",
+          "css": "#people",
+          "label": "Maximum dancers to track",
+          "requiresExpand": "options-disclosure"
+        },
+        {
+          "id": "endpoint",
+          "css": "#endpoint",
+          "label": "Local service",
+          "requiresExpand": "options-disclosure"
+        },
+        {
+          "id": "token",
+          "css": "#token",
+          "label": "Service token",
+          "requiresExpand": "options-disclosure"
+        },
+        {
+          "id": "consent",
+          "css": "#rights",
+          "label": "I have permission to privately analyze this reference and my upload."
+        },
+        {
+          "id": "judge",
+          "role": "button",
+          "name": "Judge choreography"
+        },
+        {
+          "id": "coach-input",
+          "role": "textbox",
+          "name": "Ask the coach about your comparison",
+          "meaning": "Streaming thread to the rule-grounded local coach (SSE events: reasoning, tool, text, proposal, error, done). Replies are computed from the stored verdict on the local worker; no cloud model. Proposals render inline and are accepted in place. During a reply the textbox is disabled and the submit button becomes a stop control."
+        },
+        {
+          "id": "coach-suggestion-scores",
+          "role": "button",
+          "name": "Why these scores?",
+          "state": "present only before the first message in the thread; afterward type the same phrase into coach-input"
+        },
+        {
+          "id": "coach-suggestion-review",
+          "role": "button",
+          "name": "What should I review?",
+          "state": "present only before the first message in the thread; afterward type the same phrase into coach-input"
+        },
+        {
+          "id": "coach-suggestion-segment",
+          "role": "button",
+          "name": "Propose a practice segment",
+          "state": "present only before the first message in the thread; afterward type the same phrase into coach-input",
+          "meaning": "Streams an inline reference-segment proposal WHEN the last completed verdict measured a matched window; 'Use this segment' fills the segment inputs in place. With no completed verdict, or a verdict without a measured window, it streams a text explanation and no proposal event."
+        }
+      ],
+      "gates": [
+        {
+          "id": "consent-gate",
+          "kind": "client-validated + server-enforced",
+          "check": "Submitting with reference, attempt, and token present but consent unchecked must surface the exact text: 'Confirm that you have permission to analyze both videos.'",
+          "serverBackstop": "POST /v1/jobs without rightsConfirmed=true returns 422 rights_confirmation_required"
+        },
+        {
+          "id": "long-reference-gate",
+          "kind": "server-enforced",
+          "check": "References longer than 90 seconds without an explicit segment are refused (reference_segment_required_for_long_video)."
+        }
+      ],
+      "agentGuidance": "All processing is laptop-local via the token-gated sidecar; nothing uploads to a cloud. Never bypass the consent checkbox on a user's behalf.",
+      "states": [
+        {
+          "id": "demo-sample-verdict",
+          "query": "?demo=verdict-completed-full",
+          "meaning": "Zero-setup demo: a bundled sample verdict renders with an explicit banner that no analysis ran. Never presented as a real result.",
+          "requireTexts": [
+            "Sample verdict",
+            "no analysis ran"
+          ]
+        },
+        {
+          "id": "verdict-completed-full",
+          "fixture": ".ui/fixtures/job-verdict-completed-full.json",
+          "meaning": "All four signals measured; overall shown as a relative number, never pass/fail.",
+          "requireTexts": [
+            "67 / 100",
+            "Relative motion comparison",
+            "78% evidence",
+            "133 ms median timing drift"
+          ],
+          "requireScoreChips": [
+            "form",
+            "timing",
+            "path",
+            "dynamics"
+          ],
+          "forbidTexts": [
+            "Not measurable from this upload",
+            "Needs a clearer take"
+          ]
+        },
+        {
+          "id": "verdict-completed-partial",
+          "fixture": ".ui/fixtures/job-verdict-completed-partial.json",
+          "meaning": "Unmeasurable signals are omitted from the score chips and disclosed in plain text — never defaulted to a plausible number.",
+          "requireTexts": [
+            "61 / 100",
+            "Not measurable from this upload"
+          ],
+          "requireScoreChips": [
+            "form",
+            "timing",
+            "path"
+          ],
+          "forbidScoreChips": [
+            "dynamics"
+          ],
+          "forbidTexts": [
+            "Needs a clearer take"
+          ]
+        },
+        {
+          "id": "verdict-abstained",
+          "fixture": ".ui/fixtures/job-verdict-abstained.json",
+          "meaning": "Insufficient evidence abstains visibly: no overall number may appear.",
+          "requireTexts": [
+            "Needs a clearer take"
+          ],
+          "forbidTexts": [
+            "/ 100"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "creatorbench",
+      "route": "/creatorbench.html",
+      "landmark": {
+        "testid": "creatorbench-overview"
+      },
+      "description": "Public measured-evidence surface for CreatorBench. It separates frozen private routing outcomes, workflow-admissible corpus coverage, public deterministic render proof, known gaps, route evidence, and bounded blinded review from the creator editing workspace.",
+      "controls": [
+        {
+          "id": "creatorbench-overview",
+          "role": "button",
+          "name": "Overview"
+        },
+        {
+          "id": "creatorbench-coverage",
+          "role": "button",
+          "name": "Coverage"
+        },
+        {
+          "id": "creatorbench-weaknesses",
+          "role": "button",
+          "name": "Weaknesses"
+        },
+        {
+          "id": "creatorbench-routes",
+          "role": "button",
+          "name": "Route evidence"
+        },
+        {
+          "id": "creatorbench-freeze",
+          "role": "button",
+          "name": "Freeze receipt"
+        },
+        {
+          "id": "creatorbench-review",
+          "role": "button",
+          "name": "Review lab",
+          "meaning": "Blinded reviewer surface. Machine findings and route identity remain hidden until judgment. Durable submission requires explicit review-data consent and a reachable Convex backend."
+        },
+        {
+          "id": "creatorbench-guide-input",
+          "role": "textbox",
+          "name": "Ask CreatorBench"
+        }
+      ],
+      "states": [
+        {
+          "id": "creatorbench-evaluated",
+          "meaning": "Exact counts and confidence intervals are loaded from the public report; zero human labels are disclosed rather than interpreted as editing quality.",
+          "requireTexts": [
+            "See what works, what needs help, and what fails.",
+            "Human editing quality and silent-failure incidence are unverified"
+          ]
+        }
+      ],
+      "agentGuidance": "Use this surface for measured evidence, not editing. Verify every rate against its numerator, denominator, interval, scope, and freeze receipt. Do not infer human usability from routing-only or decode-only results."
+    }
+  ]
+}
