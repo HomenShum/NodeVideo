@@ -4,9 +4,15 @@ A creator can inspect the supplied public comparison, ask for a local edit, revi
 apply it, undo it and download a silent browser-rendered video. Start with this keyless journey
 before configuring private media, durable jobs or model providers. Those are separate workflows.
 
-This handoff covers a local source-build application, not an npm-installed CLI or a verified public
-deployment. Read this file first, then [the architecture](docs/architecture.md) for layer ownership
-and [the agent execution policy](docs/engineering/AGENT_EXECUTION_POLICY.md) before changing code.
+The creator workflow below is local source-build proof. The landing repair separately merged in
+[PR49](https://github.com/HomenShum/NodeVideo/pull/49) as
+`ce538ccf83443832a324b1bf17a77ae52af75b1d`. Its [main Quality run](https://github.com/HomenShum/NodeVideo/actions/runs/33998416532)
+passed 353 unit tests and 175 browser cases, with 25 explicit skips. The actual public build receipt
+and delivered module identified that merge on September 5, 2026; rendered normal-text checks at
+320x800 and 1440x960 showed the caption below the canvas and no document horizontal overflow.
+These checks do not certify the public editor, providers, full-length exports, enlarged-text
+production behavior or whole-product quality. Read this file first, then [the architecture](docs/architecture.md)
+for layer ownership and [the agent execution policy](docs/engineering/AGENT_EXECUTION_POLICY.md) before changing code.
 
 ## Run the public local demo
 
