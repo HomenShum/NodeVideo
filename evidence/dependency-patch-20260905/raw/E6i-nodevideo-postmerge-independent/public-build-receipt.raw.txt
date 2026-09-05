@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "nodevideo.agent-ui-build.v1",
+  "contractSha256": "283f7811a0d55663df019d2dfa33f770b817b2aff05eda43553b7454b335308f",
+  "sourceCommit": "1417d325faca991fed9b05803fee26336255b063",
+  "stampedBy": "scripts/quality/stamp-contract-build.mjs",
+  "creatorBench": {
+    "benchmarkVersion": "creatorbench-v1.4",
+    "freezeReceiptId": "creatorbench-freeze:f3fb72fb06287374e5206fee",
+    "publicReportSha256": "d3d69511e45ba9197b230616d9d820f774d8caab7a9b96fdbd6b64793735ae0a",
+    "publicReportPath": "/benchmarks/creatorbench-v1/results/public-report.json"
+  }
+}

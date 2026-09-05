@@ -1,0 +1,520 @@
+{
+  "files": [
+    {
+      "path": "E6i-close-nodevideo-dependency-runtime.py",
+      "bytes": 18194,
+      "sha256": "6275962500acc6882a3745191287b647b19c3406c299ca0c7e676ef74c356d8a"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-narrow-check-01/clean-install.log",
+      "bytes": 338,
+      "sha256": "5f30586781e8b56a522b30c432aee43efd7c445e21efea6ed517e863463c8175"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-narrow-check-01/full-audit.log",
+      "bytes": 15368,
+      "sha256": "286bd9978f9f93e5c3fd4148b1cff0383e056cd27e758dcad3fb15802bfa182f"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-narrow-check-01/normal-check.log",
+      "bytes": 85536,
+      "sha256": "0ae0af8c481c76a46fa6826211ef46640c93dc5e1127e69e6968fe2bb5026324"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-narrow-check-01/production-audit.log",
+      "bytes": 367,
+      "sha256": "26051ae680ba254ae38fdecd3f8a599875eac0153adc51bc5b991aea471ea112"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-narrow-check-01/source-bindings.json",
+      "bytes": 571673,
+      "sha256": "9875946217477e5b66104d0a1d4902fdd5eaa034080d25729f28ffda2b1e5970"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-narrow-check.json",
+      "bytes": 2093,
+      "sha256": "f8c3a22b6f09cb25877d056672d306d9b6afb7529f0ee3171c41ecf6d4c8473c"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-closure/all-attempts-retained.json",
+      "bytes": 3124,
+      "sha256": "c1407018916c8c7cbfcc92042bede64b3e61b941b1376e05bdcb2c3b5d2bace1"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-closure/closing-checks.json",
+      "bytes": 3256,
+      "sha256": "3391a718c434163d2df894f46d89820c071263650916fecc0bc3fe8f7470fb6d"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-closure/new-optimized-module-metadata.json.txt",
+      "bytes": 48447,
+      "sha256": "ee8b93da5bda05e20d54c337b02aa0bd85085a33a4efa78e55142326f1e8b815"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-closure/new-visible-failure-text.json",
+      "bytes": 512,
+      "sha256": "30466ab9e223e7a71f89db9d0f49b9033e60210e1488a15a3cc81772b3e2142b"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-closure/original-optimized-module-metadata.json.txt",
+      "bytes": 49382,
+      "sha256": "a7a2926728ad272f0286cd70aa582af8291f3e44db22a00881bc71293e81e6c3"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-closure/original-visible-failure-text.json",
+      "bytes": 512,
+      "sha256": "f47c8aa5670509bf79229eaae28fa60ef6a6e3f785a1cc90c6ac0937fbe55bb3"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-closure/viewed-pixels.json",
+      "bytes": 1411,
+      "sha256": "e9f08e727c80bd08298a6045d184188a0e2c40e96e88c2f0eae2c63dd95ad83f"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge/ajv-actual-result.json",
+      "bytes": 1038,
+      "sha256": "8f9d3706623270215340d85833dc45f83ed7453339059d97fbe05457fb89706c"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge/failure.html.txt",
+      "bytes": 569,
+      "sha256": "fd4bc32f9359c9bd459bb46b00cded093e2becc10ea99d8df55a71ba2f5ceb5d"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge/failure.png",
+      "bytes": 108237,
+      "sha256": "85066aa817c8e6dfd203b972d77f085b7fdcc9a57ba7b0c69fa5c6d4baa38662"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge/input-bindings.json",
+      "bytes": 4451,
+      "sha256": "83bae20553734f034f523fae0acfdf9a8fd04b8b0dd1046f01bdd6cc0585bd07"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge/proof-freeze.json",
+      "bytes": 1036,
+      "sha256": "831b34f478e76e698dca4dfcf311866e2981460a0d22f4cf0a8df4db67014211"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge/report.json",
+      "bytes": 8442,
+      "sha256": "2a79658d22207c90bb196cea1022a48527d8a4494957439e42f538feda3b1421"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge/site/index.html",
+      "bytes": 277,
+      "sha256": "ef7a8979e7d98b00441a6632bbb63172fda295f00a7ece02b55a2e4ee337f12a"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge/site/main.tsx",
+      "bytes": 2154,
+      "sha256": "ac6452b959ff537ff45f730787e30991b3d69b589796eeaa50f6122d83f7d330"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-02/1024-prose.html.txt",
+      "bytes": 110353,
+      "sha256": "91f4c92589043724a464e4bc780d00b545542f95f8a36a364b67a62067a038ed"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-02/1024-prose.json",
+      "bytes": 3804,
+      "sha256": "603b48a554ca8ee4977d6bafdf407a02a6daa140fc1c9126ae9e4b70cdeb6937"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-02/1024-prose.png",
+      "bytes": 30482,
+      "sha256": "6037d9282d399e0014f9fb997136b3805f5c2047a339b35bf391d9f1bd12b673"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-02/ajv-actual-result.json",
+      "bytes": 1038,
+      "sha256": "8f9d3706623270215340d85833dc45f83ed7453339059d97fbe05457fb89706c"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-02/collector-correction.json",
+      "bytes": 536,
+      "sha256": "70f1b49e95da098bf88c2c45bdce1601dc459134c8bf878ae4bce6492773ea1b"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-02/command.log",
+      "bytes": 544,
+      "sha256": "c0d2b00b746e86957ad998cdce5b4710d82a26305456a612488ddd0212d832ed"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-02/failure.html.txt",
+      "bytes": 110353,
+      "sha256": "91f4c92589043724a464e4bc780d00b545542f95f8a36a364b67a62067a038ed"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-02/failure.png",
+      "bytes": 30482,
+      "sha256": "6037d9282d399e0014f9fb997136b3805f5c2047a339b35bf391d9f1bd12b673"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-02/input-bindings.json",
+      "bytes": 4451,
+      "sha256": "83bae20553734f034f523fae0acfdf9a8fd04b8b0dd1046f01bdd6cc0585bd07"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-02/proof-freeze.json",
+      "bytes": 1039,
+      "sha256": "1269a1886a6866f5245b0566849e3caee06bb523e35e2ea19e4178b0d5f12ad7"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-02/report.json",
+      "bytes": 22406,
+      "sha256": "ed2d3c3136146f8e5af0fee8420601bad97ca960b68f1af80f4a544b6f67172a"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-02/site/index.html",
+      "bytes": 277,
+      "sha256": "ef7a8979e7d98b00441a6632bbb63172fda295f00a7ece02b55a2e4ee337f12a"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-02/site/main.tsx",
+      "bytes": 2154,
+      "sha256": "ac6452b959ff537ff45f730787e30991b3d69b589796eeaa50f6122d83f7d330"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/1024-diagram.html.txt",
+      "bytes": 149575,
+      "sha256": "ac5eebb88c0f90bf4a9dde634aa7c7f9228e7b25cbb1bb852dcdb895bf486f53"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/1024-diagram.json",
+      "bytes": 100287,
+      "sha256": "f874cfa9884af09365f9d07a09aa08420f7737d220d108ebab6ac34182acee8b"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/1024-diagram.png",
+      "bytes": 33722,
+      "sha256": "b1836e8f8a829d67ba458ac6ba21bcccc686a8b87032b184623d2e5cca8b59a0"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/1024-malformed.html.txt",
+      "bytes": 149577,
+      "sha256": "76d6d5bc15b8cf55a00ae2e97923f53504ddedd7515ccedf778ce6b84d01dc5e"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/1024-malformed.json",
+      "bytes": 100289,
+      "sha256": "550db43b0521fbdf481f963708328c6e4dda481651848347d9c2f0c409ccfdf1"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/1024-malformed.png",
+      "bytes": 33864,
+      "sha256": "4044a2067a08bfb6aa68cc507be416e78767805d0bd1b1f65e40daafa315ccb6"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/1024-prose.html.txt",
+      "bytes": 110353,
+      "sha256": "91f4c92589043724a464e4bc780d00b545542f95f8a36a364b67a62067a038ed"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/1024-prose.json",
+      "bytes": 3804,
+      "sha256": "603b48a554ca8ee4977d6bafdf407a02a6daa140fc1c9126ae9e4b70cdeb6937"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/1024-prose.png",
+      "bytes": 30482,
+      "sha256": "6037d9282d399e0014f9fb997136b3805f5c2047a339b35bf391d9f1bd12b673"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/ajv-actual-result.json",
+      "bytes": 1038,
+      "sha256": "8f9d3706623270215340d85833dc45f83ed7453339059d97fbe05457fb89706c"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/collector-correction.json",
+      "bytes": 476,
+      "sha256": "580055543af32394f7a48abfdcf784def0c7811045e611167ec62b01c19a91cd"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/command.log",
+      "bytes": 568,
+      "sha256": "6ad8349964c4f185f369e1cf0fd3758c2a55a55c11c77b393b7035cf1e41370b"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/failure.html.txt",
+      "bytes": 149577,
+      "sha256": "76d6d5bc15b8cf55a00ae2e97923f53504ddedd7515ccedf778ce6b84d01dc5e"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/failure.png",
+      "bytes": 33864,
+      "sha256": "4044a2067a08bfb6aa68cc507be416e78767805d0bd1b1f65e40daafa315ccb6"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/input-bindings.json",
+      "bytes": 4451,
+      "sha256": "83bae20553734f034f523fae0acfdf9a8fd04b8b0dd1046f01bdd6cc0585bd07"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/proof-freeze.json",
+      "bytes": 1039,
+      "sha256": "00f08badf7f77f3cd61c6bfad0ac83eaf030da02ce9ff939e77b031cfa6ae4bc"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/report.json",
+      "bytes": 29419,
+      "sha256": "ca8c04ade2713f61a4d05c415599241124fbde1ba13e8440ed7a00d5c3397e33"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/site/index.html",
+      "bytes": 277,
+      "sha256": "ef7a8979e7d98b00441a6632bbb63172fda295f00a7ece02b55a2e4ee337f12a"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-03/site/main.tsx",
+      "bytes": 2154,
+      "sha256": "ac6452b959ff537ff45f730787e30991b3d69b589796eeaa50f6122d83f7d330"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/1024-diagram.html.txt",
+      "bytes": 149575,
+      "sha256": "98785859713c01fd64a2be87705cdc57e1b7164fd3d35c8a46a40b1f66597bc7"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/1024-diagram.json",
+      "bytes": 100555,
+      "sha256": "2b050c8127e3be78efac964762824e4ff0499179c4a14db851f3fbc5f1b0b1c8"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/1024-diagram.png",
+      "bytes": 45172,
+      "sha256": "71cbef7e89b4ee61c980fc0a4fbc35214859e1b0f0ff5414f02d6eeac436baca"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/1024-prose.html.txt",
+      "bytes": 110353,
+      "sha256": "91f4c92589043724a464e4bc780d00b545542f95f8a36a364b67a62067a038ed"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/1024-prose.json",
+      "bytes": 4174,
+      "sha256": "43906c98ba95f93b07805d30074d1fafdfe2a2aa602f5f4d0808efb720873904"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/1024-prose.png",
+      "bytes": 47012,
+      "sha256": "30cc19cb6c7e7d63beb12cac4beeab0dd6ab836267e0039d91ab777fb2a18100"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/ajv-actual-result.json",
+      "bytes": 1038,
+      "sha256": "8f9d3706623270215340d85833dc45f83ed7453339059d97fbe05457fb89706c"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/collector-correction.json",
+      "bytes": 798,
+      "sha256": "2500bf419cbc3fcff9bee65570d5d7474fdb4890d2e077c41ce1c9356abc0fb4"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/command.log",
+      "bytes": 371,
+      "sha256": "92d5b5ca3cee615a8e908744c0e191af0206dd12cc89eea5e2e94a4ddba6f413"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/failure.html.txt",
+      "bytes": 149577,
+      "sha256": "7b4f065100087c6fd6134b43ce1807b7488a30071253e353c9aaeebd11fee019"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/failure.png",
+      "bytes": 45295,
+      "sha256": "74290d8837e9b0a41e37bafb897bbb4c13ba843a81af01a91c57e56d18dc8580"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/input-bindings.json",
+      "bytes": 4652,
+      "sha256": "4889015df06c67a39b77c33064e3d2752df924121cff64153d50c4d965975783"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/proof-freeze.json",
+      "bytes": 1039,
+      "sha256": "56f4f2b7f02cb613876409eb3839be070224285a79d768a649fa5b4e4d6599d4"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/report.json",
+      "bytes": 24977,
+      "sha256": "a864dab307511bf11e69a38d6c26bf2bc4805fc6485df9d135b15882e42af57e"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/site/index.html",
+      "bytes": 277,
+      "sha256": "ef7a8979e7d98b00441a6632bbb63172fda295f00a7ece02b55a2e4ee337f12a"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-04/site/main.tsx",
+      "bytes": 2154,
+      "sha256": "ac6452b959ff537ff45f730787e30991b3d69b589796eeaa50f6122d83f7d330"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-05/1024-malformed.html.txt",
+      "bytes": 116719,
+      "sha256": "2d0df4ea85b6324400cce3caffdf11a55b5481285b7fd567425637232bc3ac18"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-05/1024-malformed.json",
+      "bytes": 11430,
+      "sha256": "d8fda74a427aba51c8eec6b0a7c7db3fb881d77d8997da57f59c8a10101c29f4"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-05/1024-malformed.png",
+      "bytes": 56863,
+      "sha256": "7cce937574683a9341cb318021e929bbd10da58f0f80c2fe1ad77d111dfe653d"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-05/ajv-actual-result.json",
+      "bytes": 1038,
+      "sha256": "8f9d3706623270215340d85833dc45f83ed7453339059d97fbe05457fb89706c"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-05/bounded-followup-plan.json",
+      "bytes": 558,
+      "sha256": "983460fc5e23f7809aca9580765b261703ca6b875c61b8331b0f0f5b4f316d36"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-05/command.log",
+      "bytes": 107,
+      "sha256": "de4146763044ce0bf776f17986f1755e42c729d40043e572e0bf3b920e5637b2"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-05/input-bindings.json",
+      "bytes": 4652,
+      "sha256": "4889015df06c67a39b77c33064e3d2752df924121cff64153d50c4d965975783"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-05/proof-freeze.json",
+      "bytes": 1039,
+      "sha256": "93ce1ea429ee7372cfdf267757ea320e20171fb5b9929f01a2f03bed877d1cb9"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-05/report.json",
+      "bytes": 23398,
+      "sha256": "0c7e01d9bf8d3cae5fb2370fbe9f7b164b5557f75db7d4f63eb76d12ca4208d6"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-05/site/index.html",
+      "bytes": 277,
+      "sha256": "ef7a8979e7d98b00441a6632bbb63172fda295f00a7ece02b55a2e4ee337f12a"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-05/site/main.tsx",
+      "bytes": 2189,
+      "sha256": "9cdf3fb747a04753e708c490873ee91722c1b1c9f0460f1a433a7de232d30e08"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/1024-diagram.html.txt",
+      "bytes": 149915,
+      "sha256": "5f688d29b8a0b7131aeb04058ba0810ca3aa959c3f6dd5fcf8933691a83e0ca9"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/1024-diagram.json",
+      "bytes": 100555,
+      "sha256": "d9b08300e1f3e18f561eb0d921abc4bb8e99b422d59776aebf929e10ac7aadee"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/1024-diagram.png",
+      "bytes": 45172,
+      "sha256": "71cbef7e89b4ee61c980fc0a4fbc35214859e1b0f0ff5414f02d6eeac436baca"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/1024-prose.html.txt",
+      "bytes": 110693,
+      "sha256": "17721410d27afc75ad3cda74ddea476907ed52db7b5ac5db8e5124898a97d8e7"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/1024-prose.json",
+      "bytes": 4174,
+      "sha256": "43906c98ba95f93b07805d30074d1fafdfe2a2aa602f5f4d0808efb720873904"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/1024-prose.png",
+      "bytes": 47012,
+      "sha256": "30cc19cb6c7e7d63beb12cac4beeab0dd6ab836267e0039d91ab777fb2a18100"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/ajv-actual-result.json",
+      "bytes": 1038,
+      "sha256": "8f9d3706623270215340d85833dc45f83ed7453339059d97fbe05457fb89706c"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/bounded-baseline-plan.json",
+      "bytes": 924,
+      "sha256": "ab1aca9048531382219bd663e8c74b80f5331a8978d882bd9d17c2591ce9429f"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/command.log",
+      "bytes": 381,
+      "sha256": "c41e602b220083bb3a80eaefb54c09f5e441c8901f9b92302aca5065a75bf870"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/failure.html.txt",
+      "bytes": 149917,
+      "sha256": "f2f8adb100ccdf0642e8f0ff3de0de495c20067ed765a1b58b62cb29ab5b6041"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/failure.png",
+      "bytes": 45295,
+      "sha256": "74290d8837e9b0a41e37bafb897bbb4c13ba843a81af01a91c57e56d18dc8580"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/input-bindings.json",
+      "bytes": 4652,
+      "sha256": "aba83a08cb6212669c6935c5aa0feaa56d199bc04e214647a8872aacb58f0308"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/proof-freeze.json",
+      "bytes": 1048,
+      "sha256": "df22f7fee22f1c2b29ac96e04e75d54133c986f200d6d2ff4223bee2910ab627"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/report.json",
+      "bytes": 26195,
+      "sha256": "2966f7579ac881e004542cc444c7b14e66a9fab66bb573e8320d574a830ede97"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/site/index.html",
+      "bytes": 277,
+      "sha256": "ef7a8979e7d98b00441a6632bbb63172fda295f00a7ece02b55a2e4ee337f12a"
+    },
+    {
+      "path": "E6i-nodevideo-dependency-runtime-judge-original-06/site/main.tsx",
+      "bytes": 2240,
+      "sha256": "e82e800d2ea2d227642e85ba4f702dbdfc44ef858ac755e499e4b07355fba016"
+    },
+    {
+      "path": "E6i-observe-nodevideo-dependency-runtime-02.mjs",
+      "bytes": 13345,
+      "sha256": "3644c0a8dc838becc84052f3b3daee8ea38a87dd8059bf9121da2df9119f253b"
+    },
+    {
+      "path": "E6i-observe-nodevideo-dependency-runtime-03.mjs",
+      "bytes": 13362,
+      "sha256": "f06dd759898fdac4541769420c1f694e35642dd1090a3d6f18f7dd9dc6a0abc9"
+    },
+    {
+      "path": "E6i-observe-nodevideo-dependency-runtime-04.mjs",
+      "bytes": 14365,
+      "sha256": "0acc81b9c237d9635d4af4a541f1efdd7a3ae1148c2d602460891b6d2c9ef551"
+    },
+    {
+      "path": "E6i-observe-nodevideo-dependency-runtime-05.mjs",
+      "bytes": 14343,
+      "sha256": "c660f2233b12021fe6f7062fb43d19134af839b389e2861b33a7106f9bf7bab4"
+    },
+    {
+      "path": "E6i-observe-nodevideo-dependency-runtime-original-06.mjs",
+      "bytes": 14580,
+      "sha256": "9446d6f2ba81f9f28a7f8d899c125ae2bd937b75dc663ea579e69216330444ef"
+    },
+    {
+      "path": "E6i-observe-nodevideo-dependency-runtime.mjs",
+      "bytes": 13195,
+      "sha256": "82078e7292c130d023b0b957801d94bc625eaeb841c559f74a905f04724e96c0"
+    }
+  ],
+  "excluded": "Vite optimized compiled caches are not included wholesale; exact optimized input metadata, response hashes, installed-source inputs and rendered HTML/SVG/PNG are preserved. No byte-complete dependency or full browser-session replay claim."
+}

@@ -1,0 +1,7 @@
+{
+  "beforeScriptSha256": "0acc81b9c237d9635d4af4a541f1efdd7a3ae1148c2d602460891b6d2c9ef551",
+  "scriptSha256": "c660f2233b12021fe6f7062fb43d19134af839b389e2861b33a7106f9bf7bab4",
+  "purpose": "One fresh initial malformed mount at1024 using exact same invalid payload and actual components. Distinguish initial error rendering from prior observed stale in-place transition. No production edits.",
+  "onlySiteDelta": "initial harness state prose to malformed",
+  "priorInPlaceFailureRetained": "E6i-nodevideo-dependency-runtime-judge-04/report.json"
+}

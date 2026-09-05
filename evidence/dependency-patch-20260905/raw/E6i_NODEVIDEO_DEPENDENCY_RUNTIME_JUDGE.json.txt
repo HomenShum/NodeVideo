@@ -1,0 +1,112 @@
+{
+  "status": "APPROVED_SCOPED_THREE_ROW_DEPENDENCY_TRANSFER_PREEXISTING_COMPONENT_UPDATE_HOLD",
+  "mode": "Builder / independent nonauthor runtime judge",
+  "requestTraceability": "Verify the actual installed rendering/schema boundaries before accepting the minimal dependency repair during repository handoff consolidation.",
+  "sourceCommit": "e0777e37f9da60dede2817f44ecf7d9eea02e5bb",
+  "externalRoot": "D:\\ProjectRecovery\\nodevideo-dependency-narrow-20260905",
+  "sourceIdentity": "2074exact exported files with one reviewed lock change; no Git-derived build stamp claim.",
+  "lockSha256": "8cff46f44e9a185de1e0d1844129cbcacb2eade814c10bb25de5f52eb7adcc1b",
+  "selectedVersions": {
+    "fast-uri": "3.1.7",
+    "dompurify": "3.4.14",
+    "mermaid": "11.16.1"
+  },
+  "actualHarnessScope": {
+    "viewport": {
+      "width": 1024,
+      "height": 900
+    },
+    "owners": [
+      "src/components/ai-elements/message.tsx",
+      "src/components/ai-elements/reasoning.tsx"
+    ],
+    "stylesheet": "apps/chrome-extension/src/extension.css",
+    "providerCalls": 0,
+    "synthetic": true,
+    "wholeAppJourney": false,
+    "phoneCases": "Not completed; parent explicitly converged scope after the bounded causal comparison. No phone/UI-grade claim.",
+    "normalCodeUnchanged": true
+  },
+  "outcomes": {
+    "proseAndUnicode": "Observed in both actual components with markup, exact code text and Unicode.",
+    "benignDiagram": "Observed actual positive SVG in both components; Plan/Review labels and safe-DOM checks passed.",
+    "freshMalformed": "Actual parse-error text visible in both components; no stale SVG.12checks pass in the fresh-mount report.",
+    "inPlaceMalformed": "FAIL on both original and proposed dependency sets after the same20second deadline; prior benign diagram and paragraph remain while harness state says malformed.",
+    "ajv": "Actual AJV2020 allErrors:true/strict:false with addFormats accepts existing capability fixture, rejects missing projectId with required error, and rejects invalid expiresAt with format error."
+  },
+  "causalComparison": {
+    "newReport": "E6i-nodevideo-dependency-runtime-judge-04/report.json",
+    "oldReport": "E6i-nodevideo-dependency-runtime-judge-original-06/report.json",
+    "oldVersions": {
+      "fast-uri": "3.1.3",
+      "dompurify": "3.4.12",
+      "mermaid": "11.16.0"
+    },
+    "newAndOldFailurePngSha256": "74290d8837e9b0a41e37bafb897bbb4c13ba843a81af01a91c57e56d18dc8580",
+    "pngBytesIdentical": true,
+    "sourceOwnersAndFixtureIdentical": true,
+    "interpretation": "The same failure is observed before the dependency update. This finite scenario gives no evidence that the three-row update introduced it; it does not prove universal no-regression or identify the internal root cause."
+  },
+  "rootNormalEvidence": {
+    "cleanInstallSeconds": 15.484,
+    "normalCheckSeconds": 119.203,
+    "normalTests": 353,
+    "normalFiles": 74,
+    "productionAudit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "fullAudit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 4,
+      "high": 6,
+      "critical": 0,
+      "total": 10
+    },
+    "reviewerReranNormalGate": false
+  },
+  "closingChecks": {
+    "passed": 27,
+    "total": 27,
+    "sourceFiles": 2074,
+    "allOwned4994SessionsClosed": true,
+    "originalRepoClean": true
+  },
+  "newDependencyBlockingFindings": [],
+  "survivingProductFindings": [
+    {
+      "status": "OPEN_PREEXISTING_COMPONENT_SCOPE",
+      "summary": "In-place replacement of a valid diagram with malformed source leaves stale prior output visible after20seconds under both old and selected packages.",
+      "fullAppReproduced": false,
+      "rootCauseProved": false,
+      "repairInThisSlice": false
+    }
+  ],
+  "collectorFailures": [
+    "Attempt01: ancestor NodeBench PostCSS config loaded by external Vite CSS discovery; isolated through external empty PostCSS config while keeping actual Tailwind plugin.",
+    "Attempt02: assumed strong HTML element; actual Streamdown uses a styled data-streamdown=strong span. Raw DOM and pixels retained.",
+    "Attempt03: hidden SVG style .error text satisfied an overbroad error wait; corrected to actual visible malformed prefix and parse-error text.",
+    "External Vite returned HTML at the font URL. A proof-only exact-file middleware serves the unchanged installed font; HTTP font hash and decoded font were verified. No component/style/font source changed.",
+    "Two initially guessed consumer paths were absent; actual source owners were found at apps/edit/src/edit.tsx and apps/chrome-extension/src/main.tsx before execution."
+  ],
+  "limits": [
+    "Sanitized benign SVG DOM inspection is not an adversarial sanitizer bypass or exploit proof; dependency advisory/audit coverage remains distinct.",
+    "Component wrappers and fixture host are external instrumentation. Existing generated component source and policies are unchanged; full production route and actual user/provider flow are not exercised.",
+    "The malformed in-place report stays FAIL. Fresh-mount success does not waive it.",
+    "All prior enlarged-phone/tracking/export/provider/human/performance/full-grade holds remain; all aggregate readiness grades remain null.",
+    "Do not use local normal check or source export as a production deployment claim."
+  ],
+  "nextStep": "Root may transfer only the independently approved three-row lock and honest supporting handoff/evidence, preserving this preexisting component update hold; verify actual installed source/commit/shared checks separately.",
+  "artifactManifest": {
+    "path": "E6i-nodevideo-dependency-runtime-closure/artifact-manifest.json",
+    "sha256": "569d3fd76baab66ca8e67d3c95a6ab83e88330775a66ba64f243e97af4c5e4ae",
+    "files": 103,
+    "bytes": 3857119
+  },
+  "timestamp": "2026-09-05T21:56:14.631153+00:00"
+}

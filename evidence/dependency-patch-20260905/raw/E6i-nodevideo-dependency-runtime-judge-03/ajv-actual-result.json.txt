@@ -1,0 +1,38 @@
+{
+  "options": {
+    "allErrors": true,
+    "strict": false
+  },
+  "addFormats": true,
+  "schemaId": "https://nodevideo.local/schemas/tutorial-compare/input.v1.json",
+  "actualFixtureHash": "a550abad5f184823bf69a358131ae11c750b913dd560baad91f4fe79f1ae7071",
+  "valid": true,
+  "validErrors": null,
+  "missingRequired": false,
+  "missingErrors": [
+    {
+      "instancePath": "",
+      "schemaPath": "#/required",
+      "keyword": "required",
+      "params": {
+        "missingProperty": "projectId"
+      },
+      "message": "must have required property 'projectId'"
+    }
+  ],
+  "invalidDateTime": false,
+  "formatErrors": [
+    {
+      "instancePath": "/assets/reference/locator/expiresAt",
+      "schemaPath": "#/$defs/locator/properties/expiresAt/format",
+      "keyword": "format",
+      "params": {
+        "format": "date-time"
+      },
+      "message": "must match format \"date-time\""
+    }
+  ],
+  "missingRequiredMutation": "delete projectId only",
+  "formatMutation": "add invalid expiresAt only",
+  "noFixtureWrites": true
+}

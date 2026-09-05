@@ -1,0 +1,214 @@
+{
+  "status": "FAIL",
+  "scope": "Actual unchanged MessageResponse/ReasoningContent mounted in an external synthetic component surface with existing extension stylesheet; no full app, provider or exploitability claim.",
+  "checks": [
+    {
+      "name": "all2074 source inputs match before proof",
+      "pass": true
+    },
+    {
+      "name": "owned4994 available",
+      "pass": true
+    },
+    {
+      "name": "normal gate owned ports released",
+      "pass": true,
+      "detail": [
+        {
+          "port": 55827,
+          "free": true
+        },
+        {
+          "port": 4339,
+          "free": true
+        }
+      ]
+    },
+    {
+      "name": "AJV existing options and format call source-bound",
+      "pass": true
+    },
+    {
+      "name": "actual capability fixture accepted",
+      "pass": true
+    },
+    {
+      "name": "missing projectId rejected with real required error",
+      "pass": true
+    },
+    {
+      "name": "actual addFormats rejects invalid date-time",
+      "pass": true
+    }
+  ],
+  "failure": {
+    "message": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'prose', exact: true })\u001b[22m\n",
+    "stack": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'prose', exact: true })\u001b[22m\n\n    at C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-observe-nodevideo-dependency-runtime.mjs:89:65"
+  },
+  "console": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting..."
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected."
+    }
+  ],
+  "pageErrors": [],
+  "requests": [],
+  "servedBindings": [
+    {
+      "url": "/",
+      "status": 200,
+      "bytes": 528,
+      "sha256": "3506fa110e041f4d0374159c6e4012fb47d98e4334ab0a4b5ab54f4799425f90"
+    },
+    {
+      "url": "/@react-refresh",
+      "status": 200,
+      "bytes": 111894,
+      "sha256": "fe633113388e056842f0b8df96ea422fcd97761329b79d39fddd71d1fee2f8c7"
+    },
+    {
+      "url": "/main.tsx",
+      "status": 200,
+      "bytes": 12022,
+      "sha256": "ebab5dd99df45f490cea5d1d5461cbb26db371f02fce4d0d661d3ee0ed276f9e"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ai-elements/message.tsx",
+      "status": 200,
+      "bytes": 30899,
+      "sha256": "9dca7d8a20f5bc90c1c8a1797289ec0235df8197c5d186593734326ffbdda63f"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ai-elements/reasoning.tsx",
+      "status": 200,
+      "bytes": 23169,
+      "sha256": "b28b07cfd65fa34cd04ff7968e8b350bf2dc4a9c94aec97d75b93322b8d25a3e"
+    },
+    {
+      "url": "/@vite/client",
+      "status": 200,
+      "bytes": 210051,
+      "sha256": "94dc31ec0e76b092965885c75764cf95a3331a2da86deaf1cbba56bae328e498"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ui/button-group.tsx",
+      "status": 200,
+      "bytes": 9299,
+      "sha256": "1ec296605e7f35705b38ddc6a9f09c75bb0b9bce170e6411ac4fbe1d3e6711f7"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ui/button.tsx",
+      "status": 200,
+      "bytes": 11521,
+      "sha256": "9a1fc1aa2b6ff529a98d1d4bf7350c0851758e01f9a949213ec8990fcc998138"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ui/tooltip.tsx",
+      "status": 200,
+      "bytes": 9143,
+      "sha256": "37c20a7c49db179636965b760d732833fb4e791a242d78ee073a53e306b969d1"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/lib/utils.ts",
+      "status": 200,
+      "bytes": 993,
+      "sha256": "282b9c59e0b22fc383bb62243fb68dee238d6ddeabfbe7e9764ad4843eaa65d5"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge/vite-cache/deps/react.js",
+      "status": 200,
+      "bytes": 130675,
+      "sha256": "45258cda8347802a07428059b38313897a23860bd6edc67f995ee67ff68149c0"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge/vite-cache/deps/@streamdown_cjk.js",
+      "status": 200,
+      "bytes": 185474,
+      "sha256": "c0b88d9450a6e96294be66a1fcaaad89e9d8278fe8b48b82554eebe618c95f91"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge/vite-cache/deps/@streamdown_math.js",
+      "status": 200,
+      "bytes": 161812,
+      "sha256": "d1e85e69c68d6a0d22748f6f9df1ca6e07735349dc524956d102c6435c92eea7"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge/vite-cache/deps/react_jsx-dev-runtime.js",
+      "status": 200,
+      "bytes": 35441,
+      "sha256": "d5d2df809a2ec5eb9ff100de1b45a2901b676234ca3ed2edea9d213413df3556"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge/vite-cache/deps/streamdown.js",
+      "status": 200,
+      "bytes": 3431,
+      "sha256": "b770ac156211a01e566cb8b3fdc3cb112b7bbe5d8cba337e14936f8acc4eb7a7"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge/vite-cache/deps/@streamdown_mermaid.js",
+      "status": 200,
+      "bytes": 218939,
+      "sha256": "41f889dc9ccf61b62669bf054b72decd86a2e0b4d47a4635c545eed28213ce45"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge/vite-cache/deps/@radix-ui_react-use-controllable-state.js",
+      "status": 200,
+      "bytes": 825,
+      "sha256": "a50b0564f93c2642eb19ce825bc5eb083a862edc341bbde0ecbe5b8dc7c62621"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge/vite-cache/deps/@streamdown_code.js",
+      "status": 200,
+      "bytes": 1245925,
+      "sha256": "685508c45041e4686941f5d88caf983eb14050a0f0838bf78d3237158ce63e45"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ui/collapsible.tsx",
+      "status": 200,
+      "bytes": 5013,
+      "sha256": "259476208f9744b78649aa8f39951b640c19222bc5417bed7870bece2652131e"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/node_modules/vite/dist/client/env.mjs",
+      "status": 200,
+      "bytes": 3478,
+      "sha256": "87a1e6adc3833b1e0d8fd872e39e822401c8f0d593d5358f7e142f34d335946a"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ai-elements/shimmer.tsx",
+      "status": 200,
+      "bytes": 8277,
+      "sha256": "a6cfe5b9f8ac15977a54811622a18f1cfaeff244e640efe0f6da276a2c77a806"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge/vite-cache/deps/react-dom_client.js",
+      "status": 200,
+      "bytes": 2822455,
+      "sha256": "6a3661389733e26b92ba4d66167d00af862bb72f9787948ec33c0355a3485453"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge/vite-cache/deps/lucide-react.js",
+      "status": 200,
+      "bytes": 3806305,
+      "sha256": "052f1085ddd974d510445157e0ad22905d8a0aeeefa49dd3e0879072c878dadc"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/apps/chrome-extension/src/extension.css",
+      "status": 500,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "closingSourceMismatches": [],
+  "closingSelectedInputMismatches": [],
+  "ownedPort4994Released": true,
+  "finishedAt": "2026-09-05T21:37:08.690Z"
+}

@@ -1,0 +1,13 @@
+{
+  "newDependencyScriptSha256": "0acc81b9c237d9635d4af4a541f1efdd7a3ae1148c2d602460891b6d2c9ef551",
+  "baselineScriptSha256": "9446d6f2ba81f9f28a7f8d899c125ae2bd937b75dc663ea579e69216330444ef",
+  "purpose": "One exact same desktop prose->diagram->malformed transition against original installed dependency set. Same source owners and payload, same1024viewport and20second malformed wait.",
+  "changes": [
+    "RootX resolves actual committed R and old installed package set.",
+    "Expected source binding only package-lock changed to immutable e077 original19e6.",
+    "CSS import points to same original source owner; exact-font middleware decodes URL spaces for actual R path.",
+    "No390cases and no full gate replay."
+  ],
+  "originalPackageLockSha256": "19e6b173b8863280af94b1b6cd09e3eeaa231d58d8862379388e3d41255f8610",
+  "newFailureRetained": "E6i-nodevideo-dependency-runtime-judge-04/report.json"
+}

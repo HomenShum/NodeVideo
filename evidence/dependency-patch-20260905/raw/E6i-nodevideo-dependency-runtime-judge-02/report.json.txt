@@ -1,0 +1,480 @@
+{
+  "status": "FAIL",
+  "scope": "Actual unchanged MessageResponse/ReasoningContent mounted in an external synthetic component surface with existing extension stylesheet; no full app, provider or exploitability claim.",
+  "checks": [
+    {
+      "name": "all2074 source inputs match before proof",
+      "pass": true
+    },
+    {
+      "name": "owned4994 available",
+      "pass": true
+    },
+    {
+      "name": "normal gate owned ports released",
+      "pass": true,
+      "detail": [
+        {
+          "port": 55827,
+          "free": true
+        },
+        {
+          "port": 4339,
+          "free": true
+        }
+      ]
+    },
+    {
+      "name": "AJV existing options and format call source-bound",
+      "pass": true
+    },
+    {
+      "name": "actual capability fixture accepted",
+      "pass": true
+    },
+    {
+      "name": "missing projectId rejected with real required error",
+      "pass": true
+    },
+    {
+      "name": "actual addFormats rejects invalid date-time",
+      "pass": true
+    },
+    {
+      "name": "1024 ordinary prose markup and Unicode retained",
+      "pass": false
+    }
+  ],
+  "failure": {
+    "message": "1024 ordinary prose markup and Unicode retained",
+    "stack": "Error: 1024 ordinary prose markup and Unicode retained\n    at check (file:///C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-observe-nodevideo-dependency-runtime-02.mjs:17:110)\n    at file:///C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-observe-nodevideo-dependency-runtime-02.mjs:100:29"
+  },
+  "console": [
+    {
+      "type": "debug",
+      "text": "[vite] connecting..."
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected."
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+    },
+    {
+      "type": "warning",
+      "text": "Failed to decode downloaded font: http://127.0.0.1:4994/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2"
+    },
+    {
+      "type": "warning",
+      "text": "OTS parsing error: invalid sfntVersion: 1008821359"
+    },
+    {
+      "type": "warning",
+      "text": "Failed to decode downloaded font: http://127.0.0.1:4994/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2"
+    },
+    {
+      "type": "warning",
+      "text": "OTS parsing error: invalid sfntVersion: 1008821359"
+    },
+    {
+      "type": "warning",
+      "text": "Failed to decode downloaded font: http://127.0.0.1:4994/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2"
+    },
+    {
+      "type": "warning",
+      "text": "OTS parsing error: invalid sfntVersion: 1008821359"
+    },
+    {
+      "type": "warning",
+      "text": "Failed to decode downloaded font: http://127.0.0.1:4994/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2"
+    },
+    {
+      "type": "warning",
+      "text": "OTS parsing error: invalid sfntVersion: 1008821359"
+    },
+    {
+      "type": "warning",
+      "text": "Failed to decode downloaded font: http://127.0.0.1:4994/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2"
+    },
+    {
+      "type": "warning",
+      "text": "OTS parsing error: invalid sfntVersion: 1008821359"
+    }
+  ],
+  "pageErrors": [],
+  "requests": [],
+  "servedBindings": [
+    {
+      "url": "/",
+      "status": 200,
+      "bytes": 528,
+      "sha256": "3506fa110e041f4d0374159c6e4012fb47d98e4334ab0a4b5ab54f4799425f90"
+    },
+    {
+      "url": "/@react-refresh",
+      "status": 200,
+      "bytes": 111894,
+      "sha256": "fe633113388e056842f0b8df96ea422fcd97761329b79d39fddd71d1fee2f8c7"
+    },
+    {
+      "url": "/main.tsx",
+      "status": 200,
+      "bytes": 12043,
+      "sha256": "b0cf88d7f208df26e307bb8f7b97af951fb72546a3b0d9e65bae9111f3019585"
+    },
+    {
+      "url": "/@vite/client",
+      "status": 200,
+      "bytes": 210035,
+      "sha256": "d1177169e90351ce8dad52123d3dd76f17295456fcb6a56b7889fd7fd6d2827d"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ai-elements/reasoning.tsx",
+      "status": 200,
+      "bytes": 23196,
+      "sha256": "bd869fce7e464c545b873b54c8003223093aa686960ff8befadb80b9661680b4"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ai-elements/message.tsx",
+      "status": 200,
+      "bytes": 30923,
+      "sha256": "9a70ad45e56c085909a4f2274fc4815c7606f485eb8cd0aa4593f174ac3d13ab"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/node_modules/vite/dist/client/env.mjs",
+      "status": 200,
+      "bytes": 3478,
+      "sha256": "87a1e6adc3833b1e0d8fd872e39e822401c8f0d593d5358f7e142f34d335946a"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ui/collapsible.tsx",
+      "status": 200,
+      "bytes": 5019,
+      "sha256": "8134e1061f836a43e648fe7fec750da42153bd4d4c3d18cd42bab319ec5f1047"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/lib/utils.ts",
+      "status": 200,
+      "bytes": 999,
+      "sha256": "2735cfccf3fae384ae4122b20236141d76979e159d2fc351b7d471784ca5ce86"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/apps/chrome-extension/src/extension.css",
+      "status": 200,
+      "bytes": 113388,
+      "sha256": "338b04b26b39be05f6fa4196979ac23e6c2c8aa967e760c8eea6053ada632bf5"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/@radix-ui_react-use-controllable-state.js",
+      "status": 200,
+      "bytes": 828,
+      "sha256": "c359719d074d81474c252fdeef3827cb865b83070d8385502bb6ddb491a64db9"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/react.js",
+      "status": 200,
+      "bytes": 130682,
+      "sha256": "965a630eb759fb48e7d9c247d073d8f2bff51040a33456c27e0ebeee376906b8"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/react_jsx-dev-runtime.js",
+      "status": 200,
+      "bytes": 35451,
+      "sha256": "0efd456741f3f94a724acaa2eba958598ec6e20d0e484bc0edcdc30c1551ef8e"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/@streamdown_math.js",
+      "status": 200,
+      "bytes": 161825,
+      "sha256": "8ecad0a9be20602bb7ec104676d15fbad1f20ac0568cc5e87039794d959bc723"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/@streamdown_code.js",
+      "status": 200,
+      "bytes": 1246838,
+      "sha256": "d1656a5eff11cca919c1bc1b1539e1ffc1b3172aecd5524245c5aeb4c7a8d42c"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/@streamdown_mermaid.js",
+      "status": 200,
+      "bytes": 219099,
+      "sha256": "67f1419091406f961bd1ecb3bbf7744d21afa59f5a0b7e742d9099b1e73f5b92"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/streamdown.js",
+      "status": 200,
+      "bytes": 3434,
+      "sha256": "749842cdf12cf5236cf02fa154780cf9ca063f4580ad7f20e9b0abd98db535c7"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ai-elements/shimmer.tsx",
+      "status": 200,
+      "bytes": 8286,
+      "sha256": "58c26801ec0c47ee83042e6f6d28364328238417ed30ec49c75a8816b985385c"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ui/button.tsx",
+      "status": 200,
+      "bytes": 11533,
+      "sha256": "0dbc57f2b4b9a235b43e899b71f7f4c0267ab6c2c3c14474b203ee43bef3dd8d"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ui/button-group.tsx",
+      "status": 200,
+      "bytes": 9308,
+      "sha256": "bd257d89b0398cc40ffca87e68dec5ddd2ffeacae32d855cb8f61d5864279346"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ui/tooltip.tsx",
+      "status": 200,
+      "bytes": 9152,
+      "sha256": "754a734e5f4491489f76e607c9fcf17e231d306d38c25626232a489e496383c9"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/react-dom_client.js",
+      "status": 200,
+      "bytes": 2822468,
+      "sha256": "637d2fc0431ff992abef3754ceaa35bd9e3b2da022bcebaf35a1810239acca0b"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/radix-ui.js",
+      "status": 200,
+      "bytes": 1888119,
+      "sha256": "a013e883b0a29c61b8b63ece8c58d8968f63b2645d4f3df37a004dc4d15357ad"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/clsx.js",
+      "status": 200,
+      "bytes": 2140,
+      "sha256": "6bf713a8291f51842fb87342e482eda300ed28103fe55261d97c2fd0cd609780"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/tailwind-merge.js",
+      "status": 200,
+      "bytes": 286962,
+      "sha256": "8d9d09dd0d6c13731ec439d3f8f60f4c73cbdee3d68bf27979f37b943eba7c40"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/@streamdown_cjk.js",
+      "status": 200,
+      "bytes": 185484,
+      "sha256": "b00b6ad6e4cc7bb7d87d34bfa05c5b489ece6d8f4449d44339033035f04f769c"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/lucide-react.js",
+      "status": 200,
+      "bytes": 3806315,
+      "sha256": "20a036040cb14e96a5f136f26b9a7855ac3fd89d59bf3d9fc2689e8f03895f9f"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/lib-H9ozVk-U.js",
+      "status": 200,
+      "bytes": 116703,
+      "sha256": "241a0c734fcd55c88fcbbedcb914bdda6b0dba768fbf52f3331f30985a1cd5b4"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/rolldown-runtime-B-1-B7_t.js",
+      "status": 200,
+      "bytes": 7626,
+      "sha256": "22c512d86a02e51123ea073d649ad86ce8c6988cd3fbe39f517eb906a9448521"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/lib-C-5ohg71.js",
+      "status": 200,
+      "bytes": 15668,
+      "sha256": "ebd26c8b78e3667dc6b9341a159752183955c46999727cea5157c622b7d230d4"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-Y2CYZVJY-DRIQMbI4.js",
+      "status": 200,
+      "bytes": 1513,
+      "sha256": "b92a60b727cc0073fc48c1072afcf4a14c24f128f6cadc349b70f84654a594e2"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/dev-CbUasBAf.js",
+      "status": 200,
+      "bytes": 44930,
+      "sha256": "25fd915b7c2cdbff2e29cc806403f012d8fd8052ec4d9e36980aad9b6233bd4c"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/dist-BkSB1cPz.js",
+      "status": 200,
+      "bytes": 18589,
+      "sha256": "2892dc6f61be63cf12701f7ff4fc80fd68de4c0748996d37ea81e57a7da99bae"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/src-TjyVFSWe.js",
+      "status": 200,
+      "bytes": 470843,
+      "sha256": "74494fb922df4bc6158aba51bb24e7c81f21cf41d1b1aaf7bc8f4f0bb0315802"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/space-separated-tokens-CAPfEp8x.js",
+      "status": 200,
+      "bytes": 107903,
+      "sha256": "52de349086c4c54b403fbefb5d3299c487ee6728b1dc2da81226dc338b09d07a"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/katex-3EKwhOtZ.js",
+      "status": 200,
+      "bytes": 1758713,
+      "sha256": "cc4f6bc1fe1d20eea3eedfd6ea3bdbb8517857d4d1a667df9027a1a84e09ee74"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-3NCLNEKW-DYUkbQEV.js",
+      "status": 200,
+      "bytes": 2972,
+      "sha256": "9b575954e26389575d464c048f642c1b67cfaa56940a0fb715d2951238a249d5"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-NSK5VX7P-D5cXZdRy.js",
+      "status": 200,
+      "bytes": 246344,
+      "sha256": "f680290b39d82b9272375c4ce9803c33ac2b4c9321576b37ca34e15188ea92b2"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-ZIRB5QZD-DDdPUnWL.js",
+      "status": 200,
+      "bytes": 290244,
+      "sha256": "fcc5fc995ed959f415b43fcec958a6b6c9b60843fb695450cb0eeb01ee7fce4c"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-W5SLKNZC-feVfSkCJ.js",
+      "status": 200,
+      "bytes": 12452,
+      "sha256": "4bf4b16bcba7d83af6b89049c119ab444827a74d3d0db170889ed0adba7a9f00"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-UBXNYLIW-DNpUTjtT.js",
+      "status": 200,
+      "bytes": 7244,
+      "sha256": "7ba2e8f707d9106f1f50c508284f3245dc5931eb926dbe2d40d0cd325c80babf"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-4I5QYGJK-xox4MgJJ.js",
+      "status": 200,
+      "bytes": 51834,
+      "sha256": "06c066bb41a5055c26c81a7c7263bdacffac0d299aa823b3f6edea8580e01586"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-WRU74C26-l6-SQdqK.js",
+      "status": 200,
+      "bytes": 214353,
+      "sha256": "db0b3f58b072230cad48424e5def210439de439933aff08c01a3bc1e6bc511fb"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-I66GZJ75-CKZehR0d.js",
+      "status": 200,
+      "bytes": 1193760,
+      "sha256": "aba4f2a7d9b68ce4cd1ad4bda97687b5d4927db048687756744f97c8d3af9891"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-QR6OTTB3-BO3aOiGe.js",
+      "status": 200,
+      "bytes": 715212,
+      "sha256": "0d1ecce745171e6194f2b69e2b083a6c31ec28243704a936969e98948b4ba7bc"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-7BUUIJ7U-D-sbc_eu.js",
+      "status": 200,
+      "bytes": 20116,
+      "sha256": "e516769a423e7ee8594418160558181bdb22a7a5c9f7e3098422b6c8c9479b2d"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-J7OUQ5F2-C5qkxCZu.js",
+      "status": 200,
+      "bytes": 14728,
+      "sha256": "86975a54fb0902fb055f7d23b893037cc3c9b96d2de42fd14942bc8c95285bce"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-7Z6QIM7H-D3FtL3BB.js",
+      "status": 200,
+      "bytes": 192364,
+      "sha256": "dbc962789c1547e7ea63193209a1fc1e66c440d4eec2a718226f54ad618a3258"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/class-variance-authority.js",
+      "status": 200,
+      "bytes": 9388,
+      "sha256": "ade3f1ac050441f02d4a951876ce825817d8fbd4e7f8d49adda3b59f6c1e5e3f"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/chunk-BO2N2NFS-6ALMd6-z.js",
+      "status": 200,
+      "bytes": 3296925,
+      "sha256": "c931e2d5b664775daf318ea9b103cb90056b1b748d6f813ede57fc033d95b225"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/motion_react.js",
+      "status": 200,
+      "bytes": 1946098,
+      "sha256": "0a05b2f87ef777b58232cf57778cfba25aa7d4ec90b9635f40f2e3fec80f81f3"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/src/components/ui/separator.tsx",
+      "status": 200,
+      "bytes": 4586,
+      "sha256": "642b42fea5927bcd1d5649b08c3cfda749eabcde3c54f5a70293d83d6ca91e13"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/react-dom.js",
+      "status": 200,
+      "bytes": 49560,
+      "sha256": "7d4431a57bc8b9e3f494045a1e5a2b2ae07ca90f1c587fa7cb95cd6ba64eb7e4"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/react_jsx-runtime.js",
+      "status": 200,
+      "bytes": 36521,
+      "sha256": "c24ad7825e8a9ed31960ef3dc150429fb87becb5a5ac2924cf806b47ef9dddac"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/lib-DI9EIAwt.js",
+      "status": 200,
+      "bytes": 33052,
+      "sha256": "3cc4e3da756e33efef48d21b2e7f00d3ff734389f4699316c52be6253390bdcc"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/dist-Bj4OUa5L.js",
+      "status": 200,
+      "bytes": 13863,
+      "sha256": "4b988ac92d91ab64f10e5df5c1328767e427f2c18611e01f0bdae1cfbc5af5d1"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/line-BirHP_mu.js",
+      "status": 200,
+      "bytes": 7502,
+      "sha256": "c889291cc40b130334f600169aea612b3256344aad92c2106bd4ee5c48eecda5"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/rough.esm-WI0P3VT-.js",
+      "status": 200,
+      "bytes": 136264,
+      "sha256": "c00c0d6f8e168c6e0db87e83cc07e3d53afd2679d8fd2f31b95a0357acb2cbff"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/path-DXzWS-89.js",
+      "status": 200,
+      "bytes": 16388,
+      "sha256": "01794742291f155ca569716cc4c7be6b845c5c8dfbd3b30c3ef7f4f8a40f50cd"
+    },
+    {
+      "url": "/@fs/C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-dependency-runtime-judge-02/vite-cache/deps/array-75Ih5Qg4.js",
+      "status": 200,
+      "bytes": 988,
+      "sha256": "103694cd6a8c08142c1514aa17b282b68e9f98f3faaf085081c07294010cc6f3"
+    },
+    {
+      "url": "/@fs/D:/ProjectRecovery/nodevideo-dependency-narrow-20260905/node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2",
+      "status": 200,
+      "bytes": 528,
+      "sha256": "3506fa110e041f4d0374159c6e4012fb47d98e4334ab0a4b5ab54f4799425f90"
+    }
+  ],
+  "closingSourceMismatches": [],
+  "closingSelectedInputMismatches": [],
+  "ownedPort4994Released": true,
+  "finishedAt": "2026-09-05T21:38:29.594Z"
+}

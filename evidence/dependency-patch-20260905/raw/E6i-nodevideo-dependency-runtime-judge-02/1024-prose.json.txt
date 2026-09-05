@@ -1,0 +1,47 @@
+{
+  "url": "http://127.0.0.1:4994/",
+  "scenario": "prose",
+  "viewport": {
+    "width": 1024,
+    "height": 900
+  },
+  "scrollWidth": 1024,
+  "regions": [
+    {
+      "id": "message-surface",
+      "text": "Actual MessageResponseLocal fixture: review-ready, Unicode 測試, and literal code.\nInspect the proposal\nConfirm the accepted version\n",
+      "html": "<h2>Actual MessageResponse</h2><div class=\"group flex w-full max-w-[95%] flex-col gap-2 is-assistant\"><div class=\"is-user:dark flex w-fit min-w-0 max-w-full flex-col gap-2 overflow-hidden text-sm group-[.is-user]:ml-auto group-[.is-user]:rounded-lg group-[.is-user]:bg-secondary group-[.is-user]:px-4 group-[.is-user]:py-3 group-[.is-user]:text-foreground group-[.is-assistant]:text-foreground\"><div class=\"space-y-4 whitespace-normal size-full [&amp;&gt;*:first-child]:mt-0 [&amp;&gt;*:last-child]:mb-0\"><p>Local fixture: <span class=\"font-semibold\" data-streamdown=\"strong\">review-ready</span>, Unicode 測試, and <code class=\"rounded bg-muted px-1.5 py-0.5 font-mono text-sm\" data-streamdown=\"inline-code\">literal code</code>.</p><ul class=\"list-inside list-disc whitespace-normal [li_&amp;]:pl-6\" data-streamdown=\"unordered-list\">\n<li class=\"py-1 [&amp;&gt;p]:inline\" data-streamdown=\"list-item\">Inspect the proposal</li>\n<li class=\"py-1 [&amp;&gt;p]:inline\" data-streamdown=\"list-item\">Confirm the accepted version</li>\n</ul></div></div></div>",
+      "rect": {
+        "x": 78,
+        "y": 152,
+        "width": 868,
+        "height": 151,
+        "top": 152,
+        "right": 946,
+        "bottom": 303,
+        "left": 78
+      },
+      "svgs": [],
+      "font": "\"Geist Variable\", sans-serif",
+      "color": "oklch(0.18 0.01 110)"
+    },
+    {
+      "id": "reasoning-surface",
+      "text": "Actual ReasoningContentInspect synthetic fixture detailsLocal fixture: review-ready, Unicode 測試, and literal code.\nInspect the proposal\nConfirm the accepted version\n",
+      "html": "<h2>Actual ReasoningContent</h2><div data-state=\"open\" data-slot=\"collapsible\" class=\"not-prose mb-4\"><button type=\"button\" aria-controls=\"radix-_r_1_\" aria-expanded=\"true\" data-state=\"open\" data-slot=\"collapsible-trigger\" class=\"flex w-full items-center gap-2 text-muted-foreground text-sm transition-colors hover:text-foreground\">Inspect synthetic fixture details</button><div data-state=\"open\" id=\"radix-_r_1_\" data-slot=\"collapsible-content\" class=\"mt-4 text-sm data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2 text-muted-foreground outline-none data-[state=closed]:animate-out data-[state=open]:animate-in\" style=\"transition-duration: 0s; animation-name: none; --radix-collapsible-content-height: 93px; --radix-collapsible-content-width: 834px;\"><div class=\"space-y-4 whitespace-normal [&amp;&gt;*:first-child]:mt-0 [&amp;&gt;*:last-child]:mb-0\"><p>Local fixture: <span class=\"font-semibold\" data-streamdown=\"strong\">review-ready</span>, Unicode 測試, and <code class=\"rounded bg-muted px-1.5 py-0.5 font-mono text-sm\" data-streamdown=\"inline-code\">literal code</code>.</p><ul class=\"list-inside list-disc whitespace-normal [li_&amp;]:pl-6\" data-streamdown=\"unordered-list\">\n<li class=\"py-1 [&amp;&gt;p]:inline\" data-streamdown=\"list-item\">Inspect the proposal</li>\n<li class=\"py-1 [&amp;&gt;p]:inline\" data-streamdown=\"list-item\">Confirm the accepted version</li>\n</ul></div></div></div>",
+      "rect": {
+        "x": 78,
+        "y": 327,
+        "width": 868,
+        "height": 203,
+        "top": 327,
+        "right": 946,
+        "bottom": 530,
+        "left": 78
+      },
+      "svgs": [],
+      "font": "\"Geist Variable\", sans-serif",
+      "color": "oklch(0.18 0.01 110)"
+    }
+  ]
+}

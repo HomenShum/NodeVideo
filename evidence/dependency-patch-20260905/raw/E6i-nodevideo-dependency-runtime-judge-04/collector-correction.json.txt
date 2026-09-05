@@ -1,0 +1,11 @@
+{
+  "priorScriptSha256": "f06dd759898fdac4541769420c1f694e35642dd1090a3d6f18f7dd9dc6a0abc9",
+  "newScriptSha256": "0acc81b9c237d9635d4af4a541f1efdd7a3ae1148c2d602460891b6d2c9ef551",
+  "changes": [
+    "Wait for actual current Malformed fixture visible text and explicit parse-error text; hidden SVG style .error class no longer satisfies wait. Preserve all old DOM/pixels.",
+    "Serve only the exact existing Geist font bytes at the unchanged generated font URL through an external harness middleware. Prior Vite request returned528bytes HTML, installed font is29400bytes wOF2. No CSS/component/font source edits.",
+    "Record and inspect visibleText separately from raw textContent; assert native font load and HTTP body hash."
+  ],
+  "sameSiteBytes": true,
+  "priorResult": "FAIL"
+}

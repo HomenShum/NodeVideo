@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#10120f" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2310120f'/%3E%3Cpath d='M12 9l12 7-12 7z' fill='%23cfff4a'/%3E%3C/svg%3E"
+    />
+    <meta
+      name="description"
+      content="NodeVideo — learn the dance you admire. Film your take, compare it with the reference count by count, judged on visible motion only, on your machine."
+    />
+    <title>NodeVideo — learn the dance you admire</title>
+    <script type="module" crossorigin src="/assets/index-CFTGFMdj.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-CNC7AqOf.js">
+    <link rel="modulepreload" crossorigin href="/assets/jsx-runtime-B6Jv85OM.js">
+    <link rel="modulepreload" crossorigin href="/assets/pose-loop-D7I5IRx_.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-B_S5QNf7.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

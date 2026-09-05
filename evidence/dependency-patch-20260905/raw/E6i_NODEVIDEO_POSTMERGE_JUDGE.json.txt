@@ -1,0 +1,181 @@
+{
+  "status": "POSTMERGE_MAIN_CHECKS_PASS_EXACT_PUBLIC_BOOTSTRAP_OBSERVED",
+  "mode": "Builder / independent read-only postmerge judge",
+  "requestTraceability": "Re the request to execute planner-worker-judge recovery and make each repository usable for handoff: verify the ordinary merged source, main workflows, automatic deployment and exact public bootstrap, preserving broader holds.",
+  "independence": "Same nonauthor shared integration judge, reused context; no new fresh-reviewer claim.",
+  "candidate": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905",
+  "merge": "1417d325faca991fed9b05803fee26336255b063",
+  "tree": "00ac1b56cb484c503653830179b0f9dfb6fd24ec",
+  "parents": [
+    "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+    "e0777e37f9da60dede2817f44ecf7d9eea02e5bb"
+  ],
+  "source": "e0777e37f9da60dede2817f44ecf7d9eea02e5bb",
+  "mergedAt": "2026-09-05T21:40:55Z",
+  "immutableFilesVerified": 720,
+  "workflows": [
+    {
+      "id": 33993746903,
+      "name": "Node Platform conformance",
+      "event": "push",
+      "head_sha": "1417d325faca991fed9b05803fee26336255b063",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "created_at": "2026-09-05T21:40:58Z",
+      "updated_at": "2026-09-05T21:41:21Z"
+    },
+    {
+      "id": 33993746696,
+      "name": "Quality",
+      "event": "push",
+      "head_sha": "1417d325faca991fed9b05803fee26336255b063",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "created_at": "2026-09-05T21:40:57Z",
+      "updated_at": "2026-09-05T21:48:41Z"
+    },
+    {
+      "id": 33993746694,
+      "name": "Production deploy verify",
+      "event": "push",
+      "head_sha": "1417d325faca991fed9b05803fee26336255b063",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "created_at": "2026-09-05T21:40:57Z",
+      "updated_at": "2026-09-05T21:41:12Z"
+    }
+  ],
+  "quality": {
+    "codeJob": 101380428522,
+    "browserJob": 101380665540,
+    "unitTests": 353,
+    "unitFiles": 74,
+    "browserTests": 200,
+    "passed": 175,
+    "skipped": 25,
+    "failed": 0,
+    "flakyReported": false,
+    "retryEntriesObserved": 0,
+    "skipGroups": {
+      "live OpenRouter free planner resolves a model before deterministic compilation": 5,
+      "native Chromium records the collab canvas as a non-empty WebM": 4,
+      "Smart Reframe detects locally, reuses one track, and proposes three crop plans": 4,
+      "two sessions react to the same Caseflow and stale approval fails closed": 4,
+      "approved creator variant exports a real local H.264 MP4": 4,
+      "browser exporter produces a real local H.264 MP4 download": 4
+    },
+    "scope": "Five Chromium project sizes with existing reduced-motion/synthetic-camera configuration; exact merged checkout, not repeated local testing. Live-provider cases retain their opt-in skips; desktop current-backend two-session and short codec assertions classified by actual JUnit."
+  },
+  "conformance": {
+    "reusablePinnedCommit": "ef4ac8a011b230efa3324892a193abe02ff2d673",
+    "actualInnerMainProducer": "a2d2e8ce36cc3e87a6a8133469dd55d8b7580588",
+    "runtimePackagePin": "8d4f7e6e8235751d07c456208f841b15edf8de39",
+    "scope": "Metadata/manifest/command conformance; not new current NodeKit factory or runtime package acceptance."
+  },
+  "deployment": {
+    "mechanism": "Existing automatic Vercel Git integration; observer made no deployment request.",
+    "githubDeploymentId": 6286138069,
+    "sha": "1417d325faca991fed9b05803fee26336255b063",
+    "createdAt": "2026-09-05T21:41:36Z",
+    "environmentLabel": "Production",
+    "production_environment": false,
+    "transient_environment": false,
+    "latestState": "success",
+    "statusAt": "2026-09-05T21:41:36Z",
+    "fieldLimit": "GitHub labels environment Production but production_environment=false; both actual fields retained, public alias proof below establishes which bytes the advertised public URL serves."
+  },
+  "deploySmoke": {
+    "run": 33993746694,
+    "job": 101380428561,
+    "status": "success",
+    "actualSignalAt": "2026-09-05T21:41:08.4395273Z",
+    "signal": "NodeVideo \u2014 learn the dance you admire",
+    "attempt": 1,
+    "rollbackStep": "skipped",
+    "limit": "Version-independent title can accept prior healthy content. Its success precedes the new deployment record and alone cannot prove this merge. No claim the prior served content was definitely stale; the later independent exact receipt closes current bootstrap identity."
+  },
+  "public": {
+    "url": "https://nodevideo-pi.vercel.app/",
+    "titleSignal": true,
+    "rootContainerEmpty": true,
+    "modulePath": "/assets/index-CFTGFMdj.js",
+    "receiptSourceCommit": "1417d325faca991fed9b05803fee26336255b063",
+    "expectedMerge": "1417d325faca991fed9b05803fee26336255b063",
+    "exactMerge": true,
+    "contractSha256": "283f7811a0d55663df019d2dfa33f770b817b2aff05eda43553b7454b335308f",
+    "receiptContractMatches": true,
+    "htmlIsHydratedUiProof": false,
+    "contract": {
+      "schemaVersion": "nodevideo.agent-ui-build.v1",
+      "sourceCommit": "1417d325faca991fed9b05803fee26336255b063",
+      "stampedBy": "scripts/quality/stamp-contract-build.mjs"
+    },
+    "requests": [
+      {
+        "path": "public-root",
+        "status": 200,
+        "bytes": 1195,
+        "sha256": "8dba52835df6f15974686770deb8896d9cdc80a649053f5b6fc44b3b445dfe95",
+        "startedAt": "2026-09-05T21:43:07.363928+00:00",
+        "completedAt": "2026-09-05T21:43:07.805213+00:00"
+      },
+      {
+        "path": "public-build-receipt",
+        "status": 200,
+        "bytes": 578,
+        "sha256": "f45daaa6ba13679ea460219743ea08796ab0f1b66fe64297becee3cc1afd0362",
+        "startedAt": "2026-09-05T21:43:07.806214+00:00",
+        "completedAt": "2026-09-05T21:43:08.192538+00:00"
+      },
+      {
+        "path": "public-contract",
+        "status": 200,
+        "bytes": 25735,
+        "sha256": "283f7811a0d55663df019d2dfa33f770b817b2aff05eda43553b7454b335308f",
+        "startedAt": "2026-09-05T21:43:08.192538+00:00",
+        "completedAt": "2026-09-05T21:43:08.466647+00:00"
+      },
+      {
+        "path": "public-landing-module",
+        "status": 200,
+        "bytes": 9009,
+        "sha256": "dff04c89d13cf9f57698b190cd70cb25ac59de2ec4df6cfa16dc30deb92977b5",
+        "startedAt": "2026-09-05T21:43:08.466647+00:00",
+        "completedAt": "2026-09-05T21:43:08.666521+00:00"
+      }
+    ],
+    "contractAlsoMatchesActualMergedGitBlob": true,
+    "servedLandingClockInitializers": "Both expected nullish first-callback origins observed in the actual fetched landing module; exact contexts retained.",
+    "renderedProductionInteractionsObserved": false,
+    "scope": "Public raw HTML/title/module plus exact merge build receipt and contract bytes. Empty root container means this is bootstrap/deployed-source observation, not live hydrated animation, studio, private case, exported media or overall product acceptance."
+  },
+  "history": {
+    "sourceLocalAndRemotePreserved": true,
+    "deleteOnMergePolicy": false,
+    "candidateBranch": "codex/nodevideo-current-handoff-20260905",
+    "originalPrimaryGuardMatched": true,
+    "pr30And45Mutations": 0
+  },
+  "securityAndReadinessHolds": [
+    "PR46 GitGuardian was NEUTRAL / NOT_SCANNED_SIZE_LIMIT, unchanged; absence of a postmerge GitGuardian check is not coverage.",
+    "Exact merged dependency state retains13 total audit findings, including3 previously bound production findings; separate external proposed fixes are not merged here.",
+    "Conformance producer install retains3 audit findings.",
+    "Existing five missing-landmark frames, enlarged phone overflow, editor clipping/overlap, playback/performance and full quality grades remain held.",
+    "Current shared codec smoke uses short silent180x320 output, not full44.5s high-resolution export; provider, physical-camera/device, native zoom, human evaluation and full product coverage remain unverified."
+  ],
+  "fullQualityGradesAssigned": false,
+  "productionFunctionalAcceptance": null,
+  "evidence": {
+    "manifest": "E6i-nodevideo-postmerge-independent/manifest.json",
+    "manifestSha256": "1ff7f3d7d958a0f0e11b4fde7bd9b8e379403c22f888a6c3b4e46488e8fd9cfe",
+    "files": 108,
+    "mainArtifactId": 9977515250,
+    "mainArtifactBytes": 1191042,
+    "mainArtifactSha256": "sha256:610626fe41cc715693cae4af251f82833cc19551dfcc80d898d64ee53accf909",
+    "junitSha256": "c2c91ec44a8ccea706a831302a0ae6bb36e534a5fb8b58f6c93eb8d48e272f9e"
+  },
+  "guard": "CLOSED. All720 actual merged/working bytes exact; candidate HEAD/tree/branch/index entries/refs/status unchanged. Original primary matches prior preservation hashes. No source/config/ref/index edits, tests, browser/runtime launches, provider/mic/private operations, workflow reruns/dispatch, rollback/deploy or merge by this observer."
+}

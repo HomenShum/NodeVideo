@@ -1,0 +1,64 @@
+{
+  "status": "EXTERNAL_NARROW_DEPENDENCIES_INSTALLED_AND_CHECKED",
+  "at": "2026-09-05T21:32:19.239281+00:00",
+  "baseSourceCommit": "e0777e37f9da60dede2817f44ecf7d9eea02e5bb",
+  "sourceIdentity": "Exact immutable Git export plus one separately bound lock change; no Git checkout, build stamp may say unknown",
+  "scratchRoot": "D:\\ProjectRecovery\\nodevideo-dependency-narrow-20260905",
+  "sourceFiles": 2074,
+  "sourceBindingsSha256": "9875946217477e5b66104d0a1d4902fdd5eaa034080d25729f28ffda2b1e5970",
+  "lockSha256": "8cff46f44e9a185de1e0d1844129cbcacb2eade814c10bb25de5f52eb7adcc1b",
+  "commands": [
+    {
+      "name": "clean-install",
+      "command": "npm ci",
+      "exitCode": 0,
+      "seconds": 15.484,
+      "outerBudgetSeconds": 300,
+      "timedOut": false,
+      "logSha256": "5f30586781e8b56a522b30c432aee43efd7c445e21efea6ed517e863463c8175",
+      "ownedProcessesObserved": 5
+    },
+    {
+      "name": "production-audit",
+      "command": "npm audit --omit=dev --json",
+      "exitCode": 0,
+      "seconds": 1.562,
+      "outerBudgetSeconds": 120,
+      "timedOut": false,
+      "logSha256": "26051ae680ba254ae38fdecd3f8a599875eac0153adc51bc5b991aea471ea112",
+      "ownedProcessesObserved": 3
+    },
+    {
+      "name": "full-audit",
+      "command": "npm audit --json",
+      "exitCode": 1,
+      "seconds": 1.562,
+      "outerBudgetSeconds": 120,
+      "timedOut": false,
+      "logSha256": "286bd9978f9f93e5c3fd4148b1cff0383e056cd27e758dcad3fb15802bfa182f",
+      "ownedProcessesObserved": 3
+    },
+    {
+      "name": "normal-check",
+      "command": "npm run check",
+      "exitCode": 0,
+      "seconds": 119.203,
+      "outerBudgetSeconds": 300,
+      "timedOut": false,
+      "logSha256": "0ae0af8c481c76a46fa6826211ef46640c93dc5e1127e69e6968fe2bb5026324",
+      "ownedProcessesObserved": 148
+    }
+  ],
+  "productionAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "productUnchanged": true,
+  "sourceBindingsUnchangedAfterChecks": true,
+  "runtimeMessageProof": "PENDING",
+  "transferred": false
+}

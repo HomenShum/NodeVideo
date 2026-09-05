@@ -1,0 +1,22 @@
+{
+  "head": {
+    "sha256": "43ab708a39478b5cab28a0b21c266dec7d12857d0528e51cfaacfc09585f5044",
+    "expected": "43ab708a39478b5cab28a0b21c266dec7d12857d0528e51cfaacfc09585f5044",
+    "matched": true
+  },
+  "branch": {
+    "sha256": "599bbcd7b7f94b50d9b83318ba0dd4b8e1ba9e39d1d3ee73d1fbbd70496d0f93",
+    "expected": "599bbcd7b7f94b50d9b83318ba0dd4b8e1ba9e39d1d3ee73d1fbbd70496d0f93",
+    "matched": true
+  },
+  "status": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matched": true
+  },
+  "indexEntries": {
+    "sha256": "d665978db38344fce372dc87ddfa4abb32f2bdda7687b9c8a5d22c03be7bfbcb",
+    "expected": "d665978db38344fce372dc87ddfa4abb32f2bdda7687b9c8a5d22c03be7bfbcb",
+    "matched": true
+  }
+}

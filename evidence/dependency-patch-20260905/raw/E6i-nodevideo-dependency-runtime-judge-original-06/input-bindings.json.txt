@@ -1,0 +1,147 @@
+[
+  {
+    "path": "package.json",
+    "bytes": 11284,
+    "sha256": "eb7e03afdf8f2d9a11a10a16fa6a2953cca248ccd559a06717ea6bec3f60c84a"
+  },
+  {
+    "path": "package-lock.json",
+    "bytes": 471440,
+    "sha256": "19e6b173b8863280af94b1b6cd09e3eeaa231d58d8862379388e3d41255f8610"
+  },
+  {
+    "path": "vite.config.ts",
+    "bytes": 8048,
+    "sha256": "421b61d609a2d35b84a85c232f37d142916e1416dc0c84aaf6dd4d4beeb8b03f"
+  },
+  {
+    "path": "src/components/ai-elements/message.tsx",
+    "bytes": 8554,
+    "sha256": "2affb1d58d6948cb254e6cec888c60dfa46f2f9b9936b3df3fb7fe4b3230ed74"
+  },
+  {
+    "path": "src/components/ai-elements/reasoning.tsx",
+    "bytes": 6257,
+    "sha256": "efe4d92ee54441133bcb2d45cb327551719bcfd95ffd13e840adb98eaa0e8b8a"
+  },
+  {
+    "path": "src/styles.css",
+    "bytes": 3677,
+    "sha256": "845beb8025aae556e829f47a72f7be92333502ec673ac540b9285b13d11deaf9"
+  },
+  {
+    "path": "apps/chrome-extension/src/extension.css",
+    "bytes": 395,
+    "sha256": "1a40e89268f37d35ec125488ec3d3087ad15c5c62e9331aaa4ace96de04b0816"
+  },
+  {
+    "path": "apps/chrome-extension/src/main.tsx",
+    "bytes": 38268,
+    "sha256": "79c8cc36098ad443009a859c15b2f0c211978e5d7597812c417ecf8807e01eee"
+  },
+  {
+    "path": "apps/edit/src/edit.tsx",
+    "bytes": 91610,
+    "sha256": "e409aa1f9dd95f75c9b5cc5e285238ffa00f1961903460c1b21ec90e175e7072"
+  },
+  {
+    "path": "scripts/quality/validate-capability-pack.mjs",
+    "bytes": 21734,
+    "sha256": "c6d2e942641993b35cbae3fec71115e5ed328cd3f29525a54c147157a3faf5d7"
+  },
+  {
+    "path": "packs/tutorial-compare/input.schema.json",
+    "bytes": 6908,
+    "sha256": "af386036f243ccc52b5d802149e1656843e92296f1293621a25630651831b9c9"
+  },
+  {
+    "path": "packs/tutorial-compare/evals/public-worker-v1.json",
+    "bytes": 4587,
+    "sha256": "4b17d5662cb53e7225a484d51a66563ef3dc7403dced6761230a4beb53e21e3f"
+  },
+  {
+    "path": "node_modules/fast-uri/package.json",
+    "bytes": 1983,
+    "sha256": "1b2be7d3d7da1ae91bc607016f4a3ecb60308c3b84f5e3ee571e8b5b5558e108"
+  },
+  {
+    "path": "node_modules/fast-uri/index.js",
+    "bytes": 12229,
+    "sha256": "44c999f7f1470664259e3027bf890d0fd7c0c5563c4030bb660c9bdda06568d6"
+  },
+  {
+    "path": "node_modules/dompurify/package.json",
+    "bytes": 6670,
+    "sha256": "8ed5edd4c92752c82da8616ea314025014e834546567bdaae61d7036962c0824"
+  },
+  {
+    "path": "node_modules/dompurify/dist/purify.es.mjs",
+    "bytes": 117877,
+    "sha256": "b51207de097d14ff9af93bb923d1a245d196a474cbbfdcfeda5e2166734715e1"
+  },
+  {
+    "path": "node_modules/mermaid/package.json",
+    "bytes": 4713,
+    "sha256": "88ea12cf87bb2616d3ed68b1f0d3202a0ab1ad5a1eed82f8471dfd8f9dc8d1cb"
+  },
+  {
+    "path": "node_modules/mermaid/dist/mermaid.core.mjs",
+    "bytes": 51421,
+    "sha256": "538b47c892f2e11e92221e71d6c2c1f0dd80003bd77392e85d0183cd035fa542"
+  },
+  {
+    "path": "node_modules/@streamdown/mermaid/package.json",
+    "bytes": 986,
+    "sha256": "e3ef5731f8e8a3931112b566f034898d9fa2959d85d18f49eb5270868b75a546"
+  },
+  {
+    "path": "node_modules/@streamdown/mermaid/dist/index.js",
+    "bytes": 489,
+    "sha256": "d0b8a8fe29e526c39d3e9f0df555ec1d1454ec5a635af8c459913d620ca53737"
+  },
+  {
+    "path": "node_modules/streamdown/package.json",
+    "bytes": 2278,
+    "sha256": "828b00e3ef03f90704058400fb9ed824c344574504ed48a823e075bd97ea73eb"
+  },
+  {
+    "path": "node_modules/streamdown/dist/index.js",
+    "bytes": 677,
+    "sha256": "2ed278c7390c627ae66a71245e15bcd370b14f9afe1ceb8eb917c2c06558aead"
+  },
+  {
+    "path": "node_modules/ajv/package.json",
+    "bytes": 4405,
+    "sha256": "1f9033ee5a6515e7d76938b7072941862d1ed228a6879cc7fe10cdeb75107989"
+  },
+  {
+    "path": "node_modules/ajv/dist/2020.js",
+    "bytes": 2894,
+    "sha256": "908e9670b478b2ba126802a221b7e47006f50cf467e2c5dd7935d3dbef10a20a"
+  },
+  {
+    "path": "node_modules/ajv-formats/package.json",
+    "bytes": 1897,
+    "sha256": "402fb4bcfa457f0226813f3976ac42839dd619907c075c108efba8600d7edb69"
+  },
+  {
+    "path": "node_modules/ajv-formats/dist/index.js",
+    "bytes": 1508,
+    "sha256": "3f3014150293846086d11058bb8bf43e669e354a98b37adcf10281454d5e753b"
+  },
+  {
+    "path": "node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2",
+    "bytes": 29400,
+    "sha256": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1"
+  },
+  {
+    "path": "node_modules/react/package.json",
+    "bytes": 1248,
+    "sha256": "51966ae9c8c377ff592b5d69c980966992101bc6791bf83a1e5c7ad9bcefa7f4"
+  },
+  {
+    "path": "node_modules/react-dom/package.json",
+    "bytes": 3063,
+    "sha256": "447acd72cdb6a966d9db967729e286e7cbb4a09ea61fddd45e12c2a97fd4cfb6"
+  }
+]

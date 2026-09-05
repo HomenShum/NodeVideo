@@ -1,0 +1,31 @@
+import React, { useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import { Message, MessageContent, MessageResponse } from '@/components/ai-elements/message';
+import { Reasoning, ReasoningContent, ReasoningTrigger } from '@/components/ai-elements/reasoning';
+import '/@fs/D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905/apps/chrome-extension/src/extension.css';
+
+const fixtures = {
+  prose: 'Local fixture: **review-ready**, Unicode 測試, and `literal code`.\n\n- Inspect the proposal\n- Confirm the accepted version',
+  diagram: 'Synthetic diagram fixture:\n\n```mermaid\nflowchart LR\n A["<b>Plan</b>"] --> B["Review &amp; confirm"]\n```',
+  malformed: 'Malformed diagram fixture:\n\n```mermaid\nflowchart LR\n A --> --> B\n```',
+};
+
+function App() {
+  const [scenario, setScenario] = useState<keyof typeof fixtures>('prose');
+  return <main style={{ maxWidth: 900, margin: '24px auto', padding: 16 }}>
+    <header><h1>NodeVideo component contract observation</h1><p>External synthetic surface. No model, full application journey or production claim.</p></header>
+    <nav aria-label="Fixture selection" style={{ display: 'flex', gap: 16, margin: '20px 0' }}>
+      {Object.keys(fixtures).map((name) => <button key={name} type="button" onClick={() => setScenario(name as keyof typeof fixtures)} aria-pressed={scenario === name}>{name}</button>)}
+    </nav>
+    <section data-testid="message-surface" style={{ padding: 16, border: '1px solid var(--border)', marginBottom: 24 }}>
+      <h2>Actual MessageResponse</h2>
+      <Message from="assistant"><MessageContent><MessageResponse>{fixtures[scenario]}</MessageResponse></MessageContent></Message>
+    </section>
+    <section data-testid="reasoning-surface" style={{ padding: 16, border: '1px solid var(--border)' }}>
+      <h2>Actual ReasoningContent</h2>
+      <Reasoning defaultOpen><ReasoningTrigger>Inspect synthetic fixture details</ReasoningTrigger><ReasoningContent>{fixtures[scenario]}</ReasoningContent></Reasoning>
+    </section>
+    <output data-testid="scenario">{scenario}</output>
+  </main>;
+}
+createRoot(document.getElementById('root')!).render(<App />);

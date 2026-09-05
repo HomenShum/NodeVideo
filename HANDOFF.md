@@ -60,7 +60,8 @@ its ratings cover the retained observations, not a full accessibility or user-re
 
 - Ordinary local install and the reviewed lint/conformance changes passed their named checks.
   The reusable workflow still uses its original pinned revision, with the canonical NodeKit
-  repository name. Actual shared CI and deployment for this candidate are pending.
+  repository name. PR46 and exact merged1417d325 main CI passed; public bootstrap identity was
+  separately observed. The dependency follow-on below needs its own shared checks.
 - The original inspector/editor proof covered seven exact viewport pairs. The landing follow-up
   covered 320×800, 390×844 and 1440×960 in normal/reduced/computed-text200 modes. All full visual,
   interaction, responsive, accessibility, device and performance grades remain unassigned.
@@ -98,4 +99,22 @@ No timeout, rule, package, dependency, runtime owner or assertion was weakened.
 
 Run `npm run test -- tests/unit/landing-clock.test.ts` for the focused regression, then normal
 `npm run check`. No new production export, dependency, package command or clock service is needed.
-Actual shared CI and deployment remain pending; local checks do not certify them.
+The clock/handoff merge passed its actual shared checks; the dependency follow-on below has
+separate local evidence and must receive its own shared checks.
+
+
+## Reviewed dependency patch
+
+The current lock updates only fast-uri to3.1.7, DOMPurify to3.4.14 and Mermaid to11.16.1, retaining
+the existing direct constraints and NodeKit pin. A fresh exact source export plus this lock passed
+ordinary install and353tests/74files with build/rendered-contract checks. Its production audit is0;
+the full audit retains10 development findings(6high/4moderate). The earlier13/3 audit remains an
+honest historical record of the original lock. See [the patch evidence](evidence/dependency-patch-20260905/README.md).
+
+Actual component prose/SVG rendering, fresh parse errors and schema accept/reject behavior were
+observed. Replacing an existing diagram with malformed text still shows the old result after20s,
+under both old and patched dependencies. That preexisting component failure remains open;
+the patch neither claims a correct error transition nor changes the generated renderer.
+
+PR46's main tests and public bootstrap identity are independently recorded in the patch packet.
+They apply to merged1417d325, not this later lock change. Current patch shared checks remain pending.
