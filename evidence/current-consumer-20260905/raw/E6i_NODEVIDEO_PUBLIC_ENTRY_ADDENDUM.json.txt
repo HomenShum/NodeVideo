@@ -1,0 +1,68 @@
+{
+  "schema": "nodevideo-canonical-entry-correction/v1",
+  "at": "2026-09-05T18:49:49.069703+00:00",
+  "status": "SOURCE_ROUTE_CORRECTION_AND_ATTRIBUTED_PUBLIC_TRIAGE",
+  "supersedes": "Only prior recon inference that the root itself mounts the calibration inspector. Original recon remains historical and unchanged.",
+  "priorReconSha256": "baef278c9bf34428149c20700cf6dba9321eaaa3633fbe39f58f58cacce9349f",
+  "canonicalCommit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "sourceBindings": [
+    {
+      "path": "index.html",
+      "commit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+      "bytes": 864,
+      "sha256": "3937663923683f5ff15ce87ac7a730da1ca9bafafaaacea090c053cf00c8901b",
+      "artifact": "index.html.txt"
+    },
+    {
+      "path": "studio.html",
+      "commit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+      "bytes": 765,
+      "sha256": "6120214662e2a28f7403e3bdcad7b1fcbd46dc26ed019d857f5302595271b34e",
+      "artifact": "studio.html.txt"
+    },
+    {
+      "path": "src/main.tsx",
+      "commit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+      "bytes": 428,
+      "sha256": "36dd6d6050249d69767898ef465b497e29cd8772d27313ded6281e233b053693",
+      "artifact": "src__main.tsx.txt"
+    },
+    {
+      "path": "src/App.tsx",
+      "commit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+      "bytes": 2949,
+      "sha256": "e4e9dab6548ec9556af601ec1d3c56017a34a461bb5ef6034b6a7b1a912da0a0",
+      "artifact": "src__App.tsx.txt"
+    },
+    {
+      "path": "apps/landing/src/landing.tsx",
+      "commit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+      "bytes": 11988,
+      "sha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+      "artifact": "apps__landing__src__landing.tsx.txt"
+    }
+  ],
+  "correctedRoutes": {
+    "https://nodevideo-pi.vercel.app/": "index.html -> apps/landing/src/landing.tsx: choreography coach landing; links Studio",
+    "https://nodevideo-pi.vercel.app/studio.html": "studio.html -> src/main.tsx -> src/App.tsx: calibration, LiveJobWorkspace and collapsed FrameInspector",
+    "https://nodevideo-pi.vercel.app/edit.html": "Separate browser editing/export entry, planned actual local first-use",
+    "https://nodevideo-pi.vercel.app/creator.html": "Separate Convex URL/backend/owner-capability guarded creator surface; not authorized by passive public triage"
+  },
+  "publicEvidence": {
+    "performedBy": "root",
+    "receiptSha256": "ef071aac705de31d1f74be843aa183e7e1e64820b7ba8c2f70949f96686bc518",
+    "rawLandingBytes": 1195,
+    "rawLandingSha256": "60c93200f5a2b24b91b7151b1a1efc3079510e8527c38c778829bf511089aa0b",
+    "rawBuildSha256": "dbd4b2812e34557680c587e0d78cc368cc29b0ec8bdd50c6dca153e6dc00446a",
+    "sourceCommit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+    "rawHeadingAbsent": true,
+    "browserObservedHeading": "Learn the dance you admire.",
+    "screenshotCustody": "Root viewed CUA tool response only; no portable screenshot byte artifact",
+    "blankPoseFrame": "One root-observed frame appeared blank; cause unknown. No playback or pose acceptance claim."
+  },
+  "correctedFirstUse": "Fresh empty-storage public landing -> native Studio link -> open and scrub public calibration inspector; keep /edit.html artifact export and /creator.html backend proof separate. Passive inspector needs only public GET assets. Existing owner/job session state must not be reused.",
+  "judgeNewNetworkOrBrowserActions": 0,
+  "noCurrentRefGuard": "Root is creating an authorized new isolated candidate concurrently. This addendum reads immutable canonical objects only and does not claim the earlier ref/worktree guard applies to that later operation.",
+  "fullGrades": null,
+  "artifactManifestSha256": "8179aaeb375c7501f6b85c2241483ad459ea1c2e18e671d514cec9488886270e"
+}

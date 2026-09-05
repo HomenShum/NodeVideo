@@ -1,0 +1,27 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const write=(f,o)=>fs.writeFileSync(f,JSON.stringify(o,null,2)+'\n');
+export async function boundary(page,out,cell){
+ const snapshot=()=>[...document.querySelectorAll('*')].map((e,i)=>({i,tag:e.tagName,clock:e.matches('[aria-label^="Count "]')?'count':e.matches('[aria-label^="Count "] [data-live]')?'live':e===document.documentElement?'html':null,attrs:Object.fromEntries([...e.attributes].map(a=>[a.name,a.value])),directText:[...e.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent)}));
+ const before=await page.evaluate(snapshot);fs.writeFileSync(path.join(out,'before-overlay.html'),await page.content());
+ await page.evaluate(()=>{
+  const root=document.createElement('div');root.id='nodevideo-proof-boundary';root.setAttribute('aria-hidden','true');Object.assign(root.style,{position:'fixed',inset:'0',pointerEvents:'none',zIndex:'2147483647'});
+  for(const [selector,label,color]of [['canvas','CHANGE A · Pose canvas','#ff00d4'],['[aria-label^="Count "]','CHANGE B · Count row','#00e5ff']]){
+   const r=document.querySelector(selector).getBoundingClientRect(),box=document.createElement('div');Object.assign(box.style,{position:'absolute',left:r.x+'px',top:r.y+'px',width:r.width+'px',height:r.height+'px',border:`3px solid ${color}`,boxSizing:'border-box'});const title=document.createElement('div');title.textContent=label;Object.assign(title.style,{position:'absolute',left:'0',bottom:'100%',marginBottom:'4px',padding:'3px 6px',background:'#080808',color,font:'bold 12px/16px Arial,sans-serif',whiteSpace:'nowrap',border:`1px solid ${color}`});box.append(title);root.append(box);
+  }document.body.append(root);
+ });
+ await page.screenshot({path:path.join(out,'change-boundary.png'),caret:'initial'});await page.evaluate(()=>document.querySelector('#nodevideo-proof-boundary').remove());
+ const after=await page.evaluate(snapshot);fs.writeFileSync(path.join(out,'after-overlay.html'),await page.content());const changes=[];let staticRestored=before.length===after.length;
+ for(let i=0;i<before.length;i++){
+  const a=before[i],b=after[i];if(!b||a.tag!==b.tag||JSON.stringify(a.directText)!==JSON.stringify(b.directText)){staticRestored=false;changes.push({i,kind:'structure-or-text'});continue;}
+  for(const key of new Set([...Object.keys(a.attrs),...Object.keys(b.attrs)]))if(a.attrs[key]!==b.attrs[key]){
+   let native=false;
+   if(a.clock==='count'&&key==='aria-label')native=/^Count [1-8] of 8 at 103\.4 beats per minute$/.test(b.attrs[key]);
+   if(a.clock==='live'&&key==='data-live')native=['true','false'].includes(b.attrs[key]);
+   if(a.clock==='html'&&key==='style'){const removePulse=s=>s.replace(/--count-pulse:\s*[^;]+;?/g,'').trim();native=removePulse(a.attrs[key]??'')===removePulse(b.attrs[key]??'');}
+   if(!native)staticRestored=false;changes.push({i,tag:a.tag,clock:a.clock,key,before:a.attrs[key],after:b.attrs[key],nativeClockChange:native});
+  }
+ }
+ cell.overlay={removed:await page.locator('#nodevideo-proof-boundary').count()===0,fullDomExact:JSON.stringify(before)===JSON.stringify(after),staticDomRestored:staticRestored,observedNativeDifferences:changes};write(path.join(out,'overlay-restoration.json'),cell.overlay);if(!staticRestored)throw Error('Unexplained DOM change during boundary overlay');
+
+}

@@ -1,0 +1,162 @@
+{
+  "actuallyViewed": 12,
+  "method": "Viewed each original PNG with tools.view_image; no screenshot alteration or DOM-only pixel certification.",
+  "files": [
+    {
+      "original": {
+        "path": "E6i-nodevideo-landing-before-01/320/change-boundary.png",
+        "bytes": 29574,
+        "sha256": "2bb448167dc9f833ea454920bf24f6ee812bb7cbeef0f6a806b410c346ee61ed"
+      },
+      "copy": {
+        "path": "E6i-nodevideo-landing-final-judge/viewed--E6i-nodevideo-landing-before-01--320--change-boundary.png",
+        "bytes": 29574,
+        "sha256": "2bb448167dc9f833ea454920bf24f6ee812bb7cbeef0f6a806b410c346ee61ed"
+      },
+      "observation": "Actual labelled 3px count/canvas boundary; blank pose."
+    },
+    {
+      "original": {
+        "path": "E6i-nodevideo-landing-after-02/320-normal/start.png",
+        "bytes": 33862,
+        "sha256": "2df9ec898cc0e9d5b50352d30b9e9f2899f92c37dd4bf7adcfc713e888b454f3"
+      },
+      "copy": {
+        "path": "E6i-nodevideo-landing-final-judge/viewed--E6i-nodevideo-landing-after-02--320-normal--start.png",
+        "bytes": 33862,
+        "sha256": "2df9ec898cc0e9d5b50352d30b9e9f2899f92c37dd4bf7adcfc713e888b454f3"
+      },
+      "observation": "Native visible pose and count1 with matching neighbors."
+    },
+    {
+      "original": {
+        "path": "E6i-nodevideo-landing-before-01/390/change-boundary.png",
+        "bytes": 42385,
+        "sha256": "831923e5c33025d54bdf5031afd46c26bb67128a969a512a43cb8ae2c696424e"
+      },
+      "copy": {
+        "path": "E6i-nodevideo-landing-final-judge/viewed--E6i-nodevideo-landing-before-01--390--change-boundary.png",
+        "bytes": 42385,
+        "sha256": "831923e5c33025d54bdf5031afd46c26bb67128a969a512a43cb8ae2c696424e"
+      },
+      "observation": "Actual labelled 3px count/canvas boundary; blank pose."
+    },
+    {
+      "original": {
+        "path": "E6i-nodevideo-landing-after-02/390-normal/start.png",
+        "bytes": 49719,
+        "sha256": "9e2b9669fb4742950c5e818237ad4c1fb2d968e2e0f536a6f92dc4a7a50aaf8f"
+      },
+      "copy": {
+        "path": "E6i-nodevideo-landing-final-judge/viewed--E6i-nodevideo-landing-after-02--390-normal--start.png",
+        "bytes": 49719,
+        "sha256": "9e2b9669fb4742950c5e818237ad4c1fb2d968e2e0f536a6f92dc4a7a50aaf8f"
+      },
+      "observation": "Native visible pose and count1, same text/actions."
+    },
+    {
+      "original": {
+        "path": "E6i-nodevideo-landing-before-01/1440/change-boundary.png",
+        "bytes": 109276,
+        "sha256": "f3e815faf1e65a956fe83f6646c82e0f4a1aa440313ed1315adb3c4fe028b3d4"
+      },
+      "copy": {
+        "path": "E6i-nodevideo-landing-final-judge/viewed--E6i-nodevideo-landing-before-01--1440--change-boundary.png",
+        "bytes": 109276,
+        "sha256": "f3e815faf1e65a956fe83f6646c82e0f4a1aa440313ed1315adb3c4fe028b3d4"
+      },
+      "observation": "Actual labelled desktop boundary; empty pose region."
+    },
+    {
+      "original": {
+        "path": "E6i-nodevideo-landing-after-02/1440-normal/start.png",
+        "bytes": 128975,
+        "sha256": "d517786eb44889cb88bf19344801119806f18e66891201c1a23ff1db9b9a723b"
+      },
+      "copy": {
+        "path": "E6i-nodevideo-landing-final-judge/viewed--E6i-nodevideo-landing-after-02--1440-normal--start.png",
+        "bytes": 128975,
+        "sha256": "d517786eb44889cb88bf19344801119806f18e66891201c1a23ff1db9b9a723b"
+      },
+      "observation": "Native visible initial pose, desktop layout unchanged."
+    },
+    {
+      "original": {
+        "path": "E6i-nodevideo-landing-after-02/1440-normal/end.png",
+        "bytes": 117853,
+        "sha256": "b694f2cfdd5064e3867c22e207d671306f9fbf14b551dbd03776ce01f54ea12c"
+      },
+      "copy": {
+        "path": "E6i-nodevideo-landing-final-judge/viewed--E6i-nodevideo-landing-after-02--1440-normal--end.png",
+        "bytes": 117853,
+        "sha256": "b694f2cfdd5064e3867c22e207d671306f9fbf14b551dbd03776ce01f54ea12c"
+      },
+      "observation": "Different pose/count8 observed in later saved pixels."
+    },
+    {
+      "original": {
+        "path": "E6i-nodevideo-landing-after-02/390-text200/end-canvas.png",
+        "bytes": 9346,
+        "sha256": "51c36fc018d317c4b3d42907e35b15dab5ce36236b2e12ea59958578e78cb902"
+      },
+      "copy": {
+        "path": "E6i-nodevideo-landing-final-judge/viewed--E6i-nodevideo-landing-after-02--390-text200--end-canvas.png",
+        "bytes": 9346,
+        "sha256": "51c36fc018d317c4b3d42907e35b15dab5ce36236b2e12ea59958578e78cb902"
+      },
+      "observation": "Actual blank raster retained; nearby page screenshot is a different capture time."
+    },
+    {
+      "original": {
+        "path": "E6i-nodevideo-landing-after-02/320-text200/start.png",
+        "bytes": 16570,
+        "sha256": "23997c825ba10f64ba378e4a30fbc62e61ed8b7d4dc9ed47226779ec0661029b"
+      },
+      "copy": {
+        "path": "E6i-nodevideo-landing-final-judge/viewed--E6i-nodevideo-landing-after-02--320-text200--start.png",
+        "bytes": 16570,
+        "sha256": "23997c825ba10f64ba378e4a30fbc62e61ed8b7d4dc9ed47226779ec0661029b"
+      },
+      "observation": "Doubled initial text and pose overflow/crop on phone; not responsive pass."
+    },
+    {
+      "original": {
+        "path": "E6i-nodevideo-landing-after-02/390-text200/end.png",
+        "bytes": 22100,
+        "sha256": "740ee466e27d14cfbfafbe03122ace473844bd10de67b6c928bbeac6c269cc29"
+      },
+      "copy": {
+        "path": "E6i-nodevideo-landing-final-judge/viewed--E6i-nodevideo-landing-after-02--390-text200--end.png",
+        "bytes": 22100,
+        "sha256": "740ee466e27d14cfbfafbe03122ace473844bd10de67b6c928bbeac6c269cc29"
+      },
+      "observation": "Count/provenance content cropped; full-page raster has a pose despite subsequent canvas-only screenshot being blank."
+    },
+    {
+      "original": {
+        "path": "E6i-nodevideo-landing-after-02/390-reduced/start.png",
+        "bytes": 47205,
+        "sha256": "9c135a852dec5514658151c5e2b3b6b9d81316aef1d05995ef1c001b2427bfd5"
+      },
+      "copy": {
+        "path": "E6i-nodevideo-landing-final-judge/viewed--E6i-nodevideo-landing-after-02--390-reduced--start.png",
+        "bytes": 47205,
+        "sha256": "9c135a852dec5514658151c5e2b3b6b9d81316aef1d05995ef1c001b2427bfd5"
+      },
+      "observation": "Reduced-mode initial pose visibly painted; static/count proof comes from raw samples."
+    },
+    {
+      "original": {
+        "path": "E6i-nodevideo-landing-after-01/320-normal/failure.png",
+        "bytes": 28011,
+        "sha256": "36f9819acade57494b9684c8e274323baff21a05d0de3ae8f2d3ac66c69300fe"
+      },
+      "copy": {
+        "path": "E6i-nodevideo-landing-final-judge/viewed--E6i-nodevideo-landing-after-01--320-normal--failure.png",
+        "bytes": 28011,
+        "sha256": "36f9819acade57494b9684c8e274323baff21a05d0de3ae8f2d3ac66c69300fe"
+      },
+      "observation": "Retained original amended-recorder failure screenshot shows actual blank pose."
+    }
+  ]
+}

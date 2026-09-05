@@ -1,0 +1,250 @@
+{
+  "scope": "Read-only immutable-source planning; no runtime or browser launched.",
+  "artifacts": [
+    {
+      "path": "E6i-nodevideo-first-use-recon/asset-contract.json",
+      "bytes": 4661,
+      "sha256": "5830f7c55156b88f0a06caad7675e311c5ce90f2dc580706633bc7b8eea73b49"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/chromium-prerequisite.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/chromium-prerequisite.stdout",
+      "bytes": 332,
+      "sha256": "e4eca2fbbcbf01c8200c544d441eb060e2ea2e37c78ffa0e21a20d2ada0903f5"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/collect-prerequisites.py",
+      "bytes": 5556,
+      "sha256": "690f6e09a9d0c5dddf398e3ec0c0aba440002c715c6363d72f46b475adaebf48"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/ffmpeg-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/ffmpeg-version.stdout",
+      "bytes": 1964,
+      "sha256": "f4d5c3a47d3592181730b4d37764498c96091f1604066b43ad60db1a480992dd"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/ffprobe-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/ffprobe-version.stdout",
+      "bytes": 1965,
+      "sha256": "4cac2bf444f8d0c49ba2d8a05a4dd16656b762c24eba79d95a7fe8fc9a672cf9"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/freeze-plan.py",
+      "bytes": 17090,
+      "sha256": "ea30f3c57284bd7594e55e25065dfb27c12fc81c2485703553c23da62ec77e92"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/apps/edit/src/browser-export.ts",
+      "bytes": 5365,
+      "sha256": "0b175b0f920aa4501a687a7bdf081b1e0690eb2b17aee62821d10f4acf1c469a"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/apps/edit/src/byok.ts",
+      "bytes": 1539,
+      "sha256": "08c8f6c2b24ce21ca0fd2aa2f0ff3a3ba196d80224030a5c408b02c7c4017af4"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/apps/edit/src/edit.tsx",
+      "bytes": 91610,
+      "sha256": "e409aa1f9dd95f75c9b5cc5e285238ffa00f1961903460c1b21ec90e175e7072"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/apps/edit/src/plan-composition.tsx",
+      "bytes": 6756,
+      "sha256": "9ff12802b4d60ce543fb04cb57f5d48601289f53945c2fbdee86df49c41416cf"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/apps/edit/src/plan-tools.ts",
+      "bytes": 19101,
+      "sha256": "1a394ec54155b164b5902343e05c42ad52a32759c3bf60ab4b49ba0324667b8c"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/apps/landing/src/landing.tsx",
+      "bytes": 11988,
+      "sha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/apps/landing/src/pose-loop.json",
+      "bytes": 54401,
+      "sha256": "b2f2ea20a01dbe4815a921c0db6330c24967495dbc7b8b798b6ff82a13488be1"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/edit.html",
+      "bytes": 856,
+      "sha256": "5e7d305d16439659502aadf1abd114a4b70dcd881e6995858d45f210829e591a"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/fixtures/media/authorized-real-v1/case-manifest.json",
+      "bytes": 4697,
+      "sha256": "deca5ac8f08ba9502bbeae379f1db1ba1b895f1a1b96513ddcc3e528ed7c170b"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/fixtures/media/integrated-source-only-v1/edit-plan.json",
+      "bytes": 13652,
+      "sha256": "45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/fixtures/media/integrated-source-only-v1/manifest.json",
+      "bytes": 7205,
+      "sha256": "8c76857975bcc2fd67272aaf93ec1d5c456b993434e3b64f0b082fa397b362cc"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/index.html",
+      "bytes": 864,
+      "sha256": "3937663923683f5ff15ce87ac7a730da1ca9bafafaaacea090c053cf00c8901b"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/package.json",
+      "bytes": 11284,
+      "sha256": "eb7e03afdf8f2d9a11a10a16fa6a2953cca248ccd559a06717ea6bec3f60c84a"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/playwright.config.ts",
+      "bytes": 2723,
+      "sha256": "d8fa7774903fd80ec08c4a1cb1a091a27a9e23a737d372c436b29f1d5c413858"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/scripts/dev/local-private-preview.ts",
+      "bytes": 2266,
+      "sha256": "6f432f1096c37850c86c5e435d58047f4965c984e35b2057fd61c8be208fa51a"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/scripts/quality/copy-ffmpeg-wasm.mjs",
+      "bytes": 2045,
+      "sha256": "b73a24826048db86101db5c550b90bb105815e433d6dcb8c614261801f9739b4"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/scripts/quality/copy-mediapipe-wasm.mjs",
+      "bytes": 914,
+      "sha256": "cceeb05b36470f164caf8da7bdcc47d0b16dc0a98a748cfeea8bf8679810392f"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/scripts/quality/stamp-contract-build.mjs",
+      "bytes": 2297,
+      "sha256": "949d196d91bf5f57ecdb7e79f4fbdb712885b93886fea5cf4160631ae8d2c034"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/src/App.tsx",
+      "bytes": 2949,
+      "sha256": "e4e9dab6548ec9556af601ec1d3c56017a34a461bb5ef6034b6a7b1a912da0a0"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/src/features/nodevideo/frame-inspector.tsx",
+      "bytes": 2758,
+      "sha256": "6ebf589081e1592d63427e1a12c3e271072440b4c4b4df44acc61bb2d2ff6326"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/src/features/nodevideo/inspector-evidence.tsx",
+      "bytes": 5250,
+      "sha256": "0f2b9d414a509ceed640bd1d2ce3bcb3ac9536588a64852639ea047d7f88ae3a"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/src/features/nodevideo/local-preview.ts",
+      "bytes": 628,
+      "sha256": "d1e1ac19add03603e715407432e8b64c9ffa84243d158eb5e01ce998259826ba"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/src/features/nodevideo/verified-frame-inspector.tsx",
+      "bytes": 7513,
+      "sha256": "309d4aad75a75f2ac868fbb39a7f461f5ca7c8f33edb5a943e74e4543cbaf8b3"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/src/lib/browser-edit-plan-compiler.ts",
+      "bytes": 20175,
+      "sha256": "ab9fbb0230e248c98efc3a916d3b2e4fb011ce64c50f2dfb85d79f6b83230346"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/src/lib/browser-ffmpeg.ts",
+      "bytes": 14975,
+      "sha256": "0bf763d3045bf6265f9677e574c1638e4643c482cd3777603774f7444b1db09f"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/src/lib/frame-evidence.test.ts",
+      "bytes": 3730,
+      "sha256": "25358d47adea56551b5351b247b1c111ea5c24a80df382b5a884f10266c89a3f"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/src/lib/frame-evidence.ts",
+      "bytes": 7647,
+      "sha256": "5442b9248084a97f0ee346e84487accb4aca66d5f5a348a3717bede92c6be51a"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/src/lib/integrated-inspector.ts",
+      "bytes": 5780,
+      "sha256": "84c4dc2c27d14b1b6384d3b76f8d98055f4f09cd7f116367bc699d8d303e52af"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/src/main.tsx",
+      "bytes": 428,
+      "sha256": "36dd6d6050249d69767898ef465b497e29cd8772d27313ded6281e233b053693"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/studio.html",
+      "bytes": 765,
+      "sha256": "6120214662e2a28f7403e3bdcad7b1fcbd46dc26ed019d857f5302595271b34e"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/tests/e2e/frame-inspector.spec.ts",
+      "bytes": 3926,
+      "sha256": "5c48b773b691bb95201151842ef89803cd0fc19a88bd759ee68ff89b5c8083a0"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/tests/e2e/stitch-studio.spec.ts",
+      "bytes": 36958,
+      "sha256": "1268c09728cbf2644baed1b4a70f9a894fd19b96eae998dc13732407ae82f875"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/vite.config.ts",
+      "bytes": 8048,
+      "sha256": "421b61d609a2d35b84a85c232f37d142916e1416dc0c84aaf6dd4d4beeb8b03f"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/node-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/node-version.stdout",
+      "bytes": 10,
+      "sha256": "99149e35f76aa1efc846f029c3d2733b3541fe76ac97b74d33883481c0ce8dd9"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/prerequisites.json",
+      "bytes": 3926,
+      "sha256": "fc3ae48544c0060de9a1c459bac4233ced03f6cbf757b030bca58dc107a1751c"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/source-baseline-correspondence.json",
+      "bytes": 11001,
+      "sha256": "637858a1c33990b9734066cd9307b0a820b978703338a42f48bf9ac5accb56d4"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/source-read-bindings.json",
+      "bytes": 8064,
+      "sha256": "35aa98054e26dcf3268362a591d3b72fc15bfb26aa62716e58b4748d909bea7c"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/tesseract-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/tesseract-version.stdout",
+      "bytes": 442,
+      "sha256": "f174c5aeda4cc140784d0ddc5d5035f344701b1c2ea9ce5687c73fb620c5f1b8"
+    }
+  ]
+}

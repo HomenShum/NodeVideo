@@ -1,0 +1,25 @@
+# NodeVideo landing first-frame clock diagnosis
+
+**Re your request:** make each repository usable and judge its actual UI — a first-time visitor sees a blank pose panel although the page presents a real replay.
+
+**CAUSAL_DIAGNOSIS_CONFIRMED; one-owner plan supported.** The original uninstrumented320px capture shows a blank canvas and records `Cannot read properties of undefined (reading '11')`. I viewed that PNG and all three diagnostic PNGs; the two animated panels are blank and the reduced-motion control visibly shows the skeleton.
+
+| Native diagnostic | rAF timestamp | Saved start | First frame index | Actual paint |
+|---|---:|---:|---:|---:|
+|320px animated|231.7ms|250.5ms|-1|0pixels|
+|390px animated|42.7ms|51ms|-1|0pixels|
+|320px reduced|41.9ms|55.5ms|0|3,606pixels|
+
+The pose data has80 valid33-point frames at9.99Hz. `SkeletonHero` records `performance.now()` during effect setup, then subtracts it from the first native animation callback timestamp. That timestamp can be earlier; the observed negative elapsed floors to-1. JavaScript's negative array property does not select a frame. Drawing clears the canvas, throws at `frame[11]`, and never reaches the next animation request. The same source pattern exists in `useCountClock`; Count0/pulse>1 there is a derived risk, not a directly observed diagnostic claim.
+
+Use one time domain: initialize each existing effect's local origin from its first native callback, with an explicit undefined sentinel because timestamp0 is valid. Keep tempo, cadence, frame modulo, pulse/count math, drawing, reduced-motion behavior and cancellation intact. The intended change is starting at elapsed0 on first paint; do not introduce a global clock abstraction or hide missing frames with fallback/early return. [MDN explains callback timestamps and first-callback initialization](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame).
+
+1. Preserve and root-review labelled3px before boundaries around the canvas/count row at320/390/1440.
+2. Freeze a focused actual-owner callback harness and controlled schedules before execution, including the recorded negative-start cases, timestamp0 and delayed startup.
+3. Change only the two local clock origins in `apps/landing/src/landing.tsx`.
+4. Verify rollover, finite60-second callback progression, cleanup/remount and reduced-motion single-draw semantics; restore the old epoch in an isolated knockout and require the original failure.
+5. Observe native current-product painting across the named widths and two full pose loops, inspect matched pixels, then bind the focused checks/build and unchanged pose/source neighbors. No full unrelated export matrix is needed for this slice.
+
+The pass-through observer does add stack/recording overhead, so it does not establish the original run's exact timestamps or failure frequency. It reproduces the source mechanism without changing values, frame selection or rendering. All original failures remain retained. This was read-only diagnosis: no source edit, app/browser execution, provider call or full-grade claim by this reviewer.
+
+Evidence: [actual native records](E6i-nodevideo-landing-clock-diagnosis/native-observations.json), [checks](E6i-nodevideo-landing-clock-diagnosis/checks.json), [exact one-owner contract](E6i-nodevideo-landing-clock-diagnosis/one-owner-plan.json), [original failure pixels](E6i-nodevideo-landing-clock-diagnosis/observed-failure.png), [reduced-motion pixels](E6i-nodevideo-landing-clock-diagnosis/diagnostic--320-reduce.png), [manifest](E6i-nodevideo-landing-clock-diagnosis/artifact-manifest.json).

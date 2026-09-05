@@ -1,0 +1,30 @@
+{
+  "failure": "AssertionError: HEAD branch and serialized index preserved",
+  "findings": {
+    "head": {
+      "currentBytes": 41,
+      "priorBytes": 41,
+      "currentSha": "4ac45208b6bb9f3544e67636ed077a4441719f4892a09c818aa69589d9641c8f",
+      "priorSha": "4ac45208b6bb9f3544e67636ed077a4441719f4892a09c818aa69589d9641c8f",
+      "equal": true,
+      "current": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f\n",
+      "prior": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f\n"
+    },
+    "branch": {
+      "currentBytes": 53,
+      "priorBytes": 42,
+      "currentSha": "45c4e819e7724ab6a82874df04c4a055c3a3708d866dfe7b799f219712674484",
+      "priorSha": "c45d9fe34eee287364782dcc51686a975870c297086108eb24558e99b1163f36",
+      "equal": false,
+      "current": "refs/heads/codex/nodevideo-current-consumer-20260905\n",
+      "prior": "codex/nodevideo-current-consumer-20260905\n"
+    },
+    "index": {
+      "currentBytes": 138152,
+      "priorBytes": 138152,
+      "currentSha": "3e9c929044933fd852980d1393a64e5b755dcaeb1f6f7e8e22d96c7b8192df62",
+      "priorSha": "3e9c929044933fd852980d1393a64e5b755dcaeb1f6f7e8e22d96c7b8192df62",
+      "equal": true
+    }
+  }
+}

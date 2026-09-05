@@ -1,0 +1,65 @@
+[
+  {
+    "path": "E6i-nodevideo-conformance-recon\\old-commit.json",
+    "bytes": 90431,
+    "sha256": "fd2eaf035cecae66df0569ec1d6313b303a02024a73e6dd3ecd414a651b68e43",
+    "actualBytes": 90431,
+    "actualSha256": "fd2eaf035cecae66df0569ec1d6313b303a02024a73e6dd3ecd414a651b68e43"
+  },
+  {
+    "path": "E6i-nodevideo-conformance-recon\\old-commit.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actualBytes": 0,
+    "actualSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "E6i-nodevideo-conformance-recon\\old-repo-conformance.yml.txt",
+    "bytes": 1108,
+    "sha256": "06ed9822edd1c3aa0c3f2cc443a9747131cf1cc8cb2d5be3fc3fecb0d3fa5d14",
+    "actualBytes": 1108,
+    "actualSha256": "06ed9822edd1c3aa0c3f2cc443a9747131cf1cc8cb2d5be3fc3fecb0d3fa5d14"
+  },
+  {
+    "path": "E6i-nodevideo-conformance-recon\\old-workflow.json",
+    "bytes": 2656,
+    "sha256": "b61bceab33124b2605f4a1fd882c3d4318bbb8323b80035d2a6b752d589431dc",
+    "actualBytes": 2656,
+    "actualSha256": "b61bceab33124b2605f4a1fd882c3d4318bbb8323b80035d2a6b752d589431dc"
+  },
+  {
+    "path": "E6i-nodevideo-conformance-recon\\old-workflow.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actualBytes": 0,
+    "actualSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "E6i-nodevideo-conformance-recon\\proven-workflow.json",
+    "bytes": 2850,
+    "sha256": "ee1201ad4730f1dda3b6565881282d8776ee75f1078f4f579a5efa35606e9c17",
+    "actualBytes": 2850,
+    "actualSha256": "ee1201ad4730f1dda3b6565881282d8776ee75f1078f4f579a5efa35606e9c17"
+  },
+  {
+    "path": "E6i-nodevideo-conformance-recon\\proven-workflow.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actualBytes": 0,
+    "actualSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "E6i-nodevideo-conformance-recon\\receipt.json",
+    "bytes": 1107,
+    "sha256": "ba194b22d8230b2d5f18fb19278c320bc7cec2e301a6fba3497bad393c2afc79",
+    "actualBytes": 1107,
+    "actualSha256": "ba194b22d8230b2d5f18fb19278c320bc7cec2e301a6fba3497bad393c2afc79"
+  },
+  {
+    "path": "E6i-nodevideo-conformance-recon\\repo-conformance.yml.txt",
+    "bytes": 1249,
+    "sha256": "07675d8dfdd9464fe8b0f47e1a4efb7016e85c7ab6a78de486ca8e68d9ad52ea",
+    "actualBytes": 1249,
+    "actualSha256": "07675d8dfdd9464fe8b0f47e1a4efb7016e85c7ab6a78de486ca8e68d9ad52ea"
+  }
+]

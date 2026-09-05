@@ -1,0 +1,44 @@
+from pathlib import Path
+import json,subprocess,shutil,hashlib,datetime
+O=Path(__file__).resolve().parent;P=O.parent;D=O/'immutable-source';R=Path(r'D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905')
+sha=lambda b:hashlib.sha256(b).hexdigest()
+rows=json.loads((O/'source-read-bindings.json').read_text('utf-8'))
+for name in ['src/lib/frame-evidence.ts','src/lib/frame-evidence.test.ts']:
+ p=subprocess.run(['git','--no-optional-locks','show','42e41b4:'+name],cwd=R,capture_output=True);assert p.returncode==0
+ target=D/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(p.stdout)
+ rows.append({'path':name,'bytes':len(p.stdout),'sha256':sha(p.stdout),'gitBlobSha1':hashlib.sha1(b'blob '+str(len(p.stdout)).encode()+b'\0'+p.stdout).hexdigest(),'exitCode':0})
+(O/'source-read-bindings.json').write_text(json.dumps(rows,indent=2)+'\n','utf-8')
+baseline=json.loads((P/'E6i-nodevideo-current-baseline-01/source-before.json').read_text('utf-8-sig'));base={r['path']:r for r in baseline}
+bound=[]
+for r in rows:
+ b=base[r['path']];assert r['gitBlobSha1']==b['gitBlobSha1']
+ bound.append({'path':r['path'],'immutableGitMatchesBaseline':True,'gitBytes':r['bytes'],'gitSha256':r['sha256'],'baselineWorkingSha256':b['sha256'],'rawEqualsGit':r['sha256']==b['sha256']})
+(O/'source-baseline-correspondence.json').write_text(json.dumps(bound,indent=2)+'\n','utf-8')
+manifest=json.loads((D/'fixtures/media/integrated-source-only-v1/manifest.json').read_text('utf-8'))
+case=json.loads((D/'fixtures/media/authorized-real-v1/case-manifest.json').read_text('utf-8'))
+assets=[]
+for asset in manifest['assets']:
+ path='fixtures'+asset['url'];b=base[path]
+ actual=subprocess.check_output(['git','--no-optional-locks','rev-parse','42e41b4:'+path],cwd=R).decode().strip()
+ assert b['sha256']==asset['sha256'] and actual==b['gitBlobSha1']
+ assets.append({'id':asset['id'],'url':asset['url'],'path':path,'bytes':b['bytes'],'sha256':asset['sha256'],'gitBlobSha1':actual,'group':'seven-assets'})
+for asset in case['views']:
+ if asset['id'] not in ['source-a','source-b','target']:continue
+ path='fixtures/media/authorized-real-v1/'+asset['path'];b=base[path];actual=subprocess.check_output(['git','--no-optional-locks','rev-parse','42e41b4:'+path],cwd=R).decode().strip()
+ assert b['sha256']==asset['sha256'] and actual==b['gitBlobSha1']
+ assets.append({'id':asset['id'],'url':'/media/authorized-real-v1/'+asset['path'],'path':path,'bytes':b['bytes'],'sha256':asset['sha256'],'gitBlobSha1':actual,'group':'separate-published-proxies'})
+(O/'asset-contract.json').write_text(json.dumps({'manifestUrl':'/media/integrated-source-only-v1/manifest.json','manifestSha256':sha((D/'fixtures/media/integrated-source-only-v1/manifest.json').read_bytes()),'manifestAssets':7,'separateProxies':3,'assets':assets,'declaredAuthorization':case['authorization'],'targetUsage':case['targetUsage'],'rightsLimit':'Records repository publication authorization, not an independent legal or original-raw-media validation. No private raw media read.','bytesTotal':sum(x['bytes'] for x in assets)},indent=2)+'\n','utf-8')
+commands=[]
+for tool,args in [('node',['--version']),('ffprobe',['-version']),('ffmpeg',['-version']),('tesseract',['--version'])]:
+ path=shutil.which(tool);assert path
+ p=subprocess.run([path,*args],cwd=R,capture_output=True,timeout=30)
+ (O/(tool+'-version.stdout')).write_bytes(p.stdout);(O/(tool+'-version.stderr')).write_bytes(p.stderr)
+ commands.append({'tool':tool,'path':path,'argv':[path,*args],'exitCode':p.returncode,'stdoutSha256':sha(p.stdout),'stderrSha256':sha(p.stderr),'versionLine':(p.stdout+p.stderr).decode('utf-8','replace').splitlines()[0]})
+code="const fs=require('fs');const p=require('playwright');const q=p.chromium.executablePath();process.stdout.write(JSON.stringify({playwrightVersion:require('playwright/package.json').version,modulePath:require.resolve('playwright'),chromiumExecutable:q,chromiumPresent:fs.existsSync(q)}));"
+p=subprocess.run([shutil.which('node'),'-e',code],cwd=R,capture_output=True,timeout=30);(O/'chromium-prerequisite.stdout').write_bytes(p.stdout);(O/'chromium-prerequisite.stderr').write_bytes(p.stderr);assert p.returncode==0
+built=[]
+for path in ['dist/index.html','dist/studio.html','dist/edit.html','dist/.well-known/agent-ui.build.json','dist/ffmpeg/0.12.10/st/ffmpeg-core.js','dist/ffmpeg/0.12.10/st/ffmpeg-core.wasm','dist/ffmpeg/0.12.10/mt/ffmpeg-core.js','dist/ffmpeg/0.12.10/mt/ffmpeg-core.wasm','dist/ffmpeg/0.12.10/mt/ffmpeg-core.worker.js','dist/ffmpeg/0.12.10/Geist-Variable-Latin.ttf']:
+ f=R/path;built.append({'path':path,'present':f.is_file(),'bytes':f.stat().st_size if f.is_file() else None})
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'immutableSourceFiles':len(rows),'baselineSourceFiles':len(baseline),'namedGitInputsCorrespond':True,'binaryAssetsNotOpenedByThisCollector':True,'tools':commands,'chromium':json.loads(p.stdout),'builtFilesObservedOnly':built,'buildLimit':'Root may rebuild during lint repair; presence is not a whole-dist frozen guard. Bind the actual final build receipt before execution.','runtimeLaunched':False,'providerOrEnvRead':False,'installPerformed':False}
+(O/'prerequisites.json').write_text(json.dumps(report,indent=2)+'\n','utf-8')
+print(json.dumps({'sources':len(rows),'assets':len(assets),'assetBytes':sum(x['bytes'] for x in assets),'tools':[x['versionLine'] for x in commands],'chromium':report['chromium'],'builtAllPresent':all(x['present'] for x in built)},indent=2))

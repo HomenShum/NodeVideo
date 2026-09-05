@@ -1,0 +1,94 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import {createRequire} from 'node:module';
+import {boundary} from './boundary.mjs';
+const O=path.dirname(fileURLToPath(import.meta.url)),P=path.dirname(O);
+const R='D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905';
+const {chromium}=createRequire(path.join(R,'package.json'))('playwright');
+const write=(f,o)=>fs.writeFileSync(f,JSON.stringify(o,null,2)+'\n');
+const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const assert=(ok,message)=>{if(!ok)throw Error(message);};
+const browser=await chromium.launch();
+const report={proofId:'NODEVIDEO-LANDING-CLOCK-01',status:'RUNNING',browser:browser.version(),cells:[],grades:null,clockInstrumentation:false,forcedFailure:false,method:{samplingMilliseconds:125,maxSamples:160,normalDurationMilliseconds:18000,reducedDurationMilliseconds:2000,frameIndexClaim:false,computedText:'Initial computed-font snapshot doubled once; not browser zoom; later mounted text not certified enlarged.'}};
+function observation(){
+ const c=document.querySelector('canvas'),count=document.querySelector('[aria-label^="Count "]');
+ if(!c||!count)return {at:performance.now(),url:location.href,landingPresent:false};
+ const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let painted=0,hash=2166136261;
+ for(let i=0;i<d.length;i++){hash=Math.imul(hash^d[i],16777619)>>>0;if(i%4===3&&d[i])painted++;}
+ const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height};};
+ return {at:performance.now(),url:location.href,landingPresent:true,viewport:{width:innerWidth,height:innerHeight},scroll:{x:scrollX,y:scrollY},overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,canvas:{width:c.width,height:c.height,painted,fingerprint:hash.toString(16),rect:rect(c)},count:{label:count.getAttribute('aria-label'),live:[...count.querySelectorAll('[data-live]')].map(e=>({text:e.textContent,live:e.getAttribute('data-live')})),pulse:document.documentElement.style.getPropertyValue('--count-pulse'),rect:rect(count)},links:[...document.querySelectorAll('a')].map(a=>({text:a.textContent,href:a.getAttribute('href')})),protectedText:[...document.querySelectorAll('h1,h2,h3,p,button')].map(e=>e.textContent)};
+}
+async function ready(page){
+ await page.locator('canvas').waitFor({state:'visible'});
+ await page.evaluate(async()=>{await document.fonts.ready;await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));});
+ await page.waitForFunction(()=>{const c=document.querySelector('canvas');if(!c)return false;const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;for(let i=3;i<d.length;i+=4)if(d[i])return true;return false;},{},{timeout:15000});
+}
+try{
+ for(const [width,height]of [[320,800],[390,844],[1440,960]])for(const mode of ['normal','reduced','text200']){
+  const name=`${width}-${mode}`,out=path.join(O,name);fs.mkdirSync(out);
+  const cell={name,viewport:{width,height},mode,status:'RUNNING',errors:[],console:[],external:[],checks:[]};report.cells.push(cell);
+  const check=(name,passed,detail)=>{cell.checks.push({name,passed,detail});assert(passed,name);};
+  const context=await browser.newContext({viewport:{width,height},colorScheme:'light',reducedMotion:mode==='reduced'?'reduce':'no-preference',locale:'en-US',timezoneId:'America/Los_Angeles',recordVideo:{dir:out,size:{width,height}}});
+  const page=await context.newPage();page.setDefaultTimeout(15000);
+  await context.route('**/*',route=>{const url=route.request().url();if(new URL(url).origin==='http://127.0.0.1:4983')return route.continue();cell.external.push(url);return route.abort();});
+  page.on('pageerror',e=>cell.errors.push(String(e)));page.on('console',m=>cell.console.push({type:m.type(),text:m.text()}));
+  try{
+   await page.goto('http://127.0.0.1:4983/');await ready(page);
+   cell.firstPaintObserved=await page.evaluate(observation);
+   const before=JSON.parse(fs.readFileSync(path.join(P,'E6i-nodevideo-landing-before-01',String(width),'before.json'),'utf8'));
+   if(mode==='text200'){
+    cell.fonts=await page.evaluate(()=>{const rows=[...document.querySelectorAll('*')].map((e,i)=>({e,i,tag:e.tagName,before:parseFloat(getComputedStyle(e).fontSize)}));for(const row of rows)row.e.style.fontSize=`${row.before*2}px`;return rows.map(({e,...row})=>({...row,after:parseFloat(getComputedStyle(e).fontSize)}));});
+    write(path.join(out,'computed-fonts.json'),cell.fonts);check('Initial computed fonts exactly doubled',cell.fonts.every(r=>Math.abs(r.after-r.before*2)<.001));
+    await page.locator('canvas').scrollIntoViewIfNeeded();
+   }else await page.evaluate(scroll=>window.scrollTo(scroll.x,scroll.y),before.scroll);
+   await page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+   async function capture(label){const state=await page.evaluate(observation);write(path.join(out,label+'.json'),state);fs.writeFileSync(path.join(out,label+'.html'),await page.content());await page.screenshot({path:path.join(out,label+'.png'),caret:'initial'});await page.locator('canvas').screenshot({path:path.join(out,label+'-canvas.png'),caret:'initial'});return state;}
+   cell.start=await capture('start');
+   if(mode!=='text200'){
+    check('Original viewport and scroll matched',JSON.stringify(cell.start.viewport)===JSON.stringify(before.viewport)&&JSON.stringify(cell.start.scroll)===JSON.stringify(before.scroll));
+    for(const target of ['canvas','count'])check(`Unchanged ${target} geometry`,Object.keys(before[target].rect).every(k=>Math.abs(cell.start[target].rect[k]-before[target].rect[k])<.1),{before:before[target].rect,after:cell.start[target].rect});
+   }
+   check('Protected links unchanged',JSON.stringify(cell.start.links)===JSON.stringify(before.links));
+   const samples=[],duration=mode==='reduced'?2000:18000;
+   const started=performance.now();let mid=false;
+   while(performance.now()-started<duration&&samples.length<160){
+    const s=await page.evaluate(observation);samples.push({...s,observedElapsedMilliseconds:performance.now()-started});
+    if(!mid&&performance.now()-started>=duration/2){cell.mid=await capture('mid');mid=true;}
+    await page.waitForTimeout(125);
+   }
+   cell.sampleElapsedMilliseconds=performance.now()-started;cell.samples=samples;write(path.join(out,'native-samples.json'),samples);
+   cell.end=await capture('end');
+   const blankRuns=[];
+   for(let i=0;i<samples.length;i++)if(samples[i].canvas.painted===0){const first=i;while(i+1<samples.length&&samples[i+1].canvas.painted===0)i++;const next=samples[i+1];blankRuns.push({firstSample:first,lastSample:i,firstAt:samples[first].at,lastAt:samples[i].at,recoverySample:next?i+1:null,recovered:!!next&&next.canvas.painted>0,trailingCensored:!next});}
+   cell.trackingGaps={blankSampleCount:samples.filter(s=>s.canvas.painted===0).length,blankRuns,trailingCensored:blankRuns.some(r=>r.trailingCensored),sourceAllNullFrames:[19,24,25,76,79],exactFrameIndexNotInstrumented:true};
+   check('Initial actual paint and closed tracking gaps recover',cell.firstPaintObserved.canvas.painted>0&&samples.some(s=>s.canvas.painted>0)&&blankRuns.filter(r=>!r.trailingCensored).every(r=>r.recovered),cell.trackingGaps);
+   const counts=[...new Set(samples.map(s=>Number(/^Count (\d+) /.exec(s.count.label)?.[1])))].sort((a,b)=>a-b),fingerprints=new Set(samples.map(s=>s.canvas.fingerprint));
+   cell.counts=counts;cell.uniqueCanvasFingerprints=fingerprints.size;
+   check('Only valid native count and live state',samples.every(s=>/^Count [1-8] of 8 at 103\.4 beats per minute$/.test(s.count.label)&&s.count.live.every(e=>['true','false'].includes(e.live))));
+   if(mode==='reduced'){
+    check('Reduced pixels and count remain static',samples.every(s=>s.canvas.painted>0)&&fingerprints.size===1&&JSON.stringify(counts)==='[1]'&&samples.every(s=>s.count.live.every(e=>e.live==='false')));
+   }else{
+    check('Observe longer than two declared pose durations',cell.sampleElapsedMilliseconds>=18000&&cell.sampleElapsedMilliseconds>2*80/9.99*1000);
+    check('Native shapes change while all counts recur',fingerprints.size>16&&JSON.stringify(counts)==='[1,2,3,4,5,6,7,8]',{fingerprints:fingerprints.size,counts});
+   }
+   await boundary(page,out,cell);check('All nonclock DOM restores after boundary',cell.overlay.staticDomRestored&&cell.overlay.removed);
+   fs.writeFileSync(path.join(out,'change-boundary.md'),`# Observed landing after: ${width}×${height}, ${mode}\n\nCHANGE A · Pose canvas and CHANGE B · Count row use actual 3px boxes around the existing DOM. Source is bound to the parent build freeze. No timestamp/canvas/frame replacement is used. Normal/text cells observe18seconds of native paint; reduced cells observe2seconds. Raw DOM permits only the existing live pulse/count attributes during overlay restoration.\n\nNormal/reduced geometry is compared to the exact native before capture. Text200 doubles one initial computed-font snapshot; it is not browser zoom. Observed page overflow: ${cell.start.overflow}px. Enlarged layout issues remain open. Exact index/wrap/cancellation comes from the separate actual-owner callback proof, not browser wall time.\n`,'utf8');
+   // Native navigation leaves the landing owner, then re-enters through browser history and reload.
+   await page.getByRole('link',{name:'Studio',exact:true}).click();await page.waitForURL('**/studio.html');
+   cell.navigation={studioUrl:page.url(),landingAbsent:await page.locator('[data-testid="landing"]').count()===0,countRowAbsent:await page.locator('[aria-label^="Count "]').count()===0};
+   check('Studio navigation unmounts landing',cell.navigation.landingAbsent&&cell.navigation.countRowAbsent);
+   await page.goBack();await ready(page);cell.navigation.back=await page.evaluate(observation);
+   await page.reload();await ready(page);cell.navigation.reload=await page.evaluate(observation);
+   check('Back and reload paint valid state',cell.navigation.back.canvas.painted>0&&cell.navigation.reload.canvas.painted>0&&[cell.navigation.back,cell.navigation.reload].every(s=>/^Count [1-8] /.test(s.count.label)));
+   check('No page exception or external request',cell.errors.length===0&&cell.external.length===0,{errors:cell.errors,external:cell.external});
+   cell.status=cell.start.overflow>0?'PASS_CLOCK_WITH_LAYOUT_LIMIT':'PASS_CLOCK';
+  }catch(e){cell.status='FAILED';cell.error=String(e.stack??e);try{await page.screenshot({path:path.join(out,'failure.png'),caret:'initial'});write(path.join(out,'failure-state.json'),await page.evaluate(observation));fs.writeFileSync(path.join(out,'failure.html'),await page.content());}catch(captureError){cell.failureCaptureError=String(captureError);}throw e;
+  }finally{
+   await context.close();cell.video=path.basename(await page.video().path());cell.pngs=fs.readdirSync(out).filter(f=>f.endsWith('.png')).map(f=>({path:f,sha256:sha(fs.readFileSync(path.join(out,f)))}));
+   write(path.join(out,'cell.json'),cell);write(path.join(O,'report.json'),report);console.log(JSON.stringify({cell:name,status:cell.status,checks:cell.checks.length,samples:cell.samples?.length,counts:cell.counts,fingerprints:cell.uniqueCanvasFingerprints,overflow:cell.start?.overflow,error:cell.error}));
+  }
+ }
+ report.status='PASS_AFFECTED_CLOCK_WITH_RETAINED_LAYOUT_LIMITS';
+}catch(e){report.status='FAILED_AFFECTED_PROOF';report.error=String(e.stack??e);process.exitCode=1;}finally{await browser.close();write(path.join(O,'report.json'),report);console.log(JSON.stringify({status:report.status,cells:report.cells.length,error:report.error}));}

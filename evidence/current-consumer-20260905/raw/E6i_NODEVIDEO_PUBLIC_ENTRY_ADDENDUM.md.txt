@@ -1,0 +1,13 @@
+# NodeVideo canonical public entry correction
+
+**Re your request:** prepare a real first-use journey for each repository — the public journey starts at the choreography landing, then follows **Studio** to the calibration inspector. This corrects my original recon's root-to-inspector inference. The original report remains unchanged; its source/CI/preservation findings retain their original scope.
+
+At canonical `42e41b4bb2ec738ef84330dedd7a7ebc9269070f`, `index.html` mounts `apps/landing/src/landing.tsx`. Its Studio links target `/studio.html`; that HTML mounts `src/main.tsx`, which renders `src/App.tsx` and its collapsed FrameInspector. The public addresses are [the landing](https://nodevideo-pi.vercel.app/) and [Studio](https://nodevideo-pi.vercel.app/studio.html). Source anchors: landing lines132/163; canonical HTML/main inputs are copied exactly in this addendum.
+
+Root independently made two GETs and observed the actual1280x720 page. The public build stamp reports the exact canonical source commit. The1195-byte landing HTML contains the built script reference but no rendered heading; root's browser observed “Learn the dance you admire.” The screenshot was viewed in the CUA tool response, with no local image bytes. One pose-canvas frame appeared blank, with no established cause or playback claim. Those are attributed root observations, not new requests or screenshots by this reviewer.
+
+Use a fresh empty-storage session for landing → Studio → public calibration inspection; do not reuse owner/job session state. The public manifest and assets are a passive GET boundary. Browser edit/export at `/edit.html` remains a separate artifact proof; `/creator.html` remains behind its independent Convex/backend/owner-capability setup guard. No upload, camera, model, owner-job submission or production acceptance is inferred.
+
+The original recon SHA-256 is `baef278c9bf34428149c20700cf6dba9321eaaa3633fbe39f58f58cacce9349f`. This addendum binds immutable entry sources and exact root triage files through [its artifact manifest](E6i-nodevideo-entry-correction/artifact-manifest.json), SHA-256 `8179aaeb375c7501f6b85c2241483ad459ea1c2e18e671d514cec9488886270e`. No new network/browser action, source edit or current ref/worktree guard was performed while root prepares the authorized isolated candidate. Full grades remain null.
+
+[Structured addendum](E6i_NODEVIDEO_PUBLIC_ENTRY_ADDENDUM.json).

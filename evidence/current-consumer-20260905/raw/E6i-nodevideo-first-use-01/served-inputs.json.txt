@@ -1,0 +1,90 @@
+[
+  {
+    "id": "manifest",
+    "url": "/media/integrated-source-only-v1/manifest.json",
+    "status": 200,
+    "bytes": 7205,
+    "sha256": "8c76857975bcc2fd67272aaf93ec1d5c456b993434e3b64f0b082fa397b362cc",
+    "file": "manifest.json"
+  },
+  {
+    "id": "analysis",
+    "url": "/media/integrated-source-only-v1/analysis.json",
+    "status": 200,
+    "bytes": 72856,
+    "sha256": "00f47b663f6471ceb9f54c6e2c39e209613fb9eac2d7459db74098cf905081a6",
+    "file": "analysis.json"
+  },
+  {
+    "id": "edit-plan",
+    "url": "/media/integrated-source-only-v1/edit-plan.json",
+    "status": 200,
+    "bytes": 13652,
+    "sha256": "45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07",
+    "file": "edit-plan.json"
+  },
+  {
+    "id": "freeze",
+    "url": "/media/integrated-source-only-v1/freeze-receipt.json",
+    "status": 200,
+    "bytes": 901,
+    "sha256": "6d0305e3cf8e741592d5143faba7cdf6613a57cb6bf9f709b28bf383b90e655e",
+    "file": "freeze.json"
+  },
+  {
+    "id": "evaluation",
+    "url": "/media/integrated-source-only-v1/post-freeze-evaluation.json",
+    "status": 200,
+    "bytes": 4659,
+    "sha256": "478b438025fbded59c408551a7fe3ff2f5a94b81644f3c4feaf574c22fc8d45e",
+    "file": "evaluation.json"
+  },
+  {
+    "id": "selection",
+    "url": "/media/integrated-source-only-v1/reference-performer-selection.json",
+    "status": 200,
+    "bytes": 2741,
+    "sha256": "79a3540461dc265a6cb2bc20aa74e1b3dd2d10280b2d932fa09dea5fd7f89f7c",
+    "file": "selection.json"
+  },
+  {
+    "id": "pose-tracks",
+    "url": "/media/integrated-source-only-v1/pose-tracks.json",
+    "status": 200,
+    "bytes": 3959868,
+    "sha256": "74deecdbd0513062bebc9759739763882f1462d8545778d5bf1fd51bc31f9ae8",
+    "file": "pose-tracks.json"
+  },
+  {
+    "id": "preview-silent",
+    "url": "/media/integrated-source-only-v1/preview-silent.mp4",
+    "status": 200,
+    "bytes": 11767433,
+    "sha256": "062f0621402b51e6ce22179c10505e73311276e066fd8f315b1855a9c398647a",
+    "file": "preview-silent.mp4"
+  },
+  {
+    "id": "target",
+    "url": "/media/authorized-real-v1/target-web.mp4",
+    "status": 200,
+    "bytes": 2055560,
+    "sha256": "9431a1d9cfce0216bf6f3e93d36e2fd5b7cbbc8c81a202eaf1686b009999a35d",
+    "file": "target.mp4"
+  },
+  {
+    "id": "source-a",
+    "url": "/media/authorized-real-v1/source-a-web.mp4",
+    "status": 200,
+    "bytes": 2848396,
+    "sha256": "634bfb9b539c85ef105e93c047267612817a6c4da4a0f830b38be21e3f31b428",
+    "file": "source-a.mp4"
+  },
+  {
+    "id": "source-b",
+    "url": "/media/authorized-real-v1/source-b-web.mp4",
+    "status": 200,
+    "bytes": 3806933,
+    "sha256": "11ec849d6e99d6aee1f7b3ba8de7a4d248a808062b237889c0baa67498d5bc6a",
+    "file": "source-b.mp4"
+  }
+]

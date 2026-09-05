@@ -1,0 +1,287 @@
+[
+  {
+    "name": "320-studio-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "320-frame-480",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "320-frame-481",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "320-inspector-keyboard-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "320-edit-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "320-proposal",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "320-applied",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "320-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "360-studio-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "360-frame-480",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "360-frame-481",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "360-inspector-keyboard-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "360-edit-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "360-proposal",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "360-applied",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "360-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "390-studio-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "390-frame-480",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "390-frame-481",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "390-inspector-keyboard-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "390-edit-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "390-proposal",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "390-applied",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "390-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "390-ten-exchanges",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "768-studio-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "768-frame-480",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "768-frame-481",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "768-inspector-keyboard-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "768-edit-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "768-proposal",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "768-applied",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "768-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1024-studio-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1024-frame-480",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1024-frame-481",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1024-inspector-keyboard-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1024-edit-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1024-proposal",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1024-applied",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1024-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1440-studio-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1440-frame-480",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1440-frame-481",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1440-inspector-keyboard-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1440-edit-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1440-proposal",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1440-applied",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1440-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1920-studio-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1920-frame-480",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1920-frame-481",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1920-inspector-keyboard-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1920-edit-entry",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1920-proposal",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1920-applied",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  },
+  {
+    "name": "1920-restored",
+    "exactViewportPngHash": true,
+    "overflow": 0
+  }
+]

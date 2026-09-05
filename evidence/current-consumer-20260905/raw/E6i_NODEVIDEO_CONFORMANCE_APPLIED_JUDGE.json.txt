@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-05T19:44:34.292208+00:00",
+  "verdict": "APPROVED_EXACT_APPLIED_REFERENCE_DELTA",
+  "reviewer": "independent nonauthor; reused reviewer context",
+  "checksPassed": 12,
+  "checksTotal": 12,
+  "head": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "sourceOwners": 18,
+  "sourceDigest": "bb5ca4d7a02ab72eecf2581f63fa7762174190453e2ccdeb5d7879d30b9c0c18",
+  "workflowSha256": "3d489dbd49b458b5c1342a3bed0b25cf10b0edd40c612455d2bbbec79373c08d",
+  "immutableCalledWorkflowRef": "ef4ac8a011b230efa3324892a193abe02ff2d673",
+  "priorLintOwnersExact": 17,
+  "protectedInputsExact": 1356,
+  "indexEntriesPreserved": true,
+  "guard": "CLOSED",
+  "normalSharedConformance": "NOT_RUN",
+  "fullGrades": null,
+  "scope": "Only canonical repository-name replacement applied; prior lint source approval remains exact and separate. No product edit, gate rerun, browser or first-use interference by reviewer.",
+  "collectorFailure": "Initial comparison used full symbolic ref against historical short branch name. Retained failure and actual current/prior bytes prove identical branch; corrected command to symbolic-ref --short. HEAD and index were already byte-identical.",
+  "limits": [
+    "Called registry checkout still defaults to mutable main; record actual resolved checkout in normal shared job.",
+    "Approval concerns applied bytes; no shared CI, production, provider or whole-product acceptance.",
+    "Active worker first-use and generated dist are outside this bounded read-only source guard."
+  ],
+  "artifactManifest": {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-conformance-applied-judge\\artifact-manifest.json",
+    "sha256": "ca0c33812f246f2f3f521dfa882061b1e792c37402c1896557c40dba1c35a9fa"
+  }
+}

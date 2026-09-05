@@ -1,0 +1,34 @@
+[
+  {
+    "name": "v1 remains original frozen bytes",
+    "pass": true
+  },
+  {
+    "name": "v2 preexecution freeze exact",
+    "pass": true
+  },
+  {
+    "name": "before actual source retainedexact",
+    "pass": true
+  },
+  {
+    "name": "timestamp0 exact sequences asserted",
+    "pass": true
+  },
+  {
+    "name": "actual baseline remount reusesVMscheduler",
+    "pass": true
+  },
+  {
+    "name": "after remount exactreset pendingcleanup asserted",
+    "pass": true
+  },
+  {
+    "name": "knockout exactoriginalsource guard present",
+    "pass": true
+  },
+  {
+    "name": "amended before still expected failures",
+    "pass": true
+  }
+]

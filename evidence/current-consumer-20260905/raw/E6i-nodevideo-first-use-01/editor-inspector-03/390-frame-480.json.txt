@@ -1,0 +1,323 @@
+{
+  "url": "http://127.0.0.1:4983/studio.html",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "crossOriginIsolated": false,
+  "overflow": 0,
+  "active": {
+    "tag": "BUTTON",
+    "label": null,
+    "text": "Inspect the calibration cut frame by frameOfficial choreography · both takes · MediaPipe · generated edit · held-out final"
+  },
+  "text": "NodeVideo\nSource-only calibration\nPublic repo\nCreator profile → source interpretation → frozen edit → gated evaluation\nInspect how NodeVideo learns taste, plans the edit, and proves what passed.\n\nThis owner-authorized calibration aligned both raw MOVs to the original choreography, mapped movement to “Sign,” and selected all five source ranges within two frames of the manual edit. NodeVideo now treats creator voice, text placement, grade, identity, and delivery as separate fidelity gates; a timing pass alone is no longer reported as a creative pass.\n\nUpload sources, reuse creator taste, keep the target sealed.\nOwner access key\nOriginal choreography\nCreator take A\nCreator take B\nChosen song\nTimed lyrics\nCreator taste profile (optional)\nStart source-only job\nInspect the calibration cut frame by frame\nOfficial choreography · both takes · MediaPipe · generated edit · held-out final\n7/7 SHA-256 verified\nTarget opened after freeze\nStrict timing passed\nPublic proof · silent\nCompare the strict-passing frozen edit\nFrame 480 · 16.000 s · phrase 2 · take-b · fill\nFrozen generated edit\nHash-bound public render · silent\nManual final MP4\nEvaluator-only · mounted after freeze\n10 Hz · measured sample\nWhy this frame\n\nOfficial movement and both raw takes at the same choreography moment.\n\nOriginal choreography pose\nReference 47.120 s\n10 Hz · interpolated display\nCreator take A\nSource 31.500 s · fit lane\n10 Hz · measured sample\nCreator take B\nSource 41.500 s · fill lane\n10 Hz · measured sample\nStrict timing audit\n6/6 assigned boundaries are within ±2 frames. Maximum error: 2 frames. Strict timing passed; creative taste remains not evaluated.\nPose evidence\nMediaPipe analysis runs at 9.99 Hz for this frozen edit. A separate live research stage now verifies NVIDIA LocateAnything without relabeling replay boxes.\nMusic handoff\nSearch “Sign · 82MAJOR” in Instagram and start near 00:29.16 of the released master. Private comparison: correlation 0.9800, lag 0.75 ms.\nOpen official choreography\n\nPublic media is sanitized and the public preview is silent; local development may use the private soundtrack render. Hash-bound analysis, plan, freeze receipt, evaluation, performer selection, pose tracks, and preview are verified before inspection.",
+  "controls": [
+    {
+      "tag": "BUTTON",
+      "label": "Switch to light theme",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 350,
+        "y": -1306.5,
+        "width": 28,
+        "height": 28
+      },
+      "display": "inline-flex",
+      "visibility": "visible",
+      "scrollWidth": 26,
+      "clientWidth": 26
+    },
+    {
+      "tag": "A",
+      "label": null,
+      "text": " Public repo",
+      "rect": {
+        "x": 12,
+        "y": -1262,
+        "width": 107.046875,
+        "height": 28
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 105,
+      "clientWidth": 105
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 28,
+        "y": -669.75,
+        "width": 334,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 332,
+      "clientWidth": 332
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 28,
+        "y": -590.5,
+        "width": 334,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 332,
+      "clientWidth": 332
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 28,
+        "y": -515.25,
+        "width": 334,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 332,
+      "clientWidth": 332
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 28,
+        "y": -440,
+        "width": 334,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 332,
+      "clientWidth": 332
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 28,
+        "y": -364.75,
+        "width": 334,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 332,
+      "clientWidth": 332
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 28,
+        "y": -289.5,
+        "width": 334,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 332,
+      "clientWidth": 332
+    },
+    {
+      "tag": "INPUT",
+      "label": null,
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 28,
+        "y": -214.25,
+        "width": 334,
+        "height": 32
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 332,
+      "clientWidth": 332
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Start source-only job",
+      "disabled": true,
+      "rect": {
+        "x": 28,
+        "y": -162.25,
+        "width": 181.984375,
+        "height": 32
+      },
+      "display": "inline-flex",
+      "visibility": "visible",
+      "scrollWidth": 180,
+      "clientWidth": 180
+    },
+    {
+      "tag": "BUTTON",
+      "label": null,
+      "text": "Inspect the calibration cut frame by frameOfficial choreography · both takes · MediaPipe · generated edit · held-out fin",
+      "disabled": false,
+      "rect": {
+        "x": 12,
+        "y": -90.25,
+        "width": 366,
+        "height": 78
+      },
+      "display": "inline-flex",
+      "visibility": "visible",
+      "scrollWidth": 364,
+      "clientWidth": 364
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Previous output frame",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 41,
+        "y": 172.75,
+        "width": 32,
+        "height": 32
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 30,
+      "clientWidth": 30
+    },
+    {
+      "tag": "SPAN",
+      "label": "Output frame",
+      "text": "",
+      "rect": {
+        "x": 159.28125,
+        "y": 182.75,
+        "width": 12,
+        "height": 12
+      },
+      "display": "block",
+      "visibility": "visible",
+      "scrollWidth": 18,
+      "clientWidth": 10
+    },
+    {
+      "tag": "BUTTON",
+      "label": "Next output frame",
+      "text": "",
+      "disabled": false,
+      "rect": {
+        "x": 317,
+        "y": 172.75,
+        "width": 32,
+        "height": 32
+      },
+      "display": "flex",
+      "visibility": "visible",
+      "scrollWidth": 30,
+      "clientWidth": 30
+    },
+    {
+      "tag": "A",
+      "label": null,
+      "text": " Open official choreography",
+      "rect": {
+        "x": 24,
+        "y": 2794.875,
+        "width": 200.75,
+        "height": 28
+      },
+      "display": "inline-flex",
+      "visibility": "visible",
+      "scrollWidth": 199,
+      "clientWidth": 199
+    }
+  ],
+  "videos": [
+    {
+      "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+      "currentTime": 16,
+      "duration": 44.5,
+      "readyState": 4,
+      "seeking": false,
+      "muted": true,
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+      "currentTime": 16,
+      "duration": 44.5,
+      "readyState": 4,
+      "seeking": false,
+      "muted": true,
+      "width": 360,
+      "height": 640
+    },
+    {
+      "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+      "currentTime": 31.5,
+      "duration": 57.598005,
+      "readyState": 4,
+      "seeking": false,
+      "muted": true,
+      "width": 640,
+      "height": 360
+    },
+    {
+      "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+      "currentTime": 41.5,
+      "duration": 68.233333,
+      "readyState": 4,
+      "seeking": false,
+      "muted": true,
+      "width": 640,
+      "height": 360
+    }
+  ],
+  "svgs": [
+    {
+      "label": "Manual final MP4 pose",
+      "svg": "<svg aria-label=\"Manual final MP4 pose\" class=\"absolute inset-0 size-full\" role=\"img\" viewBox=\"0 0 1000 1000\" preserveAspectRatio=\"none\"><title>Manual final MP4 pose</title><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"765.6999826431274\" x2=\"802.3999929428101\" y1=\"540.8999919891357\" y2=\"549.1999983787537\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"765.6999826431274\" x2=\"802.1000027656555\" y1=\"540.8999919891357\" y2=\"364.4999861717224\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"802.1000027656555\" x2=\"865.4000163078308\" y1=\"364.4999861717224\" y2=\"477.80001163482666\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"802.3999929428101\" x2=\"812.6000165939331\" y1=\"549.1999983787537\" y2=\"327.49998569488525\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"812.6000165939331\" x2=\"826.3999819755554\" y1=\"327.49998569488525\" y2=\"351.09999775886536\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"765.6999826431274\" x2=\"746.9000220298767\" y1=\"540.8999919891357\" y2=\"19.600000232458115\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"802.3999929428101\" x2=\"771.2000012397766\" y1=\"549.1999983787537\" y2=\"17.20000058412552\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"746.9000220298767\" x2=\"771.2000012397766\" y1=\"19.600000232458115\" y2=\"17.20000058412552\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"746.9000220298767\" x2=\"823.4999775886536\" y1=\"19.600000232458115\" y2=\"273.20000529289246\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"823.4999775886536\" x2=\"870.4000115394592\" y1=\"273.20000529289246\" y2=\"189.70000743865967\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"771.2000012397766\" x2=\"844.6000218391418\" y1=\"17.20000058412552\" y2=\"204.09999787807465\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"844.6000218391418\" x2=\"901.8999934196472\" y1=\"204.09999787807465\" y2=\"128.9999932050705\"></line><circle class=\"fill-white stroke-zinc-950\" cx=\"800.599992275238\" cy=\"741.100013256073\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"800.9999990463257\" cy=\"760.8000040054321\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"799.1999983787537\" cy=\"760.9000205993652\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"797.8000044822693\" cy=\"761.5000009536743\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"803.600013256073\" cy=\"759.8999738693237\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"803.600013256073\" cy=\"759.7000002861023\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"803.2000064849854\" cy=\"753.1999945640564\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"777.5999903678894\" cy=\"738.3000254631042\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"784.6999764442444\" cy=\"738.6000156402588\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"802.299976348877\" cy=\"709.9999785423279\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"805.4999709129333\" cy=\"709.6999883651733\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"765.6999826431274\" cy=\"540.8999919891357\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"802.3999929428101\" cy=\"549.1999983787537\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"802.1000027656555\" cy=\"364.4999861717224\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"812.6000165939331\" cy=\"327.49998569488525\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"865.4000163078308\" cy=\"477.80001163482666\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"826.3999819755554\" cy=\"351.09999775886536\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"864.4999861717224\" cy=\"513.700008392334\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"829.4000029563904\" cy=\"343.60000491142273\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"855.1999926567078\" cy=\"531.499981880188\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"826.3999819755554\" cy=\"371.6999888420105\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"852.8000116348267\" cy=\"513.0000114440918\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"827.7000188827515\" cy=\"373.10001254081726\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"746.9000220298767\" cy=\"19.600000232458115\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"771.2000012397766\" cy=\"17.20000058412552\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"823.4999775886536\" cy=\"273.20000529289246\" r=\"8\" stroke-width=\"3\"></circle><rect fill=\"rgb(9 9 11 / 0.82)\" height=\"42\" rx=\"10\" width=\"290\" x=\"14\" y=\"14\"></rect><text fill=\"white\" font-size=\"24\" x=\"28\" y=\"43\">10 Hz · measured sample</text></svg>"
+    },
+    {
+      "label": "Selected official choreography performer",
+      "svg": "<svg aria-label=\"Selected official choreography performer\" class=\"absolute inset-0 size-full\" role=\"img\" viewBox=\"0 0 1000 1000\" preserveAspectRatio=\"none\"><title>Selected official choreography performer</title><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"576.649963438931\" x2=\"566.9584675625988\" y1=\"289.80728546222565\" y2=\"274.438955686189\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"576.649963438931\" x2=\"586.1238868801065\" y1=\"289.80728546222565\" y2=\"327.55584042746335\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"586.1238868801065\" x2=\"574.908004476358\" y1=\"327.55584042746335\" y2=\"329.8741263169029\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"566.9584675625988\" x2=\"561.3793280574833\" y1=\"274.438955686189\" y2=\"306.60698240572503\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"561.3793280574833\" x2=\"586.0490481574818\" y1=\"306.60698240572503\" y2=\"329.87362557238697\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"576.649963438931\" x2=\"554.9245855131857\" y1=\"289.80728546222565\" y2=\"373.88142327090407\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"566.9584675625988\" x2=\"549.2638426346289\" y1=\"274.438955686189\" y2=\"367.5997045252102\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"554.9245855131857\" x2=\"549.2638426346289\" y1=\"373.88142327090407\" y2=\"367.5997045252102\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"554.9245855131857\" x2=\"555.2787224610518\" y1=\"373.88142327090407\" y2=\"434.9921126882499\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"555.2787224610518\" x2=\"533.529463645584\" y1=\"434.9921126882499\" y2=\"521.9714487944682\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"549.2638426346289\" x2=\"541.7281761988795\" y1=\"367.5997045252102\" y2=\"428.06363403499387\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"541.7281761988795\" x2=\"535.9986165424932\" y1=\"428.06363403499387\" y2=\"499.87801620652937\"></line><circle class=\"fill-white stroke-zinc-950\" cx=\"587.1450727755283\" cy=\"266.10189503603914\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"589.2179862007185\" cy=\"260.15605138136465\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"589.5638542694555\" cy=\"260.41847848511037\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"589.9097062014705\" cy=\"260.7538447632528\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"587.4886942671997\" cy=\"258.05824750905896\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"586.5240615088294\" cy=\"256.995814931499\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"585.5323947988456\" cy=\"256.0333610771888\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"587.2472763418823\" cy=\"259.61627797051415\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"581.348967004373\" cy=\"254.11677905372255\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"585.5201713807844\" cy=\"271.4809095942881\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"583.0721254948999\" cy=\"268.61019133330495\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"576.649963438931\" cy=\"289.80728546222565\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"566.9584675625988\" cy=\"274.438955686189\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"586.1238868801065\" cy=\"327.55584042746335\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"561.3793280574833\" cy=\"306.60698240572503\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"574.908004476358\" cy=\"329.8741263169029\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"586.0490481574818\" cy=\"329.87362557238697\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"591.0004914461914\" cy=\"336.32388020252444\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"574.6079708312806\" cy=\"327.92437410021137\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"592.3131792457194\" cy=\"330.80120407022525\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"590.7385731553226\" cy=\"328.542667847651\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"554.9245855131857\" cy=\"373.88142327090407\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"549.2638426346289\" cy=\"367.5997045252102\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"555.2787224610518\" cy=\"434.9921126882499\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"541.7281761988795\" cy=\"428.06363403499387\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"533.529463645584\" cy=\"521.9714487944682\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"535.9986165424932\" cy=\"499.87801620652937\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"527.7504423162474\" cy=\"532.4111743406811\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"530.4388402106177\" cy=\"514.4687384277663\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"528.8406724517786\" cy=\"528.5959827316376\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"531.6937137674269\" cy=\"515.4399482401213\" r=\"8\" stroke-width=\"3\"></circle><rect fill=\"rgb(9 9 11 / 0.82)\" height=\"42\" rx=\"10\" width=\"290\" x=\"14\" y=\"14\"></rect><text fill=\"white\" font-size=\"24\" x=\"28\" y=\"43\">10 Hz · interpolated display</text></svg>"
+    },
+    {
+      "label": "Creator take A pose",
+      "svg": "<svg aria-label=\"Creator take A pose\" class=\"absolute inset-0 size-full\" role=\"img\" viewBox=\"0 0 1000 1000\" preserveAspectRatio=\"none\"><title>Creator take A pose</title><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"591.4000272750854\" x2=\"532.8999757766724\" y1=\"238.10000717639923\" y2=\"171.39999568462372\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"591.4000272750854\" x2=\"616.100013256073\" y1=\"238.10000717639923\" y2=\"315.4999911785126\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"616.100013256073\" x2=\"607.200026512146\" y1=\"315.4999911785126\" y2=\"261.2000107765198\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"532.8999757766724\" x2=\"495.0000047683716\" y1=\"171.39999568462372\" y2=\"107.19999670982361\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"495.0000047683716\" x2=\"543.2999730110168\" y1=\"107.19999670982361\" y2=\"160.50000488758087\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"591.4000272750854\" x2=\"560.9999895095825\" y1=\"238.10000717639923\" y2=\"422.3000109195709\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"532.8999757766724\" x2=\"518.7000036239624\" y1=\"171.39999568462372\" y2=\"421.49999737739563\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"560.9999895095825\" x2=\"518.7000036239624\" y1=\"422.3000109195709\" y2=\"421.49999737739563\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"560.9999895095825\" x2=\"569.7000026702881\" y1=\"422.3000109195709\" y2=\"589.6999835968018\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"569.7000026702881\" x2=\"570.900022983551\" y1=\"589.6999835968018\" y2=\"753.8999915122986\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"518.7000036239624\" x2=\"516.6000127792358\" y1=\"421.49999737739563\" y2=\"592.9999947547913\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"516.6000127792358\" x2=\"552.6999831199646\" y1=\"592.9999947547913\" y2=\"766.0999894142151\"></line><circle class=\"fill-white stroke-zinc-950\" cx=\"592.4000144004822\" cy=\"173.29999804496765\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"598.2999801635742\" cy=\"163.69999945163727\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"599.399983882904\" cy=\"164.900004863739\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"600.1999974250793\" cy=\"165.99999368190765\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"593.4000015258789\" cy=\"156.10000491142273\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"591.0000205039978\" cy=\"151.99999511241913\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"588.8000130653381\" cy=\"148.20000529289246\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"595.4999923706055\" cy=\"163.9000028371811\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"582.1999907493591\" cy=\"143.8000053167343\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"588.100016117096\" cy=\"182.6999932527542\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"582.5999975204468\" cy=\"175.3000020980835\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"591.4000272750854\" cy=\"238.10000717639923\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"532.8999757766724\" cy=\"171.39999568462372\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"616.100013256073\" cy=\"315.4999911785126\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"495.0000047683716\" cy=\"107.19999670982361\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"607.200026512146\" cy=\"261.2000107765198\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"543.2999730110168\" cy=\"160.50000488758087\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"605.0999760627747\" cy=\"245.70000171661377\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"554.4999837875366\" cy=\"176.1000007390976\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"601.4999747276306\" cy=\"238.10000717639923\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"559.5999956130981\" cy=\"177.49999463558197\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"601.3000011444092\" cy=\"243.90000104904175\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"554.0000200271606\" cy=\"174.09999668598175\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"560.9999895095825\" cy=\"422.3000109195709\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"518.7000036239624\" cy=\"421.49999737739563\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"569.7000026702881\" cy=\"589.6999835968018\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"516.6000127792358\" cy=\"592.9999947547913\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"570.900022983551\" cy=\"753.8999915122986\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"552.6999831199646\" cy=\"766.0999894142151\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"574.400007724762\" cy=\"771.0000276565552\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"567.3999786376953\" cy=\"789.4999980926514\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"577.3000121116638\" cy=\"793.6000227928162\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"546.4000105857849\" cy=\"798.6000180244446\" r=\"8\" stroke-width=\"3\"></circle><rect fill=\"rgb(9 9 11 / 0.82)\" height=\"42\" rx=\"10\" width=\"290\" x=\"14\" y=\"14\"></rect><text fill=\"white\" font-size=\"24\" x=\"28\" y=\"43\">10 Hz · measured sample</text></svg>"
+    },
+    {
+      "label": "Creator take B pose",
+      "svg": "<svg aria-label=\"Creator take B pose\" class=\"absolute inset-0 size-full\" role=\"img\" viewBox=\"0 0 1000 1000\" preserveAspectRatio=\"none\"><title>Creator take B pose</title><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"623.6000061035156\" x2=\"579.200029373169\" y1=\"394.19999718666077\" y2=\"346.19998931884766\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"623.6000061035156\" x2=\"606.7000031471252\" y1=\"394.19999718666077\" y2=\"484.89999771118164\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"606.7000031471252\" x2=\"592.2999978065491\" y1=\"484.89999771118164\" y2=\"546.500027179718\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"579.200029373169\" x2=\"543.9000129699707\" y1=\"346.19998931884766\" y2=\"446.90001010894775\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"543.9000129699707\" x2=\"566.3999915122986\" y1=\"446.90001010894775\" y2=\"544.9000000953674\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"623.6000061035156\" x2=\"557.6000213623047\" y1=\"394.19999718666077\" y2=\"542.2000288963318\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"579.200029373169\" x2=\"520.799994468689\" y1=\"346.19998931884766\" y2=\"527.7000069618225\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"557.6000213623047\" x2=\"520.799994468689\" y1=\"542.2000288963318\" y2=\"527.7000069618225\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"557.6000213623047\" x2=\"592.199981212616\" y1=\"542.2000288963318\" y2=\"670.0999736785889\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"592.199981212616\" x2=\"562.5\" y1=\"670.0999736785889\" y2=\"834.1000080108643\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"520.799994468689\" x2=\"548.30002784729\" y1=\"527.7000069618225\" y2=\"664.3000245094299\"></line><line class=\"stroke-brand\" stroke-linecap=\"round\" stroke-width=\"7\" x1=\"548.30002784729\" x2=\"509.0000033378601\" y1=\"664.3000245094299\" y2=\"819.2999958992004\"></line><circle class=\"fill-white stroke-zinc-950\" cx=\"646.2000012397766\" cy=\"340.9999907016754\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"648.8999724388123\" cy=\"327.49998569488525\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"649.1000056266785\" cy=\"327.39999890327454\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"649.2000222206116\" cy=\"326.9999921321869\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"645.6000208854675\" cy=\"323.9000141620636\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"643.1999802589417\" cy=\"320.89999318122864\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"640.500009059906\" cy=\"317.4999952316284\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"639.5000219345093\" cy=\"321.2999999523163\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"628.3000111579895\" cy=\"309.1000020503998\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"638.8999819755554\" cy=\"350.1000106334686\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"634.8999738693237\" cy=\"346.3999927043915\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"623.6000061035156\" cy=\"394.19999718666077\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"579.200029373169\" cy=\"346.19998931884766\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"606.7000031471252\" cy=\"484.89999771118164\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"543.9000129699707\" cy=\"446.90001010894775\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"592.2999978065491\" cy=\"546.500027179718\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"566.3999915122986\" cy=\"544.9000000953674\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"585.9000086784363\" cy=\"567.300021648407\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"570.1000094413757\" cy=\"569.599986076355\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"583.9999914169312\" cy=\"554.0000200271606\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"578.8999795913696\" cy=\"560.5999827384949\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"585.7999920845032\" cy=\"544.9000000953674\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"578.8000226020813\" cy=\"552.9999732971191\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"557.6000213623047\" cy=\"542.2000288963318\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"520.799994468689\" cy=\"527.7000069618225\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"592.199981212616\" cy=\"670.0999736785889\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"548.30002784729\" cy=\"664.3000245094299\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"562.5\" cy=\"834.1000080108643\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"509.0000033378601\" cy=\"819.2999958992004\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"550.1999855041504\" cy=\"854.9000024795532\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"491.8999969959259\" cy=\"839.900016784668\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"598.5999703407288\" cy=\"876.6000270843506\" r=\"8\" stroke-width=\"3\"></circle><circle class=\"fill-white stroke-zinc-950\" cx=\"531.7000150680542\" cy=\"873.0000257492065\" r=\"8\" stroke-width=\"3\"></circle><rect fill=\"rgb(9 9 11 / 0.82)\" height=\"42\" rx=\"10\" width=\"290\" x=\"14\" y=\"14\"></rect><text fill=\"white\" font-size=\"24\" x=\"28\" y=\"43\">10 Hz · measured sample</text></svg>"
+    }
+  ],
+  "canvases": [],
+  "poseInput": {
+    "outputFrame": 480,
+    "outputSeconds": 16,
+    "referenceSeconds": 47.120000000000005,
+    "takeASeconds": 31.5,
+    "takeBSeconds": 41.5,
+    "poseArtifactSha256": "74deecdbd0513062bebc9759739763882f1462d8545778d5bf1fd51bc31f9ae8"
+  }
+}

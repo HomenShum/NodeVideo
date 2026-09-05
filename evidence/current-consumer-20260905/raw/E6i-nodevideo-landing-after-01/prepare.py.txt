@@ -1,0 +1,19 @@
+from pathlib import Path
+P=Path(__file__).parent.parent
+O=Path(__file__).parent
+s=(P/'E6i-nodevideo-landing-before-01/run-before.py').read_text(encoding='utf-8')
+s=s.replace("section='landing-before'", "section='landing-after'").replace("assert section=='landing-before'", "assert section=='landing-after'")
+s=s.replace("P/'E6i-nodevideo-conformance-apply-01/receipt.json'", "P/'E6i_NODEVIDEO_LANDING_BUILD_FREEZE.json'")
+s=s.replace("len(approved['sourceOwners'])==18", "len(approved['sourceOwners'])==19")
+s=s.replace("guards={n:sha", "assert {r['path']:r['sha256']for r in source}==approved['allSourceBindings']\nassert dist==approved['dist']\nguards={n:sha",1)
+s=s.replace('approved18OwnerReceipt','approved19OwnerBuildReceipt')
+s=s.replace('timeout=90','timeout=360').replace('existing bounded section budget','declared affected-only nine-cell budget')
+s += "\nif receipt['status']!='PASS':sys.exit(1)\n"
+(O/'run-after.py').write_text(s,encoding='utf-8',newline='\n')
+# Preserve the already exercised boundary recorder, changing only its label file prefix.
+old=(P/'E6i-nodevideo-landing-before-01/capture.mjs').read_text(encoding='utf-8')
+start=old.index(' const snapshot=')
+end=old.index(' cell.after=await state();')
+body=old[start:end]
+helper="import fs from 'node:fs';\nimport path from 'node:path';\nconst write=(f,o)=>fs.writeFileSync(f,JSON.stringify(o,null,2)+'\\n');\nexport async function boundary(page,out,cell){\n"+body+"\n}\n"
+(O/'boundary.mjs').write_text(helper,encoding='utf-8',newline='\n')

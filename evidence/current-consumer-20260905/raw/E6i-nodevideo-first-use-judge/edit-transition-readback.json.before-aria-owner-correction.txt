@@ -1,0 +1,408 @@
+[
+  {
+    "width": 320,
+    "proposalKeepsCurrentA": false,
+    "applyCurrentB": true,
+    "restoredAllCurrentLabels": true,
+    "originalDuration1335": true,
+    "raw": {
+      "edit-entry": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "proposal": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "applied": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take B",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "restored": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      }
+    },
+    "reportedFullLabelTextsRestored": true
+  },
+  {
+    "width": 360,
+    "proposalKeepsCurrentA": false,
+    "applyCurrentB": true,
+    "restoredAllCurrentLabels": true,
+    "originalDuration1335": true,
+    "raw": {
+      "edit-entry": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "proposal": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "applied": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take B",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "restored": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      }
+    },
+    "reportedFullLabelTextsRestored": true
+  },
+  {
+    "width": 390,
+    "proposalKeepsCurrentA": false,
+    "applyCurrentB": true,
+    "restoredAllCurrentLabels": true,
+    "originalDuration1335": true,
+    "raw": {
+      "edit-entry": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "proposal": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "applied": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take B",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "restored": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      }
+    },
+    "reportedFullLabelTextsRestored": true
+  },
+  {
+    "width": 768,
+    "proposalKeepsCurrentA": false,
+    "applyCurrentB": true,
+    "restoredAllCurrentLabels": true,
+    "originalDuration1335": true,
+    "raw": {
+      "edit-entry": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "proposal": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "applied": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take B",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "restored": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      }
+    },
+    "reportedFullLabelTextsRestored": true
+  },
+  {
+    "width": 1024,
+    "proposalKeepsCurrentA": false,
+    "applyCurrentB": true,
+    "restoredAllCurrentLabels": true,
+    "originalDuration1335": true,
+    "raw": {
+      "edit-entry": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "proposal": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "applied": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take B",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "restored": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      }
+    },
+    "reportedFullLabelTextsRestored": true
+  },
+  {
+    "width": 1440,
+    "proposalKeepsCurrentA": false,
+    "applyCurrentB": true,
+    "restoredAllCurrentLabels": true,
+    "originalDuration1335": true,
+    "raw": {
+      "edit-entry": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "proposal": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "applied": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take B",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "restored": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      }
+    },
+    "reportedFullLabelTextsRestored": true
+  },
+  {
+    "width": 1920,
+    "proposalKeepsCurrentA": false,
+    "applyCurrentB": true,
+    "restoredAllCurrentLabels": true,
+    "originalDuration1335": true,
+    "raw": {
+      "edit-entry": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "proposal": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "applied": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take B",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      },
+      "restored": {
+        "labels": [
+          "Current clip 0 take A",
+          "Current clip 1 take B",
+          "Current clip 2 take A",
+          "Current clip 3 take B",
+          "Current clip 4 take A"
+        ],
+        "duration": [
+          "1335"
+        ]
+      }
+    },
+    "reportedFullLabelTextsRestored": true
+  }
+]

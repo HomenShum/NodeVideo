@@ -1,0 +1,13 @@
+# NodeVideo canonical workflow reference plan review
+
+**Re your request:** make repositories ready for developer handoff — the current shared contract check fails before it can examine a contribution.
+
+**APPROVED_BOUNDED_PLAN.** Change only the reusable workflow repository name to `HomenShum/NodeKit`; retain `ef4ac8a011b230efa3324892a193abe02ff2d673`. 16/16 bounded raw-evidence and custody checks pass. The exact proposed caller is 328 bytes, SHA-256 `3d489dbd49b458b5c1342a3bed0b25cf10b0edd40c612455d2bbbec79373c08d`. No product edit or remote dispatch was performed. Caller, HEAD and serialized index guard is closed.
+
+The canonical commit API and decoded workflow bytes prove the existing pinned workflow exists. The historical routing job genuinely failed with HTTP 422 against the former location. GitHub states: “GitHub Actions does not support redirects for actions or reusable workflows.” [Official documentation](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/find-and-customize-actions). This corrects the earlier missing-revision diagnosis.
+
+The proposed bytes change one repository name, preserving the original pin, triggers, permissions and job. A newer upstream action-pin migration is unnecessary for this repair. The called workflow still performs an ordinary checkout using the old repository name and defaults its registry to mutable `main`. The normal shared run must establish its resolved checkout and actual contract result; this plan proves neither.
+
+Root may apply the exact proposal now that the separate lint source guard is closed, then request a small raw-diff/immutability check. Observe normal exact-head shared CI after publication. No full local gate repeat is needed for this reference-only delta. Existing product/provider/runtime limits and full grades remain unchanged.
+
+Evidence: [checks](E6i-nodevideo-conformance-plan-judge/checks.json), [source guard](E6i-nodevideo-conformance-plan-judge/guard.json), [proposed bytes](E6i-nodevideo-conformance-plan-judge/caller-proposed.yml.txt), [historical failure](E6i-nodevideo-conformance-plan-judge/historical-failure-excerpt.txt), [raw bindings](E6i-nodevideo-conformance-plan-judge/raw-bindings.json). Reviewer is a nonauthor using a reused reviewer context.

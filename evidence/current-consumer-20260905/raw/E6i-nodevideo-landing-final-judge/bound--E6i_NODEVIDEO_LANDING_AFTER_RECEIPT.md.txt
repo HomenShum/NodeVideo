@@ -1,0 +1,21 @@
+# NodeVideo landing clock: affected browser proof
+
+A visitor can now open the local landing page and see its real pose animation and count start. This closes the observed fatal startup exception in the current build. Intermittent missing tracking data and enlarged-phone layout defects remain visible.
+
+Worker proof: **99checks across9cells passed** at320×800,390×844 and1440×960, each with normal/reduced/computed-text200. All1,374source files,1,329build files and19owner bindings stayed exact; refs/index were preserved and owned4983 closed.
+
+- [Exact nine-cell results](E6i-nodevideo-landing-after-02/scoped-results.json)
+- [Matched before/after PNG bindings](E6i-nodevideo-landing-after-02/before-after-pairs.json)
+- [Actual saved canvas raster review](E6i-nodevideo-landing-after-02/saved-canvas-raster-review.json)
+- [Visual findings and limits](E6i-nodevideo-landing-after-02/visual-observations.md)
+- [Raw report](E6i-nodevideo-landing-after-02/report.json)
+- [Owned runtime closure](E6i-nodevideo-landing-after-02/landing-after.command.json)
+- [Preserved original failed expectation](E6i-nodevideo-landing-after-01/report.json)
+- [Accepted tracking-gap correction](E6i-nodevideo-landing-after-02/expectation-addendum.json)
+- [Artifact manifest](E6i-nodevideo-landing-after-02/artifact-manifest.json):228files,29,084,056bytes
+
+Normal/text sampling lasts18seconds without extension. Every zero sample stays in the raw record; closed blank runs show recovery and trailing censored runs remain unknown. Reduced mode stays painted/static atcount1. The three native Studio/back/reload actions work in each cell without page exceptions or external requests.
+
+Computed-text200 exposes201px/131px phone overflow and count/canvas cropping. It is initial computed-font doubling, not native zoom. All full grades remain null. Source callback indices and cancellation are covered separately; editor/export/provider/device behavior was not replayed. No product edits, stage, commit, push or deployment occurred in this worker slice.
+
+**Re your request:** make every repo usable with visual, responsiveness and interaction evidence — this packet provides the bounded NodeVideo landing before/after proof and preserves its remaining failures for handoff and independent judgment.

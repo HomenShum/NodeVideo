@@ -1,0 +1,64 @@
+Builder mode. **NodeVideo has useful bounded local proof, but no overall readiness grade.** This first pass maps all 44 criteria to existing evidence; 11 receive scoped observed deductions and 33 remain NOT_RUN. All eight dimension scores and the overall grade stay null. The 4.5 dimension/4 criterion targets are unchanged.
+
+A creator can inspect the public comparison, review/apply/undo a local edit, and obtain the tested short artifact. The immediate usability problem is phone content preservation: enlarged text clips count/provenance/player content, and the accepted timeline change can sit outside the visible segment. The next repair should target that existing layout/selection behavior after current publication checks close. [Landing judgment](E6i_NODEVIDEO_LANDING_FINAL_JUDGE.md), [original first-use judgment](E6i_NODEVIDEO_FIRST_USE_FINAL_JUDGE.md)
+
+This assessment binds the historical 18-owner first-use and 19-owner landing freezes. Their 1,327 other build entries match; only the landing HTML and its replaced entry bundle differ. It does not freeze or certify the worker’s new README/test metadata. The actual UI contract advertises both dark and light; retained visual evidence covers default dark. A successful theme-class toggle is not a light-theme visual grade. [Bound input comparison](E6i-nodevideo-criterion-assessment/runtime-scope-equivalence.json), [support promise](E6i-nodevideo-criterion-assessment/support-promise.json)
+
+Ratings below apply only to the stated observed failure scope. Null entries may contain positive evidence, but missing parts of a criterion never receive an assumed pass. The JSON records every observation, deduction, exact evidence binding and missing measurement. [Full 44-row assessment](E6i_NODEVIDEO_CRITERION_ASSESSMENT.json)
+
+| Criterion | Canonical standard name | Scoped rating | Status |
+| --- | --- | ---: | --- |
+| V1 | Typography | null | NOT_RUN |
+| V2 | Spacing/grid | null | NOT_RUN |
+| V3 | Color/token discipline | null | NOT_RUN |
+| V4 | Hierarchy | null | NOT_RUN |
+| V5 | Rendered legibility/contrast | 2 | Observed scope only |
+| V6 | Consistent elevation/icons | null | NOT_RUN |
+| V7 | Alignment | null | NOT_RUN |
+| V8 | Polish of empty/loading/error/populated states | null | NOT_RUN |
+| V9 | Purposeful motion and reduced-motion behavior | 3 | Observed scope only |
+| D1 | Clarity of the main action | null | NOT_RUN |
+| D2 | Navigation/information architecture | null | NOT_RUN |
+| D3 | Progressive disclosure | 3 | Observed scope only |
+| D4 | Useful information density | 3 | Observed scope only |
+| D5 | Consistency of component behavior and wording | 4 | Observed scope only |
+| R1 | Reflow/content preservation | 2 | Observed scope only |
+| R2 | Reachability of navigation and primary actions | 3 | Observed scope only |
+| R3 | Modal/panel/table/canvas adaptation | 2 | Observed scope only |
+| R4 | Touch and on-screen-keyboard usability | null | NOT_RUN |
+| R5 | Stability under zoom, long content and declared locales | null | NOT_RUN |
+| I1 | Working controls and keyboard paths | null | NOT_RUN |
+| I2 | Immediate honest feedback and durable status | null | NOT_RUN |
+| I3 | Validation/error/retry behavior | 3 | Observed scope only |
+| I4 | Safe cancellation/undo and duplicate-action handling | null | NOT_RUN |
+| I5 | State continuity through navigation, reload, conflicts and reopening | null | NOT_RUN |
+| A1 | Semantic names/structure | null | NOT_RUN |
+| A2 | Keyboard/focus order and modal focus return | null | NOT_RUN |
+| A3 | Contrast/non-color cues | null | NOT_RUN |
+| A4 | Text resize/reflow and target size | 2 | Observed scope only |
+| A5 | Screen-reader announcements and reduced-motion alternatives | null | NOT_RUN |
+| P1 | Initial usable view | null | NOT_RUN |
+| P2 | Input/scroll responsiveness | null | NOT_RUN |
+| P3 | Layout stability | null | NOT_RUN |
+| P4 | Honest long-operation feedback | null | NOT_RUN |
+| P5 | Behavior with large data and constrained device/network conditions | null | NOT_RUN |
+| U1 | First-time task comprehension | null | NOT_RUN |
+| U2 | Successful core journey | null | NOT_RUN |
+| U3 | Bounded errors/help/rework | 3 | Observed scope only |
+| U4 | Usable export or consumer result | null | NOT_RUN |
+| U5 | Restart/reopen/handoff without hidden knowledge | null | NOT_RUN |
+| L1 | Fit to intended user and job | null | NOT_RUN |
+| L2 | Coverage of advertised capabilities | null | NOT_RUN |
+| L3 | Truthful limits/status | null | NOT_RUN |
+| L4 | Permissions and review authority | null | NOT_RUN |
+| L5 | Source/trace/artifact consistency | null | NOT_RUN |
+
+The lowest observed ratings are 2 for enlarged reflow, panel/canvas adaptation and associated legibility/accessibility. At 320/390, the landing initial-font200percent cases overflow by 201/131 px; the editor caption intersects native controls. Native 200/400 percent zoom, actual touch/OSK, screen readers, target sizes, contrast ratios and the light-theme matrix are unmeasured. This is neither a WCAG result nor a physical-device grade.
+
+Performance criteria are NOT_RUN: no frozen LCP/INP/CLS or input/long-operation/device budgets and no field p75 sample exist. Canvas first paint and 60 simulated callback seconds do not supply those measurements. Fresh-human comprehension/core-task outcomes, actual provider/owner-trace behavior and production are also NOT_RUN. The actual 2-second H.264/decode/reopen result remains positive scoped evidence; it does not certify the untouched 44.5-second export.
+
+Keep the tracking gaps: 49 sampled zeros had later positive samples in the retained finite windows, with one saved canvas PNG actually blank. Do not promote this to continuous paint or smooth playback. The native inspector waiting spinner likewise remains a limitation, without an invented latency or polish failure score.
+
+Next bounded repair priority is enlarged-phone reflow/content preservation, followed by making the accepted compact edit visible for review. The visible “Three ways” heading over four cards is a separate small copy inconsistency. No implementation is proposed outside those owning surfaces; full-route/human/provider/performance proof requires its own declared scope.
+
+**Re your request:** include visual UI, responsiveness and interaction standards in each repo’s readiness — all 44 criteria now have explicit evidence status and the lowest observed issues are named. No source, central grades, credentials or runtime state were changed.

@@ -1,0 +1,30 @@
+{
+  "url": "http://127.0.0.1:4983/",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "crossOriginIsolated": false,
+  "overflow": 0,
+  "active": {
+    "tag": "BODY",
+    "label": null,
+    "text": "Retained exported file"
+  },
+  "text": "Retained exported file",
+  "controls": [],
+  "videos": [
+    {
+      "src": "http://127.0.0.1:4983/proof-export.mp4",
+      "currentTime": 0,
+      "duration": 2,
+      "readyState": 4,
+      "seeking": false,
+      "muted": true,
+      "width": 180,
+      "height": 320
+    }
+  ],
+  "svgs": [],
+  "canvases": []
+}

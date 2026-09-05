@@ -1,0 +1,97 @@
+{
+  "at": "2026-09-05T19:49:59.819868+00:00",
+  "verdict": "CAUSAL_DIAGNOSIS_CONFIRMED_ONE_OWNER_PLAN_SUPPORTED",
+  "reviewer": "independent nonauthor; reused reviewer context",
+  "namedProof": "NODEVIDEO-LANDING-CLOCK-01",
+  "checksPassed": 10,
+  "checksTotal": 10,
+  "head": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "sourceSha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+  "poseSha256": "b2f2ea20a01dbe4815a921c0db6330c24967495dbc7b8b798b6ff82a13488be1",
+  "bundleSha256": "04390a58fda35098d9cc0abcecafdaeec38723b71963a54373e72d29ec1df4e2",
+  "observations": [
+    {
+      "width": 320,
+      "motion": "no-preference",
+      "rafTimestampMs": 231.7,
+      "effectStartMs": 250.5,
+      "callbackPerformanceNowMs": 250.89999997615814,
+      "elapsedSeconds": -0.01880000000000001,
+      "floorInput": -0.18781200000000012,
+      "floorResult": -1,
+      "painted": 0,
+      "error": "Cannot read properties of undefined (reading '11')",
+      "canvasCallbacksRecorded": 1
+    },
+    {
+      "width": 390,
+      "motion": "no-preference",
+      "rafTimestampMs": 42.7,
+      "effectStartMs": 51,
+      "callbackPerformanceNowMs": 55.89999997615814,
+      "elapsedSeconds": -0.008299999999999997,
+      "floorInput": -0.08291699999999996,
+      "floorResult": -1,
+      "painted": 0,
+      "error": "Cannot read properties of undefined (reading '11')",
+      "canvasCallbacksRecorded": 1
+    },
+    {
+      "width": 320,
+      "motion": "reduce",
+      "rafTimestampMs": 41.9,
+      "effectStartMs": 55.5,
+      "callbackPerformanceNowMs": 55.89999997615814,
+      "elapsedSeconds": -0.013600000000000001,
+      "floorInput": 0,
+      "floorResult": 0,
+      "painted": 3606,
+      "error": null,
+      "canvasCallbacksRecorded": 1
+    }
+  ],
+  "cause": "Mixed effect-time performance.now epoch with earlier first native rAF timestamp gives negative elapsed, Math.floor=-1 and undefined frame; clearRect precedes frame[11] exception; exception exits before next rAF request.",
+  "scope": "Read-only source/probe/pixel diagnosis; no product edits, no browser/app/gate replay by this reviewer.",
+  "plan": {
+    "namedProof": "NODEVIDEO-LANDING-CLOCK-01",
+    "status": "SUPPORTED_ONE_OWNER_PLAN_NOT_IMPLEMENTED",
+    "owner": "apps/landing/src/landing.tsx",
+    "repair": "Initialize the local time origin from the first native rAF callback in SkeletonHero and the same-pattern useCountClock, using an explicit undefined sentinel (timestamp 0 is valid). Keep all calculations in the native callback timestamp domain.",
+    "whyBoth": "The pose callback demonstrably crashes; the count callback independently uses the same mixed-time subtraction and can calculate count0/pulse>1 for an earlier timestamp. No native invalid count was directly instrumented; its inclusion prevents the same known owning-seam defect in adjacent clock output.",
+    "intentionalBehaviorChange": "Both effects begin at elapsed0 on their first callback rather than counting effect-to-first-callback delay. Their existing independent effect lifetime remains; no global/shared clock synchronization redesign.",
+    "preserve": [
+      "TEMPO_BPM103.4,BEAT_MS,cadence9.99,exact80x33poseJSON and18edges",
+      "Frame selection modulo, beat/count/pulse formulas for equal nonnegative elapsed, painting styles/geometry and labels",
+      "Reduced motion remains count1 and exactly one static frame0 draw without rescheduling",
+      "Existing request/cancel cleanup and React lifecycle behavior",
+      "All links, markup, CSS, policies, backend/provider and18previouslyapprovedowners"
+    ],
+    "excluded": [
+      "No frame fallback or catch-and-ignore drawing error",
+      "No modulo repair that selects the last frame on negative elapsed",
+      "No new clock abstraction, dependency, config knob, timer, array validation or data rewrite"
+    ],
+    "beforeRequirement": "Before source edit capture and review genuine native labelled3px boundaries around pose canvas and count row at320/390 and desktop1440. Preserve original failed screenshot and probe unchanged; do not reinterpret old public blank screenshot as measured same cause.",
+    "targetedProofRequirements": [
+      "Execute actual owner callbacks in a frozen isolated harness with controlled native-domain timestamps: first rAF231.7 while performance.now250.5, first42.7 vs51, equality, timestamp0 and long initialdelay. Require frame0, count1, pulse within existing0..1 and successful nextschedule.",
+      "Advance monotonic callbacks through frame79-to0 and count8-to1 boundaries and a finite60-second120Hz sequence. Require valid indices, unchanged per-elapsed calculations, bounded live callback count and no accumulating callbacks.",
+      "Reduced-motion scenario: one actual frame0 draw, no repeated scheduled draw, original static geometry/pulse; no Count0.",
+      "Unmount/StrictMode setup-cleanup-remount scenario: pending request cancelled, new effect gets its own first-callback origin, no old active loop.",
+      "Native Chromium current built product at320/390/1440 plus reduced control, fresh reloads and at least two complete pose loops (~16.02seconds): actual paint, changing poses, no page errors, validcount/currentframe, reachable unchanged links. Compare matched actual PNGs; observer records alone cannot certify pixels.",
+      "Causal knockout in isolated harness or labelled response override: restore only the prior performance.now epoch under the recorded timestamp schedule; require old negative-index error/zero-completed-draw and no reschedule. New implementation must pass same schedule. No product mutation for knockout.",
+      "Run meaningful focused checks plus normal build if product changes, and bind resulting source/bundle/pose artifacts. Do not repeat the entire first-use/export matrix solely for this clock fix."
+    ],
+    "fullGrades": null
+  },
+  "limitations": [
+    "Native probe returns values unchanged but wrapper/stack collection adds observation overhead, which can affect scheduling. It reproduces a real source failure mechanism; original uninstrumented failure did not capture timestamps.",
+    "Count0/pulse>1 is a source-derived same-seam risk, not directly observed native countfailure in this probe.",
+    "Reduced-motion positive control proves this public pose dataset can render, not any creator/backend/upload/export path.",
+    "No full matrix, performance budget, user grade, provider or deployment claim."
+  ],
+  "guard": "CLOSED for read-only source/pose/currentbundle and HEAD/index",
+  "artifactManifest": {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-clock-diagnosis\\artifact-manifest.json",
+    "sha256": "2676d4320aa6f8991bb1fb5998872937b66e68f227b4fa9a06c334f0ecf0cd9d"
+  }
+}

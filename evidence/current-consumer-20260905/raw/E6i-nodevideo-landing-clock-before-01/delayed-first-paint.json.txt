@@ -1,0 +1,55 @@
+{
+  "summary": {
+    "name": "delayed-first-paint",
+    "errors": [],
+    "firstFrame": 49,
+    "lastFrame": 16,
+    "framesDrawn": 4,
+    "strokes": 68,
+    "arcs": 119,
+    "firstCount": 1,
+    "lastCount": 1,
+    "countRange": [
+      1,
+      1
+    ],
+    "pulseRange": [
+      0,
+      0
+    ],
+    "callbackCount": 8,
+    "maxPending": 2,
+    "pendingBeforeCleanup": 2,
+    "pendingAfterCleanup": 0,
+    "allFrameIndicesValid": true,
+    "allCountValuesValid": true,
+    "allPulseValuesValid": true,
+    "drawSequenceSha256": "c6b35420d8eed3cd06d3f3c4626f5df6cc2268f33d3526edfe2c4bbc9910ebaf",
+    "countsSha256": "ac91b3ec501b23593f3981b92775f32afb157e91b50c4fcc1b9f70164ac1214c",
+    "pulsesSha256": "1c10b03518fff8fc374a20bbf5107c66496656bec0662d6c6db123d4a898f121"
+  },
+  "firstObservedIndices": [
+    49,
+    50,
+    50,
+    16
+  ],
+  "lastObservedIndices": [
+    49,
+    50,
+    50,
+    16
+  ],
+  "firstObservedCounts": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "lastObservedCounts": [
+    1,
+    1,
+    1,
+    1
+  ]
+}

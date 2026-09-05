@@ -1,0 +1,149 @@
+{
+  "status": "PASS",
+  "commands": [
+    {
+      "name": "targeted-clock",
+      "argv": [
+        "C:/nvm4w/nodejs/npm.cmd",
+        "run",
+        "test",
+        "--",
+        "tests/unit/landing-clock.test.ts",
+        "--reporter=json",
+        "--outputFile=C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-publication-stage-01\\execution-final\\targeted.json"
+      ],
+      "cwd": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905",
+      "startedAt": "2026-09-05T20:55:25.961544+00:00",
+      "finishedAt": "2026-09-05T20:55:27.698585+00:00",
+      "seconds": 1.7339999999385327,
+      "exitCode": 0,
+      "outerBudgetSeconds": 300,
+      "timedOut": false,
+      "logSha256": "cd4c64d7940d2077866694bd86629e4041484232345d01f4196e4c26e937aa15"
+    },
+    {
+      "name": "original-knockout",
+      "argv": [
+        "C:/nvm4w/nodejs/node.exe",
+        "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905\\node_modules\\vitest\\vitest.mjs",
+        "run",
+        "--root",
+        "D:\\ProjectRecovery\\nodevideo-clock-regression-20260905-publication01\\original-final",
+        "--config",
+        "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905\\vite.config.ts",
+        "tests/unit/landing-clock.test.ts",
+        "--reporter=json",
+        "--outputFile=C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-publication-stage-01\\execution-final\\original-knockout.json"
+      ],
+      "cwd": "D:\\ProjectRecovery\\nodevideo-clock-regression-20260905-publication01\\original-final",
+      "startedAt": "2026-09-05T20:55:28.024405+00:00",
+      "finishedAt": "2026-09-05T20:55:29.332736+00:00",
+      "seconds": 1.2959999999729916,
+      "exitCode": 1,
+      "outerBudgetSeconds": 300,
+      "timedOut": false,
+      "logSha256": "44dbafc9fb5460ca15090b7699f076131236412d3860c70bc817f59465c38c08"
+    },
+    {
+      "name": "truthiness-knockout",
+      "argv": [
+        "C:/nvm4w/nodejs/node.exe",
+        "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905\\node_modules\\vitest\\vitest.mjs",
+        "run",
+        "--root",
+        "D:\\ProjectRecovery\\nodevideo-clock-regression-20260905-publication01\\truthiness-final",
+        "--config",
+        "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905\\vite.config.ts",
+        "tests/unit/landing-clock.test.ts",
+        "--reporter=json",
+        "--outputFile=C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-publication-stage-01\\execution-final\\truthiness-knockout.json"
+      ],
+      "cwd": "D:\\ProjectRecovery\\nodevideo-clock-regression-20260905-publication01\\truthiness-final",
+      "startedAt": "2026-09-05T20:55:29.903399+00:00",
+      "finishedAt": "2026-09-05T20:55:31.201076+00:00",
+      "seconds": 1.2959999999729916,
+      "exitCode": 1,
+      "outerBudgetSeconds": 300,
+      "timedOut": false,
+      "logSha256": "2eb6cea826c66cf87484717292470f2e316856c2b0efebc381ac9a86bdcee7c9"
+    },
+    {
+      "name": "normal-check",
+      "argv": [
+        "C:/nvm4w/nodejs/npm.cmd",
+        "run",
+        "check"
+      ],
+      "cwd": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905",
+      "startedAt": "2026-09-05T20:55:31.455778+00:00",
+      "finishedAt": "2026-09-05T20:56:20.482812+00:00",
+      "seconds": 49.03200000000652,
+      "exitCode": 0,
+      "outerBudgetSeconds": 300,
+      "timedOut": false,
+      "logSha256": "26ad3d7c3b05c275fc38ac8076e58501b0dc94f07d3c24d311fe23fb20e0ce5e"
+    }
+  ],
+  "targeted": {
+    "tests": 9,
+    "passed": 9
+  },
+  "knockouts": [
+    {
+      "name": "original",
+      "tests": 9,
+      "failed": [
+        "visitor receives the observed 320px earlier callback",
+        "visitor receives the observed 390px earlier callback",
+        "zero is a valid first timestamp, not an uninitialized clock",
+        "delayed first paint starts at the first pose and count",
+        "60 simulated seconds of callbacks stay bounded and valid",
+        "returning to the page starts new owners in the same scheduler"
+      ],
+      "failedCount": 6,
+      "testSha256": "2e210e764294b412130c67ad6fa363ed1eb48f4b1b727fb2ed369b6af36523de",
+      "ownerSha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+      "sameExistingConfigSha256": "421b61d609a2d35b84a85c232f37d142916e1416dc0c84aaf6dd4d4beeb8b03f"
+    },
+    {
+      "name": "truthiness",
+      "tests": 9,
+      "failed": [
+        "zero is a valid first timestamp, not an uninitialized clock"
+      ],
+      "failedCount": 1,
+      "testSha256": "2e210e764294b412130c67ad6fa363ed1eb48f4b1b727fb2ed369b6af36523de",
+      "ownerSha256": "9134b22bf1e4fac4b193025a9688b6f5fc6fde00642748f1ec625b3f23a6dbc7",
+      "sameExistingConfigSha256": "421b61d609a2d35b84a85c232f37d142916e1416dc0c84aaf6dd4d4beeb8b03f"
+    }
+  ],
+  "normal": {
+    "tests": 353,
+    "files": 74,
+    "seconds": 49.03200000000652,
+    "logSha256": "26ad3d7c3b05c275fc38ac8076e58501b0dc94f07d3c24d311fe23fb20e0ce5e"
+  },
+  "rawOperatorReceipt": {
+    "path": "execution-final/receipt.json",
+    "bytes": 564571,
+    "sha256": "e477de6a869c35417274f84e6ee46a5683e499abfb4355dce016e21f37d53fc2",
+    "rawGitBlobSha1": "e325ad8268d2236934612135b268325fde315439"
+  },
+  "ports": [
+    {
+      "port": 55827,
+      "released": true
+    },
+    {
+      "port": 4339,
+      "released": true
+    }
+  ],
+  "limits": [
+    "Existing mock/synthetic rendered contract with deferred camera controls",
+    "No separate editor/codec/browser-matrix replay",
+    "Audit13full/3production findings remain from unchanged lock",
+    "SharedCI/deployment pending",
+    "Source browser frame indices and continuous tracking not certified"
+  ]
+}

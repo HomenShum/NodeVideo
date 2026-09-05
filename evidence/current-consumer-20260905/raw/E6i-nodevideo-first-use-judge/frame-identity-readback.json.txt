@@ -1,0 +1,1094 @@
+[
+  {
+    "name": "320-frame-480",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  },
+  {
+    "name": "320-frame-481",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.533333,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.533333,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.033333333333335,
+      16.033333333333335,
+      31.533333333333335,
+      41.53333333333333
+    ]
+  },
+  {
+    "name": "320-inspector-keyboard-restored",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  },
+  {
+    "name": "360-frame-480",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  },
+  {
+    "name": "360-frame-481",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.533333,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.533333,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.033333333333335,
+      16.033333333333335,
+      31.533333333333335,
+      41.53333333333333
+    ]
+  },
+  {
+    "name": "360-inspector-keyboard-restored",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  },
+  {
+    "name": "390-frame-480",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  },
+  {
+    "name": "390-frame-481",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.533333,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.533333,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.033333333333335,
+      16.033333333333335,
+      31.533333333333335,
+      41.53333333333333
+    ]
+  },
+  {
+    "name": "390-inspector-keyboard-restored",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  },
+  {
+    "name": "768-frame-480",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  },
+  {
+    "name": "768-frame-481",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.533333,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.533333,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.033333333333335,
+      16.033333333333335,
+      31.533333333333335,
+      41.53333333333333
+    ]
+  },
+  {
+    "name": "768-inspector-keyboard-restored",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  },
+  {
+    "name": "1024-frame-480",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  },
+  {
+    "name": "1024-frame-481",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.533333,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.533333,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.033333333333335,
+      16.033333333333335,
+      31.533333333333335,
+      41.53333333333333
+    ]
+  },
+  {
+    "name": "1024-inspector-keyboard-restored",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  },
+  {
+    "name": "1440-frame-480",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  },
+  {
+    "name": "1440-frame-481",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.533333,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.533333,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.033333333333335,
+      16.033333333333335,
+      31.533333333333335,
+      41.53333333333333
+    ]
+  },
+  {
+    "name": "1440-inspector-keyboard-restored",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  },
+  {
+    "name": "1920-frame-480",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  },
+  {
+    "name": "1920-frame-481",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16.033332,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.533333,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.533333,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.033333333333335,
+      16.033333333333335,
+      31.533333333333335,
+      41.53333333333333
+    ]
+  },
+  {
+    "name": "1920-inspector-keyboard-restored",
+    "validNativeSeekIdentity": true,
+    "videos": [
+      {
+        "src": "http://127.0.0.1:4983/media/integrated-source-only-v1/preview-silent.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/target-web.mp4",
+        "currentTime": 16,
+        "duration": 44.5,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-a-web.mp4",
+        "currentTime": 31.5,
+        "duration": 57.598005,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      },
+      {
+        "src": "http://127.0.0.1:4983/media/authorized-real-v1/source-b-web.mp4",
+        "currentTime": 41.5,
+        "duration": 68.233333,
+        "readyState": 4,
+        "seeking": false,
+        "muted": true,
+        "width": 640,
+        "height": 360
+      }
+    ],
+    "expectedTimes": [
+      16.0,
+      16.0,
+      31.5,
+      41.5
+    ]
+  }
+]

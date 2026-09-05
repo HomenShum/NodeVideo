@@ -1,0 +1,87 @@
+[
+  {
+    "path": "tools/clip-gate/voice.mjs",
+    "bytes": 6401,
+    "sha256": "bf295e996f5fe7c38d5ea5312b85326d5b29aeb8ec8f54a89375539443145cf1"
+  },
+  {
+    "path": "schemas/production-agent.v1.schema.json",
+    "bytes": 9273,
+    "sha256": "d228e58eb4c6af84ed096322b579624885e306d36f15690a0b71cb48758834e2"
+  },
+  {
+    "path": "tools/clip-gate/score.mjs",
+    "bytes": 15159,
+    "sha256": "8d0562f9790a8e8e43c9024e68eb5a9ebc57c5d6e9ad509a6f7ef8126e42c8a3"
+  },
+  {
+    "path": "tools/clip-gate/rubric.mjs",
+    "bytes": 11773,
+    "sha256": "d49dd73a293869849d9c147fcd9378abad2b80b241ce49d6e7e6ca79e1f7b9d6"
+  },
+  {
+    "path": "tools/clip-gate/retime.mjs",
+    "bytes": 2685,
+    "sha256": "41ca93bb4393fcbe363d1e2ca281438f9b71065093fbafbdd1dfdbacc7c911c9"
+  },
+  {
+    "path": "tools/clip-gate/readability.mjs",
+    "bytes": 4014,
+    "sha256": "e1e2d553f308d460749aa3b408999dc5729b2d56a353c489333db9c36a3303d7"
+  },
+  {
+    "path": "scripts/quality/verify-production-deploy.mjs",
+    "bytes": 2923,
+    "sha256": "0d994c32c82940d34243c3695a892818022f3e50f1bf0bb10bdd4cda54c7b38d"
+  },
+  {
+    "path": "tools/clip-gate/narrate.mjs",
+    "bytes": 7575,
+    "sha256": "f059f8197c87a115292ba1de732761d596f49731515529024ac865cb9ef88130"
+  },
+  {
+    "path": "tools/clip-gate/judge-video.mjs",
+    "bytes": 14124,
+    "sha256": "a78fed70aa4968de73be4699d3ef52524c51c5a3707b08611fba834d62cfe311"
+  },
+  {
+    "path": "src/lib/frame-evidence.test.ts",
+    "bytes": 3765,
+    "sha256": "15370bc0877c419cd51b255a76da238e1085e30207f1882d44c7dfed0cb40f1c"
+  },
+  {
+    "path": "tools/clip-gate/iterate.mjs",
+    "bytes": 5495,
+    "sha256": "e2d0e748a1c2a12bab4a193fd6c144e2f65d7d251767431a19035fcb9f0b9bf4"
+  },
+  {
+    "path": "src/lib/frame-evidence.ts",
+    "bytes": 7830,
+    "sha256": "7cde76688b2bfd6d8ace61c274b65bb95e562430b2c47e3f9e9b8aaae456e906"
+  },
+  {
+    "path": "tools/clip-gate/calibration.json",
+    "bytes": 1624,
+    "sha256": "0d052a964926d1343d34652e490d81e4b09378515b62c1fdeb43bb601caacaa9"
+  },
+  {
+    "path": "tools/clip-gate/apply-captions.mjs",
+    "bytes": 2177,
+    "sha256": "828ab72939ce241b82aa92341084af3c9c553f976fc73b5f0998117b2cb8fb96"
+  },
+  {
+    "path": "tools/clip-gate/comprehension-rubric.mjs",
+    "bytes": 9014,
+    "sha256": "49c991865cfca4f788a7b916b82256b7bab1fa2f0968bb4c0dbc09c487698e35"
+  },
+  {
+    "path": "tools/clip-gate/clip.mjs",
+    "bytes": 7134,
+    "sha256": "70a786464229de0f64ca67d0473e8681f66ba8289cfdeb327dc1da6fdc5f3b09"
+  },
+  {
+    "path": "tools/clip-gate/find-references.mjs",
+    "bytes": 13797,
+    "sha256": "2d6fffe3b147707a371e8aa26aee0eb31b68f1ce35d9a79ddecd856a037d320b"
+  }
+]

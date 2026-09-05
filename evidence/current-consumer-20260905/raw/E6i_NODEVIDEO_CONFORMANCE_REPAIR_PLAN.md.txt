@@ -1,0 +1,19 @@
+# Restore the renamed repository reference in NodeVideo CI
+
+**Re your request:** make each repository usable for developer handoff. A contributor opening a NodeVideo change currently cannot run the shared repository-contract check because Actions resolves the former `HomenShum/node-platform` workflow location. The run fails before it can check the contribution.
+
+Named proof: **NODEVIDEO-CONFORMANCE-REFERENCE-01**. This is a separate one-line workflow repair after the current lint source guard closes; it does not change lint, product code, triggers, permissions or required jobs.
+
+The earlier reconnaissance called the referenced workflow revision missing. Current primary API evidence corrects that diagnosis: both commit `ef4ac8a011b230efa3324892a193abe02ff2d673` and `.github/workflows/repo-conformance.yml` exist in the canonical `HomenShum/NodeKit` repository. Their complete original responses and decoded workflow are in `E6i-nodevideo-conformance-recon`. GitHub explicitly says renamed repositories are not redirected for Actions or reusable workflows. [GitHub's workflow reference documentation](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/find-and-customize-actions).
+
+Keep the existing immutable `ef4ac8a011b230efa3324892a193abe02ff2d673` revision and change only the `uses` repository from `HomenShum/node-platform` to `HomenShum/NodeKit` in `.github/workflows/node-platform-conformance.yml`. The newer5c9 workflow used by NodeSlide was inspected for comparison; it changes action pins and is not required to resolve this location defect. Retain the existing source revision and make no upgrade by implication.
+
+The called workflow retains its own existing checkout of the former repository name and its `platform_ref: main` default. An ordinary checkout's Git/API redirection is different from reusable-workflow resolution. This plan does not claim the called registry source is immutable or that its current checks will pass. Shared execution must observe the actual resolved checkout and result. Do not rewrite the upstream workflow, disable checks, alter policy or claim a missing shared job is green.
+
+1. Close the17-owner lint judgment and preserve its raw source/normal-gate bindings first.
+2. Preserve the exact334-byte original caller and record a raw one-line diff with only the canonical repository name changed. The existing old pin resolves in the canonical primary API evidence; keep it exact.
+3. Confirm triggers, permissions, job name, revision and all other source bytes remain unchanged. No new local product test or repeated fullbuild is needed for this reference-only delta.
+4. Have a nonauthor judge review the original shared failure, primary API bytes, this exact diff and the unchanged executable contract. Include this accepted repair in the normal current-candidate publication with truthful handoff.
+5. Open/update the normal PR only after current source/user-journey judgment. Observe its actual shared conformance job and all other normal required checks. Preserve any later contract failure; one resolved reference does not certify the full repository.
+
+All old worktrees, refs, private configuration and original workflow evidence remain untouched. No remote CI dispatch, bypass, provider call or source edit has occurred for this plan.

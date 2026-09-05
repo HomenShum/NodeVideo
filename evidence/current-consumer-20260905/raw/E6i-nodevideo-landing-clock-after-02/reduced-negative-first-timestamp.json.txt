@@ -1,0 +1,33 @@
+{
+  "summary": {
+    "name": "reduced-negative-first-timestamp",
+    "errors": [],
+    "firstFrame": 0,
+    "lastFrame": 0,
+    "framesDrawn": 1,
+    "strokes": 16,
+    "arcs": 26,
+    "firstCount": null,
+    "lastCount": null,
+    "countRange": null,
+    "pulseRange": null,
+    "callbackCount": 1,
+    "maxPending": 1,
+    "pendingBeforeCleanup": 0,
+    "pendingAfterCleanup": 0,
+    "allFrameIndicesValid": true,
+    "allCountValuesValid": true,
+    "allPulseValuesValid": true,
+    "drawSequenceSha256": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+    "countsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "pulsesSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "firstObservedIndices": [
+    0
+  ],
+  "lastObservedIndices": [
+    0
+  ],
+  "firstObservedCounts": [],
+  "lastObservedCounts": []
+}

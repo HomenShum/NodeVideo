@@ -1,0 +1,17 @@
+{
+  "status": "ONE_OWNER_FIRST_CALLBACK_ORIGIN_APPLIED",
+  "at": "2026-09-05T20:05:51.251226+00:00",
+  "root": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905",
+  "path": "apps/landing/src/landing.tsx",
+  "beforeSha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+  "afterSha256": "5d4ce6007803f7166949c40cdec646e0d2c51b0ee7ba8ca0dc2ac686b2de45ab",
+  "protectedUnchanged": 1373,
+  "prior18OwnersUnchanged": true,
+  "gitGuards": {
+    "head": "4ac45208b6bb9f3544e67636ed077a4441719f4892a09c818aa69589d9641c8f",
+    "refs": "f8e00a232bd597b0a1a63ce1e5020aca9cb5826435042a81a7560250fe71c8ae",
+    "index": "3e9c929044933fd852980d1393a64e5b755dcaeb1f6f7e8e22d96c7b8192df62"
+  },
+  "distNotRebuiltYet": true,
+  "delta": "Each existing local effect origin uses explicit undefined and first callback now; all cadence/count/pose/pulse/drawing/cleanup expressions unchanged."
+}

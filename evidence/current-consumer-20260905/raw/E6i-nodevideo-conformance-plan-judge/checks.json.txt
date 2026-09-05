@@ -1,0 +1,66 @@
+[
+  {
+    "name": "raw E6i-nodevideo-conformance-recon\\old-commit.json",
+    "pass": true
+  },
+  {
+    "name": "raw E6i-nodevideo-conformance-recon\\old-commit.stderr",
+    "pass": true
+  },
+  {
+    "name": "raw E6i-nodevideo-conformance-recon\\old-repo-conformance.yml.txt",
+    "pass": true
+  },
+  {
+    "name": "raw E6i-nodevideo-conformance-recon\\old-workflow.json",
+    "pass": true
+  },
+  {
+    "name": "raw E6i-nodevideo-conformance-recon\\old-workflow.stderr",
+    "pass": true
+  },
+  {
+    "name": "raw E6i-nodevideo-conformance-recon\\proven-workflow.json",
+    "pass": true
+  },
+  {
+    "name": "raw E6i-nodevideo-conformance-recon\\proven-workflow.stderr",
+    "pass": true
+  },
+  {
+    "name": "raw E6i-nodevideo-conformance-recon\\receipt.json",
+    "pass": true
+  },
+  {
+    "name": "raw E6i-nodevideo-conformance-recon\\repo-conformance.yml.txt",
+    "pass": true
+  },
+  {
+    "name": "canonical immutable commit",
+    "pass": true
+  },
+  {
+    "name": "decoded workflow raw and Git blob",
+    "pass": true
+  },
+  {
+    "name": "existing reusable input contract",
+    "pass": true
+  },
+  {
+    "name": "actual caller original HEAD bytes",
+    "pass": true
+  },
+  {
+    "name": "proposed name-only replacement",
+    "pass": true
+  },
+  {
+    "name": "actual historical routing resolution failure",
+    "pass": true
+  },
+  {
+    "name": "closing caller HEAD and serialized index unchanged",
+    "pass": true
+  }
+]

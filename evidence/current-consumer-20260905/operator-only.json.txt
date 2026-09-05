@@ -1,0 +1,2137 @@
+{
+  "operatorRootAlias": "P: portfolio-recovery-20260904 on original operator workstation; not supplied by this Git packet",
+  "artifacts": [
+    {
+      "path": "E6i-nodevideo-baseline-check.json",
+      "bytes": 1643,
+      "sha256": "f3e9c6f438c6638a4b4a847e876556a0aa051f96a6b845c4f9940879e35e05db",
+      "rawGitBlobSha1": "9ac5285fb38729b96883e086b671eaba7d15261f",
+      "reason": "Full process/custody receipt remains operator-only; compact command and source/build bindings are included.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-conformance-applied-judge/protected-readback.json",
+      "bytes": 243795,
+      "sha256": "78274752484fcb7c603bea810eaf917893f338a31a180c28e09a5763e296f0ec",
+      "rawGitBlobSha1": "09b45be8e9ff74e4ff6129e117ca7b204534718a",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-conformance-applied-judge/source-bindings.json",
+      "bytes": 2916,
+      "sha256": "22f2f307317507859ea60329b8880523f3c3b98d2fe0c2a57a16581c2d3d0259",
+      "rawGitBlobSha1": "74079748ddff43c796ba4860080518d19394cc86",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/primary-after-branch.txt",
+      "bytes": 5,
+      "sha256": "6403203dd5a0867eb14d104ee8a73730bd72dd9ad92e78d996a6dba0a5dcfc01",
+      "rawGitBlobSha1": "ba2906d0666cf726c7eaadd2cd3db615dedfdf3a",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/primary-after-head.txt",
+      "bytes": 41,
+      "sha256": "43ab708a39478b5cab28a0b21c266dec7d12857d0528e51cfaacfc09585f5044",
+      "rawGitBlobSha1": "2228e90c4105f3afcc3ec231f841805c3b601772",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/primary-after-index.txt",
+      "bytes": 138152,
+      "sha256": "d665978db38344fce372dc87ddfa4abb32f2bdda7687b9c8a5d22c03be7bfbcb",
+      "rawGitBlobSha1": "9b3f5de74bc5c08061b7ef4773faba8a4842252a",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/primary-after-refs.txt",
+      "bytes": 2255,
+      "sha256": "f26538fea9cc8fafcf26de63b533d629fa002e829eeeb726c541a6d03fad09a3",
+      "rawGitBlobSha1": "b4fb5455912bc6eef585177d064b6a92d9f0e5ee",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/primary-after-status.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawGitBlobSha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/primary-after-worktrees.txt",
+      "bytes": 370,
+      "sha256": "7cc8c5d9fe0c8aa7f945bd583a0311bdcf5c6af316918f626db418d18f69e3d8",
+      "rawGitBlobSha1": "e1b1d20315ba3e059c912d11ed347749a0d29f52",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/primary-before-branch.txt",
+      "bytes": 5,
+      "sha256": "6403203dd5a0867eb14d104ee8a73730bd72dd9ad92e78d996a6dba0a5dcfc01",
+      "rawGitBlobSha1": "ba2906d0666cf726c7eaadd2cd3db615dedfdf3a",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/primary-before-head.txt",
+      "bytes": 41,
+      "sha256": "43ab708a39478b5cab28a0b21c266dec7d12857d0528e51cfaacfc09585f5044",
+      "rawGitBlobSha1": "2228e90c4105f3afcc3ec231f841805c3b601772",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/primary-before-index.txt",
+      "bytes": 138152,
+      "sha256": "d665978db38344fce372dc87ddfa4abb32f2bdda7687b9c8a5d22c03be7bfbcb",
+      "rawGitBlobSha1": "9b3f5de74bc5c08061b7ef4773faba8a4842252a",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/primary-before-refs.txt",
+      "bytes": 2161,
+      "sha256": "077778395d2424fe43daa09c48146742affee9930c21fc04f84b2db38901df2d",
+      "rawGitBlobSha1": "b7586e51efc2b43968f1808ab248f64857875db0",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/primary-before-status.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawGitBlobSha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/primary-before-worktrees.txt",
+      "bytes": 143,
+      "sha256": "da9ef1a863cac61717e07b561e5bd335a65092003ba50eefc069b132e4b4719c",
+      "rawGitBlobSha1": "9ec89f7247d64f25c7d7cfee521f99e2f15db9af",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/source-before.json",
+      "bytes": 326843,
+      "sha256": "190d9300420b2d853066bca9025fe91da36aa3c30206ce78f35809b6922dfa7d",
+      "rawGitBlobSha1": "ea4a749ac5e83e0604b09debc57a1eb229c35a65",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-current-baseline-01/worktree-add.log",
+      "bytes": 168,
+      "sha256": "f3f11996cb67468f7802f2ef20bee8e998858f35bc0773ec88f3eb7d860830cd",
+      "rawGitBlobSha1": "2819d95d653f4fd3730109fb1d5220def64a67cd",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/codec/accepted-caption.html",
+      "bytes": 49020,
+      "sha256": "5b21bf84d36bcfa79e59ff98888386885eebd0c58bb94f32fe4ff96c3b523946",
+      "rawGitBlobSha1": "54513a9ec22a1634e46aec105646e50374d6adbe",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/codec/actual-file-reopened.html",
+      "bytes": 240,
+      "sha256": "b2af243fc0ff52229e30d7410cd1487acc36eefdc1ef11024810fd75fab80e4d",
+      "rawGitBlobSha1": "da714accbf5f51e3a750635c40b5ca3014726369",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/codec/export-active-before-cancel.html",
+      "bytes": 51124,
+      "sha256": "f8bd98239146464b18e5bb3c959420bd8b925f581c2d549fa3a877d712b042a9",
+      "rawGitBlobSha1": "f7f6b15f98c4b1c2d89da1cfea2b3a03b1717a5f",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/codec/export-cancelled.html",
+      "bytes": 49294,
+      "sha256": "5fb5f2856dbf0e62e273d53f4bc5cc84ea6bcaa413767ceb3bef4325bf5a8dcc",
+      "rawGitBlobSha1": "8413f849f5dd69988919897d1f777b6ebd5e1f07",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/codec/export-ready.html",
+      "bytes": 50811,
+      "sha256": "d4133ab5cac2cfe38bfab59eac24c8834944fab464387be30ff3bde433f1eb31",
+      "rawGitBlobSha1": "260b0a4202fc3d43d45788d9606bc0ecfa94a0aa",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/codec-before.json",
+      "bytes": 491963,
+      "sha256": "4c703526fe1798cf2409b8787e7a79238c5300de63f31abb496e8f6e24b0f457",
+      "rawGitBlobSha1": "fbb4d3e3e9a0ce7df5617213a00df81ea0f34bd6",
+      "reason": "Repeated complete source/dist inventory; one baseline/current binding set is included instead.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/diagnostic/320-no-preference.html",
+      "bytes": 7929,
+      "sha256": "8353741c2c021c2e665a3eabe4422ddf9e90e98772a9bea2e22ef2b74862acb3",
+      "rawGitBlobSha1": "8fe8460d1674ff6b2a43e47e986659153b968552",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/diagnostic/320-reduce.html",
+      "bytes": 7904,
+      "sha256": "14c4bd6dfd41c02a49a02e85498646a683b9ca35f8329c17f5fc1170de02fd5a",
+      "rawGitBlobSha1": "df987fedac85bcb0ea1613ec92c5f02e3ea8185b",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/diagnostic/390-no-preference.html",
+      "bytes": 7929,
+      "sha256": "8353741c2c021c2e665a3eabe4422ddf9e90e98772a9bea2e22ef2b74862acb3",
+      "rawGitBlobSha1": "8fe8460d1674ff6b2a43e47e986659153b968552",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/diagnostic-before.json",
+      "bytes": 491963,
+      "sha256": "b6d384edd313d2d4af6eed3b1c0a1a52f1493f46dd17fbe58bbb7b9d7025713d",
+      "rawGitBlobSha1": "8f3d3973facc22b3c4067b42e8c9cefbb65e47a5",
+      "reason": "Repeated complete source/dist inventory; one baseline/current binding set is included instead.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector/320-frame-480.html",
+      "bytes": 70890,
+      "sha256": "07e4b9484196d4196b56725bda08495564efe5b03edb2c5e0d5d6edcaa9f1341",
+      "rawGitBlobSha1": "f809b2e161516dd4143168d0c233629f7d842374",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector/320-frame-481.html",
+      "bytes": 71151,
+      "sha256": "acdb4c33e72c4d58d49eeb85032a9a2520b134ebe76e4546f7b5d7e0423bbf8d",
+      "rawGitBlobSha1": "657915ba6ee091b677417880259093be4b6700a5",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector/320-inspector-keyboard-restored.html",
+      "bytes": 70890,
+      "sha256": "07e4b9484196d4196b56725bda08495564efe5b03edb2c5e0d5d6edcaa9f1341",
+      "rawGitBlobSha1": "f809b2e161516dd4143168d0c233629f7d842374",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector/320-studio-entry.html",
+      "bytes": 24772,
+      "sha256": "222c06826469bed289dd0109b1864aad453f0bb15bec1af1dd5e58e914ea90de",
+      "rawGitBlobSha1": "12e92aa76ce566df0115d967ed3e1966a5f370d1",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector/failure.html",
+      "bytes": 52228,
+      "sha256": "a5444188d08d3f98c907b8c4a26a400eacfc3087f3e20ff20602d5f1e01a4a82",
+      "rawGitBlobSha1": "5b64d119783b7fb3b4316868e54a802d6f45a61b",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-02/320-edit-entry.html",
+      "bytes": 52228,
+      "sha256": "a5444188d08d3f98c907b8c4a26a400eacfc3087f3e20ff20602d5f1e01a4a82",
+      "rawGitBlobSha1": "5b64d119783b7fb3b4316868e54a802d6f45a61b",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-02/320-frame-480.html",
+      "bytes": 70890,
+      "sha256": "07e4b9484196d4196b56725bda08495564efe5b03edb2c5e0d5d6edcaa9f1341",
+      "rawGitBlobSha1": "f809b2e161516dd4143168d0c233629f7d842374",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-02/320-frame-481.html",
+      "bytes": 71151,
+      "sha256": "acdb4c33e72c4d58d49eeb85032a9a2520b134ebe76e4546f7b5d7e0423bbf8d",
+      "rawGitBlobSha1": "657915ba6ee091b677417880259093be4b6700a5",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-02/320-inspector-keyboard-restored.html",
+      "bytes": 70890,
+      "sha256": "07e4b9484196d4196b56725bda08495564efe5b03edb2c5e0d5d6edcaa9f1341",
+      "rawGitBlobSha1": "f809b2e161516dd4143168d0c233629f7d842374",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-02/320-studio-entry.html",
+      "bytes": 24772,
+      "sha256": "222c06826469bed289dd0109b1864aad453f0bb15bec1af1dd5e58e914ea90de",
+      "rawGitBlobSha1": "12e92aa76ce566df0115d967ed3e1966a5f370d1",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-02/failure.html",
+      "bytes": 52287,
+      "sha256": "86d8a4e4d9d3001e4a35240726b3e56516b2e2b2a8b350cf8219e12964c6721e",
+      "rawGitBlobSha1": "7b429285a32d4ba4658b25195e7d9202124bd866",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-02-before.json",
+      "bytes": 491963,
+      "sha256": "171d33990e8a1f73ebf6edf173796c439d347f40529e8fede9670b01f4da65dc",
+      "rawGitBlobSha1": "1c8c3b9359ebc984ae17789c92e6c858b96fa338",
+      "reason": "Repeated complete source/dist inventory; one baseline/current binding set is included instead.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1024-applied.html",
+      "bytes": 53745,
+      "sha256": "ea603d3dffd29769c3522b9c73e7ffaab80ac8585f622161027529e61b6bbbfc",
+      "rawGitBlobSha1": "73ff1b19a97245b16c216e7291d1173bee0b8d31",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1024-edit-entry.html",
+      "bytes": 52249,
+      "sha256": "cb44cc65519a54b9e0dcb02be2b23bb53794d503395b494c18241af6b151a15c",
+      "rawGitBlobSha1": "748430bd9c1bc60e424cf154d57e6cbe2104f827",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1024-frame-480.html",
+      "bytes": 70890,
+      "sha256": "b95ee9e2bef4c13185ce619ef5694389b4abf891adbf8f6c64de4d5c44ba86c9",
+      "rawGitBlobSha1": "c6e5e8eb2c866cc4f4b3b68107fd3b0d1cde9f3f",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1024-frame-481.html",
+      "bytes": 71151,
+      "sha256": "37a1ac46e4313b4aa4c8721058a5f67e3c1afcfc0753d3db2be04b9a2080950d",
+      "rawGitBlobSha1": "669c859e37a94de93539d2d0ec2707cca25c0315",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1024-inspector-keyboard-restored.html",
+      "bytes": 70890,
+      "sha256": "b95ee9e2bef4c13185ce619ef5694389b4abf891adbf8f6c64de4d5c44ba86c9",
+      "rawGitBlobSha1": "c6e5e8eb2c866cc4f4b3b68107fd3b0d1cde9f3f",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1024-proposal.html",
+      "bytes": 57867,
+      "sha256": "d85f45a26c326cd8e65538b47881003d390aec557634b93145aa6f3074798f4d",
+      "rawGitBlobSha1": "4c798d85944b71847a35355c21dcd3004926ba22",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1024-restored.html",
+      "bytes": 53656,
+      "sha256": "a06cb5175ac2d0dda23246712572be7a4c28db0861ec449a33815e19263432fb",
+      "rawGitBlobSha1": "a054dae24f6c208e7586877329d16551aac9d0e2",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1024-studio-entry.html",
+      "bytes": 24772,
+      "sha256": "222c06826469bed289dd0109b1864aad453f0bb15bec1af1dd5e58e914ea90de",
+      "rawGitBlobSha1": "12e92aa76ce566df0115d967ed3e1966a5f370d1",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1440-applied.html",
+      "bytes": 53745,
+      "sha256": "e8fcb181613c2984640dca27186157b7f2f9fdb7e41ac7bab29ae723a05f2630",
+      "rawGitBlobSha1": "92e89387f36b5606b2b36b90e10f83f0d3951af5",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1440-edit-entry.html",
+      "bytes": 52249,
+      "sha256": "734698ca77d3fed19ff74931c94799134c2f0047f2cf2dc1774e017b64373abc",
+      "rawGitBlobSha1": "cdf905bd6f595e6785b394373b2b8f5a7956d3ec",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1440-frame-480.html",
+      "bytes": 70891,
+      "sha256": "ca8bcdb669a0b1c037fbda582456fd976953f8507537126379ffd8aae3991354",
+      "rawGitBlobSha1": "64bd5c12e8e11af5076a179674dfec73d2e9cfad",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1440-frame-481.html",
+      "bytes": 71152,
+      "sha256": "1d5357f154e394409835b63b8f90532a1b0acb2fc7b23c05de53458fd380dd7a",
+      "rawGitBlobSha1": "a954fe69f965f61911f83b882254100255b2e42e",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1440-inspector-keyboard-restored.html",
+      "bytes": 70891,
+      "sha256": "ca8bcdb669a0b1c037fbda582456fd976953f8507537126379ffd8aae3991354",
+      "rawGitBlobSha1": "64bd5c12e8e11af5076a179674dfec73d2e9cfad",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1440-proposal.html",
+      "bytes": 57889,
+      "sha256": "93ea9a0a7a64b49fb367d840b4820d687b3cee8ff192b7dddd23ef43007c9aa2",
+      "rawGitBlobSha1": "eec9673a0f1023e7852060e2a9cec7853721381e",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1440-restored.html",
+      "bytes": 53656,
+      "sha256": "3b7ac9bdc13642f3b8562d0d1d148a9f5ab3ea24459c09d7184e99f920666e6f",
+      "rawGitBlobSha1": "8b42da6db13cec81d26f549efd9864ff9d7c8ccf",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1440-studio-entry.html",
+      "bytes": 24772,
+      "sha256": "222c06826469bed289dd0109b1864aad453f0bb15bec1af1dd5e58e914ea90de",
+      "rawGitBlobSha1": "12e92aa76ce566df0115d967ed3e1966a5f370d1",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1920-applied.html",
+      "bytes": 53745,
+      "sha256": "0070d11c72cd69751b3be9820b940a931a5147c6c7dffa5780643736107380ba",
+      "rawGitBlobSha1": "631c348a2c6340111b93ff8ac03dab2ae0683d5a",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1920-edit-entry.html",
+      "bytes": 52249,
+      "sha256": "264956bbc55e7d82510d40db74c8eab31579d1c3cae6d158e150cb18707a1bdd",
+      "rawGitBlobSha1": "199ae66cb83aa729847c691c861be019014044c1",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1920-frame-480.html",
+      "bytes": 70891,
+      "sha256": "ca8bcdb669a0b1c037fbda582456fd976953f8507537126379ffd8aae3991354",
+      "rawGitBlobSha1": "64bd5c12e8e11af5076a179674dfec73d2e9cfad",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1920-frame-481.html",
+      "bytes": 71152,
+      "sha256": "1d5357f154e394409835b63b8f90532a1b0acb2fc7b23c05de53458fd380dd7a",
+      "rawGitBlobSha1": "a954fe69f965f61911f83b882254100255b2e42e",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1920-inspector-keyboard-restored.html",
+      "bytes": 70891,
+      "sha256": "ca8bcdb669a0b1c037fbda582456fd976953f8507537126379ffd8aae3991354",
+      "rawGitBlobSha1": "64bd5c12e8e11af5076a179674dfec73d2e9cfad",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1920-proposal.html",
+      "bytes": 57889,
+      "sha256": "fcf223b4cb9cf7b64480389514a1af199275aa933b68852122aaae373acc9b48",
+      "rawGitBlobSha1": "4bada61a574ac79f8a2a4411f37a4b9a1e7223b8",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1920-restored.html",
+      "bytes": 53656,
+      "sha256": "4c2b775923616500c95b2e86fa6f3bcfc6bb83dfc105680f31539e2c0e77630c",
+      "rawGitBlobSha1": "d1fc879781d24f4264e291b22655184eb941ba6c",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/1920-studio-entry.html",
+      "bytes": 24772,
+      "sha256": "222c06826469bed289dd0109b1864aad453f0bb15bec1af1dd5e58e914ea90de",
+      "rawGitBlobSha1": "12e92aa76ce566df0115d967ed3e1966a5f370d1",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/320-applied.html",
+      "bytes": 53643,
+      "sha256": "3f8d35dd2f68d7a98c45c011f0babe987bd5815438d60696d9f1900235ab27ea",
+      "rawGitBlobSha1": "14c6f76c1ab63bec24d55ec1727e266dba463059",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/320-edit-entry.html",
+      "bytes": 52228,
+      "sha256": "a5444188d08d3f98c907b8c4a26a400eacfc3087f3e20ff20602d5f1e01a4a82",
+      "rawGitBlobSha1": "5b64d119783b7fb3b4316868e54a802d6f45a61b",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/320-frame-480.html",
+      "bytes": 70890,
+      "sha256": "07e4b9484196d4196b56725bda08495564efe5b03edb2c5e0d5d6edcaa9f1341",
+      "rawGitBlobSha1": "f809b2e161516dd4143168d0c233629f7d842374",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/320-frame-481.html",
+      "bytes": 71151,
+      "sha256": "acdb4c33e72c4d58d49eeb85032a9a2520b134ebe76e4546f7b5d7e0423bbf8d",
+      "rawGitBlobSha1": "657915ba6ee091b677417880259093be4b6700a5",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/320-inspector-keyboard-restored.html",
+      "bytes": 70890,
+      "sha256": "07e4b9484196d4196b56725bda08495564efe5b03edb2c5e0d5d6edcaa9f1341",
+      "rawGitBlobSha1": "f809b2e161516dd4143168d0c233629f7d842374",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/320-proposal.html",
+      "bytes": 57778,
+      "sha256": "71b38e15bc92ae1b48d1b56cf428726070e0fb1c996b5f4b242536cd03a4e146",
+      "rawGitBlobSha1": "d540b48b1b0ad7269d4f0cc90b3c24c7dc707872",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/320-restored.html",
+      "bytes": 53544,
+      "sha256": "c3b4d8802633729cbf5b928cbc5b76c80a1543ae4d2c4b0f839b9b7064149525",
+      "rawGitBlobSha1": "0a344b5bdef5d4418f6f7f1b539aa35bdfc94eaf",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/320-studio-entry.html",
+      "bytes": 24772,
+      "sha256": "222c06826469bed289dd0109b1864aad453f0bb15bec1af1dd5e58e914ea90de",
+      "rawGitBlobSha1": "12e92aa76ce566df0115d967ed3e1966a5f370d1",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/360-applied.html",
+      "bytes": 53643,
+      "sha256": "3f8d35dd2f68d7a98c45c011f0babe987bd5815438d60696d9f1900235ab27ea",
+      "rawGitBlobSha1": "14c6f76c1ab63bec24d55ec1727e266dba463059",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/360-edit-entry.html",
+      "bytes": 52228,
+      "sha256": "a5444188d08d3f98c907b8c4a26a400eacfc3087f3e20ff20602d5f1e01a4a82",
+      "rawGitBlobSha1": "5b64d119783b7fb3b4316868e54a802d6f45a61b",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/360-frame-480.html",
+      "bytes": 70890,
+      "sha256": "e4636851cc953f640d5f7dc6146c306cd73ccb9d7b4f9aada888715dba3baa1d",
+      "rawGitBlobSha1": "73fe250a7fa30fa407621c1c1cdabb4f8c463cef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/360-frame-481.html",
+      "bytes": 71151,
+      "sha256": "32687d99df156bab0b3c364e5f83f7df88cbc8d141ba6c20d932c67e8408972a",
+      "rawGitBlobSha1": "2ea9fdf577a79a7cf07a654b0aa3783c0fd914b4",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/360-inspector-keyboard-restored.html",
+      "bytes": 70890,
+      "sha256": "e4636851cc953f640d5f7dc6146c306cd73ccb9d7b4f9aada888715dba3baa1d",
+      "rawGitBlobSha1": "73fe250a7fa30fa407621c1c1cdabb4f8c463cef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/360-proposal.html",
+      "bytes": 57778,
+      "sha256": "71b38e15bc92ae1b48d1b56cf428726070e0fb1c996b5f4b242536cd03a4e146",
+      "rawGitBlobSha1": "d540b48b1b0ad7269d4f0cc90b3c24c7dc707872",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/360-restored.html",
+      "bytes": 53544,
+      "sha256": "c3b4d8802633729cbf5b928cbc5b76c80a1543ae4d2c4b0f839b9b7064149525",
+      "rawGitBlobSha1": "0a344b5bdef5d4418f6f7f1b539aa35bdfc94eaf",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/360-studio-entry.html",
+      "bytes": 24772,
+      "sha256": "222c06826469bed289dd0109b1864aad453f0bb15bec1af1dd5e58e914ea90de",
+      "rawGitBlobSha1": "12e92aa76ce566df0115d967ed3e1966a5f370d1",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/390-applied.html",
+      "bytes": 53643,
+      "sha256": "3f8d35dd2f68d7a98c45c011f0babe987bd5815438d60696d9f1900235ab27ea",
+      "rawGitBlobSha1": "14c6f76c1ab63bec24d55ec1727e266dba463059",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/390-edit-entry.html",
+      "bytes": 52229,
+      "sha256": "3dbb52bb81b252045fd1cc3995a966f7803512357f88fe708f8ae0e1fd6ca860",
+      "rawGitBlobSha1": "a92ce78dfce13053738e9899a0d0cdda48bdbe16",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/390-frame-480.html",
+      "bytes": 70890,
+      "sha256": "6b16b8496c3107a2b2f5e710a68019626f0d2e5e207274122549bb5166658169",
+      "rawGitBlobSha1": "621dec88c2ceeced4a13b82149491f5665dafb6f",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/390-frame-481.html",
+      "bytes": 71151,
+      "sha256": "aa8c1de3cea97439601da17d76af1b67518c55ae986d789e821439c562c50118",
+      "rawGitBlobSha1": "e4e8cea294599edb82fbdad9f301f20ba66f73f8",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/390-inspector-keyboard-restored.html",
+      "bytes": 70890,
+      "sha256": "6b16b8496c3107a2b2f5e710a68019626f0d2e5e207274122549bb5166658169",
+      "rawGitBlobSha1": "621dec88c2ceeced4a13b82149491f5665dafb6f",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/390-proposal.html",
+      "bytes": 57778,
+      "sha256": "71b38e15bc92ae1b48d1b56cf428726070e0fb1c996b5f4b242536cd03a4e146",
+      "rawGitBlobSha1": "d540b48b1b0ad7269d4f0cc90b3c24c7dc707872",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/390-restored.html",
+      "bytes": 53544,
+      "sha256": "c3b4d8802633729cbf5b928cbc5b76c80a1543ae4d2c4b0f839b9b7064149525",
+      "rawGitBlobSha1": "0a344b5bdef5d4418f6f7f1b539aa35bdfc94eaf",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/390-studio-entry.html",
+      "bytes": 24772,
+      "sha256": "222c06826469bed289dd0109b1864aad453f0bb15bec1af1dd5e58e914ea90de",
+      "rawGitBlobSha1": "12e92aa76ce566df0115d967ed3e1966a5f370d1",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/390-ten-exchanges.html",
+      "bytes": 77500,
+      "sha256": "5dacf1f45b859523516d7e48986d5c674316fde5f2f421562c1d8a3ca06b3bef",
+      "rawGitBlobSha1": "12333b79691555a4bfe977ae8175a5a5f31e664f",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/768-applied.html",
+      "bytes": 53643,
+      "sha256": "3f8d35dd2f68d7a98c45c011f0babe987bd5815438d60696d9f1900235ab27ea",
+      "rawGitBlobSha1": "14c6f76c1ab63bec24d55ec1727e266dba463059",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/768-edit-entry.html",
+      "bytes": 52228,
+      "sha256": "4c4e77bc33090c2bd5669f0a72b132dfd9b4da8a1f41995540bbe886ae5d68a1",
+      "rawGitBlobSha1": "398201dd55a2e7d59f4e8dcf59e9a5753e2d9ffe",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/768-frame-480.html",
+      "bytes": 70890,
+      "sha256": "bb38dcad329c6694fd17e30dc6f139138a86f9936daf69d9e9e1834907e0c165",
+      "rawGitBlobSha1": "51c63ca28ff1fb396a56d40772141b2dc9c4cede",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/768-frame-481.html",
+      "bytes": 71151,
+      "sha256": "24aec7a276ee70176d8eda0bd206a81159e4ebc949ec1c8275a7b781d8c8acec",
+      "rawGitBlobSha1": "b88ba0d0ccf10c6a86d97fc3278698cbe2543793",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/768-inspector-keyboard-restored.html",
+      "bytes": 70890,
+      "sha256": "bb38dcad329c6694fd17e30dc6f139138a86f9936daf69d9e9e1834907e0c165",
+      "rawGitBlobSha1": "51c63ca28ff1fb396a56d40772141b2dc9c4cede",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/768-proposal.html",
+      "bytes": 57778,
+      "sha256": "71b38e15bc92ae1b48d1b56cf428726070e0fb1c996b5f4b242536cd03a4e146",
+      "rawGitBlobSha1": "d540b48b1b0ad7269d4f0cc90b3c24c7dc707872",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/768-restored.html",
+      "bytes": 53544,
+      "sha256": "c3b4d8802633729cbf5b928cbc5b76c80a1543ae4d2c4b0f839b9b7064149525",
+      "rawGitBlobSha1": "0a344b5bdef5d4418f6f7f1b539aa35bdfc94eaf",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03/768-studio-entry.html",
+      "bytes": 24772,
+      "sha256": "222c06826469bed289dd0109b1864aad453f0bb15bec1af1dd5e58e914ea90de",
+      "rawGitBlobSha1": "12e92aa76ce566df0115d967ed3e1966a5f370d1",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-03-before.json",
+      "bytes": 491963,
+      "sha256": "5989aaf95f594e1ceba358a29266a0b470bb64bf7be396979153408697c9f988",
+      "rawGitBlobSha1": "369f782f0f38eedff25343600f4e20d355d23804",
+      "reason": "Repeated complete source/dist inventory; one baseline/current binding set is included instead.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/editor-inspector-before.json",
+      "bytes": 491963,
+      "sha256": "267b9662df4ce7f764e6194ca42718cfc84f5f123a5baa5b0b3a873da8bbb28f",
+      "rawGitBlobSha1": "4f598ded0149ac28c76cadc93e3ba3ef1bb086fe",
+      "reason": "Repeated complete source/dist inventory; one baseline/current binding set is included instead.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/matrix/failure.html",
+      "bytes": 7946,
+      "sha256": "52a95ac84a08f327ec9bb284d2c68033e2dbc5f525709895c60b6ba25a12e9a9",
+      "rawGitBlobSha1": "020e54305dec901d9b188411d4e1caa58aa152f8",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/matrix-before.json",
+      "bytes": 491963,
+      "sha256": "4c703526fe1798cf2409b8787e7a79238c5300de63f31abb496e8f6e24b0f457",
+      "rawGitBlobSha1": "fbb4d3e3e9a0ce7df5617213a00df81ea0f34bd6",
+      "reason": "Repeated complete source/dist inventory; one baseline/current binding set is included instead.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/served-inputs/analysis.json",
+      "bytes": 72856,
+      "sha256": "00f47b663f6471ceb9f54c6e2c39e209613fb9eac2d7459db74098cf905081a6",
+      "rawGitBlobSha1": "6e2a5089c51ca8830576beee7d7ee6b7c42a89af",
+      "reason": "Existing public fixture bytes are not duplicated; resolve the original asset hash against repository fixtures/build below.",
+      "repositorySourceMatches": [
+        "fixtures/media/integrated-source-only-v1/analysis.json"
+      ],
+      "buildMatches": [
+        "dist/media/integrated-source-only-v1/analysis.json"
+      ]
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/served-inputs/edit-plan.json",
+      "bytes": 13652,
+      "sha256": "45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07",
+      "rawGitBlobSha1": "2841b851989e89b26d78ceb43ce5a161e1fad660",
+      "reason": "Existing public fixture bytes are not duplicated; resolve the original asset hash against repository fixtures/build below.",
+      "repositorySourceMatches": [
+        "fixtures/media/integrated-source-only-v1/edit-plan.json"
+      ],
+      "buildMatches": [
+        "dist/media/integrated-source-only-v1/edit-plan.json"
+      ]
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/served-inputs/evaluation.json",
+      "bytes": 4659,
+      "sha256": "478b438025fbded59c408551a7fe3ff2f5a94b81644f3c4feaf574c22fc8d45e",
+      "rawGitBlobSha1": "1e8532bc27e69ea386f772b5006574cc1a3013c6",
+      "reason": "Existing public fixture bytes are not duplicated; resolve the original asset hash against repository fixtures/build below.",
+      "repositorySourceMatches": [
+        "fixtures/media/integrated-source-only-v1/post-freeze-evaluation.json"
+      ],
+      "buildMatches": [
+        "dist/media/integrated-source-only-v1/post-freeze-evaluation.json"
+      ]
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/served-inputs/freeze.json",
+      "bytes": 901,
+      "sha256": "6d0305e3cf8e741592d5143faba7cdf6613a57cb6bf9f709b28bf383b90e655e",
+      "rawGitBlobSha1": "99d4a85653ed99933b11f3f3c3c16cd906defd04",
+      "reason": "Existing public fixture bytes are not duplicated; resolve the original asset hash against repository fixtures/build below.",
+      "repositorySourceMatches": [
+        "fixtures/media/integrated-source-only-v1/freeze-receipt.json"
+      ],
+      "buildMatches": [
+        "dist/media/integrated-source-only-v1/freeze-receipt.json"
+      ]
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/served-inputs/manifest.json",
+      "bytes": 7205,
+      "sha256": "8c76857975bcc2fd67272aaf93ec1d5c456b993434e3b64f0b082fa397b362cc",
+      "rawGitBlobSha1": "98fa328be0686f7c0d3cf38258432ff3eb402e33",
+      "reason": "Existing public fixture bytes are not duplicated; resolve the original asset hash against repository fixtures/build below.",
+      "repositorySourceMatches": [
+        "fixtures/media/integrated-source-only-v1/manifest.json"
+      ],
+      "buildMatches": [
+        "dist/media/integrated-source-only-v1/manifest.json"
+      ]
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/served-inputs/pose-tracks.json",
+      "bytes": 3959868,
+      "sha256": "74deecdbd0513062bebc9759739763882f1462d8545778d5bf1fd51bc31f9ae8",
+      "rawGitBlobSha1": "b4293ed5b8abe981cb675119260b7f92631b455d",
+      "reason": "Existing public fixture bytes are not duplicated; resolve the original asset hash against repository fixtures/build below.",
+      "repositorySourceMatches": [
+        "fixtures/media/integrated-source-only-v1/pose-tracks.json"
+      ],
+      "buildMatches": [
+        "dist/media/integrated-source-only-v1/pose-tracks.json"
+      ]
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/served-inputs/preview-silent.mp4",
+      "bytes": 11767433,
+      "sha256": "062f0621402b51e6ce22179c10505e73311276e066fd8f315b1855a9c398647a",
+      "rawGitBlobSha1": "158807cb14949496400d7b964e6cbafd88225bc5",
+      "reason": "Existing public fixture bytes are not duplicated; resolve the original asset hash against repository fixtures/build below.",
+      "repositorySourceMatches": [
+        "fixtures/media/integrated-source-only-v1/preview-silent.mp4"
+      ],
+      "buildMatches": [
+        "dist/media/integrated-source-only-v1/preview-silent.mp4"
+      ]
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/served-inputs/selection.json",
+      "bytes": 2741,
+      "sha256": "79a3540461dc265a6cb2bc20aa74e1b3dd2d10280b2d932fa09dea5fd7f89f7c",
+      "rawGitBlobSha1": "6a8a4c1b51c1870483458471eae976af2ca7fc90",
+      "reason": "Existing public fixture bytes are not duplicated; resolve the original asset hash against repository fixtures/build below.",
+      "repositorySourceMatches": [
+        "fixtures/media/integrated-source-only-v1/reference-performer-selection.json"
+      ],
+      "buildMatches": [
+        "dist/media/integrated-source-only-v1/reference-performer-selection.json"
+      ]
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/served-inputs/source-a.mp4",
+      "bytes": 2848396,
+      "sha256": "634bfb9b539c85ef105e93c047267612817a6c4da4a0f830b38be21e3f31b428",
+      "rawGitBlobSha1": "f1a613b2039744ed92fb07aacf7315dd2cc3bed3",
+      "reason": "Existing public fixture bytes are not duplicated; resolve the original asset hash against repository fixtures/build below.",
+      "repositorySourceMatches": [
+        "fixtures/media/authorized-real-v1/source-a-web.mp4"
+      ],
+      "buildMatches": [
+        "dist/media/authorized-real-v1/source-a-web.mp4"
+      ]
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/served-inputs/source-b.mp4",
+      "bytes": 3806933,
+      "sha256": "11ec849d6e99d6aee1f7b3ba8de7a4d248a808062b237889c0baa67498d5bc6a",
+      "rawGitBlobSha1": "8fa248dc3265650085485d68bc4700474607ae9d",
+      "reason": "Existing public fixture bytes are not duplicated; resolve the original asset hash against repository fixtures/build below.",
+      "repositorySourceMatches": [
+        "fixtures/media/authorized-real-v1/source-b-web.mp4"
+      ],
+      "buildMatches": [
+        "dist/media/authorized-real-v1/source-b-web.mp4"
+      ]
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/served-inputs/target.mp4",
+      "bytes": 2055560,
+      "sha256": "9431a1d9cfce0216bf6f3e93d36e2fd5b7cbbc8c81a202eaf1686b009999a35d",
+      "rawGitBlobSha1": "76451ec126b72846aa12b867e4c716ce5a249344",
+      "reason": "Existing public fixture bytes are not duplicated; resolve the original asset hash against repository fixtures/build below.",
+      "repositorySourceMatches": [
+        "fixtures/media/authorized-real-v1/target-web.mp4"
+      ],
+      "buildMatches": [
+        "dist/media/authorized-real-v1/target-web.mp4"
+      ]
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/manifest-blocked.html",
+      "bytes": 26178,
+      "sha256": "c2baaccad2a3cfde41dce0c635b625aef2e3c77d623b03c19cbcf79428d23e89",
+      "rawGitBlobSha1": "ecb1d5e7896a2c3eb6d2f2ccf597404b7e0cfb07",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/manifest-reload-recovered.html",
+      "bytes": 70890,
+      "sha256": "6b16b8496c3107a2b2f5e710a68019626f0d2e5e207274122549bb5166658169",
+      "rawGitBlobSha1": "621dec88c2ceeced4a13b82149491f5665dafb6f",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/motion-end.html",
+      "bytes": 7929,
+      "sha256": "eb923d234f47164ce2fe1aef27a102f9a08aa0f3ba5dff768e5972bed29cfda6",
+      "rawGitBlobSha1": "0cc1e60e707a95f7500731e6b22aa6324b2f777f",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/motion-start.html",
+      "bytes": 7947,
+      "sha256": "f7de7486dfdcec3320f419c05e325d108b12fc5ebcee0063672e53aaf8e8ab93",
+      "rawGitBlobSha1": "c31618bddbc04c80494e433106531a43d5b827d9",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-1440-applied.html",
+      "bytes": 53745,
+      "sha256": "e8fcb181613c2984640dca27186157b7f2f9fdb7e41ac7bab29ae723a05f2630",
+      "rawGitBlobSha1": "92e89387f36b5606b2b36b90e10f83f0d3951af5",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-1440-edit-entry.html",
+      "bytes": 52249,
+      "sha256": "734698ca77d3fed19ff74931c94799134c2f0047f2cf2dc1774e017b64373abc",
+      "rawGitBlobSha1": "cdf905bd6f595e6785b394373b2b8f5a7956d3ec",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-1440-frame-480.html",
+      "bytes": 70891,
+      "sha256": "ca8bcdb669a0b1c037fbda582456fd976953f8507537126379ffd8aae3991354",
+      "rawGitBlobSha1": "64bd5c12e8e11af5076a179674dfec73d2e9cfad",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-1440-frame-481.html",
+      "bytes": 71152,
+      "sha256": "1d5357f154e394409835b63b8f90532a1b0acb2fc7b23c05de53458fd380dd7a",
+      "rawGitBlobSha1": "a954fe69f965f61911f83b882254100255b2e42e",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-1440-inspector-keyboard-restored.html",
+      "bytes": 70891,
+      "sha256": "ca8bcdb669a0b1c037fbda582456fd976953f8507537126379ffd8aae3991354",
+      "rawGitBlobSha1": "64bd5c12e8e11af5076a179674dfec73d2e9cfad",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-1440-landing.html",
+      "bytes": 7904,
+      "sha256": "14c4bd6dfd41c02a49a02e85498646a683b9ca35f8329c17f5fc1170de02fd5a",
+      "rawGitBlobSha1": "df987fedac85bcb0ea1613ec92c5f02e3ea8185b",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-1440-proposal.html",
+      "bytes": 57889,
+      "sha256": "93ea9a0a7a64b49fb367d840b4820d687b3cee8ff192b7dddd23ef43007c9aa2",
+      "rawGitBlobSha1": "eec9673a0f1023e7852060e2a9cec7853721381e",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-1440-restored.html",
+      "bytes": 53656,
+      "sha256": "3b7ac9bdc13642f3b8562d0d1d148a9f5ab3ea24459c09d7184e99f920666e6f",
+      "rawGitBlobSha1": "8b42da6db13cec81d26f549efd9864ff9d7c8ccf",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-390-applied.html",
+      "bytes": 53643,
+      "sha256": "3f8d35dd2f68d7a98c45c011f0babe987bd5815438d60696d9f1900235ab27ea",
+      "rawGitBlobSha1": "14c6f76c1ab63bec24d55ec1727e266dba463059",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-390-edit-entry.html",
+      "bytes": 52229,
+      "sha256": "3dbb52bb81b252045fd1cc3995a966f7803512357f88fe708f8ae0e1fd6ca860",
+      "rawGitBlobSha1": "a92ce78dfce13053738e9899a0d0cdda48bdbe16",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-390-frame-480.html",
+      "bytes": 70890,
+      "sha256": "6b16b8496c3107a2b2f5e710a68019626f0d2e5e207274122549bb5166658169",
+      "rawGitBlobSha1": "621dec88c2ceeced4a13b82149491f5665dafb6f",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-390-frame-481.html",
+      "bytes": 71151,
+      "sha256": "aa8c1de3cea97439601da17d76af1b67518c55ae986d789e821439c562c50118",
+      "rawGitBlobSha1": "e4e8cea294599edb82fbdad9f301f20ba66f73f8",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-390-inspector-keyboard-restored.html",
+      "bytes": 70890,
+      "sha256": "6b16b8496c3107a2b2f5e710a68019626f0d2e5e207274122549bb5166658169",
+      "rawGitBlobSha1": "621dec88c2ceeced4a13b82149491f5665dafb6f",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-390-landing.html",
+      "bytes": 7904,
+      "sha256": "14c4bd6dfd41c02a49a02e85498646a683b9ca35f8329c17f5fc1170de02fd5a",
+      "rawGitBlobSha1": "df987fedac85bcb0ea1613ec92c5f02e3ea8185b",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-390-proposal.html",
+      "bytes": 57778,
+      "sha256": "71b38e15bc92ae1b48d1b56cf428726070e0fb1c996b5f4b242536cd03a4e146",
+      "rawGitBlobSha1": "d540b48b1b0ad7269d4f0cc90b3c24c7dc707872",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/reduced-390-restored.html",
+      "bytes": 53544,
+      "sha256": "c3b4d8802633729cbf5b928cbc5b76c80a1543ae4d2c4b0f839b9b7064149525",
+      "rawGitBlobSha1": "0a344b5bdef5d4418f6f7f1b539aa35bdfc94eaf",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-1440-applied.html",
+      "bytes": 58961,
+      "sha256": "38462dc20a8727f23423ed06f90df95644bdf4235cf2d3364883cda910ee1916",
+      "rawGitBlobSha1": "caa1e9a997eee4c29515e36fb0fcd1dcb457c7b0",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-1440-edit-entry.html",
+      "bytes": 57612,
+      "sha256": "94ceb744e75dcb27d875bcf2c5d6d12c25831cf675ef6156a90273fba195960f",
+      "rawGitBlobSha1": "d7c871addbab7b3edc58187a336c40ef11a5261b",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-1440-frame-480.html",
+      "bytes": 80229,
+      "sha256": "702c46591a1eb4c790a43d201416cad023e331aa34a49d9911dd1a36a68fb7f6",
+      "rawGitBlobSha1": "03173b6d637a5a8020cb299a916b3dbc3483e5a0",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-1440-frame-481.html",
+      "bytes": 80490,
+      "sha256": "d8ddcc30a7acc03d6eef03237ff5fa53498c9c8ca996763b63d42cb9ec517685",
+      "rawGitBlobSha1": "7caf5cc5a92c113c12f7c8bc6ab4df0da5795b91",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-1440-inspector-keyboard-restored.html",
+      "bytes": 80229,
+      "sha256": "702c46591a1eb4c790a43d201416cad023e331aa34a49d9911dd1a36a68fb7f6",
+      "rawGitBlobSha1": "03173b6d637a5a8020cb299a916b3dbc3483e5a0",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-1440-landing.html",
+      "bytes": 9698,
+      "sha256": "6eb074c1cdbc27adf6feb6a292df0f9b0e90eddcf7e289b45594f0c81be7f492",
+      "rawGitBlobSha1": "40483284f594fdfe76b98595b56737f3ffd51043",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-1440-proposal.html",
+      "bytes": 63074,
+      "sha256": "dcaa46af656d3321b30be99e4befdb30ab124fa74cfc3ad483919868440c7844",
+      "rawGitBlobSha1": "1bbad0fff1894278ad0d23848cc3258caf96a7fc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-1440-restored.html",
+      "bytes": 58862,
+      "sha256": "f46db32a7303505f671e125f1f1e3cac39cb3ba2f7d65cb511e0441529ab1892",
+      "rawGitBlobSha1": "3d4f25fea33d067e2ad0d8ab56b4c68b18ef0195",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-390-applied.html",
+      "bytes": 58574,
+      "sha256": "5ad7e6bf091105194d6ddb1a65f179d5c6cddaf7a906ec56e45c0f2d8acf4d26",
+      "rawGitBlobSha1": "569328e4e96343b028c740499950479892850c72",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-390-edit-entry.html",
+      "bytes": 57316,
+      "sha256": "372cdc7457cf771c5154e517205cff0540fbd8dabc7d8bd768a17a499b434b74",
+      "rawGitBlobSha1": "8d530d0a413cabab03a7cc442dda22aa7ceb20b9",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-390-frame-480.html",
+      "bytes": 80228,
+      "sha256": "3ce6b3bda6ae0a276e84cdb4e5eebd8b714a74edd06992b65c524ebe82b47fc3",
+      "rawGitBlobSha1": "77025252e0287f2b65b4fadf54bd89a586fd4f36",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-390-frame-481.html",
+      "bytes": 80489,
+      "sha256": "8441eecc701d0a63e428f5ec6431a5da7df29c74ef06acd9c88d76e265efa544",
+      "rawGitBlobSha1": "c7843b78b975b375d096023708d35d3d2a866a79",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-390-inspector-keyboard-restored.html",
+      "bytes": 80228,
+      "sha256": "3ce6b3bda6ae0a276e84cdb4e5eebd8b714a74edd06992b65c524ebe82b47fc3",
+      "rawGitBlobSha1": "77025252e0287f2b65b4fadf54bd89a586fd4f36",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-390-landing.html",
+      "bytes": 9697,
+      "sha256": "edc74a1b9b26dcae12f5dba4bb1ed909697cddc32f04a534abc2e8adf0accb67",
+      "rawGitBlobSha1": "c58d8ff19f11da84cbbe35fe10e78f6f55fb420e",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-390-proposal.html",
+      "bytes": 62709,
+      "sha256": "7e3588a4effd9398cac37beeac22ddb8cf790359184dc9ea0c0eb548f3ac08d0",
+      "rawGitBlobSha1": "24bf0afa195a45af12cac98b2a809525cbb9eef6",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special/text200-390-restored.html",
+      "bytes": 58475,
+      "sha256": "8c13e848fca156daa1d57ef7a37a3894f1090bb531d59c1fd5192dcdd790eab4",
+      "rawGitBlobSha1": "3b86b7467397e055e005a558b84a36b1016c01d8",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-01/special-before.json",
+      "bytes": 491963,
+      "sha256": "5989aaf95f594e1ceba358a29266a0b470bb64bf7be396979153408697c9f988",
+      "rawGitBlobSha1": "369f782f0f38eedff25343600f4e20d355d23804",
+      "reason": "Repeated complete source/dist inventory; one baseline/current binding set is included instead.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-judge/reviewed-source-bindings.json",
+      "bytes": 1393,
+      "sha256": "ec38fede25401f37b47e9cadda1d04459aa6bd498c27edef0f291558b33c2bee",
+      "rawGitBlobSha1": "1fa5065fa1daae900dcc9ac9c778fd471e996037",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/edit.html",
+      "bytes": 856,
+      "sha256": "5e7d305d16439659502aadf1abd114a4b70dcd881e6995858d45f210829e591a",
+      "rawGitBlobSha1": "6132ce5036fa346d6276aba3752cd5aaafe27f84",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [
+        "edit.html"
+      ],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/index.html",
+      "bytes": 864,
+      "sha256": "3937663923683f5ff15ce87ac7a730da1ca9bafafaaacea090c053cf00c8901b",
+      "rawGitBlobSha1": "b05aa82332beb332868f2a7e8ac403363058b861",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [
+        "index.html"
+      ],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/studio.html",
+      "bytes": 765,
+      "sha256": "6120214662e2a28f7403e3bdcad7b1fcbd46dc26ed019d857f5302595271b34e",
+      "rawGitBlobSha1": "a2874a41a1a8b5d42ae513610484a1535f5e4709",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [
+        "studio.html"
+      ],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/end.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/failure.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/mid.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/320-normal/start.html",
+      "bytes": 7947,
+      "sha256": "69538acfd8f982949f6c34a80f0a8abac9cdc244eb28c43be3a5607743729f81",
+      "rawGitBlobSha1": "e296c89b25f64bc6f89820bea8a3da72feb8a9fe",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-01/landing-after-before.json",
+      "bytes": 491959,
+      "sha256": "5821fd1679cf0b0f96e38685f0212ed7bc05822b6bcf28940369521196c72350",
+      "rawGitBlobSha1": "35b2406e523bbebce1de992359f7633c2395d9d4",
+      "reason": "Repeated complete source/dist inventory; one baseline/current binding set is included instead.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/after-overlay.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/before-overlay.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/end.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/mid.html",
+      "bytes": 7945,
+      "sha256": "85205939df75ab8d8572bbd8f12dfc83ff60bae4cc5b340e30d464fa5dc89f4f",
+      "rawGitBlobSha1": "720ac17162fe8742ad21d4019b2720c25be277e5",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-normal/start.html",
+      "bytes": 7947,
+      "sha256": "69538acfd8f982949f6c34a80f0a8abac9cdc244eb28c43be3a5607743729f81",
+      "rawGitBlobSha1": "e296c89b25f64bc6f89820bea8a3da72feb8a9fe",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/after-overlay.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/before-overlay.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/end.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/mid.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-reduced/start.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/after-overlay.html",
+      "bytes": 10047,
+      "sha256": "321811a49007da1fbaa7813d6f1c98dd98c07591e05f8d5ac65518b93ef4f9a7",
+      "rawGitBlobSha1": "2bc620442b091b8b6d11b3e01e07ec0f4633cb32",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/before-overlay.html",
+      "bytes": 10047,
+      "sha256": "321811a49007da1fbaa7813d6f1c98dd98c07591e05f8d5ac65518b93ef4f9a7",
+      "rawGitBlobSha1": "2bc620442b091b8b6d11b3e01e07ec0f4633cb32",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/end.html",
+      "bytes": 10047,
+      "sha256": "321811a49007da1fbaa7813d6f1c98dd98c07591e05f8d5ac65518b93ef4f9a7",
+      "rawGitBlobSha1": "2bc620442b091b8b6d11b3e01e07ec0f4633cb32",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/mid.html",
+      "bytes": 10064,
+      "sha256": "8cfba860cc3005cb622020d93046b285588f1586a67e570c4b02b52fc09dbf79",
+      "rawGitBlobSha1": "e20a66ba70ca56e3cdfef6ef506b5cca05905e27",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/1440-text200/start.html",
+      "bytes": 10047,
+      "sha256": "76082d2d47cb7c83ccea4d6beddd870877f660a09988acc663ae53ffe38b3e96",
+      "rawGitBlobSha1": "e0a786bca005229727db8bfe7c98d05b1a12643e",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/after-overlay.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/before-overlay.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/end.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/mid.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-normal/start.html",
+      "bytes": 7946,
+      "sha256": "3026000b6ddd3e52b312c733ce2fd2313a7d9f898bb34cade05cd88d50e648a1",
+      "rawGitBlobSha1": "81d35aa5ec2842760cfa800154595e28a57275ba",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/after-overlay.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/before-overlay.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/end.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/mid.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-reduced/start.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/after-overlay.html",
+      "bytes": 10046,
+      "sha256": "a219a24ebdbbca096ae7fbd5ce3a1c7a7ec1b1c3cca4e4686bb5768388714a21",
+      "rawGitBlobSha1": "229dddf53c268893559eade5e27e77261d5d4162",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/before-overlay.html",
+      "bytes": 10046,
+      "sha256": "a219a24ebdbbca096ae7fbd5ce3a1c7a7ec1b1c3cca4e4686bb5768388714a21",
+      "rawGitBlobSha1": "229dddf53c268893559eade5e27e77261d5d4162",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/end.html",
+      "bytes": 10046,
+      "sha256": "a219a24ebdbbca096ae7fbd5ce3a1c7a7ec1b1c3cca4e4686bb5768388714a21",
+      "rawGitBlobSha1": "229dddf53c268893559eade5e27e77261d5d4162",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/mid.html",
+      "bytes": 10063,
+      "sha256": "95c1853ffbac00a0b6dc0a0e39a774fe46c7e3b3f993a6f07a3e3ec8975cd917",
+      "rawGitBlobSha1": "b3b3e16c05c7cdf89e1492a4e3441d0065ade068",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/320-text200/start.html",
+      "bytes": 10046,
+      "sha256": "fcfd0be2e3fbfc63367e4e7c301cc8a0648a0bbf5986cbb1d60912237cb8e88c",
+      "rawGitBlobSha1": "f947e7673e0852c801c2543e850e48c290202e59",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/after-overlay.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/before-overlay.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/end.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/mid.html",
+      "bytes": 7929,
+      "sha256": "f48f4819ffb728d4803d4aa4cbc8f43d98f0e62c100747e12a12b1b20119b9af",
+      "rawGitBlobSha1": "2258fa9ca3e32991add54eebf0c013894151cfef",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-normal/start.html",
+      "bytes": 7947,
+      "sha256": "f552348e47f5d6e82ce0071f3ab73309d8de0b497500cfcfaa6c6aba17a3a956",
+      "rawGitBlobSha1": "13c15e301471a93276a6687f65ee1e8e80094288",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/after-overlay.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/before-overlay.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/end.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/mid.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-reduced/start.html",
+      "bytes": 7904,
+      "sha256": "7974d0ea8979a2b1187068179455a899c7a446853b4525418d412acb42c91743",
+      "rawGitBlobSha1": "281fa753fab06226d2ba23075063368224b627bc",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/after-overlay.html",
+      "bytes": 10046,
+      "sha256": "a219a24ebdbbca096ae7fbd5ce3a1c7a7ec1b1c3cca4e4686bb5768388714a21",
+      "rawGitBlobSha1": "229dddf53c268893559eade5e27e77261d5d4162",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/before-overlay.html",
+      "bytes": 10046,
+      "sha256": "a219a24ebdbbca096ae7fbd5ce3a1c7a7ec1b1c3cca4e4686bb5768388714a21",
+      "rawGitBlobSha1": "229dddf53c268893559eade5e27e77261d5d4162",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/end.html",
+      "bytes": 10046,
+      "sha256": "a219a24ebdbbca096ae7fbd5ce3a1c7a7ec1b1c3cca4e4686bb5768388714a21",
+      "rawGitBlobSha1": "229dddf53c268893559eade5e27e77261d5d4162",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/mid.html",
+      "bytes": 10063,
+      "sha256": "44460984f13cead9c1715263720a9317dbace1c1f3c95a6c7ae67e8c62803b3f",
+      "rawGitBlobSha1": "780117250a1b019d1d8b5f185b8d8c10478958a5",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/390-text200/start.html",
+      "bytes": 10046,
+      "sha256": "fcfd0be2e3fbfc63367e4e7c301cc8a0648a0bbf5986cbb1d60912237cb8e88c",
+      "rawGitBlobSha1": "f947e7673e0852c801c2543e850e48c290202e59",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-after-02/landing-after-before.json",
+      "bytes": 491959,
+      "sha256": "56fb7c78335ea89ebf9352cd7f59e2834b350386ef8d7befc8ea5616ddfc26f4",
+      "rawGitBlobSha1": "32961025228934e564f4f937c68812aee7c559f1",
+      "reason": "Repeated complete source/dist inventory; one baseline/current binding set is included instead.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-before-01/1440/after-overlay.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216",
+      "rawGitBlobSha1": "6a23161b183a152e00f401c2ac19fde3cbb478d3",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-before-01/1440/before-overlay.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216",
+      "rawGitBlobSha1": "6a23161b183a152e00f401c2ac19fde3cbb478d3",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-before-01/1440/before.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216",
+      "rawGitBlobSha1": "6a23161b183a152e00f401c2ac19fde3cbb478d3",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-before-01/320/after-overlay.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216",
+      "rawGitBlobSha1": "6a23161b183a152e00f401c2ac19fde3cbb478d3",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-before-01/320/before-overlay.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216",
+      "rawGitBlobSha1": "6a23161b183a152e00f401c2ac19fde3cbb478d3",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-before-01/320/before.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216",
+      "rawGitBlobSha1": "6a23161b183a152e00f401c2ac19fde3cbb478d3",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-before-01/390/after-overlay.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216",
+      "rawGitBlobSha1": "6a23161b183a152e00f401c2ac19fde3cbb478d3",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-before-01/390/before-overlay.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216",
+      "rawGitBlobSha1": "6a23161b183a152e00f401c2ac19fde3cbb478d3",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-before-01/390/before.html",
+      "bytes": 7929,
+      "sha256": "843d042ab1dc635edcacc21e839057db86759d4aa288475de1b58c026e03d216",
+      "rawGitBlobSha1": "6a23161b183a152e00f401c2ac19fde3cbb478d3",
+      "reason": "Raw DOM is retained by operator; portable PNG/structured state and original SHA are provided.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-check-01/receipt.json",
+      "bytes": 138986,
+      "sha256": "3ac01ecb1844c19cd4b49c58e2bcdd052fd702d25e24e7b6eb4542391ca0e9fd",
+      "rawGitBlobSha1": "2ddb9c14d30f82981a0b4b86c4cdb42acbd2d871",
+      "reason": "Full process/custody receipt remains operator-only; compact command result and original raw-log hash included.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-check.json",
+      "bytes": 138986,
+      "sha256": "3ac01ecb1844c19cd4b49c58e2bcdd052fd702d25e24e7b6eb4542391ca0e9fd",
+      "rawGitBlobSha1": "2ddb9c14d30f82981a0b4b86c4cdb42acbd2d871",
+      "reason": "Full process/custody receipt remains operator-only; compact command and source/build bindings are included.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-landing-final-judge/source-before.tsx.txt",
+      "bytes": 11988,
+      "sha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+      "rawGitBlobSha1": "e48b37fec2be4a91f48023c5fd68c521e3a8bc50",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-lint-check-01/receipt.json",
+      "bytes": 154373,
+      "sha256": "cba2e6d4aafcdb487e807c7147c62c28b9ec724a790a10ec6f0ff66394f27b3b",
+      "rawGitBlobSha1": "4f498ccf5e309fe63da2497f5e4104ce81932d67",
+      "reason": "Full process/custody receipt remains operator-only; compact command result and original raw-log hash included.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-lint-check.json",
+      "bytes": 154373,
+      "sha256": "cba2e6d4aafcdb487e807c7147c62c28b9ec724a790a10ec6f0ff66394f27b3b",
+      "rawGitBlobSha1": "4f498ccf5e309fe63da2497f5e4104ce81932d67",
+      "reason": "Full process/custody receipt remains operator-only; compact command and source/build bindings are included.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i_NODEVIDEO_LANDING_BUILD_FREEZE.json",
+      "bytes": 568821,
+      "sha256": "07bcdd809a70218e62b0a4f1f79c5520958ff869cb88eed878c8b252703a12f8",
+      "rawGitBlobSha1": "2206566d15002d5ca3224d933b9106a7061d6788",
+      "reason": "Full process/custody receipt remains operator-only; compact command and source/build bindings are included.",
+      "repositorySourceMatches": [],
+      "buildMatches": []
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/apps/landing/src/landing.tsx",
+      "bytes": 11988,
+      "sha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+      "rawGitBlobSha1": "e48b37fec2be4a91f48023c5fd68c521e3a8bc50",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained."
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/fixtures/media/integrated-source-only-v1/edit-plan.json",
+      "bytes": 13652,
+      "sha256": "45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07",
+      "rawGitBlobSha1": "2841b851989e89b26d78ceb43ce5a161e1fad660",
+      "reason": "Existing public fixture bytes are not duplicated; resolve the original asset hash against repository fixtures/build below."
+    },
+    {
+      "path": "E6i-nodevideo-first-use-recon/immutable-source/fixtures/media/integrated-source-only-v1/manifest.json",
+      "bytes": 7205,
+      "sha256": "8c76857975bcc2fd67272aaf93ec1d5c456b993434e3b64f0b082fa397b362cc",
+      "rawGitBlobSha1": "98fa328be0686f7c0d3cf38258432ff3eb402e33",
+      "reason": "Existing public fixture bytes are not duplicated; resolve the original asset hash against repository fixtures/build below."
+    },
+    {
+      "path": "E6i-nodevideo-landing-clock-before-01/source.tsx.txt",
+      "bytes": 11988,
+      "sha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+      "rawGitBlobSha1": "e48b37fec2be4a91f48023c5fd68c521e3a8bc50",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained."
+    },
+    {
+      "path": "E6i-nodevideo-landing-clock-before-02/source.tsx.txt",
+      "bytes": 11988,
+      "sha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+      "rawGitBlobSha1": "e48b37fec2be4a91f48023c5fd68c521e3a8bc50",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained."
+    },
+    {
+      "path": "E6i-nodevideo-landing-clock-harness-review/before-source.tsx.txt",
+      "bytes": 11988,
+      "sha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+      "rawGitBlobSha1": "e48b37fec2be4a91f48023c5fd68c521e3a8bc50",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained."
+    },
+    {
+      "path": "E6i-nodevideo-landing-clock-harness-v2-review/before-02-source.tsx.txt",
+      "bytes": 11988,
+      "sha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+      "rawGitBlobSha1": "e48b37fec2be4a91f48023c5fd68c521e3a8bc50",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained."
+    },
+    {
+      "path": "E6i-nodevideo-landing-clock-knockout-02/source.tsx.txt",
+      "bytes": 11988,
+      "sha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+      "rawGitBlobSha1": "e48b37fec2be4a91f48023c5fd68c521e3a8bc50",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained."
+    },
+    {
+      "path": "E6i-nodevideo-landing-clock-repair-01/before.tsx.txt",
+      "bytes": 11988,
+      "sha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+      "rawGitBlobSha1": "e48b37fec2be4a91f48023c5fd68c521e3a8bc50",
+      "reason": "Redundant full custody or unrelated primary Git inventory stays operator-only; exact hash retained."
+    },
+    {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i-nodevideo-landing-check.json",
+      "bytes": 138986,
+      "sha256": "3ac01ecb1844c19cd4b49c58e2bcdd052fd702d25e24e7b6eb4542391ca0e9fd",
+      "rawGitBlobSha1": "2ddb9c14d30f82981a0b4b86c4cdb42acbd2d871",
+      "reason": "Full browser process/capability metadata retained operator-only."
+    },
+    {
+      "path": "E6i-nodevideo-landing-final-judge/bound--E6i_NODEVIDEO_LANDING_BUILD_FREEZE.json",
+      "bytes": 568821,
+      "sha256": "07bcdd809a70218e62b0a4f1f79c5520958ff869cb88eed878c8b252703a12f8",
+      "rawGitBlobSha1": "2206566d15002d5ca3224d933b9106a7061d6788",
+      "reason": "Full browser process/capability metadata retained operator-only."
+    },
+    {
+      "path": "E6i-nodevideo-lint-final-judge/operator-normal-check.json",
+      "bytes": 154373,
+      "sha256": "cba2e6d4aafcdb487e807c7147c62c28b9ec724a790a10ec6f0ff66394f27b3b",
+      "rawGitBlobSha1": "4f498ccf5e309fe63da2497f5e4104ce81932d67",
+      "reason": "Full browser process/capability metadata retained operator-only."
+    },
+    {
+      "path": "publication/execution/progress.json",
+      "bytes": 6246,
+      "sha256": "1d69f49b3e2ff6df795ab748c9e2ddb629b8317bda9de45afcf48b399225b936",
+      "rawGitBlobSha1": "23b9eda380d2e3d4f79b932513e348d2f86a71cf",
+      "reason": "Full repeated source/build/process inventory retained by operator; final source/owner/check summaries and raw command logs/results are portable."
+    },
+    {
+      "path": "publication/execution/receipt.json",
+      "bytes": 537207,
+      "sha256": "2ed5ac40d2775373422fe24fd66e65a8c1463c6501aee1258e7db96cb3f0ca1f",
+      "rawGitBlobSha1": "6cea68aec1c6837a95a756cca8b0ffbf1eb18821",
+      "reason": "Full repeated source/build/process inventory retained by operator; final source/owner/check summaries and raw command logs/results are portable."
+    },
+    {
+      "path": "publication/execution/transfer.json",
+      "bytes": 158627,
+      "sha256": "7bdd0473bce8cdfb895d81e64e5cdcc66fedeb4f0484c9711a42f49ddabbed7b",
+      "rawGitBlobSha1": "c10ef4e4328feebc586f74cbcb1bde5d8f083d2f",
+      "reason": "Full repeated source/build/process inventory retained by operator; final source/owner/check summaries and raw command logs/results are portable."
+    },
+    {
+      "path": "publication/execution-final/progress.json",
+      "bytes": 6367,
+      "sha256": "36a25dc22baa9934487c2e8667bd223eb243a71bf3844d969296120d248a9291",
+      "rawGitBlobSha1": "fe0c869332a592a8f0e2eff8363b5a9a1c7b0198",
+      "reason": "Full repeated source/build/process inventory retained by operator; final source/owner/check summaries and raw command logs/results are portable."
+    },
+    {
+      "path": "publication/execution-final/receipt.json",
+      "bytes": 564571,
+      "sha256": "e477de6a869c35417274f84e6ee46a5683e499abfb4355dce016e21f37d53fc2",
+      "rawGitBlobSha1": "e325ad8268d2236934612135b268325fde315439",
+      "reason": "Full repeated source/build/process inventory retained by operator; final source/owner/check summaries and raw command logs/results are portable."
+    }
+  ],
+  "coverage": "Missing operator files are disclosed omissions. Original manifest hashes do not imply every original file is portable."
+}

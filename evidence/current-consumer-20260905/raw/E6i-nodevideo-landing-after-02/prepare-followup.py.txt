@@ -1,0 +1,18 @@
+from pathlib import Path
+import hashlib,json
+O=Path(__file__).parent
+old=O.parent/'E6i-nodevideo-landing-after-01'
+for name in ['capture.mjs','boundary.mjs','run-after.py']:
+    assert not (O/name).exists()
+    data=(old/name).read_text(encoding='utf-8')
+    if name=='capture.mjs':
+        needle="check('Every sample has actual native paint',samples.length>0&&samples.every(s=>s.canvas.painted>0),{minPainted:Math.min(...samples.map(s=>s.canvas.painted)),samples:samples.length});"
+        assert data.count(needle)==1
+        data=data.replace(needle,"""const blankRuns=[];
+   for(let i=0;i<samples.length;i++)if(samples[i].canvas.painted===0){const first=i;while(i+1<samples.length&&samples[i+1].canvas.painted===0)i++;const next=samples[i+1];blankRuns.push({firstSample:first,lastSample:i,firstAt:samples[first].at,lastAt:samples[i].at,recoverySample:next?i+1:null,recovered:!!next&&next.canvas.painted>0,trailingCensored:!next});}
+   cell.trackingGaps={blankSampleCount:samples.filter(s=>s.canvas.painted===0).length,blankRuns,trailingCensored:blankRuns.some(r=>r.trailingCensored),sourceAllNullFrames:[19,24,25,76,79],exactFrameIndexNotInstrumented:true};
+   check('Initial actual paint and closed tracking gaps recover',cell.firstPaintObserved.canvas.painted>0&&samples.some(s=>s.canvas.painted>0)&&blankRuns.filter(r=>!r.trailingCensored).every(r=>r.recovered),cell.trackingGaps);""")
+        data=data.replace("fingerprints.size===1&&JSON.stringify(counts)==='[1]'", "samples.every(s=>s.canvas.painted>0)&&fingerprints.size===1&&JSON.stringify(counts)==='[1]'")
+    (O/name).write_text(data,encoding='utf-8',newline='\n')
+receipt={'approvedBy':'Parent /root current explicit message','delta':'Allow native blank samples arising from the immutable source tracking gaps; require positive first paint, changing poses/counts and recovery of closed blank runs. Retain trailing censored runs without extending18seconds. Reduced frame0 remains positive/static.','originalFailureRetained':str(old),'oldRecorderSha256':hashlib.sha256((old/'capture.mjs').read_bytes()).hexdigest(),'newRecorderSha256':hashlib.sha256((O/'capture.mjs').read_bytes()).hexdigest(),'durationOrDeadlineChanged':False,'productChanged':False}
+(O/'expectation-addendum.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8',newline='\n')

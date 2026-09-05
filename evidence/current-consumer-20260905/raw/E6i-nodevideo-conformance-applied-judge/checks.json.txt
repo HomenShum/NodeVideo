@@ -1,0 +1,50 @@
+[
+  {
+    "name": "operator receipt and source freeze agree",
+    "pass": true
+  },
+  {
+    "name": "exact approved repository-name-only delta",
+    "pass": true
+  },
+  {
+    "name": "actual caller 328 bytes and frozen SHA",
+    "pass": true
+  },
+  {
+    "name": "all18 source bindings exact",
+    "pass": true
+  },
+  {
+    "name": "18-owner digest exact",
+    "pass": true
+  },
+  {
+    "name": "all17 prior lint owners exact",
+    "pass": true
+  },
+  {
+    "name": "1356 protected source inputs exact",
+    "pass": true
+  },
+  {
+    "name": "HEAD short-branch and serialized index preserved",
+    "pass": true
+  },
+  {
+    "name": "only18 known working owners changed",
+    "pass": true
+  },
+  {
+    "name": "no staged changes",
+    "pass": true
+  },
+  {
+    "name": "shared outcome remains unrun and grades null",
+    "pass": true
+  },
+  {
+    "name": "closing bounded guards unchanged",
+    "pass": true
+  }
+]

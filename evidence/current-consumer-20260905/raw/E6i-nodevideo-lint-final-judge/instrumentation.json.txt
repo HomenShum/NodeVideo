@@ -1,0 +1,75 @@
+{
+  "transforms": [
+    {
+      "side": "before",
+      "modName": "tools/clip-gate/judge-video.mjs",
+      "kind": "await existing top-level run().catch for deterministic observation",
+      "sourceSha256": "b3ca5189bbda1a26369bfc8d6f61adebaf43e6377bb9d0cccbe32fe3558a27ce"
+    },
+    {
+      "side": "after",
+      "modName": "tools/clip-gate/judge-video.mjs",
+      "kind": "await existing top-level run().catch for deterministic observation",
+      "sourceSha256": "a78fed70aa4968de73be4699d3ef52524c51c5a3707b08611fba834d62cfe311"
+    },
+    {
+      "side": "before",
+      "modName": "tools/clip-gate/judge-video.mjs",
+      "kind": "await existing top-level run().catch for deterministic observation",
+      "sourceSha256": "b3ca5189bbda1a26369bfc8d6f61adebaf43e6377bb9d0cccbe32fe3558a27ce"
+    },
+    {
+      "side": "after",
+      "modName": "tools/clip-gate/judge-video.mjs",
+      "kind": "await existing top-level run().catch for deterministic observation",
+      "sourceSha256": "a78fed70aa4968de73be4699d3ef52524c51c5a3707b08611fba834d62cfe311"
+    },
+    {
+      "side": "before",
+      "modName": "tools/clip-gate/judge-video.mjs",
+      "kind": "await existing top-level run().catch for deterministic observation",
+      "sourceSha256": "b3ca5189bbda1a26369bfc8d6f61adebaf43e6377bb9d0cccbe32fe3558a27ce"
+    },
+    {
+      "side": "after",
+      "modName": "tools/clip-gate/judge-video.mjs",
+      "kind": "await existing top-level run().catch for deterministic observation",
+      "sourceSha256": "a78fed70aa4968de73be4699d3ef52524c51c5a3707b08611fba834d62cfe311"
+    },
+    {
+      "side": "before",
+      "modName": "tools/clip-gate/judge-video.mjs",
+      "kind": "await existing top-level run().catch for deterministic observation",
+      "sourceSha256": "b3ca5189bbda1a26369bfc8d6f61adebaf43e6377bb9d0cccbe32fe3558a27ce"
+    },
+    {
+      "side": "after",
+      "modName": "tools/clip-gate/judge-video.mjs",
+      "kind": "await existing top-level run().catch for deterministic observation",
+      "sourceSha256": "a78fed70aa4968de73be4699d3ef52524c51c5a3707b08611fba834d62cfe311"
+    },
+    {
+      "side": "before",
+      "modName": "tools/clip-gate/judge-video.mjs",
+      "kind": "await existing top-level run().catch for deterministic observation",
+      "sourceSha256": "b3ca5189bbda1a26369bfc8d6f61adebaf43e6377bb9d0cccbe32fe3558a27ce"
+    },
+    {
+      "side": "after",
+      "modName": "tools/clip-gate/judge-video.mjs",
+      "kind": "await existing top-level run().catch for deterministic observation",
+      "sourceSha256": "a78fed70aa4968de73be4699d3ef52524c51c5a3707b08611fba834d62cfe311"
+    }
+  ],
+  "limits": {
+    "eventsPerCase": 512,
+    "serializedPerCase": 2000000,
+    "vmTimeoutMs": 3000
+  },
+  "realFilesystemInsideVm": 0,
+  "realNetwork": 0,
+  "realProcess": 0,
+  "realMedia": 0,
+  "syntheticInputs": true,
+  "sourceModuleImports": "VM allowlist only; no dynamic imports; source and installed TypeScript read by harness outside VM"
+}

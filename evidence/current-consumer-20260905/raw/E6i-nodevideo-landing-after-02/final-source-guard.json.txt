@@ -1,0 +1,16 @@
+{
+  "sourceOwnerDigest": "1b6dac7ed3b6cbd2353adffe7da6bffb21a3d57fb6685027158b1390fb0e6d02",
+  "sourceCount": 1374,
+  "sourceAllExact": true,
+  "distCount": 1329,
+  "distAllExact": true,
+  "guards": {
+    "head": "4ac45208b6bb9f3544e67636ed077a4441719f4892a09c818aa69589d9641c8f",
+    "refs": "f26538fea9cc8fafcf26de63b533d629fa002e829eeeb726c541a6d03fad09a3",
+    "index": "3e9c929044933fd852980d1393a64e5b755dcaeb1f6f7e8e22d96c7b8192df62"
+  },
+  "guardsExact": true,
+  "port4983Released": true,
+  "workerSourceEdits": false,
+  "stageCommitPush": false
+}

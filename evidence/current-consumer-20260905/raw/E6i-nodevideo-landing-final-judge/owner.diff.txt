@@ -1,0 +1,25 @@
+--- original-actual-owner
++++ current-actual-owner
+@@ -39,8 +39,9 @@
+   useEffect(() => {
+     if (reduced) return;
+     let raf = 0;
+-    const started = performance.now();
++    let started: number | undefined;
+     const tick = (now: number) => {
++      started ??= now;
+       const beats = (now - started) / BEAT_MS;
+       setCount((Math.floor(beats) % 8) + 1);
+       const phase = beats % 1;
+@@ -63,9 +64,10 @@
+     if (!canvas) return;
+     const context = canvas.getContext('2d');
+     if (!context) return;
+-    const started = performance.now();
++    let started: number | undefined;
+     let raf = 0;
+     const draw = (now: number) => {
++      started ??= now;
+       const elapsed = reduced ? 0 : (now - started) / 1000;
+       const frame = frames[Math.floor(elapsed * cadence) % frames.length];
+       const scale = Math.min(canvas.width, canvas.height) * 0.92;

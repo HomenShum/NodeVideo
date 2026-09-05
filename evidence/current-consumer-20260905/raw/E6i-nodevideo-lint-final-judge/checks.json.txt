@@ -1,0 +1,412 @@
+[
+  {
+    "name": "JSON value exact schemas/production-agent.v1.schema.json",
+    "passed": true
+  },
+  {
+    "name": "JSON value exact tools/clip-gate/calibration.json",
+    "passed": true
+  },
+  {
+    "name": "AST exact apart from named import ordering tools/clip-gate/rubric.mjs",
+    "passed": true
+  },
+  {
+    "name": "AST exact apart from named import ordering tools/clip-gate/comprehension-rubric.mjs",
+    "passed": true
+  },
+  {
+    "name": "AST exact apart from named import ordering tools/clip-gate/find-references.mjs",
+    "passed": true
+  },
+  {
+    "name": "AST exact apart from named import ordering src/lib/frame-evidence.ts",
+    "passed": true
+  },
+  {
+    "name": "AST exact apart from named import ordering src/lib/frame-evidence.test.ts",
+    "passed": true
+  },
+  {
+    "name": "narration batch-success",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "narration first-retry",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "narration second-retry",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "narration exhausted",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": {
+        "name": "Error",
+        "message": "beat 1 failed in batch AND in 2 fresh processes — this is not the session bug"
+      },
+      "afterError": {
+        "name": "Error",
+        "message": "beat 1 failed in batch AND in 2 fresh processes — this is not the session bug"
+      }
+    }
+  },
+  {
+    "name": "narration batch-failure",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": {
+        "name": "Error",
+        "message": "piper batch failed outright: synthetic failure"
+      },
+      "afterError": {
+        "name": "Error",
+        "message": "piper batch failed outright: synthetic failure"
+      }
+    }
+  },
+  {
+    "name": "narration invalid-batch-json",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": {
+        "name": "SyntaxError",
+        "message": "Unexpected token 'o', \"not json\" is not valid JSON"
+      },
+      "afterError": {
+        "name": "SyntaxError",
+        "message": "Unexpected token 'o', \"not json\" is not valid JSON"
+      }
+    }
+  },
+  {
+    "name": "narration invalid-retry-json",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": {
+        "name": "SyntaxError",
+        "message": "Unexpected token 'b', \"bad JSON\" is not valid JSON"
+      },
+      "afterError": {
+        "name": "SyntaxError",
+        "message": "Unexpected token 'b', \"bad JSON\" is not valid JSON"
+      }
+    }
+  },
+  {
+    "name": "narration mixed-order",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "voice success",
+    "passed": true
+  },
+  {
+    "name": "voice recover-first",
+    "passed": true
+  },
+  {
+    "name": "voice exhausted-NUL",
+    "passed": true
+  },
+  {
+    "name": "voice overrun",
+    "passed": true
+  },
+  {
+    "name": "score float buffers and generated filters bare",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "score float buffers and generated filters music",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "score float buffers and generated filters voice",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "readability exact ordered output min=0",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "readability exact ordered output min=80",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      },
+      "afterError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      }
+    }
+  },
+  {
+    "name": "readability exact ordered output min=200",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      },
+      "afterError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      }
+    }
+  },
+  {
+    "name": "judge single",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "judge set-union-fallback",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "judge reask",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "judge http-failure",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      },
+      "afterError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      }
+    }
+  },
+  {
+    "name": "judge invalid-output",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      },
+      "afterError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      }
+    }
+  },
+  {
+    "name": "iteration report strings pass",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": {
+        "name": "Exit",
+        "message": "VM_EXIT_0",
+        "code": 0
+      },
+      "afterError": {
+        "name": "Exit",
+        "message": "VM_EXIT_0",
+        "code": 0
+      }
+    }
+  },
+  {
+    "name": "iteration report strings fail",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      },
+      "afterError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      }
+    }
+  },
+  {
+    "name": "iteration report strings missing",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      },
+      "afterError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      }
+    }
+  },
+  {
+    "name": "retime protected null and shrink=false",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "retime protected null and shrink=true",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "captions Unicode and mismatch=false",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "captions Unicode and mismatch=true",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      },
+      "afterError": {
+        "name": "Exit",
+        "message": "VM_EXIT_1",
+        "code": 1
+      }
+    }
+  },
+  {
+    "name": "frame provenance bound/mislabelled/missing/empty",
+    "passed": true,
+    "detail": {
+      "same": true,
+      "expected": true,
+      "beforeError": null,
+      "afterError": null
+    }
+  },
+  {
+    "name": "knockout rejects undefined failed property",
+    "passed": true
+  },
+  {
+    "name": "unconfigured process stub fails closed",
+    "passed": true
+  }
+]

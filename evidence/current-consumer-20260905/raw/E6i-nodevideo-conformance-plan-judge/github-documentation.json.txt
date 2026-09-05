@@ -1,0 +1,7 @@
+{
+  "source": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/find-and-customize-actions",
+  "accessed": "2026-09-05",
+  "exactExcerpt": "GitHub Actions does not support redirects for actions or reusable workflows.",
+  "retrieval": "Official page independently opened with web tool; short quotation only.",
+  "claimLimit": "Explains old reusable-reference resolution failure; ordinary checkout redirect and subsequent contract execution remain to be observed."
+}

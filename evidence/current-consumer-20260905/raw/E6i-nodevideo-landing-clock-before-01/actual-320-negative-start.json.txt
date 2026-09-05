@@ -1,0 +1,49 @@
+{
+  "summary": {
+    "name": "actual-320-negative-start",
+    "errors": [
+      "TypeError: Cannot read properties of undefined (reading '11')"
+    ],
+    "firstFrame": -1,
+    "lastFrame": -1,
+    "framesDrawn": 1,
+    "strokes": 0,
+    "arcs": 0,
+    "firstCount": 0,
+    "lastCount": 1,
+    "countRange": [
+      0,
+      1
+    ],
+    "pulseRange": [
+      0.8998164293333335,
+      1.1295946666666667
+    ],
+    "callbackCount": 4,
+    "maxPending": 2,
+    "pendingBeforeCleanup": 1,
+    "pendingAfterCleanup": 0,
+    "allFrameIndicesValid": false,
+    "allCountValuesValid": false,
+    "allPulseValuesValid": false,
+    "drawSequenceSha256": "d124b23c696a85177dac41a7a28c853546e55caa5b4798fb917f2c3dc1b331ce",
+    "countsSha256": "7ead7f2ac1f175e1650b7a7b433f7cbdca3ae29ff06e6ff5c5199d17b731658c",
+    "pulsesSha256": "c0d3dc0c2699b7669b49a022e018481be2de78c63f7897fe39799079094aa619"
+  },
+  "firstObservedIndices": [
+    -1
+  ],
+  "lastObservedIndices": [
+    -1
+  ],
+  "firstObservedCounts": [
+    0,
+    0,
+    1
+  ],
+  "lastObservedCounts": [
+    0,
+    0,
+    1
+  ]
+}

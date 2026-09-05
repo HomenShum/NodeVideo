@@ -1,0 +1,27 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+const O=path.dirname(fileURLToPath(import.meta.url));
+const R='D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905';
+const {chromium}=createRequire(path.join(R,'package.json'))('playwright');
+const out=path.join(O,'diagnostic');fs.mkdirSync(out);
+const browser=await chromium.launch();const report={status:'OBSERVING',browser:browser.version(),cells:[],method:'Native performance.now value returned unchanged; rAF timestamp passed unchanged; native Math.floor input/result recorded only while original canvas callback executes. No source/render/time clamp.'};
+try{for(const [width,height,reducedMotion]of[[320,800,'no-preference'],[390,844,'no-preference'],[320,800,'reduce']]){
+ const context=await browser.newContext({viewport:{width,height},colorScheme:'light',locale:'en-US',timezoneId:'America/Los_Angeles',reducedMotion});
+ const cell={width,height,reducedMotion,errors:[],external:[]};report.cells.push(cell);
+ await context.route('**/*',r=>{if(new URL(r.request().url()).origin==='http://127.0.0.1:4983')return r.continue();cell.external.push(r.request().url());return r.abort();});
+ await context.addInitScript(()=>{
+  const now=performance.now.bind(performance),raf=requestAnimationFrame.bind(window),floor=Math.floor;let lastNow;
+  window.__clockProof={nowCalls:[],frames:[]};
+  Object.defineProperty(performance,'now',{configurable:true,value:()=>{const value=now();lastNow={value,stack:new Error().stack};if(window.__clockProof.nowCalls.length<256)window.__clockProof.nowCalls.push(lastNow);return value;}});
+  window.requestAnimationFrame=fn=>{
+   if(!fn.toString().includes('.clearRect('))return raf(fn);
+   const record={started:lastNow,scheduledAt:now(),callback:fn.toString(),floorCalls:[]};
+   return raf(timestamp=>{record.timestamp=timestamp;record.callbackNow=now();record.elapsedSecondsFromLastNativeNow=(timestamp-record.started.value)/1000;Math.floor=value=>{const result=floor(value);if(record.floorCalls.length<8)record.floorCalls.push({value,result});return result;};try{return fn(timestamp);}catch(e){record.error={message:e.message,stack:e.stack};throw e;}finally{Math.floor=floor;if(window.__clockProof.frames.length<16)window.__clockProof.frames.push(record);}});
+  };
+ });
+ const page=await context.newPage();page.on('pageerror',e=>cell.errors.push(String(e)));await page.goto('http://127.0.0.1:4983/');await page.locator('canvas').waitFor({state:'visible'});await page.locator('canvas').scrollIntoViewIfNeeded();await page.waitForFunction(()=>window.__clockProof.frames.length>0,{},{timeout:15000});await page.waitForTimeout(250);
+ cell.clock=await page.evaluate(()=>window.__clockProof);cell.canvas=await page.locator('canvas').evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let painted=0;for(let i=3;i<d.length;i+=4)if(d[i])painted++;return{width:c.width,height:c.height,painted};});
+ const name=`${width}-${reducedMotion}`;fs.writeFileSync(path.join(out,name+'.json'),JSON.stringify(cell,null,2));fs.writeFileSync(path.join(out,name+'.html'),await page.content());await page.screenshot({path:path.join(out,name+'.png'),caret:'initial'});await context.close();
+}report.status='OBSERVED_DIAGNOSTIC_ONLY';}catch(e){report.status='FAILED_DIAGNOSTIC';report.error=String(e.stack??e);process.exitCode=1;}finally{await browser.close();fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({status:report.status,cells:report.cells.map(c=>({width:c.width,motion:c.reducedMotion,painted:c.canvas?.painted,frames:c.clock?.frames.map(f=>({timestamp:f.timestamp,t0:f.started.value,elapsed:f.elapsedSecondsFromLastNativeNow,floor:f.floorCalls,error:f.error?.message}))}))}));}

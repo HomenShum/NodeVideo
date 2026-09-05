@@ -1,0 +1,11 @@
+{
+  "testPath": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905\\tests\\e2e\\stitch-studio.spec.ts",
+  "testSha256": "1268c09728cbf2644baed1b4a70f9a894fd19b96eae998dc13732407ae82f875",
+  "functionSourceSha256": "ebdea46df613f11c5dcc569948f233dc38c92ecfcb914d409407cdec586a54fd",
+  "originalSha256": "45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07",
+  "canvas": {
+    "width": 180,
+    "height": 320
+  },
+  "durationFrames": 30
+}

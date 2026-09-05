@@ -1,0 +1,613 @@
+{
+  "proofId": "NODEVIDEO-FIRST-USE-01",
+  "status": "SCOPED_USER_JOURNEYS_OBSERVED_WITH_LANDING_BLOCKER",
+  "at": "2026-09-05T19:56:37.235352+00:00",
+  "root": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905",
+  "baseCommit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "sourceMutations": [],
+  "guard": {
+    "at": "2026-09-05T19:56:37.235352+00:00",
+    "sourceCount": 1374,
+    "distCount": 1329,
+    "sourceUnchanged": true,
+    "distUnchanged": true,
+    "guards": {
+      "head": "4ac45208b6bb9f3544e67636ed077a4441719f4892a09c818aa69589d9641c8f",
+      "refs": "f26538fea9cc8fafcf26de63b533d629fa002e829eeeb726c541a6d03fad09a3",
+      "index": "3e9c929044933fd852980d1393a64e5b755dcaeb1f6f7e8e22d96c7b8192df62"
+    },
+    "owned4983Released": true,
+    "sourceBinding": "special-before.json",
+    "approved18": {
+      "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-conformance-apply-01\\receipt.json",
+      "sha256": "4eacc240c40521fcb527b0714b1f1e8ca0d64d5b2655d2bbd930ac0607ed4aa0",
+      "sourceDigest": "bb5ca4d7a02ab72eecf2581f63fa7762174190453e2ccdeb5d7879d30b9c0c18"
+    }
+  },
+  "artifactRoot": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-first-use-01",
+  "manifestSha256": "d9e078300d8246590c764eed5dd8e32e540ee1118fe72cdf0a088ebea1a4c7c9",
+  "artifactFiles": 409,
+  "bytes": 64686000,
+  "observedViews": [
+    {
+      "path": "matrix/failure.png",
+      "sha256": "c3bee596bdb69876f230466e964091342cf78a73209a5bd88d3f6d04d22ca32b",
+      "viewer": "implementation worker"
+    },
+    {
+      "path": "diagnostic/320-no-preference.png",
+      "sha256": "bb9106fda430948ea7f52ef3f367306e5a594e33196cf46cf0bbe4a06cf3c340",
+      "viewer": "independent clock reviewer"
+    },
+    {
+      "path": "diagnostic/390-no-preference.png",
+      "sha256": "7dca92fe9985c6195f268fe78efe7a94c38dd3ea82bef578723de2d9ea26c1d8",
+      "viewer": "independent clock reviewer"
+    },
+    {
+      "path": "diagnostic/320-reduce.png",
+      "sha256": "5dcb6780fc3f846bd7be035571525caf97de3a0c6026505a8a028b9cf126eac8",
+      "viewer": "independent clock reviewer"
+    },
+    {
+      "path": "codec/decoded-proof-frame.png",
+      "sha256": "a3d53477d76ec1c1eb47e485403972b5d213e0da18a71093d784de348a98baa7",
+      "viewer": "implementation worker"
+    },
+    {
+      "path": "editor-inspector/failure.png",
+      "sha256": "259b4314f947bcf6a83e3ed2b55ac4e189deb858a537bed2a4efb7100d3777c1",
+      "viewer": "implementation worker"
+    },
+    {
+      "path": "editor-inspector-02/failure.png",
+      "sha256": "cce41e0c836671dd0f7c4965df6256ed89f9ebd62d2c09945d86923d0bbe54f2",
+      "viewer": "implementation worker"
+    },
+    {
+      "path": "editor-inspector-03/390-frame-481.png",
+      "sha256": "a84de23f1b3339a84fb15ada66959cc4fca22d994428f071f4f865f89b005500",
+      "viewer": "implementation worker"
+    },
+    {
+      "path": "editor-inspector-03/320-applied.png",
+      "sha256": "916433cf57fbac046497de115cd3d444826a5d14f8a29ae2f43c336324b2ccb5",
+      "viewer": "implementation worker"
+    },
+    {
+      "path": "editor-inspector-03/1440-restored.png",
+      "sha256": "9cb3b0117b014e302381477025eb21b68476424a2e874e4585048a2c11e34463",
+      "viewer": "implementation worker"
+    },
+    {
+      "path": "special/text200-390-edit-entry.png",
+      "sha256": "c93656a0168a36c83b22cf76d4fdefec7fbfa36d0913b6ec88d3c0cdc1815d5b",
+      "viewer": "implementation worker"
+    },
+    {
+      "path": "special/text200-390-proposal.png",
+      "sha256": "a266cf274d4d9d60078de7101c1e28f6b7bfc3dd0a99b9e81aa82beb117ba281",
+      "viewer": "implementation worker"
+    },
+    {
+      "path": "special/text200-1440-frame-481.png",
+      "sha256": "b9b02d3b387403de1b49cb020ddbd090dde5ada7e9223d4b54d3ae8016abdfa6",
+      "viewer": "implementation worker"
+    },
+    {
+      "path": "special/manifest-blocked.png",
+      "sha256": "c0489c50bd385d379c3b5a099852aa81061a86ff958b4ec10714bf85b734d884",
+      "viewer": "implementation worker"
+    },
+    {
+      "path": "special/manifest-reload-recovered.png",
+      "sha256": "11358cfb81705fc58dd5efee1f06074e2a76da554301c77c0377ecf4d0623fc7",
+      "viewer": "implementation worker"
+    }
+  ],
+  "servedInputs": [
+    {
+      "id": "manifest",
+      "url": "/media/integrated-source-only-v1/manifest.json",
+      "status": 200,
+      "bytes": 7205,
+      "sha256": "8c76857975bcc2fd67272aaf93ec1d5c456b993434e3b64f0b082fa397b362cc",
+      "file": "manifest.json"
+    },
+    {
+      "id": "analysis",
+      "url": "/media/integrated-source-only-v1/analysis.json",
+      "status": 200,
+      "bytes": 72856,
+      "sha256": "00f47b663f6471ceb9f54c6e2c39e209613fb9eac2d7459db74098cf905081a6",
+      "file": "analysis.json"
+    },
+    {
+      "id": "edit-plan",
+      "url": "/media/integrated-source-only-v1/edit-plan.json",
+      "status": 200,
+      "bytes": 13652,
+      "sha256": "45e618ec543a15369749187f2afbe684cea9b819d49a1629216b4a35eac62c07",
+      "file": "edit-plan.json"
+    },
+    {
+      "id": "freeze",
+      "url": "/media/integrated-source-only-v1/freeze-receipt.json",
+      "status": 200,
+      "bytes": 901,
+      "sha256": "6d0305e3cf8e741592d5143faba7cdf6613a57cb6bf9f709b28bf383b90e655e",
+      "file": "freeze.json"
+    },
+    {
+      "id": "evaluation",
+      "url": "/media/integrated-source-only-v1/post-freeze-evaluation.json",
+      "status": 200,
+      "bytes": 4659,
+      "sha256": "478b438025fbded59c408551a7fe3ff2f5a94b81644f3c4feaf574c22fc8d45e",
+      "file": "evaluation.json"
+    },
+    {
+      "id": "selection",
+      "url": "/media/integrated-source-only-v1/reference-performer-selection.json",
+      "status": 200,
+      "bytes": 2741,
+      "sha256": "79a3540461dc265a6cb2bc20aa74e1b3dd2d10280b2d932fa09dea5fd7f89f7c",
+      "file": "selection.json"
+    },
+    {
+      "id": "pose-tracks",
+      "url": "/media/integrated-source-only-v1/pose-tracks.json",
+      "status": 200,
+      "bytes": 3959868,
+      "sha256": "74deecdbd0513062bebc9759739763882f1462d8545778d5bf1fd51bc31f9ae8",
+      "file": "pose-tracks.json"
+    },
+    {
+      "id": "preview-silent",
+      "url": "/media/integrated-source-only-v1/preview-silent.mp4",
+      "status": 200,
+      "bytes": 11767433,
+      "sha256": "062f0621402b51e6ce22179c10505e73311276e066fd8f315b1855a9c398647a",
+      "file": "preview-silent.mp4"
+    },
+    {
+      "id": "target",
+      "url": "/media/authorized-real-v1/target-web.mp4",
+      "status": 200,
+      "bytes": 2055560,
+      "sha256": "9431a1d9cfce0216bf6f3e93d36e2fd5b7cbbc8c81a202eaf1686b009999a35d",
+      "file": "target.mp4"
+    },
+    {
+      "id": "source-a",
+      "url": "/media/authorized-real-v1/source-a-web.mp4",
+      "status": 200,
+      "bytes": 2848396,
+      "sha256": "634bfb9b539c85ef105e93c047267612817a6c4da4a0f830b38be21e3f31b428",
+      "file": "source-a.mp4"
+    },
+    {
+      "id": "source-b",
+      "url": "/media/authorized-real-v1/source-b-web.mp4",
+      "status": 200,
+      "bytes": 3806933,
+      "sha256": "11ec849d6e99d6aee1f7b3ba8de7a4d248a808062b237889c0baa67498d5bc6a",
+      "file": "source-b.mp4"
+    }
+  ],
+  "commands": {
+    "matrix": {
+      "status": "FAIL",
+      "exitCode": 1,
+      "startedAt": "2026-09-05T19:42:13.458213+00:00",
+      "finishedAt": "2026-09-05T19:42:34.136468+00:00",
+      "sourceUnchanged": true,
+      "distUnchanged": true,
+      "portReleased": true
+    },
+    "editor-inspector": {
+      "status": "FAIL",
+      "exitCode": 1,
+      "startedAt": "2026-09-05T19:47:50.995303+00:00",
+      "finishedAt": "2026-09-05T19:48:12.887589+00:00",
+      "sourceUnchanged": true,
+      "distUnchanged": true,
+      "portReleased": true
+    },
+    "editor-inspector-02": {
+      "status": "FAIL",
+      "exitCode": 1,
+      "startedAt": "2026-09-05T19:49:50.948508+00:00",
+      "finishedAt": "2026-09-05T19:50:12.861929+00:00",
+      "sourceUnchanged": true,
+      "distUnchanged": true,
+      "portReleased": true
+    },
+    "editor-inspector-03": {
+      "status": "PASS",
+      "exitCode": 0,
+      "startedAt": "2026-09-05T19:51:05.582585+00:00",
+      "finishedAt": "2026-09-05T19:51:30.745926+00:00",
+      "sourceUnchanged": true,
+      "distUnchanged": true,
+      "portReleased": true
+    },
+    "special": {
+      "status": "PASS",
+      "exitCode": 0,
+      "startedAt": "2026-09-05T19:52:11.273649+00:00",
+      "finishedAt": "2026-09-05T19:52:32.296643+00:00",
+      "sourceUnchanged": true,
+      "distUnchanged": true,
+      "portReleased": true
+    },
+    "codec": {
+      "status": "PASS",
+      "exitCode": 0,
+      "startedAt": "2026-09-05T19:44:27.140468+00:00",
+      "finishedAt": "2026-09-05T19:44:34.628683+00:00",
+      "sourceUnchanged": true,
+      "distUnchanged": true,
+      "portReleased": true
+    },
+    "diagnostic": {
+      "status": "PASS",
+      "exitCode": 0,
+      "startedAt": "2026-09-05T19:46:38.206499+00:00",
+      "finishedAt": "2026-09-05T19:46:44.077278+00:00",
+      "sourceUnchanged": true,
+      "distUnchanged": true,
+      "portReleased": true
+    }
+  },
+  "currentIndependentJourney": {
+    "sevenExactViewports": [
+      {
+        "width": 320,
+        "height": 800
+      },
+      {
+        "width": 360,
+        "height": 800
+      },
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 768,
+        "height": 1024
+      },
+      {
+        "width": 1024,
+        "height": 768
+      },
+      {
+        "width": 1440,
+        "height": 960
+      },
+      {
+        "width": 1920,
+        "height": 1080
+      }
+    ],
+    "captures": 57,
+    "localExchanges": 10,
+    "visibleHistoryBound": 16,
+    "originalFrames": 1335,
+    "originalCanvas": {
+      "width": 720,
+      "height": 1280
+    },
+    "frameBoundary": [
+      480,
+      481,
+      480
+    ],
+    "allExternalRequests": []
+  },
+  "special": [
+    {
+      "lane": "editor-inspector",
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "mode": "no-preference",
+      "captures": 8,
+      "errors": [],
+      "overflow": [],
+      "inspectorAxeViolations": 0,
+      "editorAxeViolations": 0,
+      "tempo": {
+        "text": "107.7 bpm",
+        "visible": false,
+        "limit": "Existing mobile CSS hides the project header badge below1024; source scenario asserts presence, not phone visibility"
+      }
+    },
+    {
+      "lane": "editor-inspector",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "mode": "no-preference",
+      "captures": 8,
+      "errors": [],
+      "overflow": [],
+      "inspectorAxeViolations": 0,
+      "editorAxeViolations": 0,
+      "tempo": {
+        "text": "107.7 bpm",
+        "visible": false,
+        "limit": "Existing mobile CSS hides the project header badge below1024; source scenario asserts presence, not phone visibility"
+      }
+    },
+    {
+      "lane": "editor-inspector",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "no-preference",
+      "captures": 9,
+      "errors": [],
+      "overflow": [],
+      "inspectorAxeViolations": 0,
+      "editorAxeViolations": 0,
+      "tempo": {
+        "text": "107.7 bpm",
+        "visible": false,
+        "limit": "Existing mobile CSS hides the project header badge below1024; source scenario asserts presence, not phone visibility"
+      }
+    },
+    {
+      "lane": "editor-inspector",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "mode": "no-preference",
+      "captures": 8,
+      "errors": [],
+      "overflow": [],
+      "inspectorAxeViolations": 0,
+      "editorAxeViolations": 0,
+      "tempo": {
+        "text": "107.7 bpm",
+        "visible": false,
+        "limit": "Existing mobile CSS hides the project header badge below1024; source scenario asserts presence, not phone visibility"
+      }
+    },
+    {
+      "lane": "editor-inspector",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "mode": "no-preference",
+      "captures": 8,
+      "errors": [],
+      "overflow": [],
+      "inspectorAxeViolations": 0,
+      "editorAxeViolations": 0,
+      "tempo": {
+        "text": "107.7 bpm",
+        "visible": true,
+        "limit": "Existing mobile CSS hides the project header badge below1024; source scenario asserts presence, not phone visibility"
+      }
+    },
+    {
+      "lane": "editor-inspector",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "mode": "no-preference",
+      "captures": 8,
+      "errors": [],
+      "overflow": [],
+      "inspectorAxeViolations": 0,
+      "editorAxeViolations": 0,
+      "tempo": {
+        "text": "107.7 bpm",
+        "visible": true,
+        "limit": "Existing mobile CSS hides the project header badge below1024; source scenario asserts presence, not phone visibility"
+      }
+    },
+    {
+      "lane": "editor-inspector",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "mode": "no-preference",
+      "captures": 8,
+      "errors": [],
+      "overflow": [],
+      "inspectorAxeViolations": 0,
+      "editorAxeViolations": 0,
+      "tempo": {
+        "text": "107.7 bpm",
+        "visible": true,
+        "limit": "Existing mobile CSS hides the project header badge below1024; source scenario asserts presence, not phone visibility"
+      }
+    },
+    {
+      "lane": "special",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "no-preference",
+      "captures": 2,
+      "errors": [
+        "TypeError: Cannot read properties of undefined (reading '11')"
+      ],
+      "overflow": [],
+      "inspectorAxeViolations": null,
+      "editorAxeViolations": null,
+      "tempo": null
+    },
+    {
+      "lane": "special",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "no-preference",
+      "captures": 2,
+      "errors": [],
+      "overflow": [],
+      "inspectorAxeViolations": null,
+      "editorAxeViolations": null,
+      "tempo": null
+    },
+    {
+      "lane": "special",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "text200",
+      "captures": 8,
+      "errors": [
+        "TypeError: Cannot read properties of undefined (reading '11')"
+      ],
+      "overflow": [
+        {
+          "name": "text200-390-landing",
+          "overflow": 39,
+          "pngSha256": "d20926e53c669170b28b2890bb0e81f10fdfc63a84301156bc427311fa510045"
+        }
+      ],
+      "inspectorAxeViolations": 0,
+      "editorAxeViolations": 0,
+      "tempo": {
+        "text": "107.7 bpm",
+        "visible": false,
+        "limit": "Existing mobile CSS hides the project header badge below1024; source scenario asserts presence, not phone visibility"
+      }
+    },
+    {
+      "lane": "special",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "mode": "text200",
+      "captures": 8,
+      "errors": [
+        "TypeError: Cannot read properties of undefined (reading '11')"
+      ],
+      "overflow": [],
+      "inspectorAxeViolations": 0,
+      "editorAxeViolations": 0,
+      "tempo": {
+        "text": "107.7 bpm",
+        "visible": true,
+        "limit": "Existing mobile CSS hides the project header badge below1024; source scenario asserts presence, not phone visibility"
+      }
+    },
+    {
+      "lane": "special",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "reduced",
+      "captures": 8,
+      "errors": [],
+      "overflow": [],
+      "inspectorAxeViolations": 0,
+      "editorAxeViolations": 0,
+      "tempo": {
+        "text": "107.7 bpm",
+        "visible": false,
+        "limit": "Existing mobile CSS hides the project header badge below1024; source scenario asserts presence, not phone visibility"
+      }
+    },
+    {
+      "lane": "special",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "mode": "reduced",
+      "captures": 8,
+      "errors": [],
+      "overflow": [],
+      "inspectorAxeViolations": 0,
+      "editorAxeViolations": 0,
+      "tempo": {
+        "text": "107.7 bpm",
+        "visible": true,
+        "limit": "Existing mobile CSS hides the project header badge below1024; source scenario asserts presence, not phone visibility"
+      }
+    }
+  ],
+  "actualExport": {
+    "file": "nodevideo-sign-edit.mp4",
+    "bytes": 55223,
+    "sha256": "ea98c867b27136df65c5b5c8d6b22ddd43294bfc5881580e8e2ced2cd923317e",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 180,
+          "height": 320
+        }
+      ],
+      "format": {
+        "duration": "2.000000"
+      }
+    },
+    "decodedPngSha256": "a3d53477d76ec1c1eb47e485403972b5d213e0da18a71093d784de348a98baa7",
+    "ocr": "PROOF CUT\r\n",
+    "fullDecodeExit": 0
+  },
+  "findings": [
+    {
+      "id": "LANDING-CLOCK-01",
+      "severity": "P1",
+      "status": "OPEN",
+      "observation": "Normal motion first callback indexes frame -1 and leaves pose canvas blank; actual320 and390 timestamps/index/errors recorded. Reduced-motion index0 paints.",
+      "causeOwner": "apps/landing/src/landing.tsx",
+      "proof": "diagnostic/report.json"
+    },
+    {
+      "id": "ENLARGED-REFLOW-01",
+      "severity": "P2",
+      "status": "OPEN",
+      "observation": "390 computed-text landing has39px document overflow. Enlarged editor caption intersects player controls; timeline labels/actions truncate or require horizontal scrolling. Current finite method also leaves some new proposal text at native size. No full resize/reflow pass.",
+      "proof": "special/text200-390-landing.json and special/text200-390-edit-entry.png"
+    },
+    {
+      "id": "INSPECTOR-PLAYBACK-01",
+      "severity": "UNASSESSED",
+      "status": "LIMIT",
+      "observation": "Exact actual currentTime/readyState/seek and frame/pose input are bound; native waiting spinner visible in some saved frames. Smooth media playback is unverified.",
+      "proof": "editor-inspector-03/390-frame-481.png"
+    },
+    {
+      "id": "COMPACT-METADATA-01",
+      "severity": "UNASSESSED",
+      "status": "LIMIT",
+      "observation": "Tempo header badge is intentionally hidden below1024; accepted changed clip can remain outside compact horizontal view and requires scrolling. DOM state checks are not a full visible review usability grade.",
+      "proof": "editor-inspector-03/320-applied.png"
+    }
+  ],
+  "scopeLimits": [
+    "All dimension/overall grades null; independent review pending",
+    "No full44.5-second export, full renderer/performance/platform/assistive/native zoom/human general editing certification",
+    "Local edits/history are in-memory; reload resets fixture; no durable Creator/provider/worker/camera/upload proof",
+    "No private media or env values, model/provider calls, new dependencies, product edits, staging, commits, push or deployment",
+    "Manifest failure uses changed exact originalJSON plus whitespace; no inlineRetry exists; actual recovery is full page reload",
+    "Original asset publication authorization is repository-supplied provenance, not a rights adjudication",
+    "NodeTasks candidate and original user4173/4174 untouched"
+  ],
+  "grades": null,
+  "independentJudgePending": true
+}

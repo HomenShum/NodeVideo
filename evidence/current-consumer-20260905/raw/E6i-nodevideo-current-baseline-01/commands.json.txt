@@ -1,0 +1,29 @@
+[
+  {
+    "name": "npm-ci",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\npm.cmd",
+      "ci"
+    ],
+    "startedAt": "2026-09-05T18:48:29.315632+00:00",
+    "finishedAt": "2026-09-05T18:48:51.188919+00:00",
+    "elapsedSeconds": 21.875,
+    "exitCode": 0,
+    "logSha256": "4ef0d1ce9618d49449169845c45c434f7fb37626f1c0867704092cea02a58127"
+  },
+  {
+    "name": "lint-full-diagnostics",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\npm.cmd",
+      "run",
+      "lint",
+      "--",
+      "--max-diagnostics=200"
+    ],
+    "startedAt": "2026-09-05T18:48:51.204153+00:00",
+    "finishedAt": "2026-09-05T18:48:53.307217+00:00",
+    "elapsedSeconds": 2.10999999998603,
+    "exitCode": 1,
+    "logSha256": "1c46986a850d15795dde9a3e19bf6807ad8327507c05ea8f5f7fd44802cbc092"
+  }
+]

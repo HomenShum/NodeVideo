@@ -1,0 +1,13 @@
+# NodeVideo current first-use receipt
+
+**Re your request:** make each repository usable and handoff-ready, including actual visual and interaction proof — NodeVideo's public inspector, local Apply/Undo and real short-video export now have source-bound evidence. Its landing motion has a reproduced blocker; full readiness is not claimed.
+
+The final independent inspector/editor lane completed seven exact viewport pairs with57captures, actual480→481→480video seek/frame identities, proposal preservation, accepted swap, Undo restoration, and ten local exchanges retaining16visible messages. Manifest tampering blocked verification and actual full reload recovered. Separate390/1440text-doubling and reduced-motion cells retained their failures and visual limits.
+
+The real downloaded file is H264180×320, exactly2seconds, one video stream and no audio. Native caption editing produced PROOF CUT; active export cancellation produced no file, one explicit retry downloaded the file, FFmpeg decoded the full stream, OCR read the caption and a fresh browser reopened the retained bytes. This is the existing short codec fixture, not the untouched44.5-second720×1280calibration export.
+
+The normal-motion landing canvas is blank: actual rAF231.7ms versus start250.5ms produces−18.8ms, floor−1 and an undefined-frame exception. A second390cell repeats it; reduced motion paints index0. Root and the independent clock judge own its separate correction. Enlarged390landing overflow39px, caption/player collision, compact clipping and smooth playback remain open. All complete grades stay null.
+
+All1,374source and1,329dist files, HEAD/refs/index and the approved18owners were unchanged throughout. Every owned4983runtime has closed. No app edits, commit, push, private input or provider call occurred.
+
+Operator evidence: `E6i-nodevideo-first-use-01/artifact-manifest.json` (409files, SHA256 `d9e078300d8246590c764eed5dd8e32e540ee1118fe72cdf0a088ebea1a4c7c9`), `final-guard.json`, `RECORDER_NOTES.md`, and the structured receipt. The notes preserve both recorder mistakes and distinguish a process exit from a product pass. This is a local evidence freeze for independent judgment, not a portable publication packet.

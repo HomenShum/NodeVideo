@@ -1,0 +1,51 @@
+{
+  "summary": {
+    "name": "actual-390-negative-start",
+    "errors": [],
+    "firstFrame": 0,
+    "lastFrame": 0,
+    "framesDrawn": 3,
+    "strokes": 48,
+    "arcs": 78,
+    "firstCount": 1,
+    "lastCount": 1,
+    "countRange": [
+      1,
+      1
+    ],
+    "pulseRange": [
+      0.7702217626666666,
+      1
+    ],
+    "callbackCount": 6,
+    "maxPending": 2,
+    "pendingBeforeCleanup": 2,
+    "pendingAfterCleanup": 0,
+    "allFrameIndicesValid": true,
+    "allCountValuesValid": true,
+    "allPulseValuesValid": true,
+    "drawSequenceSha256": "2a08979e8002252124e861b2816490b04fe03b6b779f9287fb7c25652bbc4052",
+    "countsSha256": "9e07ab64261fb6803c6572f7b5c3098ea68fb45873128af820d42a2262eb900b",
+    "pulsesSha256": "e5acd212bc9ba8ec132ede75ce2c5373082a6dfc387b0d7b9aacc398804c9508"
+  },
+  "firstObservedIndices": [
+    0,
+    0,
+    0
+  ],
+  "lastObservedIndices": [
+    0,
+    0,
+    0
+  ],
+  "firstObservedCounts": [
+    1,
+    1,
+    1
+  ],
+  "lastObservedCounts": [
+    1,
+    1,
+    1
+  ]
+}

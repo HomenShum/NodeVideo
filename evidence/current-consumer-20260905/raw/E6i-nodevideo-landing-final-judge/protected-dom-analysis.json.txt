@@ -1,0 +1,335 @@
+[
+  {
+    "width": 320,
+    "elementsAndTextTokens": 220,
+    "allOtherStructureTextAndAttributesExact": true,
+    "changes": [
+      {
+        "index": 0,
+        "before": [
+          "start",
+          "html",
+          {
+            "lang": "en",
+            "class": "dark",
+            "style": "--count-pulse: 0;"
+          }
+        ],
+        "after": [
+          "start",
+          "html",
+          {
+            "lang": "en",
+            "class": "dark",
+            "style": "--count-pulse: 0.3099773333333333;"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      },
+      {
+        "index": 17,
+        "before": [
+          "start",
+          "script",
+          {
+            "type": "module",
+            "crossorigin": "",
+            "src": "/assets/index-Di-CS-ZF.js"
+          }
+        ],
+        "after": [
+          "start",
+          "script",
+          {
+            "type": "module",
+            "crossorigin": "",
+            "src": "/assets/index-CdgbMD76.js"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      },
+      {
+        "index": 79,
+        "before": [
+          "start",
+          "div",
+          {
+            "aria-label": "Count 2 of 8 at 103.4 beats per minute",
+            "class": "flex items-baseline gap-3 font-mono text-sm text-muted-foreground"
+          }
+        ],
+        "after": [
+          "start",
+          "div",
+          {
+            "aria-label": "Count 1 of 8 at 103.4 beats per minute",
+            "class": "flex items-baseline gap-3 font-mono text-sm text-muted-foreground"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      },
+      {
+        "index": 80,
+        "before": [
+          "start",
+          "span",
+          {
+            "class": "count-cell",
+            "data-live": "false"
+          }
+        ],
+        "after": [
+          "start",
+          "span",
+          {
+            "class": "count-cell",
+            "data-live": "true"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      },
+      {
+        "index": 83,
+        "before": [
+          "start",
+          "span",
+          {
+            "class": "count-cell",
+            "data-live": "true"
+          }
+        ],
+        "after": [
+          "start",
+          "span",
+          {
+            "class": "count-cell",
+            "data-live": "false"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "elementsAndTextTokens": 220,
+    "allOtherStructureTextAndAttributesExact": true,
+    "changes": [
+      {
+        "index": 0,
+        "before": [
+          "start",
+          "html",
+          {
+            "lang": "en",
+            "class": "dark",
+            "style": "--count-pulse: 0;"
+          }
+        ],
+        "after": [
+          "start",
+          "html",
+          {
+            "lang": "en",
+            "class": "dark",
+            "style": "--count-pulse: 0.42578533333333324;"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      },
+      {
+        "index": 17,
+        "before": [
+          "start",
+          "script",
+          {
+            "type": "module",
+            "crossorigin": "",
+            "src": "/assets/index-Di-CS-ZF.js"
+          }
+        ],
+        "after": [
+          "start",
+          "script",
+          {
+            "type": "module",
+            "crossorigin": "",
+            "src": "/assets/index-CdgbMD76.js"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      },
+      {
+        "index": 79,
+        "before": [
+          "start",
+          "div",
+          {
+            "aria-label": "Count 2 of 8 at 103.4 beats per minute",
+            "class": "flex items-baseline gap-3 font-mono text-sm text-muted-foreground"
+          }
+        ],
+        "after": [
+          "start",
+          "div",
+          {
+            "aria-label": "Count 1 of 8 at 103.4 beats per minute",
+            "class": "flex items-baseline gap-3 font-mono text-sm text-muted-foreground"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      },
+      {
+        "index": 80,
+        "before": [
+          "start",
+          "span",
+          {
+            "class": "count-cell",
+            "data-live": "false"
+          }
+        ],
+        "after": [
+          "start",
+          "span",
+          {
+            "class": "count-cell",
+            "data-live": "true"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      },
+      {
+        "index": 83,
+        "before": [
+          "start",
+          "span",
+          {
+            "class": "count-cell",
+            "data-live": "true"
+          }
+        ],
+        "after": [
+          "start",
+          "span",
+          {
+            "class": "count-cell",
+            "data-live": "false"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "elementsAndTextTokens": 220,
+    "allOtherStructureTextAndAttributesExact": true,
+    "changes": [
+      {
+        "index": 0,
+        "before": [
+          "start",
+          "html",
+          {
+            "lang": "en",
+            "class": "dark",
+            "style": "--count-pulse: 0;"
+          }
+        ],
+        "after": [
+          "start",
+          "html",
+          {
+            "lang": "en",
+            "class": "dark",
+            "style": "--count-pulse: 0.31066666666666665;"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      },
+      {
+        "index": 17,
+        "before": [
+          "start",
+          "script",
+          {
+            "type": "module",
+            "crossorigin": "",
+            "src": "/assets/index-Di-CS-ZF.js"
+          }
+        ],
+        "after": [
+          "start",
+          "script",
+          {
+            "type": "module",
+            "crossorigin": "",
+            "src": "/assets/index-CdgbMD76.js"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      },
+      {
+        "index": 79,
+        "before": [
+          "start",
+          "div",
+          {
+            "aria-label": "Count 2 of 8 at 103.4 beats per minute",
+            "class": "flex items-baseline gap-3 font-mono text-sm text-muted-foreground"
+          }
+        ],
+        "after": [
+          "start",
+          "div",
+          {
+            "aria-label": "Count 1 of 8 at 103.4 beats per minute",
+            "class": "flex items-baseline gap-3 font-mono text-sm text-muted-foreground"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      },
+      {
+        "index": 80,
+        "before": [
+          "start",
+          "span",
+          {
+            "class": "count-cell",
+            "data-live": "false"
+          }
+        ],
+        "after": [
+          "start",
+          "span",
+          {
+            "class": "count-cell",
+            "data-live": "true"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      },
+      {
+        "index": 83,
+        "before": [
+          "start",
+          "span",
+          {
+            "class": "count-cell",
+            "data-live": "true"
+          }
+        ],
+        "after": [
+          "start",
+          "span",
+          {
+            "class": "count-cell",
+            "data-live": "false"
+          }
+        ],
+        "allowedClockOrBoundAsset": true
+      }
+    ]
+  }
+]

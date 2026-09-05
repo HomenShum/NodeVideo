@@ -1,0 +1,82 @@
+from pathlib import Path
+import hashlib, json, subprocess, difflib, sys
+from datetime import datetime, timezone
+sys.stdout.reconfigure(encoding='utf-8')
+P=Path(__file__).parent
+R=Path('D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905')
+O=P/'E6i-nodevideo-landing-final-judge'
+O.mkdir(exist_ok=True)
+sha=lambda b:hashlib.sha256(b).hexdigest()
+read=lambda name:json.loads((P/name).read_text(encoding='utf-8'))
+def save(name,value): (O/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+checks=[]
+def check(name,passed,detail=None): checks.append({'name':name,'passed':bool(passed),'detail':detail})
+def git(*args):return subprocess.check_output(['git','--no-optional-locks','-C',str(R),*args])
+guards={n:sha(git(*a)) for n,a in {'head':['rev-parse','HEAD'],'refs':['for-each-ref','--format=%(refname) %(objectname)'],'indexEntries':['ls-files','--stage','-z']}.items()}
+save('opening-guards.json',guards)
+freeze=read('E6i_NODEVIDEO_LANDING_BUILD_FREEZE.json')
+receipt=read('E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.json')
+manifest=read('E6i-nodevideo-landing-after-02/artifact-manifest.json')
+bad=[]
+for row in manifest['artifacts']+manifest['contextBindings']:
+ b=(P/row['path']).read_bytes()
+ if len(b)!=row['bytes'] or sha(b)!=row['sha256']:bad.append(row['path'])
+check('228 raw native artifacts and seven context bindings exact',not bad and len(manifest['artifacts'])==228,{'mismatches':bad,'payloadBytes':sum(r['bytes'] for r in manifest['artifacts'])})
+check('Final native receipt and manifest frozen identities',sha((P/'E6i_NODEVIDEO_LANDING_AFTER_RECEIPT.json').read_bytes())=='ec4b6859658ef54073b496c2433d16c9936fb40cd84ff575081ab0dc868a9a45' and sha((P/'E6i-nodevideo-landing-after-02/artifact-manifest.json').read_bytes())=='83d48d24e795bb294ee7f4f06de16919315820907752e4aaa9d0c42d515e223d')
+sourcebad=[k for k,v in freeze['allSourceBindings'].items() if sha((R/k).read_bytes())!=v]
+distbad=[r['path'] for r in freeze['dist'] if sha((R/r['path']).read_bytes())!=r['sha256'] or (R/r['path']).stat().st_size!=r['bytes']]
+check('All 1374 current source bindings and 1329 dist files exact',not sourcebad and not distbad,{'sourceMismatches':sourcebad,'distMismatches':distbad})
+old=read('E6i-nodevideo-first-use-01/editor-inspector-03-before.json')
+oldsource={r['path']:r['sha256'] for r in old['source']}
+delta=[k for k,v in oldsource.items() if freeze['allSourceBindings'].get(k)!=v]
+check('1373 previous inputs protected; only landing changed',delta==['apps/landing/src/landing.tsx'],delta)
+prior=read('E6i_NODEVIDEO_18_OWNER_FREEZE.json')
+check('All prior 18 reviewed owners exact',all(freeze['allSourceBindings'][r['path']]==r['sha256'] for r in prior['sourceOwners']))
+owner=(R/'apps/landing/src/landing.tsx').read_bytes()
+before=(P/'E6i-nodevideo-landing-clock-before-01/source.tsx.txt').read_bytes()
+expected=before.replace(b'const started = performance.now();',b'let started: number | undefined;').replace(b'const tick = (now: number) => {\n',b'const tick = (now: number) => {\n      started ??= now;\n').replace(b'const draw = (now: number) => {\n',b'const draw = (now: number) => {\n      started ??= now;\n')
+check('Actual owner is exactly the four-line clock repair',owner==expected and sha(owner)=='5d4ce6007803f7166949c40cdec646e0d2c51b0ee7ba8ca0dc2ac686b2de45ab')
+(O/'owner.diff').write_text(''.join(difflib.unified_diff(before.decode('utf-8').splitlines(True),owner.decode('utf-8').splitlines(True),fromfile='original-actual-owner',tofile='current-actual-owner')),encoding='utf-8')
+(O/'source-before.tsx.txt').write_bytes(before);(O/'source-after.tsx.txt').write_bytes(owner)
+posebytes=(R/'apps/landing/src/pose-loop.json').read_bytes();pose=json.loads(posebytes)
+nulls=[i for i,f in enumerate(pose['frames']) if all(v is None for v in f)]
+check('Immutable pose has exactly five all-null frames',sha(posebytes)=='b2f2ea20a01dbe4815a921c0db6330c24967495dbc7b8b798b6ff82a13488be1' and nulls==[19,24,25,76,79],{'frames':len(pose['frames']),'allNullIndices':nulls})
+for phase,expectedStatus,sourceHash in [('before','ORIGINAL_FAILURES_REPRODUCED',sha(before)),('after','PASS',sha(owner)),('knockout','ORIGINAL_FAILURES_REPRODUCED',sha(before))]:
+ folder=f'E6i-nodevideo-landing-clock-{phase}-02'
+ f=read(folder+'/freeze.json');d=read(folder+'/report.json')
+ check(f'Frozen v2 {phase} actual source, pose, harness and nine scenarios',f['sourceSha256']==sourceHash and f['poseSha256']==sha(posebytes) and f['harnessSha256']=='4819f1d07796aad1ad98288d622cca908f74457d05b60fc20790ea46a4c61d8b' and sha((P/folder/'source.tsx.txt').read_bytes())==sourceHash and d['status']==expectedStatus and len(d['scenarios'])==9)
+ if phase!='after':check(f'{phase} reproduces both native negative-start causal inputs',all(any("reading '11'" in e for e in s['errors']) for s in d['scenarios'][:2]))
+ else:check('After timestamp-zero, 3601 simulated callbacks, remount and cleanup assertions passed',all(not s['errors'] and s['allFrameIndicesValid'] and s['allCountValuesValid'] and s['allPulseValuesValid'] and s['pendingAfterCleanup']==0 for s in d['scenarios']) and d['scenarios'][5]['framesDrawn']==3601 and d['scenarios'][8]['remount']['indices']==[0,0,1])
+rootcheck=read('E6i-nodevideo-landing-check.json');log=(P/'E6i-nodevideo-landing-check-01/normal-check.log').read_bytes()
+check('Normal npm check receipt raw log hash and exit exact',rootcheck['status']=='PASS' and rootcheck['commands'][0]['exitCode']==0 and sha(log)==rootcheck['commands'][0]['logSha256'])
+text=log.decode('utf-8');check('Normal gate reports unchanged 73 files / 344 tests and rendered contract',all(s in text for s in ['73 passed','344 passed','UI contract verified: rendered UI matches .ui/contract.json']))
+rep=read('E6i-nodevideo-landing-after-02/report.json');oldrep=read('E6i-nodevideo-landing-after-01/report.json')
+check('Original every-sample-paint failure retained',oldrep['status']=='FAILED_AFFECTED_PROOF' and any(c['name']=='Every sample has actual native paint' and c['passed'] is False for c in oldrep['cells'][0]['checks']))
+rows=[];total_samples=0;total_zero=0;total_runs=0
+for c in rep['cells']:
+ s=read(f"E6i-nodevideo-landing-after-02/{c['name']}/native-samples.json")
+ check(c['name']+' exact raw samples and all declared checks',s==c['samples'] and all(t['passed'] for t in c['checks']))
+ zeros=[i for i,v in enumerate(s) if v['canvas']['painted']==0];runs=[];i=0
+ while i<len(s):
+  if s[i]['canvas']['painted']!=0:i+=1;continue
+  start=i
+  while i+1<len(s) and s[i+1]['canvas']['painted']==0:i+=1
+  nxt=i+1 if i+1<len(s) else None
+  runs.append({'firstSample':start,'lastSample':i,'recoverySample':nxt,'recovered':nxt is not None and s[nxt]['canvas']['painted']>0,'trailingCensored':nxt is None});i+=1
+ reported=[{k:v for k,v in r.items() if k in runs[0]} for r in c['trackingGaps']['blankRuns']] if runs else []
+ check(c['name']+' zero samples/runs independently reconstructed',reported==runs and len(zeros)==c['trackingGaps']['blankSampleCount'])
+ countset=sorted(set(int(v['count']['label'].split()[1]) for v in s));fps=len(set(v['canvas']['fingerprint'] for v in s));reduced=c['mode']=='reduced'
+ check(c['name']+' native window/paint/count scope',c['firstPaintObserved']['canvas']['painted']>0 and not c['errors'] and not c['external'] and (c['sampleElapsedMilliseconds']>=2000 if reduced else c['sampleElapsedMilliseconds']>=18000) and (not zeros and fps==1 and countset==[1] if reduced else fps>16 and countset==list(range(1,9))))
+ check(c['name']+' natural navigation readback',c['navigation']['landingAbsent'] and c['navigation']['countRowAbsent'] and all(c['navigation'][n]['canvas']['painted']>0 for n in ['back','reload']))
+ total_samples+=len(s);total_zero+=len(zeros);total_runs+=len(runs)
+ rows.append({'cell':c['name'],'samples':len(s),'zeroSamples':len(zeros),'blankRuns':runs,'observedMilliseconds':c['sampleElapsedMilliseconds'],'firstPaint':c['firstPaintObserved']['canvas']['painted'],'counts':countset,'fingerprints':fps,'overflow':c['start']['overflow'],'zeroSampleIndices':zeros})
+save('native-sample-analysis.json',{'cells':rows,'totalSamples':total_samples,'zeroSamples':total_zero,'blankRuns':total_runs,'exactBrowserFrameIndexAttribution':False,'continuousPaintClaim':False,'closedRunRecoveryIsObservationNotIndependentDurationGuarantee':True})
+check('Native final totals exact: 9 cells / 99 checks / 848 samples / 49 zeros / 43 runs',len(rep['cells'])==9 and sum(len(c['checks']) for c in rep['cells'])==99 and (total_samples,total_zero,total_runs)==(848,49,43))
+oldcap=(P/'E6i-nodevideo-landing-after-01/capture.mjs').read_text(encoding='utf-8');newcap=(P/'E6i-nodevideo-landing-after-02/capture.mjs').read_text(encoding='utf-8')
+(O/'recorder.diff').write_text(''.join(difflib.unified_diff(oldcap.splitlines(True),newcap.splitlines(True),fromfile='failed-retained-recorder',tofile='corrected-recorder')),encoding='utf-8')
+check('Recorder keeps 18s/2s limits and no timestamp/pose overrides',all(s in oldcap and s in newcap for s in ["const samples=[],duration=mode==='reduced'?2000:18000;",'samples.length<160','clockInstrumentation:false','forcedFailure:false']) and sha(newcap.encode())=='d43ce26bd008756a62b66536235baf1df0879f4bd8d28507bcfd927a3bc22c35')
+expectedguard=read('E6i-nodevideo-landing-after-02/final-source-guard.json')['guards']
+check('HEAD, refs, index entries match frozen worker guard',guards=={'head':expectedguard['head'],'refs':expectedguard['refs'],'indexEntries':expectedguard['index']})
+check('Root and worker reference serializers reconcile',sha(git('show-ref'))==read('E6i-nodevideo-landing-clock-repair-01/receipt.json')['gitGuards']['refs'])
+save('checks.json',{'at':datetime.now(timezone.utc).isoformat(),'checks':checks,'passed':sum(c['passed'] for c in checks),'total':len(checks)})
+print(json.dumps({'passed':sum(c['passed'] for c in checks),'total':len(checks),'failed':[c for c in checks if not c['passed']],'samples':total_samples,'zeros':total_zero,'runs':total_runs}))

@@ -1,0 +1,173 @@
+[
+  {
+    "viewport": {
+      "width": 320,
+      "height": 800
+    },
+    "before": {
+      "raw": {
+        "path": "E6i-nodevideo-landing-before-01/320/before.png",
+        "bytes": 27979,
+        "sha256": "689ee8b289b5fdc0635d5591d514ad25f1024ca3d0b9f6d1cf355e39e90a1a7e"
+      },
+      "boundary": {
+        "path": "E6i-nodevideo-landing-before-01/320/change-boundary.png",
+        "bytes": 29574,
+        "sha256": "2bb448167dc9f833ea454920bf24f6ee812bb7cbeef0f6a806b410c346ee61ed"
+      },
+      "state": {
+        "path": "E6i-nodevideo-landing-before-01/320/before.json",
+        "bytes": 1968,
+        "sha256": "12dd13284c1e25e4ddbd4bfeeca3081d749a0d1ece3333a9f1dedf4ecf5b39a0"
+      }
+    },
+    "after": {
+      "start.png": {
+        "path": "E6i-nodevideo-landing-after-02/320-normal/start.png",
+        "bytes": 33862,
+        "sha256": "2df9ec898cc0e9d5b50352d30b9e9f2899f92c37dd4bf7adcfc713e888b454f3"
+      },
+      "mid.png": {
+        "path": "E6i-nodevideo-landing-after-02/320-normal/mid.png",
+        "bytes": 31807,
+        "sha256": "1438ec4af808273618c42af2f40457e0273137852fc88c787a4ad35077bf509d"
+      },
+      "end.png": {
+        "path": "E6i-nodevideo-landing-after-02/320-normal/end.png",
+        "bytes": 31945,
+        "sha256": "53c1cfd466ea7066992dc80b03894ed9b8c2ec5529652aa4feea176f58f11df7"
+      },
+      "change-boundary.png": {
+        "path": "E6i-nodevideo-landing-after-02/320-normal/change-boundary.png",
+        "bytes": 29610,
+        "sha256": "c0f97b3913ecd070578a7b13a0588c466cac9ee49178930006fe7d5c208c3201"
+      },
+      "native-samples.json": {
+        "path": "E6i-nodevideo-landing-after-02/320-normal/native-samples.json",
+        "bytes": 533095,
+        "sha256": "33561e1b88cbff608e44e7cb2ababc92e2a7d946e181360b903a1a339fffa378"
+      },
+      "cell.json": {
+        "path": "E6i-nodevideo-landing-after-02/320-normal/cell.json",
+        "bytes": 602180,
+        "sha256": "daa5902e92488039551dbb868564267b9a2ad494d8f9459f5b0aa99d4e6f55da"
+      }
+    },
+    "sameScrollAndGeometry": true,
+    "comparisonLimit": "Normal after boundary may capture a real source tracking gap. Actual start/mid/end PNGs and video are distinct observations; a blank PNG is not called painted."
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "before": {
+      "raw": {
+        "path": "E6i-nodevideo-landing-before-01/390/before.png",
+        "bytes": 40719,
+        "sha256": "18343ac54e3dd726d583858f38e055b369f85343c6793dd3c21ed81c53ee30ed"
+      },
+      "boundary": {
+        "path": "E6i-nodevideo-landing-before-01/390/change-boundary.png",
+        "bytes": 42385,
+        "sha256": "831923e5c33025d54bdf5031afd46c26bb67128a969a512a43cb8ae2c696424e"
+      },
+      "state": {
+        "path": "E6i-nodevideo-landing-before-01/390/before.json",
+        "bytes": 1968,
+        "sha256": "cc70b49b2d4c8d65daaa9c3939956ddf85549b729a0ee8098b095a82ce54645d"
+      }
+    },
+    "after": {
+      "start.png": {
+        "path": "E6i-nodevideo-landing-after-02/390-normal/start.png",
+        "bytes": 49719,
+        "sha256": "9e2b9669fb4742950c5e818237ad4c1fb2d968e2e0f536a6f92dc4a7a50aaf8f"
+      },
+      "mid.png": {
+        "path": "E6i-nodevideo-landing-after-02/390-normal/mid.png",
+        "bytes": 48912,
+        "sha256": "f309d9131bf67cfe73b6d90967c449ad40a097fcf6c116950abdf63d07957d56"
+      },
+      "end.png": {
+        "path": "E6i-nodevideo-landing-after-02/390-normal/end.png",
+        "bytes": 48165,
+        "sha256": "22138bdf9c952488c710fe2df11101df9a7cbf5be8c5d02cc580b0ef37ba4b30"
+      },
+      "change-boundary.png": {
+        "path": "E6i-nodevideo-landing-after-02/390-normal/change-boundary.png",
+        "bytes": 48599,
+        "sha256": "f2172ea282f9b091b94aaed5748d4edf29b1d08187fa6065dff3cf6a9c659e16"
+      },
+      "native-samples.json": {
+        "path": "E6i-nodevideo-landing-after-02/390-normal/native-samples.json",
+        "bytes": 529591,
+        "sha256": "dc188c42a3c37c68455e4ec1b0b5d0bfe0bb0520ca30b9a3194f18183954a56a"
+      },
+      "cell.json": {
+        "path": "E6i-nodevideo-landing-after-02/390-normal/cell.json",
+        "bytes": 598833,
+        "sha256": "d6d1f260f4b54d9bdef3d1b48d691025d8890be31bc64cf5c1940a7d9157389d"
+      }
+    },
+    "sameScrollAndGeometry": true,
+    "comparisonLimit": "Normal after boundary may capture a real source tracking gap. Actual start/mid/end PNGs and video are distinct observations; a blank PNG is not called painted."
+  },
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 960
+    },
+    "before": {
+      "raw": {
+        "path": "E6i-nodevideo-landing-before-01/1440/before.png",
+        "bytes": 107218,
+        "sha256": "2bd2e458d696e635ee7384f221e35450cfee8904256494ac7d1ed53ff5423691"
+      },
+      "boundary": {
+        "path": "E6i-nodevideo-landing-before-01/1440/change-boundary.png",
+        "bytes": 109276,
+        "sha256": "f3e815faf1e65a956fe83f6646c82e0f4a1aa440313ed1315adb3c4fe028b3d4"
+      },
+      "state": {
+        "path": "E6i-nodevideo-landing-before-01/1440/before.json",
+        "bytes": 1988,
+        "sha256": "b69aeeb179abdd6470d6778a4cc54e77225026665646eb03a74a2bc50bf2a321"
+      }
+    },
+    "after": {
+      "start.png": {
+        "path": "E6i-nodevideo-landing-after-02/1440-normal/start.png",
+        "bytes": 128975,
+        "sha256": "d517786eb44889cb88bf19344801119806f18e66891201c1a23ff1db9b9a723b"
+      },
+      "mid.png": {
+        "path": "E6i-nodevideo-landing-after-02/1440-normal/mid.png",
+        "bytes": 130022,
+        "sha256": "527ee5ed472e4eaa9798d5c87ed544087ff373c0042c195539f68b1e4a6b8985"
+      },
+      "end.png": {
+        "path": "E6i-nodevideo-landing-after-02/1440-normal/end.png",
+        "bytes": 117853,
+        "sha256": "b694f2cfdd5064e3867c22e207d671306f9fbf14b551dbd03776ce01f54ea12c"
+      },
+      "change-boundary.png": {
+        "path": "E6i-nodevideo-landing-after-02/1440-normal/change-boundary.png",
+        "bytes": 118842,
+        "sha256": "34bb39bc46e0de63e5e3ad8ddaf3bea851664e75c8ab62ceda6640b4069fcd6e"
+      },
+      "native-samples.json": {
+        "path": "E6i-nodevideo-landing-after-02/1440-normal/native-samples.json",
+        "bytes": 532468,
+        "sha256": "3ba5c1661f852ddcd3e63f25f209610541bc0adbbd68e92f237785486ad5652d"
+      },
+      "cell.json": {
+        "path": "E6i-nodevideo-landing-after-02/1440-normal/cell.json",
+        "bytes": 602925,
+        "sha256": "240c6528e39e5c0cdfd26b87cd4470a60ef4b17448fa115a4373c664e650dbb9"
+      }
+    },
+    "sameScrollAndGeometry": true,
+    "comparisonLimit": "Normal after boundary may capture a real source tracking gap. Actual start/mid/end PNGs and video are distinct observations; a blank PNG is not called painted."
+  }
+]

@@ -1,0 +1,49 @@
+{
+  "summary": {
+    "name": "fresh-remount-after-cleanup",
+    "errors": [
+      "TypeError: Cannot read properties of undefined (reading '11')"
+    ],
+    "firstFrame": -1,
+    "lastFrame": -1,
+    "framesDrawn": 1,
+    "strokes": 0,
+    "arcs": 0,
+    "firstCount": 0,
+    "lastCount": 1,
+    "countRange": [
+      0,
+      1
+    ],
+    "pulseRange": [
+      0.31066666666666665,
+      1.1171866666666668
+    ],
+    "callbackCount": 4,
+    "maxPending": 2,
+    "pendingBeforeCleanup": 1,
+    "pendingAfterCleanup": 0,
+    "allFrameIndicesValid": false,
+    "allCountValuesValid": false,
+    "allPulseValuesValid": false,
+    "drawSequenceSha256": "d124b23c696a85177dac41a7a28c853546e55caa5b4798fb917f2c3dc1b331ce",
+    "countsSha256": "fcb99bcf1428bb917ed25f2260c182b4054a03c2d762fd70d816c9c34b374477",
+    "pulsesSha256": "c04061235a69d598eda4aab620d48ab60e8e1934bd56659723db21c72fb57579"
+  },
+  "firstObservedIndices": [
+    -1
+  ],
+  "lastObservedIndices": [
+    -1
+  ],
+  "firstObservedCounts": [
+    0,
+    1,
+    1
+  ],
+  "lastObservedCounts": [
+    0,
+    1,
+    1
+  ]
+}

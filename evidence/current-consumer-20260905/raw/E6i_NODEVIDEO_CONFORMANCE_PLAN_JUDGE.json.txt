@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-05T19:32:44.375058+00:00",
+  "verdict": "APPROVED_BOUNDED_PLAN",
+  "namedProof": "NODEVIDEO-CONFORMANCE-REFERENCE-01",
+  "reviewer": "independent nonauthor; reused reviewer context",
+  "checksPassed": 16,
+  "checksTotal": 16,
+  "candidateHead": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "canonicalRef": "HomenShum/NodeKit/.github/workflows/repo-conformance.yml@ef4ac8a011b230efa3324892a193abe02ff2d673",
+  "beforeSha256": "c4fe65fd6d7dc8798f9a6e7c9531e0f5b38c29b6d71aac7ad1a6459af32b2363",
+  "proposedSha256": "3d489dbd49b458b5c1342a3bed0b25cf10b0edd40c612455d2bbbec79373c08d",
+  "guard": "CLOSED",
+  "scope": "One uses repository name replacement only; immutable ef4 revision, triggers, permissions, job identity and executable workflow revision unchanged. No source edit or workflow dispatch by reviewer.",
+  "requiredLater": [
+    "Review actual one-line product diff and other source immutability.",
+    "Normal exact-head shared conformance must resolve the canonical reusable workflow and report actual consumer/registry checkout identities and contract result."
+  ],
+  "limits": [
+    "Called workflow still defaults platform_ref to mutable main and uses the old repository name in ordinary checkout. Whole execution is not pinned.",
+    "This approval neither certifies shared CI nor upgrades the action pins to newer 5c9.",
+    "Earlier missing-revision diagnosis is corrected: canonical commit and workflow exist. Historical HTTP 422 remains failure.",
+    "Closed lint approval and full grades are unchanged."
+  ],
+  "artifactManifest": {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-conformance-plan-judge\\artifact-manifest.json",
+    "sha256": "fc9240ae6250791d944b6730399b5ddf16825a404c8021895dea1d5ffd8ae802"
+  }
+}

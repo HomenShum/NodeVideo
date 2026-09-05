@@ -1,0 +1,46 @@
+function quickBrowserExportPlan() {
+  const plan = structuredClone(committedEditPlan);
+  plan.canvas = { width: 180, height: 320 };
+  plan.durationFrames = 30;
+  const video = plan.tracks.find((track) => track.kind === 'video' && track.role === 'primary');
+  if (!video) throw new Error('committed plan is missing its primary video track');
+  video.clips = [
+    {
+      ...video.clips[0],
+      timelineRange: { startFrame: 0, endFrameExclusive: 30 },
+      // Keep the real-codec smoke fast: seeking through 15 seconds of source
+      // inside ffmpeg.wasm would test decoder throughput, not export wiring.
+      sourceRange: { startFrame: 0, endFrameExclusive: 30 },
+    },
+  ];
+  const overlay = plan.tracks.find((track) => track.kind === 'overlay');
+  if (!overlay) throw new Error('committed plan is missing its overlay track');
+  overlay.clips = [
+    {
+      ...overlay.clips[0],
+      timelineRange: { startFrame: 0, endFrameExclusive: 30 },
+    },
+  ];
+  plan.tracks = plan.tracks.filter((track) => track.kind !== 'audio');
+  plan.audio = {
+    routing: [
+      {
+        id: 'route.mute.asset.take-a',
+        sourceKind: 'asset-audio',
+        sourceId: 'asset.take-a',
+        bus: 'program',
+        muted: true,
+        gainDb: 0,
+      },
+    ],
+    events: [
+      {
+        id: 'event.silence',
+        kind: 'silence',
+        targetStartMs: 0,
+        targetEndMs: 1000,
+      },
+    ],
+  };
+  return plan;
+}

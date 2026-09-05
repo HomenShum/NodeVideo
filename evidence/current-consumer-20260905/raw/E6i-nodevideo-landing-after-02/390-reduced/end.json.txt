@@ -1,0 +1,137 @@
+{
+  "at": 2292.899999976158,
+  "url": "http://127.0.0.1:4983/",
+  "landingPresent": true,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "scroll": {
+    "x": 0,
+    "y": 316
+  },
+  "overflow": 0,
+  "canvas": {
+    "width": 560,
+    "height": 560,
+    "painted": 3606,
+    "fingerprint": "c869d0b0",
+    "rect": {
+      "x": 21,
+      "y": 495.671875,
+      "width": 348,
+      "height": 348
+    }
+  },
+  "count": {
+    "label": "Count 1 of 8 at 103.4 beats per minute",
+    "live": [
+      {
+        "text": "1",
+        "live": "false"
+      },
+      {
+        "text": "2",
+        "live": "false"
+      },
+      {
+        "text": "3",
+        "live": "false"
+      },
+      {
+        "text": "4",
+        "live": "false"
+      },
+      {
+        "text": "5",
+        "live": "false"
+      },
+      {
+        "text": "6",
+        "live": "false"
+      },
+      {
+        "text": "7",
+        "live": "false"
+      },
+      {
+        "text": "8",
+        "live": "false"
+      }
+    ],
+    "pulse": "",
+    "rect": {
+      "x": 20,
+      "y": 420.671875,
+      "width": 350,
+      "height": 34
+    }
+  },
+  "links": [
+    {
+      "text": "Studio",
+      "href": "/studio.html"
+    },
+    {
+      "text": "For agents",
+      "href": "/.well-known/agent-ui.json"
+    },
+    {
+      "text": "Open the coach",
+      "href": "/apps/chrome-extension/sidepanel.html"
+    },
+    {
+      "text": "Watch a real comparison",
+      "href": "/studio.html"
+    },
+    {
+      "text": "Preview a sample verdict — no setup needed",
+      "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+    },
+    {
+      "text": "Open the collab editor",
+      "href": "/collab.html"
+    },
+    {
+      "text": "Open the coach",
+      "href": "/apps/chrome-extension/sidepanel.html"
+    },
+    {
+      "text": "Open the stitch studio",
+      "href": "/edit.html"
+    },
+    {
+      "text": "Proof console",
+      "href": "/studio.html"
+    },
+    {
+      "text": "Open the practice room (early beta)",
+      "href": "/practice.html"
+    }
+  ],
+  "protectedText": [
+    "Choreography coach · judged on visible motion only",
+    "Learn the dance you admire.",
+    "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+    "real pose track · verified public case",
+    "Three ways to use NodeVideo today",
+    "Make a collab edit",
+    "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+    "Coach a take",
+    "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+    "Cut takes into an edit",
+    "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+    "Practice live",
+    "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+    "Form",
+    "Joint angles against the reference pose, frame by frame.",
+    "Timing",
+    "Your landings against the music grid, in milliseconds.",
+    "Path",
+    "Where your body travels compared with the reference.",
+    "Dynamics",
+    "The sharpness of your hits — pops, locks, accents.",
+    "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+    "local-first · hash-verified · consent-gated"
+  ]
+}

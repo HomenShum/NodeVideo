@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-05T18:54:30.643030+00:00",
+  "mode": "full",
+  "argv": [
+    "C:/nvm4w/nodejs/npm.cmd",
+    "audit",
+    "--json"
+  ],
+  "exitCode": 1,
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 6,
+      "high": 7,
+      "critical": 0,
+      "total": 13
+    },
+    "dependencies": {
+      "prod": 433,
+      "dev": 433,
+      "optional": 116,
+      "peer": 36,
+      "peerOptional": 0,
+      "total": 892
+    }
+  },
+  "sha256": "e5baed6cac34867b0931df86ca3202d30691a5ca0a8a68f26bdcbd809540d683"
+}

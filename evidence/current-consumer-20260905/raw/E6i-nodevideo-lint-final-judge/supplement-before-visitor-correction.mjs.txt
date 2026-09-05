@@ -1,0 +1,70 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import crypto from 'node:crypto';
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+const P=path.dirname(fileURLToPath(import.meta.url)),O=path.join(P,'E6i-nodevideo-lint-final-judge');
+const f=JSON.parse(fs.readFileSync(path.join(O,'harness-freeze.json'),'utf8'));
+const ts=createRequire(path.join(f.candidate,'package.json'))('typescript');
+const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
+const checks=[],raw=[];
+const check=(name,ok,detail)=>checks.push({name,passed:!!ok,detail});
+function read(side,name){const s=fs.readFileSync(path.join(O,side,name),'utf8');if(sha(s)!==f.sources.find(x=>x.path===name)[side].sha256)throw new Error('SOURCE_DRIFT');return s;}
+function tree(side,name){return ts.createSourceFile(name,read(side,name),ts.ScriptTarget.Latest,true);}
+function visit(node,predicate){let found;function go(n){if(found)return;if(predicate(n)){found=n;return;}ts.forEachChild(n,go);}go(node);return found;}
+function evaluate(code,values){const c=vm.createContext({...structuredClone(values),console:{log(){}}},{codeGeneration:{strings:false,wasm:false}});new vm.Script(code).runInContext(c,{timeout:1000});return JSON.parse(JSON.stringify(c.__out));}
+const runs=[
+ {scores:{a:{score:0,evidence:'first-a'},firstOnly:{score:0,evidence:'fallback “证据”'}}},
+ {scores:{a:{score:1,evidence:''},b:{score:1}}},
+ {scores:{a:{score:2,evidence:'last-a'},b:{score:2,evidence:'last-b'},lastOnly:{score:1,evidence:'last-only'}}},
+];
+const merge=[];
+for(const side of ['before','after']){
+ const sf=tree(side,'tools/clip-gate/judge-video.mjs');
+ const run=visit(sf,n=>ts.isVariableDeclaration(n)&&n.name.getText(sf)==='run');
+ const statements=run.initializer.body.statements;
+ const selected=statements.filter(n=>ts.isVariableStatement(n)&&n.declarationList.declarations.some(d=>['med','totalOf'].includes(d.name.getText(sf)))||ts.isIfStatement(n)&&n.expression.getText(sf)==='runs.length > 1');
+ if(selected.length!==3)throw new Error('MERGE_SCOPE_NOT_EXACT');
+ const code=selected.map(n=>n.getText(sf)).join('\n')+'\n__out={judge,order:Object.keys(judge.scores)};';
+ const out=evaluate(code,{runs,judge:runs[0]});merge.push(out);raw.push({side,kind:'actual med/totalOf/Set-merge block',code,output:out});
+}
+check('Set median middle-run first-run fallback and absent fallback',JSON.stringify(merge[0])===JSON.stringify(merge[1])&&merge[1].judge.scores.firstOnly.evidence==='fallback “证据”'&&merge[1].judge.scores.a.evidence===''&&merge[1].judge.scores.b.evidence===''&&merge[1].judge.scores.lastOnly.evidence===''&&merge[1].order.join(',')==='a,firstOnly,b,lastOnly',merge[1]);
+for(const value of ['', '\0', 'a\0b\0c\0', '证\0据😀\0', '\0'.repeat(350),'x'.repeat(299)+'\0😀tail',' \0\n\t ']){
+ const observed=[];
+ for(const side of ['before','after']){
+  const sf=tree(side,'tools/clip-gate/voice.mjs');
+  const call=visit(sf,n=>ts.isCallExpression(n)&&n.expression.getText(sf)==='console.error'&&n.arguments.length===1&&n.arguments[0].getText(sf).includes('lastErr.'));
+  const expr=call.arguments[0].getText(sf);const out=evaluate('__out='+expr,{lastErr:value});observed.push(out);raw.push({side,kind:'actual NUL sanitizer expression',expr,input:value,output:out});
+ }
+ check('NUL literal input '+JSON.stringify(value).slice(0,70),observed[0]===observed[1]&&observed[1]===value.split(String.fromCharCode(0)).join('').slice(0,300));
+}
+const messages=[];
+for(const side of ['before','after']){
+ const sf=tree(side,'scripts/quality/verify-production-deploy.mjs');
+ const stmt=sf.statements.at(-2);if(!ts.isExpressionStatement(stmt)||!ts.isCallExpression(stmt.expression)||stmt.expression.expression.getText(sf)!=='console.error')throw new Error('DEPLOY_STRING_SEAM');
+ const expr=stmt.expression.arguments[0].getText(sf);
+ const output=evaluate('__out='+expr,{url:'http://owned.invalid/证据?q=1',timeoutMs:1234});messages.push(output);raw.push({side,kind:'actual final failure string only; no fetch loop executed',expr,output});
+}
+check('deploy failure wording exact without endpoint execution',messages[0]===messages[1]&&messages[1].endsWith('The deployment is not verified live.'));
+function shape(n,sf){
+ if(ts.isStringLiteral(n)||ts.isNoSubstitutionTemplateLiteral(n))return ['string',n.text];
+ if(ts.isIdentifier(n)||ts.isNumericLiteral(n)||ts.isRegularExpressionLiteral(n)||ts.isTemplateHead(n)||ts.isTemplateMiddle(n)||ts.isTemplateTail(n))return [ts.SyntaxKind[n.kind],n.text];
+ const out=[];ts.forEachChild(n,c=>out.push(shape(c,sf)));return [ts.SyntaxKind[n.kind],...out];
+}
+const clips=[];
+for(const side of ['before','after']){
+ const sf=tree(side,'tools/clip-gate/clip.mjs');
+ const imports=sf.statements.filter(ts.isImportDeclaration).map(n=>({source:n.moduleSpecifier.text,symbols:n.importClause.namedBindings.elements.map(x=>x.name.text).sort()}));
+ const variables=[];function go(n){if(ts.isVariableDeclarationList(n))variables.push({names:n.declarations.map(d=>d.name.getText(sf)),flags:n.flags});ts.forEachChild(n,go);}go(sf);
+ clips.push({body:sf.statements.filter(n=>!ts.isImportDeclaration(n)).map(n=>shape(n,sf)),imports,variables,comment:read(side,'tools/clip-gate/clip.mjs').startsWith('// The whole loop')});
+}
+const importsEqual=JSON.stringify([...clips[0].imports].sort((a,b)=>a.source.localeCompare(b.source)))===JSON.stringify([...clips[1].imports].sort((a,b)=>a.source.localeCompare(b.source)));
+const relativeOrder=x=>x.imports.filter(i=>i.source.startsWith('.')).map(i=>i.source).join(',');
+const flagChanges=clips[0].variables.map((a,i)=>({before:a,after:clips[1].variables[i]})).filter(x=>JSON.stringify(x.before)!==JSON.stringify(x.after));
+check('clip body/import identities and sole clips let-to-const',JSON.stringify(clips[0].body)===JSON.stringify(clips[1].body)&&importsEqual&&relativeOrder(clips[0])===relativeOrder(clips[1])&&flagChanges.length===1&&flagChanges[0].before.names.join()==='clips'&&flagChanges[0].before.flags===ts.NodeFlags.Let&&flagChanges[0].after.flags===ts.NodeFlags.Const&&clips.every(x=>x.comment),{imports:clips.map(x=>x.imports),flagChanges});
+raw.push({kind:'clip AST comparison',clips});
+const report={status:checks.every(x=>x.passed)?'PASS':'FAIL',checksPassed:checks.filter(x=>x.passed).length,checksTotal:checks.length,checks,sourceFreezeSha256:sha(fs.readFileSync(path.join(O,'harness-freeze.json'))),harnessSha256:sha(fs.readFileSync(fileURLToPath(import.meta.url))),originalFixtureLimit:'Original Set fixture tied totals and selected first run. Retained unchanged; this supplemental fixture forces second run. No prior failed product assertion.',realNetwork:0,realProductWrites:0,realSubprocess:0,fullGrades:null};
+fs.writeFileSync(path.join(O,'supplemental-raw.json'),JSON.stringify(raw,null,2)+'\n');
+fs.writeFileSync(path.join(O,'supplemental-report.json'),JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify(report));process.exitCode=report.status==='PASS'?0:1;

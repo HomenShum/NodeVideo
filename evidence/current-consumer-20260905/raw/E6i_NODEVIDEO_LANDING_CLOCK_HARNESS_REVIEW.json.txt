@@ -1,0 +1,48 @@
+{
+  "at": "2026-09-05T19:57:47.392469+00:00",
+  "verdict": "BASELINE_CAUSAL_PROOF_ACCEPTED_TARGETED_AFTER_ASSERTION_AMENDMENTS_REQUIRED",
+  "reviewer": "independent nonauthor; reused reviewer context",
+  "namedProof": "NODEVIDEO-LANDING-CLOCK-01",
+  "checksPassed": 9,
+  "checksTotal": 9,
+  "originalHarnessSha256": "28b151b39c25c9a9ff296d625c0316a36fd57e7fa77f0880ddefb92f87893d91",
+  "sourceSha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+  "poseSha256": "b2f2ea20a01dbe4815a921c0db6330c24967495dbc7b8b798b6ff82a13488be1",
+  "executedByReviewer": false,
+  "baselineStatus": "ORIGINAL_FAILURES_REPRODUCED",
+  "baselineExecutedScenarios": 9,
+  "issues": [
+    {
+      "id": "CLOCK-HARNESS-ZERO-01",
+      "kind": "required targeted assertion correction",
+      "finding": "The timestamp0 case checks only firstindex/count and ranges. A truthiness origin initializer can reset at100ms and still pass all current assertions for this scenario.",
+      "minimalCorrection": "Assert the full actual sequence at [0,100,200,beat,8*beat]: indices [0,0,1,5,46], counts [1,1,1,2,1], or use an independently derived per-timestamp oracle. Run an isolated falsy-sentinel mutant and require assertionfailure. Preserve the original harness/freeze/report."
+    },
+    {
+      "id": "CLOCK-HARNESS-REMOUNT-01",
+      "kind": "required coverage or claim correction",
+      "finding": "fresh-remount-after-cleanup is a runCase with a fresh VM/scheduler, and setup occurs only once per case. It does not perform cleanup and remount in the same context or React StrictMode.",
+      "minimalCorrection": "Add one bounded same-VM scheduler scenario: mount, run frames, cleanup, verify queueempty/no furthercallback, remount same owner exports with later timestamps, require freshframe0/count1 and onlytwoactivecallbacks. Describe it as simulated effect lifecycle, not native React StrictMode. If not added, remove the remount claim."
+    }
+  ],
+  "requiredNext": [
+    "Preserve original frozen harness28b151 and every beforeartifact unchanged; version/freeze any amendment before execution.",
+    "After the exact one-owner source fix, use the same effective amended harness against retained original and final owner inputs. Require old negative-start failure, fixed pass, and isolated old-epoch/falsy-sentinel knockout failure without modifying product files.",
+    "Bind final source/pose/harness and current transpiler used by amended invocation.",
+    "Retain native browser before/after paint and cleanup observations as separate higher-layer proof; no fullmatrix certification from this harness."
+  ],
+  "limitations": [
+    "No native renderer or pixel fidelity: canvas methods are counters; framesDrawn is actually clearRect calls, including the failing incomplete draw. Do not call that one completed frame.",
+    "The finite60-second case is3601 simulated60Hz timestamps executed synchronously, not wall-clock throughput, latency, memory or browser sustained-load measurement.",
+    "Module evaluation has a2secondVM timeout; exported callback calls occur directly outside that timeout. Bounded known source loops and finite cases are used, but this is not a general timeout-protected runner.",
+    "Before reports are expected failures; nine executed scenarios are not nine passing user journeys.",
+    "Queue clear-before-invoke and React hooks are simplified stubs; rendered useState rerenders and browser scheduling are not modeled.",
+    "The source aftereffect implementation and old-epoch knockout remain pending; reviewer did not execute the harness."
+  ],
+  "implementationPlan": "One-owner first-native-callback clock origin remains supported; these findings affect proof claims, not the proposed root-cause repair.",
+  "fullGrades": null,
+  "artifactManifest": {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-clock-harness-review\\artifact-manifest.json",
+    "sha256": "9a410d102a1ad7d38efdfae0d4b34b35e6d80bca07141f69af3239a36b174e18"
+  }
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "originalRelativePath": "matrix/failure.png",
+    "judgeCopy": "viewed--matrix--failure.png",
+    "bytes": 29473,
+    "sha256": "c3bee596bdb69876f230466e964091342cf78a73209a5bd88d3f6d04d22ca32b",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "diagnostic/320-no-preference.png",
+    "judgeCopy": "viewed--diagnostic--320-no-preference.png",
+    "bytes": 27950,
+    "sha256": "bb9106fda430948ea7f52ef3f367306e5a594e33196cf46cf0bbe4a06cf3c340",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "diagnostic/390-no-preference.png",
+    "judgeCopy": "viewed--diagnostic--390-no-preference.png",
+    "bytes": 40696,
+    "sha256": "7dca92fe9985c6195f268fe78efe7a94c38dd3ea82bef578723de2d9ea26c1d8",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "diagnostic/320-reduce.png",
+    "judgeCopy": "viewed--diagnostic--320-reduce.png",
+    "bytes": 32392,
+    "sha256": "5dcb6780fc3f846bd7be035571525caf97de3a0c6026505a8a028b9cf126eac8",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "codec/decoded-proof-frame.png",
+    "judgeCopy": "viewed--codec--decoded-proof-frame.png",
+    "bytes": 238113,
+    "sha256": "a3d53477d76ec1c1eb47e485403972b5d213e0da18a71093d784de348a98baa7",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "codec/actual-file-reopened.png",
+    "judgeCopy": "viewed--codec--actual-file-reopened.png",
+    "bytes": 33315,
+    "sha256": "e08d037dc0b49c95625fbc7f89158b1e69affb40fdc95e9ca99c11b9e1bb9742",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "codec/export-cancelled.png",
+    "judgeCopy": "viewed--codec--export-cancelled.png",
+    "bytes": 113497,
+    "sha256": "2e70193157282c0d3e541abb0f42f031ad567d9b2ce2bf2dcc0951e8c80c3a19",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "editor-inspector-03/320-applied.png",
+    "judgeCopy": "viewed--editor-inspector-03--320-applied.png",
+    "bytes": 29667,
+    "sha256": "916433cf57fbac046497de115cd3d444826a5d14f8a29ae2f43c336324b2ccb5",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "editor-inspector-03/1440-restored.png",
+    "judgeCopy": "viewed--editor-inspector-03--1440-restored.png",
+    "bytes": 135357,
+    "sha256": "9cb3b0117b014e302381477025eb21b68476424a2e874e4585048a2c11e34463",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "editor-inspector-03/390-frame-481.png",
+    "judgeCopy": "viewed--editor-inspector-03--390-frame-481.png",
+    "bytes": 196675,
+    "sha256": "a84de23f1b3339a84fb15ada66959cc4fca22d994428f071f4f865f89b005500",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "special/text200-390-edit-entry.png",
+    "judgeCopy": "viewed--special--text200-390-edit-entry.png",
+    "bytes": 111440,
+    "sha256": "c93656a0168a36c83b22cf76d4fdefec7fbfa36d0913b6ec88d3c0cdc1815d5b",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "special/text200-390-proposal.png",
+    "judgeCopy": "viewed--special--text200-390-proposal.png",
+    "bytes": 54856,
+    "sha256": "a266cf274d4d9d60078de7101c1e28f6b7bfc3dd0a99b9e81aa82beb117ba281",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "special/text200-1440-frame-481.png",
+    "judgeCopy": "viewed--special--text200-1440-frame-481.png",
+    "bytes": 402397,
+    "sha256": "b9b02d3b387403de1b49cb020ddbd090dde5ada7e9223d4b54d3ae8016abdfa6",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "special/manifest-blocked.png",
+    "judgeCopy": "viewed--special--manifest-blocked.png",
+    "bytes": 58432,
+    "sha256": "c0489c50bd385d379c3b5a099852aa81061a86ff958b4ec10714bf85b734d884",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  },
+  {
+    "originalRelativePath": "special/manifest-reload-recovered.png",
+    "judgeCopy": "viewed--special--manifest-reload-recovered.png",
+    "bytes": 61763,
+    "sha256": "11358cfb81705fc58dd5efee1f06074e2a76da554301c77c0377ecf4d0623fc7",
+    "observedBy": "independent judge via view_image",
+    "scope": "actual viewed artifact; no claim every409artifact is visually reviewed"
+  }
+]

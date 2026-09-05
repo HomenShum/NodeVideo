@@ -1,0 +1,7 @@
+# Native landing before boundaries are frozen
+
+**Re your request:** verify actual UI before repair — fresh320×800,390×844and1440×960normal-motion captures all show zero painted canvas pixels and the same undefined-frame error. The native count row had advanced to2. No timestamp observer or forced failure was installed.
+
+Viewed raw/3px boundary images: `E6i-nodevideo-landing-before-01/320/change-boundary.png`, `390/change-boundary.png`, `1440/change-boundary.png`, each with a matching state contract. BoxA is the posecanvas; boxB is the countrow. Native pulse/count differences are individually retained; all staticDOM restores exactly after annotation.
+
+All1,374source/1,329dist files, approved18owners and refs/index remain unchanged; owned4983isclosed. Root may now edit the clock owner. ManifestSHA256 `4b515754fbe873922897aaa72456e7be36397ac0b264b02d5e71d38b92ea0806` binds35operator artifacts. The separate affected-only after plan covers matching normal/reduced/text200cells and two-loop native paint observation, without repeating exports or claiming fullgrades.

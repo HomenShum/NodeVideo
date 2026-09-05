@@ -1,0 +1,205 @@
+{
+  "proofId": "NODEVIDEO-FIRST-USE-01",
+  "mode": "Builder",
+  "classification": "bounded first-use proof plan",
+  "status": "PLANNED_NOT_EXECUTED",
+  "createdAt": "2026-09-05T19:23:14.695637+00:00",
+  "request": "Make individual repositories usable and handoff-ready, including visual, responsive, and interaction evidence; this slice plans NodeVideo public calibration inspection and local editing/export only.",
+  "candidate": "D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905",
+  "baselineCommit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "baselineTree": "cab0f9515fe80ed2868a6f9d9a6a7018fcbf4657",
+  "sourcePolicy": "33 immutable Git inputs correspond to the 1374-file baseline snapshot. Root may change 17 approved lint owners. Bind actual post-lint source/build inputs before execution; baseline source hash alone cannot certify the edited frame-evidence module.",
+  "artifactManifest": {
+    "path": "E6i-nodevideo-first-use-recon/artifact-manifest.json",
+    "sha256": "76bcd0b95f9b2b67509416f7ed5bf49e55bec42da62750190869ecc9fe4ad09f",
+    "artifacts": 49
+  },
+  "viewports": [
+    [
+      320,
+      800
+    ],
+    [
+      360,
+      800
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      1024,
+      768
+    ],
+    [
+      1440,
+      960
+    ],
+    [
+      1920,
+      1080
+    ]
+  ],
+  "additionalCells": {
+    "text200": [
+      [
+        390,
+        844
+      ],
+      [
+        1440,
+        960
+      ]
+    ],
+    "reducedMotion": [
+      [
+        390,
+        844
+      ],
+      [
+        1440,
+        960
+      ]
+    ]
+  },
+  "runtime": {
+    "host": "127.0.0.1",
+    "proposedPort": 4983,
+    "argv": [
+      "npm",
+      "run",
+      "preview",
+      "--",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "4983",
+      "--strictPort"
+    ],
+    "ownership": "Recheck free port immediately before launch; record PID/start time; launch hidden on Windows; close only owned process tree. Never use 4173/4174. No server launched by planner.",
+    "browser": "fresh nonpersistent Chromium, light/en-US/America/Los_Angeles; record actual version; normal motion for seven main cells",
+    "testContext": "Set NODEVIDEO_URL=http://127.0.0.1:4983 only in child proof process; this chooses existing public/silent test branch and disables Playwright automatic server. Do not set CI or copy private environment/configuration."
+  },
+  "deadlinesMs": {
+    "existingGeneralTest": 90000,
+    "existingExpect": 15000,
+    "inspectorVerification": 90000,
+    "existingWebServer": 120000,
+    "codecTest": 240000,
+    "codecDownload": 220000,
+    "codecProgressCompletion": 220000
+  },
+  "execution": [
+    {
+      "step": 1,
+      "name": "Bind current build and own preview",
+      "proof": "Wait for lint owner freeze and completed normal build. Record named current source/build stamp/HTML/bundle/fixture hashes and command receipt. Do not rebuild concurrently or rerun full check. Start explicit owned built preview, verify landing/studio/edit and same-origin isolation headers. Fresh browser storage must select Local mode."
+    },
+    {
+      "step": 2,
+      "name": "Fetch and bind public inputs",
+      "proof": "Hash actual HTTP manifest bytes, all seven manifest assets, and the three separately published source/target video proxies against asset-contract.json. Seven-assets badge does not certify those three proxy hashes. Preserve original bytes. Only repository-declared owner-authorized public derivatives are used; no original private media, YouTube request, provider, camera, or owner-token job."
+    },
+    {
+      "step": 3,
+      "name": "Complete seven first-use cells",
+      "proof": "At each exact normal-motion viewport, capture landing DOM, console/network, painted pose canvas and screenshot, then native Studio link. Open inspector and verify 7/7, public silent preview, five cards, frame 480/take-b/fill. Click Next to 481/take-a/fit, await actual video metadata/seek completion, capture actual currentTime/frame/pose input and pixels; native ArrowLeft restores 480. Use bounded observable media tolerance from source, not only frame label. Capture each evidence set before changing viewport. Check page overflow <=1px, visible controls/hit targets, focus and text clipping; record genuine violations."
+    },
+    {
+      "step": 4,
+      "name": "Exercise local patch and Undo",
+      "proof": "On untouched /edit.html fixture at each viewport, verify Sign · Cut v1, Local, 107.7 bpm, initial disabled Undo, 1335 frames and 720x1280 plan. On compact widths use actual Agent/Timeline/Canvas tabs. Submit swap 2, verify proposal leaves accepted clip 2 unchanged, apply once and verify clip 2 take change, then native Undo and verify original clip identity/duration restored with disabled Undo. Capture proposal/accepted/restored screenshots and current timeline state. One representative 390 cell reuses existing ten Show-the-cuts exchanges and checks bounded visible history (16 messages); label ten exchanges, not a timed soak."
+    },
+    {
+      "step": 5,
+      "name": "Prove honest inspector failure and recovery",
+      "proof": "In a separate fresh 390 context, route only manifest to original valid JSON plus whitespace, changing hash while preserving JSON validity. Require actual Inspector blocked alert, no verified badge and retained failed response hash. There is no inline Retry; collapse/reopen does not clear error. Remove route and use a real full-page reload, then reopen and require verified original assets. Do not add a Retry action or filter unexplained errors."
+    },
+    {
+      "step": 6,
+      "name": "Inspect enlarged text and reduced motion",
+      "proof": "At 390/1440 separately apply exactly 200% computed text sizes from one baseline snapshot, with helper hash and before/after sizes; do not call this OS/browser zoom. Repeat core navigation/patch/Undo and record clipping/focus. At reduced-motion 390/1440 observe static landing pose and reachable inspector/editor controls. Record short normal-motion landing video in one primary cell; static PNG alone cannot prove motion quality. Axe scope mirrors existing inspector/editor tests, with exclusions explicit; no WCAG certification."
+    },
+    {
+      "step": 7,
+      "name": "Produce and decode one real H264 file",
+      "proof": "Use a separate desktop context and exact existing quickBrowserExportPlan() transformation from stitch-studio.spec.ts lines 18-63: 180x320, 30 frames, first source/overlay only, no audio. Route only edit-plan URL; save transformed input and hash, original remains unchanged. Apply duplicate 0 to 60 frames, edit caption to PROOF CUT through actual pointer/keyboard, verify preview. Export, cancel after actual progress, require no download and honest cancellation. Start one new export, wait for real download within unchanged 220s and complete existing 240s codec test. Preserve MP4, ffprobe JSON, FFmpeg decoded PNG, OCR text and actual viewed pixels; require one H264 video stream180x320, about2s, no audio, ftyp, >1000 bytes and PROOF CUT. Full-stream decode the same two-second file to null as a bounded additional integrity check. MT WASM GET proves asset availability only; default engine is single-thread."
+    },
+    {
+      "step": 8,
+      "name": "Close custody and scoped judgment",
+      "proof": "Verify original fixture/current named source hashes remain unchanged, retain every failure and actual output file; close owned browser/server with PID/start-time check. Report requested observations by surface with explicit deductions and all final grades/dimensions null. Any source defect requires a fresh labelled before capture and narrow owner plan before root edits; do not silently repair within this proof."
+    }
+  ],
+  "codecCommands": [
+    [
+      "ffprobe",
+      "-v",
+      "error",
+      "-show_entries",
+      "format=duration:stream=codec_name,width,height,codec_type",
+      "-of",
+      "json",
+      "<actual-downloaded-mp4>"
+    ],
+    [
+      "ffmpeg",
+      "-v",
+      "error",
+      "-ss",
+      "0.4",
+      "-i",
+      "<actual-downloaded-mp4>",
+      "-frames:v",
+      "1",
+      "-vf",
+      "scale=720:1280:flags=lanczos",
+      "-y",
+      "<new-proof-frame.png>"
+    ],
+    [
+      "tesseract",
+      "<new-proof-frame.png>",
+      "stdout",
+      "--psm",
+      "11"
+    ],
+    [
+      "ffmpeg",
+      "-v",
+      "error",
+      "-i",
+      "<actual-downloaded-mp4>",
+      "-f",
+      "null",
+      "-"
+    ]
+  ],
+  "scopeLimits": [
+    "No first-use runtime result exists in this planning packet. Root reported a new full check pass, but its fixture mocks/stubs are not real-codec first-use evidence.",
+    "Seven requested viewports and normal motion differ from existing five Playwright projects and default reduced motion. Reuse existing assertions/deadlines in a clearly identified sequential proof harness; do not claim an unchanged original full e2e suite run.",
+    "Untouched 44.5-second 720x1280 calibration UI and separate shortened two-second 180x320 codec fixture are different evidence lanes. No full-length/full-resolution export claim.",
+    "Frame 480/481 crosses take-b/fill to take-a/fit; video seek/pose input must be recorded. Pose interpolation can legitimately retain similar pixels for one frame; do not require every 33ms pose pixel to differ.",
+    "Public video playback does not have the local-private playback-to-inspector synchronization callback. Frame-button/keyboard/slider synchronization is the named proof.",
+    "Local edits and history are in-memory and reload resets to fixture; no durable creator/backend, BYOK/model call, remote worker, private soundtrack, camera/coach, upload, production publication, or general editing capability is certified.",
+    "Repository publication authorization is provenance supplied by the owner, not an independent rights adjudication.",
+    "Missing inline inspector Retry is a current UX limitation. Full-page recovery is the actual implemented recovery path.",
+    "Old shared reusable-conformance pin failure remains separately owned. Existing full audit/performance/human/platform coverage and full readiness grades remain unresolved."
+  ],
+  "blockers": {
+    "missingExecutable": false,
+    "runtimeFirstUse": "NOT_RUN",
+    "sourceBuildFreeze": "Bind root final lint/build receipt before launch",
+    "fullReadiness": "HELD; no aggregate grades",
+    "inlineInspectorRetry": "ABSENT; use honest full reload, no product change in this plan"
+  },
+  "finalDimensions": null,
+  "sourceMutations": [],
+  "runtimeLaunches": 0,
+  "modelCalls": 0,
+  "privateEnvironmentRead": false
+}

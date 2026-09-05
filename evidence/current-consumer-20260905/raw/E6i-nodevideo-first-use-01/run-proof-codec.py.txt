@@ -1,0 +1,105 @@
+from pathlib import Path
+import datetime,hashlib,json,os,socket,subprocess,sys,time,urllib.request
+import psutil
+
+O=Path(__file__).parent
+P=O.parent
+R=Path('D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905')
+section=sys.argv[1]
+assert section in ['matrix','special','codec']
+sha=lambda b:hashlib.sha256(b).hexdigest()
+def save(name,obj):
+    (O/name).write_text(json.dumps(obj,indent=2,ensure_ascii=False)+'\n',encoding='utf-8',newline='\n')
+def git(*args):return subprocess.check_output(['git','--no-optional-locks',*args],cwd=R,timeout=30)
+def rows(paths):
+    result=[]
+    for name in paths:
+        f=R/name
+        assert f.is_file() and not f.is_symlink(),name
+        assert not f.name.startswith('.env') or f.name=='.env.example', 'Environment file unexpectedly tracked; do not read'
+        b=f.read_bytes();result.append({'path':name,'bytes':len(b),'sha256':sha(b)})
+    return result
+assert not any((R/name).exists()for name in ['.env','.env.local','.env.production','.env.production.local'])
+assert not (O/(section+'.command.json')).exists()
+source_names=git('ls-files','-z').decode().rstrip('\0').split('\0')
+source=rows(source_names)
+approved_path=P/'E6i-nodevideo-conformance-apply-01/receipt.json'
+approved=json.loads(approved_path.read_text(encoding='utf-8'))
+assert approved['baseCommit']=='42e41b4bb2ec738ef84330dedd7a7ebc9269070f'
+assert len(approved['sourceOwners'])==18
+for expected in approved['sourceOwners']:
+    actual=next(row for row in source if row['path']==expected['path'])
+    assert actual['bytes']==expected['bytes']and actual['sha256']==expected['sha256'],expected['path']
+dist=rows([f.relative_to(R).as_posix()for f in sorted((R/'dist').rglob('*'))if f.is_file()])
+guards={n:sha(git(*a))for n,a in {'head':['rev-parse','HEAD'],'refs':['for-each-ref','--format=%(refname) %(objectname)'],'index':['ls-files','--stage','-z']}.items()}
+save(section+'-before.json',{'source':source,'dist':dist,'guards':guards,'harnessSha256':sha((O/'observe.mjs').read_bytes()),'approved18OwnerReceipt':{'path':str(approved_path),'sha256':sha(approved_path.read_bytes()),'sourceDigest':approved['sourceDigest']}})
+with socket.socket()as check:
+    assert check.connect_ex(('127.0.0.1',4983))!=0,'Port 4983 occupied; no process touched'
+env=os.environ.copy()
+removed=[]
+for key in list(env):
+    if key.startswith(('NODEVIDEO_','OPENAI_','OPENROUTER_','ANTHROPIC_','GEMINI_','HIGGSFIELD_')) or key=='CI':removed.append(key);env.pop(key)
+env['NODEVIDEO_URL']='http://127.0.0.1:4983'
+start=datetime.datetime.now(datetime.timezone.utc).isoformat()
+owned=[]
+receipt={'startedAt':start,'section':section,'cwd':str(R),'sourceCount':len(source),'distCount':len(dist),'childRemovedNamesOnly':removed,'childOverride':{'NODEVIDEO_URL':env['NODEVIDEO_URL']},'status':'RUNNING'}
+with (O/(section+'-preview.log')).open('wb')as previewlog,(O/(section+'.log')).open('wb')as prooflog:
+    server=subprocess.Popen(['C:/nvm4w/nodejs/npm.cmd','run','preview','--','--host','127.0.0.1','--port','4983','--strictPort'],cwd=R,env=env,stdout=previewlog,stderr=subprocess.STDOUT,creationflags=subprocess.CREATE_NO_WINDOW)
+    owner=psutil.Process(server.pid);owned.append((owner.pid,owner.create_time()))
+    try:
+        deadline=time.monotonic()+120
+        while True:
+            try:
+                with urllib.request.urlopen('http://127.0.0.1:4983/',timeout=3)as response:
+                    if response.status==200:break
+            except Exception:
+                assert server.poll()is None,'Owned preview exited'
+                if time.monotonic()>deadline:raise TimeoutError('Owned preview did not become ready in 120s')
+                time.sleep(.2)
+        if section=='matrix':
+            contract=json.loads((P/'E6i-nodevideo-first-use-recon/asset-contract.json').read_text(encoding='utf-8'))
+            assets=[{'id':'manifest','url':contract['manifestUrl'],'sha256':contract['manifestSha256']},*contract['assets']]
+            served=[];(O/'served-inputs').mkdir()
+            for asset in assets:
+                with urllib.request.urlopen('http://127.0.0.1:4983'+asset['url'],timeout=30)as response:
+                    b=response.read(40*1024*1024+1);assert len(b)<=40*1024*1024
+                    assert sha(b)==asset['sha256'],asset['id']
+                    file=asset['id']+Path(asset['url']).suffix;(O/'served-inputs'/file).write_bytes(b)
+                    served.append({'id':asset['id'],'url':asset['url'],'status':response.status,'bytes':len(b),'sha256':sha(b),'file':file})
+            save('served-inputs.json',served)
+        for proc in owner.children(recursive=True):owned.append((proc.pid,proc.create_time()))
+        command=['C:/nvm4w/nodejs/node.exe',str(O/'observe.mjs'),section]
+        timeout=240 if section=='codec' else 900
+        result=subprocess.Popen(command,cwd=R,env=env,stdout=prooflog,stderr=subprocess.STDOUT,creationflags=subprocess.CREATE_NO_WINDOW)
+        proof_owner=psutil.Process(result.pid);owned.append((proof_owner.pid,proof_owner.create_time()));deadline=time.monotonic()+timeout
+        while result.poll()is None:
+            for proc in proof_owner.children(recursive=True):
+                identity=(proc.pid,proc.create_time())
+                if identity not in owned:owned.append(identity)
+            if time.monotonic()>deadline:raise TimeoutError(f'Proof exceeded existing bounded section budget {timeout}s')
+            time.sleep(.25)
+        receipt.update(argv=command,timeoutSeconds=timeout,exitCode=result.returncode,status='PASS'if result.returncode==0 else'FAIL')
+    except Exception as e:
+        receipt.update(status='FAIL',error=repr(e));raise
+    finally:
+        for proc in owner.children(recursive=True):
+            identity=(proc.pid,proc.create_time())
+            if identity not in owned:owned.append(identity)
+        closed=[]
+        for pid,created in reversed(owned):
+            try:
+                proc=psutil.Process(pid)
+                if proc.create_time()!=created:closed.append({'pid':pid,'result':'identity-changed-not-touched'});continue
+                proc.terminate()
+                try:proc.wait(10)
+                except psutil.TimeoutExpired:proc.kill();proc.wait(5)
+                closed.append({'pid':pid,'result':'owned-process-closed'})
+            except psutil.NoSuchProcess:closed.append({'pid':pid,'result':'already-exited'})
+        receipt['owned']=owned;receipt['closure']=closed
+        receipt['sourceUnchanged']=rows(source_names)==source
+        receipt['distUnchanged']=rows([r['path']for r in dist])==dist
+        receipt['guardsUnchanged']={n:sha(git(*a))for n,a in {'head':['rev-parse','HEAD'],'refs':['for-each-ref','--format=%(refname) %(objectname)'],'index':['ls-files','--stage','-z']}.items()}==guards
+        with socket.socket()as check:receipt['ownedPortReleased']=check.connect_ex(('127.0.0.1',4983))!=0
+        receipt['finishedAt']=datetime.datetime.now(datetime.timezone.utc).isoformat();save(section+'.command.json',receipt)
+        assert receipt['sourceUnchanged']and receipt['distUnchanged']and receipt['guardsUnchanged']and receipt['ownedPortReleased']
+        print(json.dumps({k:receipt.get(k)for k in ['section','status','exitCode','sourceCount','distCount','sourceUnchanged','distUnchanged','guardsUnchanged','ownedPortReleased']}))

@@ -1,0 +1,9 @@
+# Affected-only landing clock after proof
+
+An arriving user should see the actual public pose move and the eight-count row advance. The parent will repair the two existing callbacks to use their first native animation timestamp, then freeze the new source/build. This plan checks only that affected landing behavior.
+
+Replay320×800,390×844and1440×960 at normal motion, reduced motion and200%computed text, with the exact prior source-owned pose data and presentation. Native normal/text cells observe18seconds, longer than two80-frame/9.99Hzcycles, with bounded actual-pixel/count samples and short recorded video. Verify firstpaint, changing poses, observedcounts1..8, validpulse, no exception and unchanged links/geometry. The separate actual-callback harness owns exactframe/wrap/cancellation claims; browser duration alone does not prove every index.
+
+Reduced cells must remain painted/static atframe0/count1. Capture and view matching raw/3px A-canvas/B-count screenshots. Test nativeStudio navigation/back/reload, then close all owned processes and recheck exact source/bundle/pose bindings. The structuredJSON specifies recording bounds and honest limits.
+
+The original codec/editor proof stays frozen and is not rerun. Known enlarged-text overflow/layout, nativezoom/realdevices/assistive/human quality and fullgrades remain open. No app edits are made by this before-capture task.

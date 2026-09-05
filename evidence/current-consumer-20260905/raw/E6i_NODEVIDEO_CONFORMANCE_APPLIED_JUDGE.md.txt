@@ -1,0 +1,13 @@
+# Applied NodeVideo workflow-reference review
+
+**Re your request:** make repositories ready for developer handoff — the shared check now references its existing workflow at the canonical repository location. Actual shared execution is still pending.
+
+**APPROVED_EXACT_APPLIED_REFERENCE_DELTA.** 12/12 bounded checks pass. The actual 328-byte caller exactly equals the approved proposal: only `HomenShum/node-platform` becomes `HomenShum/NodeKit`; pin `ef4ac8a011b230efa3324892a193abe02ff2d673`, triggers, permissions and job remain byte-identical.
+
+All 18 source owners match digest `bb5ca4d7a02ab72eecf2581f63fa7762174190453e2ccdeb5d7879d30b9c0c18`. The prior 17 lint owners and 1,356 protected source inputs are unchanged; HEAD, branch and serialized index entries are preserved, with no staged changes. Closing source guard is **CLOSED**.
+
+This reviewer made no product changes, repeated no gates and did not access or interrupt the worker's first-use session. The 17-owner lint verdict remains separate. Normal shared conformance is **NOT_RUN**; observe actual resolved workflow, mutable-default registry checkout and contract result after normal publication. No deployment, provider, whole-product or full-grade claim is made.
+
+The first collector compared a full symbolic ref to the prior short branch name and failed. Its retained raw evidence confirms the branch identity was unchanged. The corrected comparison uses the same short format; HEAD and index had already matched exactly.
+
+Evidence: [actual raw diff](E6i-nodevideo-conformance-applied-judge/actual-workflow.diff), [checks](E6i-nodevideo-conformance-applied-judge/checks.json), [source bindings](E6i-nodevideo-conformance-applied-judge/source-bindings.json), [protected inputs](E6i-nodevideo-conformance-applied-judge/protected-readback.json), [guard](E6i-nodevideo-conformance-applied-judge/closing-guard.json), [retained collector failure](E6i-nodevideo-conformance-applied-judge/initial-collector-failure.json).

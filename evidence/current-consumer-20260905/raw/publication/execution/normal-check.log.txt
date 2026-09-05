@@ -1,0 +1,64 @@
+
+> nodevideo@0.1.0 check
+> npm run lint && npm run typecheck && npm run test && npm run check:ui && npm run capability:validate && npm run atlas:verify && npm run grounding:doctor && npm run grounding:proof:verify && npm run worker:verify && npm run worker:song:verify && npm run proof:song:real:verify && npm run worker:authorized:verify && npm run build && npm run check:contract
+
+
+> nodevideo@0.1.0 lint
+> biome check .
+
+.\tests\unit\landing-clock.test.ts:106:25 lint/suspicious/noConfusingVoidType  FIXABLE  ━━━━━━━━━━━━
+
+  × void is confusing inside a union type.
+  
+    104 │   const react = {
+    105 │     StrictMode: 'strict',
+  > 106 │     useEffect(fn: () => void | (() => void)) {
+        │                         ^^^^
+    107 │       const cleanup = fn();
+    108 │       if (cleanup) cleanups.push(cleanup);
+  
+  i Unsafe fix: Use undefined instead.
+  
+    104 104 │     const react = {
+    105 105 │       StrictMode: 'strict',
+    106     │ - ····useEffect(fn:·()·=>·void·|·(()·=>·void))·{
+        106 │ + ····useEffect(fn:·()·=>·undefined·|·(()·=>·void))·{
+    107 107 │         const cleanup = fn();
+    108 108 │         if (cleanup) cleanups.push(cleanup);
+  
+
+.\tests\unit\landing-clock.test.ts:197:5 lint/style/useSingleVarDeclarator  FIXABLE  ━━━━━━━━━━━━━━━
+
+  × Declare variables separately
+  
+    195 │   };
+    196 │   if (scenario.remount) {
+  > 197 │     const oldIndices = indices.length,
+        │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 198 │       oldCounts = counts.length,
+  > 199 │       oldCleanups = cleanups.length;
+        │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    200 │     mount();
+    201 │     run([65000, 65100, 65200]);
+  
+  i Unsafe fix: Break out into multiple declarations
+  
+    195 195 │     };
+    196 196 │     if (scenario.remount) {
+    197     │ - ····const·oldIndices·=·indices.length,
+    198     │ - ······oldCounts·=·counts.length,
+    199     │ - ······oldCleanups·=·cleanups.length;
+        197 │ + ····const·oldIndices·=·indices.length;
+        198 │ + ····const·oldCounts·=·counts.length;
+        199 │ + ····const·oldCleanups·=·cleanups.length;
+    200 200 │       mount();
+    201 201 │       run([65000, 65100, 65200]);
+  
+
+Checked 523 files in 179ms. No fixes applied.
+Found 2 errors.
+check ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Some errors were emitted while running checks.
+  
+

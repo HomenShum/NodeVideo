@@ -1,0 +1,43 @@
+[
+  {
+    "name": "typecheck",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\npm.cmd",
+      "run",
+      "typecheck"
+    ],
+    "startedAt": "2026-09-05T18:52:45.179185+00:00",
+    "finishedAt": "2026-09-05T18:53:16.888883+00:00",
+    "elapsedSeconds": 31.703000000095926,
+    "status": "PASS",
+    "exitCode": 0,
+    "logSha256": "6804fe8749073162964ef3fd7c70f5d88fede620b5f9452e7dc6e0b736de98b4"
+  },
+  {
+    "name": "unit-tests",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\npm.cmd",
+      "test"
+    ],
+    "startedAt": "2026-09-05T18:53:16.908343+00:00",
+    "finishedAt": "2026-09-05T18:53:33.592072+00:00",
+    "elapsedSeconds": 16.68700000003446,
+    "status": "PASS",
+    "exitCode": 0,
+    "logSha256": "061ae068e9048d93cfa275143d536e958eb795ca03ae9dbb3a61320eac27428f"
+  },
+  {
+    "name": "build",
+    "argv": [
+      "C:\\nvm4w\\nodejs\\npm.cmd",
+      "run",
+      "build"
+    ],
+    "startedAt": "2026-09-05T18:53:33.607088+00:00",
+    "finishedAt": "2026-09-05T18:54:16.713955+00:00",
+    "elapsedSeconds": 43.10900000005495,
+    "status": "PASS",
+    "exitCode": 0,
+    "logSha256": "84ab49af9c7b6b3bbad796e42305ae755d2eef6f16f9ee5dcc2e8a6ccf878e88"
+  }
+]

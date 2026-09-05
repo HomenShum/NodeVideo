@@ -1,0 +1,198 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import crypto from 'node:crypto';
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
+
+const P=path.dirname(fileURLToPath(import.meta.url));
+const O=path.join(P,'E6i-nodevideo-lint-final-judge');
+const frozen=JSON.parse(fs.readFileSync(path.join(O,'harness-freeze.json'),'utf8'));
+const require=createRequire(path.join(frozen.candidate,'package.json'));
+const ts=require('typescript');
+const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
+const clone=x=>structuredClone(x);
+const results=[];const checks=[];const transforms=[];
+const check=(name,ok,detail)=>{checks.push({name,passed:!!ok,detail});};
+const serialize=x=>JSON.stringify(x);
+const write=(n,x)=>fs.writeFileSync(path.join(O,n),JSON.stringify(x,null,2)+'\n');
+function normal(x){
+  if(x===undefined)return {$undefined:true};
+  if(typeof x==='number'&&!Number.isFinite(x))return {$number:String(x)};
+  if(Object.is(x,-0))return {$number:'-0'};
+  if(Buffer.isBuffer(x)||ArrayBuffer.isView(x))return {bytes:x.byteLength,sha256:sha(Buffer.from(x.buffer,x.byteOffset,x.byteLength))};
+  if(Array.isArray(x))return x.map(normal);
+  if(x&&typeof x==='object')return Object.fromEntries(Object.keys(x).map(k=>[k,normal(x[k])]));
+  return x;
+}
+function source(side,name){
+ const b=fs.readFileSync(path.join(O,side,name));
+ const expected=frozen.sources.find(x=>x.path===name)[side];
+ if(sha(b)!==expected.sha256)throw new Error('Frozen byte mismatch '+name);
+ return b.toString('utf8');
+}
+function astShape(code,name){
+ const root=ts.createSourceFile(name,code,ts.ScriptTarget.Latest,true,name.endsWith('.ts')?ts.ScriptKind.TS:ts.ScriptKind.JS);
+ function walk(n){
+   if(ts.isStringLiteral(n)||ts.isNoSubstitutionTemplateLiteral(n))return ['string',n.text];
+   if(ts.isIdentifier(n)||ts.isNumericLiteral(n)||ts.isRegularExpressionLiteral(n)||ts.isTemplateHead(n)||ts.isTemplateMiddle(n)||ts.isTemplateTail(n))return [ts.SyntaxKind[n.kind],n.text];
+   const kids=[];ts.forEachChild(n,c=>{kids.push(walk(c));});
+   if(ts.isNamedImports(n))kids.sort((a,b)=>serialize(a).localeCompare(serialize(b)));
+   return [ts.SyntaxKind[n.kind],...kids];
+ }
+ return walk(root);
+}
+for(const f of frozen.sources){
+ const a=source('before',f.path),b=source('after',f.path);
+ if(f.path.endsWith('.json'))check('JSON value exact '+f.path,serialize(JSON.parse(a))===serialize(JSON.parse(b)));
+}
+const formatOnly=['tools/clip-gate/rubric.mjs','tools/clip-gate/comprehension-rubric.mjs','tools/clip-gate/find-references.mjs','src/lib/frame-evidence.ts','src/lib/frame-evidence.test.ts'];
+for(const name of formatOnly)check('AST exact apart from named import ordering '+name,serialize(astShape(source('before',name),name))===serialize(astShape(source('after',name),name)));
+
+const baseSteps=Array.from({length:21},(_,i)=>({hold:3,caption:i%3===0?`Step ${i}: read “证据” and verify.`:null,burst:i%4===0,panes:[null,undefined,false,0,'',i%3===0?{click:true}:{click:false}],zoomScale:i%5===0?1.1:0}));
+const walkFixture=[{id:'fixture',steps:baseSteps}];
+class Exit extends Error{constructor(code){super('VM_EXIT_'+code);this.code=code;}}
+async function execute(side,name,options={}){
+ const events=[];let fetchIndex=0,execIndex=0,spawnIndex=0;const pending=[];
+ const push=(kind,...args)=>{if(events.length>=512)throw new Error('EVENT_CAP');events.push({kind,args:normal(args)});};
+ const mem=new Map(Object.entries(options.files||{}));
+ const exists=p=>mem.has(String(p));
+ const fakeFs={
+  existsSync:p=>{push('exists',p);return exists(p);},
+  mkdirSync:(...a)=>push('mkdir',...a),
+  readFileSync:(p,encoding)=>{push('read',p,encoding);if(!exists(p))throw new Error('VIRTUAL_ENOENT '+p);const x=mem.get(String(p));return encoding?String(x):Buffer.isBuffer(x)?Buffer.from(x):Buffer.from(String(x));},
+  writeFileSync:(p,data,...rest)=>{push('write',p,data,...rest);mem.set(String(p),Buffer.isBuffer(data)?Buffer.from(data):String(data));},
+  appendFileSync:(p,data,...rest)=>{push('append',p,data,...rest);mem.set(String(p),String(mem.get(String(p))||'')+data);},
+ };
+ const fakeProcess={argv:['node',name,...(options.argv||[])],env:{...(options.env||{})},platform:'win32',cwd:()=>'/owned-fixture',exit:c=>{push('exit',c);throw new Exit(c);}};
+ const fakeCp={
+  spawnSync:(cmd,args,opt)=>{
+   push('spawn-stub',cmd,args,opt);const item=options.spawn?.[spawnIndex++];
+   if(!item)throw new Error('UNEXPECTED_SUBPROCESS_STUB');return clone(item);
+  },
+  execFileSync:(cmd,args,opt)=>{
+   push('exec-stub',cmd,args,opt);execIndex++;
+   const response=options.exec?.(cmd,args,opt,execIndex);
+   if(response===undefined)throw new Error('UNEXPECTED_EXEC_STUB '+cmd);
+   if(response&&response.throw){const e=new Error(response.message||'synthetic subprocess failure');e.stderr=response.stderr;throw e;}
+   return response;
+  },
+ };
+ let seed=0x1234abcd;const seededMath=Object.create(Math);seededMath.random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
+ const context=vm.createContext({
+  console:Object.fromEntries(['log','warn','error'].map(k=>[k,(...a)=>push('console-'+k,...a)])),
+  process:fakeProcess,Buffer,Math:seededMath,URL,TextEncoder,TextDecoder,
+  fetch:async(url,opts)=>{
+    push('fetch-stub',url,opts);const item=options.fetch?.[fetchIndex++];
+    if(!item)throw new Error('UNEXPECTED_NETWORK_STUB');
+    return {ok:item.ok!==false,status:item.status||200,text:async()=>item.text||'',json:async()=>clone(item.body)};
+  },
+  __capture:x=>push('capture',x),
+ },{codeGeneration:{strings:false,wasm:false}});
+ const cache=new Map();
+ async function load(modName,entry=false){
+  if(cache.has(modName))return cache.get(modName);
+  let code=source(side,modName);const rawHash=sha(Buffer.from(code));
+  if(options.mutate&&entry)code=options.mutate(code);
+  if(modName.endsWith('.ts'))code=ts.transpileModule(code,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ES2022}}).outputText;
+  if(entry&&modName.endsWith('judge-video.mjs')){
+   const sf=ts.createSourceFile(modName,code,ts.ScriptTarget.Latest,true);
+   const last=sf.statements.at(-1);if(!last.getText(sf).startsWith('run().catch'))throw new Error('MISSING_JUDGE_ASYNC_SEAM');
+   code=code.slice(0,last.getStart(sf))+'await '+code.slice(last.getStart(sf));
+   transforms.push({side,modName,kind:'await existing top-level run().catch for deterministic observation',sourceSha256:rawHash});
+  }
+  if(entry&&modName.endsWith('/score.mjs'))code+='\nglobalThis.__capture({events,HZ:[-128,-1,0,60,69,127,255,NaN,Infinity,-Infinity].map(HZ),L,R});\n';
+  const mod=new vm.SourceTextModule(code,{context,identifier:modName,initializeImportMeta:m=>{m.url='file:///owned-fixture/'+modName;},importModuleDynamically:()=>{throw new Error('DYNAMIC_IMPORT_BLOCKED');}});
+  cache.set(modName,mod);
+  await mod.link(async spec=>{
+   let values;
+   if(spec==='node:fs')values=fakeFs;
+   else if(spec==='node:child_process')values=fakeCp;
+   else if(spec==='node:path')values={default:path,...path};
+   else if(spec==='./src/walkthrough.collab.data.js')values={COLLAB_WALKTHROUGHS:clone(options.walks||walkFixture)};
+   else if(spec==='./rubric.mjs')return load('tools/clip-gate/rubric.mjs');
+   else throw new Error('UNAPPROVED_IMPORT '+spec);
+   const exports=Object.keys(values);
+   return new vm.SyntheticModule(exports,function(){for(const k of exports)this.setExport(k,values[k]);},{context,identifier:'stub:'+spec});
+  });
+  return mod;
+ }
+ let error=null,value;
+ try{
+  const mod=await load(name,true);await mod.evaluate({timeout:3000});
+  if(options.call){value=await options.call(mod.namespace);push('return',value);}
+ }catch(e){error={name:e instanceof Exit?'Exit':e.name,message:e.message,code:e.code};}
+ const out={events,error,fetchStubs:fetchIndex,execStubs:execIndex,spawnStubs:spawnIndex};
+ if(Buffer.byteLength(serialize(out))>2_000_000)throw new Error('REPORT_CAP');
+ return out;
+}
+async function pair(label,name,options,oracle=()=>true){
+ const before=await execute('before',name,options),after=await execute('after',name,options);
+ const same=serialize(before)===serialize(after);const expected=oracle(after);
+ check(label,same&&expected,{same,expected,beforeError:before.error,afterError:after.error});
+ results.push({label,name,before,after});return after;
+}
+const success=x=>({status:0,stdout:JSON.stringify(x),stderr:''});
+const fail={status:1,stdout:'',stderr:'synthetic failure'};
+const lines=[{text:'Read “证据”\nthen compare.'},{text:"Triple ''' quotes and \\ paths."}];
+const batchGood=[{i:0,file:'owned0.wav',seconds:1.2,synth:0.1},{i:1,file:'owned1.wav',seconds:0.8,synth:0.2}];
+const batchFailed=[{i:0,file:'owned0.wav',failed:'SyntheticError'},{i:1,file:'owned1.wav',seconds:0.8,synth:0.2}];
+const narrations=[
+ ['batch-success',[success(batchGood)],false,1],
+ ['first-retry',[success(batchFailed),success({seconds:1.1,synth:0.3})],false,2],
+ ['second-retry',[success(batchFailed),fail,success({seconds:1.1,synth:0.3})],false,3],
+ ['exhausted',[success(batchFailed),fail,fail],true,3],
+ ['batch-failure',[fail],true,1],
+ ['invalid-batch-json',[{status:0,stdout:'not json',stderr:''}],true,1],
+ ['invalid-retry-json',[success(batchFailed),{status:0,stdout:'bad JSON',stderr:''}],true,2],
+ ['mixed-order',[success([{i:0,file:'0',failed:'E'},{i:1,file:'1',failed:'E'}]),success({seconds:1,synth:0.1}),fail,success({seconds:2,synth:0.2})],false,4],
+];
+for(const [label,spawn,bad,count] of narrations)await pair('narration '+label,'tools/clip-gate/narrate.mjs',{spawn,call:m=>m.synthesiseBeats(clone(lines),'fixture-model')},r=>!!r.error===bad&&r.spawnStubs===count&&(bad||r.events.find(x=>x.kind==='return').args[0].every(x=>!Object.hasOwn(x,'failed'))));
+const voiceCases=[['success',0],['recover-first',1],['exhausted-NUL',99],['overrun',0]];
+for(const [label,failCount]of voiceCases){let py=0;
+ const opts=()=>({argv:['--id','fixture','--out','owned.wav'],walks:[{id:'fixture',steps:[{hold:30,caption:'Read this. Then verify.'},{hold:30,caption:null},{hold:15,caption:'Finish now.'}]}],exec:(cmd,args)=>{
+  if(cmd==='python'){py++;return py<=failCount?{throw:true,stderr:'\0证\0据\0'+('long'.repeat(150))+'\0'}:'';}
+  if(cmd==='ffprobe')return label==='overrun'?'4.5':'0.4';
+  if(cmd==='ffmpeg')return '';return undefined;
+ }});
+ const beforeOpts=opts();const before=await execute('before','tools/clip-gate/voice.mjs',beforeOpts);py=0;const after=await execute('after','tools/clip-gate/voice.mjs',opts());
+ const errors=after.events.filter(x=>x.kind==='console-error').map(x=>x.args[0]);
+ check('voice '+label,serialize(before)===serialize(after)&&(failCount===99?after.error?.code===1&&errors[1].length===300&&!errors[1].includes('\0'):after.error===null));results.push({label:'voice '+label,name:'tools/clip-gate/voice.mjs',before,after});
+}
+for(const kind of ['bare','music','voice'])await pair('score float buffers and generated filters '+kind,'tools/clip-gate/score.mjs',{
+ argv:['--id','fixture','--video','owned.mp4',...(kind==='music'?['--music','bed.wav']:kind==='voice'?['--vo','speech.wav']:[])],files:{'bed.wav':'synthetic','speech.wav':'synthetic'},
+ exec:(cmd,args)=>cmd==='ffmpeg'?(args.includes('-hide_banner')?JSON.stringify({input_i:'-18',input_tp:'-2',input_lra:'9',input_thresh:'-28',target_offset:'0.2'}):''):undefined,
+},r=>r.error===null&&r.events.some(x=>x.kind==='capture')&&r.execStubs===2);
+for(const min of [0,80,200])await pair('readability exact ordered output min='+min,'tools/clip-gate/readability.mjs',{argv:['--id','fixture','--min',String(min)],walks:[{id:'fixture',steps:[{caption:'Read this now.'},{caption:'Recontextualization illustrates complexity.'},{caption:null},{caption:'证据'}]}]},r=>min===0?r.error===null:r.error?.code===1);
+const syntheticScore=(a,b,extra)=>({scores:{clarity:{score:a,evidence:'证据 | one'},trust:{score:b,evidence:''},...extra},verdict:'fixture-only',summary:'Read the actual result.',defects:[],next_cut:[{dimension:'clarity',where:'00:01',change:'Show evidence.'}],weakest:'clarity',strongest:'trust'});
+const body=x=>({body:{candidates:[{content:{parts:[{text:JSON.stringify(x)}]}}]}});
+const judges=[
+ ['single',[body(syntheticScore(1,2))],['--samples','1']],
+ ['set-union-fallback',[body(syntheticScore(0,0,{onlyFirst:{score:2,evidence:'first fallback'}})),body(syntheticScore(1,1)),body(syntheticScore(2,2,{onlyLast:{score:1,evidence:'last-only'}}))],['--samples','3']],
+ ['reask',[body(syntheticScore(1,1)),body(syntheticScore(0,2))],['--samples','1','--reask']],
+ ['http-failure',[{ok:false,status:503,text:'held fixture unavailable'}],['--samples','1']],
+ ['invalid-output',[{body:{candidates:[{content:{parts:[{text:'not JSON'}]},finishReason:'fixture'}]}}],['--samples','1']],
+];
+for(const [label,fetch,args]of judges)await pair('judge '+label,'tools/clip-gate/judge-video.mjs',{argv:['owned.mp4',...args],env:{GEMINI_API_KEY:'SYNTHETIC_VM_ONLY'},files:{'owned.mp4':Buffer.from('synthetic non-media bytes')},fetch},r=>r.fetchStubs===fetch.length&&(label.includes('failure')||label==='invalid-output'?r.error?.code===1:r.error===null));
+for(const outcome of ['pass','fail','missing'])await pair('iteration report strings '+outcome,'tools/clip-gate/iterate.mjs',{
+ argv:['--comp','Fixture','--out','owned.mp4','--for','A newcomer “证据”','--no-render','--rounds','2'],files:outcome==='missing'?{}:{'owned.judge.json':JSON.stringify(syntheticScore(1,1))},exec:cmd=>cmd==='node'?(outcome==='pass'?'':{throw:true,message:'synthetic gate failure'}):undefined,
+},r=>r.error?.code===(outcome==='pass'?0:1)&&r.execStubs===(outcome==='pass'?1:2));
+const fixtureData='[\n  {\n    "id": "fixture",\n    "steps": [\n      { "caption": "Old one",\n        "hold": 30 },\n      { "caption": null,\n        "hold": 40 },\n      { "caption": "Old two",\n        "hold": 50 }\n    ]\n  },\n  {\n    "id": "protected", "caption": "Keep", "hold": 99\n  }\n]';
+for(const shrink of [false,true])await pair('retime protected null and shrink='+shrink,'tools/clip-gate/retime.mjs',{argv:['--id','fixture','--holds','holds.json',...(shrink?['--shrink']:[])],files:{'holds.json':JSON.stringify({0:60,1:1,2:20}),'src/walkthrough.collab.data.js':fixtureData}},r=>r.error===null&&r.events.filter(x=>x.kind==='write').length===1);
+for(const mismatch of [false,true])await pair('captions Unicode and mismatch='+mismatch,'tools/clip-gate/apply-captions.mjs',{argv:['--id','fixture','--from','captions.json'],files:{'captions.json':JSON.stringify(mismatch?['a','b','c']:['New “证据”','quotes " and \\']),'src/walkthrough.collab.data.js':fixtureData,'walkthrough.fixture.specs.mjs':'cap: "Old one"; cap: "Old two";'}},r=>mismatch?r.error?.code===1:r.error===null);
+const live={frameId:'f-live-1',kind:'live-product',presentedAs:'live-product',sha256:'a'.repeat(64),shotId:'shot-2',bindings:{deploymentRevision:'abc1234',browserTraceId:'trace-9',journeyState:'populated',screenshotSha256:'a'.repeat(64)}};
+const generated={frameId:'f-gen-1',kind:'generated-illustration',presentedAs:'generated-illustration',sha256:'b'.repeat(64),shotId:'shot-5',provenance:{provider:'local',model:'fixture',prompt:'synthetic',inputAssets:[]}};
+await pair('frame provenance bound/mislabelled/missing/empty','src/lib/frame-evidence.ts',{call:m=>[
+ m.evaluateFrameEvidence([live,generated]),m.evaluateFrameEvidence([{...generated,presentedAs:'live-product'}]),m.evaluateFrameEvidence([{...live,bindings:{}}]),m.evaluateFrameEvidence([]),m.formatFrameEvidence(m.evaluateFrameEvidence([live,generated])),
+]},r=>r.error===null);
+
+const recoveryOpts={spawn:[success(batchFailed),success({seconds:1.1,synth:0.3})],call:m=>m.synthesiseBeats(clone(lines),'fixture-model')};
+const positive=await execute('after','tools/clip-gate/narrate.mjs',recoveryOpts);
+const mutant=await execute('after','tools/clip-gate/narrate.mjs',{...recoveryOpts,mutate:s=>s.replace('recoveredEntry.freshProcessRetry = attempt + 1;','recoveredEntry.failed = undefined;\nrecoveredEntry.freshProcessRetry = attempt + 1;')});
+check('knockout rejects undefined failed property',serialize(positive)!==serialize(mutant)&&Object.hasOwn(mutant.events.find(x=>x.kind==='return').args[0][0],'failed'));
+results.push({label:'knockout failed property',before:positive,after:mutant});
+const blocked=await execute('after','tools/clip-gate/narrate.mjs',{call:m=>m.synthesiseBeats(clone(lines),'fixture-model')});
+check('unconfigured process stub fails closed',blocked.error?.message==='UNEXPECTED_SUBPROCESS_STUB');
+write('differential-results.json',results);write('checks.json',checks);write('instrumentation.json',{transforms,limits:{eventsPerCase:512,serializedPerCase:2_000_000,vmTimeoutMs:3000},realFilesystemInsideVm:0,realNetwork:0,realProcess:0,realMedia:0,syntheticInputs:true,sourceModuleImports:'VM allowlist only; no dynamic imports; source and installed TypeScript read by harness outside VM'});
+const report={status:checks.every(x=>x.passed)?'PASS':'FAIL',checksPassed:checks.filter(x=>x.passed).length,checksTotal:checks.length,pairedScenarios:results.length,failures:checks.filter(x=>!x.passed),sourceFreezeSha256:sha(fs.readFileSync(path.join(O,'harness-freeze.json'))),harnessSha256:sha(fs.readFileSync(fileURLToPath(import.meta.url))),realProviderCalls:0,realSubprocessCallsFromVm:0,realProductFileWrites:0,fullGrades:null};
+write('report.json',report);console.log(JSON.stringify(report));process.exitCode=report.status==='PASS'?0:1;

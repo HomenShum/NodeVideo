@@ -1,0 +1,9 @@
+{
+  "approvedBy": "Parent /root current explicit message",
+  "delta": "Allow native blank samples arising from the immutable source tracking gaps; require positive first paint, changing poses/counts and recovery of closed blank runs. Retain trailing censored runs without extending18seconds. Reduced frame0 remains positive/static.",
+  "originalFailureRetained": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-after-01",
+  "oldRecorderSha256": "4e2b844ccf27e00789f5a2cf25cf5aced0b8e7e45fdd28823a4fc663e6ed65d1",
+  "newRecorderSha256": "d43ce26bd008756a62b66536235baf1df0879f4bd8d28507bcfd927a3bc22c35",
+  "durationOrDeadlineChanged": false,
+  "productChanged": false
+}

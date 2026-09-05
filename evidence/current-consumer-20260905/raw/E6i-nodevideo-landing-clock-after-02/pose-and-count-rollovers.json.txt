@@ -1,0 +1,63 @@
+{
+  "summary": {
+    "name": "pose-and-count-rollovers",
+    "errors": [],
+    "firstFrame": 0,
+    "lastFrame": 0,
+    "framesDrawn": 6,
+    "strokes": 80,
+    "arcs": 135,
+    "firstCount": 1,
+    "lastCount": 4,
+    "countRange": [
+      1,
+      6
+    ],
+    "pulseRange": [
+      0,
+      1
+    ],
+    "callbackCount": 12,
+    "maxPending": 2,
+    "pendingBeforeCleanup": 2,
+    "pendingAfterCleanup": 0,
+    "allFrameIndicesValid": true,
+    "allCountValuesValid": true,
+    "allPulseValuesValid": true,
+    "drawSequenceSha256": "d0d078b1535d1dd6eedc588874b43e736484ce5ef9c2f8aae852a088a0bcc4d0",
+    "countsSha256": "5a52997513a1d48144c95e83eaeb6e2421a529411b39393bb302d1084aad1d4b",
+    "pulsesSha256": "3943404c1be53747f40268e44a1c14b28a7c45dddab702afb6acd0069283856a"
+  },
+  "firstObservedIndices": [
+    0,
+    5,
+    46,
+    79,
+    0,
+    0
+  ],
+  "lastObservedIndices": [
+    0,
+    5,
+    46,
+    79,
+    0,
+    0
+  ],
+  "firstObservedCounts": [
+    1,
+    2,
+    1,
+    6,
+    6,
+    4
+  ],
+  "lastObservedCounts": [
+    1,
+    2,
+    1,
+    6,
+    6,
+    4
+  ]
+}

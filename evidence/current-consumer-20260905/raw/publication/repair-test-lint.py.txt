@@ -1,0 +1,11 @@
+from pathlib import Path
+import hashlib,json
+O=Path(__file__).parent;R=Path('D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905')
+f=R/'tests/unit/landing-clock.test.ts';before=f.read_bytes();assert hashlib.sha256(before).hexdigest()=='ebbb01b01fa9eb8a7d3bed26df6fbcae04c60578bea0c30ee74d4fc8a6321b0e'
+B=O/'test-lint-correction';B.mkdir();(B/'before.test.ts.txt').write_bytes(before)
+s=before.decode('utf-8');old='useEffect(fn: () => void | (() => void))';assert s.count(old)==1;s=s.replace(old,'useEffect(fn: () => undefined | (() => void))')
+old='    const oldIndices = indices.length,\n      oldCounts = counts.length,\n      oldCleanups = cleanups.length;';assert s.count(old)==1
+s=s.replace(old,'    const oldIndices = indices.length;\n    const oldCounts = counts.length;\n    const oldCleanups = cleanups.length;')
+f.write_text(s,encoding='utf-8',newline='\n');(B/'after.test.ts.txt').write_bytes(f.read_bytes())
+receipt={'beforeSha256':hashlib.sha256(before).hexdigest(),'afterSha256':hashlib.sha256(f.read_bytes()).hexdigest(),'changes':['Mock effect callback return type void→undefined within union','Separate three remount snapshot const declarations'],'assertionsOrProductChanged':False,'priorFailure':'execution/normal-check.log','rootAuthorization':'Proceed with those exact two new-test lint corrections and justified named-check rerun'}
+(B/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8',newline='\n');print(json.dumps(receipt))

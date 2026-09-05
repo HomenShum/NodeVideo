@@ -1,0 +1,38 @@
+[
+  {
+    "name": "harness matches frozen preexecution identity",
+    "pass": true
+  },
+  {
+    "name": "retained actual before source exact",
+    "pass": true
+  },
+  {
+    "name": "pose input binding exact",
+    "pass": true
+  },
+  {
+    "name": "beforephase honestly reports reproducedfailure",
+    "pass": true
+  },
+  {
+    "name": "both actual schedules reproduce scoped old failure",
+    "pass": true
+  },
+  {
+    "name": "reduced staticcontrol and earlycleanup observed",
+    "pass": true
+  },
+  {
+    "name": "finite60s is simulated60Hz3601instants",
+    "pass": true
+  },
+  {
+    "name": "actual owner transpiled and callbacks invoked",
+    "pass": true
+  },
+  {
+    "name": "required runtime imports are closed localstubs",
+    "pass": true
+  }
+]

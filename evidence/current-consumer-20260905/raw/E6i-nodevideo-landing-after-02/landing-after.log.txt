@@ -1,0 +1,10 @@
+{"cell":"320-normal","status":"PASS_CLOCK","checks":12,"samples":135,"counts":[1,2,3,4,5,6,7,8],"fingerprints":98,"overflow":0}
+{"cell":"320-reduced","status":"PASS_CLOCK","checks":11,"samples":14,"counts":[1],"fingerprints":1,"overflow":0}
+{"cell":"320-text200","status":"PASS_CLOCK_WITH_LAYOUT_LIMIT","checks":10,"samples":134,"counts":[1,2,3,4,5,6,7,8],"fingerprints":93,"overflow":201}
+{"cell":"390-normal","status":"PASS_CLOCK","checks":12,"samples":134,"counts":[1,2,3,4,5,6,7,8],"fingerprints":89,"overflow":0}
+{"cell":"390-reduced","status":"PASS_CLOCK","checks":11,"samples":14,"counts":[1],"fingerprints":1,"overflow":0}
+{"cell":"390-text200","status":"PASS_CLOCK_WITH_LAYOUT_LIMIT","checks":10,"samples":135,"counts":[1,2,3,4,5,6,7,8],"fingerprints":90,"overflow":131}
+{"cell":"1440-normal","status":"PASS_CLOCK","checks":12,"samples":134,"counts":[1,2,3,4,5,6,7,8],"fingerprints":84,"overflow":0}
+{"cell":"1440-reduced","status":"PASS_CLOCK","checks":11,"samples":14,"counts":[1],"fingerprints":1,"overflow":0}
+{"cell":"1440-text200","status":"PASS_CLOCK","checks":10,"samples":134,"counts":[1,2,3,4,5,6,7,8],"fingerprints":92,"overflow":0}
+{"status":"PASS_AFFECTED_CLOCK_WITH_RETAINED_LAYOUT_LIMITS","cells":9}

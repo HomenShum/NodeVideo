@@ -1,0 +1,3399 @@
+{
+  "proofId": "NODEVIDEO-LANDING-CLOCK-01",
+  "status": "WORKER_SCOPED_PASS_WITH_TRACKING_GAPS_AND_LAYOUT_LIMITS_AWAITING_INDEPENDENT_JUDGE",
+  "createdAt": "2026-09-05T20:21:24.169953+00:00",
+  "candidate": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905",
+  "baseCommit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "buildFreeze": {
+    "path": "E6i_NODEVIDEO_LANDING_BUILD_FREEZE.json",
+    "bytes": 568821,
+    "sha256": "07bcdd809a70218e62b0a4f1f79c5520958ff869cb88eed878c8b252703a12f8"
+  },
+  "sourceOwnerCount": 19,
+  "sourceDigest": "1b6dac7ed3b6cbd2353adffe7da6bffb21a3d57fb6685027158b1390fb0e6d02",
+  "sourceBindings": 1374,
+  "distBindings": 1329,
+  "allSourceDistRefsIndexUnchanged": true,
+  "ownedPort4983Released": true,
+  "checks": 99,
+  "cells": [
+    {
+      "cell": "320-normal",
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "status": "PASS_CLOCK",
+      "checks": 12,
+      "sampleCount": 135,
+      "sampleElapsedMilliseconds": 18113.4331,
+      "uniqueCanvasFingerprints": 98,
+      "counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "trackingGaps": {
+        "blankSampleCount": 8,
+        "blankRuns": [
+          {
+            "firstSample": 13,
+            "lastSample": 13,
+            "firstAt": 2171.100000023842,
+            "lastAt": 2171.100000023842,
+            "recoverySample": 14,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 17,
+            "lastSample": 18,
+            "firstAt": 2704.100000023842,
+            "lastAt": 2837.899999976158,
+            "recoverySample": 19,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 56,
+            "lastSample": 56,
+            "firstAt": 7901.5,
+            "lastAt": 7901.5,
+            "recoverySample": 57,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 58,
+            "lastSample": 58,
+            "firstAt": 8168.600000023842,
+            "lastAt": 8168.600000023842,
+            "recoverySample": 59,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 76,
+            "lastSample": 77,
+            "firstAt": 10655.299999952316,
+            "lastAt": 10788.5,
+            "recoverySample": 78,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 115,
+            "lastSample": 115,
+            "firstAt": 15870.299999952316,
+            "lastAt": 15870.299999952316,
+            "recoverySample": 116,
+            "recovered": true,
+            "trailingCensored": false
+          }
+        ],
+        "trailingCensored": false,
+        "sourceAllNullFrames": [
+          19,
+          24,
+          25,
+          76,
+          79
+        ],
+        "exactFrameIndexNotInstrumented": true
+      },
+      "pageOverflowPixels": 0,
+      "canvasRect": {
+        "x": 21,
+        "y": 260.921875,
+        "width": 278,
+        "height": 278
+      },
+      "countRect": {
+        "x": 20,
+        "y": 185.921875,
+        "width": 280,
+        "height": 34
+      },
+      "pageErrors": [],
+      "externalRequests": [],
+      "navigation": {
+        "studioUrl": "http://127.0.0.1:4983/studio.html",
+        "landingAbsent": true,
+        "countRowAbsent": true,
+        "back": {
+          "at": 69.19999992847443,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 320,
+            "height": 800
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 4735,
+            "fingerprint": "3db02e4b",
+            "rect": {
+              "x": 21,
+              "y": 858.921875,
+              "width": 278,
+              "height": 278
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "true"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "0.8853362933333333",
+            "rect": {
+              "x": 20,
+              "y": 783.921875,
+              "width": 280,
+              "height": 34
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        },
+        "reload": {
+          "at": 63.10000002384186,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 320,
+            "height": 800
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 4733,
+            "fingerprint": "40b0767d",
+            "rect": {
+              "x": 21,
+              "y": 858.921875,
+              "width": 278,
+              "height": 278
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "true"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "0.884192",
+            "rect": {
+              "x": 20,
+              "y": 783.921875,
+              "width": 280,
+              "height": 34
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        }
+      },
+      "video": "page@35b6b6d1db1910f361fa9bc7187c6ab5.webm"
+    },
+    {
+      "cell": "320-reduced",
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "status": "PASS_CLOCK",
+      "checks": 11,
+      "sampleCount": 14,
+      "sampleElapsedMilliseconds": 2033.3323999999993,
+      "uniqueCanvasFingerprints": 1,
+      "counts": [
+        1
+      ],
+      "trackingGaps": {
+        "blankSampleCount": 0,
+        "blankRuns": [],
+        "trailingCensored": false,
+        "sourceAllNullFrames": [
+          19,
+          24,
+          25,
+          76,
+          79
+        ],
+        "exactFrameIndexNotInstrumented": true
+      },
+      "pageOverflowPixels": 0,
+      "canvasRect": {
+        "x": 21,
+        "y": 260.921875,
+        "width": 278,
+        "height": 278
+      },
+      "countRect": {
+        "x": 20,
+        "y": 185.921875,
+        "width": 280,
+        "height": 34
+      },
+      "pageErrors": [],
+      "externalRequests": [],
+      "navigation": {
+        "studioUrl": "http://127.0.0.1:4983/studio.html",
+        "landingAbsent": true,
+        "countRowAbsent": true,
+        "back": {
+          "at": 67.80000007152557,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 320,
+            "height": 800
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 3606,
+            "fingerprint": "c869d0b0",
+            "rect": {
+              "x": 21,
+              "y": 858.921875,
+              "width": 278,
+              "height": 278
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "false"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "",
+            "rect": {
+              "x": 20,
+              "y": 783.921875,
+              "width": 280,
+              "height": 34
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        },
+        "reload": {
+          "at": 64.10000002384186,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 320,
+            "height": 800
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 3606,
+            "fingerprint": "c869d0b0",
+            "rect": {
+              "x": 21,
+              "y": 858.921875,
+              "width": 278,
+              "height": 278
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "false"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "",
+            "rect": {
+              "x": 20,
+              "y": 783.921875,
+              "width": 280,
+              "height": 34
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        }
+      },
+      "video": "page@e2f1c50033d5151b8d7e9be015b804fe.webm"
+    },
+    {
+      "cell": "320-text200",
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "status": "PASS_CLOCK_WITH_LAYOUT_LIMIT",
+      "checks": 10,
+      "sampleCount": 134,
+      "sampleElapsedMilliseconds": 18030.076600000004,
+      "uniqueCanvasFingerprints": 93,
+      "counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "trackingGaps": {
+        "blankSampleCount": 8,
+        "blankRuns": [
+          {
+            "firstSample": 13,
+            "lastSample": 13,
+            "firstAt": 2040.5,
+            "lastAt": 2040.5,
+            "recoverySample": 14,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 17,
+            "lastSample": 17,
+            "firstAt": 2574.2000000476837,
+            "lastAt": 2574.2000000476837,
+            "recoverySample": 18,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 55,
+            "lastSample": 55,
+            "firstAt": 7691,
+            "lastAt": 7691,
+            "recoverySample": 56,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 57,
+            "lastSample": 57,
+            "firstAt": 7956.300000071526,
+            "lastAt": 7956.300000071526,
+            "recoverySample": 58,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 72,
+            "lastSample": 72,
+            "firstAt": 10040.600000023842,
+            "lastAt": 10040.600000023842,
+            "recoverySample": 73,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 76,
+            "lastSample": 76,
+            "firstAt": 10576.100000023842,
+            "lastAt": 10576.100000023842,
+            "recoverySample": 77,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 114,
+            "lastSample": 114,
+            "firstAt": 15655.700000047684,
+            "lastAt": 15655.700000047684,
+            "recoverySample": 115,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 117,
+            "lastSample": 117,
+            "firstAt": 16057.100000023842,
+            "lastAt": 16057.100000023842,
+            "recoverySample": 118,
+            "recovered": true,
+            "trailingCensored": false
+          }
+        ],
+        "trailingCensored": false,
+        "sourceAllNullFrames": [
+          19,
+          24,
+          25,
+          76,
+          79
+        ],
+        "exactFrameIndexNotInstrumented": true
+      },
+      "pageOverflowPixels": 201,
+      "canvasRect": {
+        "x": 0,
+        "y": 201.984375,
+        "width": 395.234375,
+        "height": 395.234375
+      },
+      "countRect": {
+        "x": -1,
+        "y": -76.015625,
+        "width": 397.234375,
+        "height": 197
+      },
+      "pageErrors": [],
+      "externalRequests": [],
+      "navigation": {
+        "studioUrl": "http://127.0.0.1:4983/studio.html",
+        "landingAbsent": true,
+        "countRowAbsent": true,
+        "back": {
+          "at": 62.300000071525574,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 320,
+            "height": 800
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 4735,
+            "fingerprint": "70c79e72",
+            "rect": {
+              "x": 21,
+              "y": 858.921875,
+              "width": 278,
+              "height": 278
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "true"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "0.8855706666666667",
+            "rect": {
+              "x": 20,
+              "y": 783.921875,
+              "width": 280,
+              "height": 34
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        },
+        "reload": {
+          "at": 60.799999952316284,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 320,
+            "height": 800
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 4735,
+            "fingerprint": "70c79e72",
+            "rect": {
+              "x": 21,
+              "y": 858.921875,
+              "width": 278,
+              "height": 278
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "true"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "0.8855706666666666",
+            "rect": {
+              "x": 20,
+              "y": 783.921875,
+              "width": 280,
+              "height": 34
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        }
+      },
+      "video": "page@92c2eada3928e4946791a3213be96cee.webm"
+    },
+    {
+      "cell": "390-normal",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "PASS_CLOCK",
+      "checks": 12,
+      "sampleCount": 134,
+      "sampleElapsedMilliseconds": 18013.6742,
+      "uniqueCanvasFingerprints": 89,
+      "counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "trackingGaps": {
+        "blankSampleCount": 9,
+        "blankRuns": [
+          {
+            "firstSample": 17,
+            "lastSample": 18,
+            "firstAt": 2504.5,
+            "lastAt": 2641.8000000715256,
+            "recoverySample": 19,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 56,
+            "lastSample": 56,
+            "firstAt": 7742,
+            "lastAt": 7742,
+            "recoverySample": 57,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 58,
+            "lastSample": 58,
+            "firstAt": 8008.399999976158,
+            "lastAt": 8008.399999976158,
+            "recoverySample": 59,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 72,
+            "lastSample": 72,
+            "firstAt": 9991.5,
+            "lastAt": 9991.5,
+            "recoverySample": 73,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 76,
+            "lastSample": 77,
+            "firstAt": 10525.5,
+            "lastAt": 10660.100000023842,
+            "recoverySample": 78,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 115,
+            "lastSample": 115,
+            "firstAt": 15722.399999976158,
+            "lastAt": 15722.399999976158,
+            "recoverySample": 116,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 117,
+            "lastSample": 117,
+            "firstAt": 15987.600000023842,
+            "lastAt": 15987.600000023842,
+            "recoverySample": 118,
+            "recovered": true,
+            "trailingCensored": false
+          }
+        ],
+        "trailingCensored": false,
+        "sourceAllNullFrames": [
+          19,
+          24,
+          25,
+          76,
+          79
+        ],
+        "exactFrameIndexNotInstrumented": true
+      },
+      "pageOverflowPixels": 0,
+      "canvasRect": {
+        "x": 21,
+        "y": 495.671875,
+        "width": 348,
+        "height": 348
+      },
+      "countRect": {
+        "x": 20,
+        "y": 420.671875,
+        "width": 350,
+        "height": 34
+      },
+      "pageErrors": [],
+      "externalRequests": [],
+      "navigation": {
+        "studioUrl": "http://127.0.0.1:4983/studio.html",
+        "landingAbsent": true,
+        "countRowAbsent": true,
+        "back": {
+          "at": 75.60000002384186,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 4587,
+            "fingerprint": "b24008db",
+            "rect": {
+              "x": 21,
+              "y": 811.671875,
+              "width": 348,
+              "height": 348
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "true"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "0.770452",
+            "rect": {
+              "x": 20,
+              "y": 736.671875,
+              "width": 350,
+              "height": 34
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        },
+        "reload": {
+          "at": 60.59999990463257,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 4735,
+            "fingerprint": "70c79e72",
+            "rect": {
+              "x": 21,
+              "y": 811.671875,
+              "width": 348,
+              "height": 348
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "true"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "0.8855706666666666",
+            "rect": {
+              "x": 20,
+              "y": 736.671875,
+              "width": 350,
+              "height": 34
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        }
+      },
+      "video": "page@a51fef02d723a5b215ca33f339e7058e.webm"
+    },
+    {
+      "cell": "390-reduced",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "PASS_CLOCK",
+      "checks": 11,
+      "sampleCount": 14,
+      "sampleElapsedMilliseconds": 2050.8853000000017,
+      "uniqueCanvasFingerprints": 1,
+      "counts": [
+        1
+      ],
+      "trackingGaps": {
+        "blankSampleCount": 0,
+        "blankRuns": [],
+        "trailingCensored": false,
+        "sourceAllNullFrames": [
+          19,
+          24,
+          25,
+          76,
+          79
+        ],
+        "exactFrameIndexNotInstrumented": true
+      },
+      "pageOverflowPixels": 0,
+      "canvasRect": {
+        "x": 21,
+        "y": 495.671875,
+        "width": 348,
+        "height": 348
+      },
+      "countRect": {
+        "x": 20,
+        "y": 420.671875,
+        "width": 350,
+        "height": 34
+      },
+      "pageErrors": [],
+      "externalRequests": [],
+      "navigation": {
+        "studioUrl": "http://127.0.0.1:4983/studio.html",
+        "landingAbsent": true,
+        "countRowAbsent": true,
+        "back": {
+          "at": 67.20000004768372,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 3606,
+            "fingerprint": "c869d0b0",
+            "rect": {
+              "x": 21,
+              "y": 811.671875,
+              "width": 348,
+              "height": 348
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "false"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "",
+            "rect": {
+              "x": 20,
+              "y": 736.671875,
+              "width": 350,
+              "height": 34
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        },
+        "reload": {
+          "at": 63.89999997615814,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 3606,
+            "fingerprint": "c869d0b0",
+            "rect": {
+              "x": 21,
+              "y": 811.671875,
+              "width": 348,
+              "height": 348
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "false"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "",
+            "rect": {
+              "x": 20,
+              "y": 736.671875,
+              "width": 350,
+              "height": 34
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        }
+      },
+      "video": "page@34cb94f505bf6897cde9288f3345f124.webm"
+    },
+    {
+      "cell": "390-text200",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "PASS_CLOCK_WITH_LAYOUT_LIMIT",
+      "checks": 10,
+      "sampleCount": 135,
+      "sampleElapsedMilliseconds": 18129.45300000001,
+      "uniqueCanvasFingerprints": 90,
+      "counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "trackingGaps": {
+        "blankSampleCount": 7,
+        "blankRuns": [
+          {
+            "firstSample": 13,
+            "lastSample": 13,
+            "firstAt": 2044.2999999523163,
+            "lastAt": 2044.2999999523163,
+            "recoverySample": 14,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 17,
+            "lastSample": 17,
+            "firstAt": 2574.399999976158,
+            "lastAt": 2574.399999976158,
+            "recoverySample": 18,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 58,
+            "lastSample": 58,
+            "firstAt": 8040.799999952316,
+            "lastAt": 8040.799999952316,
+            "recoverySample": 59,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 72,
+            "lastSample": 72,
+            "firstAt": 10009,
+            "lastAt": 10009,
+            "recoverySample": 73,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 76,
+            "lastSample": 76,
+            "firstAt": 10542.899999976158,
+            "lastAt": 10542.899999976158,
+            "recoverySample": 77,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 117,
+            "lastSample": 117,
+            "firstAt": 16040.899999976158,
+            "lastAt": 16040.899999976158,
+            "recoverySample": 118,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 132,
+            "lastSample": 132,
+            "firstAt": 18039.099999904633,
+            "lastAt": 18039.099999904633,
+            "recoverySample": 133,
+            "recovered": true,
+            "trailingCensored": false
+          }
+        ],
+        "trailingCensored": false,
+        "sourceAllNullFrames": [
+          19,
+          24,
+          25,
+          76,
+          79
+        ],
+        "exactFrameIndexNotInstrumented": true
+      },
+      "pageOverflowPixels": 131,
+      "canvasRect": {
+        "x": 0,
+        "y": 223.984375,
+        "width": 395.234375,
+        "height": 395.234375
+      },
+      "countRect": {
+        "x": -1,
+        "y": -54.015625,
+        "width": 397.234375,
+        "height": 197
+      },
+      "pageErrors": [],
+      "externalRequests": [],
+      "navigation": {
+        "studioUrl": "http://127.0.0.1:4983/studio.html",
+        "landingAbsent": true,
+        "countRowAbsent": true,
+        "back": {
+          "at": 60.89999997615814,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 4732,
+            "fingerprint": "9cf60d27",
+            "rect": {
+              "x": 21,
+              "y": 811.671875,
+              "width": 348,
+              "height": 348
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "true"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "0.8848813333333333",
+            "rect": {
+              "x": 20,
+              "y": 736.671875,
+              "width": 350,
+              "height": 34
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        },
+        "reload": {
+          "at": 61.10000002384186,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 4735,
+            "fingerprint": "3db02e4b",
+            "rect": {
+              "x": 21,
+              "y": 811.671875,
+              "width": 348,
+              "height": 348
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "true"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "0.8853362933333333",
+            "rect": {
+              "x": 20,
+              "y": 736.671875,
+              "width": 350,
+              "height": 34
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        }
+      },
+      "video": "page@eddc87a75ad01f8425ce2698ceb6f9b4.webm"
+    },
+    {
+      "cell": "1440-normal",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "status": "PASS_CLOCK",
+      "checks": 12,
+      "sampleCount": 134,
+      "sampleElapsedMilliseconds": 18015.857099999994,
+      "uniqueCanvasFingerprints": 84,
+      "counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "trackingGaps": {
+        "blankSampleCount": 9,
+        "blankRuns": [
+          {
+            "firstSample": 13,
+            "lastSample": 13,
+            "firstAt": 1996.6999999284744,
+            "lastAt": 1996.6999999284744,
+            "recoverySample": 14,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 17,
+            "lastSample": 17,
+            "firstAt": 2529.1999999284744,
+            "lastAt": 2529.1999999284744,
+            "recoverySample": 18,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 56,
+            "lastSample": 56,
+            "firstAt": 7731,
+            "lastAt": 7731,
+            "recoverySample": 57,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 58,
+            "lastSample": 58,
+            "firstAt": 7996,
+            "lastAt": 7996,
+            "recoverySample": 59,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 72,
+            "lastSample": 72,
+            "firstAt": 9996.5,
+            "lastAt": 9996.5,
+            "recoverySample": 73,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 76,
+            "lastSample": 76,
+            "firstAt": 10531.599999904633,
+            "lastAt": 10531.599999904633,
+            "recoverySample": 77,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 115,
+            "lastSample": 115,
+            "firstAt": 15746.099999904633,
+            "lastAt": 15746.099999904633,
+            "recoverySample": 116,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 117,
+            "lastSample": 117,
+            "firstAt": 16011.899999976158,
+            "lastAt": 16011.899999976158,
+            "recoverySample": 118,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 132,
+            "lastSample": 132,
+            "firstAt": 18010.699999928474,
+            "lastAt": 18010.699999928474,
+            "recoverySample": 133,
+            "recovered": true,
+            "trailingCensored": false
+          }
+        ],
+        "trailingCensored": false,
+        "sourceAllNullFrames": [
+          19,
+          24,
+          25,
+          76,
+          79
+        ],
+        "exactFrameIndexNotInstrumented": true
+      },
+      "pageOverflowPixels": 0,
+      "canvasRect": {
+        "x": 793.390625,
+        "y": 147.6875,
+        "width": 469.609375,
+        "height": 469.609375
+      },
+      "countRect": {
+        "x": 176,
+        "y": 605,
+        "width": 576.390625,
+        "height": 20
+      },
+      "pageErrors": [],
+      "externalRequests": [],
+      "navigation": {
+        "studioUrl": "http://127.0.0.1:4983/studio.html",
+        "landingAbsent": true,
+        "countRowAbsent": true,
+        "back": {
+          "at": 77.20000004768372,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 4587,
+            "fingerprint": "b24008db",
+            "rect": {
+              "x": 793.390625,
+              "y": 147.6875,
+              "width": 469.609375,
+              "height": 469.609375
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "true"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "0.7704519999999999",
+            "rect": {
+              "x": 176,
+              "y": 605,
+              "width": 576.390625,
+              "height": 20
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        },
+        "reload": {
+          "at": 77.60000002384186,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 4588,
+            "fingerprint": "92e1c156",
+            "rect": {
+              "x": 793.390625,
+              "y": 147.6875,
+              "width": 469.609375,
+              "height": 469.609375
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "true"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "0.7697626666666666",
+            "rect": {
+              "x": 176,
+              "y": 605,
+              "width": 576.390625,
+              "height": 20
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        }
+      },
+      "video": "page@49d6933cee21f78325e0d2ff165da4ef.webm"
+    },
+    {
+      "cell": "1440-reduced",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "status": "PASS_CLOCK",
+      "checks": 11,
+      "sampleCount": 14,
+      "sampleElapsedMilliseconds": 2054.425900000002,
+      "uniqueCanvasFingerprints": 1,
+      "counts": [
+        1
+      ],
+      "trackingGaps": {
+        "blankSampleCount": 0,
+        "blankRuns": [],
+        "trailingCensored": false,
+        "sourceAllNullFrames": [
+          19,
+          24,
+          25,
+          76,
+          79
+        ],
+        "exactFrameIndexNotInstrumented": true
+      },
+      "pageOverflowPixels": 0,
+      "canvasRect": {
+        "x": 793.390625,
+        "y": 147.6875,
+        "width": 469.609375,
+        "height": 469.609375
+      },
+      "countRect": {
+        "x": 176,
+        "y": 605,
+        "width": 576.390625,
+        "height": 20
+      },
+      "pageErrors": [],
+      "externalRequests": [],
+      "navigation": {
+        "studioUrl": "http://127.0.0.1:4983/studio.html",
+        "landingAbsent": true,
+        "countRowAbsent": true,
+        "back": {
+          "at": 67,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 3606,
+            "fingerprint": "c869d0b0",
+            "rect": {
+              "x": 793.390625,
+              "y": 147.6875,
+              "width": 469.609375,
+              "height": 469.609375
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "false"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "",
+            "rect": {
+              "x": 176,
+              "y": 605,
+              "width": 576.390625,
+              "height": 20
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        },
+        "reload": {
+          "at": 65.30000007152557,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 3606,
+            "fingerprint": "c869d0b0",
+            "rect": {
+              "x": 793.390625,
+              "y": 147.6875,
+              "width": 469.609375,
+              "height": 469.609375
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "false"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "",
+            "rect": {
+              "x": 176,
+              "y": 605,
+              "width": 576.390625,
+              "height": 20
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        }
+      },
+      "video": "page@87345ca0c40e88c58eff509adb57dba6.webm"
+    },
+    {
+      "cell": "1440-text200",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "status": "PASS_CLOCK",
+      "checks": 10,
+      "sampleCount": 134,
+      "sampleElapsedMilliseconds": 18035.589299999992,
+      "uniqueCanvasFingerprints": 92,
+      "counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "trackingGaps": {
+        "blankSampleCount": 8,
+        "blankRuns": [
+          {
+            "firstSample": 16,
+            "lastSample": 17,
+            "firstAt": 2481,
+            "lastAt": 2614,
+            "recoverySample": 18,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 55,
+            "lastSample": 55,
+            "firstAt": 7696.399999976158,
+            "lastAt": 7696.399999976158,
+            "recoverySample": 56,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 71,
+            "lastSample": 71,
+            "firstAt": 9967.199999928474,
+            "lastAt": 9967.199999928474,
+            "recoverySample": 72,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 75,
+            "lastSample": 76,
+            "firstAt": 10493.199999928474,
+            "lastAt": 10630.599999904633,
+            "recoverySample": 77,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 114,
+            "lastSample": 114,
+            "firstAt": 15711.299999952316,
+            "lastAt": 15711.299999952316,
+            "recoverySample": 115,
+            "recovered": true,
+            "trailingCensored": false
+          },
+          {
+            "firstSample": 116,
+            "lastSample": 116,
+            "firstAt": 15978.099999904633,
+            "lastAt": 15978.099999904633,
+            "recoverySample": 117,
+            "recovered": true,
+            "trailingCensored": false
+          }
+        ],
+        "trailingCensored": false,
+        "sourceAllNullFrames": [
+          19,
+          24,
+          25,
+          76,
+          79
+        ],
+        "exactFrameIndexNotInstrumented": true
+      },
+      "pageOverflowPixels": 0,
+      "canvasRect": {
+        "x": 822.59375,
+        "y": 407.296875,
+        "width": 552.40625,
+        "height": 552.40625
+      },
+      "countRect": {
+        "x": 64,
+        "y": 1308,
+        "width": 677.59375,
+        "height": 69
+      },
+      "pageErrors": [],
+      "externalRequests": [],
+      "navigation": {
+        "studioUrl": "http://127.0.0.1:4983/studio.html",
+        "landingAbsent": true,
+        "countRowAbsent": true,
+        "back": {
+          "at": 74.5,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 4588,
+            "fingerprint": "92e1c156",
+            "rect": {
+              "x": 793.390625,
+              "y": 147.6875,
+              "width": 469.609375,
+              "height": 469.609375
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "true"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "0.7697626666666666",
+            "rect": {
+              "x": 176,
+              "y": 605,
+              "width": 576.390625,
+              "height": 20
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        },
+        "reload": {
+          "at": 78.59999990463257,
+          "url": "http://127.0.0.1:4983/",
+          "landingPresent": true,
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "scroll": {
+            "x": 0,
+            "y": 0
+          },
+          "overflow": 0,
+          "canvas": {
+            "width": 560,
+            "height": 560,
+            "painted": 4587,
+            "fingerprint": "b24008db",
+            "rect": {
+              "x": 793.390625,
+              "y": 147.6875,
+              "width": 469.609375,
+              "height": 469.609375
+            }
+          },
+          "count": {
+            "label": "Count 1 of 8 at 103.4 beats per minute",
+            "live": [
+              {
+                "text": "1",
+                "live": "true"
+              },
+              {
+                "text": "2",
+                "live": "false"
+              },
+              {
+                "text": "3",
+                "live": "false"
+              },
+              {
+                "text": "4",
+                "live": "false"
+              },
+              {
+                "text": "5",
+                "live": "false"
+              },
+              {
+                "text": "6",
+                "live": "false"
+              },
+              {
+                "text": "7",
+                "live": "false"
+              },
+              {
+                "text": "8",
+                "live": "false"
+              }
+            ],
+            "pulse": "0.7704519999999999",
+            "rect": {
+              "x": 176,
+              "y": 605,
+              "width": 576.390625,
+              "height": 20
+            }
+          },
+          "links": [
+            {
+              "text": "Studio",
+              "href": "/studio.html"
+            },
+            {
+              "text": "For agents",
+              "href": "/.well-known/agent-ui.json"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Watch a real comparison",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Preview a sample verdict — no setup needed",
+              "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
+            },
+            {
+              "text": "Open the collab editor",
+              "href": "/collab.html"
+            },
+            {
+              "text": "Open the coach",
+              "href": "/apps/chrome-extension/sidepanel.html"
+            },
+            {
+              "text": "Open the stitch studio",
+              "href": "/edit.html"
+            },
+            {
+              "text": "Proof console",
+              "href": "/studio.html"
+            },
+            {
+              "text": "Open the practice room (early beta)",
+              "href": "/practice.html"
+            }
+          ],
+          "protectedText": [
+            "Choreography coach · judged on visible motion only",
+            "Learn the dance you admire.",
+            "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+            "real pose track · verified public case",
+            "Three ways to use NodeVideo today",
+            "Make a collab edit",
+            "Put your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.",
+            "Coach a take",
+            "Upload your dance take against the dancer you are studying and get relative motion signals with the moments to review.",
+            "Cut takes into an edit",
+            "The original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.",
+            "Practice live",
+            "A camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.",
+            "Form",
+            "Joint angles against the reference pose, frame by frame.",
+            "Timing",
+            "Your landings against the music grid, in milliseconds.",
+            "Path",
+            "Where your body travels compared with the reference.",
+            "Dynamics",
+            "The sharpness of your hits — pops, locks, accents.",
+            "When the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.",
+            "local-first · hash-verified · consent-gated"
+          ]
+        }
+      },
+      "video": "page@dc260682e37825632a7195e64f7e63f1.webm"
+    }
+  ],
+  "savedPngCount": 63,
+  "savedVideoCount": 9,
+  "savedCanvasRasterCount": 27,
+  "manifest": {
+    "path": "E6i-nodevideo-landing-after-02/artifact-manifest.json",
+    "bytes": 45356,
+    "sha256": "83d48d24e795bb294ee7f4f06de16919315820907752e4aaa9d0c42d515e223d"
+  },
+  "artifactCount": 228,
+  "artifactBytes": 29084056,
+  "priorFailedRecorder": {
+    "path": "E6i-nodevideo-landing-after-01/report.json",
+    "bytes": 667321,
+    "sha256": "c06288f3164aced3ec4e57e855e8151a5e6eb40497e179154db0877dc31d8c93"
+  },
+  "expectationCorrection": {
+    "path": "E6i-nodevideo-landing-after-02/expectation-addendum.json",
+    "bytes": 744,
+    "sha256": "0591fb81dfb5c55ac656630543b601492b533cb4a151c93777bf761da489ca77"
+  },
+  "grades": null,
+  "limits": [
+    "Fatal first-callback failure resolved in current local build; continuous pose visibility is not claimed. Five immutable all-null input frames produce honest tracking gaps.",
+    "Each trailing blank run is censored, not extended or described as recovered.",
+    "Computed-text200 phone overflow/cropping remains open. No complete responsive, visual, performance, assistive or real-device grade.",
+    "Exact frame indices/cleanup belong to separate parent callback proof. Native browser navigation is observed, not callback instrumentation.",
+    "Prior editor/codec proof remains historical; no unrelated replay, provider/private media, publish or deployment."
+  ],
+  "commands": {
+    "actual": "python -X utf8 \"C:/Users/hshum/.codex/worktrees/5dba/nodebench-ai/docs/plans/portfolio-recovery-20260904/E6i-nodevideo-landing-after-02/run-after.py\"",
+    "safeReplay": "Use a new empty sibling output: copy capture.mjs, boundary.mjs and run-after.py; preserve the same current source/build freeze. The launcher refuses an existing command receipt or occupied4983. No build/install needed for this frozen local replay.",
+    "boundWholeRunSeconds": 360,
+    "perActionSeconds": 15,
+    "normalSampleWindowMilliseconds": 18000,
+    "reducedSampleWindowMilliseconds": 2000
+  }
+}

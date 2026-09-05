@@ -1,0 +1,200 @@
+{
+  "at": "2026-09-05T20:08:49.045366+00:00",
+  "verdict": "APPROVED_SCOPED_OBSERVED_BASELINE_FULL_READINESS_HELD",
+  "namedProof": "NODEVIDEO-FIRST-USE-01",
+  "reviewer": "independent nonauthor; reused reviewer context",
+  "checksPassed": 30,
+  "checksTotal": 30,
+  "operatorReceiptSha256": "68e03aea425d13dc5667a5bfe99058b1eba4d86413ba9391c5cbc054ba999d1e",
+  "originalBaseCommit": "42e41b4bb2ec738ef84330dedd7a7ebc9269070f",
+  "originalApproved18OwnerDigest": "bb5ca4d7a02ab72eecf2581f63fa7762174190453e2ccdeb5d7879d30b9c0c18",
+  "operatorArtifacts": {
+    "files": 409,
+    "bytes": 64686000,
+    "manifestSha256": "d9e078300d8246590c764eed5dd8e32e540ee1118fe72cdf0a088ebea1a4c7c9",
+    "allExact": true
+  },
+  "sourceCustody": {
+    "originalBindings": 1374,
+    "originalDistBindings": 1329,
+    "allSevenLaneInputSetsEqual": true,
+    "originalSourceMatchesPriorIndependentApprovedBindings": true,
+    "currentDelta": [
+      {
+        "path": "apps/landing/src/landing.tsx",
+        "beforeSha256": "68391b772324b9b5102321e655081fa98585cf16f60b9e15559246cd82c589b8",
+        "currentSha256": "5d4ce6007803f7166949c40cdec646e0d2c51b0ee7ba8ca0dc2ac686b2de45ab"
+      }
+    ],
+    "landingRepairSeparatelyOwned": true
+  },
+  "observedEvidence": {
+    "sevenViewports": [
+      {
+        "width": 320,
+        "height": 800
+      },
+      {
+        "width": 360,
+        "height": 800
+      },
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 768,
+        "height": 1024
+      },
+      {
+        "width": 1024,
+        "height": 768
+      },
+      {
+        "width": 1440,
+        "height": 960
+      },
+      {
+        "width": 1920,
+        "height": 1080
+      }
+    ],
+    "normalCaptures": 57,
+    "independentlyCheckedRawVideoSeekStates": 21,
+    "rawClipLabelApplyUndoCells": 7,
+    "localExchanges": 10,
+    "newestVisibleMessagePairs": 8,
+    "viewedActualPngs": 15,
+    "actualMP4": {
+      "commands": [
+        {
+          "name": "ffprobe",
+          "argv": [
+            "C:/Users/hshum/scoop/shims/ffprobe.exe",
+            "-v",
+            "error",
+            "-show_entries",
+            "format=duration:stream=codec_name,width,height,codec_type,nb_frames,r_frame_rate",
+            "-of",
+            "json",
+            "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-first-use-01\\codec\\nodevideo-sign-edit.mp4"
+          ],
+          "exitCode": 0,
+          "elapsedSeconds": 0.0779999999795109,
+          "stdoutSha256": "9ab41c9b72f6e37443fb9c2b373830dd844e984849d728d844fa5749287c17d6",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "decoded-frames",
+          "argv": [
+            "C:/Users/hshum/scoop/shims/ffmpeg.exe",
+            "-v",
+            "error",
+            "-i",
+            "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-first-use-01\\codec\\nodevideo-sign-edit.mp4",
+            "-f",
+            "framemd5",
+            "-"
+          ],
+          "exitCode": 0,
+          "elapsedSeconds": 0.09299999999348074,
+          "stdoutSha256": "df3d1a8cca743da846b22fcda6f5ba5bd3429f84516d5d81fff0fdb5fa9d1631",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "caption-ocr",
+          "argv": [
+            "C:/Program Files/Tesseract-OCR/tesseract.exe",
+            "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-first-use-01\\codec\\decoded-proof-frame.png",
+            "stdout",
+            "--psm",
+            "11"
+          ],
+          "exitCode": 0,
+          "elapsedSeconds": 0.10999999998603016,
+          "stdoutSha256": "43a5effcba569ace6b8b280f39d8e6cda0633fc50db9fae9b5f1206731a64bf6",
+          "stderrSha256": "87f7cf3fe153b419b146a0ff0ea60ae2bc1a78394397e2ffa6671a72297a4322"
+        }
+      ],
+      "actualMp4Bytes": 55223,
+      "actualMp4Sha256": "ea98c867b27136df65c5b5c8d6b22ddd43294bfc5881580e8e2ced2cd923317e",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 180,
+            "height": 320,
+            "r_frame_rate": "30/1",
+            "nb_frames": "60"
+          }
+        ],
+        "format": {
+          "duration": "2.000000"
+        }
+      },
+      "decodedFrameRows": 60,
+      "ocr": "PROOF CUT\n",
+      "scope": "Read-only analysis of retained actual downloaded MP4/PNG; no browser export, app, server or provider execution."
+    }
+  },
+  "findings": [
+    {
+      "id": "LANDING-CLOCK-01",
+      "status": "REPRODUCED_BEFORE_SEPARATE_REPAIR",
+      "impact": "First-time animated landing pose blank; native negativeindex cause already independently diagnosed.",
+      "next": "Separate one-owner repair and native afterproof; this baseline cannot close it."
+    },
+    {
+      "id": "ENLARGED-REFLOW-01",
+      "status": "OPEN",
+      "impact": "390px text-doubled landing39pxoverflow; editor caption overlaps native controls; compact timeline/actions truncate. Newly inserted proposal text is not uniformly doubled.",
+      "next": "Separate measured beforeboundaries and owning-layout proposal after current guard closes."
+    },
+    {
+      "id": "INSPECTOR-PLAYBACK-01",
+      "status": "UNVERIFIED",
+      "impact": "Native waiting spinner remains in actual current-frame captures despite valid seekready identity.",
+      "next": "A playback-specific observation would be required before a smoothplayback claim."
+    },
+    {
+      "id": "COMPACT-METADATA-01",
+      "status": "OBSERVED_LIMIT",
+      "impact": "Tempo header badge hidden below1024; changed clip can lie beyond compact horizontal view. RawDOM state proof does not certify visible review usability."
+    }
+  ],
+  "limits": [
+    "Independent judgment covers frozen local baseline and actual retained artifacts; no fullproduct/sourcegrade or currentliveproduction claim.",
+    "Inspector rawJSON verifies21seekstates480\u2192481\u2192480, underlyingmedia/pose inputhashes and rendered labels. It does not score skeleton alignment or smoothplayback.",
+    "Edit proof observes original/apply/Undo cliplabels and1335frameduration; there is no full accepted-plan JSON export proving every hidden in-memory property restored.",
+    "History proof is ten localexchanges with newest8pairs/16visiblemessages, not concurrent/sustainedload or durablepersistence.",
+    "Cancellation has no download in the observed cancel\u2192oneexplicitretry\u2192singlefile/contextclosure window; arbitrary future late-dispatch timing is not certified.",
+    "Actual retainedfile is2seconds180\u00d7320silentH264 from the existing shortcodeclane. The44.5second720\u00d71280untouchedplan is inspected/edited but not fully exported.",
+    "Freshbrowser reopen uses a proof-only player document with exact retainedMP4bytes, not import/reopen into the full editor.",
+    "Axe0violations applies only to inspected regions; editor excludesplan-preview. Textdoubling is a finite computedstylesnapshot, not native200percentzoom.",
+    "Manifesttampering is a labelled routeoverride appendingwhitespace to exactoriginalJSON. Recovery is fullreload; no inlineRetry was invented.",
+    "No private media/envvalues, provider/camera/upload/Creatorbackend, production or policychanges. Existingclipgate missingimports/fixture and audit holds remain separate.",
+    "This is a localoperator/judge packet; active historicalHTML/scripts are retained as original evidence. Any future Gitpublication needs an inertcopy map/portablemanifest and bytefilter review."
+  ],
+  "collectorCorrections": {
+    "retainedFailure": "First readback of a UTF8 captured JSON used implicit Windows cp1252 and raised UnicodeDecodeError at0x9d. Corrected readback uses explicit UTF8; no artifact/product bytes changed.",
+    "toolChunks": [
+      "edcfe3",
+      "ee5dbd"
+    ],
+    "secondCollectorFailure": {
+      "cause": "Initial rawHTML collector restricted aria labels to button elements, omitting the real span owner for Proposal clip2 takeBchanged.",
+      "correction": "Collect matching aria labels on any element while retaining actual tag. Previous29of30checkreport and rawtransitionreadback retained.",
+      "limit": "RawDOM identities do not assert offscreen/clipped compact proposals are fully visible."
+    }
+  },
+  "grades": null,
+  "guard": "CLOSED_FOR_ORIGINAL_FIRST_USE_EVIDENCE",
+  "requiredNext": "Continue separately accepted landingclock repair; do not conflate its futureafterresult with originalbaseline or fullUIacceptance.",
+  "artifactManifest": {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-first-use-judge\\artifact-manifest.json",
+    "files": 50,
+    "sha256": "5bf40b5f2d5b254e14c4e292c065aa93c0b8b408d27fec329274cb811f86ee77"
+  }
+}

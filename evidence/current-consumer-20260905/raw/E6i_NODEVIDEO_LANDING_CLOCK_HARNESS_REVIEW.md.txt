@@ -1,0 +1,14 @@
+# NodeVideo landing clock harness audit
+
+**Re your request:** make each repository ready for real use and independent handoff — the clock repair needs a test that fails when the original startup defect returns.
+
+**Baseline causal proof accepted; two targeted after-proof amendments required.** The frozen harness `28b151b39c25c9a9ff296d625c0316a36fd57e7fa77f0880ddefb92f87893d91` transpiles the actual owner and executes its exported callbacks under controlled React/canvas/scheduler stubs. Both recorded negative-start schedules reproduce frame-1, Count0, zero strokes/arcs and the original exception. The nine before scenarios are executed cases, not nine passing user journeys.
+
+1. Strengthen timestamp0: assert its full index/count sequence, not only the first value and valid ranges. Expected indices are `[0,0,1,5,46]` and counts `[1,1,1,2,1]`. A wrong truthiness initializer can reset its origin at100ms and evade the current oracle. An isolated falsy-sentinel mutant must fail.
+2. Exercise a real simulated remount sequence in one VM/scheduler. The current case named `fresh-remount-after-cleanup` starts a new VM and mounts once; it proves a fresh mount only. Mount, advance, cleanup, verify no active callbacks, remount the same exported owner, then require a fresh frame0/count1 and exactly two active loops. This remains simulated lifecycle rather than native React StrictMode.
+
+Preserve the existing harness and all before artifacts. Freeze a versioned amendment before execution, bind the actual transpiler, and compare the retained original owner with the final owner through that same effective harness. Require the original negative-start failure and an isolated old-epoch knockout. The one-file product repair remains supported; no new runtime architecture is needed.
+
+The60-second scenario is3,601 synchronous simulated60Hz timestamps, not one minute of browser performance or sustained-load observation. `framesDrawn` counts clearRect calls, so the failed case's value1 is not a completed draw. Canvas geometry is not rendered; native screenshots and first-use proof remain separate. VM timeout covers module evaluation, not later direct callback calls.
+
+This was a read-only audit; no product edits or executable replay by the reviewer. Nine bounded source/report/identity checks passed. [Checks](E6i-nodevideo-landing-clock-harness-review/checks.json), [frozen harness](E6i-nodevideo-landing-clock-harness-review/frozen-harness.mjs.txt), [exact before report](E6i-nodevideo-landing-clock-harness-review/before-report.json), [raw bindings](E6i-nodevideo-landing-clock-harness-review/raw-bindings.json).

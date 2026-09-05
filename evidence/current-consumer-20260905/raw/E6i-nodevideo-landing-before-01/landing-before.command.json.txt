@@ -1,0 +1,133 @@
+{
+  "startedAt": "2026-09-05T20:00:57.918111+00:00",
+  "section": "landing-before",
+  "cwd": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905",
+  "sourceCount": 1374,
+  "distCount": 1329,
+  "childRemovedNamesOnly": [],
+  "childOverride": {
+    "NODEVIDEO_URL": "http://127.0.0.1:4983"
+  },
+  "status": "PASS",
+  "argv": [
+    "C:/nvm4w/nodejs/node.exe",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-before-01\\capture.mjs",
+    "landing-before",
+    "landing-before"
+  ],
+  "timeoutSeconds": 90,
+  "exitCode": 0,
+  "owned": [
+    [
+      63972,
+      1788638457.9222727
+    ],
+    [
+      34616,
+      1788638458.0085132
+    ],
+    [
+      52100,
+      1788638458.2478564
+    ],
+    [
+      22408,
+      1788638458.4454567
+    ],
+    [
+      42996,
+      1788638458.4815211
+    ],
+    [
+      924,
+      1788638458.982138
+    ],
+    [
+      11240,
+      1788638458.992968
+    ],
+    [
+      50280,
+      1788638459.236338
+    ],
+    [
+      53928,
+      1788638459.3697596
+    ],
+    [
+      54536,
+      1788638459.4282584
+    ],
+    [
+      58864,
+      1788638459.4492996
+    ],
+    [
+      39108,
+      1788638460.6785288
+    ],
+    [
+      55796,
+      1788638461.6598694
+    ]
+  ],
+  "closure": [
+    {
+      "pid": 55796,
+      "result": "already-exited"
+    },
+    {
+      "pid": 39108,
+      "result": "already-exited"
+    },
+    {
+      "pid": 58864,
+      "result": "already-exited"
+    },
+    {
+      "pid": 54536,
+      "result": "already-exited"
+    },
+    {
+      "pid": 53928,
+      "result": "already-exited"
+    },
+    {
+      "pid": 50280,
+      "result": "already-exited"
+    },
+    {
+      "pid": 11240,
+      "result": "already-exited"
+    },
+    {
+      "pid": 924,
+      "result": "already-exited"
+    },
+    {
+      "pid": 42996,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 22408,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 52100,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 34616,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 63972,
+      "result": "owned-process-closed"
+    }
+  ],
+  "sourceUnchanged": true,
+  "distUnchanged": true,
+  "guardsUnchanged": true,
+  "ownedPortReleased": true,
+  "finishedAt": "2026-09-05T20:01:05.611934+00:00"
+}

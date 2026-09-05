@@ -1,0 +1,12 @@
+{
+  "retainedFailure": "First readback of a UTF8 captured JSON used implicit Windows cp1252 and raised UnicodeDecodeError at0x9d. Corrected readback uses explicit UTF8; no artifact/product bytes changed.",
+  "toolChunks": [
+    "edcfe3",
+    "ee5dbd"
+  ],
+  "secondCollectorFailure": {
+    "cause": "Initial rawHTML collector restricted aria labels to button elements, omitting the real span owner for Proposal clip2 takeBchanged.",
+    "correction": "Collect matching aria labels on any element while retaining actual tag. Previous29of30checkreport and rawtransitionreadback retained.",
+    "limit": "RawDOM identities do not assert offscreen/clipped compact proposals are fully visible."
+  }
+}

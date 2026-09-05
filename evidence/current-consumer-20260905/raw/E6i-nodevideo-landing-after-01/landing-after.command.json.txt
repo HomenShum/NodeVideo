@@ -1,0 +1,125 @@
+{
+  "startedAt": "2026-09-05T20:13:46.511689+00:00",
+  "section": "landing-after",
+  "cwd": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905",
+  "sourceCount": 1374,
+  "distCount": 1329,
+  "childRemovedNamesOnly": [],
+  "childOverride": {
+    "NODEVIDEO_URL": "http://127.0.0.1:4983"
+  },
+  "status": "FAIL",
+  "argv": [
+    "C:/nvm4w/nodejs/node.exe",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-after-01\\capture.mjs",
+    "landing-after",
+    "landing-after"
+  ],
+  "timeoutSeconds": 360,
+  "exitCode": 1,
+  "owned": [
+    [
+      66644,
+      1788639226.515067
+    ],
+    [
+      13256,
+      1788639226.5257225
+    ],
+    [
+      41032,
+      1788639226.693705
+    ],
+    [
+      37164,
+      1788639226.8935616
+    ],
+    [
+      29216,
+      1788639226.924307
+    ],
+    [
+      30708,
+      1788639227.5666544
+    ],
+    [
+      25492,
+      1788639227.5752933
+    ],
+    [
+      42128,
+      1788639227.8645968
+    ],
+    [
+      65024,
+      1788639228.049465
+    ],
+    [
+      67344,
+      1788639227.972665
+    ],
+    [
+      57496,
+      1788639228.0285304
+    ],
+    [
+      30924,
+      1788639228.0478473
+    ]
+  ],
+  "closure": [
+    {
+      "pid": 30924,
+      "result": "already-exited"
+    },
+    {
+      "pid": 57496,
+      "result": "already-exited"
+    },
+    {
+      "pid": 67344,
+      "result": "already-exited"
+    },
+    {
+      "pid": 65024,
+      "result": "already-exited"
+    },
+    {
+      "pid": 42128,
+      "result": "already-exited"
+    },
+    {
+      "pid": 25492,
+      "result": "already-exited"
+    },
+    {
+      "pid": 30708,
+      "result": "already-exited"
+    },
+    {
+      "pid": 29216,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 37164,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 41032,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 13256,
+      "result": "owned-process-closed"
+    },
+    {
+      "pid": 66644,
+      "result": "owned-process-closed"
+    }
+  ],
+  "sourceUnchanged": true,
+  "distUnchanged": true,
+  "guardsUnchanged": true,
+  "ownedPortReleased": true,
+  "finishedAt": "2026-09-05T20:14:09.794233+00:00"
+}

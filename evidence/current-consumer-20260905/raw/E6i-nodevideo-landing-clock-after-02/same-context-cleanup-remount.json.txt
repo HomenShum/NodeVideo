@@ -1,0 +1,80 @@
+{
+  "summary": {
+    "name": "same-context-cleanup-remount",
+    "errors": [],
+    "firstFrame": 0,
+    "lastFrame": 1,
+    "framesDrawn": 3,
+    "strokes": 48,
+    "arcs": 80,
+    "firstCount": 1,
+    "lastCount": 1,
+    "countRange": [
+      1,
+      1
+    ],
+    "pulseRange": [
+      0.19347999999999999,
+      1
+    ],
+    "callbackCount": 6,
+    "maxPending": 2,
+    "pendingBeforeCleanup": 2,
+    "pendingAfterCleanup": 0,
+    "allFrameIndicesValid": true,
+    "allCountValuesValid": true,
+    "allPulseValuesValid": true,
+    "drawSequenceSha256": "7ead7f2ac1f175e1650b7a7b433f7cbdca3ae29ff06e6ff5c5199d17b731658c",
+    "countsSha256": "9e07ab64261fb6803c6572f7b5c3098ea68fb45873128af820d42a2262eb900b",
+    "pulsesSha256": "a89939cf6e44db1aabfa6be397af5c36685fe1d86fc51f834a759e0e9113c82f",
+    "remount": {
+      "sameVm": true,
+      "sameScheduler": true,
+      "newEffects": 2,
+      "indices": [
+        0,
+        0,
+        1
+      ],
+      "counts": [
+        1,
+        1,
+        1
+      ],
+      "pendingBeforeCleanup": 2,
+      "pendingAfterCleanup": 0
+    }
+  },
+  "firstObservedIndices": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    1
+  ],
+  "lastObservedIndices": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    1
+  ],
+  "firstObservedCounts": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "lastObservedCounts": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ]
+}

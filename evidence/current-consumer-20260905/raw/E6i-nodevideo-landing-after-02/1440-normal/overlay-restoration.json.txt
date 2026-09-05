@@ -1,0 +1,6 @@
+{
+  "removed": true,
+  "fullDomExact": true,
+  "staticDomRestored": true,
+  "observedNativeDifferences": []
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "path": "caller-before.yml.txt",
+    "bytes": 334,
+    "sha256": "c4fe65fd6d7dc8798f9a6e7c9531e0f5b38c29b6d71aac7ad1a6459af32b2363"
+  },
+  {
+    "path": "caller-proposed.yml.txt",
+    "bytes": 328,
+    "sha256": "3d489dbd49b458b5c1342a3bed0b25cf10b0edd40c612455d2bbbec79373c08d"
+  },
+  {
+    "path": "checks.json",
+    "bytes": 1496,
+    "sha256": "a710c9ffd7fe49fb184d8e82e83db7e2e2fe7a1bd9254c1521911756792eeb69"
+  },
+  {
+    "path": "github-documentation.json",
+    "bytes": 507,
+    "sha256": "9b6b4f51f2a5a2a5534942d2c2cf581702ab45c0f73532852a8717962050c55e"
+  },
+  {
+    "path": "guard.json",
+    "bytes": 583,
+    "sha256": "9a7a8978e64185e60e040c4b4050a0127b690055f76478ba96479b57d86e5e28"
+  },
+  {
+    "path": "historical-failure-excerpt.txt",
+    "bytes": 1456,
+    "sha256": "2401ece6838a07d432650b8ff64b7753ef5556ec091835d74b945e1aeee0a713"
+  },
+  {
+    "path": "raw-bindings.json",
+    "bytes": 2665,
+    "sha256": "32aa188edf84aedd044094add349b34b9042e2f86715ff6da3b43f3f16712761"
+  }
+]

@@ -1,0 +1,87 @@
+{
+  "summary": {
+    "name": "finite-60-second-callbacks",
+    "errors": [],
+    "firstFrame": 0,
+    "lastFrame": 39,
+    "framesDrawn": 3601,
+    "strokes": 54620,
+    "arcs": 99015,
+    "firstCount": 1,
+    "lastCount": 8,
+    "countRange": [
+      1,
+      8
+    ],
+    "pulseRange": [
+      0,
+      1
+    ],
+    "callbackCount": 7202,
+    "maxPending": 2,
+    "pendingBeforeCleanup": 2,
+    "pendingAfterCleanup": 0,
+    "allFrameIndicesValid": true,
+    "allCountValuesValid": true,
+    "allPulseValuesValid": true,
+    "drawSequenceSha256": "0aa2204e0f0fe968d66df977812cb4f5baad404edaa542608efc3d1a7584beed",
+    "countsSha256": "47c9d1cec250297cdcfcc07ad5acf9cc022f6a5712eb2ad65784094a68f499b0",
+    "pulsesSha256": "f4440e8c0fc33fc8290e3740b23e21fa80aabf3ea479b3a53f4107e9053f50f3"
+  },
+  "firstObservedIndices": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "lastObservedIndices": [
+    37,
+    37,
+    37,
+    38,
+    38,
+    38,
+    38,
+    38,
+    38,
+    39,
+    39,
+    39
+  ],
+  "firstObservedCounts": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "lastObservedCounts": [
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8
+  ]
+}
