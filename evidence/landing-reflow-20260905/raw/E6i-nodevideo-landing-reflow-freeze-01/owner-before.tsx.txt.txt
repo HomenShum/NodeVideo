@@ -121,7 +121,7 @@ function Landing() {
   const count = useCountClock(reduced);
   return (
     <main className="mx-auto min-h-svh max-w-6xl px-5 py-6 sm:px-8" data-testid="landing">
-      <header className="flex flex-wrap items-center justify-between gap-3">
+      <header className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <span className="grid size-9 place-items-center rounded-xl bg-brand text-background">
             <svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 16 16" width="16">
@@ -130,7 +130,7 @@ function Landing() {
           </span>
           <span className="font-heading font-semibold">NodeVideo</span>
         </div>
-        <nav className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+        <nav className="flex items-center gap-4 text-sm text-muted-foreground">
           <a className="hover:text-foreground" href="/studio.html">
             Studio
           </a>
@@ -140,12 +140,12 @@ function Landing() {
         </nav>
       </header>
 
-      <section className="grid grid-cols-1 items-center gap-10 py-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:py-20">
-        <div className="min-w-0 space-y-7">
+      <section className="grid items-center gap-10 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
+        <div className="space-y-7">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Choreography coach · judged on visible motion only
           </p>
-          <h1 className="on-count max-w-xl font-heading text-5xl font-semibold leading-[1.05] [overflow-wrap:anywhere] sm:text-6xl">
+          <h1 className="on-count max-w-xl font-heading text-5xl font-semibold leading-[1.05] sm:text-6xl">
             Learn the dance you admire.
           </h1>
           <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">
@@ -155,27 +155,27 @@ function Landing() {
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <a
-              className="on-count inline-flex min-h-11 max-w-full items-center rounded-xl bg-brand px-6 py-2.5 font-medium text-background [overflow-wrap:anywhere]"
+              className="on-count inline-flex h-11 items-center rounded-xl bg-brand px-6 font-medium text-background"
               href="/apps/chrome-extension/sidepanel.html"
             >
               Open the coach
             </a>
             <a
-              className="inline-flex min-h-11 max-w-full items-center rounded-xl border border-border px-6 py-2.5 font-medium text-foreground [overflow-wrap:anywhere]"
+              className="inline-flex h-11 items-center rounded-xl border border-border px-6 font-medium text-foreground"
               href="/studio.html"
             >
               Watch a real comparison
             </a>
           </div>
           <a
-            className="inline-block max-w-full text-sm text-muted-foreground underline underline-offset-4 [overflow-wrap:anywhere] hover:text-foreground"
+            className="inline-block text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
             href="/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full"
           >
             Preview a sample verdict — no setup needed
           </a>
           <div
             aria-label={`Count ${count} of 8 at ${TEMPO_BPM} beats per minute`}
-            className="flex flex-wrap items-baseline gap-3 font-mono text-sm text-muted-foreground"
+            className="flex items-baseline gap-3 font-mono text-sm text-muted-foreground"
           >
             {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
               <span className="count-cell" data-live={!reduced && n === count} key={n}>
@@ -185,11 +185,9 @@ function Landing() {
             <span className="pl-2 text-xs">{TEMPO_BPM} bpm · the page keeps count</span>
           </div>
         </div>
-        <div className="min-w-0 overflow-hidden rounded-3xl border border-border bg-card">
-          <div className="aspect-square">
-            <SkeletonHero reduced={reduced} />
-          </div>
-          <p className="px-4 pb-3 font-mono text-[11px] text-muted-foreground [overflow-wrap:anywhere]">
+        <div className="relative aspect-square overflow-hidden rounded-3xl border border-border bg-card">
+          <SkeletonHero reduced={reduced} />
+          <p className="absolute bottom-3 left-4 font-mono text-[11px] text-muted-foreground">
             real pose track · verified public case
           </p>
         </div>

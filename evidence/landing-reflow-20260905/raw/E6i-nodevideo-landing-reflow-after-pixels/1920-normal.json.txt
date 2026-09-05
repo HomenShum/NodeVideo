@@ -1,0 +1,265 @@
+{
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "overflow": 0,
+  "bodyText": "NodeVideo\nStudio\nFor agents\n\nCHOREOGRAPHY COACH · JUDGED ON VISIBLE MOTION ONLY\n\nLearn the dance you admire.\n\nPoint NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.\n\nOpen the coach\nWatch a real comparison\nPreview a sample verdict — no setup needed\n1\n2\n3\n4\n5\n6\n7\n8\n103.4 bpm · the page keeps count\n\nreal pose track · verified public case\n\nThree ways to use NodeVideo today\nMake a collab edit\n\nPut your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.\n\nOpen the collab editor\nCoach a take\n\nUpload your dance take against the dancer you are studying and get relative motion signals with the moments to review.\n\nOpen the coach\nCut takes into an edit\n\nThe original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.\n\nOpen the stitch studio\nProof console\nPractice live\n\nA camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.\n\nOpen the practice room (early beta)\nForm\n\nJoint angles against the reference pose, frame by frame.\n\nTiming\n\nYour landings against the music grid, in milliseconds.\n\nPath\n\nWhere your body travels compared with the reference.\n\nDynamics\n\nThe sharpness of your hits — pops, locks, accents.\n\nWhen the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.\n\nlocal-first · hash-verified · consent-gated",
+  "links": [
+    {
+      "text": "Studio",
+      "href": "/studio.html",
+      "x": 1378.53125,
+      "y": 32,
+      "right": 1419.828125,
+      "bottom": 52,
+      "width": 41.296875,
+      "height": 20,
+      "scrollWidth": 41,
+      "clientWidth": 41
+    },
+    {
+      "text": "For agents",
+      "href": "/.well-known/agent-ui.json",
+      "x": 1435.828125,
+      "y": 32,
+      "right": 1504,
+      "bottom": 52,
+      "width": 68.171875,
+      "height": 20,
+      "scrollWidth": 68,
+      "clientWidth": 68
+    },
+    {
+      "text": "Open the coach",
+      "href": "/apps/chrome-extension/sidepanel.html",
+      "x": 416,
+      "y": 490.546875,
+      "right": 582.1875,
+      "bottom": 534.546875,
+      "width": 166.1875,
+      "height": 44,
+      "scrollWidth": 166,
+      "clientWidth": 166
+    },
+    {
+      "text": "Watch a real comparison",
+      "href": "/studio.html",
+      "x": 594.1875,
+      "y": 489.546875,
+      "right": 828.421875,
+      "bottom": 535.546875,
+      "width": 234.234375,
+      "height": 46,
+      "scrollWidth": 232,
+      "clientWidth": 232
+    },
+    {
+      "text": "Preview a sample verdict — no setup needed",
+      "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full",
+      "x": 416,
+      "y": 565.546875,
+      "right": 702.109375,
+      "bottom": 585.546875,
+      "width": 286.109375,
+      "height": 20,
+      "scrollWidth": 286,
+      "clientWidth": 286
+    },
+    {
+      "text": "Open the collab editor",
+      "href": "/collab.html",
+      "x": 437,
+      "y": 989.859375,
+      "right": 582.359375,
+      "bottom": 1009.859375,
+      "width": 145.359375,
+      "height": 20,
+      "scrollWidth": 145,
+      "clientWidth": 145
+    },
+    {
+      "text": "Open the coach",
+      "href": "/apps/chrome-extension/sidepanel.html",
+      "x": 713,
+      "y": 967.109375,
+      "right": 816.421875,
+      "bottom": 987.109375,
+      "width": 103.421875,
+      "height": 20,
+      "scrollWidth": 103,
+      "clientWidth": 103
+    },
+    {
+      "text": "Open the stitch studio",
+      "href": "/edit.html",
+      "x": 989,
+      "y": 987.859375,
+      "right": 1134.0625,
+      "bottom": 1007.859375,
+      "width": 145.0625,
+      "height": 20,
+      "scrollWidth": 145,
+      "clientWidth": 145
+    },
+    {
+      "text": "Proof console",
+      "href": "/studio.html",
+      "x": 989,
+      "y": 1007.859375,
+      "right": 1079.5,
+      "bottom": 1027.859375,
+      "width": 90.5,
+      "height": 20,
+      "scrollWidth": 91,
+      "clientWidth": 91
+    },
+    {
+      "text": "Open the practice room (early beta)",
+      "href": "/practice.html",
+      "x": 1265,
+      "y": 989.859375,
+      "right": 1483,
+      "bottom": 1029.859375,
+      "width": 218,
+      "height": 40,
+      "scrollWidth": 218,
+      "clientWidth": 218
+    }
+  ],
+  "canvas": {
+    "x": 1033.390625,
+    "y": 141,
+    "right": 1503,
+    "bottom": 610.609375,
+    "width": 469.609375,
+    "height": 469.609375,
+    "scrollWidth": 470,
+    "clientWidth": 470,
+    "intrinsicWidth": 560,
+    "intrinsicHeight": 560
+  },
+  "caption": {
+    "text": "real pose track · verified public case",
+    "x": 1033.390625,
+    "y": 610.609375,
+    "right": 1503,
+    "bottom": 639.109375,
+    "width": 469.609375,
+    "height": 28.5,
+    "scrollWidth": 470,
+    "clientWidth": 470
+  },
+  "card": {
+    "x": 1032.390625,
+    "y": 140,
+    "right": 1504,
+    "bottom": 640.109375,
+    "width": 471.609375,
+    "height": 500.109375,
+    "scrollWidth": 470,
+    "clientWidth": 470
+  },
+  "textOutsideViewport": [],
+  "counts": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8"
+  ],
+  "geometry": [
+    {
+      "tag": "MAIN",
+      "x": 384,
+      "y": 0,
+      "right": 1536,
+      "bottom": 1422.359375,
+      "width": 1152,
+      "height": 1422.359375,
+      "scrollWidth": 1152,
+      "clientWidth": 1152
+    },
+    {
+      "tag": "HEADER",
+      "x": 416,
+      "y": 24,
+      "right": 1504,
+      "bottom": 60,
+      "width": 1088,
+      "height": 36,
+      "scrollWidth": 1088,
+      "clientWidth": 1088
+    },
+    {
+      "tag": "NAV",
+      "x": 1378.53125,
+      "y": 32,
+      "right": 1504,
+      "bottom": 52,
+      "width": 125.46875,
+      "height": 20,
+      "scrollWidth": 125,
+      "clientWidth": 125
+    },
+    {
+      "tag": "SECTION",
+      "x": 416,
+      "y": 60,
+      "right": 1504,
+      "bottom": 720.109375,
+      "width": 1088,
+      "height": 660.109375,
+      "scrollWidth": 1088,
+      "clientWidth": 1088
+    },
+    {
+      "tag": "DIV",
+      "x": 416,
+      "y": 146.546875,
+      "right": 992.390625,
+      "bottom": 633.546875,
+      "width": 576.390625,
+      "height": 487,
+      "scrollWidth": 576,
+      "clientWidth": 576
+    },
+    {
+      "tag": "H1",
+      "x": 416,
+      "y": 190.546875,
+      "right": 992,
+      "bottom": 316.546875,
+      "width": 576,
+      "height": 126,
+      "scrollWidth": 576,
+      "clientWidth": 576
+    },
+    {
+      "tag": "DIV",
+      "x": 416,
+      "y": 613.546875,
+      "right": 992.390625,
+      "bottom": 633.546875,
+      "width": 576.390625,
+      "height": 20,
+      "scrollWidth": 576,
+      "clientWidth": 576
+    },
+    {
+      "tag": "DIV",
+      "x": 1032.390625,
+      "y": 140,
+      "right": 1504,
+      "bottom": 640.109375,
+      "width": 471.609375,
+      "height": 500.109375,
+      "scrollWidth": 470,
+      "clientWidth": 470
+    }
+  ],
+  "name": "1920-normal"
+}

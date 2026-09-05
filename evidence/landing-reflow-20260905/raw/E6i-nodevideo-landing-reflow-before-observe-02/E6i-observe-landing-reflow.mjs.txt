@@ -1,0 +1,136 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import assert from 'node:assert/strict';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+const P = path.dirname(fileURLToPath(import.meta.url));
+const R = 'D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/.portfolio-worktrees/nodevideo-current-consumer-20260905';
+const phase = process.argv[2];
+assert(['before', 'after'].includes(phase));
+const O = path.join(P, `E6i-nodevideo-landing-reflow-${phase}-pixels`);
+fs.mkdirSync(O);
+const { preview } = await import(pathToFileURL(path.join(R, 'node_modules/vite/dist/node/index.js')).href);
+const { chromium } = await import(pathToFileURL(path.join(R, 'node_modules/playwright/index.mjs')).href);
+const base = 'http://127.0.0.1:4995';
+const states = [], errors = [], interactions = [], captures = [];
+let server, browser, activePage;
+const pairs = [[320,800],[360,800],[390,844],[768,1024],[1024,768],[1440,960],[1920,1080]];
+const cells = [...pairs.map(([width,height])=>({width,height,name:`${width}-normal`,reduced:false,enlarged:false})), ...[[320,800],[390,844],[1440,960]].map(([width,height])=>({width,height,name:`${width}-text200`,reduced:true,enlarged:true})), ...[[390,844],[1440,960]].map(([width,height])=>({width,height,name:`${width}-reduced`,reduced:true,enlarged:false}))];
+const save = (name,value) => fs.writeFileSync(path.join(O,name),JSON.stringify(value,null,2)+'\n');
+async function shot(page,name,fullPage=false) {
+  await page.screenshot({path:path.join(O,name+'.png'),fullPage});
+  captures.push(name+'.png');
+}
+async function geometry(page) {
+  return page.evaluate(()=>{
+    const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height,scrollWidth:e.scrollWidth,clientWidth:e.clientWidth}};
+    const canvas=document.querySelector('canvas');
+    const caption=[...document.querySelectorAll('p')].find(e=>e.textContent.includes('real pose track'));
+    const allText=[];
+    const walker=document.createTreeWalker(document.querySelector('main'),NodeFilter.SHOW_TEXT);
+    for(let node=walker.nextNode();node;node=walker.nextNode()) {
+      if(!node.textContent.trim())continue;
+      const range=document.createRange();range.selectNodeContents(node);
+      for(const r of range.getClientRects())if(r.width && (r.x<-.5 || r.right>innerWidth+.5))allText.push({text:node.textContent.trim(),x:r.x,right:r.right,width:r.width});
+    }
+    return {viewport:{width:innerWidth,height:innerHeight},overflow:document.documentElement.scrollWidth-innerWidth,bodyText:document.body.innerText,links:[...document.querySelectorAll('main a')].map(e=>({text:e.innerText,href:e.getAttribute('href'),...rect(e)})),canvas:{...rect(canvas),intrinsicWidth:canvas.width,intrinsicHeight:canvas.height},caption:{text:caption.innerText,...rect(caption)},card:rect(caption.parentElement),textOutsideViewport:allText,counts:[...document.querySelectorAll('.count-cell')].map(e=>e.textContent),geometry:[...document.querySelectorAll('main,header,nav,section:first-of-type,section:first-of-type>div,h1,[aria-label^="Count "]')].map(e=>({tag:e.tagName,...rect(e)}))};
+  });
+}
+try {
+  server = await preview({root:R,configFile:path.join(R,'vite.config.ts'),preview:{host:'127.0.0.1',port:4995,strictPort:true,open:false}});
+  browser = await chromium.launch({headless:true});
+  for(const cell of cells) {
+    const context = await browser.newContext({viewport:{width:cell.width,height:cell.height},reducedMotion:cell.reduced?'reduce':'no-preference',serviceWorkers:'block'});
+    await context.route('**/*',route=>{
+      const u=new URL(route.request().url());
+      if(u.origin===base || ['data:','blob:'].includes(u.protocol))return route.continue();
+      errors.push({cell:cell.name,type:'blocked-egress',url:u.href});return route.abort();
+    });
+    const page=await context.newPage();activePage=page;
+    page.on('pageerror',e=>errors.push({cell:cell.name,type:'pageerror',message:e.message}));
+    page.on('console',m=>{if(['error','warning'].includes(m.type()))errors.push({cell:cell.name,type:m.type(),message:m.text()})});
+    page.on('response',r=>{if(r.status()>=400)errors.push({cell:cell.name,type:'response',url:r.url(),status:r.status()})});
+    page.on('requestfailed',r=>errors.push({cell:cell.name,type:'requestfailed',url:r.url(),error:r.failure()}));
+    await page.goto(base,{waitUntil:'networkidle'});
+    await page.evaluate(()=>document.fonts.ready);
+    if(cell.enlarged) {
+      const fonts=await page.evaluate(()=>{
+        const rows=[...document.querySelectorAll('*')].map((e,i)=>({e,i,tag:e.tagName,before:parseFloat(getComputedStyle(e).fontSize)}));
+        for(const r of rows)r.e.style.fontSize=`${r.before*2}px`;
+        return rows.map(({e,...r})=>r);
+      });
+      await page.waitForFunction(rows=>{const all=[...document.querySelectorAll('*')];return rows.every(r=>Math.abs(parseFloat(getComputedStyle(all[r.i]).fontSize)-r.before*2)<.001)},fonts,{timeout:15000});
+      save(cell.name+'-fonts.json',await page.evaluate(rows=>{const all=[...document.querySelectorAll('*')];return rows.map(r=>({...r,after:parseFloat(getComputedStyle(all[r.i]).fontSize)}))},fonts));
+    }
+    await page.evaluate(async()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+    await page.evaluate(()=>scrollTo(0,0));
+    const state=await geometry(page);
+    state.name=cell.name;
+    save(cell.name+'.json',state);
+    fs.writeFileSync(path.join(O,cell.name+'.html'),await page.content());
+    assert.equal(state.links.length,10);
+    assert.deepEqual(state.counts,['1','2','3','4','5','6','7','8']);
+    assert.equal(state.canvas.intrinsicWidth,560);assert.equal(state.canvas.intrinsicHeight,560);
+    if(phase==='after') {
+      const before=JSON.parse(fs.readFileSync(path.join(P,'E6i-nodevideo-landing-reflow-before-pixels',cell.name+'.json')));
+      assert.equal(state.bodyText,before.bodyText,'All visible text remains exact');
+      assert.deepEqual(state.links.map(({text,href})=>({text,href})),before.links.map(({text,href})=>({text,href})));
+      assert(state.overflow<=0,`${cell.name}: horizontal document overflow ${state.overflow}`);
+      assert.deepEqual(state.textOutsideViewport,[],`${cell.name}: visible text outside viewport`);
+      assert(state.caption.y>=state.canvas.bottom-.5,`${cell.name}: caption overlaps canvas`);
+      assert(state.caption.bottom<=state.card.bottom+.5,`${cell.name}: caption escapes card`);
+    }
+    await shot(page,cell.name+'-full',true);
+    const height=await page.evaluate(()=>document.documentElement.scrollHeight);
+    assert(height<20000);
+    for(let y=0,i=0;y<height;y+=Math.floor(cell.height*.82),i++) {
+      await page.evaluate(y=>scrollTo(0,y),y);
+      await shot(page,`${cell.name}-segment-${i}`);
+      if(await page.evaluate(()=>scrollY+innerHeight>=document.documentElement.scrollHeight))break;
+    }
+    await page.locator('canvas').scrollIntoViewIfNeeded();
+    await shot(page,cell.name+'-canvas');
+    await page.locator('p').filter({hasText:'real pose track'}).scrollIntoViewIfNeeded();
+    await shot(page,cell.name+'-caption');
+    states.push({name:cell.name,overflow:state.overflow,captionClearance:state.caption.y-state.canvas.bottom,textOutsideViewport:state.textOutsideViewport.length});
+    if(['390-normal','1440-normal'].includes(cell.name)) {
+      await page.goto(base,{waitUntil:'networkidle'});
+      const focused=[];
+      for(let i=0;i<10;i++) {
+        await page.keyboard.press('Tab');
+        const focus=await page.evaluate(()=>{const e=document.activeElement,r=e.getBoundingClientRect();return {tag:e.tagName,text:e.textContent.trim(),href:e.getAttribute('href'),x:r.x,right:r.right,top:r.top,bottom:r.bottom}});
+        assert.equal(focus.tag,'A');
+        assert.equal(focus.href,state.links[i].href);
+        if(phase==='after')assert(focus.x>=-.5 && focus.right<=cell.width+.5 && focus.top>=-.5 && focus.bottom<=cell.height+.5);
+        focused.push(focus);
+        if([0,1,2,9].includes(i))await shot(page,`${cell.name}-focus-${i}`);
+      }
+      await page.goto(base,{waitUntil:'networkidle'});
+      await page.keyboard.press('Tab');await page.keyboard.press('Enter');
+      await page.waitForURL(base+'/studio.html');
+      await page.waitForLoadState('networkidle');
+      const destination={url:page.url(),title:await page.title(),text:await page.locator('body').innerText()};
+      assert(destination.text.trim().length>80,'Studio destination must render substantive content');
+      save(cell.name+'-studio-destination.json',destination);await shot(page,cell.name+'-studio-destination');
+      await page.goto(base,{waitUntil:'networkidle'});
+      await page.keyboard.press('Tab');await page.keyboard.press('Tab');await page.keyboard.press('Enter');
+      await page.waitForURL(base+'/.well-known/agent-ui.json');
+      const contract=JSON.parse(await page.locator('body').innerText());
+      save(cell.name+'-agent-contract.json',contract);
+      interactions.push({cell:cell.name,focused,studioUrl:destination.url,agentContractUrl:page.url(),agentContractKeys:Object.keys(contract)});
+    }
+    await context.close();activePage=undefined;
+  }
+} catch(e) {
+  errors.push({type:'collector',message:e.stack});process.exitCode=1;
+  if(activePage && !activePage.isClosed()) {
+    await shot(activePage,'failure');fs.writeFileSync(path.join(O,'failure.html'),await activePage.content());
+  }
+} finally {
+  if(browser)await browser.close();
+  if(server)await new Promise(r=>server.httpServer.close(r));
+  const report={status:errors.length?'FAIL_RETAINED':'PASS_SCOPED_LANDING_OBSERVATION',phase,at:new Date().toISOString(),cells:states,interactions,errors,captures,fullQualityGrade:null,scope:'Local Chromium. All-element computed font doubling, including HTML, is not native browser zoom. No provider calls or editor/codec replay.'};
+  save('receipt.json',report);
+  save('manifest.json',fs.readdirSync(O).filter(x=>x!=='manifest.json').map(name=>{const b=fs.readFileSync(path.join(O,name));return {path:name,bytes:b.length,sha256:crypto.createHash('sha256').update(b).digest('hex')}}));
+  console.log(JSON.stringify({status:report.status,phase,cells:states,captures:captures.length,errors}));
+}

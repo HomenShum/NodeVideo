@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "at": "2026-09-05T22:24:59.981855+00:00",
+  "phase": "before-build",
+  "command": "npm run build",
+  "exitCode": 0,
+  "seconds": 83.86,
+  "budgetSeconds": 300,
+  "timedOut": false,
+  "sourceFiles": 2306,
+  "sourceUnchanged": true,
+  "gitGuardUnchanged": true,
+  "distFiles": 1329,
+  "logSha256": "cefb68cdee644aa4fc965e6cc99eb22d9a07b67d47a1b13d01e95f20e57cdcbe"
+}

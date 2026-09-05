@@ -1,0 +1,409 @@
+{
+  "status": "PASS_SCOPED_LANDING_OBSERVATION",
+  "phase": "after",
+  "at": "2026-09-05T22:32:52.157Z",
+  "cells": [
+    {
+      "name": "320-normal",
+      "overflow": 0,
+      "captionClearance": 0,
+      "textOutsideViewport": 0
+    },
+    {
+      "name": "360-normal",
+      "overflow": 0,
+      "captionClearance": 0,
+      "textOutsideViewport": 0
+    },
+    {
+      "name": "390-normal",
+      "overflow": 0,
+      "captionClearance": 0,
+      "textOutsideViewport": 0
+    },
+    {
+      "name": "768-normal",
+      "overflow": 0,
+      "captionClearance": 0,
+      "textOutsideViewport": 0
+    },
+    {
+      "name": "1024-normal",
+      "overflow": 0,
+      "captionClearance": 0,
+      "textOutsideViewport": 0
+    },
+    {
+      "name": "1440-normal",
+      "overflow": 0,
+      "captionClearance": 0,
+      "textOutsideViewport": 0
+    },
+    {
+      "name": "1920-normal",
+      "overflow": 0,
+      "captionClearance": 0,
+      "textOutsideViewport": 0
+    },
+    {
+      "name": "320-text200",
+      "overflow": 0,
+      "captionClearance": 0,
+      "textOutsideViewport": 0
+    },
+    {
+      "name": "390-text200",
+      "overflow": 0,
+      "captionClearance": 0,
+      "textOutsideViewport": 0
+    },
+    {
+      "name": "1440-text200",
+      "overflow": 0,
+      "captionClearance": 0,
+      "textOutsideViewport": 0
+    },
+    {
+      "name": "390-reduced",
+      "overflow": 0,
+      "captionClearance": 0,
+      "textOutsideViewport": 0
+    },
+    {
+      "name": "1440-reduced",
+      "overflow": 0,
+      "captionClearance": 0,
+      "textOutsideViewport": 0
+    }
+  ],
+  "interactions": [
+    {
+      "cell": "390-normal",
+      "focused": [
+        {
+          "tag": "A",
+          "text": "Studio",
+          "href": "/studio.html",
+          "x": 244.53125,
+          "right": 285.828125,
+          "top": 32,
+          "bottom": 52
+        },
+        {
+          "tag": "A",
+          "text": "For agents",
+          "href": "/.well-known/agent-ui.json",
+          "x": 301.828125,
+          "right": 370,
+          "top": 32,
+          "bottom": 52
+        },
+        {
+          "tag": "A",
+          "text": "Open the coach",
+          "href": "/apps/chrome-extension/sidepanel.html",
+          "x": 20,
+          "right": 186.1875,
+          "top": 558.671875,
+          "bottom": 602.671875
+        },
+        {
+          "tag": "A",
+          "text": "Watch a real comparison",
+          "href": "/studio.html",
+          "x": 20,
+          "right": 254.234375,
+          "top": 614.671875,
+          "bottom": 660.671875
+        },
+        {
+          "tag": "A",
+          "text": "Preview a sample verdict — no setup needed",
+          "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full",
+          "x": 20,
+          "right": 306.109375,
+          "top": 690.671875,
+          "bottom": 710.671875
+        },
+        {
+          "tag": "A",
+          "text": "Open the collab editor",
+          "href": "/collab.html",
+          "x": 41,
+          "right": 186.359375,
+          "top": 412.171875,
+          "bottom": 432.171875
+        },
+        {
+          "tag": "A",
+          "text": "Open the coach",
+          "href": "/apps/chrome-extension/sidepanel.html",
+          "x": 41,
+          "right": 144.421875,
+          "top": 602.421875,
+          "bottom": 622.421875
+        },
+        {
+          "tag": "A",
+          "text": "Open the stitch studio",
+          "href": "/edit.html",
+          "x": 41,
+          "right": 186.0625,
+          "top": 790.671875,
+          "bottom": 810.671875
+        },
+        {
+          "tag": "A",
+          "text": "Proof console",
+          "href": "/studio.html",
+          "x": 202.0625,
+          "right": 292.5625,
+          "top": 790.671875,
+          "bottom": 810.671875
+        },
+        {
+          "tag": "A",
+          "text": "Open the practice room (early beta)",
+          "href": "/practice.html",
+          "x": 41,
+          "right": 271.828125,
+          "top": 411.671875,
+          "bottom": 431.671875
+        }
+      ],
+      "studioUrl": "http://127.0.0.1:4995/studio.html",
+      "agentContractUrl": "http://127.0.0.1:4995/.well-known/agent-ui.json",
+      "agentContractKeys": [
+        "schemaVersion",
+        "app",
+        "purpose",
+        "buildReceipt",
+        "invariants",
+        "surfaces"
+      ]
+    },
+    {
+      "cell": "1440-normal",
+      "focused": [
+        {
+          "tag": "A",
+          "text": "Studio",
+          "href": "/studio.html",
+          "x": 1138.53125,
+          "right": 1179.828125,
+          "top": 32,
+          "bottom": 52
+        },
+        {
+          "tag": "A",
+          "text": "For agents",
+          "href": "/.well-known/agent-ui.json",
+          "x": 1195.828125,
+          "right": 1264,
+          "top": 32,
+          "bottom": 52
+        },
+        {
+          "tag": "A",
+          "text": "Open the coach",
+          "href": "/apps/chrome-extension/sidepanel.html",
+          "x": 176,
+          "right": 342.1875,
+          "top": 490.546875,
+          "bottom": 534.546875
+        },
+        {
+          "tag": "A",
+          "text": "Watch a real comparison",
+          "href": "/studio.html",
+          "x": 354.1875,
+          "right": 588.421875,
+          "top": 489.546875,
+          "bottom": 535.546875
+        },
+        {
+          "tag": "A",
+          "text": "Preview a sample verdict — no setup needed",
+          "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full",
+          "x": 176,
+          "right": 462.109375,
+          "top": 565.546875,
+          "bottom": 585.546875
+        },
+        {
+          "tag": "A",
+          "text": "Open the collab editor",
+          "href": "/collab.html",
+          "x": 197,
+          "right": 342.359375,
+          "top": 527.859375,
+          "bottom": 547.859375
+        },
+        {
+          "tag": "A",
+          "text": "Open the coach",
+          "href": "/apps/chrome-extension/sidepanel.html",
+          "x": 473,
+          "right": 576.421875,
+          "top": 505.109375,
+          "bottom": 525.109375
+        },
+        {
+          "tag": "A",
+          "text": "Open the stitch studio",
+          "href": "/edit.html",
+          "x": 749,
+          "right": 894.0625,
+          "top": 525.859375,
+          "bottom": 545.859375
+        },
+        {
+          "tag": "A",
+          "text": "Proof console",
+          "href": "/studio.html",
+          "x": 749,
+          "right": 839.5,
+          "top": 545.859375,
+          "bottom": 565.859375
+        },
+        {
+          "tag": "A",
+          "text": "Open the practice room (early beta)",
+          "href": "/practice.html",
+          "x": 1025,
+          "right": 1243,
+          "top": 527.859375,
+          "bottom": 567.859375
+        }
+      ],
+      "studioUrl": "http://127.0.0.1:4995/studio.html",
+      "agentContractUrl": "http://127.0.0.1:4995/.well-known/agent-ui.json",
+      "agentContractKeys": [
+        "schemaVersion",
+        "app",
+        "purpose",
+        "buildReceipt",
+        "invariants",
+        "surfaces"
+      ]
+    }
+  ],
+  "errors": [],
+  "captures": [
+    "320-normal-full.png",
+    "320-normal-segment-0.png",
+    "320-normal-segment-1.png",
+    "320-normal-segment-2.png",
+    "320-normal-segment-3.png",
+    "320-normal-segment-4.png",
+    "320-normal-canvas.png",
+    "320-normal-caption.png",
+    "360-normal-full.png",
+    "360-normal-segment-0.png",
+    "360-normal-segment-1.png",
+    "360-normal-segment-2.png",
+    "360-normal-segment-3.png",
+    "360-normal-segment-4.png",
+    "360-normal-canvas.png",
+    "360-normal-caption.png",
+    "390-normal-full.png",
+    "390-normal-segment-0.png",
+    "390-normal-segment-1.png",
+    "390-normal-segment-2.png",
+    "390-normal-segment-3.png",
+    "390-normal-segment-4.png",
+    "390-normal-canvas.png",
+    "390-normal-caption.png",
+    "390-normal-focus-0.png",
+    "390-normal-focus-1.png",
+    "390-normal-focus-2.png",
+    "390-normal-focus-9.png",
+    "390-normal-studio-destination.png",
+    "768-normal-full.png",
+    "768-normal-segment-0.png",
+    "768-normal-segment-1.png",
+    "768-normal-segment-2.png",
+    "768-normal-canvas.png",
+    "768-normal-caption.png",
+    "1024-normal-full.png",
+    "1024-normal-segment-0.png",
+    "1024-normal-segment-1.png",
+    "1024-normal-segment-2.png",
+    "1024-normal-canvas.png",
+    "1024-normal-caption.png",
+    "1440-normal-full.png",
+    "1440-normal-segment-0.png",
+    "1440-normal-segment-1.png",
+    "1440-normal-canvas.png",
+    "1440-normal-caption.png",
+    "1440-normal-focus-0.png",
+    "1440-normal-focus-1.png",
+    "1440-normal-focus-2.png",
+    "1440-normal-focus-9.png",
+    "1440-normal-studio-destination.png",
+    "1920-normal-full.png",
+    "1920-normal-segment-0.png",
+    "1920-normal-segment-1.png",
+    "1920-normal-canvas.png",
+    "1920-normal-caption.png",
+    "320-text200-full.png",
+    "320-text200-segment-0.png",
+    "320-text200-segment-1.png",
+    "320-text200-segment-2.png",
+    "320-text200-segment-3.png",
+    "320-text200-segment-4.png",
+    "320-text200-segment-5.png",
+    "320-text200-segment-6.png",
+    "320-text200-segment-7.png",
+    "320-text200-segment-8.png",
+    "320-text200-segment-9.png",
+    "320-text200-segment-10.png",
+    "320-text200-segment-11.png",
+    "320-text200-segment-12.png",
+    "320-text200-segment-13.png",
+    "320-text200-segment-14.png",
+    "320-text200-segment-15.png",
+    "320-text200-segment-16.png",
+    "320-text200-canvas.png",
+    "320-text200-caption.png",
+    "390-text200-full.png",
+    "390-text200-segment-0.png",
+    "390-text200-segment-1.png",
+    "390-text200-segment-2.png",
+    "390-text200-segment-3.png",
+    "390-text200-segment-4.png",
+    "390-text200-segment-5.png",
+    "390-text200-segment-6.png",
+    "390-text200-segment-7.png",
+    "390-text200-segment-8.png",
+    "390-text200-segment-9.png",
+    "390-text200-segment-10.png",
+    "390-text200-segment-11.png",
+    "390-text200-segment-12.png",
+    "390-text200-canvas.png",
+    "390-text200-caption.png",
+    "1440-text200-full.png",
+    "1440-text200-segment-0.png",
+    "1440-text200-segment-1.png",
+    "1440-text200-segment-2.png",
+    "1440-text200-segment-3.png",
+    "1440-text200-segment-4.png",
+    "1440-text200-canvas.png",
+    "1440-text200-caption.png",
+    "390-reduced-full.png",
+    "390-reduced-segment-0.png",
+    "390-reduced-segment-1.png",
+    "390-reduced-segment-2.png",
+    "390-reduced-segment-3.png",
+    "390-reduced-segment-4.png",
+    "390-reduced-canvas.png",
+    "390-reduced-caption.png",
+    "1440-reduced-full.png",
+    "1440-reduced-segment-0.png",
+    "1440-reduced-segment-1.png",
+    "1440-reduced-canvas.png",
+    "1440-reduced-caption.png"
+  ],
+  "fullQualityGrade": null,
+  "scope": "Local Chromium. All-element computed font doubling, including HTML, is not native browser zoom. No provider calls or editor/codec replay."
+}

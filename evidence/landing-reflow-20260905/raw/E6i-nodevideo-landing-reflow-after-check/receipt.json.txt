@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "at": "2026-09-05T22:31:19.367882+00:00",
+  "phase": "after-check",
+  "command": "npm run check",
+  "exitCode": 0,
+  "seconds": 65.687,
+  "budgetSeconds": 300,
+  "timedOut": false,
+  "sourceFiles": 2306,
+  "sourceUnchanged": true,
+  "gitGuardUnchanged": true,
+  "distFiles": 1329,
+  "distEntryExitUnchanged": null,
+  "observationAccepted": null,
+  "logSha256": "2fc816984a1ec494fae854d46a0031a78327f7acec2e8772eb3b60393965e0fe"
+}

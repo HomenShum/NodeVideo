@@ -1,0 +1,145 @@
+{
+  "mode": "Builder",
+  "namedProof": "NODEVIDEO-LANDING-ENLARGED-REFLOW-01",
+  "verdict": "APPROVED_LOCAL_ONE_OWNER_LANDING_REFLOW_WITH_SCOPED_LIMITS",
+  "reviewer": "Reused independent reviewer context; no product implementation involvement. Reviewer previously assessed plan/caption probe and authored the separate historical criterion assessment.",
+  "source": {
+    "candidate": "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905",
+    "base": "30593fde458ca059644a087f0a40beec7cc972b0",
+    "branch": "codex/nodevideo-landing-reflow-20260905",
+    "owner": {
+      "path": "apps/landing/src/landing.tsx",
+      "bytes": 12311,
+      "sha256": "b2122eec396ffbe3cda94b6b1f06cadc81d7964d2e67c78ed50c2254e3148e4e"
+    },
+    "protectedTrackedFiles": 2305,
+    "sourceFiles": 2306,
+    "indexAndRefsUnchangedDuringReview": true,
+    "guard": "CLOSED"
+  },
+  "checks": {
+    "passed": 70,
+    "total": 70,
+    "raw": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-final-judge\\checks.json"
+  },
+  "artifacts": {
+    "operatorManifestSha256": "b869e5154c5f8274419bb9b6ce003827e431fe15843ba9c2b3f201415b92bdda",
+    "operatorFilesVerified": 330,
+    "beforeCaptures": 108,
+    "afterCaptures": 113,
+    "viewedPngs": 12
+  },
+  "normalCheck": {
+    "command": "npm run check",
+    "status": "PASS",
+    "seconds": 65.687,
+    "testFiles": 74,
+    "tests": 353,
+    "rawLogSha256": "2fc816984a1ec494fae854d46a0031a78327f7acec2e8772eb3b60393965e0fe",
+    "nineClockCases": "Existing unchanged actual-owner scenario file included in ordinary suite. Aggregate log does not enumerate individual cases. 60 seconds is simulated callback time, not wall-time sustained load.",
+    "limits": "Normal gate includes committed proof verification and built-mock UI contract/synthetic consent states, not new actual provider/media/private jobs. Build warning for chunks over500kB retained; no performance pass inferred."
+  },
+  "afterObservation": {
+    "status": "PASS",
+    "cells": 12,
+    "nativeKeyboardJourneys": 2,
+    "errors": [],
+    "allOverflowZero": true,
+    "allCaptionClearanceZero": true,
+    "allTextOutsideViewportEmpty": true,
+    "distFiles": 1329,
+    "checkEntryExitAndCurrentDistExact": true,
+    "sourceAndDistSameForCapturedEvidence": true
+  },
+  "baselineLimit": "No historical entry dist manifest exists. Preceding successful build and observation-final manifests match; raw before cells and errors were independently verified. No retroactive continuous-custody claim.",
+  "visualFindings": [
+    "At320/390 text200 the caption occupies normal flow below the skeleton, all eight counts and tempo text wrap without document loss, and primary actions retain full text while growing vertically.",
+    "At1440 normal the taller card and shifted centering are observable; protected cards/footer/text remain intact.",
+    "At320 text200 emergency wrapping splits words such as comparison. This is visible and retained, not described as polished typography.",
+    "Saved snapshots are not continuous-paint evidence. Previously verified all-null pose frames and gaps remain possible; clocks/drawing/pose bytes are unchanged."
+  ],
+  "criterionObservations": [
+    {
+      "id": "R1",
+      "criterion": "Reflow/content preservation",
+      "status": "LANDING_SCOPED_FAILURE_CLOSED",
+      "observation": "Existing phone text200 overflow201/131 is now zero; twelve cells retain exact complete text and links. Original 320 emergency word wrapping remains visible.",
+      "numericRating": null,
+      "remaining": "Native zoom, physical devices and declared-locale coverage not measured; do not extrapolate to other routes."
+    },
+    {
+      "id": "R2",
+      "criterion": "Reachability of navigation and primary actions",
+      "status": "LANDING_SCOPED_OBSERVATION_PASS",
+      "observation": "Ten-link native Tab order and two local Enter destinations succeed at390/1440; phone text200 actions/nav are visible in scroll captures.",
+      "numericRating": null,
+      "remaining": "Existing compact editor accepted-clip discovery deduction is unchanged; physical touch/keyboard not tested."
+    },
+    {
+      "id": "R3",
+      "criterion": "Modal/panel/table/canvas adaptation",
+      "status": "LANDING_SCOPED_FAILURE_CLOSED",
+      "observation": "Caption begins exactly below canvas in all12cells and is visibly separate on320/390/1440. Normal1440 card is28.5px taller with6.6875px upward top shift; arrangement remains coherent.",
+      "numericRating": null,
+      "remaining": "Existing enlarged editor player/caption overlap and other panel coverage remain held."
+    },
+    {
+      "id": "A4",
+      "criterion": "Text resize/reflow and target size",
+      "status": "LANDING_COMPUTED_TEXT_REFLOW_OBSERVED",
+      "observation": "All initial computed fonts includingHTML double and settle. Primary actions expand vertically while keeping labels.",
+      "numericRating": null,
+      "remaining": "This is not native browser zoom, a WCAG target-size audit or assistive technology certification; existing editor deduction remains."
+    },
+    {
+      "id": "V5",
+      "criterion": "Rendered legibility/contrast",
+      "status": "LANDING_TEXT_CLIPPING_DEDUCTION_RESOLVED_IN_OBSERVED_SCOPE",
+      "observation": "Phone counts/provenance and full labels are readable in actual viewport PNGs;320 emergency wrapping splits some words and page grows vertically.",
+      "numericRating": null,
+      "remaining": "No new contrast measurements, physical-device or human taste evidence. Full V5 and prior editor legibility holds are unresolved."
+    }
+  ],
+  "grading": "No central or44-criterion assessment rewrite. This is a bounded delta; historical landing failures are superseded only for the specifically repaired observations. Numeric criterion/dimension/overall scores are not inferred from incomplete cross-route/device evidence.",
+  "visualScore": null,
+  "designScore": null,
+  "responsiveScore": null,
+  "interactionScore": null,
+  "accessibilityScore": null,
+  "performanceScore": null,
+  "usageScore": null,
+  "alignmentScore": null,
+  "overallScore": null,
+  "targetUnchanged": 4.5,
+  "remainingHolds": [
+    "No production deployment/live-content certification. Local base30593fde remains even though remotePR47 reportedly merged separately; no fetch/rebase or remote claim made by this review.",
+    "Compact editor accepted-clip discoverability and enlarged editor layout remain unchanged.",
+    "Component same-document malformed-Mermaid update failure remains separate and unchanged.",
+    "Human first-use/taste, native zoom, physical touch/keyboard/screen-reader, performance budgets, provider and full-duration export proofs remain outside this slice."
+  ],
+  "actionsByReviewer": {
+    "sourceEdits": 0,
+    "browserRuns": 0,
+    "modelCalls": 0,
+    "builds": 0,
+    "testReruns": 0,
+    "commits": 0
+  },
+  "readyFor": "Parent may prepare bounded portable publication/metadata for exact reviewed source; commit and shared integration remain separate.",
+  "collectorFailure": {
+    "status": "PRESERVED_COLLECTOR_PARSE_FAILURE_NO_PRODUCT_EXECUTION",
+    "cause": "Initial Python read-only collector had one unmatched parenthesis; it failed to parse before any guard or check executed. Parenthesis-only correction then completed70checks.",
+    "files": [
+      {
+        "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-final-collector-failure\\collector-before.py.txt",
+        "bytes": 21273,
+        "sha256": "92f560d02c0d8f138c238bf22c6987cd98825dee28f29f87c19bac7caee2d1da"
+      },
+      {
+        "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-final-collector-failure\\failure.txt",
+        "bytes": 300,
+        "sha256": "1ca9d55b8f0fd38c1791a2c958a0ef46caadff0e58cfbe2018eba7ab5d92bdb1"
+      }
+    ]
+  }
+}

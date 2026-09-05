@@ -1,0 +1,416 @@
+{
+  "viewport": {
+    "width": 320,
+    "height": 800
+  },
+  "overflow": 201,
+  "bodyText": "NodeVideo\nStudio\nFor agents\n\nCHOREOGRAPHY COACH · JUDGED ON VISIBLE MOTION ONLY\n\nLearn the dance you admire.\n\nPoint NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.\n\nOpen the coach\nWatch a real comparison\nPreview a sample verdict — no setup needed\n1\n2\n3\n4\n5\n6\n7\n8\n103.4 bpm · the page keeps count\n\nreal pose track · verified public case\n\nThree ways to use NodeVideo today\nMake a collab edit\n\nPut your take next to the original — side by side or top and bottom — line up the first landing, and export. Entirely in your browser, nothing uploads.\n\nOpen the collab editor\nCoach a take\n\nUpload your dance take against the dancer you are studying and get relative motion signals with the moments to review.\n\nOpen the coach\nCut takes into an edit\n\nThe original NodeVideo: raw takes plus a song become a planned, text-overlaid final cut — every boundary hash-verified and inspectable.\n\nOpen the stitch studio\nProof console\nPractice live\n\nA camera practice room: follow the reference skeleton, get honest per-beat similarity signals, retry the phrase. Pose tracking runs on your device.\n\nOpen the practice room (early beta)\nForm\n\nJoint angles against the reference pose, frame by frame.\n\nTiming\n\nYour landings against the music grid, in milliseconds.\n\nPath\n\nWhere your body travels compared with the reference.\n\nDynamics\n\nThe sharpness of your hits — pops, locks, accents.\n\nWhen the evidence is not there, NodeVideo abstains — unmeasured signals are disclosed, never invented.\n\nlocal-first · hash-verified · consent-gated",
+  "links": [
+    {
+      "text": "Studio",
+      "href": "/studio.html",
+      "x": 319.078125,
+      "y": 68,
+      "right": 401.65625,
+      "bottom": 108,
+      "width": 82.578125,
+      "height": 40,
+      "scrollWidth": 83,
+      "clientWidth": 83
+    },
+    {
+      "text": "For agents",
+      "href": "/.well-known/agent-ui.json",
+      "x": 433.65625,
+      "y": 48,
+      "right": 520.9375,
+      "bottom": 128,
+      "width": 87.28125,
+      "height": 80,
+      "scrollWidth": 87,
+      "clientWidth": 87
+    },
+    {
+      "text": "Open the coach",
+      "href": "/apps/chrome-extension/sidepanel.html",
+      "x": 40,
+      "y": 1592.984375,
+      "right": 372.359375,
+      "bottom": 1680.984375,
+      "width": 332.359375,
+      "height": 88,
+      "scrollWidth": 332,
+      "clientWidth": 332
+    },
+    {
+      "text": "Watch a real comparison",
+      "href": "/studio.html",
+      "x": 40,
+      "y": 1704.984375,
+      "right": 437.234375,
+      "bottom": 1792.984375,
+      "width": 397.234375,
+      "height": 88,
+      "scrollWidth": 395,
+      "clientWidth": 395
+    },
+    {
+      "text": "Preview a sample verdict — no setup needed",
+      "href": "/apps/chrome-extension/sidepanel.html?demo=verdict-completed-full",
+      "x": 40,
+      "y": 1848.984375,
+      "right": 437.234375,
+      "bottom": 1928.984375,
+      "width": 397.234375,
+      "height": 80,
+      "scrollWidth": 397,
+      "clientWidth": 397
+    },
+    {
+      "text": "Open the collab editor",
+      "href": "/collab.html",
+      "x": 81,
+      "y": 3980.71875,
+      "right": 239,
+      "bottom": 4100.71875,
+      "width": 158,
+      "height": 120,
+      "scrollWidth": 158,
+      "clientWidth": 158
+    },
+    {
+      "text": "Open the coach",
+      "href": "/apps/chrome-extension/sidepanel.html",
+      "x": 81,
+      "y": 4939.21875,
+      "right": 239,
+      "bottom": 5019.21875,
+      "width": 158,
+      "height": 80,
+      "scrollWidth": 158,
+      "clientWidth": 158
+    },
+    {
+      "text": "Open the stitch studio",
+      "href": "/edit.html",
+      "x": 81,
+      "y": 5946.21875,
+      "right": 239,
+      "bottom": 6066.21875,
+      "width": 158,
+      "height": 120,
+      "scrollWidth": 158,
+      "clientWidth": 158
+    },
+    {
+      "text": "Proof console",
+      "href": "/studio.html",
+      "x": 81,
+      "y": 6066.21875,
+      "right": 239,
+      "bottom": 6146.21875,
+      "width": 158,
+      "height": 80,
+      "scrollWidth": 158,
+      "clientWidth": 158
+    },
+    {
+      "text": "Open the practice room (early beta)",
+      "href": "/practice.html",
+      "x": 81,
+      "y": 7121.21875,
+      "right": 239,
+      "bottom": 7281.21875,
+      "width": 158,
+      "height": 160,
+      "scrollWidth": 158,
+      "clientWidth": 158
+    }
+  ],
+  "canvas": {
+    "x": 41,
+    "y": 2262.984375,
+    "right": 436.234375,
+    "bottom": 2658.21875,
+    "width": 395.234375,
+    "height": 395.234375,
+    "scrollWidth": 395,
+    "clientWidth": 395,
+    "intrinsicWidth": 560,
+    "intrinsicHeight": 560
+  },
+  "caption": {
+    "text": "real pose track · verified public case",
+    "x": 73,
+    "y": 2568.21875,
+    "right": 436.234375,
+    "bottom": 2634.21875,
+    "width": 363.234375,
+    "height": 66,
+    "scrollWidth": 363,
+    "clientWidth": 363
+  },
+  "card": {
+    "x": 40,
+    "y": 2261.984375,
+    "right": 437.234375,
+    "bottom": 2659.21875,
+    "width": 397.234375,
+    "height": 397.234375,
+    "scrollWidth": 395,
+    "clientWidth": 395
+  },
+  "textOutsideViewport": [
+    {
+      "text": "Studio",
+      "x": 319.078125,
+      "right": 401.65625,
+      "width": 82.578125
+    },
+    {
+      "text": "For agents",
+      "x": 433.65625,
+      "right": 475.71875,
+      "width": 42.0625
+    },
+    {
+      "text": "For agents",
+      "x": 433.65625,
+      "right": 520.9375,
+      "width": 87.28125
+    },
+    {
+      "text": "Choreography coach · judged on visible motion only",
+      "x": 40,
+      "right": 399.90625,
+      "width": 359.90625
+    },
+    {
+      "text": "Choreography coach · judged on visible motion only",
+      "x": 40,
+      "right": 345.921875,
+      "width": 305.921875
+    },
+    {
+      "text": "Learn the dance you admire.",
+      "x": 40,
+      "right": 322.109375,
+      "width": 282.109375
+    },
+    {
+      "text": "Learn the dance you admire.",
+      "x": 40,
+      "right": 380.296875,
+      "width": 340.296875
+    },
+    {
+      "text": "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+      "x": 40,
+      "right": 417.90625,
+      "width": 377.90625
+    },
+    {
+      "text": "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+      "x": 40,
+      "right": 432.4375,
+      "width": 392.4375
+    },
+    {
+      "text": "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+      "x": 40,
+      "right": 362.359375,
+      "width": 322.359375
+    },
+    {
+      "text": "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+      "x": 40,
+      "right": 368.359375,
+      "width": 328.359375
+    },
+    {
+      "text": "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+      "x": 40,
+      "right": 434.359375,
+      "width": 394.359375
+    },
+    {
+      "text": "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+      "x": 40,
+      "right": 344.8125,
+      "width": 304.8125
+    },
+    {
+      "text": "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+      "x": 40,
+      "right": 328.6875,
+      "width": 288.6875
+    },
+    {
+      "text": "Point NodeVideo at the dancer you are studying, film your take, and see — count by count — where your movement matches and where it drifts. Processed on your machine. Relative signals, never grades.",
+      "x": 40,
+      "right": 393.234375,
+      "width": 353.234375
+    },
+    {
+      "text": "Open the coach",
+      "x": 88,
+      "right": 324.359375,
+      "width": 236.359375
+    },
+    {
+      "text": "Preview a sample verdict — no setup needed",
+      "x": 40,
+      "right": 430.25,
+      "width": 390.25
+    },
+    {
+      "text": "8",
+      "x": 315.84375,
+      "right": 331.25,
+      "width": 15.40625
+    },
+    {
+      "text": "103.4",
+      "x": 371.25,
+      "right": 437.234375,
+      "width": 65.984375
+    },
+    {
+      "text": "bpm · the page keeps count",
+      "x": 371.25,
+      "right": 437.234375,
+      "width": 65.984375
+    },
+    {
+      "text": "bpm · the page keeps count",
+      "x": 371.25,
+      "right": 410.84375,
+      "width": 39.59375
+    },
+    {
+      "text": "bpm · the page keeps count",
+      "x": 371.25,
+      "right": 424.03125,
+      "width": 52.78125
+    },
+    {
+      "text": "bpm · the page keeps count",
+      "x": 371.25,
+      "right": 437.234375,
+      "width": 65.984375
+    },
+    {
+      "text": "bpm · the page keeps count",
+      "x": 371.25,
+      "right": 437.234375,
+      "width": 65.984375
+    },
+    {
+      "text": "real pose track · verified public case",
+      "x": 73,
+      "right": 387.5,
+      "width": 314.5
+    }
+  ],
+  "counts": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8"
+  ],
+  "geometry": [
+    {
+      "tag": "MAIN",
+      "x": 0,
+      "y": 0,
+      "right": 320,
+      "bottom": 9847.71875,
+      "width": 320,
+      "height": 9847.71875,
+      "scrollWidth": 521,
+      "clientWidth": 320
+    },
+    {
+      "tag": "HEADER",
+      "x": 40,
+      "y": 48,
+      "right": 280,
+      "bottom": 128,
+      "width": 240,
+      "height": 80,
+      "scrollWidth": 481,
+      "clientWidth": 240
+    },
+    {
+      "tag": "NAV",
+      "x": 319.078125,
+      "y": 48,
+      "right": 520.9375,
+      "bottom": 128,
+      "width": 201.859375,
+      "height": 80,
+      "scrollWidth": 202,
+      "clientWidth": 202
+    },
+    {
+      "tag": "SECTION",
+      "x": 40,
+      "y": 128,
+      "right": 280,
+      "bottom": 2771.21875,
+      "width": 240,
+      "height": 2643.21875,
+      "scrollWidth": 397,
+      "clientWidth": 240
+    },
+    {
+      "tag": "DIV",
+      "x": 40,
+      "y": 240,
+      "right": 437.234375,
+      "bottom": 2181.984375,
+      "width": 397.234375,
+      "height": 1941.984375,
+      "scrollWidth": 397,
+      "clientWidth": 397
+    },
+    {
+      "tag": "H1",
+      "x": 40,
+      "y": 392,
+      "right": 437.234375,
+      "bottom": 895.984375,
+      "width": 397.234375,
+      "height": 503.984375,
+      "scrollWidth": 397,
+      "clientWidth": 397
+    },
+    {
+      "tag": "DIV",
+      "x": 40,
+      "y": 1984.984375,
+      "right": 437.234375,
+      "bottom": 2181.984375,
+      "width": 397.234375,
+      "height": 197,
+      "scrollWidth": 397,
+      "clientWidth": 397
+    },
+    {
+      "tag": "DIV",
+      "x": 40,
+      "y": 2261.984375,
+      "right": 437.234375,
+      "bottom": 2659.21875,
+      "width": 397.234375,
+      "height": 397.234375,
+      "scrollWidth": 395,
+      "clientWidth": 395
+    }
+  ],
+  "name": "320-text200"
+}

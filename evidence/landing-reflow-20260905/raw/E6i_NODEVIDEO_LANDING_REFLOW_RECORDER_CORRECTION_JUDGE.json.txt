@@ -1,0 +1,156 @@
+{
+  "mode": "Builder",
+  "verdict": "APPROVED_CORRECTED_RECORDER_AND_PLANNED_SOURCE_SCOPE_FINAL_AFTER_PENDING",
+  "checks": [
+    {
+      "name": "recorder incomplete proof becomes error",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "any recorder error produces nonzero process exit",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "controller inspects raw status errors completion",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "controller uses observation acceptance in result",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "controller selects phase-specific expected dist",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "controller validates expected dist before subprocess",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "controller binds entry then compares exit",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "controller retains exact observer/controller before subprocess",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "baseline raw receipt not wrapper alone",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "baseline actual 108 PNGs all present",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "baseline raw manifest exact bytes",
+      "passed": true,
+      "details": {
+        "files": 140
+      }
+    },
+    {
+      "name": "baseline source count and guards reported exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "baseline build and observation final dist manifests equal",
+      "passed": true,
+      "details": {
+        "files": 1329,
+        "entryManifest": "NOT_CAPTURED_HISTORICALLY"
+      }
+    },
+    {
+      "name": "original baseline executed recorder retained exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "original baseline executed direct argv controller retained exact",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "baseline ten native focused links per journey",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "baseline actual destination content signals",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "all actual clock and drawing implementation unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "cards footer and root mount unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "only class changes and approved one wrapper",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "current recorder controller and owner unchanged during review",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "passed": 21,
+  "total": 21,
+  "effectiveInputs": {
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-observe-landing-reflow.mjs": "85f18003c5d00afed3ceb98647a36c171050d51b4085f0ea2d1bbe7eb09b5bbf",
+    "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-run-landing-reflow.py": "2cbc52ce1797589a6b7495c5759157e83f5bd016aa7d25987b29f7902485d35a",
+    "D:\\VSCode Projects\\cafecorner_nodebench\\nodebench_ai4\\.portfolio-worktrees\\nodevideo-current-consumer-20260905\\apps\\landing\\src\\landing.tsx": "b2122eec396ffbe3cda94b6b1f06cadc81d7964d2e67c78ed50c2254e3148e4e"
+  },
+  "baseline": {
+    "observedCells": 12,
+    "captures": 108,
+    "nativeKeyboardJourneys": 2,
+    "errors": [],
+    "rawArtifactManifestFilesVerified": 140,
+    "sourceFiles": 2306,
+    "distFiles": 1329,
+    "beforeBuildFinalEqualsObservationFinal": true,
+    "observationDistEntryCaptured": false,
+    "scope": "Build completion and observation-end file bindings match. Historical observation has no entry dist manifest; no continuous entry/exit custody retroclaim. Raw errors/completion and actual saved destination content independently inspected."
+  },
+  "sourceReview": {
+    "singleOwner": "apps/landing/src/landing.tsx",
+    "changes": "Existing class sizing/wrapping plus one approved inner aspect-square canvas wrapper and normal-flow caption. No other semantic JSX, clocks, pose/drawing logic, text or destinations change.",
+    "normalCheck": "RUNNING_AT_TASK_DISPATCH_NOT_JUDGED_HERE",
+    "afterPixels": "PENDING",
+    "sourceHash": "b2122eec396ffbe3cda94b6b1f06cadc81d7964d2e67c78ed50c2254e3148e4e"
+  },
+  "remainingAcceptance": [
+    "Inspect actual completed normal check separately, including nine clock tests. Observation PASS does not itself certify the normal gate.",
+    "Inspect actual after screenshots and raw geometry/keyboard results for the seven native pairs, three text200 and two reduced cells.",
+    "Inspect full desktop card height/centering and phone caption clearance; no geometry-only visual pass.",
+    "Preserve native all-null pose-frame gaps and all unrelated product/dependency/full-grade holds."
+  ],
+  "reviewerActions": {
+    "browserRuns": 0,
+    "sourceEdits": 0,
+    "providerCalls": 0
+  },
+  "fullDimensions": null,
+  "overallGrade": null,
+  "manifest": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-recorder-correction-review\\input-bindings.json"
+}

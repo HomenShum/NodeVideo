@@ -1,0 +1,42 @@
+[
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i_NODEVIDEO_LANDING_REFLOW_FREEZE.json",
+    "bytes": 5382,
+    "sha256": "c9acdda16b3a79062bcb2712b3f9cbb5b63c1a92435d000b0832b9581053ec4d"
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-nodevideo-landing-reflow-freeze-01\\artifact-manifest.json",
+    "bytes": 64339,
+    "sha256": "b869e5154c5f8274419bb9b6ce003827e431fe15843ba9c2b3f201415b92bdda"
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i_NODEVIDEO_LANDING_REFLOW_PLAN_JUDGE.json",
+    "bytes": 14240,
+    "sha256": "24b7a0b6ba7cbba8daaf1fb7e516bab63a9c5aa52fd9b60d18798095ea7d9ae7"
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i_NODEVIDEO_LANDING_REFLOW_CAPTION_PLAN_ADDENDUM.json",
+    "bytes": 7636,
+    "sha256": "683019d1bc11e0f3f71d6bac2e5b786876975dbdaf1796f65859bb37028bd529"
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i_NODEVIDEO_LANDING_REFLOW_RECORDER_CORRECTION_JUDGE.json",
+    "bytes": 5531,
+    "sha256": "f5d3ab5e92b7296cbbda8de7e79287bf6127c4b550592064d7c1b2052750e4aa"
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\REPO_READINESS_STANDARD.md",
+    "bytes": 18664,
+    "sha256": "8b5bb532bf0dfeed7cc4ecd2b425d708fc49048cc05ab4cbeb315fc3534aeff2"
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i_NODEVIDEO_CRITERION_ASSESSMENT.json",
+    "bytes": 44675,
+    "sha256": "e4147a07bf5173b26a06720521ae6a61f53a8db8f41c686825bdee7683d7b441"
+  },
+  {
+    "path": "C:\\Users\\hshum\\.codex\\worktrees\\5dba\\nodebench-ai\\docs\\plans\\portfolio-recovery-20260904\\E6i-judge-landing-reflow-final.py",
+    "bytes": 21387,
+    "sha256": "2322d3e09b4ebe2e6038cac7f726eedf95219ef4051e6964d487e1f910802be9"
+  }
+]
