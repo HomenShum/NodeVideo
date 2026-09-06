@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nodevideo.openrouter-free-routing.v1",
-  "generatedAt": "2026-08-01T21:40:27.687Z",
-  "catalogDigest": "54fdf9d2ee4caf20397520091dde76a9b869a333bda8db938105fa5f9ddedd09",
+  "generatedAt": "2026-09-06T18:27:44.890Z",
+  "catalogDigest": "2d79e27ca9ac79979b409ef12c9fe68e7de401b90320e168bc5d0f54422c018e",
   "benchmark": {
     "schemaVersion": "nodevideo.openrouter-free-benchmark.v1",
     "scenarios": [
@@ -17,66 +17,52 @@
       "requiredScenarioCoverage": 1
     }
   },
-  "selectedModels": ["google/gemma-4-26b-a4b-it:free"],
+  "selectedModels": ["nvidia/nemotron-3-super-120b-a12b:free", "liquid/lfm-2.5-2.6b:free"],
   "fallbackRouter": "openrouter/free",
   "candidates": [
-    {
-      "id": "google/gemma-4-26b-a4b-it:free",
-      "name": "Google: Gemma 4 26B A4B  (free)",
-      "created": 1775227989,
-      "contextLength": 262144,
-      "samples": 8,
-      "successes": 8,
-      "successRate": 1,
-      "meanScore": 88.75,
-      "p95LatencyMs": 5941,
-      "scenarioCoverage": 4,
-      "eligible": true
-    },
-    {
-      "id": "openai/gpt-oss-20b:free",
-      "name": "OpenAI: gpt-oss-20b (free)",
-      "created": 1754414229,
-      "contextLength": 131072,
-      "samples": 8,
-      "successes": 5,
-      "successRate": 0.625,
-      "meanScore": 55,
-      "p95LatencyMs": 18216,
-      "scenarioCoverage": 3,
-      "eligible": false
-    },
     {
       "id": "nvidia/nemotron-3-super-120b-a12b:free",
       "name": "NVIDIA: Nemotron 3 Super (free)",
       "created": 1773245239,
-      "contextLength": 1000000,
+      "contextLength": 262144,
       "samples": 8,
-      "successes": 4,
-      "successRate": 0.5,
-      "meanScore": 52.5,
-      "p95LatencyMs": 16234,
-      "scenarioCoverage": 3,
-      "eligible": false
+      "successes": 8,
+      "successRate": 1,
+      "meanScore": 100,
+      "p95LatencyMs": 24025,
+      "scenarioCoverage": 4,
+      "eligible": true
     },
     {
-      "id": "nvidia/nemotron-nano-9b-v2:free",
-      "name": "NVIDIA: Nemotron Nano 9B V2 (free)",
-      "created": 1757106807,
-      "contextLength": 32000,
+      "id": "liquid/lfm-2.5-2.6b:free",
+      "name": "LiquidAI: LFM2.5-2.6B (free)",
+      "created": 1786470519,
+      "contextLength": 65536,
       "samples": 8,
-      "successes": 0,
-      "successRate": 0,
-      "meanScore": 0,
-      "p95LatencyMs": 24378,
-      "scenarioCoverage": 0,
-      "eligible": false
+      "successes": 7,
+      "successRate": 0.875,
+      "meanScore": 97.5,
+      "p95LatencyMs": 12445,
+      "scenarioCoverage": 4,
+      "eligible": true
+    },
+    {
+      "id": "dots-studio/dots-3-note-preview:free",
+      "name": "Dots Studio: Dots3-Note Preview (free)",
+      "created": 1786680361,
+      "contextLength": 512000,
+      "samples": 8,
+      "successes": 7,
+      "successRate": 0.875,
+      "meanScore": 97.5,
+      "p95LatencyMs": 21312,
+      "scenarioCoverage": 4,
+      "eligible": true
     }
   ],
   "discoveredModels": [
-    "google/gemma-4-26b-a4b-it:free",
-    "nvidia/nemotron-3-super-120b-a12b:free",
-    "nvidia/nemotron-nano-9b-v2:free",
-    "openai/gpt-oss-20b:free"
+    "dots-studio/dots-3-note-preview:free",
+    "liquid/lfm-2.5-2.6b:free",
+    "nvidia/nemotron-3-super-120b-a12b:free"
   ]
 }
