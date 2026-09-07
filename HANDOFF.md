@@ -17,8 +17,8 @@ for layer ownership and [the agent execution policy](docs/engineering/AGENT_EXEC
 ## Run the public local demo
 
 Use a fresh checkout with Node.js 22.12+, npm 10+ and Git. No `.env` file, provider key, camera, private
-media or model download is needed for this journey. The retained ordinary `npm ci` succeeded with
-the existing lock; it was not changed by the lint or landing repair.
+media or model download is needed for this journey. The earlier ordinary `npm ci` succeeded with
+its retained lock; the current development dependency follow-up is recorded at the end of this file.
 
 ```powershell
 npm ci
@@ -77,9 +77,9 @@ its ratings cover the retained observations, not a full accessibility or user-re
   observation substitutes for native browser zoom.
   The earlier editor evidence also retains caption/player overlap, compact clipping and native
   waiting spinners; seek identity does not prove smooth playback.
-- The unchanged dependency audit recorded 13 total findings (7 high, 6 moderate), including
+- The original dependency audit recorded 13 total findings (7 high, 6 moderate), including
   3 production findings (1 high, 2 moderate). The exact timestamp and reports are in the packet.
-  Local `npm run check` does not include the audit and does not close those findings.
+  Local `npm run check` does not include the audit. Later dependency results are recorded below.
 - Optional clip tooling has separate known missing-export/data-path failures. Provider, durable
   Creator, private-media, native camera, human taste and full-duration export paths were not
   certified by this handoff. The architecture describes their contracts, not this proof's scope.
@@ -112,10 +112,10 @@ separate local evidence and passed its own shared checks in PR47.
 
 ## Reviewed dependency patch
 
-The current lock updates only fast-uri to3.1.7, DOMPurify to3.4.14 and Mermaid to11.16.1, retaining
+The earlier reviewed lock patch updated fast-uri to3.1.7, DOMPurify to3.4.14 and Mermaid to11.16.1, retaining
 the existing direct constraints and NodeKit pin. A fresh exact source export plus this lock passed
 ordinary install and353tests/74files with build/rendered-contract checks. Its production audit is0;
-the full audit retains10 development findings(6high/4moderate). The earlier13/3 audit remains an
+that lock's full audit retained10 development findings(6high/4moderate). The earlier13/3 audit remains an
 honest historical record of the original lock. See [the patch evidence](evidence/dependency-patch-20260905/README.md).
 
 Actual component prose/SVG rendering, fresh parse errors and schema accept/reject behavior were
@@ -141,3 +141,22 @@ proof; current layout shared checks and production interactions are not claimed 
 panels, full quality dimensions, physical devices and native zoom remain unverified.
 
 The existing malformed diagram update has a separate [tracked repair with reproduction and acceptance checks](https://github.com/HomenShum/NodeVideo/issues/48).
+
+## Development dependency follow-up (2026-09-07)
+
+The current lock refreshes 15 development-only entries within their existing parent ranges.
+Direct dependency constraints and versions, production lock entries and the NodeKit pin remain
+unchanged. Shadcn stays installed because the application imports its CSS during the build.
+
+One fresh `npm ci`, one normal `npm run check` and one full `npm audit --json` passed on the
+isolated local candidate. The check passed all 353 tests in 74 files with no test skips, plus
+lint, types, existing receipt checks, build and the local browser contract, in 114.313 seconds.
+The full audit reported zero findings for this installed lock, replacing the earlier lock's
+10 development findings. Reproduce those three commands in that order; the Chromium prerequisite
+above still applies. The install retained npm's integrity-check warning for the unchanged pinned
+NodeKit Git dependency.
+
+This follow-up changes no application or test behavior. The receipt readers verify historical
+media evidence; they do not run a fresh model provider. The local contract retains its six deferred
+camera/cancellation/export controls. There is no new provider, physical-device, full-export,
+rendered-quality or public-deployment proof, and the existing quality limits above remain open.
