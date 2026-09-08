@@ -14,6 +14,36 @@ These checks do not certify the public editor, providers, full-length exports, e
 production behavior or whole-product quality. Read this file first, then [the architecture](docs/architecture.md)
 for layer ownership and [the agent execution policy](docs/engineering/AGENT_EXECUTION_POLICY.md) before changing code.
 
+## Public landing HTML and crawler policy
+
+A visitor arriving from search can read the homepage and follow its links before JavaScript
+loads. Previously the response contained an empty root; the visible copy existed only after
+React mounted. The root Vite HTML transform now renders the same `Landing` component that the
+browser hydrates. Keep browser effects inside that component and mounting in `client.tsx`.
+The stylesheet is linked from `index.html`, so development mode also remains styled when scripts
+are delayed. An SVG of the real first tracked pose remains visible until the canvas actually
+paints; unavailable JavaScript or a missing canvas context leaves that fallback in place.
+
+The initial render is steady in both environments, then follows the visitor's motion preference,
+including changes during a session. The existing clock arithmetic and source pose data are
+unchanged. The heading now accurately introduces four workflow cards.
+
+The public homepage canonical is `https://nodevideo-pi.vercel.app/`. Its sitemap contains only
+that page. Crawler files belong in `fixtures`, the configured Vite public directory. The crawler
+policy excludes API and private-run paths; robots directives are not authorization controls.
+Keep canonical, Open Graph URL and sitemap consistent if the production hostname changes.
+
+Verify with `npm run build`, `npm run lint`, `npm run test`, `npm run check:ui`,
+`npm run check:contract` and `npx playwright test tests/e2e/public-landing.spec.ts`.
+The public landing suite covers initial HTML, crawler response types, no JavaScript, delayed
+hydration, unavailable canvas, keyboard navigation, repeated visits and live motion preferences
+at all five configured viewports. It also attaches DOM, console, pixels and an Axe report.
+The first local run passed 353 unit cases and 30 public browser cases without skips or retries,
+plus build, lint, UI policy and contract checks. Automated Axe results have no violations but
+retain incomplete checks for human review. These are scoped checks, not full product grades,
+provider certification, evidence of production adoption or a search-ranking result. Inspect the
+exact commit's Quality workflow, preview build receipt and raw HTML before release.
+
 ## Run the public local demo
 
 Use a fresh checkout with Node.js 22.12+, npm 10+ and Git. No `.env` file, provider key, camera, private
