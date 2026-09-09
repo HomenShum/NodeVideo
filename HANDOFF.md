@@ -44,6 +44,13 @@ retain incomplete checks for human review. These are scoped checks, not full pro
 provider certification, evidence of production adoption or a search-ranking result. Inspect the
 exact commit's Quality workflow, preview build receipt and raw HTML before release.
 
+The September 8 lock patch updates only the eight coupled Vitest records to 4.1.11, addressing
+[GHSA-82fw-gwwq-j7x9](https://github.com/advisories/GHSA-82fw-gwwq-j7x9) in development tooling.
+Direct constraints and all production dependency records are unchanged. The normal npm 10
+installer, lint, typechecked build and all 353 unit cases passed; the fresh full audit reports
+zero vulnerabilities. Built landing HTML is byte-identical to the verified SEO build above.
+Check the updated commit's CI separately; earlier green runs do not certify a later lockfile.
+
 ## Run the public local demo
 
 Use a fresh checkout with Node.js 22.12+, npm 10+ and Git. No `.env` file, provider key, camera, private
