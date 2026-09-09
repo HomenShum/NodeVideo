@@ -53,6 +53,17 @@ Check the updated commit's CI separately; earlier green runs do not certify a la
 
 ## Run the public local demo
 
+`npm run check:contract` owns its preview and fixture servers in the checker process and
+awaits their closure, including when the build receipt is invalid or Chromium cannot launch.
+It logs the actual bound ports: `NODEVIDEO_CONTRACT_PORT` selects the preferred preview port
+(default 4327), Vite selects another when occupied, and the fixture service uses an OS-assigned
+port. Concurrent checks can share the preferred port. Cleanup failures fail the command, and
+the consent scenario removes its temporary input even when a browser action throws.
+Local process observation reproduced three leftover children before this repair. Afterward,
+normal, repeated and two concurrent checks passed with no surviving observed children or
+listeners; missing Chromium and a malformed served receipt each exited with failure and
+released their acquired resources. Build, lint, UI policy and all 353 unit cases also passed.
+
 Use a fresh checkout with Node.js 22.12+, npm 10+ and Git. No `.env` file, provider key, camera, private
 media or model download is needed for this journey. The earlier ordinary `npm ci` succeeded with
 its retained lock; the current development dependency follow-up is recorded at the end of this file.
