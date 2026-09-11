@@ -4,6 +4,8 @@
 
 ### Components
 
+- Sent the coach's YouTube reference embed with an origin-only referrer, so the player no longer
+  answers "Error 153" under the site-wide no-referrer policy.
 - Reframed the creator experience around one founder-launch journey with a case rail, durable video
   artifact stage, NodeAgent right rail, and bottom activity strip.
 - Added inline proposal review plus governed specialist-executor cards.

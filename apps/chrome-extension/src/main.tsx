@@ -480,6 +480,9 @@ function CoachPanel() {
                 allow="encrypted-media; picture-in-picture"
                 allowFullScreen
                 className="aspect-video w-full rounded-lg border-0"
+                // The site-wide Referrer-Policy is no-referrer, and YouTube's embed player
+                // answers a referrer-less request with "Error 153". Send only our origin.
+                referrerPolicy="strict-origin-when-cross-origin"
                 src={`https://www.youtube-nocookie.com/embed/${youTubeId}`}
                 title="Reference choreography preview"
               />
