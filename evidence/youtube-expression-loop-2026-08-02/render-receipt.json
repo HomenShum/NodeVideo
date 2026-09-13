@@ -1,0 +1,42 @@
+﻿{
+    "schemaVersion":  "nodevideo.expression-loop-render-receipt.v1",
+    "createdAt":  "2026-08-02T09:15:43.9830417Z",
+    "status":  "succeeded",
+    "inputSpecSha256":  "e2ab0d8037c24594b6639ce5ad249fb8b47f7f635b2914e8d878f9cd36a955bb",
+    "output":  {
+                   "file":  "nodevideo-two-minute-explanation.mp4",
+                   "sha256":  "f6edd498e52e0f6cdc07df4871f0d332cbd09e78416a52303b223f363baa82b0",
+                   "durationSeconds":  99.733,
+                   "sizeBytes":  3357305,
+                   "streams":  [
+                                   {
+                                       "codec_name":  "h264",
+                                       "codec_type":  "video",
+                                       "width":  1280,
+                                       "height":  720,
+                                       "r_frame_rate":  "30/1"
+                                   },
+                                   {
+                                       "codec_name":  "aac",
+                                       "codec_type":  "audio",
+                                       "channels":  1,
+                                       "r_frame_rate":  "0/0"
+                                   }
+                               ]
+               },
+    "gates":  {
+                  "durationAtMost120Seconds":  true,
+                  "videoPresent":  true,
+                  "audioPresent":  true,
+                  "fiveSectionsRendered":  true,
+                  "aiNarrationDisclosed":  true,
+                  "musicUsed":  false
+              },
+    "limitations":  [
+                        "This video is a manual dogfood artifact; the full Expression Loop is not implemented as a NodeVideo product feature.",
+                        "The checked-in media proof demonstrates deterministic mechanics, not generalized creative quality.",
+                        "Browser export omits audio; this production bundle uses a separate local audio-preserving render path.",
+                        "The narration uses a generic system voice and is labeled as AI-narrated; it is not a clone of the creator\u0027s voice.",
+                        "Approved transcript ranges are empty because no baseline user recording exists; this is a synthetic manual dogfood narration, not a completed targeted-retake workflow."
+                    ]
+}

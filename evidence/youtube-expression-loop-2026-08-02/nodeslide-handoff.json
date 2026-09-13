@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "nodevideo.nodeslide-handoff/v1",
+  "status": "complete",
+  "generatedAt": "2026-08-02T12:35:15.927Z",
+  "source": {
+    "approvedSpec": "D:\\VSCode Projects\\NodeVideo\\evidence\\youtube-expression-loop-2026-08-02\\approved-explanation.json",
+    "sha256": "e2ab0d8037c24594b6639ce5ad249fb8b47f7f635b2914e8d878f9cd36a955bb",
+    "publicClaimPolicy": "D:\\VSCode Projects\\NodeVideo\\docs\\benchmarks\\PUBLIC_CLAIM_POLICY.md"
+  },
+  "artifacts": {
+    "nodeslide": {
+      "path": "D:\\VSCode Projects\\nodeslide\\outputs\\nodevideo-expression-loop-2026-08-02\\nodevideo-expression-loop.nodeslide.json",
+      "sha256": "e13ce1a2bfd26f9d924d25c5d735a89685a9619b6c6da25bffe706877837fa6d"
+    },
+    "html": {
+      "path": "D:\\VSCode Projects\\nodeslide\\outputs\\nodevideo-expression-loop-2026-08-02\\nodevideo-expression-loop.html",
+      "sha256": "16deeb1b5a684ae6a4cbe646211394788c2a6157d9c38253f8184f1d6c56bc00"
+    },
+    "pptx": {
+      "path": "D:\\VSCode Projects\\nodeslide\\outputs\\nodevideo-expression-loop-2026-08-02\\nodevideo-expression-loop.pptx",
+      "sha256": "95b2dde7704c45508e785e126f503a33bde77c6818686e48c81c597b29dddbbc"
+    },
+    "browserImages": {
+      "directory": "D:\\VSCode Projects\\nodeslide\\outputs\\nodevideo-expression-loop-2026-08-02\\browser",
+      "sha256": [
+        "28f27049e11c77cd1c1c91c82def2f40a3a59143f303355a5b7e76f1763fd850",
+        "0d4cc290a09473abb8b069d9c026534a4f5647e128087fd970942f4419eca469",
+        "49abcef5f8e58f612f35ac331d73aae6a357b4578da89e8b358f135335497bc0",
+        "1d12892886b5fb38925148ac0f4f39b14e6eb268de8a9533b7cb9a55e569c981",
+        "507df495ebb489d062651f1b236b34c4b791b732b3060f732fc3e11c2b031335"
+      ]
+    },
+    "pptxImages": {
+      "directory": "D:\\VSCode Projects\\nodeslide\\outputs\\nodevideo-expression-loop-2026-08-02\\pptx-render",
+      "sha256": [
+        "7a52dfb1470c1adc454cb5ae9f7110d70c3a49dbe5dc3a17524e304be7294311",
+        "22693c27b246dee753f12e2d94763d8cd880172c4774a25c17d7bc76b23d86a0",
+        "df81ab0a26b8a5579acea52126f4560a6bc31954a8085148222bf41747f2b21e",
+        "7b37eba68e7553df18389ea857e621dd6e6046107f4df4323e4bbb9497377a51",
+        "05cb5776faffcc92d90fdf7d26dadc65e334f77fabe374aabdbd70186322025f"
+      ]
+    },
+    "browserMontage": {
+      "path": "D:\\VSCode Projects\\nodeslide\\outputs\\nodevideo-expression-loop-2026-08-02\\montage.png",
+      "sha256": "ab35d2d6320bb0b2cef67da850f7cc6dcbd56db7c1d70ec4970b1be0f11ecd1d"
+    },
+    "pptxMontage": {
+      "path": "D:\\VSCode Projects\\nodeslide\\outputs\\nodevideo-expression-loop-2026-08-02\\pptx-montage.png",
+      "sha256": "8779a3e1270415a64a683cb1e7c3ca269a483c930ca7b00207d7e15969eb2be9"
+    },
+    "verification": {
+      "path": "D:\\VSCode Projects\\nodeslide\\outputs\\nodevideo-expression-loop-2026-08-02\\verification.json",
+      "sha256": "2d225467eccb1b43d3c8ff84be811436cff573cfb554a50fb136706dcab6081a"
+    }
+  },
+  "gates": {
+    "exactSlideCount": 5,
+    "htmlSlideCount": 5,
+    "pptxSlideCount": 5,
+    "pptxSpeakerNoteCount": 5,
+    "browserRenderCount": 5,
+    "pptxRenderCount": 5,
+    "editableElementCount": 73,
+    "diversityPasses": true,
+    "publicationPasses": true,
+    "overflowPasses": true,
+    "unsupportedClaimMatches": [],
+    "prohibitedBenchmarkPercentagesAbsent": true,
+    "prohibitedBenchmarkMatches": {
+      "plannedSlides": [],
+      "snapshot": [],
+      "html": [],
+      "pptx": []
+    }
+  },
+  "slide5Inspection": {
+    "wording": [
+      "Mechanics pass. Quality is unproven.",
+      "22 TARGETED TESTS PASS",
+      "STRICT EDITORIAL AUDIT FAILED: 1/5 CUTS WITHIN ±2 FRAMES",
+      "MANUAL SYNTHETIC DOGFOOD — NOT THE FULL EXPRESSION LOOP"
+    ],
+    "browser": {
+      "path": "D:\\VSCode Projects\\nodeslide\\outputs\\nodevideo-expression-loop-2026-08-02\\browser\\slide-005.png",
+      "sha256": "507df495ebb489d062651f1b236b34c4b791b732b3060f732fc3e11c2b031335"
+    },
+    "pptx": {
+      "path": "D:\\VSCode Projects\\nodeslide\\outputs\\nodevideo-expression-loop-2026-08-02\\pptx-render\\slide-5.png",
+      "sha256": "05cb5776faffcc92d90fdf7d26dadc65e334f77fabe374aabdbd70186322025f"
+    },
+    "checks": "pass: browser and PPTX renders inspected at full size; all four lines are legible; no clipping, overlap, wrapping error, or benchmark shorthand"
+  },
+  "verificationCommands": [
+    {
+      "command": "npx vite-node scripts/build-nodevideo-expression-loop.ts",
+      "cwd": "D:\\VSCode Projects\\nodeslide",
+      "result": "pass: rebuilt snapshot, HTML, PPTX, five browser images, five PPTX images, two montages, and verification.json"
+    },
+    {
+      "command": "regression replay with the rejected sentence in planned slide 5 body",
+      "cwd": "D:\\VSCode Projects\\nodeslide",
+      "result": "pass: exit 1 before artifact generation; matched held-out request count plus review and abstain percentages"
+    },
+    {
+      "command": "rg -n 'Of 1,392 held-out requests|49\\.4% review|50\\.6% abstain' scripts/build-nodevideo-expression-loop.ts outputs/nodevideo-expression-loop-2026-08-02",
+      "cwd": "D:\\VSCode Projects\\nodeslide",
+      "result": "pass: zero matches"
+    },
+    {
+      "command": "JSZip count and text extraction for ppt/slides and ppt/notesSlides",
+      "cwd": "D:\\VSCode Projects\\nodeslide",
+      "result": "pass: 5 slide parts, 5 speaker-note parts, exact approved slide 5 wording, zero prohibited matches"
+    },
+    {
+      "command": "slides_test.py nodevideo-expression-loop.pptx",
+      "cwd": "C:\\Users\\hshum",
+      "result": "pass: no overflow detected"
+    },
+    {
+      "command": "npx biome check scripts/build-nodevideo-expression-loop.ts",
+      "cwd": "D:\\VSCode Projects\\nodeslide",
+      "result": "pass: formatter and linter clean"
+    }
+  ]
+}

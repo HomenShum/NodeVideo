@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "nodevideo.targeted-test-receipt.v1",
+  "createdAt": "2026-08-02T09:11:54Z",
+  "gitCommit": "69eb7f4d3ba520eee10e4f1b9a83177992846eba",
+  "command": "npx vitest run convex/caseflow.test.ts tests/unit/durability.test.ts tests/unit/browser-edit-plan-compiler.test.ts tests/unit/browser-ffmpeg.test.ts src/lib/creator-taste-nodeagent.test.ts",
+  "result": {
+    "exitCode": 0,
+    "testFilesPassed": 5,
+    "testFilesTotal": 5,
+    "testsPassed": 22,
+    "testsTotal": 22,
+    "durationSeconds": 1.13
+  },
+  "rawSummary": "Test Files 5 passed (5); Tests 22 passed (22); Duration 1.13s"
+}

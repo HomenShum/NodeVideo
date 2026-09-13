@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "nodevideo.youtube-publication/v1",
+  "publishedAt": "2026-08-02T02:24:00-07:00",
+  "videoId": "4oUwQyLDbRI",
+  "watchUrl": "https://www.youtube.com/watch?v=4oUwQyLDbRI",
+  "shortUrl": "https://youtu.be/4oUwQyLDbRI",
+  "title": "Why NodeVideo Does Not Let AI Edit Video Directly",
+  "visibility": "public",
+  "audience": "notMadeForKids",
+  "aiUseDisclosure": true,
+  "copyrightCheck": "noIssuesFound",
+  "liveVerification": {
+    "method": "authenticated watch-page DOM observation after publication",
+    "observedSignals": [
+      "heading: Why NodeVideo Does Not Let AI Edit Video Directly",
+      "player duration: 1:39",
+      "AI: Content was made with AI",
+      "description begins with: An AI-narrated prototype"
+    ]
+  },
+  "mediaSha256": "f6edd498e52e0f6cdc07df4871f0d332cbd09e78416a52303b223f363baa82b0"
+}

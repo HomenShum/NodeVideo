@@ -1,0 +1,53 @@
+﻿[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Tag,Segoe UI,20,&H00E9F7FF,&H000000FF,&H00000000,&H00000000,1,0,0,0,100,100,1,0,1,0,0,7,52,40,34,1
+Style: Kicker,Segoe UI,22,&H0057D3FF,&H000000FF,&H00000000,&H00000000,1,0,0,0,100,100,2,0,1,0,0,7,84,84,112,1
+Style: Title,Segoe UI Semibold,48,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,0,0,7,84,84,152,1
+Style: Visual,Consolas,27,&H00CDE7F0,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,1,0,1,0,0,7,88,88,285,1
+Style: Caption,Segoe UI,25,&H00FFFFFF,&H000000FF,&H00101824,&HCC101824,0,0,0,0,100,100,0,0,3,1,0,2,110,110,42,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:01:39.71,Tag,,0,0,0,,NODEVIDEO  //  EXPRESSION LOOP  //  AI-NARRATED PROTOTYPE
+Dialogue: 0,0:00:00.00,0:00:15.90,Kicker,,0,0,0,,SLIDE 1 / 5
+Dialogue: 0,0:00:00.00,0:00:15.90,Title,,0,0,0,,{\fad(180,180)}The problem is trust, not FFmpeg syntax
+Dialogue: 0,0:00:00.00,0:00:15.90,Visual,,0,0,0,,{\fad(240,180)}MODEL OUTPUT IS A PROPOSAL\N\NMEDIA OUTPUT MUST BE REPRODUCIBLE
+Dialogue: 1,0:00:00.00,0:00:03.61,Caption,,0,0,0,,{\fad(80,80)}This is an AI-narrated prototype of my backend interview\Nanswer.
+Dialogue: 1,0:00:03.61,0:00:07.58,Caption,,0,0,0,,{\fad(80,80)}I built NodeVideo because generating FFmpeg was never the\Nhard problem.
+Dialogue: 1,0:00:07.58,0:00:08.31,Caption,,0,0,0,,{\fad(80,80)}Trust was.
+Dialogue: 1,0:00:08.31,0:00:15.90,Caption,,0,0,0,,{\fad(80,80)}A model can understand intent and propose an edit, but\Nframe math, encoding, and approval state must remain\Nreviewable and reproducible.
+Dialogue: 0,0:00:16.50,0:00:36.00,Kicker,,0,0,0,,SLIDE 2 / 5
+Dialogue: 0,0:00:16.50,0:00:36.00,Title,,0,0,0,,{\fad(180,180)}Three planes, one typed handoff
+Dialogue: 0,0:00:16.50,0:00:36.00,Visual,,0,0,0,,{\fad(240,180)}NODEAGENT  →  CONVEX WORKFLOW\N\NCONVEX  →  TYPED EDIT PLAN\N\NEDIT PLAN  →  FIXED MEDIA TOOLS
+Dialogue: 1,0:00:16.50,0:00:18.76,Caption,,0,0,0,,{\fad(80,80)}The architecture has three planes.
+Dialogue: 1,0:00:18.76,0:00:22.84,Caption,,0,0,0,,{\fad(80,80)}NodeAgent owns intent, tool selection, retry policy, and\Nexplanation.
+Dialogue: 1,0:00:22.84,0:00:26.93,Caption,,0,0,0,,{\fad(80,80)}Convex owns durable jobs, leases, checkpoints, versions,\Nand approvals.
+Dialogue: 1,0:00:26.93,0:00:31.46,Caption,,0,0,0,,{\fad(80,80)}Deterministic tools compile a typed EditPlan into fixed\Nmedia operations.
+Dialogue: 1,0:00:31.46,0:00:36.00,Caption,,0,0,0,,{\fad(80,80)}The web app controls the work; media workers execute it.
+Dialogue: 0,0:00:36.60,0:00:55.35,Kicker,,0,0,0,,SLIDE 3 / 5
+Dialogue: 0,0:00:36.60,0:00:55.35,Title,,0,0,0,,{\fad(180,180)}The model plans; deterministic tools execute
+Dialogue: 0,0:00:36.60,0:00:55.35,Visual,,0,0,0,,{\fad(240,180)}BRIEF → PROPOSAL → APPROVAL\N\NAPPROVAL → PLAN HASH → RENDER\N\NCHECKPOINT → REPLAY OR RECOVERY
+Dialogue: 1,0:00:36.60,0:00:42.00,Caption,,0,0,0,,{\fad(80,80)}A request moves from brief to model proposal, then through\Napproval to a hash-bound plan.
+Dialogue: 1,0:00:42.00,0:00:45.97,Caption,,0,0,0,,{\fad(80,80)}Only then does fixed code perform cuts, crops, captions,\Nand encoding.
+Dialogue: 1,0:00:45.97,0:00:49.94,Caption,,0,0,0,,{\fad(80,80)}The plan cannot carry shell commands or an arbitrary\NFFmpeg graph.
+Dialogue: 1,0:00:49.94,0:00:55.35,Caption,,0,0,0,,{\fad(80,80)}Durable state records what was proposed, accepted, and\Nexecuted, so runs can replay or recover.
+Dialogue: 0,0:00:55.95,0:01:15.06,Kicker,,0,0,0,,SLIDE 4 / 5
+Dialogue: 0,0:00:55.95,0:01:15.06,Title,,0,0,0,,{\fad(180,180)}The tradeoff: less freedom, more inspectability
+Dialogue: 0,0:00:55.95,0:01:15.06,Visual,,0,0,0,,{\fad(240,180)}REJECTED: ARBITRARY RENDERER CODE\N\NACCEPTED: VERSIONED TYPED OPERATIONS\N\NFAIL CLOSED ON STALE OR AMBIGUOUS STATE
+Dialogue: 1,0:00:55.95,0:00:59.93,Caption,,0,0,0,,{\fad(80,80)}The tradeoff is deliberate: less model freedom for more\Ninspectability.
+Dialogue: 1,0:00:59.93,0:01:03.51,Caption,,0,0,0,,{\fad(80,80)}New creative operations require versioned types and\Ndeterministic implementations.
+Dialogue: 1,0:01:03.51,0:01:15.06,Caption,,0,0,0,,{\fad(80,80)}In return, stale proposals are rejected, concurrent\Nworkers are fenced by leases, digest mismatches fail\Nclosed, and interrupted review resumes from a checkpoint\Ninstead of silently mutating the timeline.
+Dialogue: 0,0:01:15.66,0:01:39.71,Kicker,,0,0,0,,SLIDE 5 / 5
+Dialogue: 0,0:01:15.66,0:01:39.71,Title,,0,0,0,,{\fad(180,180)}Proof includes the failures
+Dialogue: 0,0:01:15.66,0:01:39.71,Visual,,0,0,0,,{\fad(240,180)}22 TARGETED RELIABILITY TESTS: PASS\N\NSOURCE IDENTITY: 5 / 5 PHRASES\N\NCUT TIMING GATE: 1 / 5\N\NSTRICT EDITORIAL VERDICT: FAILED
+Dialogue: 1,0:01:15.66,0:01:17.14,Caption,,0,0,0,,{\fad(80,80)}The proof includes failure.
+Dialogue: 1,0:01:17.14,0:01:18.99,Caption,,0,0,0,,{\fad(80,80)}Twenty-two targeted reliability tests pass.
+Dialogue: 1,0:01:18.99,0:01:29.72,Caption,,0,0,0,,{\fad(80,80)}One integrated edit matched source identity on five of\Nfive phrases, but only one of five assigned cut boundaries\Nmet the timing gate, so the strict editorial verdict\Nfailed.
+Dialogue: 1,0:01:29.72,0:01:36.01,Caption,,0,0,0,,{\fad(80,80)}That is the lesson: trustworthy agents need bounded state,\Nexplicit approval, deterministic execution, and honest\Nnon-success states.
+Dialogue: 1,0:01:36.01,0:01:39.71,Caption,,0,0,0,,{\fad(80,80)}NodeVideo helps me say it; NodeSlide helps me show it.

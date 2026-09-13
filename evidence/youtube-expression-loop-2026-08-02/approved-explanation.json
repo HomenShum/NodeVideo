@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "nodeagent.approved-explanation/v1",
+  "id": "nodevideo-backend-interviewer-2026-08-02",
+  "status": "owner-delegated-for-production",
+  "thesis": "NodeVideo is trustworthy because the language model proposes and explains typed edits, durable workflow state controls concurrency and approval, and deterministic tools own frame-accurate execution.",
+  "audience": {
+    "type": "backend-engineer",
+    "assumedKnowledge": ["distributed systems", "language-model tool use", "media pipelines"],
+    "expectedDepth": "working-depth"
+  },
+  "objective": {
+    "question": "Explain NodeVideo's architecture and its most important design tradeoff.",
+    "timeLimitSeconds": 120,
+    "desiredOutcome": "The interviewer can restate the system boundary, request flow, reliability mechanism, tradeoff, and honest proof boundary."
+  },
+  "sections": [
+    {
+      "role": "problem",
+      "title": "The problem is trust, not FFmpeg syntax",
+      "visualLines": ["MODEL OUTPUT IS A PROPOSAL", "MEDIA OUTPUT MUST BE REPRODUCIBLE"],
+      "claim": "A language model is useful for understanding creator intent and proposing an edit, but exact media execution needs a reviewable and reproducible boundary.",
+      "narration": "This is an AI-narrated prototype of my backend interview answer. I built NodeVideo because generating FFmpeg was never the hard problem. Trust was. A model can understand intent and propose an edit, but frame math, encoding, and approval state must remain reviewable and reproducible.",
+      "evidenceArtifactIds": ["docs/architecture.md:5-18", "docs/architecture.md:64-71"],
+      "approvedTranscriptRanges": []
+    },
+    {
+      "role": "architecture",
+      "title": "Three planes, one typed handoff",
+      "visualLines": ["NODEAGENT  →  CONVEX WORKFLOW", "CONVEX  →  TYPED EDIT PLAN", "EDIT PLAN  →  FIXED MEDIA TOOLS"],
+      "claim": "NodeAgent owns intent and orchestration, Convex owns durable coordination, and fixed tools compile typed plans into media outputs.",
+      "narration": "The architecture has three planes. NodeAgent owns intent, tool selection, retry policy, and explanation. Convex owns durable jobs, leases, checkpoints, versions, and approvals. Deterministic tools compile a typed EditPlan into fixed media operations. The web app controls the work; media workers execute it.",
+      "evidenceArtifactIds": ["docs/architecture.md:36-71", "docs/architecture.md:149-161"],
+      "approvedTranscriptRanges": []
+    },
+    {
+      "role": "data-flow",
+      "title": "The model plans; deterministic tools execute",
+      "visualLines": ["BRIEF → PROPOSAL → APPROVAL", "APPROVAL → PLAN HASH → RENDER", "CHECKPOINT → REPLAY OR RECOVERY"],
+      "claim": "Requests move from brief to proposal to approval, then a hash-bound plan drives deterministic rendering and receipts.",
+      "narration": "A request moves from brief to model proposal, then through approval to a hash-bound plan. Only then does fixed code perform cuts, crops, captions, and encoding. The plan cannot carry shell commands or an arbitrary FFmpeg graph. Durable state records what was proposed, accepted, and executed, so runs can replay or recover.",
+      "evidenceArtifactIds": ["docs/architecture.md:149-161", "convex/caseflow.ts:462-561", "convex/lib/durability.ts:78-203", "src/lib/browser-edit-plan-compiler.ts:399-543", "scripts/workers/edit-plan-renderer.mjs:5-80"],
+      "approvedTranscriptRanges": []
+    },
+    {
+      "role": "tradeoff",
+      "title": "The tradeoff: less freedom, more inspectability",
+      "visualLines": ["REJECTED: ARBITRARY RENDERER CODE", "ACCEPTED: VERSIONED TYPED OPERATIONS", "FAIL CLOSED ON STALE OR AMBIGUOUS STATE"],
+      "claim": "NodeVideo trades unconstrained model flexibility for inspectability, reproducibility, bounded concurrency, and safer approval.",
+      "narration": "The tradeoff is deliberate: less model freedom for more inspectability. New creative operations require versioned types and deterministic implementations. In return, stale proposals are rejected, concurrent workers are fenced by leases, digest mismatches fail closed, and interrupted review resumes from a checkpoint instead of silently mutating the timeline.",
+      "evidenceArtifactIds": ["convex/caseflow.ts:246-396", "convex/caseflow.ts:462-561", "tests/unit/browser-ffmpeg.test.ts:118-180"],
+      "approvedTranscriptRanges": []
+    },
+    {
+      "role": "proof",
+      "title": "Proof includes the failures",
+      "visualLines": ["22 TARGETED RELIABILITY TESTS: PASS", "SOURCE IDENTITY: 5 / 5 PHRASES", "CUT TIMING GATE: 1 / 5", "STRICT EDITORIAL VERDICT: FAILED"],
+      "claim": "Current evidence proves bounded orchestration and deterministic mechanics, while honestly withholding generalized quality claims.",
+      "narration": "The proof includes failure. Twenty-two targeted reliability tests pass. One integrated edit matched source identity on five of five phrases, but only one of five assigned cut boundaries met the timing gate, so the strict editorial verdict failed. That is the lesson: trustworthy agents need bounded state, explicit approval, deterministic execution, and honest non-success states. NodeVideo helps me say it; NodeSlide helps me show it.",
+      "evidenceArtifactIds": ["targeted-test-receipt.json", "docs/strict-editorial-audit.md:8-45"],
+      "approvedTranscriptRanges": []
+    }
+  ],
+  "terminology": {
+    "allowed": ["NodeAgent", "Convex", "EditPlan", "FFmpeg", "lease", "checkpoint", "hash-bound"],
+    "mustExplain": ["deterministic execution", "typed proposal", "fail closed"]
+  },
+  "disclosure": {
+    "limitations": [
+      "This video is a manual dogfood artifact; the full Expression Loop is not implemented as a NodeVideo product feature.",
+      "The checked-in media proof demonstrates deterministic mechanics, not generalized creative quality.",
+      "Browser export omits audio; this production bundle uses a separate local audio-preserving render path.",
+      "The narration uses a generic system voice and is labeled as AI-narrated; it is not a clone of the creator's voice."
+      ,"Approved transcript ranges are empty because no baseline user recording exists; this is a synthetic manual dogfood narration, not a completed targeted-retake workflow."
+    ],
+    "unsupportedClaims": [
+      "automatic interview success",
+      "generalized creative taste",
+      "automatic social publishing",
+      "implemented adaptive interviewer or targeted-retake product flow",
+      "manual-equivalent autonomous editing quality"
+    ]
+  }
+}
