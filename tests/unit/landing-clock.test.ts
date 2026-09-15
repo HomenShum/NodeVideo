@@ -93,7 +93,12 @@ function observe(scenario: Scenario) {
     arc() {},
     fill() {},
   };
-  const canvas = { width: 560, height: 560, getContext: () => canvasContext };
+  const canvas = {
+    width: 560,
+    height: 560,
+    getContext: () => canvasContext,
+    setAttribute() {},
+  };
   const frames = new Proxy(pose.frames, {
     get(target, key, receiver) {
       if (typeof key === 'string' && /^-?\d+$/.test(key)) indices.push(Number(key));
@@ -102,7 +107,6 @@ function observe(scenario: Scenario) {
   });
   const jsx = (type: unknown, props: unknown) => ({ type, props });
   const react = {
-    StrictMode: 'strict',
     useEffect(fn: () => undefined | (() => void)) {
       const cleanup = fn();
       if (cleanup) cleanups.push(cleanup);
@@ -115,14 +119,11 @@ function observe(scenario: Scenario) {
     require(name: string) {
       if (name === 'react') return react;
       if (name === 'react/jsx-runtime') return { jsx, jsxs: jsx };
-      if (name === 'react-dom/client') return { createRoot: () => ({ render() {} }) };
       if (name === './pose-loop.json') return { ...pose, frames };
-      if (name === './landing.css') return {};
       throw new Error(`Unexpected landing import: ${name}`);
     },
     performance: { now: () => scenario.effectNow },
     document: {
-      getElementById: () => ({}),
       documentElement: {
         style: {
           setProperty(key: string, value: string) {

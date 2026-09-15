@@ -6,7 +6,6 @@
 // the contract and the rendered UI — or between the contract and its public
 // copy at fixtures/.well-known/agent-ui.json — fails the build.
 
-import { spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { mkdtemp, rm } from 'node:fs/promises';
@@ -14,9 +13,9 @@ import { createServer } from 'node:http';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { chromium } from 'playwright';
+import { preview } from 'vite';
 
 const root = resolve(import.meta.dirname, '..', '..');
-const port = await findAvailablePort(Number(process.env.NODEVIDEO_CONTRACT_PORT ?? 4327));
 const contract = JSON.parse(readFileSync(join(root, '.ui', 'contract.json'), 'utf8'));
 const publicCopy = readFileSync(join(root, 'fixtures', '.well-known', 'agent-ui.json'), 'utf8');
 const failures = [];
@@ -25,18 +24,6 @@ const fail = (line) => {
   failures.push(line);
   console.error(`  FAIL ${line}`);
 };
-
-async function findAvailablePort(preferredPort) {
-  for (let candidate = preferredPort; candidate < preferredPort + 20; candidate += 1) {
-    const available = await new Promise((resolveAvailability) => {
-      const probe = createServer();
-      probe.once('error', () => resolveAvailability(false));
-      probe.listen(candidate, '127.0.0.1', () => probe.close(() => resolveAvailability(true)));
-    });
-    if (available) return candidate;
-  }
-  throw new Error(`No contract verification port available from ${preferredPort}.`);
-}
 
 if (publicCopy !== readFileSync(join(root, '.ui', 'contract.json'), 'utf8')) {
   fail('fixtures/.well-known/agent-ui.json is not byte-identical to .ui/contract.json');
@@ -56,70 +43,76 @@ function locate(page, control) {
   return null;
 }
 
-const preview = spawn(
-  process.platform === 'win32' ? 'npx.cmd' : 'npx',
-  ['vite', 'preview', '--host', '127.0.0.1', '--port', String(port)],
-  { cwd: root, stdio: 'ignore', shell: process.platform === 'win32' },
-);
-const base = `http://127.0.0.1:${port}`;
-await new Promise((resolveWait, reject) => {
-  const started = Date.now();
-  const poll = async () => {
-    try {
-      const response = await fetch(base);
-      if (response.ok) return resolveWait();
-    } catch {}
-    if (Date.now() - started > 30_000) return reject(new Error('preview server did not start'));
-    setTimeout(poll, 400);
-  };
-  poll();
-});
-
-// Build receipt: the served contract must be hash-bound to this build.
-{
-  const servedContract = await fetch(`${base}/.well-known/agent-ui.json`);
-  const servedBytes = Buffer.from(await servedContract.arrayBuffer());
-  const receiptResponse = await fetch(`${base}/.well-known/agent-ui.build.json`);
-  if (!receiptResponse.ok) {
-    fail('build receipt /.well-known/agent-ui.build.json is not served');
-  } else {
-    const receipt = await receiptResponse.json();
-    const actual = createHash('sha256').update(servedBytes).digest('hex');
-    receipt.contractSha256 === actual
-      ? ok(
-          `build receipt binds contract (${actual.slice(0, 12)}…, commit ${String(receipt.sourceCommit).slice(0, 8)})`,
-        )
-      : fail(
-          `build receipt contractSha256 ${receipt.contractSha256?.slice(0, 12)}… != served contract ${actual.slice(0, 12)}…`,
-        );
+let previewServer;
+let mockSidecar;
+let browser;
+try {
+  previewServer = await preview({
+    root,
+    preview: {
+      host: '127.0.0.1',
+      port: Number(process.env.NODEVIDEO_CONTRACT_PORT ?? 4327),
+    },
+  });
+  const previewAddress = previewServer.httpServer.address();
+  if (!previewAddress || typeof previewAddress === 'string') {
+    throw new Error('preview server did not bind a TCP port');
   }
-}
+  const base = `http://127.0.0.1:${previewAddress.port}`;
+  console.log(`Verifying build at ${base}`);
 
-// Mock sidecar: serves contract state fixtures so declared UI states are
-// verified against rendered DOM without the Python worker.
-const stateFixtures = new Map();
-for (const surface of contract.surfaces) {
-  for (const state of surface.states ?? []) {
-    if (state.fixture) {
-      stateFixtures.set(state.id, JSON.parse(readFileSync(join(root, state.fixture), 'utf8')));
+  // Build receipt: the served contract must be hash-bound to this build.
+  {
+    const servedContract = await fetch(`${base}/.well-known/agent-ui.json`);
+    const servedBytes = Buffer.from(await servedContract.arrayBuffer());
+    const receiptResponse = await fetch(`${base}/.well-known/agent-ui.build.json`);
+    if (!receiptResponse.ok) {
+      fail('build receipt /.well-known/agent-ui.build.json is not served');
+    } else {
+      const receipt = await receiptResponse.json();
+      const actual = createHash('sha256').update(servedBytes).digest('hex');
+      receipt.contractSha256 === actual
+        ? ok(
+            `build receipt binds contract (${actual.slice(0, 12)}…, commit ${String(receipt.sourceCommit).slice(0, 8)})`,
+          )
+        : fail(
+            `build receipt contractSha256 ${receipt.contractSha256?.slice(0, 12)}… != served contract ${actual.slice(0, 12)}…`,
+          );
     }
   }
-}
-const mockSidecar = createServer((request, response) => {
-  const match = request.url?.match(/^\/v1\/jobs\/([a-z0-9-]+)$/);
-  const job = match ? stateFixtures.get(match[1]) : undefined;
-  response.writeHead(job ? 200 : 404, {
-    'content-type': 'application/json',
-    'access-control-allow-origin': request.headers.origin ?? '*',
-    'access-control-allow-headers': 'authorization,content-type',
-  });
-  response.end(JSON.stringify(job ?? { error: 'job_not_found' }));
-});
-const mockPort = 4339;
-await new Promise((resolveListen) => mockSidecar.listen(mockPort, '127.0.0.1', resolveListen));
 
-const browser = await chromium.launch();
-try {
+  // Mock sidecar: serves contract state fixtures so declared UI states are
+  // verified against rendered DOM without the Python worker.
+  const stateFixtures = new Map();
+  for (const surface of contract.surfaces) {
+    for (const state of surface.states ?? []) {
+      if (state.fixture) {
+        stateFixtures.set(state.id, JSON.parse(readFileSync(join(root, state.fixture), 'utf8')));
+      }
+    }
+  }
+  mockSidecar = createServer((request, response) => {
+    const match = request.url?.match(/^\/v1\/jobs\/([a-z0-9-]+)$/);
+    const job = match ? stateFixtures.get(match[1]) : undefined;
+    response.writeHead(job ? 200 : 404, {
+      'content-type': 'application/json',
+      'access-control-allow-origin': request.headers.origin ?? '*',
+      'access-control-allow-headers': 'authorization,content-type',
+    });
+    response.end(JSON.stringify(job ?? { error: 'job_not_found' }));
+  });
+  await new Promise((resolveListen, reject) => {
+    mockSidecar.once('error', reject);
+    mockSidecar.listen(0, '127.0.0.1', resolveListen);
+  });
+  const mockAddress = mockSidecar.address();
+  if (!mockAddress || typeof mockAddress === 'string') {
+    throw new Error('fixture service did not bind a TCP port');
+  }
+  const mockPort = mockAddress.port;
+  console.log(`Serving contract fixtures at http://127.0.0.1:${mockPort}`);
+
+  browser = await chromium.launch();
   for (const surface of contract.surfaces) {
     console.log(`SURFACE ${surface.id} (${surface.route})`);
     const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
@@ -178,28 +171,31 @@ try {
 
     if (surface.id === 'coach-sidepanel') {
       const scratch = await mkdtemp(join(tmpdir(), 'nodevideo-contract-'));
-      const stub = join(scratch, 'attempt.mp4');
-      writeFileSync(stub, Buffer.from('stub-not-a-real-video'));
-      await page.locator('#attempt').setInputFiles(stub);
-      const disclosure = page.getByRole('button', { name: 'Segment, team, and connection' });
-      const tokenVisible = await page
-        .locator('#token')
-        .isVisible()
-        .catch(() => false);
-      if (!tokenVisible) await disclosure.click();
-      await page.locator('#token').fill('contract-check-token');
-      await page.getByRole('button', { name: 'Judge choreography' }).click();
-      const gate = surface.gates.find((g) => g.id === 'consent-gate');
-      const expected = gate.check.match(/'([^']+)'/)[1];
-      const surfaced = await page
-        .getByText(expected)
-        .first()
-        .isVisible()
-        .catch(() => false);
-      surfaced
-        ? ok('consent-gate: unconsented submit surfaces the exact refusal text')
-        : fail('coach-sidepanel: consent-gate refusal text did not appear on unconsented submit');
-      await rm(scratch, { recursive: true, force: true });
+      try {
+        const stub = join(scratch, 'attempt.mp4');
+        writeFileSync(stub, Buffer.from('stub-not-a-real-video'));
+        await page.locator('#attempt').setInputFiles(stub);
+        const disclosure = page.getByRole('button', { name: 'Segment, team, and connection' });
+        const tokenVisible = await page
+          .locator('#token')
+          .isVisible()
+          .catch(() => false);
+        if (!tokenVisible) await disclosure.click();
+        await page.locator('#token').fill('contract-check-token');
+        await page.getByRole('button', { name: 'Judge choreography' }).click();
+        const gate = surface.gates.find((g) => g.id === 'consent-gate');
+        const expected = gate.check.match(/'([^']+)'/)[1];
+        const surfaced = await page
+          .getByText(expected)
+          .first()
+          .isVisible()
+          .catch(() => false);
+        surfaced
+          ? ok('consent-gate: unconsented submit surfaces the exact refusal text')
+          : fail('coach-sidepanel: consent-gate refusal text did not appear on unconsented submit');
+      } finally {
+        await rm(scratch, { recursive: true, force: true });
+      }
     }
 
     for (const state of surface.states ?? []) {
@@ -240,9 +236,18 @@ try {
     await page.close();
   }
 } finally {
-  await browser.close();
-  preview.kill('SIGKILL');
-  mockSidecar.close();
+  const cleanup = await Promise.allSettled([
+    browser?.close(),
+    previewServer?.close(),
+    mockSidecar?.listening
+      ? new Promise((resolveClose, reject) => {
+          mockSidecar.close((error) => (error ? reject(error) : resolveClose()));
+        })
+      : undefined,
+  ]);
+  for (const result of cleanup) {
+    if (result.status === 'rejected') fail(`resource cleanup: ${result.reason}`);
+  }
 }
 
 if (failures.length > 0) {

@@ -14,7 +14,55 @@ These checks do not certify the public editor, providers, full-length exports, e
 production behavior or whole-product quality. Read this file first, then [the architecture](docs/architecture.md)
 for layer ownership and [the agent execution policy](docs/engineering/AGENT_EXECUTION_POLICY.md) before changing code.
 
+## Public landing HTML and crawler policy
+
+A visitor arriving from search can read the homepage and follow its links before JavaScript
+loads. Previously the response contained an empty root; the visible copy existed only after
+React mounted. The root Vite HTML transform now renders the same `Landing` component that the
+browser hydrates. Keep browser effects inside that component and mounting in `client.tsx`.
+The stylesheet is linked from `index.html`, so development mode also remains styled when scripts
+are delayed. An SVG of the real first tracked pose remains visible until the canvas actually
+paints; unavailable JavaScript or a missing canvas context leaves that fallback in place.
+
+The initial render is steady in both environments, then follows the visitor's motion preference,
+including changes during a session. The existing clock arithmetic and source pose data are
+unchanged. The heading now accurately introduces four workflow cards.
+
+The public homepage canonical is `https://nodevideo-pi.vercel.app/`. Its sitemap contains only
+that page. Crawler files belong in `fixtures`, the configured Vite public directory. The crawler
+policy excludes API and private-run paths; robots directives are not authorization controls.
+Keep canonical, Open Graph URL and sitemap consistent if the production hostname changes.
+
+Verify with `npm run build`, `npm run lint`, `npm run test`, `npm run check:ui`,
+`npm run check:contract` and `npx playwright test tests/e2e/public-landing.spec.ts`.
+The public landing suite covers initial HTML, crawler response types, no JavaScript, delayed
+hydration, unavailable canvas, keyboard navigation, repeated visits and live motion preferences
+at all five configured viewports. It also attaches DOM, console, pixels and an Axe report.
+The first local run passed 353 unit cases and 30 public browser cases without skips or retries,
+plus build, lint, UI policy and contract checks. Automated Axe results have no violations but
+retain incomplete checks for human review. These are scoped checks, not full product grades,
+provider certification, evidence of production adoption or a search-ranking result. Inspect the
+exact commit's Quality workflow, preview build receipt and raw HTML before release.
+
+The September 8 lock patch updates only the eight coupled Vitest records to 4.1.11, addressing
+[GHSA-82fw-gwwq-j7x9](https://github.com/advisories/GHSA-82fw-gwwq-j7x9) in development tooling.
+Direct constraints and all production dependency records are unchanged. The normal npm 10
+installer, lint, typechecked build and all 353 unit cases passed; the fresh full audit reports
+zero vulnerabilities. Built landing HTML is byte-identical to the verified SEO build above.
+Check the updated commit's CI separately; earlier green runs do not certify a later lockfile.
+
 ## Run the public local demo
+
+`npm run check:contract` owns its preview and fixture servers in the checker process and
+awaits their closure, including when the build receipt is invalid or Chromium cannot launch.
+It logs the actual bound ports: `NODEVIDEO_CONTRACT_PORT` selects the preferred preview port
+(default 4327), Vite selects another when occupied, and the fixture service uses an OS-assigned
+port. Concurrent checks can share the preferred port. Cleanup failures fail the command, and
+the consent scenario removes its temporary input even when a browser action throws.
+Local process observation reproduced three leftover children before this repair. Afterward,
+normal, repeated and two concurrent checks passed with no surviving observed children or
+listeners; missing Chromium and a malformed served receipt each exited with failure and
+released their acquired resources. Build, lint, UI policy and all 353 unit cases also passed.
 
 Use a fresh checkout with Node.js 22.12+, npm 10+ and Git. No `.env` file, provider key, camera, private
 media or model download is needed for this journey. The earlier ordinary `npm ci` succeeded with
