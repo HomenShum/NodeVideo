@@ -54,11 +54,6 @@ jobs:
             args+=(--force)
           fi
           node scripts/providers/openrouter-free-benchmark.mjs "${args[@]}" | tee openrouter-benchmark-summary.json
-          if ! git diff --quiet -- config/openrouter-free-routing.json; then
-            echo 'routing_changed=true' >> "$GITHUB_OUTPUT"
-          else
-            echo 'routing_changed=false' >> "$GITHUB_OUTPUT"
-          fi
 
       - name: Upload benchmark evidence
         if: always()
@@ -88,8 +83,21 @@ jobs:
             echo '::warning::Canary/benchmark failed but no manifest rollback was applicable (no prior version, or the last change is already a rollback). See the step log.'
           fi
 
+      - name: Prepare routing candidate
+        id: candidate
+        if: steps.benchmark.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node node_modules/@biomejs/biome/bin/biome format --write config/openrouter-free-routing.json
+          if ! git diff --quiet -- config/openrouter-free-routing.json; then
+            echo 'routing_changed=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'routing_changed=false' >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Open or update routing promotion PR
-        if: steps.benchmark.outputs.routing_changed == 'true'
+        if: steps.candidate.outputs.routing_changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
