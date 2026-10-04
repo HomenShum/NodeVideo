@@ -1,6 +1,8 @@
+import { execFileSync } from 'node:child_process';
 import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import {
   BENCHMARK_SCENARIOS,
@@ -17,6 +19,28 @@ import {
   scorePlan,
   stableDigest,
 } from './openrouter-free-benchmark.mjs';
+
+const repositoryRoot = fileURLToPath(new URL('../../', import.meta.url));
+const biomeCli = join(repositoryRoot, 'node_modules', '@biomejs', 'biome', 'bin', 'biome');
+
+function runBiome(...args) {
+  return execFileSync(process.execPath, [biomeCli, ...args, '--config-path', repositoryRoot], {
+    cwd: repositoryRoot,
+    encoding: 'utf8',
+    timeout: 10_000,
+    maxBuffer: 1_000_000,
+    stdio: 'pipe',
+  });
+}
+
+async function verifyPreparedManifest(manifestPath, expected) {
+  runBiome('format', '--write', manifestPath);
+  runBiome('check', manifestPath);
+  const prepared = await readFile(manifestPath, 'utf8');
+  expect(JSON.parse(prepared)).toEqual(expected);
+  runBiome('format', '--write', manifestPath);
+  expect(await readFile(manifestPath, 'utf8')).toBe(prepared);
+}
 
 const model = (id, created = 1) => ({
   id,
@@ -206,28 +230,41 @@ describe('OpenRouter free-model benchmark scenarios', () => {
     expect(manifest.fallbackRouter).toBe('openrouter/free');
   });
 
-  it('an automated one-winner manifest is repository-formatted and remains valid JSON', () => {
-    const manifest = {
-      schemaVersion: 'nodevideo.openrouter-free-routing.v1',
-      selectedModels: ['google/gemma-4-26b-a4b-it:free'],
-      fallbackRouter: 'openrouter/free',
-    };
-    const formatted = formatManifestJson(manifest);
-    expect(formatted).toContain('"selectedModels": ["google/gemma-4-26b-a4b-it:free"]');
-    expect(JSON.parse(formatted)).toEqual(manifest);
-  });
+  it('a maintainer can prepare repeated short, long, and fallback-only routing refreshes without changing their meaning', async () => {
+    const scratch = await mkdtemp(join(tmpdir(), 'nodevideo-openrouter-format-'));
+    const manifestPath = join(scratch, 'routing.json');
+    const selections = [
+      ['google/gemma-4-26b-a4b-it:free'],
+      ['nvidia/nemotron-3-super-120b-a12b:free', 'google/gemma-4-26b-a4b-it:free'],
+      ['dots-studio/dots-3-note-preview:free', 'nvidia/nemotron-3-super-120b-a12b:free'],
+      [],
+    ];
+    try {
+      for (let refresh = 0; refresh < 12; refresh += 1) {
+        const manifest = {
+          schemaVersion: 'nodevideo.openrouter-free-routing.v1',
+          selectedModels: selections[refresh % selections.length],
+          fallbackRouter: 'openrouter/free',
+        };
+        await writeFile(manifestPath, formatManifestJson(manifest));
+        await verifyPreparedManifest(manifestPath, manifest);
+      }
+    } finally {
+      await rm(scratch, { recursive: true, force: true });
+    }
+  }, 30_000);
 
-  it('an automated two-winner manifest remains repository-formatted and valid JSON', () => {
-    const manifest = {
-      schemaVersion: 'nodevideo.openrouter-free-routing.v1',
-      selectedModels: ['nvidia/nemotron-3-super-120b-a12b:free', 'google/gemma-4-26b-a4b-it:free'],
-      fallbackRouter: 'openrouter/free',
-    };
-    const formatted = formatManifestJson(manifest);
-    expect(formatted).toContain(
-      '"selectedModels": ["nvidia/nemotron-3-super-120b-a12b:free", "google/gemma-4-26b-a4b-it:free"]',
-    );
-    expect(JSON.parse(formatted)).toEqual(manifest);
+  it('a malformed routing candidate fails native preparation and remains available for diagnosis', async () => {
+    const scratch = await mkdtemp(join(tmpdir(), 'nodevideo-openrouter-malformed-'));
+    const manifestPath = join(scratch, 'routing.json');
+    const malformed = '{ "selectedModels": [';
+    try {
+      await writeFile(manifestPath, malformed);
+      expect(() => runBiome('format', '--write', manifestPath)).toThrow();
+      expect(await readFile(manifestPath, 'utf8')).toBe(malformed);
+    } finally {
+      await rm(scratch, { recursive: true, force: true });
+    }
   });
 
   it('an operator gets a full refresh when a scheduled canary detects a selected-model failure', async () => {
@@ -297,7 +334,9 @@ describe('OpenRouter free-model benchmark scenarios', () => {
     const scratch = await mkdtemp(join(tmpdir(), 'nodevideo-openrouter-load-'));
     const manifestPath = join(scratch, 'routing.json');
     const reportPath = join(scratch, 'report.json');
-    const catalog = Array.from({ length: 8 }, (_, index) => model(`candidate-${index}:free`));
+    const catalog = Array.from({ length: 8 }, (_, index) =>
+      model(`candidate-studio-${index}/long-structured-planning-model-preview:free`),
+    );
     let active = 0;
     let maximumActive = 0;
     let chatCalls = 0;
@@ -346,6 +385,7 @@ describe('OpenRouter free-model benchmark scenarios', () => {
       expect(chatCalls).toBe(96);
       expect(maximumActive).toBe(2);
       expect(result.manifest.selectedModels).toHaveLength(2);
+      await verifyPreparedManifest(manifestPath, result.manifest);
     } finally {
       await rm(scratch, { recursive: true, force: true });
     }
@@ -391,6 +431,7 @@ describe('OpenRouter free-model benchmark scenarios', () => {
       expect(result.manifest.selectedModels).toEqual([]);
       expect(result.report.routingStatus).toBe('fallback_only_no_eligible_stable_model');
       expect(result.report.failureDeepDives).toHaveLength(8);
+      await verifyPreparedManifest(manifestPath, result.manifest);
       expect(
         result.report.failureDeepDives.every(
           (deepDive) => deepDive.status === 'unresolved_failures',

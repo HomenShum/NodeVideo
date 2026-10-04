@@ -722,16 +722,7 @@ export function buildManifest({ candidates, rankings, catalogDigest, generatedAt
 }
 
 export function formatManifestJson(manifest) {
-  const serialized = JSON.stringify(manifest, null, 2);
-  const inlineSelectedModels = `[${manifest.selectedModels.map((model) => JSON.stringify(model)).join(', ')}]`;
-  const repositoryFormatted =
-    manifest.selectedModels.length > 0
-      ? serialized.replace(
-          / {2}"selectedModels": \[\n(?: {4}"(?:[^"\\]|\\.)*"(?:,\n|\n))+ {2}\],/u,
-          `  "selectedModels": ${inlineSelectedModels},`,
-        )
-      : serialized;
-  return `${repositoryFormatted}\n`;
+  return `${JSON.stringify(manifest, null, 2)}\n`;
 }
 
 function parseArgs(argv) {
