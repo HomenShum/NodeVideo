@@ -4,9 +4,8 @@ name: Production deploy verify
 # integration on push to main (vercel.json; no Actions step deploys). This
 # workflow is the post-deploy gate for that path:
 #   1. wait for readiness by polling the live URL,
-#   2. verify a server-rendered content signal from the real app source
-#      (index.html <title>) in the raw HTML,
-#   3. on failure, roll production back with Vercel's own mechanism
+#   2. verify the raw content signal and exact source/contract build receipt,
+#   3. on failure, check current main before rolling production back with Vercel
 #      (`vercel rollback` to the previous production deployment) and fail
 #      loudly.
 # The production URL is not determinable from the repo, so it is
@@ -30,7 +29,7 @@ permissions:
 
 concurrency:
   group: deploy-verify-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   smoke:
@@ -63,6 +62,8 @@ jobs:
 
       - name: Roll back production (Vercel) and fail loudly
         if: failure() && steps.verify.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
@@ -72,6 +73,29 @@ jobs:
           fi
           if [[ -z "${VERCEL_TOKEN:-}" || -z "${VERCEL_ORG_ID:-}" || -z "${VERCEL_PROJECT_ID:-}" ]]; then
             echo '::error::Smoke check FAILED and VERCEL_TOKEN / VERCEL_ORG_ID / VERCEL_PROJECT_ID are not all configured — automatic rollback is impossible. Roll back in the Vercel dashboard now.'
+            exit 1
+          fi
+          if [[ ! "${GITHUB_SHA:-}" =~ ^[a-f0-9]{40}$ ]]; then
+            echo '::error::Verification failed; expected source identity is invalid. Rollback not attempted.'
+            exit 1
+          fi
+          if ! current_main="$(curl --proto '=https' --connect-timeout 5 --max-time 15 \
+            --max-filesize 1048576 --fail --silent --show-error \
+            --header "Authorization: Bearer ${GH_TOKEN}" \
+            --header 'Accept: application/vnd.github+json' \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/git/ref/heads/main" \
+            | jq -er '.object.sha | select(type == "string")')"; then
+            echo '::error::Verification failed; current main ownership could not be read. Rollback not attempted.'
+            exit 1
+          fi
+          if [[ ! "$current_main" =~ ^[a-f0-9]{40}$ ]]; then
+            echo '::error::Verification failed; current main ownership is invalid. Rollback not attempted.'
+            exit 1
+          fi
+          if [[ "$current_main" != "$GITHUB_SHA" ]]; then
+            echo "::error::Verification failed for $GITHUB_SHA; run superseded by main $current_main. Rollback not attempted."
+            printf 'Verification FAILED for `%s`; superseded by main `%s`. Rollback not attempted.\n' \
+              "$GITHUB_SHA" "$current_main" >> "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
           npx --yes vercel@latest rollback --yes --token "$VERCEL_TOKEN"
