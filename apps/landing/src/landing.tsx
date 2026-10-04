@@ -1,6 +1,4 @@
-import './landing.css';
-import { StrictMode, useEffect, useRef, useState } from 'react';
-import { createRoot } from 'react-dom/client';
+import { useEffect, useRef, useState } from 'react';
 import poseLoop from './pose-loop.json';
 
 // The one clock: the landing runs at the strict case's real tempo. The count
@@ -66,6 +64,7 @@ function SkeletonHero({ reduced }: { reduced: boolean }) {
     if (!context) return;
     let started: number | undefined;
     let raf = 0;
+    let painted = false;
     const draw = (now: number) => {
       started ??= now;
       const elapsed = reduced ? 0 : (now - started) / 1000;
@@ -98,26 +97,83 @@ function SkeletonHero({ reduced }: { reduced: boolean }) {
         context.fillStyle = context.strokeStyle;
         context.fill();
       }
+      if (!painted) {
+        canvas.setAttribute('data-ready', 'true');
+        painted = true;
+      }
       if (!reduced) raf = requestAnimationFrame(draw);
     };
     raf = requestAnimationFrame(draw);
     return () => cancelAnimationFrame(raf);
   }, [reduced]);
   return (
-    <canvas
-      aria-label="Real pose tracking from a verified NodeVideo comparison, replayed"
-      className="h-full w-full"
-      height={560}
-      ref={canvasRef}
-      role="img"
-      width={560}
-    />
+    <div className="relative h-full w-full">
+      <canvas
+        aria-label="Real pose tracking from a verified NodeVideo comparison, replayed"
+        className="pose-replay h-full w-full"
+        height={560}
+        ref={canvasRef}
+        role="img"
+        width={560}
+      />
+      <StaticPose />
+    </div>
   );
 }
 
-function Landing() {
-  const reduced =
-    typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+function StaticPose() {
+  const frame = frames[0];
+  const scale = 560 * 0.92;
+  const pad = (560 - scale) / 2;
+  return (
+    <svg
+      aria-label="First tracked pose from the verified NodeVideo comparison"
+      className="pose-fallback absolute inset-0 h-full w-full text-brand"
+      role="img"
+      viewBox="0 0 560 560"
+    >
+      <g opacity={0.92} stroke="currentColor" strokeLinecap="round" strokeWidth={3}>
+        {EDGES.map(([a, b]) => {
+          const pa = frame[a];
+          const pb = frame[b];
+          return pa && pb ? (
+            <line
+              key={`${a}-${b}`}
+              x1={pad + pa[0] * scale}
+              x2={pad + pb[0] * scale}
+              y1={pad + pa[1] * scale}
+              y2={pad + pb[1] * scale}
+            />
+          ) : null;
+        })}
+      </g>
+      {frame.map((point, landmark) =>
+        point ? (
+          <circle
+            cx={pad + point[0] * scale}
+            cy={pad + point[1] * scale}
+            fill="currentColor"
+            // biome-ignore lint/suspicious/noArrayIndexKey: MediaPipe landmark indices are stable point identities.
+            key={landmark}
+            r={3}
+          />
+        ) : null,
+      )}
+    </svg>
+  );
+}
+
+export function Landing() {
+  // Server HTML and the first client render agree. Read the real preference
+  // after hydration, and keep honoring changes during the visitor's session.
+  const [reduced, setReduced] = useState(true);
+  useEffect(() => {
+    const preference = matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReduced(preference.matches);
+    update();
+    preference.addEventListener('change', update);
+    return () => preference.removeEventListener('change', update);
+  }, []);
   const count = useCountClock(reduced);
   return (
     <main className="mx-auto min-h-svh max-w-6xl px-5 py-6 sm:px-8" data-testid="landing">
@@ -196,7 +252,7 @@ function Landing() {
       </section>
 
       <section className="space-y-4 border-t border-border py-12">
-        <h2 className="font-heading text-xl font-medium">Three ways to use NodeVideo today</h2>
+        <h2 className="font-heading text-xl font-medium">Four ways to use NodeVideo today</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-2 rounded-2xl border border-border bg-card p-5">
             <h3 className="font-heading font-medium">Make a collab edit</h3>
@@ -285,9 +341,3 @@ function Landing() {
     </main>
   );
 }
-
-createRoot(document.getElementById('root') as HTMLElement).render(
-  <StrictMode>
-    <Landing />
-  </StrictMode>,
-);

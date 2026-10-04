@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /creator/runs/
+
+Sitemap: https://nodevideo-pi.vercel.app/sitemap.xml
