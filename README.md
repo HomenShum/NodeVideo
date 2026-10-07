@@ -11,6 +11,8 @@
 <p align="center"><a href="HANDOFF.md">Handoff</a> · <a href="https://nodevideo-pi.vercel.app">Live&nbsp;demo</a> · <a href="https://homenshum.github.io/">All&nbsp;projects</a></p>
 <!-- brand:end -->
 
+# NodeVideo
+
 For a keyless local demo, current checks and known limits, read [the developer/user handoff](HANDOFF.md) first. The handoff distinguishes current local proof from optional private-media, durable and provider workflows.
 
 NodeVideo is a local-first, artifact-driven editor for short-form creator productions. Dance is the
