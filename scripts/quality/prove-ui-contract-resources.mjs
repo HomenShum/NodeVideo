@@ -205,7 +205,7 @@ function listeners(live) {
     }
   }
   if (inodes.size > 4096) throw new Error('Owned socket admission limit exceeded');
-  const ports = new Set();
+  const endpoints = new Map();
   for (const name of ['tcp', 'tcp6']) {
     const rows = bounded(`/proc/net/${name}`).toString('utf8').trim().split('\n');
     if (rows.length > 4096) throw new Error('Socket table admission limit exceeded');
@@ -213,16 +213,67 @@ function listeners(live) {
       const fields = line.trim().split(/\s+/u);
       if (fields[3] !== '0A' || !inodes.has(fields[9])) continue;
       const [address, port] = fields[1].split(':');
-      if (address !== '0100007F' && address !== '00000000000000000000000001000000') {
-        throw new Error('Owned listener is outside the loopback proof boundary');
-      }
+      const family = name === 'tcp' ? 'IPv4' : 'IPv6';
+      const nativeAddress =
+        name === 'tcp'
+          ? { '0100007F': '127.0.0.1', '00000000': '0.0.0.0' }[address]
+          : {
+              '00000000000000000000000001000000': '::1',
+              '00000000000000000000000000000000': '::',
+            }[address];
       const number = Number.parseInt(port, 16);
-      if (ports.size === 64 && !ports.has(number))
-        throw new Error('Owned port admission limit exceeded');
-      ports.add(number);
+      const endpoint = {
+        address: nativeAddress,
+        family,
+        port: number,
+        kind: nativeAddress === '127.0.0.1' || nativeAddress === '::1' ? 'loopback' : 'wildcard',
+      };
+      if (!/^[A-Fa-f0-9]{4}$/u.test(port ?? '') || !tcpEndpoint(endpoint)) {
+        throw new Error('Owned listener has an unsupported TCP address/family/port');
+      }
+      const key = `${family}:${nativeAddress}:${number}`;
+      if (endpoints.size === 64 && !endpoints.has(key)) {
+        throw new Error('Owned listener admission limit exceeded');
+      }
+      endpoints.set(key, endpoint);
     }
   }
-  return [...ports].sort((a, b) => a - b);
+  return [...endpoints.values()].sort(
+    (a, b) =>
+      a.port - b.port || a.family.localeCompare(b.family) || a.address.localeCompare(b.address),
+  );
+}
+function tcpEndpoint(value) {
+  const kind =
+    (value?.family === 'IPv4' && value.address === '127.0.0.1') ||
+    (value?.family === 'IPv6' && value.address === '::1')
+      ? 'loopback'
+      : (value?.family === 'IPv4' && value.address === '0.0.0.0') ||
+          (value?.family === 'IPv6' && value.address === '::')
+        ? 'wildcard'
+        : null;
+  return (
+    kind !== null &&
+    value.kind === kind &&
+    Number.isInteger(value.port) &&
+    value.port > 0 &&
+    value.port <= 65535
+  );
+}
+function retainListeners(actor, endpoints) {
+  for (const endpoint of endpoints) {
+    const key = `${endpoint.family}:${endpoint.address}:${endpoint.port}`;
+    if (actor.ports.size === 64 && !actor.ports.has(key)) {
+      throw new Error('Observed listener admission limit exceeded');
+    }
+    actor.ports.set(key, endpoint);
+    if (endpoint.kind === 'loopback') {
+      if (actor.kernelPorts.size === 64 && !actor.kernelPorts.has(endpoint.port)) {
+        throw new Error('Owned loopback port admission limit exceeded');
+      }
+      actor.kernelPorts.add(endpoint.port);
+    }
+  }
 }
 function entries(path) {
   const directory = opendirSync(path);
@@ -240,7 +291,7 @@ function entries(path) {
   return names.sort();
 }
 const delay = (ms) => new Promise((done) => setTimeout(done, ms));
-function freePort(port) {
+function freePort(port, family = 'IPv4') {
   return new Promise((done) => {
     const probe = createServer();
     let settled = false;
@@ -259,23 +310,20 @@ function freePort(port) {
       finish('unknown');
     }, 1000);
     probe.once('error', (error) => finish(error.code === 'EADDRINUSE' ? 'occupied' : 'unknown'));
-    probe.listen(port, '127.0.0.1', () => probe.close(() => finish('free')));
+    probe.listen(port, family === 'IPv6' ? '::1' : '127.0.0.1', () =>
+      probe.close(() => finish('free')),
+    );
   });
 }
 async function snapshot(actor) {
   const live = sample(actor);
-  const ports = listeners(live);
-  for (const set of [actor.ports, actor.kernelPorts]) {
-    for (const port of ports) {
-      if (set.size === 64 && !set.has(port)) throw new Error('Owned port admission limit exceeded');
-      set.add(port);
-    }
-  }
+  const endpoints = listeners(live);
+  retainListeners(actor, endpoints);
   const availability = [];
-  for (const port of [...actor.ports].sort((a, b) => a - b)) {
-    availability.push({ port, state: await freePort(port) });
+  for (const endpoint of actor.ports.values()) {
+    availability.push({ ...endpoint, state: await freePort(endpoint.port, endpoint.family) });
   }
-  return { live, listeners: ports, availability, scratch: entries(actor.scratch) };
+  return { live, listeners: endpoints, availability, scratch: entries(actor.scratch) };
 }
 async function cleanup(actor) {
   for (const signal of ['SIGTERM', 'SIGKILL']) {
@@ -327,7 +375,7 @@ function launch(label, command, args, env, observe) {
     scratch,
     owned: new Map(),
     groups: new Set(),
-    ports: new Set(),
+    ports: new Map(),
     kernelPorts: new Set(),
     observer: null,
     invalid: false,
@@ -377,15 +425,12 @@ function launch(label, command, args, env, observe) {
             // Numeric hints never grant ownership: bind birth and parent/group now.
             admit(actor, identity({ pid: value.pid }));
           } else if (match[1] === 'LISTENER') {
-            if (
-              !Number.isInteger(value.port) ||
-              value.port < 1 ||
-              value.port > 65535 ||
-              (actor.ports.size === 64 && !actor.ports.has(value.port))
-            ) {
-              throw new Error('Invalid listener observation');
+            if (!tcpEndpoint(value)) throw new Error('Invalid TCP listener observation');
+            const key = `${value.family}:${value.address}:${value.port}`;
+            if (actor.ports.size === 64 && !actor.ports.has(key)) {
+              throw new Error('Observed listener admission limit exceeded');
             }
-            actor.ports.add(value.port);
+            actor.ports.set(key, value);
           } else {
             if (actor.observer) throw new Error('Duplicate exit receipt');
             actor.observer = value;
@@ -405,39 +450,42 @@ function launch(label, command, args, env, observe) {
   });
   return actor;
 }
-async function settle(actor, budget, restoring = false) {
+async function settle(group, budget, restoring = false) {
   const stop = restoring ? Date.now() + budget : Math.min(deadline, Date.now() + budget);
   try {
-    while (!actor.exit && Date.now() < stop) {
-      const live = sample(actor);
-      if (actor.observe && actor.kernelPorts.size < 2) {
-        for (const port of listeners(live)) {
-          if (actor.kernelPorts.size === 64 && !actor.kernelPorts.has(port)) {
-            throw new Error('Owned port admission limit exceeded');
-          }
-          actor.kernelPorts.add(port);
-        }
+    while (group.some((actor) => !actor.exit) && Date.now() < stop) {
+      for (const actor of group) {
+        const live = sample(actor);
+        if (actor.observe) retainListeners(actor, listeners(live));
       }
       await delay(200);
     }
-    actor.timedOut = !actor.exit;
-    if (!actor.timedOut) {
+    for (const actor of group) actor.timedOut = !actor.exit;
+    if (group.every((actor) => !actor.timedOut)) {
       for (const wait of [0, 500, 1500, 3000]) {
         if (wait) await delay(wait);
-        actor.snapshots.push(await snapshot(actor));
+        // Both roots have ended. Serialize probes so shared closed probe ports
+        // cannot be occupied by the other verifier or by this supervisor itself.
+        for (const actor of group) actor.snapshots.push(await snapshot(actor));
       }
-    } else actor.snapshots.push(await snapshot(actor));
+    } else {
+      for (const actor of group) actor.snapshots.push(await snapshot(actor));
+    }
     // Drain already-produced pipe bytes without adding work to the verifier.
     await delay(50);
   } finally {
-    writeFileSync(join(output, `${actor.label}.stdout.log`), actor.stdout);
-    writeFileSync(join(output, `${actor.label}.stderr.log`), actor.stderr);
+    for (const actor of group) {
+      writeFileSync(join(output, `${actor.label}.stdout.log`), actor.stdout);
+      writeFileSync(join(output, `${actor.label}.stderr.log`), actor.stderr);
+    }
   }
-  return actor;
 }
 function result(actor, source, negative) {
   const receipt = actor.observer;
   const last = actor.snapshots.at(-1);
+  const cleanupDiagnostic = /^ {2}FAIL (?:resource cleanup|browser launch scratch cleanup):/mu.test(
+    actor.stderr.toString('utf8'),
+  );
   const observationValid =
     !actor.invalid &&
     actor.portEvidenceValid === true &&
@@ -447,17 +495,32 @@ function result(actor, source, negative) {
     Array.isArray(receipt.servers) &&
     receipt.servers.length > 0 &&
     receipt.servers.length <= 64 &&
+    receipt.servers.every(
+      (server) =>
+        typeof server.closed === 'boolean' &&
+        typeof server.listening === 'boolean' &&
+        (server.port === null
+          ? server.address === null &&
+            server.family === null &&
+            server.kind === null &&
+            server.listening === false
+          : tcpEndpoint(server) &&
+            actor.ports.has(`${server.family}:${server.address}:${server.port}`)),
+    ) &&
     Array.isArray(receipt.children) &&
     receipt.children.length <= 64 &&
     (negative && negative !== 'wrong-hash' ? true : receipt.children.length > 0);
   const closure =
+    !cleanupDiagnostic &&
     !actor.timedOut &&
     last &&
     last.live.length === 0 &&
     last.listeners.length === 0 &&
     last.availability.every((row) => row.state === 'free') &&
     last.scratch.length === 0 &&
-    receipt?.servers.every((server) => server.listening === false);
+    receipt?.servers.every(
+      (server) => server.listening === false && (server.port === null || server.closed === true),
+    );
   const expectedExit =
     !actor.exit?.signal &&
     (negative
@@ -478,6 +541,7 @@ function result(actor, source, negative) {
     observationValid,
     expectedExit,
     closure,
+    cleanupDiagnostic,
     causeBound: actor.causeBound ?? null,
     input: actor.input ?? null,
     listenerEvidence: actor.listenerEvidence ?? null,
@@ -528,8 +592,7 @@ async function prove(commit, phase, preload) {
         : env,
       true,
     );
-  const observe = async (actor, failure) => {
-    await settle(actor, 60_000);
+  const observe = (actor, failure) => {
     const stderr = actor.stderr.toString('utf8');
     if (failure === 'malformed-receipt') {
       actor.causeBound =
@@ -545,7 +608,9 @@ async function prove(commit, phase, preload) {
     }
     const observed = actor.observer?.servers ?? [];
     const ports = observed.flatMap((server) =>
-      Number.isInteger(server.port) ? [server.port] : [],
+      tcpEndpoint(server) && server.address === '127.0.0.1' && server.family === 'IPv4'
+        ? [server.port]
+        : [],
     );
     const stdout = actor.stdout.toString('utf8');
     const previews = [
@@ -570,6 +635,7 @@ async function prove(commit, phase, preload) {
     actor.listenerEvidence = {
       profile: legacy ? 'legacy-child' : 'owned-preview',
       tracedPorts: ports,
+      tracedListeners: observed,
       kernelOwnedPorts: [...actor.kernelPorts].sort((a, b) => a - b),
       declaredPreviewPorts: previews,
       declaredFixturePorts: fixtures,
@@ -581,7 +647,8 @@ async function prove(commit, phase, preload) {
   };
   const finish = async (actor, failure) => {
     try {
-      await observe(actor, failure);
+      await settle([actor], 60_000);
+      observe(actor, failure);
     } finally {
       await cleanup(actor);
     }
@@ -590,11 +657,24 @@ async function prove(commit, phase, preload) {
   const pair = [run('concurrent-1'), run('concurrent-2')];
   let acquiredTogether = null;
   const sharedObservation = async () => {
-    while (pair.every((actor) => !actor.exit) && Date.now() < deadline) {
+    while (pair.every((actor) => !actor.exit && !actor.timedOut) && Date.now() < deadline) {
       const startedAt = Date.now();
       const inventories = pair.map((actor) => {
         const live = sample(actor);
-        return { pid: actor.pid, birth: actor.owned.get(actor.pid).birth, ports: listeners(live) };
+        const endpoints = listeners(live);
+        retainListeners(actor, endpoints);
+        return {
+          pid: actor.pid,
+          birth: actor.owned.get(actor.pid).birth,
+          listeners: endpoints,
+          ports: [
+            ...new Set(
+              endpoints
+                .filter((endpoint) => endpoint.kind === 'loopback')
+                .map((endpoint) => endpoint.port),
+            ),
+          ],
+        };
       });
       const disjoint = !inventories[0].ports.some((port) => inventories[1].ports.includes(port));
       if (
@@ -610,10 +690,11 @@ async function prove(commit, phase, preload) {
   };
   let outcomes;
   try {
-    outcomes = await Promise.allSettled([
-      ...pair.map((actor) => observe(actor, null)),
-      sharedObservation(),
-    ]);
+    outcomes = await Promise.allSettled([settle(pair, 60_000), sharedObservation()]);
+    if (outcomes.some((outcome) => outcome.status === 'rejected')) {
+      throw new Error('Concurrent proof observation or owned cleanup failed');
+    }
+    for (const actor of pair) observe(actor, null);
     const overlap =
       pair.every((actor) => actor.endedAt !== null) &&
       Math.max(...pair.map((actor) => actor.startedAt)) <
@@ -629,9 +710,6 @@ async function prove(commit, phase, preload) {
   } finally {
     // Preserve both concurrent observations before any deliberate cleanup.
     for (const actor of pair) await cleanup(actor);
-  }
-  if (outcomes.some((outcome) => outcome.status === 'rejected')) {
-    throw new Error('Concurrent proof observation or owned cleanup failed');
   }
   for (const failure of ['missing-browser', 'malformed-receipt', 'wrong-hash']) {
     let operationError = null;
@@ -687,7 +765,7 @@ async function build(commit, phase) {
     false,
   );
   try {
-    await settle(actor, restoreBudget, phase === 'restore');
+    await settle([actor], restoreBudget, phase === 'restore');
     if (actor.invalid || actor.timedOut || actor.exit?.code !== 0 || actor.exit?.signal) {
       throw new Error('Selected source normal build failed or exceeded the proof budget');
     }

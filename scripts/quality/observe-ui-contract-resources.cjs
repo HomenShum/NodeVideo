@@ -29,20 +29,46 @@ const server = (message) => {
       invalid = true;
       return;
     }
-    const record = { port: null, closed: false };
+    const record = { address: null, family: null, port: null, kind: null, closed: false };
     servers.set(ref, record);
     ref.once('close', () => {
       record.closed = true;
     });
   }
   const address = ref.address();
-  if (address && typeof address !== 'string') {
-    if (address.address !== '127.0.0.1' || !Number.isInteger(address.port)) invalid = true;
-    else {
-      servers.get(ref).port = address.port;
-      emit('LISTENER', { port: address.port });
-    }
+  if (address === null) {
+    if (ref.listening) invalid = true;
+    return;
   }
+  const kind =
+    (address?.family === 'IPv4' && address.address === '127.0.0.1') ||
+    (address?.family === 'IPv6' && address.address === '::1')
+      ? 'loopback'
+      : (address?.family === 'IPv4' && address.address === '0.0.0.0') ||
+          (address?.family === 'IPv6' && address.address === '::')
+        ? 'wildcard'
+        : null;
+  if (!kind || !Number.isInteger(address.port) || address.port < 1 || address.port > 65535) {
+    invalid = true;
+    return;
+  }
+  const record = servers.get(ref);
+  if (
+    record.port !== null &&
+    (record.address !== address.address ||
+      record.family !== address.family ||
+      record.port !== address.port)
+  ) {
+    invalid = true;
+    return;
+  }
+  Object.assign(record, {
+    address: address.address,
+    family: address.family,
+    port: address.port,
+    kind,
+  });
+  emit('LISTENER', { address: record.address, family: record.family, port: record.port, kind });
 };
 for (const event of ['asyncStart', 'asyncEnd', 'error']) {
   channel(`tracing:net.server.listen:${event}`).subscribe((message) => {

@@ -344,3 +344,85 @@ findings in issues62/63 remain separate and open.
 Primary observer contract: [Node v22.23.3 net source](https://github.com/nodejs/node/blob/v22.23.3/lib/net.js),
 [child-process source](https://github.com/nodejs/node/blob/v22.23.3/lib/internal/child_process.js)
 and [Node 22 process events](https://nodejs.org/docs/latest-v22.x/api/process.html).
+
+## Resource observation and failed-launch ownership (source amendment, 2026-10-08)
+
+A developer checking the built UI needs a failed launch to return its real error and release
+its own files. The natural [Quality run37841481473](https://github.com/HomenShum/NodeVideo/actions/runs/37841481473)
+recorded fourteen cases against authentic base5d223694 and the actual job checkout3822a275,
+whose tree matches published9cb1a790. The resource proof was **FAIL**: all seven BEFORE
+measurements were valid and had leaked resources; all seven AFTER exit expectations passed,
+but every AFTER observation was invalid. Six AFTER cases had measured closure; the
+missing-browser case additionally retained two Playwright temporary directories. Source,
+package graph and original-build restoration passed. These scoped observations do not turn
+the failed resource job into a passing Quality result.
+
+The selected four-file amendment addresses the two observed causes. Vite8.1.4 probes TCP
+availability using temporary wildcard listeners before binding the requested loopback preview.
+The passive observer now retains each known TCP address, family, port and close state for
+127.0.0.1/::1 and0.0.0.0/::. Null-before-bind and error-only references remain represented.
+Unsupported addresses, mismatched families, IPC, malformed payloads, caps and failed writes
+still make the observation invalid; the invalid flag is never cleared. A successfully bound
+reference must have its close event and no listening state at exit to satisfy closure.
+
+The existing kernel reader preserves numeric PID/birth/inode ownership and every sampled
+loopback or wildcard listener. All retained endpoints require final same-family loopback
+port availability, and no owned listener may remain. Wildcard probe rows cannot satisfy the
+required loopback preview/fixture declarations or the two disjoint concurrent endpoint pairs.
+The pair observation remains a bounded, non-atomic shared sampling window.
+
+Playwright1.61.1 allocates its artifacts and Chromium profile before checking the executable.
+The standalone verifier now creates one unique browser-launch scratch directory, scopes its
+own TMPDIR/TEMP/TMP values to that directory only during the unchanged chromium.launch(),
+and restores each previous value or absence in an inner finally. After acquired browser and
+server cleanup completes, it validates the exact returned absolute directory before removing
+only that directory, including when launch throws. Launch errors retain their original cause;
+environment restoration errors retain both failures, and cleanup rejections remain visible.
+A rejected acquired-resource close leaves the scratch directory rather than deleting files
+while closure is unproved. Concurrent verifiers own different native temporary directories.
+
+This source amendment leaves the workflow, package/lock, installed dependencies, seven case
+inputs, default Chromium API, contract assertions, public UI and all timeouts unchanged.
+The actual verifier delta continues to require paired fourteen at the PR base with the exact
+same-package/lock admission. The prior source candidate, raw failed artifact and dated history
+are preserved in the external resource-failure causal packet.
+
+At this new source checkpoint, static lint/parser checks, contract execution, new fourteen-case
+resource proof and natural new-head CI are **NOT_RUN**. A repair claim requires a fresh normal
+job: all seven BEFORE observations must remain valid with their actual failures retained;
+all seven AFTER observations must be valid, have the correct exits and injected causes, and
+show zero owned process records/listeners/scratch before supervisor cleanup, free observed
+ports, disjoint concurrent loopback endpoints and restored source/graph/build. No held local
+runtime, dependency installation, browser or CI replay occurred here. Consent-scratch failure,
+rejected close, interruption and sustained accumulation remain **NOT_RUN**; OS-wide orphan
+guarantees, visual/SEO grades, production adoption, the six HIGH/eight LOW residual findings
+and whole-portfolio completion remain outside this proof.
+
+Primary causal owners: [Vite8.1.4 TCP probes](https://github.com/vitejs/vite/blob/v8.1.4/packages/vite/src/node/http.ts),
+[Node22 TCP address contract](https://github.com/nodejs/node/blob/v22.23.3/doc/api/net.md),
+[Playwright1.61.1 launch preparation](https://github.com/microsoft/playwright/blob/v1.61.1/packages/playwright-core/src/server/browserType.ts)
+and [Node22 temporary-directory selection](https://github.com/nodejs/node/blob/v22.23.3/lib/os.js).
+
+### Concurrent settlement source correction (same candidate, 2026-10-08)
+
+The first frozen source amendment is retained separately. Its review identified a measurement
+race: two callers can retain the same already-closed wildcard probe port, so one caller's
+availability check could run while the other is still using that port. Concurrent availability
+probes could also collide with each other. The supervisor now uses its existing settlement
+owner for one or two actors. For the pair it waits for both root exits under the same60-second
+case/deadline bound while retaining both owned inventories. At the retained cumulative
+0/.5/2/5-second settlement steps it snapshots each actor sequentially; cleanup starts only
+after both observations and verdicts. Early concurrent acquisition remains a shared bounded,
+non-atomic observation. Timeouts, live descendants, unsupported/unknown observations and
+every retained wildcard/loopback endpoint still fail their existing gates. No occupied port
+is ignored or given a race exemption.
+
+An expected-negative exit1 cannot excuse an additional reported cleanup failure. The result
+owner checks bounded stderr once for the verifier's anchored resource-cleanup or launch-scratch
+cleanup FAIL lines, records cleanupDiagnostic, and rejects closure if either was emitted,
+even if the final inventory is empty. Rejected-close execution remains NOT_RUN; this is a
+source honesty predicate, not a newly observed scenario result.
+
+The observer and verifier bytes are unchanged from the first amendment. All current-source
+runtime, next natural fourteen-case results and CI outcomes remain **NOT_RUN**. No workflow,
+package/lock, input, timeout, dependency, ignored resource or new public knob changes here.

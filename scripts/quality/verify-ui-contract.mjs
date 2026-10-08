@@ -8,10 +8,10 @@
 
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { lstat, mkdtemp, realpath, rm } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { chromium } from 'playwright';
 import { preview } from 'vite';
 
@@ -46,6 +46,8 @@ function locate(page, control) {
 let previewServer;
 let mockSidecar;
 let browser;
+let browserScratch;
+let browserScratchParent;
 try {
   previewServer = await preview({
     root,
@@ -112,7 +114,37 @@ try {
   const mockPort = mockAddress.port;
   console.log(`Serving contract fixtures at http://127.0.0.1:${mockPort}`);
 
-  browser = await chromium.launch();
+  browserScratchParent = await realpath(tmpdir());
+  browserScratch = await mkdtemp(join(browserScratchParent, 'nodevideo-browser-launch-'));
+  const tempEnvironment = ['TMPDIR', 'TEMP', 'TMP'].map((name) => ({
+    name,
+    present: Object.hasOwn(process.env, name),
+    value: process.env[name],
+  }));
+  let launchError;
+  const environmentErrors = [];
+  try {
+    for (const { name } of tempEnvironment) process.env[name] = browserScratch;
+    browser = await chromium.launch();
+  } catch (error) {
+    launchError = error;
+  } finally {
+    for (const { name, present, value } of tempEnvironment) {
+      try {
+        if (present) process.env[name] = value;
+        else delete process.env[name];
+      } catch (error) {
+        environmentErrors.push(error);
+      }
+    }
+  }
+  if (environmentErrors.length > 0) {
+    throw new AggregateError(
+      [launchError, ...environmentErrors].filter(Boolean),
+      'Browser launch temporary environment restoration failed',
+    );
+  }
+  if (launchError) throw launchError;
   // Check the public homepage metadata in the actual production output.
   // Parse HTML/XML with the existing browser; app and run URLs stay out of the sitemap.
   const metadataPage = await browser.newPage();
@@ -304,6 +336,22 @@ try {
   ]);
   for (const result of cleanup) {
     if (result.status === 'rejected') fail(`resource cleanup: ${result.reason}`);
+  }
+  if (browserScratch && cleanup.every((result) => result.status === 'fulfilled')) {
+    try {
+      if (
+        resolve(browserScratch) !== browserScratch ||
+        dirname(browserScratch) !== browserScratchParent ||
+        (await realpath(browserScratch)) !== browserScratch ||
+        !(await lstat(browserScratch)).isDirectory()
+      ) {
+        fail('browser launch scratch cleanup: ownership changed; refusing recursive cleanup');
+      } else {
+        await rm(browserScratch, { recursive: true, force: true });
+      }
+    } catch (error) {
+      fail(`browser launch scratch cleanup: ${error}`);
+    }
   }
 }
 
