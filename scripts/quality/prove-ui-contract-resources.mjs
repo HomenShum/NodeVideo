@@ -143,6 +143,20 @@ function rememberResourceFailure(error, owner, context, cleanup = false) {
     birth,
     case: caseLabel,
     sampledIdentity,
+    taskIdentity:
+      owner === 'proc-fd-inventory' && Number.isSafeInteger(context.tid) && context.tid > 0
+        ? {
+            tid: context.tid,
+            birth:
+              typeof context.taskBirth === 'string' && /^\d{1,64}$/u.test(context.taskBirth)
+                ? context.taskBirth
+                : null,
+            state:
+              typeof context.taskState === 'string' && /^[RSDZTtXxKWPI]$/u.test(context.taskState)
+                ? context.taskState
+                : null,
+          }
+        : null,
     identityReadback,
     frames,
   };
@@ -306,34 +320,176 @@ function sample(actor) {
   });
 }
 function listeners(live, caseLabel) {
+  if (
+    !/^(?:(?:before|after)-(?:normal|repeat|concurrent-[12]|missing-browser|malformed-receipt|wrong-hash|build)|restore-build)$/u.test(
+      caseLabel,
+    )
+  ) {
+    throw new Error('Task inventory has no admitted case label');
+  }
+  report.taskInventories ??= [];
+  let counters = report.taskInventories.find((entry) => entry.case === caseLabel);
+  if (!counters) {
+    if (report.taskInventories.length === 17) throw new Error('Task inventory case limit exceeded');
+    counters = {
+      case: caseLabel,
+      callsStarted: 0,
+      callsCompleted: 0,
+      taskStatsRead: 0,
+      liveFdViews: 0,
+      terminalTasks: 0,
+      vanishedTasks: 0,
+      vanishedGroups: 0,
+    };
+    report.taskInventories.push(counters);
+  }
+  function count(field) {
+    if (!Number.isSafeInteger(counters[field]) || counters[field] === Number.MAX_SAFE_INTEGER) {
+      throw new Error('Task inventory counter limit exceeded');
+    }
+    counters[field] += 1;
+  }
+  count('callsStarted');
   const inodes = new Set();
+  let taskRows = 0;
   for (const row of live) {
-    readOwnedDirectory(
-      `/proc/${row.pid}/fd`,
-      'proc-fd-inventory',
-      { ...row, case: caseLabel },
-      (directory) => {
-        let count = 0;
-        while (true) {
-          const entry = directory.readSync();
-          if (!entry) break;
-          if (++count > 512) throw new Error('Owned descriptor admission limit exceeded');
-          if (!/^\d+$/u.test(entry.name)) continue;
-          try {
-            const link = readlinkSync(`/proc/${row.pid}/fd/${entry.name}`);
-            const inode = link.match(/^socket:\[(\d+)\]$/u)?.[1];
-            if (inode) {
-              if (inodes.size === 4096 && !inodes.has(inode)) {
-                throw new Error('Owned socket admission limit exceeded');
-              }
-              inodes.add(inode);
-            }
-          } catch (error) {
-            if (error.code !== 'ENOENT' && error.code !== 'ESRCH') throw error;
-          }
+    const context = { ...row, case: caseLabel };
+    function leader() {
+      const current = identity(row);
+      if (current && (current.birth !== row.birth || current.pgid !== row.pgid)) {
+        throw new Error('Owned group identity changed during task inventory');
+      }
+      return current;
+    }
+    function task(tid, prior = null) {
+      try {
+        const fields = bounded(`/proc/${row.pid}/task/${tid}/stat`, 4096).toString('utf8');
+        const pid = fields.match(/^([1-9]\d{0,15}) \(/u)?.[1];
+        const values = fields.slice(fields.lastIndexOf(')') + 2).split(/\s+/u);
+        const pgid = Number(values[2]);
+        if (
+          Number(pid) !== tid ||
+          !/^[RSDZTtXxKWPI]$/u.test(values[0] ?? '') ||
+          !Number.isSafeInteger(pgid) ||
+          pgid < 1 ||
+          pgid !== row.pgid ||
+          !/^\d{1,64}$/u.test(values[19] ?? '')
+        ) {
+          throw new Error('Owned task stat has an invalid path, state, group or birth');
         }
-      },
-    );
+        count('taskStatsRead');
+        return { tid, state: values[0], birth: values[19] };
+      } catch (error) {
+        if (error.code === 'ENOENT' || error.code === 'ESRCH') return null;
+        rememberResourceFailure(error, 'proc-fd-inventory', {
+          ...context,
+          tid,
+          taskBirth: prior?.birth,
+          taskState: prior?.state,
+        });
+        throw error;
+      }
+    }
+    try {
+      if (!leader()) {
+        count('vanishedGroups');
+        continue;
+      }
+      const tids = readOwnedDirectory(
+        `/proc/${row.pid}/task`,
+        'proc-fd-inventory',
+        context,
+        (directory) => {
+          const rows = [];
+          const seen = new Set();
+          while (true) {
+            const entry = directory.readSync();
+            if (!entry) break;
+            taskRows += 1;
+            if (taskRows > PROCESS_LIMIT) throw new Error('Owned task admission limit exceeded');
+            const tid = Number(entry.name);
+            if (
+              !/^[1-9]\d{0,15}$/u.test(entry.name) ||
+              !Number.isSafeInteger(tid) ||
+              seen.has(tid)
+            ) {
+              throw new Error('Owned task directory has an invalid numeric identity');
+            }
+            seen.add(tid);
+            rows.push(tid);
+          }
+          return rows.sort((a, b) => a - b);
+        },
+      );
+      if (!leader()) {
+        count('vanishedGroups');
+        continue;
+      }
+      if (!tids || tids.length === 0)
+        throw new Error('Present owned group has no readable task inventory');
+      for (const tid of tids) {
+        const current = task(tid);
+        if (!current) {
+          leader();
+          count('vanishedTasks');
+          continue;
+        }
+        if (current.state === 'Z') {
+          // A terminal task released its own file-table reference before Z.
+          // Its group and all remaining PID records still require observation.
+          count('terminalTasks');
+          continue;
+        }
+        const taskContext = { ...context, tid, taskBirth: current.birth, taskState: current.state };
+        const complete = readOwnedDirectory(
+          `/proc/${row.pid}/task/${tid}/fd`,
+          'proc-fd-inventory',
+          taskContext,
+          (directory) => {
+            let descriptors = 0;
+            while (true) {
+              const entry = directory.readSync();
+              if (!entry) break;
+              descriptors += 1;
+              if (descriptors > 512) throw new Error('Owned descriptor admission limit exceeded');
+              if (!/^\d+$/u.test(entry.name)) continue;
+              try {
+                const link = readlinkSync(`/proc/${row.pid}/task/${tid}/fd/${entry.name}`);
+                const inode = link.match(/^socket:\[(\d+)\]$/u)?.[1];
+                if (inode) {
+                  if (inodes.size === 4096 && !inodes.has(inode))
+                    throw new Error('Owned socket admission limit exceeded');
+                  inodes.add(inode);
+                }
+              } catch (error) {
+                if (error.code !== 'ENOENT' && error.code !== 'ESRCH') throw error;
+              }
+            }
+            return true;
+          },
+        );
+        const after = task(tid, current);
+        leader();
+        if (!after) {
+          count('vanishedTasks');
+          continue;
+        }
+        if (after.birth !== current.birth || !complete) {
+          const error = new Error(
+            after.birth !== current.birth
+              ? 'Owned task birth changed during descriptor inventory'
+              : 'Present owned task has no readable descriptor inventory',
+          );
+          rememberResourceFailure(error, 'proc-fd-inventory', taskContext);
+          throw error;
+        }
+        count('liveFdViews');
+      }
+      leader();
+    } catch (error) {
+      rememberResourceFailure(error, 'proc-fd-inventory', context);
+      throw error;
+    }
   }
   if (inodes.size > 4096) throw new Error('Owned socket admission limit exceeded');
   const endpoints = new Map();
@@ -369,6 +525,7 @@ function listeners(live, caseLabel) {
       endpoints.set(key, endpoint);
     }
   }
+  count('callsCompleted');
   return [...endpoints.values()].sort(
     (a, b) =>
       a.port - b.port || a.family.localeCompare(b.family) || a.address.localeCompare(b.address),
