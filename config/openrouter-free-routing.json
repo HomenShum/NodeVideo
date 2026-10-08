@@ -1,6 +1,6 @@
 {
   "schemaVersion": "nodevideo.openrouter-free-routing.v1",
-  "generatedAt": "2026-10-08T06:47:33.151Z",
+  "generatedAt": "2026-10-08T12:44:38.232Z",
   "catalogDigest": "3e4502d6fc5730faf830649363110c38b71eb99b379be18c13dc9363d1fbdfed",
   "benchmark": {
     "schemaVersion": "nodevideo.openrouter-free-benchmark.v1",
@@ -32,7 +32,7 @@
       "successes": 8,
       "successRate": 1,
       "meanScore": 100,
-      "p95LatencyMs": 10783,
+      "p95LatencyMs": 10041,
       "scenarioCoverage": 4,
       "eligible": true
     },
@@ -42,12 +42,25 @@
       "created": 1786680361,
       "contextLength": 512000,
       "samples": 8,
-      "successes": 7,
-      "successRate": 0.875,
-      "meanScore": 97.5,
-      "p95LatencyMs": 32530,
+      "successes": 6,
+      "successRate": 0.75,
+      "meanScore": 85,
+      "p95LatencyMs": 39970,
       "scenarioCoverage": 4,
       "eligible": true
+    },
+    {
+      "id": "liquid/lfm-2.5-2.6b:free",
+      "name": "LiquidAI: LFM2.5-2.6B (free)",
+      "created": 1786470519,
+      "contextLength": 65536,
+      "samples": 8,
+      "successes": 5,
+      "successRate": 0.625,
+      "meanScore": 92.5,
+      "p95LatencyMs": 15201,
+      "scenarioCoverage": 3,
+      "eligible": false
     },
     {
       "id": "apodex/apodex-1.1-mini:free",
@@ -58,20 +71,7 @@
       "successes": 0,
       "successRate": 0,
       "meanScore": 0,
-      "p95LatencyMs": 470,
-      "scenarioCoverage": 0,
-      "eligible": false
-    },
-    {
-      "id": "liquid/lfm-2.5-2.6b:free",
-      "name": "LiquidAI: LFM2.5-2.6B (free)",
-      "created": 1786470519,
-      "contextLength": 65536,
-      "samples": 8,
-      "successes": 0,
-      "successRate": 0,
-      "meanScore": 0,
-      "p95LatencyMs": 701,
+      "p95LatencyMs": 447,
       "scenarioCoverage": 0,
       "eligible": false
     }
