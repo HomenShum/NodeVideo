@@ -160,3 +160,44 @@ This follow-up changes no application or test behavior. The receipt readers veri
 media evidence; they do not run a fresh model provider. The local contract retains its six deferred
 camera/cancellation/export controls. There is no new provider, physical-device, full-export,
 rendered-quality or public-deployment proof, and the existing quality limits above remain open.
+
+
+## Compatible security lock repair (local capture, 2026-10-08)
+
+Developers installing the current source should distinguish the earlier dated audit snapshots
+above from this new lock-only security result. The repair was prepared on canonical source
+`a38fa8d39fb13215951952020f9395c2cd1069f7`. It updates nine compatible targets: proxy-addr 2.0.8,
+MCP SDK 1.31.0, brace-expansion 5.0.12, source-map-js 1.2.2, Vitest 4.1.11, fast-uri 3.1.8,
+ip-address 10.7.1, postcss-selector-parser 7.1.6 and DOMPurify 3.4.16. Vitest's seven existing
+family records follow its exact 4.1.11 pins. All 893 lock paths remain: 16 records change and
+877 records remain identical. The root package, direct constraints, scripts, source, tests,
+CI policy and pinned NodeKit Git dependency are unchanged.
+
+SDK 1.31.0 widens its Hono node-server dependency to `^1.19.9 || ^2.0.5`; the retained 1.19.17
+satisfies that range. No Hono, Express, Zod or other SDK transitive refresh was required.
+The selected records use their exact published registry tarball and integrity identities.
+One normal `npm install --package-lock-only --ignore-scripts --no-audit --no-fund` completed
+with exit 0 on Node 22.22.2/npm 10.9.7 and left the prepared lock bytes unchanged. This command
+did not install an application graph or run lifecycle scripts.
+
+One normal `npm audit --package-lock-only --json` per captured lock reported:
+
+| Lock | Low | Moderate | High | Critical | Total | Actual exit |
+|---|---:|---:|---:|---:|---:|---:|
+| Original a38fa8d lock | 9 | 5 | 9 | 1 | 24 | 1 |
+| Compatible repair candidate | 8 | 0 | 6 | 0 | 14 | 1 |
+
+The after-audit completed at 14:53:36 UTC. Ten finding rows disappeared; no new finding row
+was added. All six remaining high rows propagate from unpatched braces 3.0.3. Shadcn remains
+because application CSS and the developer CLI workflow consume it; npm's suggested major
+downgrade was not applied. The eight remaining low rows propagate from KaTeX 0.16.47. Its
+published patched 0.18.2 falls outside the four current `^0.16` parent ranges and needs a
+separate compatibility repair. These limitations are retained in the primary
+[braces advisory](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm) and
+[KaTeX advisory](https://github.com/advisories/GHSA-238p-pmpm-9mq7).
+
+At this local-proof capture, a fresh normal installed-tree/lifecycle check, typecheck, build,
+scenario suite, browser check and new-source shared CI are NOT_RUN. The lock-only audit is
+still nonzero and does not certify application compatibility, all-security, provider behavior,
+visual quality or a public deployment. The original dated results and their limitations above
+remain historical evidence; this append does not reinterpret them.
