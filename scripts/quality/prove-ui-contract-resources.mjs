@@ -75,6 +75,47 @@ function rememberResourceFailure(error, owner, context, cleanup = false) {
     )
       ? context.case
       : null;
+  const pid = Number.isSafeInteger(context.pid) && context.pid > 0 ? context.pid : null;
+  const birth =
+    typeof context.birth === 'string' && /^\d{1,64}$/u.test(context.birth) ? context.birth : null;
+  const sampledIdentity =
+    owner === 'proc-fd-inventory'
+      ? {
+          state:
+            typeof context.state === 'string' && /^[RSDZTtXxKWPI]$/u.test(context.state)
+              ? context.state
+              : null,
+          numThreads:
+            Number.isSafeInteger(context.numThreads) && context.numThreads > 0
+              ? context.numThreads
+              : null,
+        }
+      : null;
+  let identityReadback = null;
+  if (
+    !cleanup &&
+    owner === 'proc-fd-inventory' &&
+    error?.code === 'EACCES' &&
+    pid !== null &&
+    birth !== null
+  ) {
+    try {
+      // One bounded same-PID stat read. It diagnoses this denial, never admits
+      // ownership, retries fd access or replaces the original operation error.
+      const current = identity({ pid });
+      identityReadback = {
+        status:
+          current === null ? 'gone' : current.birth === birth ? 'same-birth' : 'changed-identity',
+        state:
+          typeof current?.state === 'string' && /^[RSDZTtXxKWPI]$/u.test(current.state)
+            ? current.state
+            : null,
+        numThreads: current?.numThreads ?? null,
+      };
+    } catch {
+      identityReadback = { status: 'unreadable', state: null, numThreads: null };
+    }
+  }
   report[key] = {
     owner,
     code:
@@ -98,10 +139,11 @@ function rememberResourceFailure(error, owner, context, cleanup = false) {
       ? error.syscall
       : null,
     errno: Number.isSafeInteger(error?.errno) ? error.errno : null,
-    pid: Number.isSafeInteger(context.pid) && context.pid > 0 ? context.pid : null,
-    birth:
-      typeof context.birth === 'string' && /^\d{1,64}$/u.test(context.birth) ? context.birth : null,
+    pid,
+    birth,
     case: caseLabel,
+    sampledIdentity,
+    identityReadback,
     frames,
   };
 }
@@ -189,6 +231,7 @@ function identity(row) {
     const fields = bounded(`/proc/${row.pid}/stat`, 4096).toString('utf8');
     const values = fields.slice(fields.lastIndexOf(')') + 2).split(/\s+/u);
     const birth = values[19];
+    const threads = /^\d{1,16}$/u.test(values[17] ?? '') ? Number(values[17]) : null;
     if (!/^\d+$/u.test(birth ?? '')) throw new Error('Invalid process birth identity');
     return {
       pid: row.pid,
@@ -196,6 +239,7 @@ function identity(row) {
       ppid: Number(values[1]),
       pgid: Number(values[2]),
       birth,
+      numThreads: Number.isSafeInteger(threads) && threads > 0 ? threads : null,
     };
   } catch (error) {
     if (error.code === 'ENOENT' || error.code === 'ESRCH') return null;
@@ -261,30 +305,35 @@ function sample(actor) {
     return current && current.birth === owned.birth ? [current] : [];
   });
 }
-function listeners(live) {
+function listeners(live, caseLabel) {
   const inodes = new Set();
   for (const row of live) {
-    readOwnedDirectory(`/proc/${row.pid}/fd`, 'proc-fd-inventory', row, (directory) => {
-      let count = 0;
-      while (true) {
-        const entry = directory.readSync();
-        if (!entry) break;
-        if (++count > 512) throw new Error('Owned descriptor admission limit exceeded');
-        if (!/^\d+$/u.test(entry.name)) continue;
-        try {
-          const link = readlinkSync(`/proc/${row.pid}/fd/${entry.name}`);
-          const inode = link.match(/^socket:\[(\d+)\]$/u)?.[1];
-          if (inode) {
-            if (inodes.size === 4096 && !inodes.has(inode)) {
-              throw new Error('Owned socket admission limit exceeded');
+    readOwnedDirectory(
+      `/proc/${row.pid}/fd`,
+      'proc-fd-inventory',
+      { ...row, case: caseLabel },
+      (directory) => {
+        let count = 0;
+        while (true) {
+          const entry = directory.readSync();
+          if (!entry) break;
+          if (++count > 512) throw new Error('Owned descriptor admission limit exceeded');
+          if (!/^\d+$/u.test(entry.name)) continue;
+          try {
+            const link = readlinkSync(`/proc/${row.pid}/fd/${entry.name}`);
+            const inode = link.match(/^socket:\[(\d+)\]$/u)?.[1];
+            if (inode) {
+              if (inodes.size === 4096 && !inodes.has(inode)) {
+                throw new Error('Owned socket admission limit exceeded');
+              }
+              inodes.add(inode);
             }
-            inodes.add(inode);
+          } catch (error) {
+            if (error.code !== 'ENOENT' && error.code !== 'ESRCH') throw error;
           }
-        } catch (error) {
-          if (error.code !== 'ENOENT' && error.code !== 'ESRCH') throw error;
         }
-      }
-    });
+      },
+    );
   }
   if (inodes.size > 4096) throw new Error('Owned socket admission limit exceeded');
   const endpoints = new Map();
@@ -396,7 +445,7 @@ function freePort(port, family = 'IPv4') {
 }
 async function snapshot(actor) {
   const live = sample(actor);
-  const endpoints = listeners(live);
+  const endpoints = listeners(live, actor.label);
   retainListeners(actor, endpoints);
   const availability = [];
   for (const endpoint of actor.ports.values()) {
@@ -564,7 +613,7 @@ async function settle(group, budget, restoring = false) {
     while (group.some((actor) => !actor.exit) && Date.now() < stop) {
       for (const actor of group) {
         const live = sample(actor);
-        if (actor.observe) retainListeners(actor, listeners(live));
+        if (actor.observe) retainListeners(actor, listeners(live, actor.label));
       }
       await delay(200);
     }
@@ -778,7 +827,7 @@ async function prove(commit, phase, preload) {
       const startedAt = Date.now();
       const inventories = pair.map((actor) => {
         const live = sample(actor);
-        const endpoints = listeners(live);
+        const endpoints = listeners(live, actor.label);
         retainListeners(actor, endpoints);
         return {
           pid: actor.pid,

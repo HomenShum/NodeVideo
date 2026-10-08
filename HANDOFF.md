@@ -471,3 +471,41 @@ natural job. A repeated failure must remain FAIL with its actual owner retained 
 causal permission or sampling change is selected. A non-reproduced EACCES remains historical
 and unresolved. Consent-scratch exception, rejected close, interruption and sustained-state
 accumulation remain NOT_RUN; no visual, SEO, security, production or portfolio claim follows.
+
+## 2026-10-08: SAME14-PROC-IDENTITY-DENIAL-01 (source-only, NOT_RUN)
+
+A maintainer deciding why the resource comparison fails needs the admitted process's
+state at the denied inventory, without collecting its executable, arguments or environment.
+The actual natural f847 job `37853282869/113571332695` remains **FAIL**: one completed
+BEFORE-normal observation and zero AFTER observations. The completed normal case had
+native exit0 but failed resource closure. BEFORE-repeat stopped at the owned
+`proc-fd-inventory` reader with `opendir/EACCES`. That source-bound artifact identified
+the owner and caller; the denied process's state, thread count and underlying kernel
+permission mechanism remain **UNKNOWN**, not a proven zombie or browser diagnosis.
+
+This two-owner source amendment adds only fixed diagnostic data. The existing bounded
+stat reader retains a positive safe-integer `numThreads`, or null when it is missing or
+invalid. The first proc-FD observation denial retains the sampled validated state and
+thread count, then makes exactly one same-PID, 4KiB-bounded stat readback. It records
+`same-birth`, `gone`, `changed-identity` or `unreadable` plus validated state and
+null-or-positive thread metadata. This readback neither admits ownership nor retries
+descriptor access. A readback failure cannot replace the original EACCES, which remains
+primary and fatal. Only the existing three listener callers pass their fixed actor case
+labels; no generic actor wrapper, additional process list or permission exception is added.
+
+The prior twelve protected bodies remain literal. The sole identity() metadata exception
+does not alter birth, parent/group parsing, disappearance handling or admission rules.
+The two failure-record slots, eight source-local frames and 4KiB stack cap remain.
+All fourteen/current-seven case inputs, budgets, resource assertions and source/graph/build
+restoration remain unchanged. The result still requires `last.live.length === 0`.
+Cleanup's separate non-Z rejection is weaker and cannot certify zero remaining PID records.
+No Z, low-thread, permission or unknown-state exemption is introduced.
+
+At this checkpoint project/parser/lint/static checks, imports, resource runtime, browser
+work, installed-tree validation, new natural CI and publication are **NOT_RUN**.
+Root owns independent source review, pinned inert static review, ordinary publication
+and the next unchanged natural job. A repeated denial must remain FAIL with its real
+diagnostic data. This supplies evidence for a later cause decision; it is not the cause
+repair, successful paired14, production adoption, visual/security grading or whole-portfolio
+completion. Consent-scratch exception, rejected close, interruption and sustained-state
+accumulation remain NOT_RUN. All preceding35,410 HANDOFF bytes and earlier failures stay preserved.
