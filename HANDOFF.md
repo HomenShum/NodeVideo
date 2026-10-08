@@ -426,3 +426,48 @@ source honesty predicate, not a newly observed scenario result.
 The observer and verifier bytes are unchanged from the first amendment. All current-source
 runtime, next natural fourteen-case results and CI outcomes remain **NOT_RUN**. No workflow,
 package/lock, input, timeout, dependency, ignored resource or new public knob changes here.
+
+## Permission-error attribution (diagnostic source candidate, 2026-10-08)
+
+A developer needs a failed resource comparison to identify the operation that could not be
+observed, so a permission error cannot be mistaken for an empty process or scratch inventory.
+The natural published70e comparison stopped with `EACCES: permission denied, opendir`.
+Its actual result contains one completed BEFORE case: valid measurement and expected exit0,
+but failed closure with two surviving descendants, an occupied preview port and nonempty
+scratch. The repeat retained partial UI progress and no verdict; the other thirteen case
+verdicts, including every AFTER case, are absent. Source, package graph and original-build
+restoration passed. These observations remain a failed resource job, not a complete comparison.
+
+The denied directory owner, PID and caller are unknown in that pathless result. Active browser
+proc-fd sampling is a hypothesis; scratch inventory or cleanup remains possible. The selected
+two-owner source patch adds at most one observation-failure record and one cleanup-failure
+record. Directory open, iteration and close errors retain a fixed proc-fd or scratch owner,
+native syscall/code/errno, an already-admitted numeric PID/birth or fixed case label, and up to
+eight source-local numeric frame locations from at most4KiB of stack input. Arbitrary paths,
+arguments, environment, native error messages and file contents are excluded from these new
+records. Node22.23.3's native opendirSync error omits the path, so copying error.path alone
+would not provide the missing attribution.
+
+The original observation error is rethrown even when directory close, snapshot log writing
+or actor cleanup also rejects; the first secondary cleanup diagnostic is retained separately.
+Concurrent rejection retains
+the first observed native error instead of replacing it with a generic message. Existing
+proc disappearance races for ENOENT/ESRCH remain unchanged. Recursive owned scratch cleanup
+has its own fixed diagnostic owner. The actual native errors remain failures; unreadable
+live processes do not become empty observations, and no invalid flag is cleared.
+
+All fourteen/current-seven case inputs, process birth/group ownership, containment, descriptor,
+socket, stream and report caps, deadlines, expected exits, acquisition evidence, strict zero
+resource closure and source/graph/build restoration remain. Observer, product verifier,
+workflow, package/lock and installed graph are unchanged. No permission, capability, sudo,
+sysctl, browser sandbox/debug option, generic retry or resource exception is introduced.
+The entire earlier31,952-byte HANDOFF prefix and the original failed artifact remain preserved.
+
+At this isolated source-only checkpoint, parser/lint checks, project imports, contract runtime,
+the next naturally triggered resource comparison, new-head CI and publication are NOT_RUN.
+The patch supplies missing failure evidence; it does not repair or prove the unknown permission
+cause. Root owns the separate static review, expected-head publication and next unchanged
+natural job. A repeated failure must remain FAIL with its actual owner retained before any
+causal permission or sampling change is selected. A non-reproduced EACCES remains historical
+and unresolved. Consent-scratch exception, rejected close, interruption and sustained-state
+accumulation remain NOT_RUN; no visual, SEO, security, production or portfolio claim follows.

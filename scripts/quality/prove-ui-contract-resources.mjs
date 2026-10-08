@@ -42,6 +42,94 @@ let original;
 let originalTree;
 let originalBuildReady = true;
 let failed = false;
+let firstObservationError = null;
+
+// Only fixed owners, admitted identities and this source's numeric locations enter
+// the two failure records. Native messages, paths, arguments and environment do not.
+function rememberResourceFailure(error, owner, context, cleanup = false) {
+  const key = cleanup ? 'cleanupFailure' : 'observationFailure';
+  if (report[key]) return;
+  if (!cleanup) firstObservationError = error;
+  const frames = [];
+  const stack =
+    typeof error?.stack === 'string'
+      ? Buffer.from(error.stack.slice(0, 4096)).subarray(0, 4096).toString('utf8')
+      : '';
+  for (const line of stack.split('\n')) {
+    if (!/^\s+at /u.test(line)) continue;
+    const location = line.match(
+      /\/scripts\/quality\/prove-ui-contract-resources\.mjs:(\d+):(\d+)\)?$/u,
+    );
+    if (!location) continue;
+    const lineNumber = Number(location[1]);
+    const column = Number(location[2]);
+    if (!Number.isSafeInteger(lineNumber) || !Number.isSafeInteger(column)) continue;
+    if (lineNumber < 1 || column < 1) continue;
+    frames.push({ line: lineNumber, column });
+    if (frames.length === 8) break;
+  }
+  const caseLabel =
+    typeof context.case === 'string' &&
+    /^(?:(?:before|after)-(?:normal|repeat|concurrent-[12]|missing-browser|malformed-receipt|wrong-hash|build)|restore-build)$/u.test(
+      context.case,
+    )
+      ? context.case
+      : null;
+  report[key] = {
+    owner,
+    code:
+      typeof error?.code === 'string' && /^[A-Z][A-Z0-9_]{0,31}$/u.test(error.code)
+        ? error.code
+        : null,
+    syscall: [
+      'opendir',
+      'readdir',
+      'closedir',
+      'readlink',
+      'open',
+      'write',
+      'close',
+      'scandir',
+      'unlink',
+      'rmdir',
+      'lstat',
+      'kill',
+    ].includes(error?.syscall)
+      ? error.syscall
+      : null,
+    errno: Number.isSafeInteger(error?.errno) ? error.errno : null,
+    pid: Number.isSafeInteger(context.pid) && context.pid > 0 ? context.pid : null,
+    birth:
+      typeof context.birth === 'string' && /^\d{1,64}$/u.test(context.birth) ? context.birth : null,
+    case: caseLabel,
+    frames,
+  };
+}
+function readOwnedDirectory(path, owner, context, consume) {
+  let directory;
+  let value;
+  let operationError = null;
+  try {
+    directory = opendirSync(path);
+    value = consume(directory);
+  } catch (error) {
+    // Retain the existing proc-disappearance races; no permission failure is absent.
+    if (owner !== 'proc-fd-inventory' || (error.code !== 'ENOENT' && error.code !== 'ESRCH')) {
+      rememberResourceFailure(error, owner, context);
+      operationError = error;
+    }
+  }
+  let closeError = null;
+  try {
+    directory?.closeSync();
+  } catch (error) {
+    rememberResourceFailure(error, owner, context, true);
+    closeError = error;
+  }
+  if (operationError) throw operationError;
+  if (closeError) throw closeError;
+  return value;
+}
 
 function bounded(path, maximum = MAX_BYTES) {
   const fd = openSync(path, 'r');
@@ -176,9 +264,7 @@ function sample(actor) {
 function listeners(live) {
   const inodes = new Set();
   for (const row of live) {
-    let directory;
-    try {
-      directory = opendirSync(`/proc/${row.pid}/fd`);
+    readOwnedDirectory(`/proc/${row.pid}/fd`, 'proc-fd-inventory', row, (directory) => {
       let count = 0;
       while (true) {
         const entry = directory.readSync();
@@ -198,11 +284,7 @@ function listeners(live) {
           if (error.code !== 'ENOENT' && error.code !== 'ESRCH') throw error;
         }
       }
-    } catch (error) {
-      if (error.code !== 'ENOENT' && error.code !== 'ESRCH') throw error;
-    } finally {
-      directory?.closeSync();
-    }
+    });
   }
   if (inodes.size > 4096) throw new Error('Owned socket admission limit exceeded');
   const endpoints = new Map();
@@ -275,19 +357,16 @@ function retainListeners(actor, endpoints) {
     }
   }
 }
-function entries(path) {
-  const directory = opendirSync(path);
+function entries(path, caseLabel) {
   const names = [];
-  try {
+  readOwnedDirectory(path, 'scratch-inventory', { case: caseLabel }, (directory) => {
     while (true) {
       const entry = directory.readSync();
       if (!entry) break;
       if (names.length === 64) throw new Error('Scratch inventory admission limit exceeded');
       names.push(entry.name);
     }
-  } finally {
-    directory.closeSync();
-  }
+  });
   return names.sort();
 }
 const delay = (ms) => new Promise((done) => setTimeout(done, ms));
@@ -323,7 +402,7 @@ async function snapshot(actor) {
   for (const endpoint of actor.ports.values()) {
     availability.push({ ...endpoint, state: await freePort(endpoint.port, endpoint.family) });
   }
-  return { live, listeners: endpoints, availability, scratch: entries(actor.scratch) };
+  return { live, listeners: endpoints, availability, scratch: entries(actor.scratch, actor.label) };
 }
 async function cleanup(actor) {
   for (const signal of ['SIGTERM', 'SIGKILL']) {
@@ -352,8 +431,36 @@ async function cleanup(actor) {
     throw new Error('Owned process cleanup did not complete');
   }
   if (!actor.scratch.startsWith(`${work}/`)) throw new Error('Scratch cleanup containment failed');
-  rmSync(actor.scratch, { recursive: true, force: true });
+  try {
+    rmSync(actor.scratch, { recursive: true, force: true });
+  } catch (error) {
+    rememberResourceFailure(error, 'scratch-cleanup', { case: actor.label }, true);
+    throw error;
+  }
   actors.delete(actor);
+}
+async function withOwnedCleanup(group, operation) {
+  let operationError = null;
+  try {
+    await operation();
+  } catch (error) {
+    operationError = error;
+  }
+  let cleanupError = null;
+  let cleanupActor;
+  try {
+    for (const actor of group) {
+      cleanupActor = actor;
+      await cleanup(actor);
+    }
+  } catch (error) {
+    rememberResourceFailure(error, 'owned-cleanup', { case: cleanupActor.label }, true);
+    cleanupError = error;
+  }
+  // Preserve the original operation object when cleanup also rejects; both
+  // diagnostics remain in the report and no subsequent case can be admitted.
+  if (operationError) throw operationError;
+  if (cleanupError) throw cleanupError;
 }
 function launch(label, command, args, env, observe) {
   if (Date.now() >= deadline && label !== 'restore-build') {
@@ -452,6 +559,7 @@ function launch(label, command, args, env, observe) {
 }
 async function settle(group, budget, restoring = false) {
   const stop = restoring ? Date.now() + budget : Math.min(deadline, Date.now() + budget);
+  let operationError = null;
   try {
     while (group.some((actor) => !actor.exit) && Date.now() < stop) {
       for (const actor of group) {
@@ -473,12 +581,23 @@ async function settle(group, budget, restoring = false) {
     }
     // Drain already-produced pipe bytes without adding work to the verifier.
     await delay(50);
-  } finally {
+  } catch (error) {
+    operationError = error;
+  }
+  let logError = null;
+  let logActor;
+  try {
     for (const actor of group) {
+      logActor = actor;
       writeFileSync(join(output, `${actor.label}.stdout.log`), actor.stdout);
       writeFileSync(join(output, `${actor.label}.stderr.log`), actor.stderr);
     }
+  } catch (error) {
+    rememberResourceFailure(error, 'settlement-log', { case: logActor.label }, true);
+    logError = error;
   }
+  if (operationError) throw operationError;
+  if (logError) throw logError;
 }
 function result(actor, source, negative) {
   const receipt = actor.observer;
@@ -646,12 +765,10 @@ async function prove(commit, phase, preload) {
     if (phase === 'after' && !actual.passed) failed = true;
   };
   const finish = async (actor, failure) => {
-    try {
+    await withOwnedCleanup([actor], async () => {
       await settle([actor], 60_000);
       observe(actor, failure);
-    } finally {
-      await cleanup(actor);
-    }
+    });
   };
   for (const name of ['normal', 'repeat']) await finish(run(name), null);
   const pair = [run('concurrent-1'), run('concurrent-2')];
@@ -689,11 +806,10 @@ async function prove(commit, phase, preload) {
     }
   };
   let outcomes;
-  try {
+  await withOwnedCleanup(pair, async () => {
     outcomes = await Promise.allSettled([settle(pair, 60_000), sharedObservation()]);
-    if (outcomes.some((outcome) => outcome.status === 'rejected')) {
-      throw new Error('Concurrent proof observation or owned cleanup failed');
-    }
+    const rejected = outcomes.find((outcome) => outcome.status === 'rejected');
+    if (rejected) throw firstObservationError ?? rejected.reason;
     for (const actor of pair) observe(actor, null);
     const overlap =
       pair.every((actor) => actor.endedAt !== null) &&
@@ -707,10 +823,8 @@ async function prove(commit, phase, preload) {
     if (!overlap || (phase === 'after' && (sharedPorts.length !== 0 || !acquiredTogether))) {
       failed = true;
     }
-  } finally {
-    // Preserve both concurrent observations before any deliberate cleanup.
-    for (const actor of pair) await cleanup(actor);
-  }
+    // Both concurrent observations still precede any deliberate cleanup.
+  });
   for (const failure of ['missing-browser', 'malformed-receipt', 'wrong-hash']) {
     let operationError = null;
     try {
@@ -764,14 +878,12 @@ async function build(commit, phase) {
     },
     false,
   );
-  try {
+  await withOwnedCleanup([actor], async () => {
     await settle([actor], restoreBudget, phase === 'restore');
     if (actor.invalid || actor.timedOut || actor.exit?.code !== 0 || actor.exit?.signal) {
       throw new Error('Selected source normal build failed or exceeded the proof budget');
     }
-  } finally {
-    await cleanup(actor);
-  }
+  });
 }
 async function restoreOriginal() {
   if (git(['rev-parse', 'HEAD']) !== original) git(['checkout', '--detach', original]);
@@ -898,6 +1010,7 @@ try {
       await cleanup(actor);
     } catch (error) {
       failed = true;
+      rememberResourceFailure(error, 'owned-cleanup', { case: actor.label }, true);
       report.cleanupError = error.message;
     }
   }
