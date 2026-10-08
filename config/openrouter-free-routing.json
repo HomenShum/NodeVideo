@@ -1,6 +1,6 @@
 {
   "schemaVersion": "nodevideo.openrouter-free-routing.v1",
-  "generatedAt": "2026-10-07T06:46:42.667Z",
+  "generatedAt": "2026-10-07T12:43:42.323Z",
   "catalogDigest": "3e4502d6fc5730faf830649363110c38b71eb99b379be18c13dc9363d1fbdfed",
   "benchmark": {
     "schemaVersion": "nodevideo.openrouter-free-benchmark.v1",
@@ -17,7 +17,10 @@
       "requiredScenarioCoverage": 1
     }
   },
-  "selectedModels": ["nvidia/nemotron-3-super-120b-a12b:free"],
+  "selectedModels": [
+    "nvidia/nemotron-3-super-120b-a12b:free",
+    "dots-studio/dots-3-note-preview:free"
+  ],
   "fallbackRouter": "openrouter/free",
   "candidates": [
     {
@@ -29,7 +32,7 @@
       "successes": 8,
       "successRate": 1,
       "meanScore": 100,
-      "p95LatencyMs": 10023,
+      "p95LatencyMs": 8814,
       "scenarioCoverage": 4,
       "eligible": true
     },
@@ -39,12 +42,12 @@
       "created": 1786680361,
       "contextLength": 512000,
       "samples": 8,
-      "successes": 4,
-      "successRate": 0.5,
-      "meanScore": 50,
-      "p95LatencyMs": 40327,
-      "scenarioCoverage": 2,
-      "eligible": false
+      "successes": 8,
+      "successRate": 1,
+      "meanScore": 100,
+      "p95LatencyMs": 30429,
+      "scenarioCoverage": 4,
+      "eligible": true
     },
     {
       "id": "liquid/lfm-2.5-2.6b:free",
@@ -52,12 +55,12 @@
       "created": 1786470519,
       "contextLength": 65536,
       "samples": 8,
-      "successes": 3,
-      "successRate": 0.375,
-      "meanScore": 37.5,
-      "p95LatencyMs": 33310,
-      "scenarioCoverage": 2,
-      "eligible": false
+      "successes": 6,
+      "successRate": 0.75,
+      "meanScore": 95,
+      "p95LatencyMs": 15463,
+      "scenarioCoverage": 4,
+      "eligible": true
     },
     {
       "id": "apodex/apodex-1.1-mini:free",
@@ -68,7 +71,7 @@
       "successes": 0,
       "successRate": 0,
       "meanScore": 0,
-      "p95LatencyMs": 591,
+      "p95LatencyMs": 824,
       "scenarioCoverage": 0,
       "eligible": false
     }
