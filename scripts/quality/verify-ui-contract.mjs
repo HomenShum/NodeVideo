@@ -113,6 +113,63 @@ try {
   console.log(`Serving contract fixtures at http://127.0.0.1:${mockPort}`);
 
   browser = await chromium.launch();
+  // Check the public homepage metadata in the actual production output.
+  // Parse HTML/XML with the existing browser; app and run URLs stay out of the sitemap.
+  const metadataPage = await browser.newPage();
+  try {
+    const checks = await metadataPage.evaluate(
+      ({ html, robots, sitemap, canonical }) => {
+        const parser = new DOMParser();
+        const document = parser.parseFromString(html, 'text/html');
+        const canonicals = [...document.querySelectorAll('link[rel~="canonical"]')];
+        const rules = robots
+          .split(/\r?\n/u)
+          .map((line) => line.split('#', 1)[0].trim())
+          .filter(Boolean);
+        const xml = parser.parseFromString(sitemap, 'application/xml');
+        const namespace = 'http://www.sitemaps.org/schemas/sitemap/0.9';
+        const root = xml.documentElement;
+        const urls = [...root.children];
+        const locations = [...xml.getElementsByTagNameNS(namespace, 'loc')];
+        return [
+          [
+            'homepage has exactly one canonical for the public root',
+            canonicals.length === 1 &&
+              document.head.contains(canonicals[0]) &&
+              canonicals[0].getAttribute('href') === canonical,
+          ],
+          [
+            'robots allows the public root and declares its sitemap',
+            rules.join('\n') ===
+              `User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /creator/runs/\nSitemap: ${canonical}sitemap.xml`,
+          ],
+          [
+            'sitemap is valid XML containing only the canonical public root',
+            xml.getElementsByTagName('parsererror').length === 0 &&
+              root.localName === 'urlset' &&
+              root.namespaceURI === namespace &&
+              urls.length === 1 &&
+              urls[0].localName === 'url' &&
+              urls[0].namespaceURI === namespace &&
+              urls[0].children.length === 1 &&
+              locations.length === 1 &&
+              locations[0].parentElement === urls[0] &&
+              locations[0].textContent.trim() === canonical,
+          ],
+        ];
+      },
+      {
+        html: readFileSync(join(root, 'dist', 'index.html'), 'utf8'),
+        robots: readFileSync(join(root, 'dist', 'robots.txt'), 'utf8'),
+        sitemap: readFileSync(join(root, 'dist', 'sitemap.xml'), 'utf8'),
+        canonical: 'https://nodevideo-pi.vercel.app/',
+      },
+    );
+    for (const [message, passed] of checks) passed ? ok(message) : fail(message);
+  } finally {
+    await metadataPage.close();
+  }
+
   for (const surface of contract.surfaces) {
     console.log(`SURFACE ${surface.id} (${surface.route})`);
     const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });

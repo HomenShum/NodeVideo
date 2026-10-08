@@ -14,55 +14,7 @@ These checks do not certify the public editor, providers, full-length exports, e
 production behavior or whole-product quality. Read this file first, then [the architecture](docs/architecture.md)
 for layer ownership and [the agent execution policy](docs/engineering/AGENT_EXECUTION_POLICY.md) before changing code.
 
-## Public landing HTML and crawler policy
-
-A visitor arriving from search can read the homepage and follow its links before JavaScript
-loads. Previously the response contained an empty root; the visible copy existed only after
-React mounted. The root Vite HTML transform now renders the same `Landing` component that the
-browser hydrates. Keep browser effects inside that component and mounting in `client.tsx`.
-The stylesheet is linked from `index.html`, so development mode also remains styled when scripts
-are delayed. An SVG of the real first tracked pose remains visible until the canvas actually
-paints; unavailable JavaScript or a missing canvas context leaves that fallback in place.
-
-The initial render is steady in both environments, then follows the visitor's motion preference,
-including changes during a session. The existing clock arithmetic and source pose data are
-unchanged. The heading now accurately introduces four workflow cards.
-
-The public homepage canonical is `https://nodevideo-pi.vercel.app/`. Its sitemap contains only
-that page. Crawler files belong in `fixtures`, the configured Vite public directory. The crawler
-policy excludes API and private-run paths; robots directives are not authorization controls.
-Keep canonical, Open Graph URL and sitemap consistent if the production hostname changes.
-
-Verify with `npm run build`, `npm run lint`, `npm run test`, `npm run check:ui`,
-`npm run check:contract` and `npx playwright test tests/e2e/public-landing.spec.ts`.
-The public landing suite covers initial HTML, crawler response types, no JavaScript, delayed
-hydration, unavailable canvas, keyboard navigation, repeated visits and live motion preferences
-at all five configured viewports. It also attaches DOM, console, pixels and an Axe report.
-The first local run passed 353 unit cases and 30 public browser cases without skips or retries,
-plus build, lint, UI policy and contract checks. Automated Axe results have no violations but
-retain incomplete checks for human review. These are scoped checks, not full product grades,
-provider certification, evidence of production adoption or a search-ranking result. Inspect the
-exact commit's Quality workflow, preview build receipt and raw HTML before release.
-
-The September 8 lock patch updates only the eight coupled Vitest records to 4.1.11, addressing
-[GHSA-82fw-gwwq-j7x9](https://github.com/advisories/GHSA-82fw-gwwq-j7x9) in development tooling.
-Direct constraints and all production dependency records are unchanged. The normal npm 10
-installer, lint, typechecked build and all 353 unit cases passed; the fresh full audit reports
-zero vulnerabilities. Built landing HTML is byte-identical to the verified SEO build above.
-Check the updated commit's CI separately; earlier green runs do not certify a later lockfile.
-
 ## Run the public local demo
-
-`npm run check:contract` owns its preview and fixture servers in the checker process and
-awaits their closure, including when the build receipt is invalid or Chromium cannot launch.
-It logs the actual bound ports: `NODEVIDEO_CONTRACT_PORT` selects the preferred preview port
-(default 4327), Vite selects another when occupied, and the fixture service uses an OS-assigned
-port. Concurrent checks can share the preferred port. Cleanup failures fail the command, and
-the consent scenario removes its temporary input even when a browser action throws.
-Local process observation reproduced three leftover children before this repair. Afterward,
-normal, repeated and two concurrent checks passed with no surviving observed children or
-listeners; missing Chromium and a malformed served receipt each exited with failure and
-released their acquired resources. Build, lint, UI policy and all 353 unit cases also passed.
 
 Use a fresh checkout with Node.js 22.12+, npm 10+ and Git. No `.env` file, provider key, camera, private
 media or model download is needed for this journey. The earlier ordinary `npm ci` succeeded with
@@ -208,3 +160,101 @@ This follow-up changes no application or test behavior. The receipt readers veri
 media evidence; they do not run a fresh model provider. The local contract retains its six deferred
 camera/cancellation/export controls. There is no new provider, physical-device, full-export,
 rendered-quality or public-deployment proof, and the existing quality limits above remain open.
+
+
+## Compatible security lock repair (local capture, 2026-10-08)
+
+Developers installing the current source should distinguish the earlier dated audit snapshots
+above from this new lock-only security result. The repair was prepared on canonical source
+`a38fa8d39fb13215951952020f9395c2cd1069f7`. It updates nine compatible targets: proxy-addr 2.0.8,
+MCP SDK 1.31.0, brace-expansion 5.0.12, source-map-js 1.2.2, Vitest 4.1.11, fast-uri 3.1.8,
+ip-address 10.7.1, postcss-selector-parser 7.1.6 and DOMPurify 3.4.16. Vitest's seven existing
+family records follow its exact 4.1.11 pins. All 893 lock paths remain: 16 records change and
+877 records remain identical. The root package, direct constraints, scripts, source, tests,
+CI policy and pinned NodeKit Git dependency are unchanged.
+
+SDK 1.31.0 widens its Hono node-server dependency to `^1.19.9 || ^2.0.5`; the retained 1.19.17
+satisfies that range. No Hono, Express, Zod or other SDK transitive refresh was required.
+The selected records use their exact published registry tarball and integrity identities.
+One normal `npm install --package-lock-only --ignore-scripts --no-audit --no-fund` completed
+with exit 0 on Node 22.22.2/npm 10.9.7 and left the prepared lock bytes unchanged. This command
+did not install an application graph or run lifecycle scripts.
+
+One normal `npm audit --package-lock-only --json` per captured lock reported:
+
+| Lock | Low | Moderate | High | Critical | Total | Actual exit |
+|---|---:|---:|---:|---:|---:|---:|
+| Original a38fa8d lock | 9 | 5 | 9 | 1 | 24 | 1 |
+| Compatible repair candidate | 8 | 0 | 6 | 0 | 14 | 1 |
+
+The after-audit completed at 14:53:36 UTC. Ten finding rows disappeared; no new finding row
+was added. All six remaining high rows propagate from unpatched braces 3.0.3. Shadcn remains
+because application CSS and the developer CLI workflow consume it; npm's suggested major
+downgrade was not applied. The eight remaining low rows propagate from KaTeX 0.16.47. Its
+published patched 0.18.2 falls outside the four current `^0.16` parent ranges and needs a
+separate compatibility repair. These limitations are retained in the primary
+[braces advisory](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm) and
+[KaTeX advisory](https://github.com/advisories/GHSA-238p-pmpm-9mq7).
+
+At this local-proof capture, a fresh normal installed-tree/lifecycle check, typecheck, build,
+scenario suite, browser check and new-source shared CI are NOT_RUN. The lock-only audit is
+still nonzero and does not certify application compatibility, all-security, provider behavior,
+visual quality or a public deployment. The original dated results and their limitations above
+remain historical evidence; this append does not reinterpret them.
+
+
+## Crawlable landing and contract cleanup (candidate, 2026-10-08)
+
+A visitor should receive the homepage explanation, navigation and a real first pose before
+JavaScript runs. A developer checking the built UI should receive an honest verdict without
+leaving an owned browser, preview server, fixture listener or temporary consent input behind.
+This ten-path candidate ports the retained intent of [draft PR52](https://github.com/HomenShum/NodeVideo/pull/52)
+onto canonical main `5d2236942001ea3df50c90abb8e21e277e7b1cea`. The original PR52 head
+`2953f3f7edaa9f1fd192f94b940489febd3cd20f` and all earlier evidence remain preserved.
+
+The root-only Vite HTML transform renders the existing exported Landing component. A separate
+client entry hydrates it, with the same initial reduced-motion state and a subscription to
+later preference changes. Linked CSS and a first-pose SVG from the existing pose input keep
+content available until the canvas paints. The four existing action cards now have a matching
+"Four ways" heading. Clock arithmetic, pose data, public destinations and editor/provider flows
+are unchanged. The existing single canonical and homepage-only XML sitemap are retained;
+robots additionally declares `Disallow: /api/` and `Disallow: /creator/runs/`. Robots directives
+are crawler guidance, not access control.
+
+The contract verifier now acquires Vite through the installed 8.1.4 preview API, reads its
+actual bound port, lets the OS assign the fixture listener port and awaits acquired-resource
+cleanup in `finally`. Consent scratch input is also removed in `finally`; a rejected cleanup
+records a failure. Main's canonical/XML and all existing rendered contract assertions remain,
+with the exact robots rule list deliberately extended for the two declared exclusions.
+Vite failures before its preview API returns remain outside the acquired-server claim.
+
+The pre-edit operator capture used the public production root in the existing Chrome session
+at 1440x900, on October 8, 2026. It records a rendered pose and navigation, four cards under
+"Three ways", and extension warnings. This is one desktop BEFORE observation; it is not a
+mobile, five-viewport, provider, full-product or visual-quality certificate. The separate
+canonical raw production receipt still had an empty client root before this candidate.
+The operator packet is `nodevideo-pr52-current-source-plan-20261008-01`, with the preserved
+`root-public-landing-baseline-20261008-01` screenshot, DOM and console/state capture.
+
+At this source-preparation checkpoint, this candidate's normal install, lint, typecheck,
+build, unit suite, contract execution, browser/console/Axe/pixel matrix, resource-failure
+and concurrent-caller checks, new-head CI and production adoption are **NOT_RUN**. The nine
+clock lifecycle scenarios and all their existing assertions remain; only their canvas/import
+adapter changes. The six new public-visitor scenarios are proposed checks, not a pass count.
+The full local responsive/build/Playwright resource hold remains scoped to those jobs; one
+existing-Chrome baseline does not lift it or certify those checks. No dependency, package
+command, workflow, timeout, score gate or provider behavior changes in this source port.
+
+After the source review and required environment prerequisites, use the existing normal
+commands: `npm run check`, `npm run test -- tests/unit/landing-clock.test.ts`, and
+`npx playwright test tests/e2e/public-landing.spec.ts`. Observe baseline and candidate HTML,
+hydration and the actual owned-resource cleanup under matched inputs before declaring a
+repair. Preserve negative startup/receipt failures and explicit skips. A later completed
+deployment needs fresh raw homepage content and exact build identity plus hydrated pixels;
+source or CI success alone cannot certify that production result or search ranking.
+
+The locked dependency graph stays byte-identical to the merged PR61 result above. Its actual
+14 residual audit rows remain separate: six HIGH [issue62](https://github.com/HomenShum/NodeVideo/issues/62)
+and eight LOW [issue63](https://github.com/HomenShum/NodeVideo/issues/63). Neither this candidate
+nor the historical zero-audit entries clear those issues. No all-security, all-CI-green,
+responsive/interaction/SEO grade or whole-portfolio completion claim follows from this append.
