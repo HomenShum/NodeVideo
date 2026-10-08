@@ -258,3 +258,89 @@ The locked dependency graph stays byte-identical to the merged PR61 result above
 and eight LOW [issue63](https://github.com/HomenShum/NodeVideo/issues/63). Neither this candidate
 nor the historical zero-audit entries clear those issues. No all-security, all-CI-green,
 responsive/interaction/SEO grade or whole-portfolio completion claim follows from this append.
+
+## Finite contract-resource proof in normal CI (source candidate, 2026-10-08)
+
+A developer should be able to check the built UI twice or alongside another caller without
+leaving a browser, owned descendant, local listener or temporary consent input behind. A
+missing browser or malformed served build receipt must still return its actual failure; a
+cleanup proof must not recover the product error or turn an invalid measurement into success.
+
+This four-owner follow-up adds a standard-library supervisor and passive Node preload to the
+existing Quality job. It leaves the product verifier, package/lock, ordinary install, Chromium
+installation, original single contract gate, UI/media gates, action versions and job timeouts
+unchanged. The historical source-preparation and observed results above retain their original
+scope and dates. This append proposes a new proof; it does not turn those earlier results into
+resource-closure evidence.
+
+Every normal current-source job requires seven launches: normal, repeat, two concurrent
+callers with the same preferred preview port, missing Chromium, malformed served receipt and
+wrong contract hash. The concurrent observation captures both roots' numeric birth identities
+and owned listening ports within one bounded sampling window while both roots remain active.
+The two AFTER port sets must be disjoint. This is a sampled overlap observation, not an atomic
+kernel snapshot. Both final observations occur before deliberate supervisor cleanup.
+
+For pull requests, the workflow reads the exact complete PR-base SHA and tests only the diff
+of `scripts/quality/verify-ui-contract.mjs`. Native diff exit 1 selects a matched comparison;
+exit 0 runs current-only seven with an explicit reason and `baseline=null`; any other exit
+fails admission. Natural main jobs run current-only seven. Today's PR52 verifier delta requires
+fourteen launches, authentic base first and the original actual job checkout second. AFTER
+is never a permanently pinned legacy implementation. Future unchanged-verifier dependency
+changes therefore still run the current seven rather than borrowing an old dependency graph.
+
+The paired supervisor requires byte-identical package.json and package-lock.json at the two
+commits before checking out either source. A combined verifier and dependency change remains
+incomparable and fails; it needs a separately owned comparison plan rather than an override.
+The normal installed graph is reused, without installation, resolution or package mutation.
+Vite/Playwright installed versions must match the lock. Their package metadata and npm's
+installed-lock metadata are hashed before/after; this is not a hash of every installed file.
+The retained verifier profiles are the admitted legacy child-preview owner and current
+in-process Vite preview owner. An unsupported acquisition profile fails admission.
+
+The preload uses public Node diagnostic channels, server state, child spawn/exit/close events,
+`beforeExit`, `uncaughtExceptionMonitor` and active-resource type counts. Its payload contract
+is grounded in Node v22.23.3's net and child-process source. The job records its actual Node 22
+version; absent, unsupported, oversized or inconsistent observations fail rather than passing
+an empty listener map. It adds no child error recovery, method patch, timer, private-handle
+inspection, process report or environment/argument dump. Kernel observation retains numeric
+PID, parent/group, birth ticks, state and loopback port identities only. A child hint grants no
+ownership without an immediately read birth identity and verified owned parent or group.
+
+Each caller records its actual exit and bounded diagnostics. The missing-browser negative
+must identify the own empty browser path and actual launch caller; malformed JSON must identify
+SyntaxError/JSON.parse and the actual receipt caller. Wrong hash retains the verifier's explicit
+failure. Natural success is distinguished from forced exit and uncaught failure. Baseline
+product failures or leaked resources are evidence, but invalid baseline ownership, listener or
+output observations fail the comparison. Every AFTER case must satisfy its intended verdict
+and resource closure.
+
+Closure requires zero retained owned process records, including zombies, no owned listener,
+free observed acquired ports and an empty per-caller scratch directory at the final bounded
+settlement observation. It does not claim that a five-second settlement proves all later
+behavior. Cleanup may terminate only identities already admitted to an owned group; an unknown
+member fails containment. Deliberate cleanup happens after the measurement and cannot convert
+a failed AFTER observation into a passing one. Temporary receipt edits restore literal bytes;
+source commit/tree, package/lock, installed metadata and the original normal build receipt must
+be restored before a passing overall result.
+
+Collections/read sizes are bounded: 256 owned process identities per launch, 64 server/child
+records per preload, 64 acquired ports, 4,096 process/socket table rows, 512 descriptors per
+owned process, 64 scratch entries, 16 KiB observer lines, 256 KiB per output stream and a 4 MiB
+result. New case/build admission stops after seven minutes; settlement and owned cleanup have
+separate bounded windows, and one necessary restoration build retains a 120-second budget.
+The unchanged 15-minute outer job timeout remains the total CI ceiling. Admission failure or
+an exceeded observation cap produces failure, not a truncated PASS. The existing artifact
+action retains bounded raw logs and result.json under `.qa/evidence/contract-resources`.
+
+At this source checkpoint, the new supervisor/preload, paired fourteen/current seven, natural
+new-head CI and their resource outcome are **NOT_RUN**. Parser-only validation, when separately
+recorded, can certify syntax alone. Local heavy build/browser work remains held; no local
+runtime, dependency installation, provider call or held-action replay is part of this source
+implementation. Failure during consent scratch acquisition, rejected close, interruption and
+sustained state accumulation remain **NOT_RUN**. No universal cleanup, visual, SEO, security,
+production adoption or whole-portfolio certificate follows. The six HIGH/eight LOW residual
+findings in issues62/63 remain separate and open.
+
+Primary observer contract: [Node v22.23.3 net source](https://github.com/nodejs/node/blob/v22.23.3/lib/net.js),
+[child-process source](https://github.com/nodejs/node/blob/v22.23.3/lib/internal/child_process.js)
+and [Node 22 process events](https://nodejs.org/docs/latest-v22.x/api/process.html).
