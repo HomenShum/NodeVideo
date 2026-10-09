@@ -441,33 +441,69 @@ function listeners(live, caseLabel) {
           continue;
         }
         const taskContext = { ...context, tid, taskBirth: current.birth, taskState: current.state };
-        const complete = readOwnedDirectory(
-          `/proc/${row.pid}/task/${tid}/fd`,
-          'proc-fd-inventory',
-          taskContext,
-          (directory) => {
-            let descriptors = 0;
-            while (true) {
-              const entry = directory.readSync();
-              if (!entry) break;
-              descriptors += 1;
-              if (descriptors > 512) throw new Error('Owned descriptor admission limit exceeded');
-              if (!/^\d+$/u.test(entry.name)) continue;
-              try {
-                const link = readlinkSync(`/proc/${row.pid}/task/${tid}/fd/${entry.name}`);
-                const inode = link.match(/^socket:\[(\d+)\]$/u)?.[1];
-                if (inode) {
-                  if (inodes.size === 4096 && !inodes.has(inode))
-                    throw new Error('Owned socket admission limit exceeded');
-                  inodes.add(inode);
+        let complete;
+        try {
+          complete = readOwnedDirectory(
+            `/proc/${row.pid}/task/${tid}/fd`,
+            'proc-fd-inventory',
+            taskContext,
+            (directory) => {
+              let descriptors = 0;
+              while (true) {
+                const entry = directory.readSync();
+                if (!entry) break;
+                descriptors += 1;
+                if (descriptors > 512) throw new Error('Owned descriptor admission limit exceeded');
+                if (!/^\d+$/u.test(entry.name)) continue;
+                try {
+                  const link = readlinkSync(`/proc/${row.pid}/task/${tid}/fd/${entry.name}`);
+                  const inode = link.match(/^socket:\[(\d+)\]$/u)?.[1];
+                  if (inode) {
+                    if (inodes.size === 4096 && !inodes.has(inode))
+                      throw new Error('Owned socket admission limit exceeded');
+                    inodes.add(inode);
+                  }
+                } catch (error) {
+                  if (error.code !== 'ENOENT' && error.code !== 'ESRCH') throw error;
                 }
-              } catch (error) {
-                if (error.code !== 'ENOENT' && error.code !== 'ESRCH') throw error;
               }
+              return true;
+            },
+          );
+        } catch (error) {
+          const first = report.observationFailure;
+          if (
+            error === firstObservationError &&
+            error.code === 'EACCES' &&
+            error.syscall === 'opendir' &&
+            first?.owner === 'proc-fd-inventory' &&
+            first.pid === row.pid &&
+            first.birth === row.birth &&
+            first.case === caseLabel &&
+            first.taskIdentity?.tid === tid &&
+            first.taskIdentity?.birth === current.birth &&
+            first.taskIdentity?.state === current.state &&
+            !first.taskReadback
+          ) {
+            try {
+              // The first slot exists before this one bounded same-TID read.
+              // Its diagnostic failure never replaces the original FD error.
+              const observed = task(tid, current);
+              first.taskReadback = {
+                status:
+                  observed === null
+                    ? 'gone'
+                    : observed.birth === current.birth
+                      ? 'same-birth'
+                      : 'changed-identity',
+                state: observed?.state ?? null,
+              };
+            } catch {
+              first.taskReadback = { status: 'unreadable', state: null };
             }
-            return true;
-          },
-        );
+          }
+          throw error;
+        }
         const after = task(tid, current);
         leader();
         if (!after) {
