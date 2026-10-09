@@ -7,6 +7,7 @@ import {
   closeSync,
   copyFileSync,
   existsSync,
+  lstatSync,
   mkdirSync,
   mkdtempSync,
   openSync,
@@ -18,7 +19,7 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { createServer } from 'node:net';
-import { tmpdir } from 'node:os';
+import { release, tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..', '..');
@@ -377,8 +378,13 @@ function listeners(live, caseLabel) {
         ) {
           throw new Error('Owned task stat has an invalid path, state, group or birth');
         }
+        const parsedFlags = /^\d{1,10}$/u.test(values[6] ?? '') ? Number(values[6]) : null;
+        const flags =
+          Number.isSafeInteger(parsedFlags) && parsedFlags >= 0 && parsedFlags <= 0xffffffff
+            ? parsedFlags
+            : null;
         count('taskStatsRead');
-        return { tid, state: values[0], birth: values[19] };
+        return { tid, state: values[0], birth: values[19], flags };
       } catch (error) {
         if (error.code === 'ENOENT' || error.code === 'ESRCH') return null;
         rememberResourceFailure(error, 'proc-fd-inventory', {
@@ -485,6 +491,7 @@ function listeners(live, caseLabel) {
             first.taskIdentity?.state === current.state &&
             !first.taskReadback
           ) {
+            first.taskIdentity.flags = current.flags;
             try {
               // The first slot exists before this one bounded same-TID read.
               // Its diagnostic failure never replaces the original FD error.
@@ -497,9 +504,67 @@ function listeners(live, caseLabel) {
                       ? 'same-birth'
                       : 'changed-identity',
                 state: observed?.state ?? null,
+                flags: observed?.flags ?? null,
               };
+              if (first.taskReadback.status === 'same-birth') {
+                try {
+                  const directory = lstatSync(`/proc/${row.pid}/task/${tid}/fd`);
+                  const effectiveUid = process.geteuid();
+                  const effectiveGid = process.getegid();
+                  if (
+                    ![
+                      directory.uid,
+                      directory.gid,
+                      effectiveUid,
+                      effectiveGid,
+                      directory.mode,
+                    ].every(
+                      (value) => Number.isSafeInteger(value) && value >= 0 && value <= 0xffffffff,
+                    ) ||
+                    !Number.isSafeInteger(directory.size) ||
+                    directory.size < 0
+                  ) {
+                    throw new Error('FD directory metadata is not safe numeric data');
+                  }
+                  const kernel = release();
+                  const kernelRelease =
+                    typeof kernel === 'string' && /^[A-Za-z0-9.+_-]{1,128}$/u.test(kernel)
+                      ? kernel
+                      : null;
+                  // The metadata and task reads are sequential, not atomic.
+                  const final = task(tid, observed);
+                  const status =
+                    final === null
+                      ? 'gone'
+                      : final.birth === current.birth
+                        ? 'same-birth'
+                        : 'changed-identity';
+                  first.fdMetadata =
+                    status === 'same-birth'
+                      ? {
+                          status,
+                          isDirectory: directory.isDirectory(),
+                          permissions: directory.mode & 0o777,
+                          ownerMatchesEffectiveUid: directory.uid === effectiveUid,
+                          groupMatchesEffectiveGid: directory.gid === effectiveGid,
+                          ownerIsRoot: directory.uid === 0,
+                          observerIsRoot: effectiveUid === 0,
+                          size: directory.size,
+                          state: final.state,
+                          flags: final.flags,
+                          kernelRelease,
+                        }
+                      : { status };
+                } catch {
+                  // Keep the independently captured readback and original failure.
+                  first.fdMetadata = { status: 'unreadable' };
+                }
+              } else {
+                first.fdMetadata = { status: first.taskReadback.status };
+              }
             } catch {
-              first.taskReadback = { status: 'unreadable', state: null };
+              first.taskReadback = { status: 'unreadable', state: null, flags: null };
+              first.fdMetadata = { status: 'unreadable' };
             }
           }
           throw error;
