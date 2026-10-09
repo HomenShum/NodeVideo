@@ -320,7 +320,9 @@ function sample(actor) {
     return current && current.birth === owned.birth ? [current] : [];
   });
 }
-function listeners(live, caseLabel) {
+async function listeners(live, caseLabel, stop = deadline) {
+  const waitStop = Math.min(stop, Date.now() + 1000);
+  let waitPolls = 0;
   if (
     !/^(?:(?:before|after)-(?:normal|repeat|concurrent-[12]|missing-browser|malformed-receipt|wrong-hash|build)|restore-build)$/u.test(
       caseLabel,
@@ -341,6 +343,8 @@ function listeners(live, caseLabel) {
       terminalTasks: 0,
       vanishedTasks: 0,
       vanishedGroups: 0,
+      exitingTasksWaited: 0,
+      exitWaitPolls: 0,
     };
     report.taskInventories.push(counters);
   }
@@ -434,11 +438,53 @@ function listeners(live, caseLabel) {
       if (!tids || tids.length === 0)
         throw new Error('Present owned group has no readable task inventory');
       for (const tid of tids) {
-        const current = task(tid);
+        let current = task(tid);
         if (!current) {
           leader();
           count('vanishedTasks');
           continue;
+        }
+        if (current.state !== 'Z' && current.flags !== null && (current.flags & 4) !== 0) {
+          count('exitingTasksWaited');
+          const taskBirth = current.birth;
+          while (current && current.state !== 'Z') {
+            const remaining = waitStop - Date.now();
+            if (waitPolls >= 200 || remaining <= 0) {
+              const error = new Error(
+                'Owned exiting task did not become terminal within inventory budget',
+              );
+              rememberResourceFailure(error, 'proc-fd-inventory', {
+                ...context,
+                tid,
+                taskBirth,
+                taskState: current.state,
+              });
+              throw error;
+            }
+            await delay(Math.min(5, remaining));
+            waitPolls += 1;
+            count('exitWaitPolls');
+            current = task(tid, current);
+            leader();
+            if ((current && current.birth !== taskBirth) || Date.now() >= waitStop) {
+              const error = new Error(
+                current && current.birth !== taskBirth
+                  ? 'Owned task birth changed during terminal wait'
+                  : 'Owned terminal wait exceeded its inventory budget',
+              );
+              rememberResourceFailure(error, 'proc-fd-inventory', {
+                ...context,
+                tid,
+                taskBirth,
+                taskState: current?.state,
+              });
+              throw error;
+            }
+          }
+          if (!current) {
+            count('vanishedTasks');
+            continue;
+          }
         }
         if (current.state === 'Z') {
           // A terminal task released its own file-table reference before Z.
@@ -701,9 +747,9 @@ function freePort(port, family = 'IPv4') {
     );
   });
 }
-async function snapshot(actor) {
+async function snapshot(actor, stop = deadline) {
   const live = sample(actor);
-  const endpoints = listeners(live, actor.label);
+  const endpoints = await listeners(live, actor.label, stop);
   retainListeners(actor, endpoints);
   const availability = [];
   for (const endpoint of actor.ports.values()) {
@@ -871,7 +917,7 @@ async function settle(group, budget, restoring = false) {
     while (group.some((actor) => !actor.exit) && Date.now() < stop) {
       for (const actor of group) {
         const live = sample(actor);
-        if (actor.observe) retainListeners(actor, listeners(live, actor.label));
+        if (actor.observe) retainListeners(actor, await listeners(live, actor.label, stop));
       }
       await delay(200);
     }
@@ -881,10 +927,10 @@ async function settle(group, budget, restoring = false) {
         if (wait) await delay(wait);
         // Both roots have ended. Serialize probes so shared closed probe ports
         // cannot be occupied by the other verifier or by this supervisor itself.
-        for (const actor of group) actor.snapshots.push(await snapshot(actor));
+        for (const actor of group) actor.snapshots.push(await snapshot(actor, stop));
       }
     } else {
-      for (const actor of group) actor.snapshots.push(await snapshot(actor));
+      for (const actor of group) actor.snapshots.push(await snapshot(actor, stop));
     }
     // Drain already-produced pipe bytes without adding work to the verifier.
     await delay(50);
@@ -1083,11 +1129,12 @@ async function prove(commit, phase, preload) {
   const sharedObservation = async () => {
     while (pair.every((actor) => !actor.exit && !actor.timedOut) && Date.now() < deadline) {
       const startedAt = Date.now();
-      const inventories = pair.map((actor) => {
+      const inventories = [];
+      for (const actor of pair) {
         const live = sample(actor);
-        const endpoints = listeners(live, actor.label);
+        const endpoints = await listeners(live, actor.label, deadline);
         retainListeners(actor, endpoints);
-        return {
+        inventories.push({
           pid: actor.pid,
           birth: actor.owned.get(actor.pid).birth,
           listeners: endpoints,
@@ -1098,8 +1145,8 @@ async function prove(commit, phase, preload) {
                 .map((endpoint) => endpoint.port),
             ),
           ],
-        };
-      });
+        });
+      }
       const disjoint = !inventories[0].ports.some((port) => inventories[1].ports.includes(port));
       if (
         inventories.every((inventory) => inventory.ports.length >= 2) &&
