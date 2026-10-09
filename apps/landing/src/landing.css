@@ -8,6 +8,19 @@
   --count-pulse: 0;
 }
 
+/* Keep the source-backed first pose visible until canvas has actually painted. */
+.pose-replay {
+  visibility: hidden;
+}
+
+.pose-replay[data-ready="true"] {
+  visibility: visible;
+}
+
+.pose-replay[data-ready="true"] + .pose-fallback {
+  display: none;
+}
+
 .on-count {
   transform: scale(calc(1 + 0.014 * var(--count-pulse)));
   transition: transform 90ms ease-out;
