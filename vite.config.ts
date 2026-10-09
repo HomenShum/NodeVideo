@@ -3,8 +3,28 @@ import type { ServerResponse } from 'node:http';
 import path from 'node:path';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
+import { createElement } from 'react';
+import { renderToString } from 'react-dom/server';
 import { type Plugin, defineConfig } from 'vitest/config';
+import { Landing } from './apps/landing/src/landing';
 import { localPrivatePreview } from './scripts/dev/local-private-preview';
+
+function publicLanding(): Plugin {
+  return {
+    name: 'nodevideo-public-landing',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html, context) {
+        if (path.resolve(context.filename) !== path.resolve(__dirname, 'index.html')) return html;
+        const marker = '<!--landing-html-->';
+        if (html.split(marker).length !== 2) {
+          throw new Error('Public landing HTML must contain exactly one rendering marker.');
+        }
+        return html.replace(marker, renderToString(createElement(Landing)));
+      },
+    },
+  };
+}
 
 // MediaPipe's WASM runtime must be same-origin (the CSP blocks CDNs). Serve it
 // from the npm package in dev, and copy it into dist at build time (see
@@ -181,6 +201,7 @@ export default defineConfig({
     include: ['convex/react'],
   },
   plugins: [
+    publicLanding(),
     localPrivatePreview(privatePreview),
     browserFfmpegAssets(),
     react(),

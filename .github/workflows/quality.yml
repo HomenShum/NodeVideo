@@ -82,6 +82,35 @@ jobs:
           npx playwright install --with-deps chromium
           npm run check:contract
 
+      - name: UI contract owned-resource scenarios
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            baseline="${{ github.event.pull_request.base.sha }}"
+            if git diff --quiet "$baseline" HEAD -- scripts/quality/verify-ui-contract.mjs; then
+              echo "Current-source seven: PR base has the same verifier; baseline=null."
+              node scripts/quality/prove-ui-contract-resources.mjs
+            else
+              diff_status=$?
+              if [[ "$diff_status" -ne 1 ]]; then
+                echo "Cannot read the exact PR-base verifier diff."
+                exit "$diff_status"
+              fi
+              node scripts/quality/prove-ui-contract-resources.mjs --baseline "$baseline"
+            fi
+          else
+            echo "Current-source seven: natural main checkout; baseline=null."
+            node scripts/quality/prove-ui-contract-resources.mjs
+          fi
+
+      - name: Upload contract resource observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nodevideo-contract-resources-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .qa/evidence/contract-resources
+          if-no-files-found: error
+          retention-days: 14
+
   ui-ux-qa:
     name: Agentic UI Bar — authorized real-media path
     needs: code-quality
