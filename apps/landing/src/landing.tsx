@@ -229,7 +229,7 @@ export function Landing() {
           >
             Preview a sample verdict — no setup needed
           </a>
-          <div
+          <fieldset
             aria-label={`Count ${count} of 8 at ${TEMPO_BPM} beats per minute`}
             className="flex flex-wrap items-baseline gap-3 font-mono text-sm text-muted-foreground"
           >
@@ -239,7 +239,7 @@ export function Landing() {
               </span>
             ))}
             <span className="pl-2 text-xs">{TEMPO_BPM} bpm · the page keeps count</span>
-          </div>
+          </fieldset>
         </div>
         <div className="min-w-0 overflow-hidden rounded-3xl border border-border bg-card">
           <div className="aspect-square">

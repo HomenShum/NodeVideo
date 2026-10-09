@@ -3,8 +3,13 @@ import { type Page, type TestInfo, expect, test } from 'playwright/test';
 
 const canonical = 'https://nodevideo-pi.vercel.app/';
 const heading = 'Learn the dance you admire.';
+const countName = /^Count [1-8] of 8 at 103\.4 beats per minute$/;
 
 async function capture(page: Page, testInfo: TestInfo, name: string, errors: string[]) {
+  const ticker = page.getByRole('group', { name: countName });
+  await expect(ticker).toHaveCount(1);
+  await expect(ticker.locator('.count-cell')).toHaveCount(8);
+  expect(await ticker.getAttribute('aria-live')).toBeNull();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await testInfo.attach(`${name}-dom`, { body: await page.content(), contentType: 'text/html' });
   await testInfo.attach(`${name}-console`, {
@@ -32,6 +37,9 @@ test('search visitor receives the public explanation in the initial HTML', async
   expect(response.status()).toBe(200);
   const html = await response.text();
   expect(html).toContain('data-testid="landing"');
+  expect(html).toMatch(
+    /<fieldset\b(?=[^>]*\saria-label="Count 1 of 8 at 103\.4 beats per minute")[^>]*>/,
+  );
   expect(html).toMatch(/<h1\b[^>]*>Learn the dance you admire\.<\/h1>/);
   expect(html).toContain('href="/studio.html"');
   expect(html).toContain('Four ways to use NodeVideo today');
@@ -125,6 +133,7 @@ test('slow connection shows useful content and a pose before scripts hydrate', a
     contentType: 'application/json',
   });
   expect(audit.violations).toEqual([]);
+  expect(audit.incomplete.filter((result) => result.id === 'aria-prohibited-attr')).toEqual([]);
 });
 
 test('visitor changes motion preferences and returns repeatedly without duplicate hydration', async ({
@@ -132,7 +141,7 @@ test('visitor changes motion preferences and returns repeatedly without duplicat
 }, testInfo) => {
   const errors = collectErrors(page);
   await page.goto('/');
-  const ticker = page.locator('[aria-label^="Count "]');
+  const ticker = page.getByRole('group', { name: countName });
   const canvas = page.locator('.pose-replay');
   await expect(canvas).toHaveAttribute('data-ready', 'true');
   for (let visit = 0; visit < 3; visit++) {
