@@ -194,7 +194,15 @@ function readOwnedDirectory(path, owner, context, consume) {
   } catch (error) {
     // Retain the existing proc-disappearance races; no permission failure is absent.
     if (owner !== 'proc-fd-inventory' || (error.code !== 'ENOENT' && error.code !== 'ESRCH')) {
-      rememberResourceFailure(error, owner, context);
+      // The exact owned task-FD sampler classifies a stale identity before the
+      // fatal slot is committed. Every other operation is recorded here.
+      const taskFdDenial =
+        owner === 'proc-fd-inventory' &&
+        Number.isSafeInteger(context.tid) &&
+        context.tid > 0 &&
+        error.code === 'EACCES' &&
+        ['opendir', 'readlink'].includes(error.syscall);
+      if (!taskFdDenial) rememberResourceFailure(error, owner, context);
       operationError = error;
     }
   }
@@ -225,6 +233,58 @@ function bounded(path, maximum = MAX_BYTES) {
   } finally {
     closeSync(fd);
   }
+}
+function admitVisibleProc() {
+  const bytes = bounded('/proc/self/mountinfo', 65536);
+  const lines = bytes.toString('utf8').trimEnd().split('\n');
+  if (lines.length === 0 || lines.length > 1024) {
+    throw new Error('Proc mount metadata exceeds its row admission');
+  }
+  let proc = null;
+  for (const line of lines) {
+    if (!/^[\x20-\x7e]+$/u.test(line)) throw new Error('Proc mount metadata is not safe text');
+    const fields = line.split(' ');
+    const separator = fields.indexOf('-');
+    if (
+      fields.length > 80 ||
+      fields.some((field) => field.length === 0 || field.length > 4096) ||
+      separator < 6 ||
+      fields.lastIndexOf('-') !== separator ||
+      fields.length !== separator + 4 ||
+      !/^[1-9]\d{0,15}$/u.test(fields[0]) ||
+      !/^[1-9]\d{0,15}$/u.test(fields[1]) ||
+      !/^\d{1,16}:\d{1,16}$/u.test(fields[2])
+    ) {
+      throw new Error('Proc mount metadata is malformed or ambiguous');
+    }
+    if (/^\/proc\/(?:\d+|self|thread-self)(?:\/|$)/u.test(fields[4])) {
+      throw new Error('Independent task paths are masked by a nested mount');
+    }
+    if (fields[4] !== '/proc') continue;
+    if (proc || fields[3] !== '/' || fields[separator + 1] !== 'proc') {
+      throw new Error('Proc root is not one complete proc filesystem');
+    }
+    const options = `${fields[5]},${fields[separator + 3]}`.split(',');
+    if (
+      options.length > 64 ||
+      options.some((option) => !/^[A-Za-z0-9_=.+:-]{1,128}$/u.test(option))
+    ) {
+      throw new Error('Proc visibility options are unsupported');
+    }
+    const hidden = options.filter((option) => option.startsWith('hidepid='));
+    if (
+      hidden.length > 1 ||
+      (hidden.length === 1 && !['hidepid=0', 'hidepid=off'].includes(hidden[0])) ||
+      options.some((option) => option.startsWith('subset='))
+    ) {
+      throw new Error('Proc visibility does not admit independent task absence');
+    }
+    proc = { hidepid: 0, completeRoot: true };
+  }
+  if (!proc || realpathSync('/proc/self') !== `/proc/${process.pid}`) {
+    throw new Error('Proc root does not expose the supervisor PID view');
+  }
+  return { ...proc, samePidView: true, metadataBytes: bytes.length, metadataSha256: hash(bytes) };
 }
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
 function git(args) {
@@ -388,36 +448,95 @@ async function listeners(live, caseLabel, stop = deadline) {
       }
       return current;
     }
-    function task(tid, prior = null) {
+    function task(tid, prior = null, recordFailure = true) {
       try {
-        const fields = bounded(`/proc/${row.pid}/task/${tid}/stat`, 4096).toString('utf8');
-        const pid = fields.match(/^([1-9]\d{0,15}) \(/u)?.[1];
-        const values = fields.slice(fields.lastIndexOf(')') + 2).split(/\s+/u);
-        const pgid = Number(values[2]);
-        if (
-          Number(pid) !== tid ||
-          !/^[RSDZTtXxKWPI]$/u.test(values[0] ?? '') ||
-          !Number.isSafeInteger(pgid) ||
-          pgid < 1 ||
-          pgid !== row.pgid ||
-          !/^\d{1,64}$/u.test(values[19] ?? '')
-        ) {
-          throw new Error('Owned task stat has an invalid path, state, group or birth');
+        function stat() {
+          const fields = bounded(`/proc/${tid}/stat`, 4096).toString('utf8');
+          const pid = fields.match(/^([1-9]\d{0,15}) \(/u)?.[1];
+          const values = fields.slice(fields.lastIndexOf(')') + 2).split(/\s+/u);
+          const pgid = Number(values[2]);
+          if (
+            Number(pid) !== tid ||
+            !/^[RSDZTtXxKWPI]$/u.test(values[0] ?? '') ||
+            !Number.isSafeInteger(pgid) ||
+            pgid < 1 ||
+            pgid !== row.pgid ||
+            !/^\d{1,64}$/u.test(values[19] ?? '') ||
+            (prior && values[19] !== prior.birth)
+          ) {
+            throw new Error('Owned independent task stat has an invalid identity');
+          }
+          const parsedFlags = /^\d{1,10}$/u.test(values[6] ?? '') ? Number(values[6]) : null;
+          const flags =
+            Number.isSafeInteger(parsedFlags) && parsedFlags >= 0 && parsedFlags <= 0xffffffff
+              ? parsedFlags
+              : null;
+          count('taskStatsRead');
+          return { tid, state: values[0], birth: values[19], flags };
         }
-        const parsedFlags = /^\d{1,10}$/u.test(values[6] ?? '') ? Number(values[6]) : null;
-        const flags =
-          Number.isSafeInteger(parsedFlags) && parsedFlags >= 0 && parsedFlags <= 0xffffffff
-            ? parsedFlags
-            : null;
-        count('taskStatsRead');
-        return { tid, state: values[0], birth: values[19], flags };
+        const before = stat();
+        const status = bounded(`/proc/${tid}/status`, 4096).toString('utf8');
+        const pids = [...status.matchAll(/^Pid:[ \t]+([1-9]\d{0,15})$/gmu)];
+        const groups = [...status.matchAll(/^Tgid:[ \t]+([1-9]\d{0,15})$/gmu)];
+        if (
+          pids.length !== 1 ||
+          groups.length !== 1 ||
+          Number(pids[0][1]) !== tid ||
+          Number(groups[0][1]) !== row.pid
+        ) {
+          throw new Error('Owned independent task status has a different thread group');
+        }
+        const after = stat();
+        if (after.birth !== before.birth) {
+          throw new Error('Owned independent task birth changed across group corroboration');
+        }
+        return after;
       } catch (error) {
+        // This null now comes only from a direct numeric task path under the
+        // admitted visible proc view, never a leader-dependent group path.
         if (error.code === 'ENOENT' || error.code === 'ESRCH') return null;
+        if (recordFailure) {
+          rememberResourceFailure(error, 'proc-fd-inventory', {
+            ...context,
+            tid,
+            taskBirth: prior?.birth,
+            taskState: prior?.state,
+          });
+        }
+        throw error;
+      }
+    }
+    async function terminalTask(tid, initialTask, originalError = null) {
+      let current = initialTask;
+      count('exitingTasksWaited');
+      const taskBirth = current.birth;
+      try {
+        while (current && current.state !== 'Z') {
+          const remaining = waitStop - Date.now();
+          if (waitPolls >= 200 || remaining <= 0) {
+            throw new Error('Owned exiting task did not become terminal within inventory budget');
+          }
+          await delay(Math.min(5, remaining));
+          waitPolls += 1;
+          count('exitWaitPolls');
+          current = task(tid, current, originalError === null);
+          leader();
+          if ((current && current.birth !== taskBirth) || Date.now() >= waitStop) {
+            throw new Error(
+              current && current.birth !== taskBirth
+                ? 'Owned task birth changed during terminal wait'
+                : 'Owned terminal wait exceeded its inventory budget',
+            );
+          }
+        }
+        return current;
+      } catch (error) {
+        if (originalError) throw originalError;
         rememberResourceFailure(error, 'proc-fd-inventory', {
           ...context,
           tid,
-          taskBirth: prior?.birth,
-          taskState: prior?.state,
+          taskBirth,
+          taskState: current?.state,
         });
         throw error;
       }
@@ -467,42 +586,7 @@ async function listeners(live, caseLabel, stop = deadline) {
           continue;
         }
         if (current.state !== 'Z' && current.flags !== null && (current.flags & 4) !== 0) {
-          count('exitingTasksWaited');
-          const taskBirth = current.birth;
-          while (current && current.state !== 'Z') {
-            const remaining = waitStop - Date.now();
-            if (waitPolls >= 200 || remaining <= 0) {
-              const error = new Error(
-                'Owned exiting task did not become terminal within inventory budget',
-              );
-              rememberResourceFailure(error, 'proc-fd-inventory', {
-                ...context,
-                tid,
-                taskBirth,
-                taskState: current.state,
-              });
-              throw error;
-            }
-            await delay(Math.min(5, remaining));
-            waitPolls += 1;
-            count('exitWaitPolls');
-            current = task(tid, current);
-            leader();
-            if ((current && current.birth !== taskBirth) || Date.now() >= waitStop) {
-              const error = new Error(
-                current && current.birth !== taskBirth
-                  ? 'Owned task birth changed during terminal wait'
-                  : 'Owned terminal wait exceeded its inventory budget',
-              );
-              rememberResourceFailure(error, 'proc-fd-inventory', {
-                ...context,
-                tid,
-                taskBirth,
-                taskState: current?.state,
-              });
-              throw error;
-            }
-          }
+          current = await terminalTask(tid, current);
           if (!current) {
             count('vanishedTasks');
             continue;
@@ -545,6 +629,39 @@ async function listeners(live, caseLabel, stop = deadline) {
             },
           );
         } catch (error) {
+          if (
+            !report.observationFailure &&
+            !report.cleanupFailure &&
+            error.code === 'EACCES' &&
+            ['opendir', 'readlink'].includes(error.syscall)
+          ) {
+            try {
+              if (Date.now() >= waitStop) throw error;
+              let observed = task(tid, current, false);
+              leader();
+              if (
+                observed &&
+                observed.state !== 'Z' &&
+                observed.flags !== null &&
+                (observed.flags & 4) !== 0
+              ) {
+                observed = await terminalTask(tid, observed, error);
+              }
+              if (Date.now() >= waitStop) throw error;
+              if (!observed) {
+                count('vanishedTasks');
+                continue;
+              }
+              if (observed.state === 'Z') {
+                count('terminalTasks');
+                continue;
+              }
+            } catch {
+              // Unreadable, changed or expired corroboration retains this exact
+              // FD error; it cannot manufacture retirement or replace its cause.
+            }
+          }
+          rememberResourceFailure(error, 'proc-fd-inventory', taskContext);
           const first = report.observationFailure;
           if (
             error === firstObservationError &&
@@ -1345,6 +1462,7 @@ try {
     throw new Error('Proof output containment failed');
   }
   output = proposedOutput;
+  report.procVisibility = admitVisibleProc();
   const graph = ['package.json', 'package-lock.json'].map((path) => {
     const current = bounded(join(root, path));
     if (baseline) {
