@@ -161,6 +161,28 @@ function rememberResourceFailure(error, owner, context, cleanup = false) {
     identityReadback,
     frames,
   };
+  if (cleanup && owner === 'owned-cleanup' && context.rejectedMember) {
+    const member = context.rejectedMember;
+    report[key].rejectedMember = {
+      pid: Number.isSafeInteger(member.pid) && member.pid > 0 ? member.pid : null,
+      pgid: Number.isSafeInteger(member.pgid) && member.pgid > 0 ? member.pgid : null,
+      status: ['gone', 'unadmitted', 'changed-identity'].includes(member.status)
+        ? member.status
+        : null,
+      expectedBirth:
+        typeof member.expectedBirth === 'string' && /^\d{1,64}$/u.test(member.expectedBirth)
+          ? member.expectedBirth
+          : null,
+      observedBirth:
+        typeof member.observedBirth === 'string' && /^\d{1,64}$/u.test(member.observedBirth)
+          ? member.observedBirth
+          : null,
+      state:
+        typeof member.state === 'string' && /^[RSDZTtXxKWPI]$/u.test(member.state)
+          ? member.state
+          : null,
+    };
+  }
 }
 function readOwnedDirectory(path, owner, context, consume) {
   let directory;
@@ -527,7 +549,7 @@ async function listeners(live, caseLabel, stop = deadline) {
           if (
             error === firstObservationError &&
             error.code === 'EACCES' &&
-            error.syscall === 'opendir' &&
+            ['opendir', 'readlink'].includes(error.syscall) &&
             first?.owner === 'proc-fd-inventory' &&
             first.pid === row.pid &&
             first.birth === row.birth &&
@@ -763,13 +785,34 @@ async function cleanup(actor) {
     const rows = table();
     for (const group of new Set(live.map((row) => row.pgid))) {
       const members = [...rows.values()].filter((row) => row.pgid === group);
+      let rejectedMember = null;
       if (
         !members.every((row) => {
           const current = identity(row);
-          return current && actor.owned.get(row.pid)?.birth === current.birth;
+          const accepted = current && actor.owned.get(row.pid)?.birth === current.birth;
+          if (!accepted) {
+            const admitted = actor.owned.get(row.pid);
+            rejectedMember = {
+              pid: row.pid,
+              pgid: row.pgid,
+              status: current === null ? 'gone' : admitted ? 'changed-identity' : 'unadmitted',
+              expectedBirth: admitted?.birth ?? null,
+              observedBirth: current?.birth ?? null,
+              state: current?.state ?? null,
+            };
+          }
+          return accepted;
         })
-      )
-        throw new Error('Cleanup group contains an unowned process');
+      ) {
+        const error = new Error('Cleanup group contains an unowned process');
+        rememberResourceFailure(
+          error,
+          'owned-cleanup',
+          { case: actor.label, rejectedMember },
+          true,
+        );
+        throw error;
+      }
       if (members.length > 0) {
         try {
           process.kill(-group, signal);
