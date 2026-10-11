@@ -1,6 +1,6 @@
 {
   "schemaVersion": "nodevideo.openrouter-free-routing.v1",
-  "generatedAt": "2026-10-09T01:10:37.684Z",
+  "generatedAt": "2026-10-11T01:16:29.078Z",
   "catalogDigest": "3e4502d6fc5730faf830649363110c38b71eb99b379be18c13dc9363d1fbdfed",
   "benchmark": {
     "schemaVersion": "nodevideo.openrouter-free-benchmark.v1",
@@ -18,49 +18,36 @@
     }
   },
   "selectedModels": [
-    "nvidia/nemotron-3-super-120b-a12b:free",
-    "dots-studio/dots-3-note-preview:free"
+    "dots-studio/dots-3-note-preview:free",
+    "nvidia/nemotron-3-super-120b-a12b:free"
   ],
   "fallbackRouter": "openrouter/free",
   "candidates": [
-    {
-      "id": "nvidia/nemotron-3-super-120b-a12b:free",
-      "name": "NVIDIA: Nemotron 3 Super (free)",
-      "created": 1773245239,
-      "contextLength": 262144,
-      "samples": 8,
-      "successes": 8,
-      "successRate": 1,
-      "meanScore": 100,
-      "p95LatencyMs": 33287,
-      "scenarioCoverage": 4,
-      "eligible": true
-    },
     {
       "id": "dots-studio/dots-3-note-preview:free",
       "name": "Dots Studio: Dots3-Note Preview (free)",
       "created": 1786680361,
       "contextLength": 512000,
       "samples": 8,
-      "successes": 7,
-      "successRate": 0.875,
-      "meanScore": 97.5,
-      "p95LatencyMs": 21301,
+      "successes": 8,
+      "successRate": 1,
+      "meanScore": 100,
+      "p95LatencyMs": 19546,
       "scenarioCoverage": 4,
       "eligible": true
     },
     {
-      "id": "liquid/lfm-2.5-2.6b:free",
-      "name": "LiquidAI: LFM2.5-2.6B (free)",
-      "created": 1786470519,
-      "contextLength": 65536,
+      "id": "nvidia/nemotron-3-super-120b-a12b:free",
+      "name": "NVIDIA: Nemotron 3 Super (free)",
+      "created": 1773245239,
+      "contextLength": 262144,
       "samples": 8,
-      "successes": 6,
-      "successRate": 0.75,
-      "meanScore": 75,
-      "p95LatencyMs": 22852,
-      "scenarioCoverage": 3,
-      "eligible": false
+      "successes": 7,
+      "successRate": 0.875,
+      "meanScore": 97.5,
+      "p95LatencyMs": 13507,
+      "scenarioCoverage": 4,
+      "eligible": true
     },
     {
       "id": "apodex/apodex-1.1-mini:free",
@@ -71,7 +58,20 @@
       "successes": 0,
       "successRate": 0,
       "meanScore": 0,
-      "p95LatencyMs": 1272,
+      "p95LatencyMs": 544,
+      "scenarioCoverage": 0,
+      "eligible": false
+    },
+    {
+      "id": "liquid/lfm-2.5-2.6b:free",
+      "name": "LiquidAI: LFM2.5-2.6B (free)",
+      "created": 1786470519,
+      "contextLength": 65536,
+      "samples": 8,
+      "successes": 0,
+      "successRate": 0,
+      "meanScore": 0,
+      "p95LatencyMs": 50002,
       "scenarioCoverage": 0,
       "eligible": false
     }
