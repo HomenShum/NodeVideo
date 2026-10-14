@@ -60,7 +60,14 @@ const rows = [];
 const transcripts = {};
 const requests = {};
 const completed = { 'worker/anthropic': false, 'browser/openrouter': false };
-const budget = { maxUsd: null, estimateUsd: 0.7, spentUsd: 0, requests: 0, stoppedBy: null };
+const budget = {
+  maxUsd: null,
+  estimateUsd: 0.7,
+  spentUsd: 0,
+  requests: 0,
+  outstanding: 0, // dispatched but not yet recorded: possibly billed, not yet in spentUsd
+  stoppedBy: null,
+};
 const startedAt = new Date().toISOString();
 
 const finite = (n) => typeof n === 'number' && Number.isFinite(n) && n >= 0;
@@ -75,8 +82,10 @@ function parseCap(raw) {
 
 // `!(a < b)` is deliberate: a NaN cap or NaN spend fails closed instead of comparing false. Any earlier
 // stop (maxUsd, or usageMissing: an unaccounted cost means the cap no longer bounds the run) blocks
-// every later request, on either path.
+// every later request, on either path. A dispatch that was never recorded (a 200 whose stream or body
+// breaks, a worker timeout mid-stream) may be billed, so it stops the run the same way.
 function assertCanSpend(b) {
+  if (!b.stoppedBy && b.outstanding > 0) b.stoppedBy = 'unaccountedRequest';
   if (b.stoppedBy)
     throw new Error(`live-eval stopped (${b.stoppedBy}): no further request is sent`);
   if (!(b.spentUsd < b.maxUsd)) {
@@ -102,6 +111,7 @@ function guardedFetch(sent, received) {
     if (typeof init?.body !== 'string') throw new Error('cannot read the outgoing request body');
     assertCanSpend(budget);
     budget.requests += 1;
+    budget.outstanding += 1;
     const i = sent.push(JSON.parse(init.body)) - 1;
     // A dispatched request may be billed even when the call fails (socket drop after generation) or
     // answers non-2xx, and both paths retry. record() never runs for those, so stop the run: the
@@ -114,9 +124,13 @@ function guardedFetch(sent, received) {
       throw error;
     }
     if (!res.ok) budget.stoppedBy = 'unaccountedRequest';
-    // received[i] answers sent[i]; null when the response is not JSON, so indexes never shift.
+    // received[i] answers sent[i]; null when the response is not JSON or its body is cut off, so
+    // indexes never shift and the harness never changes how the code under test sees the failure.
     received[i] = res.headers.get('content-type')?.includes('application/json')
-      ? await res.clone().json()
+      ? await res
+          .clone()
+          .json()
+          .catch(() => null)
       : null;
     return res;
   };
@@ -132,6 +146,7 @@ function record(path, sent) {
   const price = PRICING[path];
   const [inKey, outKey] = USAGE_KEYS[path];
   return ({ model, usage, id }) => {
+    budget.outstanding -= 1;
     let costUsd;
     try {
       costUsd = costFromUsage(price, usage, inKey, outKey);
@@ -172,6 +187,11 @@ async function observe(path, run, check) {
     vi.unstubAllGlobals();
     transcripts[path] = { events, messages: sent.at(-1)?.messages ?? null };
     requests[path] = sent.map(({ messages, tools, ...params }) => params);
+    // A request that never produced a row may still have been billed: whether run() threw, timed out
+    // or returned, stop the run so the next path (or a retry) sends nothing.
+    if (sent.length !== rows.filter((r) => r.path === path).length) {
+      budget.stoppedBy ??= 'unaccountedRequest';
+    }
   }
   const pathRows = rows.filter((r) => r.path === path);
   expect(budget.stoppedBy, 'a budget or accounting stop is an incomplete run').toBeNull();
@@ -237,7 +257,13 @@ describe('live-eval harness (offline)', () => {
         },
         async () => ({ ok: false, status: 529, headers: new Headers() }),
       ]) {
-        Object.assign(budget, { maxUsd: 0.01, spentUsd: 0, requests: 0, stoppedBy: null });
+        Object.assign(budget, {
+          maxUsd: 0.01,
+          spentUsd: 0,
+          requests: 0,
+          outstanding: 0,
+          stoppedBy: null,
+        });
         vi.stubGlobal('fetch', fake);
         const f = guardedFetch([], []);
         vi.unstubAllGlobals();
@@ -250,6 +276,163 @@ describe('live-eval harness (offline)', () => {
       Object.assign(budget, saved);
       vi.unstubAllGlobals();
     }
+  });
+
+  it('refuses a request while an earlier dispatch is unrecorded, even with budget left', () => {
+    const b = { maxUsd: 1, spentUsd: 0.1, outstanding: 1, stoppedBy: null };
+    expect(() => assertCanSpend(b)).toThrow(/unaccountedRequest/);
+    expect(b.stoppedBy).toBe('unaccountedRequest');
+    const clear = { maxUsd: 1, spentUsd: 0.1, outstanding: 0, stoppedBy: null };
+    expect(() => assertCanSpend(clear)).not.toThrow();
+  });
+
+  // Real agents, fake keys, fake fetch, no network. Each scenario dispatches ONE request that answers
+  // 200 but never reaches record(), then runs the other path and counts what reached the provider.
+  describe('a 200 that is never recorded stops the run (no later paid request)', () => {
+    const SSE_START = `event: message_start\ndata: ${JSON.stringify({
+      type: 'message_start',
+      message: {
+        id: 'msg_1',
+        type: 'message',
+        role: 'assistant',
+        model: 'claude-opus-5-5',
+        content: [],
+        stop_reason: null,
+        usage: { input_tokens: 10, output_tokens: 0 },
+      },
+    })}\n\n`;
+    const brokenStream = (hang) => (_url, init) =>
+      new Response(
+        new ReadableStream({
+          start(c) {
+            c.enqueue(new TextEncoder().encode(SSE_START));
+            if (!hang) return c.error(new Error('socket reset mid-stream'));
+            // The worker's own timeout aborts the request; fake timers fire it without waiting 180 s.
+            init.signal?.addEventListener('abort', () => c.error(new Error('aborted')));
+            setImmediate(() => vi.advanceTimersByTimeAsync(200_000));
+          },
+        }),
+        { status: 200, headers: { 'content-type': 'text/event-stream' } },
+      );
+    const truncatedJson = () =>
+      new Response('{"id":"gen-1","choices":[{"mess', {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+      });
+    const runs = {
+      'worker/anthropic': async ({ events, onResponse }) => {
+        const { runEditAgent } = await import('../../scripts/workers/edit-agent.mjs');
+        await runEditAgent({
+          plan,
+          message: MESSAGE,
+          history: [],
+          send: (e) => events.push(e),
+          onResponse,
+        });
+      },
+      'browser/openrouter': ({ events, onResponse }) =>
+        runBrowserAgent({
+          plan,
+          message: MESSAGE,
+          history: [],
+          apiKey: 'test-key-not-real',
+          model: readByokModel(),
+          signal: new AbortController().signal,
+          emit: (e) => events.push(e),
+          onResponse,
+        }),
+    };
+
+    async function scenario(firstPath, firstFake, { fakeTimers = false } = {}) {
+      const saved = {
+        budget: { ...budget },
+        rows: rows.splice(0),
+        completed: { ...completed },
+      };
+      const savedStores = [requests, transcripts].map((store) => [store, { ...store }]);
+      const dispatched = [];
+      const counting = (fake) => async (url, init) => {
+        dispatched.push(init.body);
+        return fake(url, init);
+      };
+      const secondPath =
+        firstPath === 'worker/anthropic' ? 'browser/openrouter' : 'worker/anthropic';
+      Object.assign(budget, {
+        maxUsd: 1,
+        spentUsd: 0,
+        requests: 0,
+        outstanding: 0,
+        stoppedBy: null,
+      });
+      vi.stubEnv('ANTHROPIC_API_KEY', 'test-key-not-real');
+      vi.stubGlobal('location', { origin: 'http://localhost' });
+      try {
+        if (fakeTimers) vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+        vi.stubGlobal('fetch', counting(firstFake));
+        const firstError = await observe(firstPath, runs[firstPath]).then(
+          () => null,
+          (error) => error,
+        );
+        expect(firstError).not.toBeNull();
+        vi.useRealTimers();
+        const afterFirst = dispatched.length;
+        const stoppedBy = budget.stoppedBy;
+        // If the guard failed open, this fake would answer the next dispatch and `total` would grow.
+        vi.stubGlobal(
+          'fetch',
+          counting(
+            async () =>
+              new Response('{}', {
+                headers: { 'content-type': 'application/json' },
+              }),
+          ),
+        );
+        await expect(observe(secondPath, runs[secondPath])).rejects.toThrow();
+        return { afterFirst, total: dispatched.length, stoppedBy, firstError };
+      } finally {
+        vi.useRealTimers();
+        vi.unstubAllGlobals();
+        vi.unstubAllEnvs();
+        Object.assign(budget, saved.budget);
+        rows.splice(0, rows.length, ...saved.rows);
+        Object.assign(completed, saved.completed);
+        for (const [store, copy] of savedStores) {
+          for (const k of Object.keys(store)) delete store[k];
+          Object.assign(store, copy);
+        }
+      }
+    }
+
+    it('worker stream breaks after HTTP 200', async () => {
+      const r = await scenario('worker/anthropic', brokenStream(false));
+      expect(r).toMatchObject({
+        afterFirst: 1,
+        total: 1,
+        stoppedBy: 'unaccountedRequest',
+      });
+    }, 20_000);
+
+    it('worker times out mid-stream', async () => {
+      const r = await scenario('worker/anthropic', brokenStream(true), {
+        fakeTimers: true,
+      });
+      expect(r).toMatchObject({
+        afterFirst: 1,
+        total: 1,
+        stoppedBy: 'unaccountedRequest',
+      });
+    }, 20_000);
+
+    it('browser gets a truncated HTTP 200 JSON body and is not retried', async () => {
+      const r = await scenario('browser/openrouter', truncatedJson);
+      // The harness must not turn a body-parse failure into a retried transport error.
+      expect(r).toMatchObject({
+        afterFirst: 1,
+        total: 1,
+        stoppedBy: 'unaccountedRequest',
+      });
+      expect(r.firstError.name).toBe('SyntaxError');
+    }, 20_000);
   });
 
   it('counts reasoning as returned only for a non-empty array', () => {
