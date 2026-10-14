@@ -23,6 +23,11 @@ const plan = JSON.parse(
 function expectOpus55Safe(body) {
   for (const key of FORBIDDEN_TOP_LEVEL) expect(body, key).not.toHaveProperty(key);
   expect(JSON.stringify(body)).not.toContain('budget_tokens');
+  // Thinking can't be turned off, and the OpenRouter budget form (`reasoning.max_tokens`) is the
+  // same budget-token control under another name.
+  expect(body.thinking?.type).not.toBe('disabled');
+  expect(body.reasoning?.enabled).not.toBe(false);
+  expect(body.reasoning?.max_tokens).toBeUndefined();
   // Forced tool use (`required` / `any` / a named tool) is a 400 on Opus 5.5; `auto` is fine.
   const toolChoice = body.tool_choice;
   if (toolChoice !== undefined) expect(toolChoice).toBe('auto');
@@ -66,6 +71,75 @@ describe('browser edit agent request shape (OpenRouter)', () => {
     expect(body.max_tokens).toBe(4096);
     expect(body.reasoning).toEqual({ effort: 'low' });
     expectOpus55Safe(body);
+  });
+});
+
+describe('browser edit agent tool continuation (OpenRouter)', () => {
+  const bodies = [];
+  const reasoning = 'checked the plan first';
+  const reasoningDetails = [
+    {
+      type: 'reasoning.text',
+      text: reasoning,
+      signature: 'sig-opaque-1',
+      format: 'anthropic-claude-v1',
+      index: 0,
+    },
+  ];
+  beforeEach(() => {
+    bodies.length = 0;
+    vi.stubGlobal('location', { origin: 'http://localhost' });
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (_url, init) => {
+        bodies.push(JSON.parse(init.body));
+        const message =
+          bodies.length === 1
+            ? {
+                content: null,
+                reasoning,
+                reasoning_details: reasoningDetails,
+                tool_calls: [
+                  {
+                    id: 'call_1',
+                    type: 'function',
+                    function: { name: 'get_plan_summary', arguments: '{}' },
+                  },
+                ],
+              }
+            : { content: 'done' };
+        return new Response(JSON.stringify({ choices: [{ message, finish_reason: 'stop' }] }), {
+          status: 200,
+        });
+      }),
+    );
+  });
+  afterEach(() => vi.unstubAllGlobals());
+
+  it('replays the returned reasoning unchanged on the follow-up request and stays Opus 5.5 safe', async () => {
+    await runBrowserAgent({
+      plan,
+      message: 'what is in the plan?',
+      history: [],
+      apiKey: 'test-key-not-real',
+      model: readByokModel(),
+      signal: new AbortController().signal,
+      emit: () => {},
+    });
+    expect(bodies).toHaveLength(2);
+    const assistant = bodies[1].messages.find((m) => m.role === 'assistant');
+    expect(assistant.tool_calls[0].id).toBe('call_1');
+    expect(assistant.reasoning).toBe(reasoning);
+    expect(assistant.reasoning_details).toEqual(reasoningDetails);
+    expect(bodies[1].messages.at(-1)).toMatchObject({ role: 'tool', tool_call_id: 'call_1' });
+    // The follow-up ends on a tool result, not a user turn, so only the keys are checked here.
+    for (const body of bodies) {
+      expect(body.model).toBe(OPENROUTER_OPUS_55);
+      expect(body.reasoning).toEqual({ effort: 'low' });
+      expect(body.thinking?.type).not.toBe('disabled');
+      expect(JSON.stringify(body)).not.toContain('budget_tokens');
+      for (const key of FORBIDDEN_TOP_LEVEL) expect(body, key).not.toHaveProperty(key);
+    }
   });
 });
 

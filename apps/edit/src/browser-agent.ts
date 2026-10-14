@@ -38,6 +38,10 @@ type ChatMessage = {
     function: { name: string; arguments: string };
   }>;
   tool_call_id?: string;
+  // Returned reasoning, replayed unchanged on tool continuations (OpenRouter
+  // "Preserving Reasoning"; Opus 5.5 always thinks).
+  reasoning?: string | null;
+  reasoning_details?: unknown;
 };
 
 const SYSTEM = `You are the NodeVideo edit agent for a beat-aligned dance edit (the "Sign" case: two takes A/B cut on a beat grid with lyric overlays).
@@ -178,6 +182,8 @@ export async function runBrowserAgent(options: {
   model: string;
   signal: AbortSignal;
   emit: (event: AgentEvent) => void;
+  /** Observability hook: the provider's echoed `model`, `usage` and `id` per response. */
+  onResponse?: (response: { model?: string; usage?: unknown; id?: string }) => void;
 }): Promise<void> {
   let workingPlan = options.plan;
   let mutationProposed = false;
@@ -267,15 +273,20 @@ export async function runBrowserAgent(options: {
       return;
     }
     const data = (await response.json()) as {
+      id?: string;
+      model?: string;
+      usage?: unknown;
       choices?: Array<{
         message?: {
           content?: string | null;
           reasoning?: string | null;
+          reasoning_details?: unknown;
           tool_calls?: ChatMessage['tool_calls'];
         };
         finish_reason?: string;
       }>;
     };
+    options.onResponse?.({ id: data.id, model: data.model, usage: data.usage });
     const choice = data.choices?.[0]?.message;
     if (!choice) {
       options.emit({ type: 'error', error: 'empty_model_response' });
@@ -291,6 +302,10 @@ export async function runBrowserAgent(options: {
       role: 'assistant',
       content: choice.content ?? null,
       tool_calls: toolCalls,
+      ...(choice.reasoning !== undefined && { reasoning: choice.reasoning }),
+      ...(choice.reasoning_details !== undefined && {
+        reasoning_details: choice.reasoning_details,
+      }),
     });
     for (const call of toolCalls) {
       let args: Record<string, unknown> = {};

@@ -516,7 +516,8 @@ export function modelConfigured() {
   );
 }
 
-export async function runEditAgent({ plan, message, history, send }) {
+// `onResponse` is an observability hook: the provider's echoed `model`/`usage` per turn.
+export async function runEditAgent({ plan, message, history, send, onResponse }) {
   const client = new Anthropic({
     timeout: nodeAgentRuntime.limits.maxInteractiveRunMs,
     maxRetries: 1,
@@ -592,6 +593,7 @@ export async function runEditAgent({ plan, message, history, send }) {
         }
       });
       const response = await stream.finalMessage();
+      onResponse?.({ id: response.id, model: response.model, usage: response.usage });
 
       if (response.stop_reason === 'refusal') {
         send({ type: 'error', error: 'model_refused' });
