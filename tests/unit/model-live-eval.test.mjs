@@ -14,6 +14,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
+import { isDeepStrictEqual } from 'node:util';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { runBrowserAgent } from '../../apps/edit/src/browser-agent';
 import { readByokModel } from '../../apps/edit/src/byok';
@@ -51,7 +52,10 @@ const plan = JSON.parse(
     'utf8',
   ),
 );
-const MESSAGE = 'Swap the source of clip 1 to the other take.';
+// 0-based, as in the tool schema and the plan summary's `index`; the prompt says so, so the gate below
+// asserts the one edit the prompt asked for rather than any edit.
+const CLIP_INDEX = 1;
+const MESSAGE = `Swap the source of the clip at index ${CLIP_INDEX} (0-based) to the other take.`;
 const rows = [];
 const transcripts = {};
 const requests = {};
@@ -69,8 +73,12 @@ function parseCap(raw) {
   return cap;
 }
 
-// `!(a < b)` is deliberate: a NaN cap or NaN spend fails closed instead of comparing false.
+// `!(a < b)` is deliberate: a NaN cap or NaN spend fails closed instead of comparing false. Any earlier
+// stop (maxUsd, or usageMissing: an unaccounted cost means the cap no longer bounds the run) blocks
+// every later request, on either path.
 function assertCanSpend(b) {
+  if (b.stoppedBy)
+    throw new Error(`live-eval stopped (${b.stoppedBy}): no further request is sent`);
   if (!(b.spentUsd < b.maxUsd)) {
     b.stoppedBy = 'maxUsd';
     throw new Error('live-eval budget exhausted: no further request is sent');
@@ -94,11 +102,12 @@ function guardedFetch(sent, received) {
     if (typeof init?.body !== 'string') throw new Error('cannot read the outgoing request body');
     assertCanSpend(budget);
     budget.requests += 1;
-    sent.push(JSON.parse(init.body));
+    const i = sent.push(JSON.parse(init.body)) - 1;
     const res = await realFetch(url, init);
-    if (res.headers.get('content-type')?.includes('application/json')) {
-      received.push(await res.clone().json());
-    }
+    // received[i] answers sent[i]; null when the response is not JSON, so indexes never shift.
+    received[i] = res.headers.get('content-type')?.includes('application/json')
+      ? await res.clone().json()
+      : null;
     return res;
   };
 }
@@ -135,8 +144,9 @@ function record(path, sent) {
 }
 
 // Runs one edit-agent path through the guarded fetch, then asserts on EVERY row/request/event what
-// A.0.3 and §A.2.2 require: model resolution, accounting, no tool errors, exactly one edit proposal.
-async function observe(path, run) {
+// A.0.3 and §A.2.2 require: model resolution, accounting, no tool errors, the one requested edit. `check`
+// holds the path-specific assertions; `completed[path]` is set only after ALL of them pass.
+async function observe(path, run, check) {
   const price = PRICING[path];
   const sent = [];
   const received = [];
@@ -165,11 +175,11 @@ async function observe(path, run) {
     'tool outputs must carry no errors',
   ).toEqual([]);
   expect(
-    events.filter((e) => e.type === 'proposal'),
-    'exactly one edit proposal',
-  ).toHaveLength(1);
+    events.filter((e) => e.type === 'proposal').map((e) => e.proposal),
+    'exactly one proposal, and it is the swap that was asked for',
+  ).toEqual([{ kind: 'swap-source', clipIndex: CLIP_INDEX }]);
+  await check?.({ sent, received, pathRows });
   completed[path] = true;
-  return { sent, received, pathRows };
 }
 
 // Always runs (and is part of `npm run check`): the guards and the pricing table are testable offline.
@@ -192,6 +202,22 @@ describe('live-eval harness (offline)', () => {
     expect(() => assertCanSpend({ maxUsd: Number.NaN, spentUsd: 0, stoppedBy: null })).toThrow(
       /exhausted/,
     );
+  });
+
+  it('blocks every later request once any stop is set, even with budget left', () => {
+    for (const stoppedBy of ['usageMissing', 'maxUsd']) {
+      const b = { maxUsd: 1, spentUsd: 0.1, stoppedBy };
+      expect(() => assertCanSpend(b), stoppedBy).toThrow(/stopped/);
+      expect(b.stoppedBy).toBe(stoppedBy);
+    }
+  });
+
+  it('the asked-for edit is a real swap on the fixture plan', async () => {
+    const { swapClipSource } = await import('../../scripts/workers/edit-agent.mjs');
+    expect(swapClipSource(plan, CLIP_INDEX).patch).toEqual({
+      kind: 'swap-source',
+      clipIndex: CLIP_INDEX,
+    });
   });
 
   it('fails closed when usage or cost is absent', () => {
@@ -262,7 +288,7 @@ describe.skipIf(!live)('live receipt: Opus 5.5 edit agents (PAID)', () => {
   it('browser path (OpenRouter) completes a tool loop, replays reasoning, echoes opus 5.5', async () => {
     vi.stubGlobal('location', { origin: 'http://localhost' });
     try {
-      const { sent, received, pathRows } = await observe(
+      await observe(
         'browser/openrouter',
         ({ events, onResponse }) =>
           runBrowserAgent({
@@ -275,13 +301,20 @@ describe.skipIf(!live)('live receipt: Opus 5.5 edit agents (PAID)', () => {
             emit: (e) => events.push(e),
             onResponse,
           }),
+        ({ sent, received, pathRows }) => {
+          const returned = received[0]?.choices?.[0]?.message?.reasoning_details;
+          const replayed = sent[1]?.messages?.find(
+            (m) => m.role === 'assistant',
+          )?.reasoning_details;
+          const row = pathRows.at(-1);
+          row.reasoningDetailsReturned = returned !== undefined;
+          row.reasoningDetailsReplayed = replayed !== undefined;
+          row.reasoningDetailsEqual =
+            returned !== undefined && isDeepStrictEqual(replayed, returned);
+          expect(sent.length, 'a real tool continuation').toBeGreaterThanOrEqual(2);
+          if (returned !== undefined) expect(replayed).toEqual(returned);
+        },
       );
-      expect(sent.length).toBeGreaterThanOrEqual(2); // a real tool continuation
-      const returned = received[0]?.choices?.[0]?.message?.reasoning_details;
-      const replayed = sent[1].messages.find((m) => m.role === 'assistant')?.reasoning_details;
-      pathRows.at(-1).reasoningDetailsReturned = returned !== undefined;
-      pathRows.at(-1).reasoningDetailsReplayed = replayed !== undefined;
-      if (returned !== undefined) expect(replayed).toEqual(returned);
     } finally {
       vi.unstubAllGlobals();
     }
