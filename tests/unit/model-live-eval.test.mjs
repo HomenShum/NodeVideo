@@ -103,7 +103,17 @@ function guardedFetch(sent, received) {
     assertCanSpend(budget);
     budget.requests += 1;
     const i = sent.push(JSON.parse(init.body)) - 1;
-    const res = await realFetch(url, init);
+    // A dispatched request may be billed even when the call fails (socket drop after generation) or
+    // answers non-2xx, and both paths retry. record() never runs for those, so stop the run: the
+    // spend is unaccounted and the cap no longer bounds it. assertCanSpend then blocks every retry.
+    let res;
+    try {
+      res = await realFetch(url, init);
+    } catch (error) {
+      budget.stoppedBy = 'unaccountedRequest';
+      throw error;
+    }
+    if (!res.ok) budget.stoppedBy = 'unaccountedRequest';
     // received[i] answers sent[i]; null when the response is not JSON, so indexes never shift.
     received[i] = res.headers.get('content-type')?.includes('application/json')
       ? await res.clone().json()
@@ -111,6 +121,10 @@ function guardedFetch(sent, received) {
     return res;
   };
 }
+
+// Preserved thinking counts as returned only when OpenRouter sent a non-empty array: null or [] is
+// not proof that anything was replayed.
+const hasReasoning = (details) => Array.isArray(details) && details.length > 0;
 
 // resolvedModel is the `model` of the request body actually sent for this response (the latest
 // dispatched request), never a literal; fallbackUsed is true when the provider echoed another model.
@@ -163,6 +177,8 @@ async function observe(path, run, check) {
   expect(budget.stoppedBy, 'a budget or accounting stop is an incomplete run').toBeNull();
   expect(events.filter((e) => e.type === 'error')).toEqual([]);
   expect(pathRows.length, 'no response was recorded').toBeGreaterThan(0);
+  expect(sent.length, 'every request sent must have a recorded row').toBe(pathRows.length);
+  expect(budget.requests, 'budget.requests must equal rows.length').toBe(rows.length);
   for (const body of sent) expect(body.model).toBe(price.id);
   for (const row of pathRows) {
     expect(row.resolvedModel).toBe(row.requestedModel);
@@ -205,11 +221,40 @@ describe('live-eval harness (offline)', () => {
   });
 
   it('blocks every later request once any stop is set, even with budget left', () => {
-    for (const stoppedBy of ['usageMissing', 'maxUsd']) {
+    for (const stoppedBy of ['usageMissing', 'maxUsd', 'unaccountedRequest']) {
       const b = { maxUsd: 1, spentUsd: 0.1, stoppedBy };
       expect(() => assertCanSpend(b), stoppedBy).toThrow(/stopped/);
       expect(b.stoppedBy).toBe(stoppedBy);
     }
+  });
+
+  it('stops the run when a dispatched request throws or answers non-2xx, and blocks the retry', async () => {
+    const saved = { ...budget };
+    try {
+      for (const fake of [
+        async () => {
+          throw new Error('socket hang up');
+        },
+        async () => ({ ok: false, status: 529, headers: new Headers() }),
+      ]) {
+        Object.assign(budget, { maxUsd: 0.01, spentUsd: 0, requests: 0, stoppedBy: null });
+        vi.stubGlobal('fetch', fake);
+        const f = guardedFetch([], []);
+        vi.unstubAllGlobals();
+        await f('http://x', { body: '{}' }).catch(() => {});
+        expect(budget.stoppedBy).toBe('unaccountedRequest');
+        await expect(f('http://x', { body: '{}' })).rejects.toThrow(/stopped/);
+        expect(budget.requests).toBe(1);
+      }
+    } finally {
+      Object.assign(budget, saved);
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('counts reasoning as returned only for a non-empty array', () => {
+    for (const empty of [undefined, null, []]) expect(hasReasoning(empty)).toBe(false);
+    expect(hasReasoning([{ type: 'reasoning.text' }])).toBe(true);
   });
 
   it('the asked-for edit is a real swap on the fixture plan', async () => {
@@ -308,10 +353,10 @@ describe.skipIf(!live)('live receipt: Opus 5.5 edit agents (PAID)', () => {
             (m) => m.role === 'assistant',
           )?.reasoning_details;
           const row = pathRows.at(-1);
-          row.reasoningDetailsReturned = returned !== undefined;
-          row.reasoningDetailsReplayed = replayed !== undefined;
+          row.reasoningDetailsReturned = hasReasoning(returned);
+          row.reasoningDetailsReplayed = hasReasoning(replayed);
           row.reasoningDetailsEqual =
-            returned !== undefined && isDeepStrictEqual(replayed, returned);
+            hasReasoning(returned) && isDeepStrictEqual(replayed, returned);
           expect(sent.length, 'a real tool continuation').toBeGreaterThanOrEqual(2);
           if (returned !== undefined) expect(replayed).toEqual(returned);
         },
