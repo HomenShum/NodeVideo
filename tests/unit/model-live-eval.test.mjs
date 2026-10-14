@@ -302,6 +302,7 @@ describe.skipIf(!live)('live receipt: Opus 5.5 edit agents (PAID)', () => {
             onResponse,
           }),
         ({ sent, received, pathRows }) => {
+          expect(received[0], 'first response must be a JSON body').toBeTruthy();
           const returned = received[0]?.choices?.[0]?.message?.reasoning_details;
           const replayed = sent[1]?.messages?.find(
             (m) => m.role === 'assistant',
