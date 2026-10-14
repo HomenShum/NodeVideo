@@ -10,7 +10,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodeAgentRuntime from '../../src/lib/nodeagent-runtime.json' with { type: 'json' };
 
-const MODEL = process.env.NODEVIDEO_EDIT_AGENT_MODEL ?? 'claude-opus-4-8';
+const MODEL = process.env.NODEVIDEO_EDIT_AGENT_MODEL ?? 'claude-opus-5-5';
 const MAX_SOURCE_CLIPS = 64;
 export const ONE_EDIT_PER_PROPOSAL_ERROR =
   'one_edit_per_proposal: apply or dismiss the pending edit before asking for another mutation';

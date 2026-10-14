@@ -238,7 +238,8 @@ export async function runBrowserAgent(options: {
             messages,
             tools: TOOLS,
             tool_choice: 'auto',
-            max_tokens: 1024,
+            max_tokens: 4096, // thinking counts toward the cap
+            reasoning: { effort: 'low' }, // Opus 5.5 defaults to medium; match the worker path
           }),
         });
       } catch (error) {

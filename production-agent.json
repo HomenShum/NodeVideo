@@ -137,7 +137,7 @@
       "rollbackMode": "automatic"
     },
     "modelMigration": {
-      "pinnedModel": "google/gemma-4-26b-a4b-it:free and nvidia/nemotron-3-super-120b-a12b:free (config/openrouter-free-routing.json selectedModels; fallbackRouter openrouter/free)",
+      "pinnedModel": "nvidia/nemotron-3-super-120b-a12b:free and dots-studio/dots-3-note-preview:free (config/openrouter-free-routing.json selectedModels; fallbackRouter openrouter/free)",
       "migrationEvalCommand": "npm run openrouter:benchmark"
     },
     "tracing": {

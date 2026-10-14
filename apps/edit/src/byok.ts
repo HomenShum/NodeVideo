@@ -6,7 +6,7 @@
 
 const KEY_STORAGE = 'nodevideo.byok.OPENROUTER_API_KEY';
 const MODEL_STORAGE = 'nodevideo.byok.MODEL';
-export const DEFAULT_MODEL = 'anthropic/claude-opus-4-8';
+export const DEFAULT_MODEL = 'anthropic/claude-opus-5.5';
 
 export function readByokKey(): string {
   if (typeof window === 'undefined') return '';
