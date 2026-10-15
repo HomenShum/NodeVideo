@@ -42,6 +42,20 @@ npm run clip -- --comp <CompositionId> --out out/demo.mp4 --rounds 2   # renderâ
 the gate â€” `.next-cut.md`, a revision brief naming the storyboard changes that
 would raise the weakest comprehension dimensions.
 
+`--rounds` must be a positive safe integer; omitting the option defaults to one.
+Invalid, empty or missing supplied values exit 1 before rendering or judging.
+This ports [FeatureClipStudio's admission repair](https://github.com/HomenShum/FeatureClipStudio/pull/28):
+previously zero/negative/nonnumeric budgets could report success without review,
+and a fractional budget could report success after a failed review.
+
+Run `npm run test -- tests/unit/clip-iteration-budget.test.mjs` for the offline
+admission, outcome and retained-history scenarios. They use the real iterator
+with a synthetic child judge and disabled rendering, so they do not measure
+video quality or provider behavior. The existing iterator still resolves
+`judge-video.mjs` from the working directory; the fixture supplies it there.
+Repository-root judge discovery and a complete real-media run remain unverified
+by these tests. A safe integer is not a practical cost or elapsed-time cap.
+
 ## Two things it does deliberately
 
 **It does not auto-apply its own notes.** A loop that edits the storyboard from
