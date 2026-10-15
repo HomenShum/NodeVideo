@@ -284,12 +284,20 @@ export async function runBrowserAgent(options: {
           tool_calls?: ChatMessage['tool_calls'];
         };
         finish_reason?: string;
+        native_finish_reason?: string;
       }>;
     };
     options.onResponse?.({ id: data.id, model: data.model, usage: data.usage });
-    const choice = data.choices?.[0]?.message;
+    const first = data.choices?.[0];
+    const choice = first?.message;
     if (!choice) {
       options.emit({ type: 'error', error: 'empty_model_response' });
+      return;
+    }
+    // Opus 5.5 can refuse with HTTP 200 and no content; OpenRouter reports it as a content_filter
+    // finish with the native reason 'refusal'. Surface it before reading content or tool_calls.
+    if (first?.finish_reason === 'content_filter' || first?.native_finish_reason === 'refusal') {
+      options.emit({ type: 'error', error: 'model_refused' });
       return;
     }
     if (choice.reasoning) options.emit({ type: 'reasoning', delta: choice.reasoning });

@@ -143,6 +143,59 @@ describe('browser edit agent tool continuation (OpenRouter)', () => {
   });
 });
 
+describe('browser edit agent refusal handling (OpenRouter)', () => {
+  const refusal = {
+    message: { content: null },
+    finish_reason: 'content_filter',
+    native_finish_reason: 'refusal',
+  };
+  const toolTurn = {
+    message: {
+      content: null,
+      tool_calls: [
+        { id: 'call_1', type: 'function', function: { name: 'get_plan_summary', arguments: '{}' } },
+      ],
+    },
+    finish_reason: 'tool_calls',
+  };
+  afterEach(() => vi.unstubAllGlobals());
+
+  async function run(choices) {
+    let call = 0;
+    vi.stubGlobal('location', { origin: 'http://localhost' });
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(
+        async () => new Response(JSON.stringify({ choices: [choices[call++]] }), { status: 200 }),
+      ),
+    );
+    const events = [];
+    await runBrowserAgent({
+      plan,
+      message: 'swap clip 1',
+      history: [],
+      apiKey: 'test-key-not-real',
+      model: readByokModel(),
+      signal: new AbortController().signal,
+      emit: (event) => events.push(event),
+    });
+    return { events, calls: call };
+  }
+
+  it('emits model_refused when the first response is a 200 refusal', async () => {
+    const { events, calls } = await run([refusal]);
+    expect(calls).toBe(1);
+    expect(events).toEqual([{ type: 'error', error: 'model_refused' }]);
+  });
+
+  it('emits model_refused when the refusal arrives after a tool continuation', async () => {
+    const { events, calls } = await run([toolTurn, refusal]);
+    expect(calls).toBe(2);
+    expect(events.at(-1)).toEqual({ type: 'error', error: 'model_refused' });
+    expect(events.filter((e) => e.type === 'tool')).toHaveLength(1);
+  });
+});
+
 describe('worker edit agent request shape (direct Anthropic)', () => {
   const bodies = [];
   const savedEnv = { ...process.env };
