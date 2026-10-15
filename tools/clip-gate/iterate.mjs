@@ -42,13 +42,18 @@ const audience = flag(
   'a smart newcomer who has never seen this product and does not know the domain jargon',
 );
 const gate = flag('gate', '28'); // 28/40 — see README for where this number came from
-const rounds = Number(flag('rounds', '1'));
+const rounds = Number(flag('rounds', has('rounds') ? Number.NaN : '1'));
 const entry = flag('entry', 'src/index.js');
 
 if (!comp) {
   console.error(
     `usage: node iterate.mjs --comp <CompositionId> --out <file.mp4> [--for "<audience>"] [--gate 28] [--rounds N] [--no-render]`,
   );
+  process.exit(1);
+}
+
+if (!Number.isSafeInteger(rounds) || rounds < 1) {
+  console.error('[iterate] --rounds must be a positive safe integer.');
   process.exit(1);
 }
 
