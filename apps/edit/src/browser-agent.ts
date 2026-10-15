@@ -7,6 +7,7 @@
 
 import { RETRY_BACKOFF, backoffSleep } from '@/lib/backoff';
 import { NODE_AGENT_LIMITS } from '@/lib/nodeagent-contract';
+import { DEFAULT_MODEL } from './byok';
 import {
   ONE_EDIT_PER_PROPOSAL_ERROR,
   type Plan,
@@ -245,7 +246,9 @@ export async function runBrowserAgent(options: {
             tools: TOOLS,
             tool_choice: 'auto',
             max_tokens: 4096, // thinking counts toward the cap
-            reasoning: { effort: 'low' }, // Opus 5.5 defaults to medium; match the worker path
+            // Opus 5.5 defaults to medium; match the worker path. Keyed by exact id: any other
+            // BYOK override keeps its own reasoning default.
+            ...(options.model === DEFAULT_MODEL && { reasoning: { effort: 'low' } }),
           }),
         });
       } catch (error) {

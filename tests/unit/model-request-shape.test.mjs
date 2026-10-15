@@ -72,6 +72,21 @@ describe('browser edit agent request shape (OpenRouter)', () => {
     expect(body.reasoning).toEqual({ effort: 'low' });
     expectOpus55Safe(body);
   });
+
+  it('leaves reasoning to the model default for a non-Opus-5.5 BYOK override', async () => {
+    await runBrowserAgent({
+      plan,
+      message: 'swap clip 1',
+      history: [],
+      apiKey: 'test-key-not-real',
+      model: 'openai/gpt-5.4-mini',
+      signal: new AbortController().signal,
+      emit: () => {},
+    });
+    expect(bodies[0].model).toBe('openai/gpt-5.4-mini');
+    expect(bodies[0]).not.toHaveProperty('reasoning');
+    expect(bodies[0].max_tokens).toBe(4096);
+  });
 });
 
 describe('browser edit agent tool continuation (OpenRouter)', () => {
