@@ -1,6 +1,13 @@
 import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -10,7 +17,7 @@ import { test } from 'vitest';
 const exec = promisify(execFile);
 const iterator = fileURLToPath(new URL('../../tools/clip-gate/iterate.mjs', import.meta.url));
 const audience = 'a newcomer reviewing the release candidate';
-// Fixed child outcomes isolate the real iterator's budget, history and exit contract.
+// Exact owner bytes and fixed adjacent child outcomes isolate discovery, budget and history.
 const judge = `
 import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
 const { statuses, missingVerdict } = JSON.parse(readFileSync("scenario.json", "utf8"));
@@ -28,8 +35,14 @@ process.exit(status);
 `;
 
 function fixture(statuses = [0], missingVerdict = false) {
-  const cwd = mkdtempSync(join(tmpdir(), 'nodevideo-clip-budget-'));
-  writeFileSync(join(cwd, 'judge-video.mjs'), judge);
+  const root = mkdtempSync(join(tmpdir(), 'nodevideo-clip-budget-'));
+  const toolkit = join(root, 'toolkit with spaces');
+  const cwd = join(root, 'release job');
+  mkdirSync(toolkit);
+  mkdirSync(cwd);
+  copyFileSync(iterator, join(toolkit, 'iterate.mjs'));
+  assert.deepEqual(readFileSync(join(toolkit, 'iterate.mjs')), readFileSync(iterator));
+  writeFileSync(join(toolkit, 'judge-video.mjs'), judge);
   writeFileSync(join(cwd, 'scenario.json'), JSON.stringify({ statuses, missingVerdict }));
   console.log(`[iteration fixture] ${cwd}`);
   return cwd;
@@ -37,7 +50,7 @@ function fixture(statuses = [0], missingVerdict = false) {
 
 async function run(cwd, budget = []) {
   const args = [
-    iterator,
+    join(cwd, '..', 'toolkit with spaces', 'iterate.mjs'),
     '--comp',
     'OfflineRelease',
     '--no-render',

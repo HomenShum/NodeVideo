@@ -27,6 +27,7 @@
 //
 import { execFileSync } from 'node:child_process';
 import { appendFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 const argv = process.argv.slice(2);
 const flag = (n, d) => {
@@ -82,7 +83,14 @@ for (let r = 1; r <= rounds; r++) {
   // The judge exits non-zero below the gate; that is the signal, not a crash.
   let passed = true;
   try {
-    sh('node', ['judge-video.mjs', out, '--for', audience, '--gate', gate]);
+    sh('node', [
+      fileURLToPath(new URL('./judge-video.mjs', import.meta.url)),
+      out,
+      '--for',
+      audience,
+      '--gate',
+      gate,
+    ]);
   } catch {
     passed = false;
   }

@@ -49,12 +49,14 @@ previously zero/negative/nonnumeric budgets could report success without review,
 and a fractional budget could report success after a failed review.
 
 Run `npm run test -- tests/unit/clip-iteration-budget.test.mjs` for the offline
-admission, outcome and retained-history scenarios. They use the real iterator
-with a synthetic child judge and disabled rendering, so they do not measure
-video quality or provider behavior. The existing iterator still resolves
-`judge-video.mjs` from the working directory; the fixture supplies it there.
-Repository-root judge discovery and a complete real-media run remain unverified
-by these tests. A safe integer is not a practical cost or elapsed-time cap.
+admission, discovery, outcome and retained-history scenarios. They copy the exact
+iterator bytes beside a synthetic judge and run from a separate job directory,
+with rendering disabled. The iterator resolves `judge-video.mjs` beside itself;
+relative media paths and review artifacts still belong to the caller's working
+directory. This lets the repository-root `npm run clip` find its vendored judge.
+The tests do not measure video quality or provider behavior, and a complete
+real-media run remains unverified. A safe integer is not a practical cost or
+elapsed-time cap.
 
 ## Two things it does deliberately
 
