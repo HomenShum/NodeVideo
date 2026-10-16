@@ -31,14 +31,15 @@ const PRICING = {
     inPerM: 4,
     outPerM: 20,
     pricingAsOf: '2026-10-10',
-    echo: /^claude-opus-5-5/,
+    // Exact §1.2 echo; the only extra allowance is a dated snapshot of the same model (-YYYYMMDD).
+    echo: /^claude-opus-5-5(-\d{8})?$/,
   },
   'browser/openrouter': {
     id: 'anthropic/claude-opus-5.5',
     inPerM: 4,
     outPerM: 20,
     pricingAsOf: '2026-10-10',
-    echo: /claude-opus-5[.-]5/,
+    echo: /^anthropic\/claude-opus-5\.5(-\d{8})?$/,
   },
 };
 const USAGE_KEYS = {
@@ -460,6 +461,34 @@ describe('live-eval harness (offline)', () => {
     expect(costFromUsage(p, { prompt_tokens: 1e6, completion_tokens: 1e6 }, i, o)).toBe(24);
   });
 
+  it('echo patterns accept only the exact id or a dated snapshot of it', () => {
+    const w = PRICING['worker/anthropic'].echo;
+    const b = PRICING['browser/openrouter'].echo;
+    for (const ok of ['claude-opus-5-5', 'claude-opus-5-5-20261010']) {
+      expect(w.test(ok), ok).toBe(true);
+    }
+    for (const ok of ['anthropic/claude-opus-5.5', 'anthropic/claude-opus-5.5-20261010']) {
+      expect(b.test(ok), ok).toBe(true);
+    }
+    for (const bad of [
+      'claude-opus-5-5-not-the-candidate',
+      'claude-opus-5',
+      'claude-opus-4-8',
+      '',
+    ]) {
+      expect(w.test(bad), bad).toBe(false);
+    }
+    for (const bad of [
+      'unverified/claude-opus-5.5',
+      'anthropic/claude-opus-5.5-fast',
+      'anthropic/claude-opus-5',
+      'anthropic/claude-opus-4.8',
+      'claude-opus-5-5',
+    ]) {
+      expect(b.test(bad), bad).toBe(false);
+    }
+  });
+
   it('pricing sources agree per Opus 5.5 id and are dated', () => {
     const [first, ...rest] = Object.values(PRICING);
     for (const entry of rest) {
@@ -541,7 +570,13 @@ describe.skipIf(!live)('live receipt: Opus 5.5 edit agents (PAID)', () => {
           row.reasoningDetailsEqual =
             hasReasoning(returned) && isDeepStrictEqual(replayed, returned);
           expect(sent.length, 'a real tool continuation').toBeGreaterThanOrEqual(2);
-          if (returned !== undefined) expect(replayed).toEqual(returned);
+          // The PR body accepts the browser path only if all three are true: absent, null or [] details
+          // must fail here rather than pass an equality check that is skipped or trivially equal.
+          expect(row.reasoningDetailsReturned, 'OpenRouter returned reasoning_details').toBe(true);
+          expect(row.reasoningDetailsReplayed, 'reasoning_details replayed on continuation').toBe(
+            true,
+          );
+          expect(row.reasoningDetailsEqual, 'replayed equals returned').toBe(true);
         },
       );
     } finally {
