@@ -20,7 +20,7 @@ import { dirname } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { runBrowserAgent } from '../../apps/edit/src/browser-agent';
-import { readByokModel } from '../../apps/edit/src/byok';
+import { DEFAULT_MODEL, readByokModel } from '../../apps/edit/src/byok';
 
 const git = (...args) => execFileSync('git', args, { encoding: 'utf8' }).trim();
 const live = process.env.NODEVIDEO_LIVE_EVAL === '1';
@@ -37,7 +37,16 @@ const PRICING = {
     // Exact §1.2 echo; the only extra allowance is a dated snapshot of the same model (-YYYYMMDD).
     echo: /^claude-opus-5-5(-\d{8})?$/,
   },
+  // The role that ships (D2): the free default, never called live without a key, so priced $0.
   'browser/openrouter': {
+    id: DEFAULT_MODEL,
+    inPerM: 0,
+    outPerM: 0,
+    pricingAsOf: '2026-10-16',
+    echo: /^nvidia\/nemotron-3\.5-super-vl:free$/,
+  },
+  // Optional BYOK override (a user choosing Opus 5.5 on their own key): a separate row, never the role.
+  'browser/openrouter-opus-override': {
     id: 'anthropic/claude-opus-5.5',
     inPerM: 4,
     outPerM: 20,
@@ -48,6 +57,7 @@ const PRICING = {
 const USAGE_KEYS = {
   'worker/anthropic': ['input_tokens', 'output_tokens'],
   'browser/openrouter': ['prompt_tokens', 'completion_tokens'],
+  'browser/openrouter-opus-override': ['prompt_tokens', 'completion_tokens'],
 };
 
 const plan = JSON.parse(
@@ -63,8 +73,16 @@ const MESSAGE = `Swap the source of the clip at index ${CLIP_INDEX} (0-based) to
 const rows = [];
 const transcripts = {};
 const requests = {};
-const completed = { 'worker/anthropic': false, 'browser/openrouter': false };
+const completed = {
+  'worker/anthropic': false,
+  'browser/openrouter': false,
+  'browser/openrouter-opus-override': false,
+};
 const LIVE_UNVERIFIED = 'live-unverified (no key, Homen 2026-10-16)';
+const NOT_RUN = {
+  'worker/anthropic': 'not-run',
+  'browser/openrouter-opus-override': 'not-run (optional BYOK override)',
+};
 const budget = {
   maxUsd: null,
   estimateUsd: 0.7,
@@ -454,8 +472,8 @@ describe('live-eval harness (offline)', () => {
   });
 
   it('fails closed when usage or cost is absent', () => {
-    const p = PRICING['browser/openrouter'];
-    const [i, o] = USAGE_KEYS['browser/openrouter'];
+    const p = PRICING['browser/openrouter-opus-override'];
+    const [i, o] = USAGE_KEYS['browser/openrouter-opus-override'];
     expect(() => costFromUsage(p, undefined, i, o)).toThrow(/usage missing/);
     expect(() => costFromUsage(p, { prompt_tokens: 10 }, i, o)).toThrow(/usage missing/);
     expect(() => costFromUsage(p, { prompt_tokens: 'x', completion_tokens: 1 }, i, o)).toThrow(
@@ -467,7 +485,12 @@ describe('live-eval harness (offline)', () => {
 
   it('echo patterns accept only the exact id or a dated snapshot of it', () => {
     const w = PRICING['worker/anthropic'].echo;
-    const b = PRICING['browser/openrouter'].echo;
+    const b = PRICING['browser/openrouter-opus-override'].echo;
+    const free = PRICING['browser/openrouter'].echo;
+    expect(free.test(DEFAULT_MODEL), DEFAULT_MODEL).toBe(true);
+    for (const bad of ['nvidia/nemotron-3.5-super-vl', 'anthropic/claude-opus-5.5', '']) {
+      expect(free.test(bad), bad).toBe(false);
+    }
     for (const ok of ['claude-opus-5-5', 'claude-opus-5-5-20261010']) {
       expect(w.test(ok), ok).toBe(true);
     }
@@ -494,7 +517,7 @@ describe('live-eval harness (offline)', () => {
   });
 
   it('pricing sources agree per Opus 5.5 id and are dated', () => {
-    const [first, ...rest] = Object.values(PRICING);
+    const [first, ...rest] = Object.values(PRICING).filter((p) => p.id.includes('opus'));
     for (const entry of rest) {
       expect({ inPerM: entry.inPerM, outPerM: entry.outPerM }).toEqual({
         inPerM: first.inPerM,
@@ -546,20 +569,22 @@ describe.skipIf(!live)('live receipt: Opus 5.5 edit agents (PAID)', () => {
   }, 180_000);
 
   // D2: skipped without a key. Never counts as completed then; the receipt marks it live-unverified.
+  // Exercises the optional Opus 5.5 BYOK override only. The shipped free default is not called here, so it
+  // stays live-unverified in the receipt whatever this test does.
   it.skipIf(!process.env.OPENROUTER_API_KEY)(
-    'browser path (OpenRouter) completes a tool loop, replays reasoning, echoes opus 5.5',
+    'browser path (OpenRouter, Opus 5.5 BYOK override) completes a tool loop, replays reasoning, echoes opus 5.5',
     async () => {
       vi.stubGlobal('location', { origin: 'http://localhost' });
       try {
         await observe(
-          'browser/openrouter',
+          'browser/openrouter-opus-override',
           ({ events, onResponse }) =>
             runBrowserAgent({
               plan,
               message: MESSAGE,
               history: [],
               apiKey: process.env.OPENROUTER_API_KEY,
-              model: PRICING['browser/openrouter'].id, // DEFAULT_MODEL is the free model (D2), not Opus 5.5
+              model: PRICING['browser/openrouter-opus-override'].id, // DEFAULT_MODEL is the free model (D2)
               signal: AbortSignal.timeout(120_000),
               emit: (e) => events.push(e),
               onResponse,
@@ -607,7 +632,14 @@ describe.skipIf(!live)('live receipt: Opus 5.5 edit agents (PAID)', () => {
           command: 'NODEVIDEO_LIVE_EVAL=1 npx vitest run tests/unit/model-live-eval.test.mjs',
           acceptance:
             "worker/anthropic completed; browser/openrouter completed or 'live-unverified (no key, Homen 2026-10-16)'; stoppedBy null; gitDirty false",
-          candidateIds: Object.values(PRICING).map((p) => p.id),
+          // Per role: what ships. The Opus 5.5 BYOK override is a separate, optional row.
+          candidateIds: {
+            'worker/anthropic': PRICING['worker/anthropic'].id,
+            'browser/openrouter': PRICING['browser/openrouter'].id,
+          },
+          optionalOverrideIds: {
+            'browser/openrouter-opus-override': PRICING['browser/openrouter-opus-override'].id,
+          },
           echoedModels: rows.map((r) => r.echoedModel),
           rows,
           testedCommit,
@@ -618,16 +650,17 @@ describe.skipIf(!live)('live receipt: Opus 5.5 edit agents (PAID)', () => {
             Object.entries(PRICING).map(([key, { echo, ...price }]) => [key, price]),
           ),
           completed,
-          // A path is 'completed' only after every assertion passed. With no request attempted it is
-          // live-unverified (D2); an attempted-but-failed path is 'failed' and the receipt is rejected.
+          // A path is 'completed' only after every assertion passed. A dispatched request that did not
+          // complete (401, truncated body: no row) is 'failed' and the receipt is rejected; with nothing
+          // dispatched the shipped browser role is live-unverified (D2).
           liveStatus: Object.fromEntries(
             Object.keys(completed).map((path) => [
               path,
               completed[path]
                 ? 'completed'
-                : rows.some((r) => r.path === path)
+                : requests[path]?.length > 0
                   ? 'failed'
-                  : LIVE_UNVERIFIED,
+                  : (NOT_RUN[path] ?? LIVE_UNVERIFIED),
             ]),
           ),
           requests,
