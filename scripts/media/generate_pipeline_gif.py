@@ -101,8 +101,9 @@ def frame(active: int):
     return image
 
 
-# Narrow variant (README on a ~390 px phone shows a 648 px image at 324 css px): every text style is
-# 32 px so its cap height stays >= 10 css px there. Stages sit in 2 columns; the six inputs fold into one line.
+# Narrow variant (README on a ~390 px phone shows a 648 px image at 324 css px): no text is smaller than
+# 32 px (title 40 px) so every cap height stays >= 10 css px there. Stages sit in 2 columns; the six inputs
+# fold into one wrapped line.
 NARROW_SIZE = (648, 974)
 NARROW_PAD, NARROW_FONT, NARROW_CELL_H, NARROW_GAP = 24, 32, 46, 6
 NARROW_INK_ON_GREEN = "#090b10"  # 9.8:1 on GREEN; the wide GIF's white on GREEN is 1.9:1
@@ -158,9 +159,9 @@ def frame_narrow(active: int, anchors=None):
         label_x, baseline = x + (cell_w - draw.textlength(label, font=bold)) / 2, y + cell_h / 2 + size * .35
         draw.text((label_x, baseline), label, font=bold, fill=ink, anchor="ls")
         if index == 0:
-            note("stage label, complete", label_x, baseline, size)
+            note("stage label (cell 0)", label_x, baseline, size)
         if index == 1:
-            note("stage label, pending", label_x, baseline, size)
+            note("stage label (cell 1)", label_x, baseline, size)
 
     bar = top + 10 * (cell_h + gap) + 4
     progress = (active + 1) / len(STAGES)
