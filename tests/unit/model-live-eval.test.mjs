@@ -1,10 +1,13 @@
 // Opt-in LIVE receipt run for the Opus 5.5 default (model-defaults SPEC-v3 A.0.3). Makes PAID calls,
 // so it is skipped unless NODEVIDEO_LIVE_EVAL=1 and is never part of `npm run check`. It exists to
-// produce the missing evidence: the provider-echoed model, usage and cost for BOTH edit-agent paths,
-// and an observed OpenRouter tool loop (does Opus 5.5 accept `reasoning.effort` + replayed reasoning).
+// produce the missing evidence: the provider-echoed model, usage and cost for the direct Anthropic
+// worker path. Homen decision D2 (SPEC-v3): no working OpenRouter key exists, so the browser/OpenRouter
+// path is recorded as 'live-unverified (no key, Homen 2026-10-16)', never as completed. Its paid
+// Opus 5.5 tool-loop test still exists and runs only when OPENROUTER_API_KEY is set; a key that then fails
+// stops the run (unaccountedRequest) and the receipt is rejected, so a failed request is never evidence.
 //
-//   NODEVIDEO_LIVE_EVAL=1 ANTHROPIC_API_KEY=... OPENROUTER_API_KEY=... \
-//     npx vitest run tests/unit/model-live-eval.test.mjs
+//   NODEVIDEO_LIVE_EVAL=1 ANTHROPIC_API_KEY=... npx vitest run tests/unit/model-live-eval.test.mjs
+//   (add OPENROUTER_API_KEY=... only with a working key)
 //
 // Run it on a clean checkout of the PR head. Receipt: .qa/runs/model-refresh-receipt-<sha>.json
 // (override with NODEVIDEO_LIVE_EVAL_OUT). Spend cap: NODEVIDEO_LIVE_EVAL_MAX_USD (default 1.00, must be
@@ -61,6 +64,7 @@ const rows = [];
 const transcripts = {};
 const requests = {};
 const completed = { 'worker/anthropic': false, 'browser/openrouter': false };
+const LIVE_UNVERIFIED = 'live-unverified (no key, Homen 2026-10-16)';
 const budget = {
   maxUsd: null,
   estimateUsd: 0.7,
@@ -522,7 +526,6 @@ describe.skipIf(!live)('live receipt: Opus 5.5 edit agents (PAID)', () => {
     budget.maxUsd = parseCap(process.env.NODEVIDEO_LIVE_EVAL_MAX_USD);
     expect(gitDirty, 'receipt is rejected when the tree is dirty').toBe(false);
     expect(process.env.ANTHROPIC_API_KEY, 'ANTHROPIC_API_KEY').toBeTruthy();
-    expect(process.env.OPENROUTER_API_KEY, 'OPENROUTER_API_KEY').toBeTruthy();
     expect(
       process.env.NODEVIDEO_EDIT_AGENT_MODEL,
       'override would change the tested model',
@@ -542,47 +545,54 @@ describe.skipIf(!live)('live receipt: Opus 5.5 edit agents (PAID)', () => {
     );
   }, 180_000);
 
-  it('browser path (OpenRouter) completes a tool loop, replays reasoning, echoes opus 5.5', async () => {
-    vi.stubGlobal('location', { origin: 'http://localhost' });
-    try {
-      await observe(
-        'browser/openrouter',
-        ({ events, onResponse }) =>
-          runBrowserAgent({
-            plan,
-            message: MESSAGE,
-            history: [],
-            apiKey: process.env.OPENROUTER_API_KEY,
-            model: readByokModel(),
-            signal: AbortSignal.timeout(120_000),
-            emit: (e) => events.push(e),
-            onResponse,
-          }),
-        ({ sent, received, pathRows }) => {
-          expect(received[0], 'first response must be a JSON body').toBeTruthy();
-          const returned = received[0]?.choices?.[0]?.message?.reasoning_details;
-          const replayed = sent[1]?.messages?.find(
-            (m) => m.role === 'assistant',
-          )?.reasoning_details;
-          const row = pathRows.at(-1);
-          row.reasoningDetailsReturned = hasReasoning(returned);
-          row.reasoningDetailsReplayed = hasReasoning(replayed);
-          row.reasoningDetailsEqual =
-            hasReasoning(returned) && isDeepStrictEqual(replayed, returned);
-          expect(sent.length, 'a real tool continuation').toBeGreaterThanOrEqual(2);
-          // The PR body accepts the browser path only if all three are true: absent, null or [] details
-          // must fail here rather than pass an equality check that is skipped or trivially equal.
-          expect(row.reasoningDetailsReturned, 'OpenRouter returned reasoning_details').toBe(true);
-          expect(row.reasoningDetailsReplayed, 'reasoning_details replayed on continuation').toBe(
-            true,
-          );
-          expect(row.reasoningDetailsEqual, 'replayed equals returned').toBe(true);
-        },
-      );
-    } finally {
-      vi.unstubAllGlobals();
-    }
-  }, 180_000);
+  // D2: skipped without a key. Never counts as completed then; the receipt marks it live-unverified.
+  it.skipIf(!process.env.OPENROUTER_API_KEY)(
+    'browser path (OpenRouter) completes a tool loop, replays reasoning, echoes opus 5.5',
+    async () => {
+      vi.stubGlobal('location', { origin: 'http://localhost' });
+      try {
+        await observe(
+          'browser/openrouter',
+          ({ events, onResponse }) =>
+            runBrowserAgent({
+              plan,
+              message: MESSAGE,
+              history: [],
+              apiKey: process.env.OPENROUTER_API_KEY,
+              model: PRICING['browser/openrouter'].id, // DEFAULT_MODEL is the free model (D2), not Opus 5.5
+              signal: AbortSignal.timeout(120_000),
+              emit: (e) => events.push(e),
+              onResponse,
+            }),
+          ({ sent, received, pathRows }) => {
+            expect(received[0], 'first response must be a JSON body').toBeTruthy();
+            const returned = received[0]?.choices?.[0]?.message?.reasoning_details;
+            const replayed = sent[1]?.messages?.find(
+              (m) => m.role === 'assistant',
+            )?.reasoning_details;
+            const row = pathRows.at(-1);
+            row.reasoningDetailsReturned = hasReasoning(returned);
+            row.reasoningDetailsReplayed = hasReasoning(replayed);
+            row.reasoningDetailsEqual =
+              hasReasoning(returned) && isDeepStrictEqual(replayed, returned);
+            expect(sent.length, 'a real tool continuation').toBeGreaterThanOrEqual(2);
+            // The PR body accepts the browser path only if all three are true: absent, null or [] details
+            // must fail here rather than pass an equality check that is skipped or trivially equal.
+            expect(row.reasoningDetailsReturned, 'OpenRouter returned reasoning_details').toBe(
+              true,
+            );
+            expect(row.reasoningDetailsReplayed, 'reasoning_details replayed on continuation').toBe(
+              true,
+            );
+            expect(row.reasoningDetailsEqual, 'replayed equals returned').toBe(true);
+          },
+        );
+      } finally {
+        vi.unstubAllGlobals();
+      }
+    },
+    180_000,
+  );
 
   afterAll(() => {
     if (rows.length === 0) return; // a failed precondition sent nothing: no receipt
@@ -595,6 +605,8 @@ describe.skipIf(!live)('live receipt: Opus 5.5 edit agents (PAID)', () => {
       `${JSON.stringify(
         {
           command: 'NODEVIDEO_LIVE_EVAL=1 npx vitest run tests/unit/model-live-eval.test.mjs',
+          acceptance:
+            "worker/anthropic completed; browser/openrouter completed or 'live-unverified (no key, Homen 2026-10-16)'; stoppedBy null; gitDirty false",
           candidateIds: Object.values(PRICING).map((p) => p.id),
           echoedModels: rows.map((r) => r.echoedModel),
           rows,
@@ -606,6 +618,18 @@ describe.skipIf(!live)('live receipt: Opus 5.5 edit agents (PAID)', () => {
             Object.entries(PRICING).map(([key, { echo, ...price }]) => [key, price]),
           ),
           completed,
+          // A path is 'completed' only after every assertion passed. With no request attempted it is
+          // live-unverified (D2); an attempted-but-failed path is 'failed' and the receipt is rejected.
+          liveStatus: Object.fromEntries(
+            Object.keys(completed).map((path) => [
+              path,
+              completed[path]
+                ? 'completed'
+                : rows.some((r) => r.path === path)
+                  ? 'failed'
+                  : LIVE_UNVERIFIED,
+            ]),
+          ),
           requests,
           transcripts,
           startedAt,

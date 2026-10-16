@@ -10,6 +10,9 @@ import { runBrowserAgent } from '../../apps/edit/src/browser-agent';
 import { DEFAULT_MODEL, readByokModel } from '../../apps/edit/src/byok';
 
 const OPENROUTER_OPUS_55 = 'anthropic/claude-opus-5.5';
+// Homen decision D2 (SPEC-v3:5): the OpenRouter-routed browser default is the newest `:free` model on the
+// public list with tools + structured outputs + reasoning (list fetched 2026-10-16T10:00:05Z).
+const OPENROUTER_FREE_DEFAULT = 'nvidia/nemotron-3.5-super-vl:free';
 const ANTHROPIC_OPUS_55 = 'claude-opus-5-5';
 const FORBIDDEN_TOP_LEVEL = ['temperature', 'top_p', 'top_k', 'prefill'];
 
@@ -54,8 +57,8 @@ describe('browser edit agent request shape (OpenRouter)', () => {
   });
   afterEach(() => vi.unstubAllGlobals());
 
-  it('defaults to the OpenRouter Opus 5.5 slug, explicit effort, 4096-token cap, no forbidden keys', async () => {
-    expect(DEFAULT_MODEL).toBe(OPENROUTER_OPUS_55);
+  it('defaults to the D2 free model with the 4096-token cap and no forbidden keys, and sends no Opus-only effort', async () => {
+    expect(DEFAULT_MODEL).toBe(OPENROUTER_FREE_DEFAULT);
     await runBrowserAgent({
       plan,
       message: 'swap clip 1',
@@ -67,13 +70,31 @@ describe('browser edit agent request shape (OpenRouter)', () => {
     });
     expect(bodies).toHaveLength(1);
     const body = bodies[0];
+    expect(body.model).toBe(OPENROUTER_FREE_DEFAULT);
+    expect(body.max_tokens).toBe(4096);
+    // `reasoning.effort: low` is the Opus 5.5 setting; it must not follow the default to the free model.
+    expect(body).not.toHaveProperty('reasoning');
+    expectOpus55Safe(body);
+  });
+
+  it('sends explicit low effort when the Opus 5.5 slug is chosen as a BYOK override', async () => {
+    await runBrowserAgent({
+      plan,
+      message: 'swap clip 1',
+      history: [],
+      apiKey: 'test-key-not-real',
+      model: OPENROUTER_OPUS_55,
+      signal: new AbortController().signal,
+      emit: () => {},
+    });
+    const body = bodies[0];
     expect(body.model).toBe(OPENROUTER_OPUS_55);
     expect(body.max_tokens).toBe(4096);
     expect(body.reasoning).toEqual({ effort: 'low' });
     expectOpus55Safe(body);
   });
 
-  it('leaves reasoning to the model default for a non-Opus-5.5 BYOK override', async () => {
+  it('leaves reasoning to the model default for another BYOK override', async () => {
     await runBrowserAgent({
       plan,
       message: 'swap clip 1',
@@ -137,7 +158,7 @@ describe('browser edit agent tool continuation (OpenRouter)', () => {
       message: 'what is in the plan?',
       history: [],
       apiKey: 'test-key-not-real',
-      model: readByokModel(),
+      model: OPENROUTER_OPUS_55, // the slug that sends reasoning.effort; the default is the free model (D2)
       signal: new AbortController().signal,
       emit: () => {},
     });

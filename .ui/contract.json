@@ -278,7 +278,7 @@
           "id": "byok-model",
           "css": "#byok-model",
           "state": "inside the collapsed 'Connect a model' disclosure",
-          "meaning": "OpenRouter model slug for the in-browser agent (default anthropic/claude-opus-5.5)."
+          "meaning": "OpenRouter model slug for the in-browser agent (default nvidia/nemotron-3.5-super-vl:free)."
         },
         {
           "id": "worker-endpoint",

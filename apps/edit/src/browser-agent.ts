@@ -7,7 +7,6 @@
 
 import { RETRY_BACKOFF, backoffSleep } from '@/lib/backoff';
 import { NODE_AGENT_LIMITS } from '@/lib/nodeagent-contract';
-import { DEFAULT_MODEL } from './byok';
 import {
   ONE_EDIT_PER_PROPOSAL_ERROR,
   type Plan,
@@ -22,6 +21,8 @@ import {
   splitClipOnNearestBeat,
   swapClipSource,
 } from './plan-tools';
+
+const OPUS_55_SLUG = 'anthropic/claude-opus-5.5';
 
 export type AgentEvent =
   | { type: 'reasoning'; delta: string }
@@ -246,9 +247,9 @@ export async function runBrowserAgent(options: {
             tools: TOOLS,
             tool_choice: 'auto',
             max_tokens: 4096, // thinking counts toward the cap
-            // Opus 5.5 defaults to medium; match the worker path. Keyed by exact id: any other
-            // BYOK override keeps its own reasoning default.
-            ...(options.model === DEFAULT_MODEL && { reasoning: { effort: 'low' } }),
+            // Opus 5.5 defaults to medium; match the worker path. Keyed by the Opus 5.5 slug, not
+            // DEFAULT_MODEL (now a free model, D2): every other model keeps its own reasoning default.
+            ...(options.model === OPUS_55_SLUG && { reasoning: { effort: 'low' } }),
           }),
         });
       } catch (error) {
