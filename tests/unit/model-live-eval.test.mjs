@@ -1,5 +1,6 @@
 // Opt-in LIVE receipt run for the Opus 5.5 default (model-defaults SPEC-v3 A.0.3). Makes PAID calls,
-// so it is skipped unless NODEVIDEO_LIVE_EVAL=1 and is never part of `npm run check`. It exists to
+// so it is skipped unless NODEVIDEO_LIVE_EVAL=1 (`npm run check` runs `vitest run`, which finds this file, so
+// exporting that variable with ANTHROPIC_API_KEY would spend money there too). It exists to
 // produce the missing evidence: the provider-echoed model, usage and cost for the direct Anthropic
 // worker path. Homen decision D2 (SPEC-v3): no working OpenRouter key exists, so the browser/OpenRouter
 // path is recorded as 'live-unverified (no key, Homen 2026-10-16)', never as completed. Its paid
@@ -85,7 +86,7 @@ const NOT_RUN = {
 };
 const budget = {
   maxUsd: null,
-  estimateUsd: 0.7,
+  estimateUsd: 0.35, // conservative worker-path estimate; observed about $0.04 (PR body)
   spentUsd: 0,
   requests: 0,
   outstanding: 0, // dispatched but not yet recorded: possibly billed, not yet in spentUsd
@@ -631,9 +632,11 @@ describe.skipIf(!live)('live receipt: Opus 5.5 edit agents (PAID)', () => {
         {
           command: 'NODEVIDEO_LIVE_EVAL=1 npx vitest run tests/unit/model-live-eval.test.mjs',
           acceptance:
-            "worker/anthropic completed; browser/openrouter completed or 'live-unverified (no key, Homen 2026-10-16)'; stoppedBy null; gitDirty false",
+            "worker/anthropic completed; browser/openrouter (the shipped free default) is always 'live-unverified (no key, Homen 2026-10-16)' and only the optional browser/openrouter-opus-override row can complete; stoppedBy null; gitDirty false",
           // Per role: what ships. The Opus 5.5 BYOK override is a separate, optional row.
-          candidateIds: {
+          // SPEC-v3 A.0.3: candidateIds is an array; the role mapping lives in candidateRoles.
+          candidateIds: [PRICING['worker/anthropic'].id, PRICING['browser/openrouter'].id],
+          candidateRoles: {
             'worker/anthropic': PRICING['worker/anthropic'].id,
             'browser/openrouter': PRICING['browser/openrouter'].id,
           },
