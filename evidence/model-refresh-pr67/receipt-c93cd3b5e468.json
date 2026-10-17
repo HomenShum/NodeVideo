@@ -1,0 +1,557 @@
+{
+  "command": "NODEVIDEO_LIVE_EVAL=1 npx vitest run tests/unit/model-live-eval.test.mjs",
+  "acceptance": "worker/anthropic completed; browser/openrouter (the shipped free default) is always 'live-unverified (no key, Homen 2026-10-16)' and only the optional browser/openrouter-opus-override row can complete; stoppedBy null; gitDirty false",
+  "candidateIds": [
+    "claude-opus-5-5",
+    "nvidia/nemotron-3.5-super-vl:free"
+  ],
+  "candidateRoles": {
+    "worker/anthropic": "claude-opus-5-5",
+    "browser/openrouter": "nvidia/nemotron-3.5-super-vl:free"
+  },
+  "optionalOverrideIds": {
+    "browser/openrouter-opus-override": "anthropic/claude-opus-5.5"
+  },
+  "echoedModels": [
+    "claude-opus-5-5",
+    "claude-opus-5-5",
+    "claude-opus-5-5"
+  ],
+  "rows": [
+    {
+      "path": "worker/anthropic",
+      "requestedModel": "claude-opus-5-5",
+      "resolvedModel": "claude-opus-5-5",
+      "echoedModel": "claude-opus-5-5",
+      "responseId": "msg_011Cg7LEh7gyAnQLbXRZ7UHC",
+      "usage": {
+        "input_tokens": 1718,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 30,
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "costUsd": 0.007472,
+      "fallbackUsed": false
+    },
+    {
+      "path": "worker/anthropic",
+      "requestedModel": "claude-opus-5-5",
+      "resolvedModel": "claude-opus-5-5",
+      "echoedModel": "claude-opus-5-5",
+      "responseId": "msg_011Cg7LEnUAEMHym4jGoV2GA",
+      "usage": {
+        "input_tokens": 2798,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 55,
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "costUsd": 0.012292,
+      "fallbackUsed": false
+    },
+    {
+      "path": "worker/anthropic",
+      "requestedModel": "claude-opus-5-5",
+      "resolvedModel": "claude-opus-5-5",
+      "echoedModel": "claude-opus-5-5",
+      "responseId": "msg_011Cg7LEuXZJjs23QTBeXq7H",
+      "usage": {
+        "input_tokens": 3038,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 150,
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "costUsd": 0.015152,
+      "fallbackUsed": false
+    }
+  ],
+  "testedCommit": "c93cd3b5e468fa65aa209e3d65668f260c8ef0de",
+  "gitDirty": false,
+  "constantSha256": {
+    "apps/edit/src/byok.ts": "7b404d73563fe2951eefad5eac0c1f8aee63c461af1bf2ff8a54a591f792d2d2",
+    "scripts/workers/edit-agent.mjs": "d2e2cffc6e86b4444231923704a30214cc833e8a6982cd9d5bef613f3e6d2611"
+  },
+  "budget": {
+    "maxUsd": 1.5,
+    "estimateUsd": 0.35,
+    "spentUsd": 0.034916,
+    "requests": 3,
+    "outstanding": 0,
+    "stoppedBy": null
+  },
+  "pricing": {
+    "worker/anthropic": {
+      "id": "claude-opus-5-5",
+      "inPerM": 4,
+      "outPerM": 20,
+      "pricingAsOf": "2026-10-10"
+    },
+    "browser/openrouter": {
+      "id": "nvidia/nemotron-3.5-super-vl:free",
+      "inPerM": 0,
+      "outPerM": 0,
+      "pricingAsOf": "2026-10-16"
+    },
+    "browser/openrouter-opus-override": {
+      "id": "anthropic/claude-opus-5.5",
+      "inPerM": 4,
+      "outPerM": 20,
+      "pricingAsOf": "2026-10-10"
+    }
+  },
+  "completed": {
+    "worker/anthropic": true,
+    "browser/openrouter": false,
+    "browser/openrouter-opus-override": false
+  },
+  "liveStatus": {
+    "worker/anthropic": "completed",
+    "browser/openrouter": "live-unverified (no key, Homen 2026-10-16)",
+    "browser/openrouter-opus-override": "not-run (optional BYOK override)"
+  },
+  "requests": {
+    "worker/anthropic": [
+      {
+        "model": "claude-opus-5-5",
+        "max_tokens": 4096,
+        "thinking": {
+          "type": "adaptive",
+          "display": "summarized"
+        },
+        "output_config": {
+          "effort": "low"
+        },
+        "system": "You are the NodeVideo edit agent for a beat-aligned dance edit (\"Sign\" case: two takes A/B cut on a beat grid with lyric overlays).\nGround every claim in tool results — call get_plan_summary before proposing anything.\nEach mutating tool call becomes a patch card the user must accept; the plan you see updates as if accepted, but nothing is final until the user applies it. Say so when summarizing.\nMake the smallest edit that satisfies the request. Never invent clips, overlays, or timings not present in the plan. These are relative, uncalibrated edits to a creative work — no quality guarantees.\nKeep replies to a few sentences; the tool cards carry the detail.",
+        "stream": true
+      },
+      {
+        "model": "claude-opus-5-5",
+        "max_tokens": 4096,
+        "thinking": {
+          "type": "adaptive",
+          "display": "summarized"
+        },
+        "output_config": {
+          "effort": "low"
+        },
+        "system": "You are the NodeVideo edit agent for a beat-aligned dance edit (\"Sign\" case: two takes A/B cut on a beat grid with lyric overlays).\nGround every claim in tool results — call get_plan_summary before proposing anything.\nEach mutating tool call becomes a patch card the user must accept; the plan you see updates as if accepted, but nothing is final until the user applies it. Say so when summarizing.\nMake the smallest edit that satisfies the request. Never invent clips, overlays, or timings not present in the plan. These are relative, uncalibrated edits to a creative work — no quality guarantees.\nKeep replies to a few sentences; the tool cards carry the detail.",
+        "stream": true
+      },
+      {
+        "model": "claude-opus-5-5",
+        "max_tokens": 4096,
+        "thinking": {
+          "type": "adaptive",
+          "display": "summarized"
+        },
+        "output_config": {
+          "effort": "low"
+        },
+        "system": "You are the NodeVideo edit agent for a beat-aligned dance edit (\"Sign\" case: two takes A/B cut on a beat grid with lyric overlays).\nGround every claim in tool results — call get_plan_summary before proposing anything.\nEach mutating tool call becomes a patch card the user must accept; the plan you see updates as if accepted, but nothing is final until the user applies it. Say so when summarizing.\nMake the smallest edit that satisfies the request. Never invent clips, overlays, or timings not present in the plan. These are relative, uncalibrated edits to a creative work — no quality guarantees.\nKeep replies to a few sentences; the tool cards carry the detail.",
+        "stream": true
+      }
+    ]
+  },
+  "transcripts": {
+    "worker/anthropic": {
+      "events": [
+        {
+          "type": "tool",
+          "name": "get_plan_summary",
+          "input": {},
+          "output": {
+            "summary": {
+              "bpm": 107.7,
+              "durationSeconds": 44.5,
+              "clips": [
+                {
+                  "index": 0,
+                  "lane": "A",
+                  "startSeconds": 0,
+                  "endSeconds": 6.6
+                },
+                {
+                  "index": 1,
+                  "lane": "B",
+                  "startSeconds": 6.6,
+                  "endSeconds": 16
+                },
+                {
+                  "index": 2,
+                  "lane": "A",
+                  "startSeconds": 16,
+                  "endSeconds": 19.7
+                },
+                {
+                  "index": 3,
+                  "lane": "B",
+                  "startSeconds": 19.7,
+                  "endSeconds": 25
+                },
+                {
+                  "index": 4,
+                  "lane": "A",
+                  "startSeconds": 25,
+                  "endSeconds": 40.5
+                }
+              ],
+              "overlays": [
+                {
+                  "id": "overlay.lyric-1",
+                  "text": "Wait a minute",
+                  "startSeconds": 0,
+                  "endSeconds": 1.9,
+                  "templateId": "text.cue"
+                },
+                {
+                  "id": "overlay.lyric-2",
+                  "text": "Left · right · alright",
+                  "startSeconds": 1.9,
+                  "endSeconds": 3.9,
+                  "templateId": "text.cue"
+                },
+                {
+                  "id": "overlay.lyric-3",
+                  "text": "Flip it a little closer",
+                  "startSeconds": 3.9,
+                  "endSeconds": 6.6,
+                  "templateId": "text.cue"
+                },
+                {
+                  "id": "overlay.lyric-4",
+                  "text": "Red light · on fire",
+                  "startSeconds": 6.6,
+                  "endSeconds": 8.4,
+                  "templateId": "text.cue"
+                },
+                {
+                  "id": "overlay.lyric-5",
+                  "text": "Right now · it's so tight",
+                  "startSeconds": 9,
+                  "endSeconds": 11.2,
+                  "templateId": "text.cue"
+                },
+                {
+                  "id": "overlay.lyric-6",
+                  "text": "Take that as a sign",
+                  "startSeconds": 11.9,
+                  "endSeconds": 15.8,
+                  "templateId": "text.cue"
+                },
+                {
+                  "id": "overlay.lyric-7",
+                  "text": "Show me your sign",
+                  "startSeconds": 15.8,
+                  "endSeconds": 19.8,
+                  "templateId": "text.cue"
+                },
+                {
+                  "id": "overlay.lyric-8",
+                  "text": "Tiki taki tak · tiki tiki taki tak",
+                  "startSeconds": 19.8,
+                  "endSeconds": 25.3,
+                  "templateId": "text.cue"
+                },
+                {
+                  "id": "overlay.lyric-9",
+                  "text": "Make up your mind",
+                  "startSeconds": 25.3,
+                  "endSeconds": 26.6,
+                  "templateId": "text.cue"
+                },
+                {
+                  "id": "overlay.lyric-10",
+                  "text": "Show me your sign",
+                  "startSeconds": 26.6,
+                  "endSeconds": 29.5,
+                  "templateId": "text.cue"
+                },
+                {
+                  "id": "overlay.lyric-11",
+                  "text": "Tiki taki tak · tiki tiki taki tak",
+                  "startSeconds": 29.5,
+                  "endSeconds": 33.6,
+                  "templateId": "text.cue"
+                },
+                {
+                  "id": "overlay.lyric-12",
+                  "text": "Take that as a sign",
+                  "startSeconds": 33.6,
+                  "endSeconds": 37.9,
+                  "templateId": "text.cue"
+                },
+                {
+                  "id": "overlay.lyric-13",
+                  "text": "Stay here",
+                  "startSeconds": 38.9,
+                  "endSeconds": 40.3,
+                  "templateId": "text.cue"
+                },
+                {
+                  "id": "overlay.outro",
+                  "text": "NodeVideo source-only proof",
+                  "startSeconds": 40.5,
+                  "endSeconds": 44.5,
+                  "templateId": "text.outro"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "proposal",
+          "proposal": {
+            "kind": "swap-source",
+            "clipIndex": 1
+          }
+        },
+        {
+          "type": "tool",
+          "name": "swap_clip_source",
+          "input": {
+            "clipIndex": 1
+          },
+          "output": {
+            "applied": "pending user acceptance",
+            "summary": [
+              {
+                "index": 0,
+                "lane": "A",
+                "startSeconds": 0,
+                "endSeconds": 6.6
+              },
+              {
+                "index": 1,
+                "lane": "A",
+                "startSeconds": 6.6,
+                "endSeconds": 16
+              },
+              {
+                "index": 2,
+                "lane": "A",
+                "startSeconds": 16,
+                "endSeconds": 19.7
+              },
+              {
+                "index": 3,
+                "lane": "B",
+                "startSeconds": 19.7,
+                "endSeconds": 25
+              },
+              {
+                "index": 4,
+                "lane": "A",
+                "startSeconds": 25,
+                "endSeconds": 40.5
+              }
+            ]
+          }
+        },
+        {
+          "type": "reasoning",
+          "delta": "Since clips 0-2"
+        },
+        {
+          "type": "reasoning",
+          "delta": " are all"
+        },
+        {
+          "type": "reasoning",
+          "delta": " from"
+        },
+        {
+          "type": "reasoning",
+          "delta": " take A, that gives a contin"
+        },
+        {
+          "type": "reasoning",
+          "delta": "uous 0–19.7"
+        },
+        {
+          "type": "reasoning",
+          "delta": "s seg"
+        },
+        {
+          "type": "reasoning",
+          "delta": "ment I"
+        },
+        {
+          "type": "reasoning",
+          "delta": " should tre"
+        },
+        {
+          "type": "reasoning",
+          "delta": "at as one take."
+        },
+        {
+          "type": "reasoning",
+          "delta": "\n\n"
+        },
+        {
+          "type": "text",
+          "delta": "I've"
+        },
+        {
+          "type": "text",
+          "delta": " pro"
+        },
+        {
+          "type": "text",
+          "delta": "posed swit"
+        },
+        {
+          "type": "text",
+          "delta": "ching clip 1 (6"
+        },
+        {
+          "type": "text",
+          "delta": ".6–16."
+        },
+        {
+          "type": "text",
+          "delta": "0s) from take B to take"
+        },
+        {
+          "type": "text",
+          "delta": " A. It keeps the same"
+        },
+        {
+          "type": "text",
+          "delta": " beats and"
+        },
+        {
+          "type": "text",
+          "delta": " timing, and the overlays"
+        },
+        {
+          "type": "text",
+          "delta": " aren't affected. This"
+        },
+        {
+          "type": "text",
+          "delta": " is a patch card, so n"
+        },
+        {
+          "type": "text",
+          "delta": "othing chang"
+        },
+        {
+          "type": "text",
+          "delta": "es until you accept it."
+        },
+        {
+          "type": "text",
+          "delta": "\n\nIf"
+        },
+        {
+          "type": "text",
+          "delta": " you accept,"
+        },
+        {
+          "type": "text",
+          "delta": " clips 0–2 will"
+        },
+        {
+          "type": "text",
+          "delta": " all be take A, so the first"
+        },
+        {
+          "type": "text",
+          "delta": " 19.7 "
+        },
+        {
+          "type": "text",
+          "delta": "seconds will have"
+        },
+        {
+          "type": "text",
+          "delta": " no swit"
+        },
+        {
+          "type": "text",
+          "delta": "ch between takes."
+        }
+      ],
+      "messages": [
+        {
+          "role": "user",
+          "content": "Swap the source of the clip at index 1 (0-based) to the other take."
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QDj5jHLWPAYXjMrweyJV3g",
+              "name": "get_plan_summary",
+              "caller": {
+                "type": "direct"
+              },
+              "input": {}
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01QDj5jHLWPAYXjMrweyJV3g",
+              "content": "{\"summary\":{\"bpm\":107.7,\"durationSeconds\":44.5,\"clips\":[{\"index\":0,\"lane\":\"A\",\"startSeconds\":0,\"endSeconds\":6.6},{\"index\":1,\"lane\":\"B\",\"startSeconds\":6.6,\"endSeconds\":16},{\"index\":2,\"lane\":\"A\",\"startSeconds\":16,\"endSeconds\":19.7},{\"index\":3,\"lane\":\"B\",\"startSeconds\":19.7,\"endSeconds\":25},{\"index\":4,\"lane\":\"A\",\"startSeconds\":25,\"endSeconds\":40.5}],\"overlays\":[{\"id\":\"overlay.lyric-1\",\"text\":\"Wait a minute\",\"startSeconds\":0,\"endSeconds\":1.9,\"templateId\":\"text.cue\"},{\"id\":\"overlay.lyric-2\",\"text\":\"Left · right · alright\",\"startSeconds\":1.9,\"endSeconds\":3.9,\"templateId\":\"text.cue\"},{\"id\":\"overlay.lyric-3\",\"text\":\"Flip it a little closer\",\"startSeconds\":3.9,\"endSeconds\":6.6,\"templateId\":\"text.cue\"},{\"id\":\"overlay.lyric-4\",\"text\":\"Red light · on fire\",\"startSeconds\":6.6,\"endSeconds\":8.4,\"templateId\":\"text.cue\"},{\"id\":\"overlay.lyric-5\",\"text\":\"Right now · it's so tight\",\"startSeconds\":9,\"endSeconds\":11.2,\"templateId\":\"text.cue\"},{\"id\":\"overlay.lyric-6\",\"text\":\"Take that as a sign\",\"startSeconds\":11.9,\"endSeconds\":15.8,\"templateId\":\"text.cue\"},{\"id\":\"overlay.lyric-7\",\"text\":\"Show me your sign\",\"startSeconds\":15.8,\"endSeconds\":19.8,\"templateId\":\"text.cue\"},{\"id\":\"overlay.lyric-8\",\"text\":\"Tiki taki tak · tiki tiki taki tak\",\"startSeconds\":19.8,\"endSeconds\":25.3,\"templateId\":\"text.cue\"},{\"id\":\"overlay.lyric-9\",\"text\":\"Make up your mind\",\"startSeconds\":25.3,\"endSeconds\":26.6,\"templateId\":\"text.cue\"},{\"id\":\"overlay.lyric-10\",\"text\":\"Show me your sign\",\"startSeconds\":26.6,\"endSeconds\":29.5,\"templateId\":\"text.cue\"},{\"id\":\"overlay.lyric-11\",\"text\":\"Tiki taki tak · tiki tiki taki tak\",\"startSeconds\":29.5,\"endSeconds\":33.6,\"templateId\":\"text.cue\"},{\"id\":\"overlay.lyric-12\",\"text\":\"Take that as a sign\",\"startSeconds\":33.6,\"endSeconds\":37.9,\"templateId\":\"text.cue\"},{\"id\":\"overlay.lyric-13\",\"text\":\"Stay here\",\"startSeconds\":38.9,\"endSeconds\":40.3,\"templateId\":\"text.cue\"},{\"id\":\"overlay.outro\",\"text\":\"NodeVideo source-only proof\",\"startSeconds\":40.5,\"endSeconds\":44.5,\"templateId\":\"text.outro\"}]}}",
+              "is_error": false
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012yYiX5HTMpLNj35EweyKCD",
+              "name": "swap_clip_source",
+              "caller": {
+                "type": "direct"
+              },
+              "input": {
+                "clipIndex": 1
+              }
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_012yYiX5HTMpLNj35EweyKCD",
+              "content": "{\"applied\":\"pending user acceptance\",\"summary\":[{\"index\":0,\"lane\":\"A\",\"startSeconds\":0,\"endSeconds\":6.6},{\"index\":1,\"lane\":\"A\",\"startSeconds\":6.6,\"endSeconds\":16},{\"index\":2,\"lane\":\"A\",\"startSeconds\":16,\"endSeconds\":19.7},{\"index\":3,\"lane\":\"B\",\"startSeconds\":19.7,\"endSeconds\":25},{\"index\":4,\"lane\":\"A\",\"startSeconds\":25,\"endSeconds\":40.5}]}",
+              "is_error": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "startedAt": "2026-10-17T06:25:25.830Z",
+  "environment": "local keyed machine"
+}
