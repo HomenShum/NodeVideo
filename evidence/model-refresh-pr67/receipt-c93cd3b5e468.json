@@ -1,10 +1,7 @@
 {
   "command": "NODEVIDEO_LIVE_EVAL=1 npx vitest run tests/unit/model-live-eval.test.mjs",
   "acceptance": "worker/anthropic completed; browser/openrouter (the shipped free default) is always 'live-unverified (no key, Homen 2026-10-16)' and only the optional browser/openrouter-opus-override row can complete; stoppedBy null; gitDirty false",
-  "candidateIds": [
-    "claude-opus-5-5",
-    "nvidia/nemotron-3.5-super-vl:free"
-  ],
+  "candidateIds": ["claude-opus-5-5", "nvidia/nemotron-3.5-super-vl:free"],
   "candidateRoles": {
     "worker/anthropic": "claude-opus-5-5",
     "browser/openrouter": "nvidia/nemotron-3.5-super-vl:free"
@@ -12,11 +9,7 @@
   "optionalOverrideIds": {
     "browser/openrouter-opus-override": "anthropic/claude-opus-5.5"
   },
-  "echoedModels": [
-    "claude-opus-5-5",
-    "claude-opus-5-5",
-    "claude-opus-5-5"
-  ],
+  "echoedModels": ["claude-opus-5-5", "claude-opus-5-5", "claude-opus-5-5"],
   "rows": [
     {
       "path": "worker/anthropic",
