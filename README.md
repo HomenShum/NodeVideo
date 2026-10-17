@@ -23,7 +23,7 @@ talking-head videos, comedy, montage, and other formats. Its primary workflow is
 > -> source-only interpretation -> global edit and editorial plan -> fixed render -> freeze
 > -> evaluator-only conjunctive fidelity gates
 
-![NodeVideo durable source-only pipeline: 19 stages from Validate to Hidden evaluator, each a durable stage with an inspectable artifact](fixtures/proof/nodevideo-live-pipeline-narrow.gif)
+<img src="fixtures/proof/nodevideo-live-pipeline-narrow.gif" width="432" alt="NodeVideo durable source-only pipeline: 19 stages from Validate to Hidden evaluator, each a durable stage with an inspectable artifact">
 
 The product value is the completed editorial outcome: understanding the choreography, choosing the
 right performance for each musical phrase, cutting on intentional beats, keeping text off the body,
