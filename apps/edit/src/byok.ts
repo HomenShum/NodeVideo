@@ -6,7 +6,10 @@
 
 const KEY_STORAGE = 'nodevideo.byok.OPENROUTER_API_KEY';
 const MODEL_STORAGE = 'nodevideo.byok.MODEL';
-export const DEFAULT_MODEL = 'anthropic/claude-opus-4-8';
+// Homen decision D2 (model-defaults SPEC-v3): OpenRouter-routed roles take the newest `:free` model on
+// the public list with the role's capabilities (tools, structured outputs, reasoning). Catalog fetched
+// 2026-10-16T10:00:05Z: created 2026-10-15, 1,000,000-token context. Live-unverified (no key, Homen 2026-10-16).
+export const DEFAULT_MODEL = 'nvidia/nemotron-3.5-super-vl:free';
 
 export function readByokKey(): string {
   if (typeof window === 'undefined') return '';

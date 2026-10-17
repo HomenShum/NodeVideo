@@ -22,6 +22,8 @@ import {
   swapClipSource,
 } from './plan-tools';
 
+const OPUS_55_SLUG = 'anthropic/claude-opus-5.5';
+
 export type AgentEvent =
   | { type: 'reasoning'; delta: string }
   | { type: 'text'; delta: string }
@@ -38,6 +40,10 @@ type ChatMessage = {
     function: { name: string; arguments: string };
   }>;
   tool_call_id?: string;
+  // Returned reasoning, replayed unchanged on tool continuations (OpenRouter
+  // "Preserving Reasoning"; Opus 5.5 always thinks).
+  reasoning?: string | null;
+  reasoning_details?: unknown;
 };
 
 const SYSTEM = `You are the NodeVideo edit agent for a beat-aligned dance edit (the "Sign" case: two takes A/B cut on a beat grid with lyric overlays).
@@ -178,6 +184,8 @@ export async function runBrowserAgent(options: {
   model: string;
   signal: AbortSignal;
   emit: (event: AgentEvent) => void;
+  /** Observability hook: the provider's echoed `model`, `usage` and `id` per response. */
+  onResponse?: (response: { model?: string; usage?: unknown; id?: string }) => void;
 }): Promise<void> {
   let workingPlan = options.plan;
   let mutationProposed = false;
@@ -238,7 +246,10 @@ export async function runBrowserAgent(options: {
             messages,
             tools: TOOLS,
             tool_choice: 'auto',
-            max_tokens: 1024,
+            max_tokens: 4096, // thinking counts toward the cap
+            // Opus 5.5 defaults to medium; match the worker path. Keyed by the Opus 5.5 slug, not
+            // DEFAULT_MODEL (now a free model, D2): every other model keeps its own reasoning default.
+            ...(options.model === OPUS_55_SLUG && { reasoning: { effort: 'low' } }),
           }),
         });
       } catch (error) {
@@ -266,18 +277,31 @@ export async function runBrowserAgent(options: {
       return;
     }
     const data = (await response.json()) as {
+      id?: string;
+      model?: string;
+      usage?: unknown;
       choices?: Array<{
         message?: {
           content?: string | null;
           reasoning?: string | null;
+          reasoning_details?: unknown;
           tool_calls?: ChatMessage['tool_calls'];
         };
         finish_reason?: string;
+        native_finish_reason?: string;
       }>;
     };
-    const choice = data.choices?.[0]?.message;
+    options.onResponse?.({ id: data.id, model: data.model, usage: data.usage });
+    const first = data.choices?.[0];
+    const choice = first?.message;
     if (!choice) {
       options.emit({ type: 'error', error: 'empty_model_response' });
+      return;
+    }
+    // Opus 5.5 can refuse with HTTP 200 and no content; OpenRouter reports it as a content_filter
+    // finish with the native reason 'refusal'. Surface it before reading content or tool_calls.
+    if (first?.finish_reason === 'content_filter' || first?.native_finish_reason === 'refusal') {
+      options.emit({ type: 'error', error: 'model_refused' });
       return;
     }
     if (choice.reasoning) options.emit({ type: 'reasoning', delta: choice.reasoning });
@@ -290,6 +314,10 @@ export async function runBrowserAgent(options: {
       role: 'assistant',
       content: choice.content ?? null,
       tool_calls: toolCalls,
+      ...(choice.reasoning !== undefined && { reasoning: choice.reasoning }),
+      ...(choice.reasoning_details !== undefined && {
+        reasoning_details: choice.reasoning_details,
+      }),
     });
     for (const call of toolCalls) {
       let args: Record<string, unknown> = {};

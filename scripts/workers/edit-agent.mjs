@@ -10,7 +10,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import nodeAgentRuntime from '../../src/lib/nodeagent-runtime.json' with { type: 'json' };
 
-const MODEL = process.env.NODEVIDEO_EDIT_AGENT_MODEL ?? 'claude-opus-4-8';
+const MODEL = process.env.NODEVIDEO_EDIT_AGENT_MODEL ?? 'claude-opus-5-5';
 const MAX_SOURCE_CLIPS = 64;
 export const ONE_EDIT_PER_PROPOSAL_ERROR =
   'one_edit_per_proposal: apply or dismiss the pending edit before asking for another mutation';
@@ -516,7 +516,8 @@ export function modelConfigured() {
   );
 }
 
-export async function runEditAgent({ plan, message, history, send }) {
+// `onResponse` is an observability hook: the provider's echoed `model`/`usage` per turn.
+export async function runEditAgent({ plan, message, history, send, onResponse }) {
   const client = new Anthropic({
     timeout: nodeAgentRuntime.limits.maxInteractiveRunMs,
     maxRetries: 1,
@@ -592,6 +593,7 @@ export async function runEditAgent({ plan, message, history, send }) {
         }
       });
       const response = await stream.finalMessage();
+      onResponse?.({ id: response.id, model: response.model, usage: response.usage });
 
       if (response.stop_reason === 'refusal') {
         send({ type: 'error', error: 'model_refused' });
