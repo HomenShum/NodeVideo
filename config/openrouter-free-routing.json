@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nodevideo.openrouter-free-routing.v1",
-  "generatedAt": "2026-10-09T01:10:37.684Z",
-  "catalogDigest": "3e4502d6fc5730faf830649363110c38b71eb99b379be18c13dc9363d1fbdfed",
+  "generatedAt": "2026-10-31T12:23:30.528Z",
+  "catalogDigest": "f5bfd7bee4042f5ecc5a55019a1ee3cba277b004a66a30e4a86507ed2d6ad093",
   "benchmark": {
     "schemaVersion": "nodevideo.openrouter-free-benchmark.v1",
     "scenarios": [
@@ -17,22 +17,19 @@
       "requiredScenarioCoverage": 1
     }
   },
-  "selectedModels": [
-    "nvidia/nemotron-3-super-120b-a12b:free",
-    "dots-studio/dots-3-note-preview:free"
-  ],
+  "selectedModels": ["nvidia/nemotron-3.5-super-vl:free", "dots-studio/dots-3-note-preview:free"],
   "fallbackRouter": "openrouter/free",
   "candidates": [
     {
-      "id": "nvidia/nemotron-3-super-120b-a12b:free",
-      "name": "NVIDIA: Nemotron 3 Super (free)",
-      "created": 1773245239,
-      "contextLength": 262144,
+      "id": "nvidia/nemotron-3.5-super-vl:free",
+      "name": "NVIDIA: Nemotron 3.5 Super VL (free)",
+      "created": 1792076662,
+      "contextLength": 1000000,
       "samples": 8,
       "successes": 8,
       "successRate": 1,
       "meanScore": 100,
-      "p95LatencyMs": 33287,
+      "p95LatencyMs": 31510,
       "scenarioCoverage": 4,
       "eligible": true
     },
@@ -45,7 +42,7 @@
       "successes": 7,
       "successRate": 0.875,
       "meanScore": 97.5,
-      "p95LatencyMs": 21301,
+      "p95LatencyMs": 22525,
       "scenarioCoverage": 4,
       "eligible": true
     },
@@ -55,31 +52,31 @@
       "created": 1786470519,
       "contextLength": 65536,
       "samples": 8,
-      "successes": 6,
-      "successRate": 0.75,
-      "meanScore": 75,
-      "p95LatencyMs": 22852,
+      "successes": 4,
+      "successRate": 0.5,
+      "meanScore": 50,
+      "p95LatencyMs": 5563,
       "scenarioCoverage": 3,
       "eligible": false
     },
     {
-      "id": "apodex/apodex-1.1-mini:free",
-      "name": "Apodex: Apodex 1.1 Mini (free)",
-      "created": 1790875335,
+      "id": "xingchen-agi/xing4.0-29b-a4b:free",
+      "name": "XingChen: Xing4.0 29B A4B (free)",
+      "created": 1792177496,
       "contextLength": 262144,
       "samples": 8,
-      "successes": 0,
-      "successRate": 0,
-      "meanScore": 0,
-      "p95LatencyMs": 1272,
-      "scenarioCoverage": 0,
+      "successes": 1,
+      "successRate": 0.125,
+      "meanScore": 12.5,
+      "p95LatencyMs": 3597,
+      "scenarioCoverage": 1,
       "eligible": false
     }
   ],
   "discoveredModels": [
-    "apodex/apodex-1.1-mini:free",
+    "xingchen-agi/xing4.0-29b-a4b:free",
+    "nvidia/nemotron-3.5-super-vl:free",
     "dots-studio/dots-3-note-preview:free",
-    "liquid/lfm-2.5-2.6b:free",
-    "nvidia/nemotron-3-super-120b-a12b:free"
+    "liquid/lfm-2.5-2.6b:free"
   ]
 }
