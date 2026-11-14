@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nodevideo.openrouter-free-routing.v1",
-  "generatedAt": "2026-10-09T01:10:37.684Z",
-  "catalogDigest": "3e4502d6fc5730faf830649363110c38b71eb99b379be18c13dc9363d1fbdfed",
+  "generatedAt": "2026-11-14T18:24:53.524Z",
+  "catalogDigest": "ca5120d893388379ca1214ad8481a519ca550a2b2aebc1cda209edfd27221477",
   "benchmark": {
     "schemaVersion": "nodevideo.openrouter-free-benchmark.v1",
     "scenarios": [
@@ -17,22 +17,19 @@
       "requiredScenarioCoverage": 1
     }
   },
-  "selectedModels": [
-    "nvidia/nemotron-3-super-120b-a12b:free",
-    "dots-studio/dots-3-note-preview:free"
-  ],
+  "selectedModels": ["particle-ai/particle-1:free", "dots-studio/dots-3-note-preview:free"],
   "fallbackRouter": "openrouter/free",
   "candidates": [
     {
-      "id": "nvidia/nemotron-3-super-120b-a12b:free",
-      "name": "NVIDIA: Nemotron 3 Super (free)",
-      "created": 1773245239,
-      "contextLength": 262144,
+      "id": "particle-ai/particle-1:free",
+      "name": "Particle AI: Particle-1 (free)",
+      "created": 1793207893,
+      "contextLength": 1048576,
       "samples": 8,
       "successes": 8,
       "successRate": 1,
       "meanScore": 100,
-      "p95LatencyMs": 33287,
+      "p95LatencyMs": 4007,
       "scenarioCoverage": 4,
       "eligible": true
     },
@@ -42,44 +39,72 @@
       "created": 1786680361,
       "contextLength": 512000,
       "samples": 8,
-      "successes": 7,
-      "successRate": 0.875,
-      "meanScore": 97.5,
-      "p95LatencyMs": 21301,
+      "successes": 8,
+      "successRate": 1,
+      "meanScore": 100,
+      "p95LatencyMs": 26082,
       "scenarioCoverage": 4,
       "eligible": true
     },
     {
-      "id": "liquid/lfm-2.5-2.6b:free",
-      "name": "LiquidAI: LFM2.5-2.6B (free)",
-      "created": 1786470519,
-      "contextLength": 65536,
+      "id": "baidu/ernie-5.5-flash-preview:free",
+      "name": "Baidu: ERNIE-5.5-Flash-Preview (free)",
+      "created": 1794333533,
+      "contextLength": 1024000,
       "samples": 8,
-      "successes": 6,
-      "successRate": 0.75,
-      "meanScore": 75,
-      "p95LatencyMs": 22852,
-      "scenarioCoverage": 3,
+      "successes": 7,
+      "successRate": 0.875,
+      "meanScore": 97.5,
+      "p95LatencyMs": 7730,
+      "scenarioCoverage": 4,
+      "eligible": true
+    },
+    {
+      "id": "nvidia/nemotron-3.5-super-vl:free",
+      "name": "NVIDIA: Nemotron 3.5 Super VL (free)",
+      "created": 1792076662,
+      "contextLength": 1000000,
+      "samples": 8,
+      "successes": 7,
+      "successRate": 0.875,
+      "meanScore": 97.5,
+      "p95LatencyMs": 14101,
+      "scenarioCoverage": 4,
+      "eligible": true
+    },
+    {
+      "id": "liquid/lfm-3-1.7b:free",
+      "name": "LiquidAI: LFM3-1.7B (free)",
+      "created": 1794009477,
+      "contextLength": 262144,
+      "samples": 8,
+      "successes": 2,
+      "successRate": 0.25,
+      "meanScore": 45,
+      "p95LatencyMs": 26634,
+      "scenarioCoverage": 1,
       "eligible": false
     },
     {
-      "id": "apodex/apodex-1.1-mini:free",
-      "name": "Apodex: Apodex 1.1 Mini (free)",
-      "created": 1790875335,
-      "contextLength": 262144,
+      "id": "inclusionai/ling-3.2-flash:free",
+      "name": "inclusionAI: Ling 3.2 Flash (free)",
+      "created": 1794591958,
+      "contextLength": 1048576,
       "samples": 8,
       "successes": 0,
       "successRate": 0,
       "meanScore": 0,
-      "p95LatencyMs": 1272,
+      "p95LatencyMs": 50005,
       "scenarioCoverage": 0,
       "eligible": false
     }
   ],
   "discoveredModels": [
-    "apodex/apodex-1.1-mini:free",
-    "dots-studio/dots-3-note-preview:free",
-    "liquid/lfm-2.5-2.6b:free",
-    "nvidia/nemotron-3-super-120b-a12b:free"
+    "inclusionai/ling-3.2-flash:free",
+    "baidu/ernie-5.5-flash-preview:free",
+    "liquid/lfm-3-1.7b:free",
+    "particle-ai/particle-1:free",
+    "nvidia/nemotron-3.5-super-vl:free",
+    "dots-studio/dots-3-note-preview:free"
   ]
 }
